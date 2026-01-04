@@ -1,0 +1,7 @@
+2026-01-04 20:01:01 - realestate_publisher - INFO - main.py:63 - ============================================================
+2026-01-04 20:01:01 - realestate_publisher - INFO - main.py:64 - 房产资讯自动化发布代理启动
+2026-01-04 20:01:01 - realestate_publisher - INFO - main.py:65 - ============================================================
+2026-01-04 20:01:04 - realestate_publisher - INFO - main.py:112 - 所有组件初始化完成
+2026-01-04 20:01:04 - realestate_publisher - INFO - main.py:126 - 开始信息采集...
+2026-01-04 20:01:04 - realestate_publisher - INFO - main.py:177 - 信息采集完成，共获取 0 条信息
+2026-01-04 20:01:04 - realestate_publisher - WARNING - main.py:301 - 未采集到任何信息
