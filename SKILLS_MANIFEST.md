@@ -12,8 +12,9 @@
 | 数据分析 (data-analysis) | 0 | ⚪ 待开发 |
 | 自动化 (automation) | 0 | ⚪ 待开发 |
 | 工具 (utilities) | 0 | ⚪ 待开发 |
+| **工具框架 (tools)** | 1 | 🟢 活跃 |
 
-**总计**: 2 个活跃技能
+**总计**: 2 个活跃技能 + 1 个工具框架
 
 ---
 
@@ -36,7 +37,7 @@
 
 **技术栈**:
 - Python 3.9+
-- ZhipuAI GLM-4
+- MiniMax abab6.5s-chat
 - BeautifulSoup4
 - YAML配置
 
@@ -118,21 +119,48 @@
 
 ---
 
+### 🛠️ 工具框架
+
+#### agent-skill-creator
+
+**路径**: `tools/agent-skill-creator/`
+
+**描述**: 技能创建元技能 - 教会 Claude Code 如何自主创建完整的 Claude Skills
+
+**核心功能**:
+- ✅ 5阶段自主创建流程（发现→设计→架构→检测→实现）
+- ✅ 多智能体套件支持
+- ✅ 学习和优化能力（AgentDB 集成）
+- ✅ 模板化创建
+- ✅ 交互式配置
+
+**适用场景**:
+- 创建自动化工作流代理
+- 将重复流程转化为技能
+- 构建领域专用智能体
+- 批量技能创建
+
+**入口文件**: `SKILL.md`
+
+**文档**: `README.md`, `SKILL.md`
+
+---
+
 ## 渐进式加载指南
 
 ### 按需加载
 
 ```bash
 # 1. 加载单个技能
-ln -s ~/ai-agents-workspace/leo-skills/content-creation/realestate-news-publisher-cskill ~/.claude/skills/
+ln -s d:/桌面/AI_claude_skills/leo-skills/content-creation/realestate-news-publisher-cskill ~/.claude/skills/
 
 # 2. 加载整个分类
-for skill in ~/ai-agents-workspace/leo-skills/content-creation/*; do
+for skill in d:/桌面/AI_claude_skills/leo-skills/content-creation/*; do
     ln -s "$skill" ~/.claude/skills/
 done
 
 # 3. 加载所有技能
-for category in ~/ai-agents-workspace/leo-skills/*; do
+for category in d:/桌面/AI_claude_skills/leo-skills/*; do
     for skill in "$category"/*; do
         ln -s "$skill" ~/.claude/skills/
     done
@@ -143,8 +171,8 @@ done
 
 ```
 ~/.claude/skills/
-├── realestate-news-publisher-cskill -> ~/ai-agents-workspace/leo-skills/content-creation/realestate-news-publisher-cskill
-└── content-layout-leo-cskill -> ~/ai-agents-workspace/leo-skills/content-creation/content-layout-leo-cskill
+├── realestate-news-publisher-cskill -> d:/桌面/AI_claude_skills/leo-skills/content-creation/realestate-news-publisher-cskill
+└── content-layout-leo-cskill -> d:/桌面/AI_claude_skills/leo-skills/content-creation/content-layout-leo-cskill
 ```
 
 ---
@@ -171,10 +199,70 @@ done
 
 ---
 
+## 📚 资料文档
+
+### 个人档案
+
+**路径**: `docs/profile/leo-profile.md`
+
+**描述**: Leo（佬流）完整档案 - 包含基础信息、事业板块、技术工具栈、学习目标、协作期望等
+
+**内容概要**:
+- 基础信息（36岁创业者，浙江宁波）
+- 房产中介业务（度假养老别墅，10人团队）
+- AI眼镜赛道（筹备中）
+- 技术工具栈（Raycast + Dify + n8n + 飞书 + 企业微信）
+- 学习目标（AI编程从入门到精通）
+- 业务需求（飞书多维表格、账号管理系统）
+- 协作期望（AI最强搭档定位）
+
+**更新时间**: 2026年1月5日
+
+### 技能架构分析
+
+**路径**: `docs/analysis/skill-creator-skill-architecture.md`
+
+**描述**: agent-skill-creator 技能架构分析 - 从"创建/训练/维护/使用"角度的优化建议
+
+**内容概要**:
+- 创建：技能发现与创建机制评估
+- 训练：技能培训与成长体系设计
+- 维护：技能健康度与迭代优化
+- 使用：技能调度与效果评估
+- 针对Leo情况的定制化建议
+- 实施路线图（1-6个月）
+
+**更新时间**: 2026年1月5日
+
+### 思考框架
+
+**路径**: `docs/analysis/pain-point-to-skill-framework.md`
+
+**描述**: 从痛点到技能 - 思考框架 - 在创建技能前通过系统化思考确保解决真实痛点
+
+**内容概要**:
+- 为什么从痛点出发（而非技术出发）
+- 第一阶段：痛点识别（发现真痛点、验证方法、描述模板）
+- 第二阶段：痛点拆解（流程/角色/数据/动作维度、5Why分析法）
+- 第三阶段：三维对标分析（平台能力、员工需求、重复动作）
+- 第四阶段：评估与方案设计（评估矩阵、MVP定义、架构设计、风险评估）
+- 实战案例：房源发布管理器完整思考过程
+- 快速检查清单：创建技能前的10个问题
+
+**适用场景**: Claude Code 技能创建、业务自动化需求分析、AI应用规划
+
+**更新时间**: 2026年1月5日
+
+---
+
 ## 更新日志
 
-| 日期 | 技能 | 版本 | 更新内容 |
+| 日期 | 项目 | 版本 | 更新内容 |
 |------|------|------|----------|
+| 2026-01-05 | 文档 | - | 新增思考框架到 docs/analysis/ |
+| 2026-01-05 | 工具框架 | - | agent-skill-creator 移至 tools/ 子目录 |
+| 2026-01-05 | 文档 | - | 新增个人档案到 docs/profile/ |
+| 2026-01-05 | realestate-news-publisher | - | API切换至MiniMax |
 | 2026-01-04 | realestate-news-publisher-cskill | 1.0.0 | 初始版本，支持资讯收集和发布 |
 | 2026-01-04 | content-layout-leo-cskill | 1.0.0 | 初始版本，10种排版风格 |
 
@@ -189,4 +277,4 @@ done
 
 ---
 
-*最后更新: 2026-01-04*
+*最后更新: 2026-01-05*

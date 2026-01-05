@@ -49,6 +49,18 @@ class ArticleGenerator:
             except ImportError:
                 logger.warning("openai 未安装，将使用模板生成")
                 self.client = None
+        elif provider == "minimax":
+            try:
+                from openai import OpenAI
+                base_url = self.ai_config.get("base_url", "https://api.minimax.chat/v1")
+                self.client = OpenAI(
+                    api_key=self.ai_config.get("api_key"),
+                    base_url=base_url
+                )
+                logger.info(f"使用 MiniMax (模型: {self.ai_config.get('model', 'abab6.5s-chat')})")
+            except ImportError:
+                logger.warning("openai 未安装，MiniMax 需要OpenAI库，将使用模板生成")
+                self.client = None
         else:
             self.client = None
 
@@ -237,9 +249,10 @@ class ArticleGenerator:
                 )
                 return response.choices[0].message.content
 
-            elif provider == "openai":
+            elif provider == "openai" or provider == "minimax":
+                # OpenAI 和 MiniMax 使用兼容的 API 格式
                 response = self.client.chat.completions.create(
-                    model=self.ai_config.get("model", "gpt-4"),
+                    model=self.ai_config.get("model"),
                     messages=[
                         {"role": "user", "content": prompt}
                     ],

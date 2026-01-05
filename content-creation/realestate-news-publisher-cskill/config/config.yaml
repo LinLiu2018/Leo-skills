@@ -3,9 +3,11 @@
 
 # AI Configuration
 ai:
-  provider: "zhipuai"  # Options: zhipuai, openai
-  model: "glm-4"
-  api_key: "${ZHIPUAI_API_KEY}"
+  provider: "minimax"  # Options: zhipuai, openai, minimax
+  model: "abab6.5s-chat"  # MiniMax 2.1 模型
+  api_key: "${MINIMAX_API_KEY}"
+  base_url: "${MINIMAX_BASE_URL}"  # https://api.minimax.chat/v1
+  group_id: "${MINIMAX_GROUP_ID}"  # 可选
   temperature: 0.7
   max_tokens: 2000
   timeout: 60
