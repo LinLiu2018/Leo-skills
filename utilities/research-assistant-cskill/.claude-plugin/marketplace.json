@@ -1,0 +1,123 @@
+{
+  "name": "research-assistant-cskill",
+  "displayName": "Research Assistant",
+  "description": "Academic research assistant for literature search, paper analysis, summarization, and citation management. Search academic databases, analyze papers, generate summaries, and manage citations effortlessly.",
+  "version": "1.0.0",
+  "author": "Claude Code",
+  "keywords": [
+    "research",
+    "academic",
+    "literature",
+    "papers",
+    "citations",
+    "search",
+    "analysis",
+    "summarize",
+    "review",
+    "scholar",
+    "arxiv",
+    "semantic scholar",
+    "pubmed",
+    "doi",
+    "reference",
+    "bibliography",
+    "thesis",
+    "dissertation",
+    "journal",
+    "conference",
+    "publication",
+    "academic search",
+    "paper analysis",
+    "citation management",
+    "literature review",
+    "research assistant"
+  ],
+  "patterns": [
+    "search for (papers?|articles?|research|studies|publications)",
+    "find (papers?|articles?|research|studies|publications)",
+    "look up (papers?|articles?|research)",
+    "analyze (this|that|the) (paper|article|research|study)",
+    "summarize (this|that|the) (paper|article|research|study)",
+    "generate (a|an)? ?(literature|research)? ?review",
+    "create (a|an)? ?citation",
+    "format (a|an)? ?citation",
+    "bibtex",
+    "(apa|mla|chicago|harvard|ieee) citation",
+    "extract (key findings|methodology|abstract|references)",
+    "what (are|does) the (key findings|methodology|contributions)",
+    "help (me|us) (with|write|find|search|analyze)",
+    "(recent|latest|new) (papers?|research|articles?|studies)",
+    "(papers?|articles?|research) (on|about|regarding)",
+    "academic (search|research|database)",
+    "research (topic|question|gap|trend)",
+    "citation (manager|format|generate)",
+    "literature (search|review|synthesis)"
+  ],
+  "when_to_use": [
+    "Search for academic papers on a specific topic",
+    "Find recent research publications",
+    "Analyze and extract key findings from papers",
+    "Generate summaries of research papers",
+    "Create citations in APA, MLA, Chicago, or BibTeX format",
+    "Find papers that cite a specific paper",
+    "Generate a structured literature review",
+    "Identify research trends and gaps",
+    "Extract references from papers",
+    "Manage bibliography and citations for research projects"
+  ],
+  "when_not_to_use": [
+    "General coding questions not related to research",
+    "Non-academic writing tasks",
+    "Legal or medical advice",
+    "Financial investment research",
+    "Personal tasks unrelated to academic research",
+    "Searching for non-scholarly websites or content",
+    "Questions about how to use this skill"
+  ],
+  "example_queries": [
+    "Search for papers on machine learning in healthcare",
+    "Find recent research about transformer models",
+    "Analyze this paper and extract key findings",
+    "Generate APA citation for this paper",
+    "Create a literature review on AI ethics",
+    "What methodology does this paper use?",
+    "Find papers that cite this DOI",
+    "Summarize the main contributions of this research",
+    "Generate BibTeX entry for this paper",
+    "Search for open-access papers on climate change",
+    "Identify the most influential papers in computer vision",
+    "Find research papers by author name"
+  ],
+  "capabilities": [
+    "Literature search across multiple databases",
+    "Paper analysis and extraction",
+    "Automatic summarization",
+    "Citation generation and formatting",
+    "BibTeX export",
+    "Literature review generation",
+    "Citation chain discovery",
+    "Reference extraction",
+    "Research trend analysis"
+  ],
+  "configuration": {
+    "python_version": "3.8+",
+    "dependencies_file": "requirements.txt",
+    "env_vars": [
+      "SEMANTIC_SCHOLAR_API_KEY",
+      "OPENALEX_API_KEY",
+      "DEFAULT_MAX_RESULTS",
+      "DEFAULT_CITATION_STYLE",
+      "ENABLE_CACHE",
+      "CACHE_DAYS"
+    ]
+  },
+  "repository": {
+    "type": "local",
+    "path": "./leo-skills/utilities/research-assistant-cskill"
+  },
+  "license": "Apache 2.0",
+  "homepage": "https://github.com/anthropics/claude-code",
+  "bugs": {
+    "url": "https://github.com/anthropics/claude-code/issues"
+  }
+}
