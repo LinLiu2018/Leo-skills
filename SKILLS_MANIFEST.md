@@ -9,12 +9,12 @@
 | 分类 | 技能数 | 状态 |
 |------|--------|------|
 | 内容创作 (content-creation) | 2 | 🟢 活跃 |
+| 工具 (utilities) | 1 | 🟢 活跃 |
+| 工具框架 (tools) | 3 | 🟢 活跃 |
 | 数据分析 (data-analysis) | 0 | ⚪ 待开发 |
 | 自动化 (automation) | 0 | ⚪ 待开发 |
-| 工具 (utilities) | 0 | ⚪ 待开发 |
-| **工具框架 (tools)** | 1 | 🟢 活跃 |
 
-**总计**: 2 个活跃技能 + 1 个工具框架
+**总计**: 6 个活跃技能
 
 ---
 
@@ -139,6 +139,55 @@
 - 将重复流程转化为技能
 - 构建领域专用智能体
 - 批量技能创建
+
+**入口文件**: `SKILL.md`
+
+**文档**: `README.md`, `SKILL.md`
+
+---
+
+#### article-to-prototype-cskill
+
+**路径**: `tools/article-to-prototype-cskill/`
+
+**描述**: 文章转代码原型技能 - 从技术文档自动提取算法并生成可执行的原型代码
+
+**核心功能**:
+- ✅ 多格式输入支持（PDF、网页、Jupyter Notebook、Markdown）
+- ✅ 智能算法检测和提取
+- ✅ 架构模式识别
+- ✅ 自动编程语言选择
+- ✅ 生成完整可运行的项目
+
+**支持格式**:
+- 学术论文（arXiv、IEEE、ACM）
+- 技术博客和教程
+- API文档和规范
+- Jupyter Notebook
+
+**入口文件**: `SKILL.md`
+
+**文档**: `README.md`, `SKILL.md`
+
+---
+
+#### project-marketing-doc-generator-cskill
+
+**路径**: `tools/project-marketing-doc-generator-cskill/`
+
+**描述**: 项目营销文档生成器 - 快速生成商业项目营销文档和销售资料
+
+**核心功能**:
+- ✅ 全案营销手册生成（完整版）
+- ✅ 销售速查卡生成（1页精华版）
+- ✅ 投资回报测算
+- ✅ 竞品分析报告
+- ✅ 销售话术生成
+
+**适用项目**:
+- 菜市场、农贸市场项目
+- 商业地产项目
+- 招商引资项目
 
 **入口文件**: `SKILL.md`
 
