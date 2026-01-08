@@ -22,6 +22,18 @@ sys.path.insert(0, str(current_path))
 # 使用importlib直接加载模块
 import importlib.util
 
+
+def serialize_result(obj):
+    """递归转换对象为可JSON序列化的字典"""
+    if hasattr(obj, 'to_dict'):
+        return obj.to_dict()
+    elif isinstance(obj, dict):
+        return {k: serialize_result(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [serialize_result(item) for item in obj]
+    else:
+        return obj
+
 def load_module_from_file(module_name: str, file_path: str):
     """从文件直接加载模块"""
     spec = importlib.util.spec_from_file_location(module_name, file_path)
@@ -323,6 +335,7 @@ def main():
     parser.add_argument("--execute", type=str, help="执行任务")
     parser.add_argument("--agent", type=str, help="指定Agent")
     parser.add_argument("--call", type=str, help="调用Skill (格式: skill_name:action)")
+    parser.add_argument("--no-example", action="store_true", help="不运行示例代码")
 
     args = parser.parse_args()
 
@@ -344,8 +357,10 @@ def main():
 
     elif args.execute:
         result = system.execute_task(args.execute, args.agent)
+        # 序列化结果
+        result_serialized = serialize_result(result)
         print(f"\n✅ 执行结果:")
-        print(json.dumps(result, indent=2, ensure_ascii=False))
+        print(json.dumps(result_serialized, indent=2, ensure_ascii=False))
 
     elif args.call:
         if ":" not in args.call:
@@ -354,8 +369,10 @@ def main():
 
         skill_name, action = args.call.split(":", 1)
         result = system.call_skill(skill_name, action)
+        # 序列化结果
+        result_serialized = serialize_result(result)
         print(f"\n✅ 调用结果:")
-        print(result)
+        print(result_serialized)
 
     else:
         # 默认：显示状态
@@ -365,23 +382,17 @@ def main():
 # ==================== 使用示例 ====================
 
 if __name__ == "__main__":
-    # 示例1：获取系统
-    system = get_system()
+    import sys
 
-    # 示例2：执行任务
-    print("\n📝 示例：执行任务")
-    result = system.execute_task("帮我排版这篇文章")
-    print(f"结果: {json.dumps(result, indent=2, ensure_ascii=False)}")
+    # 检查是否有命令行参数
+    if len(sys.argv) > 1:
+        # 有参数，执行main函数
+        main()
+    else:
+        # 无参数，运行示例代码
+        system = get_system()
 
-    # 示例3：调用Skill
-    print("\n📝 示例：调用Skill")
-    result = system.call_skill(
-        "content-layout-leo-cskill",
-        "layout",
-        content="测试内容",
-        style="data_driven"
-    )
-    print(f"结果: {result}")
-
-    # 示例4：显示状态
-    system.print_status()
+        # 示例：显示状态
+        print("\n📊 Leo系统运行示例")
+        print("=" * 60)
+        system.print_status()
