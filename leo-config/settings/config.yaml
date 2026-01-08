@@ -1,0 +1,212 @@
+# Leo全局配置文件
+# ====================
+# 统一管理Skills、Subagents、Workflows的配置
+
+version: "1.0.0"
+last_updated: "2026-01-08"
+
+project:
+  name: "Leo AI Agent System"
+  description: "Leo的AI智能体系统 - Skills + Subagents协同工作"
+  author: "Leo Liu"
+  base_path: "d:\\桌面\\AI_claude_skills"
+
+# ==================== Skills配置 ====================
+
+skills:
+  # 内容创作类
+  - name: "content-layout-leo-cskill"
+    path: "leo-skills/content-creation/content-layout-leo-cskill"
+    category: "content-creation"
+    enabled: true
+    metadata:
+      description: "智能内容排版技能"
+      version: "1.0.0"
+      activation_keywords: ["帮我排版", "生成格式"]
+
+  - name: "realestate-news-publisher-cskill"
+    path: "leo-skills/content-creation/realestate-news-publisher-cskill"
+    category: "content-creation"
+    enabled: true
+    metadata:
+      description: "房产资讯发布技能"
+      version: "1.0.0"
+
+  # 工具类
+  - name: "research-assistant-cskill"
+    path: "leo-skills/utilities/research-assistant-cskill"
+    category: "utilities"
+    enabled: true
+    metadata:
+      description: "智能研究助手"
+
+  # 工具框架类
+  - name: "agent-skill-creator"
+    path: "leo-skills/tools/agent-skill-creator"
+    category: "tools"
+    enabled: true
+    metadata:
+      description: "技能创建元技能"
+
+  - name: "article-to-prototype-cskill"
+    path: "leo-skills/tools/article-to-prototype-cskill"
+    category: "tools"
+    enabled: true
+    metadata:
+      description: "文章转代码原型"
+
+  - name: "project-marketing-doc-generator-cskill"
+    path: "leo-skills/tools/project-marketing-doc-generator-cskill"
+    category: "tools"
+    enabled: true
+    metadata:
+      description: "项目营销文档生成器"
+
+# ==================== Subagents配置 ====================
+
+agents:
+  - name: "task-agent"
+    type: "executor"
+    priority: 1
+    enabled: true
+    skills:
+      - "content-layout-leo-cskill"
+      - "realestate-news-publisher-cskill"
+      - "project-marketing-doc-generator-cskill"
+    metadata:
+      description: "任务执行代理"
+      activation_keywords: ["执行任务", "运行流程"]
+
+  - name: "research-agent"
+    type: "researcher"
+    priority: 2
+    enabled: true
+    skills:
+      - "research-assistant-cskill"
+      - "article-to-prototype-cskill"
+    metadata:
+      description: "研究代理"
+      activation_keywords: ["帮我研究", "调研"]
+
+  - name: "analysis-agent"
+    type: "analyzer"
+    priority: 3
+    enabled: true
+    skills: []
+    metadata:
+      description: "分析代理（待实现）"
+      activation_keywords: ["分析数据", "生成报告"]
+
+  - name: "creative-agent"
+    type: "creator"
+    priority: 4
+    enabled: true
+    skills:
+      - "content-layout-leo-cskill"
+      - "article-to-prototype-cskill"
+    metadata:
+      description: "创作代理"
+      activation_keywords: ["创作内容", "生成文案"]
+
+# ==================== Workflows配置 ====================
+
+workflows:
+  content-pipeline:
+    name: "内容生产线"
+    description: "研究→创作→发布的完整流程"
+    enabled: true
+    steps:
+      - name: "research"
+        agent: "research-agent"
+        description: "信息收集和研究"
+      - name: "create"
+        agent: "creative-agent"
+        description: "内容创作"
+      - name: "publish"
+        agent: "task-agent"
+        description: "发布和推广"
+
+  research-pipeline:
+    name: "研究线"
+    description: "收集→分析的纯研究流程"
+    enabled: true
+    steps:
+      - name: "collect"
+        agent: "research-agent"
+        description: "信息收集"
+      - name: "analyze"
+        agent: "analysis-agent"
+        description: "数据分析"
+
+  analysis-pipeline:
+    name: "分析线"
+    description: "分析→报告的纯分析流程"
+    enabled: true
+    steps:
+      - name: "analyze"
+        agent: "analysis-agent"
+        description: "执行分析"
+      - name: "report"
+        agent: "task-agent"
+        description: "生成报告"
+
+# ==================== 系统配置 ====================
+
+system:
+  # 执行配置
+  execution:
+    max_parallel_tasks: 5
+    default_timeout: 300
+    retry_on_failure: true
+    max_retries: 3
+
+  # 日志配置
+  logging:
+    level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+    file: "logs/leo_system.log"
+    console: true
+
+  # 缓存配置
+  cache:
+    enabled: true
+    ttl: 3600  # 缓存生存时间（秒）
+    size: 100  # 最大缓存条目数
+
+  # 性能配置
+  performance:
+    lazy_loading: true  # 懒加载Skills
+    preload_agents: []  # 预加载的Agents
+    connection_pool_size: 10
+
+# ==================== 集成配置 ====================
+
+integrations:
+  # Claude Code集成
+  claude_code:
+    enabled: true
+    skills_path: ".claude/skills"
+    auto_symlink: false  # 是否自动创建符号链接
+
+  # 飞书集成
+  feishu:
+    enabled: false
+    app_id: ""
+    app_secret: ""
+
+  # 企业微信集成
+  wechat_work:
+    enabled: false
+    corp_id: ""
+    agent_id: ""
+
+# ==================== 开发配置 ====================
+
+development:
+  debug_mode: false
+  hot_reload: false
+  test_mode: false
+
+  # 开发时使用的测试数据
+  test_data:
+    sample_project: "projects/淮安菜市场项目"
+    test_content: "测试内容"

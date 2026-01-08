@@ -1,0 +1,103 @@
+{
+  "name": "realestate-news-publisher-cskill",
+  "version": "1.0.0",
+  "type": "skill",
+  "description": "Automated real estate policy news collection, intelligent content generation, and multi-platform publishing agent for WeChat Official Accounts and social media platforms",
+  "author": "Agent-Skill-Creator",
+  "keywords": [
+    "real-estate",
+    "news-publisher",
+    "policy-monitoring",
+    "content-generation",
+    "wechat",
+    "automation",
+    "web-scraping",
+    "ai-content",
+    "multi-platform"
+  ],
+  "activation": {
+    "keywords": [
+      "create news publisher for",
+      "automate news publishing",
+      "real estate news agent",
+      "policy monitoring agent",
+      "wechat content automation",
+      "daily news publisher"
+    ],
+    "patterns": [
+      "(?i)(create|build|develop)\\s+(news\\s+)?(publisher|publisher\\s+agent)",
+      "(?i)(automate|automation)\\s+(news\\s+)?(publishing|content)",
+      "(?i)(real\\s*estate|property)\\s+(news|policy)\\s+(agent|monitor|publisher)",
+      "(?i)wechat\\s+(content|article)\\s+(automation|generator)"
+    ]
+  },
+  "capabilities": [
+    "multi-source-collection",
+    "intelligent-filtering",
+    "ai-content-generation",
+    "wechat-publishing",
+    "multi-platform-distribution",
+    "performance-tracking",
+    "scheduled-publishing"
+  ],
+  "supported_sources": [
+    "government-websites",
+    "news-portals",
+    "industry-platforms",
+    "social-media"
+  ],
+  "supported_platforms": [
+    "wechat-official-account",
+    "wechat-channel",
+    "xiaohongshu",
+    "douyin"
+  ],
+  "dependencies": {
+    "python": ">=3.9",
+    "pip": [
+      "requests>=2.31.0",
+      "beautifulsoup4>=4.12.0",
+      "lxml>=4.9.0",
+      "feedparser>=6.0.10",
+      "schedule>=1.2.0",
+      "apscheduler>=3.10.0",
+      "pyyaml>=6.0",
+      "python-dotenv>=1.0.0",
+      "zhipuai>=2.0.0",
+      "openai>=1.0.0",
+      "wechatpy>=1.8.18",
+      "sqlalchemy>=2.0.0",
+      "aiohttp>=3.9.0",
+      "aiofiles>=23.0.0"
+    ]
+  },
+  "features": [
+    "multi-source-monitoring",
+    "intelligent-content-analysis",
+    "ai-powered-writing",
+    "automatic-publishing",
+    "performance-analytics",
+    "template-system"
+  ],
+  "usage": {
+    "example": "Create an automated news publisher that monitors real estate policies and generates daily articles for WeChat",
+    "input_types": [
+      "keywords",
+      "sources",
+      "schedule"
+    ],
+    "output_types": [
+      "published-articles",
+      "analytics-reports"
+    ]
+  },
+  "metadata": {
+    "category": "content-automation",
+    "subcategory": "news-publishing",
+    "complexity": "high",
+    "estimated_lines": 3500,
+    "created_by": "agent-skill-creator",
+    "architecture": "simple-skill",
+    "target_regions": ["Ningbo", "Yuyao", "Zhenhai", "Fenghua"]
+  }
+}
