@@ -1,0 +1,11 @@
+{
+  "name": "deployment-script-generator-cskill",
+  "version": "1.0.0",
+  "description": "生成部署和回滚脚本",
+  "author": "Leo Liu",
+  "keywords": ["deployment", "script", "docker", "pm2", "rollback"],
+  "activation": {
+    "keywords": ["生成部署脚本", "创建部署配置", "部署脚本"]
+  },
+  "category": "development/deployment"
+}

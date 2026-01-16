@@ -1,0 +1,11 @@
+{
+  "name": "dockerfile-generator-cskill",
+  "version": "1.0.0",
+  "description": "Dockerfile和docker-compose配置生成器，支持多种应用类型",
+  "author": "Leo Liu",
+  "keywords": ["docker", "dockerfile", "container", "deployment", "devops"],
+  "activation": {
+    "keywords": ["生成Dockerfile", "创建Docker配置", "docker部署", "容器化"]
+  },
+  "category": "development/deployment"
+}

@@ -1,0 +1,11 @@
+{
+  "name": "flask-api-scaffold-cskill",
+  "version": "1.0.0",
+  "description": "生成Flask API项目结构",
+  "author": "Leo Liu",
+  "keywords": ["flask", "api", "scaffold", "project"],
+  "activation": {
+    "keywords": ["创建Flask项目", "Flask脚手架", "初始化Flask API"]
+  },
+  "category": "development/scaffold"
+}

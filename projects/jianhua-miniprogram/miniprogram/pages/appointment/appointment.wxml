@@ -1,0 +1,107 @@
+<!--pages/appointment/appointment.wxml-->
+<view class="container">
+  <!-- 未预约状态 -->
+  <block wx:if="{{!hasAppointment}}">
+    <!-- 礼品信息 -->
+    <view class="card gift-card">
+      <view class="gift-header">
+        <text class="gift-icon">🎁</text>
+        <text class="gift-title">待领取礼品</text>
+      </view>
+      <view class="gift-info">
+        <text class="gift-name">{{giftName || '抽纸1包'}}</text>
+        <text class="gift-expire">有效期至：{{expireDate}}</text>
+      </view>
+      <view class="gift-tip">预约到访后可在售楼处领取</view>
+    </view>
+
+    <!-- 选择日期 -->
+    <view class="card">
+      <view class="section-title">选择到访日期</view>
+      <scroll-view class="date-list" scroll-x>
+        <view
+          class="date-item {{selectedDate === item.date ? 'active' : ''}}"
+          wx:for="{{dateList}}"
+          wx:key="date"
+          bindtap="selectDate"
+          data-date="{{item.date}}"
+        >
+          <text class="date-week">{{item.week}}</text>
+          <text class="date-day">{{item.day}}</text>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- 选择时间段 -->
+    <view class="card">
+      <view class="section-title">选择时间段</view>
+      <view class="time-grid">
+        <view
+          class="time-item {{selectedTime === item ? 'active' : ''}} {{item.disabled ? 'disabled' : ''}}"
+          wx:for="{{timeSlots}}"
+          wx:key="*this"
+          bindtap="selectTime"
+          data-time="{{item}}"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 联系方式 -->
+    <view class="card">
+      <view class="section-title">联系方式</view>
+      <view class="form-item">
+        <text class="form-label">手机号</text>
+        <text class="form-value">{{phone}}</text>
+      </view>
+      <view class="form-item">
+        <text class="form-label">姓名</text>
+        <input class="form-input" placeholder="请输入您的姓名" value="{{name}}" bindinput="inputName"/>
+      </view>
+    </view>
+
+    <!-- 提交按钮 -->
+    <view class="btn-area">
+      <button class="btn-submit" bindtap="submitAppointment">确认预约</button>
+    </view>
+  </block>
+
+  <!-- 已预约状态 -->
+  <block wx:else>
+    <view class="card success-card">
+      <view class="success-icon">✓</view>
+      <view class="success-title">预约成功</view>
+      <view class="success-desc">请按时到访领取礼品</view>
+    </view>
+
+    <view class="card appointment-detail">
+      <view class="detail-item">
+        <text class="detail-label">预约日期</text>
+        <text class="detail-value">{{appointmentInfo.date}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">预约时段</text>
+        <text class="detail-value">{{appointmentInfo.time}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">领取礼品</text>
+        <text class="detail-value">{{appointmentInfo.gift}}</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">预约码</text>
+        <text class="detail-value code">{{appointmentInfo.code}}</text>
+      </view>
+    </view>
+
+    <view class="card address-card">
+      <view class="address-title">到访地址</view>
+      <view class="address-text">淮安市清江浦区建华观园菜场售楼处</view>
+      <button class="btn-nav" bindtap="openLocation">导航前往</button>
+    </view>
+
+    <view class="btn-area">
+      <button class="btn-cancel" bindtap="cancelAppointment">取消预约</button>
+    </view>
+  </block>
+</view>

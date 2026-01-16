@@ -1,0 +1,11 @@
+{
+  "name": "api-doc-generator-cskill",
+  "version": "1.0.0",
+  "description": "生成API文档（OpenAPI/Swagger/Markdown）",
+  "author": "Leo Liu",
+  "keywords": ["api", "doc", "openapi", "swagger", "markdown"],
+  "activation": {
+    "keywords": ["生成API文档", "创建接口文档", "API文档"]
+  },
+  "category": "development/backend"
+}

@@ -1,0 +1,11 @@
+{
+  "name": "react-component-generator-cskill",
+  "version": "1.0.0",
+  "description": "React组件代码生成器，支持Hooks和TypeScript",
+  "author": "Leo Liu",
+  "keywords": ["react", "component", "hooks", "typescript", "frontend"],
+  "activation": {
+    "keywords": ["生成React组件", "创建React组件", "React组件"]
+  },
+  "category": "development/frontend"
+}

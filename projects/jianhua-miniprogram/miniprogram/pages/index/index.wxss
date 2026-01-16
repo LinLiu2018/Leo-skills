@@ -1,0 +1,365 @@
+/* pages/index/index.wxss */
+.container {
+  padding-bottom: 120rpx;
+}
+
+/* Banner */
+.banner {
+  position: relative;
+  height: 400rpx;
+  overflow: hidden;
+}
+
+.banner-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #FF6B35 0%, #FF8F5E 100%);
+}
+
+.gift-emoji {
+  font-size: 48rpx;
+  margin-bottom: 12rpx;
+}
+
+.banner-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40rpx;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  color: #fff;
+}
+
+.banner-title {
+  font-size: 48rpx;
+  font-weight: bold;
+  display: block;
+}
+
+.banner-subtitle {
+  font-size: 28rpx;
+  opacity: 0.9;
+  margin-top: 8rpx;
+}
+
+/* 项目亮点 */
+.highlights {
+  display: flex;
+  background: #fff;
+  padding: 30rpx 0;
+  margin: -40rpx 24rpx 0;
+  border-radius: 16rpx;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.1);
+}
+
+.highlight-item {
+  flex: 1;
+  text-align: center;
+  border-right: 1rpx solid #eee;
+}
+
+.highlight-item:last-child {
+  border-right: none;
+}
+
+.highlight-value {
+  display: block;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #FF6B35;
+}
+
+.highlight-label {
+  display: block;
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+
+/* 产品介绍 */
+.product-intro {
+  margin-top: 24rpx;
+}
+
+.section-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 24rpx;
+}
+
+.intro-item {
+  display: flex;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.intro-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.intro-icon {
+  font-size: 48rpx;
+  width: 80rpx;
+  height: 80rpx;
+  background: #FFF9F5;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.intro-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.intro-title {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.intro-desc {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* 视频展示 */
+.video-section {
+  margin-top: 24rpx;
+}
+
+.project-video {
+  width: 100%;
+  height: 400rpx;
+  border-radius: 12rpx;
+}
+
+/* 图片展示 */
+.gallery-section {
+  margin-top: 24rpx;
+}
+
+.gallery-swiper {
+  width: 100%;
+  height: 400rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.gallery-image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 礼品区域 */
+.gift-section {
+  margin-top: 40rpx;
+}
+
+.gift-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.gift-icon {
+  font-size: 48rpx;
+  margin-right: 16rpx;
+}
+
+.gift-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.gift-desc {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 30rpx;
+}
+
+/* 礼品列表 */
+.gift-list {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+}
+
+.gift-item {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 10rpx;
+  background: #FFF9F5;
+  border-radius: 12rpx;
+  margin: 0 8rpx;
+}
+
+.gift-item:first-child {
+  margin-left: 0;
+}
+
+.gift-item:last-child {
+  margin-right: 0;
+}
+
+.gift-img {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 12rpx;
+}
+
+.gift-name {
+  display: block;
+  font-size: 24rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.gift-condition {
+  display: block;
+  font-size: 20rpx;
+  color: #FF6B35;
+  margin-top: 6rpx;
+}
+
+/* 领取按钮 */
+.btn-claim {
+  width: 100%;
+  height: 96rpx;
+  line-height: 96rpx;
+  background: linear-gradient(135deg, #FF6B35 0%, #FF8F5E 100%);
+  color: #fff;
+  border-radius: 48rpx;
+  font-size: 34rpx;
+  font-weight: 500;
+  border: none;
+  box-shadow: 0 8rpx 24rpx rgba(255, 107, 53, 0.4);
+}
+
+.btn-claim::after {
+  border: none;
+}
+
+/* 已领取状态 */
+.claimed-info {
+  text-align: center;
+}
+
+.claimed-success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  color: #52c41a;
+  margin-bottom: 16rpx;
+}
+
+.success-icon {
+  margin-right: 8rpx;
+}
+
+.claimed-tip {
+  font-size: 26rpx;
+  color: #999;
+  margin-bottom: 24rpx;
+}
+
+.btn-share {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: linear-gradient(135deg, #FF6B35 0%, #FF8F5E 100%);
+  color: #fff;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  border: none;
+}
+
+.btn-share::after {
+  border: none;
+}
+
+/* 实时动态 */
+.dynamics {
+  margin-top: 24rpx;
+}
+
+.dynamics-header {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 20rpx;
+  font-weight: 500;
+}
+
+.dynamics-list {
+  max-height: 200rpx;
+  overflow: hidden;
+}
+
+.dynamics-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 26rpx;
+  color: #666;
+  padding: 12rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.dynamics-item:last-child {
+  border-bottom: none;
+}
+
+.dynamics-time {
+  color: #999;
+}
+
+/* 咨询入口 */
+.contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24rpx;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-label {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.contact-name {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: 500;
+  margin-top: 4rpx;
+}
+
+.btn-contact {
+  background: #fff;
+  border: 2rpx solid #FF6B35;
+  color: #FF6B35;
+  font-size: 28rpx;
+  padding: 16rpx 32rpx;
+  border-radius: 40rpx;
+}
+
+.btn-contact::after {
+  border: none;
+}

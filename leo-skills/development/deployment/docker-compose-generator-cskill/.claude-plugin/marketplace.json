@@ -1,0 +1,11 @@
+{
+  "name": "docker-compose-generator-cskill",
+  "version": "1.0.0",
+  "description": "生成docker-compose配置文件",
+  "author": "Leo Liu",
+  "keywords": ["docker", "compose", "container", "orchestration"],
+  "activation": {
+    "keywords": ["生成docker-compose", "创建容器编排", "docker编排"]
+  },
+  "category": "development/deployment"
+}

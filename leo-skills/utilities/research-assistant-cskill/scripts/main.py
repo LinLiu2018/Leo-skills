@@ -35,6 +35,8 @@ logger = logging.getLogger(__name__)
 
 
 @dataclass
+
+from core.evolution import EvolvableSkill
 class Paper:
     """Data class representing an academic paper."""
     paper_id: str
@@ -84,6 +86,11 @@ class ResearchAssistant:
     """
 
     def __init__(self, config_path: Optional[str] = None):
+
+        super().__init__(
+            skill_name="research-assistant-cskill",
+            config_path=str(Path(__file__).parent.parent / "config" / "config.yaml")
+        )
         """
         Initialize the Research Assistant.
 

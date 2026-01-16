@@ -1,0 +1,11 @@
+{
+  "name": "github-actions-generator-cskill",
+  "version": "1.0.0",
+  "description": "GitHub Actions CI/CD工作流生成器",
+  "author": "Leo Liu",
+  "keywords": ["github", "actions", "ci", "cd", "devops", "automation"],
+  "activation": {
+    "keywords": ["生成GitHub Actions", "创建CI/CD", "配置自动化部署"]
+  },
+  "category": "development/deployment"
+}

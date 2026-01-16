@@ -1,0 +1,15 @@
+<view class="container">
+  <view class="header">
+    <text class="title">建华官园菜场开业</text>
+    <text class="icon">🧺</text>
+    <text class="subtitle">新鲜蔬菜 天天低价\n开业优惠 限时领取</text>
+  </view>
+
+  <button class="btn" bindtap="handleAuth" loading="{{loading}}">
+    {{loading ? '授权中...' : '立即领取优惠券'}}
+  </button>
+
+  <view class="tips" wx:if="{{!loading}}">
+    <text>点击按钮即表示同意授权获取您的微信信息</text>
+  </view>
+</view>

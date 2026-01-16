@@ -1,0 +1,304 @@
+"""
+Nginx配置生成器 Skill
+====================
+生成Nginx配置文件，支持反向代理、SSL、负载均衡等
+"""
+
+from pathlib import Path
+from typing import Dict, Optional, List
+
+
+class NginxConfigGenerator:
+    """Nginx配置生成器"""
+
+    def __init__(self, output_dir: str = "."):
+        self.output_dir = Path(output_dir)
+
+    def generate(
+        self,
+        domain: str,
+        upstream_servers: Optional[List[Dict]] = None,
+        ssl_enabled: bool = False,
+        features: Optional[List[str]] = None
+    ) -> Dict[str, str]:
+        """
+        生成Nginx配置
+
+        Args:
+            domain: 域名
+            upstream_servers: 上游服务器列表
+            ssl_enabled: 是否启用SSL
+            features: 额外特性（gzip/cache/websocket等）
+
+        Returns:
+            生成的配置字典
+        """
+        upstream_servers = upstream_servers or [{'host': 'localhost', 'port': 5000}]
+        features = features or []
+
+        results = {}
+
+        # 主配置
+        results['site_config'] = self._generate_site_config(
+            domain, upstream_servers, ssl_enabled, features
+        )
+
+        # SSL配置
+        if ssl_enabled:
+            results['ssl_params'] = self._generate_ssl_params()
+
+        # 通用配置
+        results['common_params'] = self._generate_common_params(features)
+
+        return results
+
+    def _generate_site_config(
+        self,
+        domain: str,
+        upstream_servers: List[Dict],
+        ssl_enabled: bool,
+        features: List[str]
+    ) -> str:
+        """生成站点配置"""
+
+        # Upstream配置
+        upstream_name = domain.replace('.', '_')
+        upstream_block = f"upstream {upstream_name} {{\n"
+        for server in upstream_servers:
+            host = server.get('host', 'localhost')
+            port = server.get('port', 5000)
+            weight = server.get('weight', 1)
+            upstream_block += f"    server {host}:{port} weight={weight};\n"
+        upstream_block += "    keepalive 32;\n"
+        upstream_block += "}\n"
+
+        # HTTP重定向到HTTPS
+        http_block = ""
+        if ssl_enabled:
+            http_block = f"""
+server {{
+    listen 80;
+    listen [::]:80;
+    server_name {domain};
+
+    # ACME challenge
+    location /.well-known/acme-challenge/ {{
+        root /var/www/certbot;
+    }}
+
+    location / {{
+        return 301 https://$host$request_uri;
+    }}
+}}
+"""
+
+        # 主服务器块
+        listen_directive = "listen 443 ssl http2;" if ssl_enabled else "listen 80;"
+        listen_ipv6 = "listen [::]:443 ssl http2;" if ssl_enabled else "listen [::]:80;"
+
+        ssl_directives = ""
+        if ssl_enabled:
+            ssl_directives = f"""
+    # SSL配置
+    ssl_certificate /etc/letsencrypt/live/{domain}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/{domain}/privkey.pem;
+    include /etc/nginx/snippets/ssl-params.conf;
+"""
+
+        # Gzip配置
+        gzip_block = ""
+        if 'gzip' in features:
+            gzip_block = """
+    # Gzip压缩
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 1024;
+    gzip_proxied any;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml;
+"""
+
+        # 缓存配置
+        cache_block = ""
+        if 'cache' in features:
+            cache_block = """
+    # 静态资源缓存
+    location ~* \.(jpg|jpeg|png|gif|ico|css|js|woff2?)$ {
+        expires 30d;
+        add_header Cache-Control "public, immutable";
+    }
+"""
+
+        # WebSocket配置
+        websocket_block = ""
+        if 'websocket' in features:
+            websocket_block = f"""
+    # WebSocket支持
+    location /ws {{
+        proxy_pass http://{upstream_name};
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_read_timeout 86400;
+    }}
+"""
+
+        # 安全头
+        security_headers = """
+    # 安全头
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+"""
+
+        server_block = f"""
+server {{
+    {listen_directive}
+    {listen_ipv6}
+    server_name {domain};
+{ssl_directives}
+    root /var/www/{domain}/public;
+    index index.html;
+
+    # 日志
+    access_log /var/log/nginx/{domain}.access.log;
+    error_log /var/log/nginx/{domain}.error.log;
+{security_headers}
+{gzip_block}
+{cache_block}
+    # API代理
+    location /api {{
+        proxy_pass http://{upstream_name};
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_connect_timeout 60s;
+        proxy_read_timeout 60s;
+    }}
+{websocket_block}
+    # 前端路由
+    location / {{
+        try_files $uri $uri/ /index.html;
+    }}
+
+    # 健康检查
+    location /health {{
+        access_log off;
+        return 200 "OK";
+    }}
+}}
+"""
+
+        return f"""# Nginx配置 - {domain}
+# Generated by Leo Nginx Config Generator
+
+{upstream_block}
+{http_block}
+{server_block}
+"""
+
+    def _generate_ssl_params(self) -> str:
+        """生成SSL参数配置"""
+        return """# SSL参数配置
+# /etc/nginx/snippets/ssl-params.conf
+
+ssl_protocols TLSv1.2 TLSv1.3;
+ssl_prefer_server_ciphers off;
+ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384;
+
+ssl_session_timeout 1d;
+ssl_session_cache shared:SSL:50m;
+ssl_session_tickets off;
+
+# OCSP Stapling
+ssl_stapling on;
+ssl_stapling_verify on;
+resolver 8.8.8.8 8.8.4.4 valid=300s;
+resolver_timeout 5s;
+
+# HSTS
+add_header Strict-Transport-Security "max-age=63072000" always;
+"""
+
+    def _generate_common_params(self, features: List[str]) -> str:
+        """生成通用参数配置"""
+        config = """# 通用Nginx配置
+# /etc/nginx/conf.d/common.conf
+
+# 客户端配置
+client_max_body_size 50M;
+client_body_buffer_size 128k;
+
+# 代理缓冲
+proxy_buffer_size 128k;
+proxy_buffers 4 256k;
+proxy_busy_buffers_size 256k;
+
+# 连接超时
+keepalive_timeout 65;
+send_timeout 60;
+
+# 文件传输优化
+sendfile on;
+tcp_nopush on;
+tcp_nodelay on;
+"""
+
+        if 'rate_limit' in features:
+            config += """
+# 速率限制
+limit_req_zone $binary_remote_addr zone=api_limit:10m rate=10r/s;
+limit_conn_zone $binary_remote_addr zone=conn_limit:10m;
+"""
+
+        return config
+
+    def save_files(self, domain: str, results: Dict[str, str]) -> Dict[str, Path]:
+        """保存生成的文件"""
+        saved = {}
+        nginx_dir = self.output_dir / 'nginx'
+        nginx_dir.mkdir(parents=True, exist_ok=True)
+
+        # 站点配置
+        site_path = nginx_dir / f'{domain}.conf'
+        site_path.write_text(results['site_config'], encoding='utf-8')
+        saved['site_config'] = site_path
+
+        # SSL参数
+        if 'ssl_params' in results:
+            ssl_path = nginx_dir / 'ssl-params.conf'
+            ssl_path.write_text(results['ssl_params'], encoding='utf-8')
+            saved['ssl_params'] = ssl_path
+
+        # 通用配置
+        common_path = nginx_dir / 'common.conf'
+        common_path.write_text(results['common_params'], encoding='utf-8')
+        saved['common_params'] = common_path
+
+        return saved
+
+
+def main():
+    """示例用法"""
+    generator = NginxConfigGenerator(output_dir="./output")
+
+    results = generator.generate(
+        domain='example.com',
+        upstream_servers=[
+            {'host': 'app1', 'port': 5000, 'weight': 2},
+            {'host': 'app2', 'port': 5000, 'weight': 1}
+        ],
+        ssl_enabled=True,
+        features=['gzip', 'cache', 'websocket']
+    )
+
+    saved = generator.save_files('example.com', results)
+    print("生成完成！")
+    for name, path in saved.items():
+        print(f"  {name}: {path}")
+
+
+if __name__ == '__main__':
+    main()

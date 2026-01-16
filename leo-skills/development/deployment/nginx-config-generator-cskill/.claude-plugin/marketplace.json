@@ -1,0 +1,11 @@
+{
+  "name": "nginx-config-generator-cskill",
+  "version": "1.0.0",
+  "description": "Nginx配置生成器，支持反向代理、SSL、负载均衡",
+  "author": "Leo Liu",
+  "keywords": ["nginx", "proxy", "ssl", "deployment", "devops"],
+  "activation": {
+    "keywords": ["生成Nginx配置", "创建Nginx配置", "配置反向代理"]
+  },
+  "category": "development/deployment"
+}

@@ -30,6 +30,8 @@
 | 技能 | 描述 | 激活词 |
 |------|------|--------|
 | [research-assistant-cskill](utilities/research-assistant-cskill/) | 智能研究助手 - 文献调研、信息整合、知识管理 | "帮我研究"、"文献调研"、"信息整理" |
+| [obsidian-sync-cskill](utilities/obsidian-sync-cskill/) | Obsidian同步技能 - Claude/Leo输出同步到Obsidian第二大脑 | "保存到Obsidian"、"同步笔记"、"创建日记" |
+| [web-search-cskill](utilities/web-search-cskill/) | 网络搜索技能 - 网络搜索和信息收集 | "搜索"、"查找资料" |
 
 ---
 
@@ -124,8 +126,8 @@ category-name/
 - **创建者**: Leo Liu
 - **创建时间**: 2026-01-04
 - **最后更新**: 2026-01-08
-- **技能数量**: 6个
-- **分类数量**: 5个 (内容创作2、工具1、工具框架3、数据分析0、自动化0)
+- **技能数量**: 8个
+- **分类数量**: 5个 (内容创作2、工具3、工具框架3、数据分析0、自动化0)
 
 ---
 

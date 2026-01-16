@@ -1,0 +1,11 @@
+{
+  "name": "security-scan-cskill",
+  "version": "1.0.0",
+  "description": "代码安全检查和漏洞扫描，检测常见安全问题",
+  "author": "Leo Liu",
+  "keywords": ["security", "scan", "vulnerability", "audit", "code-review"],
+  "activation": {
+    "keywords": ["安全扫描", "代码安全检查", "漏洞扫描"]
+  },
+  "category": "development/security"
+}

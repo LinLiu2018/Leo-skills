@@ -1,0 +1,85 @@
+<!--pages/user/user.wxml-->
+<view class="container">
+  <!-- 用户信息 -->
+  <view class="user-header">
+    <image class="avatar" src="{{userInfo.avatar || '/images/default-avatar.png'}}" mode="aspectFill"/>
+    <view class="user-info">
+      <text class="nickname">{{userInfo.nickname || '未登录'}}</text>
+      <text class="phone">{{userInfo.phone || '点击登录'}}</text>
+    </view>
+    <view class="invite-code" wx:if="{{isLogin}}">
+      <text class="code-label">邀请码</text>
+      <text class="code-value">{{userInfo.invite_code}}</text>
+    </view>
+  </view>
+
+  <!-- 数据统计 -->
+  <view class="stats-card card" wx:if="{{isLogin}}">
+    <view class="stats-item">
+      <text class="stats-value">{{stats.inviteCount}}</text>
+      <text class="stats-label">邀请好友</text>
+    </view>
+    <view class="stats-item">
+      <text class="stats-value">{{stats.giftCount}}</text>
+      <text class="stats-label">获得礼品</text>
+    </view>
+    <view class="stats-item">
+      <text class="stats-value">{{stats.visitCount}}</text>
+      <text class="stats-label">到访次数</text>
+    </view>
+  </view>
+
+  <!-- 我的礼品 -->
+  <view class="card" wx:if="{{isLogin}}">
+    <view class="card-header">
+      <text class="card-title">我的礼品</text>
+      <text class="card-more" bindtap="viewAllGifts">查看全部</text>
+    </view>
+    <view class="gift-list" wx:if="{{gifts.length > 0}}">
+      <view class="gift-item" wx:for="{{gifts}}" wx:key="id">
+        <view class="gift-info">
+          <text class="gift-name">{{item.name}}</text>
+          <text class="gift-status {{item.status}}">{{item.statusText}}</text>
+        </view>
+        <text class="gift-expire">{{item.expire}}</text>
+      </view>
+    </view>
+    <view class="empty-tip" wx:else>暂无礼品</view>
+  </view>
+
+  <!-- 功能菜单 -->
+  <view class="menu-list card">
+    <view class="menu-item" bindtap="goToAppointment" wx:if="{{isLogin}}">
+      <text class="menu-icon">📅</text>
+      <text class="menu-text">我的预约</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goToShare" wx:if="{{isLogin}}">
+      <text class="menu-icon">👥</text>
+      <text class="menu-text">邀请记录</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="makePhoneCall">
+      <text class="menu-icon">📞</text>
+      <text class="menu-text">联系客服</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="showAbout">
+      <text class="menu-icon">ℹ️</text>
+      <text class="menu-text">关于我们</text>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 登录按钮 -->
+  <view class="btn-area" wx:if="{{!isLogin}}">
+    <button class="btn-login" open-type="getPhoneNumber" bindgetphonenumber="onGetPhone">
+      一键手机登录
+    </button>
+  </view>
+
+  <!-- 退出登录 -->
+  <view class="btn-area" wx:if="{{isLogin}}">
+    <button class="btn-logout" bindtap="logout">退出登录</button>
+  </view>
+</view>

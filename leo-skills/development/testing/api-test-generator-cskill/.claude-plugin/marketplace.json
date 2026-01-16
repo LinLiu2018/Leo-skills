@@ -1,0 +1,11 @@
+{
+  "name": "api-test-generator-cskill",
+  "version": "1.0.0",
+  "description": "生成API测试用例",
+  "author": "Leo Liu",
+  "keywords": ["api", "test", "pytest", "postman"],
+  "activation": {
+    "keywords": ["生成API测试", "创建接口测试", "API测试用例"]
+  },
+  "category": "development/testing"
+}

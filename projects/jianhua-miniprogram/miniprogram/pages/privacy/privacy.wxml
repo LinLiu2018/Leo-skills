@@ -1,0 +1,35 @@
+<!--pages/privacy/privacy.wxml-->
+<view class="container">
+  <view class="title">隐私政策</view>
+
+  <view class="section">
+    <view class="section-title">一、信息收集</view>
+    <view class="content">
+      我们仅收集您主动提供的手机号码，用于活动礼品领取和客户服务联系。
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">二、信息使用</view>
+    <view class="content">
+      您的手机号码仅用于：
+      1. 礼品领取登记
+      2. 项目咨询服务
+      3. 活动通知
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">三、信息保护</view>
+    <view class="content">
+      我们采取严格的数据安全措施保护您的个人信息，不会向第三方出售或泄露您的信息。
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">四、联系我们</view>
+    <view class="content">
+      如有任何疑问，请联系我们的客服人员。
+    </view>
+  </view>
+</view>

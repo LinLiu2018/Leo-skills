@@ -215,12 +215,13 @@ class LeoAPI:
 
     # ==================== 工作流API ====================
 
-    def run_workflow(self, workflow_name: str, **kwargs) -> Any:
+    def run_workflow(self, workflow_name: str, agents: Dict[str, Any] = None, **kwargs) -> Any:
         """
         运行预定义工作流
 
         Args:
             workflow_name: 工作流名称
+            agents: Agent字典（可选，用于实际执行）
             **kwargs: 工作流参数
 
         Returns:
@@ -229,6 +230,7 @@ class LeoAPI:
         Examples:
             # 运行内容生产线
             result = api.run_workflow("content-pipeline",
+                                     agents=system.agents,
                                      topic="房地产市场分析")
         """
         workflow = self.registry.get_workflow(workflow_name)
@@ -237,9 +239,24 @@ class LeoAPI:
             print(f"❌ Workflow不存在: {workflow_name}")
             return None
 
-        # TODO: 实现实际的工作流执行逻辑
-        print(f"🔄 运行工作流: {workflow_name}")
-        return f"执行{workflow_name}工作流（待实现）"
+        # 如果提供了agents，执行实际工作流
+        if agents:
+            # 动态导入WorkflowEngine
+            import importlib.util
+            from pathlib import Path
+
+            workflow_engine_path = Path(__file__).parent / "workflow_engine.py"
+            spec = importlib.util.spec_from_file_location("workflow_engine", workflow_engine_path)
+            workflow_engine_module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(workflow_engine_module)
+
+            WorkflowEngine = workflow_engine_module.WorkflowEngine
+            engine = WorkflowEngine(agents)
+            return engine.execute(workflow, **kwargs)
+        else:
+            # 仅返回工作流配置
+            print(f"🔄 工作流配置: {workflow_name}")
+            return workflow
 
     # ==================== 统计信息 ====================
 

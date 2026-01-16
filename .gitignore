@@ -42,3 +42,10 @@ logs/
 # OS
 .DS_Store
 Thumbs.db
+nul
+
+# Backup files
+.backup/
+
+# Demo output
+demo_output/

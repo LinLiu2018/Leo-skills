@@ -1,0 +1,11 @@
+{
+  "name": "miniprogram-component-generator-cskill",
+  "version": "1.0.0",
+  "description": "生成微信小程序自定义组件",
+  "author": "Leo Liu",
+  "keywords": ["miniprogram", "component", "wechat", "weixin"],
+  "activation": {
+    "keywords": ["生成小程序组件", "创建小程序组件", "小程序组件"]
+  },
+  "category": "development/frontend"
+}

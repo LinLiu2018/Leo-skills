@@ -1,0 +1,11 @@
+{
+  "name": "vue-component-generator-cskill",
+  "version": "1.0.0",
+  "description": "Vue3组件代码生成器，支持Composition API和TypeScript",
+  "author": "Leo Liu",
+  "keywords": ["vue", "vue3", "component", "typescript", "frontend"],
+  "activation": {
+    "keywords": ["生成Vue组件", "创建Vue组件", "Vue3组件"]
+  },
+  "category": "development/frontend"
+}

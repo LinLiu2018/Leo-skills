@@ -1,0 +1,11 @@
+{
+  "name": "database-migration-cskill",
+  "version": "1.0.0",
+  "description": "生成数据库迁移脚本（支持Alembic/Flask-Migrate）",
+  "author": "Leo Liu",
+  "keywords": ["database", "migration", "alembic", "flask-migrate", "schema"],
+  "activation": {
+    "keywords": ["生成迁移脚本", "数据库迁移", "数据库变更"]
+  },
+  "category": "development/backend"
+}

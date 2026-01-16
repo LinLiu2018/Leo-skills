@@ -1,0 +1,11 @@
+{
+  "name": "fastapi-endpoint-generator-cskill",
+  "version": "1.0.0",
+  "description": "生成FastAPI端点代码",
+  "author": "Leo Liu",
+  "keywords": ["fastapi", "api", "endpoint", "pydantic", "crud"],
+  "activation": {
+    "keywords": ["生成FastAPI端点", "创建FastAPI接口", "FastAPI"]
+  },
+  "category": "development/backend"
+}

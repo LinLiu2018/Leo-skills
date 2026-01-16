@@ -1,0 +1,11 @@
+{
+  "name": "flask-auth-generator-cskill",
+  "version": "1.0.0",
+  "description": "生成Flask认证模块（JWT/Session）",
+  "author": "Leo Liu",
+  "keywords": ["flask", "auth", "jwt", "session", "authentication"],
+  "activation": {
+    "keywords": ["生成认证模块", "创建登录功能", "Flask认证"]
+  },
+  "category": "development/backend"
+}

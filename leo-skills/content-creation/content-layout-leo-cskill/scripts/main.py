@@ -3,78 +3,58 @@
 """
 Content Layout Leo CSkill - 智能内容排版技能
 Author: Leo Liu
-Version: 1.0.0
+Version: 2.0.0 (可进化版本)
 """
 
 import argparse
 import sys
-import os
-import yaml
 from pathlib import Path
 
-# 技能根目录
-SKILL_ROOT = Path(__file__).parent.parent
-CONFIG_DIR = SKILL_ROOT / "config"
+# 添加leo-skills到路径以支持进化框架
+sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
+from core.evolution import EvolvableSkill
 
-def load_config():
-    """加载配置"""
-    config_path = CONFIG_DIR / "style_profiles.yaml"
-    if config_path.exists():
-        with open(config_path, 'r', encoding='utf-8') as f:
-            return yaml.safe_load(f) or {}
-    return {}
-
-# 导入 WeChatFormatter
+# 导入可进化技能类
 sys.path.insert(0, str(Path(__file__).parent))
-from formatters.wechat_formatter import WeChatFormatter
-from image_matchers.intelligent_matcher import ImageMatcher
+from content_layout_skill import ContentLayoutSkill
+
+# 创建技能实例
+skill = ContentLayoutSkill()
 
 
 def format_for_wechat(content: str, style: str = "data_driven",
                       title: str = None, author: str = "Leo") -> str:
-    """格式化为微信公众号格式"""
-    config = load_config()
-    formatter = WeChatFormatter(config)
-    html_content = formatter.format(
+    """格式化为微信公众号格式（兼容旧接口）"""
+    result = skill.execute(
+        action="format_wechat",
         content=content,
-        style_name=style,
+        style=style,
         title=title,
         author=author
     )
-    return html_content
+    return result.data.get("result", "") if result.success else ""
 
 
 def format_for_xiaohongshu(content: str, style: str = "vibrant_attention",
                            title: str = None) -> str:
-    """格式化为小红书格式"""
-    formatted = []
-    if title:
-        formatted.append(f"📌 {title}\n")
-    
-    lines = content.split('\n')
-    for line in lines:
-        line = line.strip()
-        if not line:
-            continue
-        if line.startswith('#'):
-            heading = line.lstrip('#').strip()
-            formatted.append(f"\n{'='*30}\n  {heading}\n{'='*30}\n")
-        else:
-            formatted.append(line + "\n")
-    
-    formatted.append("\n" + "─"*30)
-    formatted.append("\n🏷️  #房产 #楼市 #宁波 #购房指南")
-    
-    return '\n'.join(formatted)
+    """格式化为小红书格式（兼容旧接口）"""
+    result = skill.execute(
+        action="format_xiaohongshu",
+        content=content,
+        style=style,
+        title=title
+    )
+    return result.data.get("result", "") if result.success else ""
 
 
 def generate_image_prompts(content: str, style: str = "professional") -> list:
-    """生成AI图片提示词"""
-    config = load_config()
-    image_rules = config.get("image_matching_rules", {})
-    matcher = ImageMatcher(image_rules)
-    prompts = matcher.generate_image_prompts(content, style)
-    return prompts
+    """生成AI图片提示词（兼容旧接口）"""
+    result = skill.execute(
+        action="generate_image_prompts",
+        content=content,
+        style=style
+    )
+    return result.data.get("prompts", []) if result.success else []
 
 
 def main():

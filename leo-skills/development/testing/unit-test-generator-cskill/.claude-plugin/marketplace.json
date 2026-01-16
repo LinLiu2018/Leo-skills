@@ -1,0 +1,11 @@
+{
+  "name": "unit-test-generator-cskill",
+  "version": "1.0.0",
+  "description": "单元测试代码生成器，支持Python和JavaScript",
+  "author": "Leo Liu",
+  "keywords": ["test", "unittest", "pytest", "vitest", "testing"],
+  "activation": {
+    "keywords": ["生成测试", "创建单元测试", "写测试用例"]
+  },
+  "category": "development/testing"
+}

@@ -37,10 +37,17 @@ from trackers.analytics_collector import AnalyticsCollector
 from trackers.optimizer import Optimizer
 
 
+
+from core.evolution import EvolvableSkill
 class RealEstateNewsPublisher:
     """房产资讯自动化发布代理"""
 
     def __init__(self, config_path: str = None):
+
+        super().__init__(
+            skill_name="realestate-news-publisher-cskill",
+            config_path=str(Path(__file__).parent.parent / "config" / "config.yaml")
+        )
         """
         初始化发布代理
 
@@ -277,7 +284,7 @@ class RealEstateNewsPublisher:
 
         return results
 
-    def run(self, keywords: List[str] = None,
+    def _execute_core(self, keywords: List[str] = None,
             days_back: int = 7,
             publish: bool = True) -> Dict[str, Any]:
         """

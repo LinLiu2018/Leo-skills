@@ -1,0 +1,22 @@
+<view class="container">
+  <view class="card">
+    <view class="success-icon">🎉</view>
+    <text class="title">恭喜获得优惠券</text>
+
+    <view class="coupon">
+      <text class="amount">¥10</text>
+      <text class="desc">满30元可用</text>
+      <text class="code">优惠码: {{couponCode}}</text>
+    </view>
+
+    <view class="divider"></view>
+
+    <view class="invite-section">
+      <text class="invite-title">邀请好友再得10元！</text>
+      <text class="invite-count">已邀请: {{inviteCount}}人</text>
+      <button class="share-btn" open-type="share">
+        <text>分享给好友</text>
+      </button>
+    </view>
+  </view>
+</view>

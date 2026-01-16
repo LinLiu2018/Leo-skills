@@ -1,0 +1,29 @@
+# 项目营销文档生成器配置
+
+skill_name: "project-marketing-doc-generator"
+version: "1.0.0"
+description: "自动生成商业项目营销文档"
+
+# 文档模板配置
+templates:
+  handbook:
+    sections:
+      - 项目基础信息
+      - 租金价格与业态规划
+      - 投资回报测算
+      - 目标客群分析
+      - 核心卖点
+      - 销售话术与异议处理
+
+  quick_card:
+    sections:
+      - 基本信息
+      - 租金速查
+      - 核心卖点
+      - 快速话术
+
+# 默认参数
+defaults:
+  max_selling_points: 5
+  include_images: false
+  output_format: "markdown"

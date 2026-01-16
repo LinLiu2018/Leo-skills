@@ -69,6 +69,43 @@ SkillExecutor = skill_executor_module.SkillExecutor
 task_agent_module = load_module_from_file("leo_subagents.agents.task_agent", str(current_path / "leo-subagents" / "agents" / "task_agent.py"))
 TaskAgent = task_agent_module.TaskAgent
 
+# 加载新实现的3个Agent
+try:
+    research_agent_module = load_module_from_file("leo_subagents.agents.research_agent", str(current_path / "leo-subagents" / "agents" / "research-agent" / "research_agent.py"))
+    ResearchAgent = research_agent_module.ResearchAgent
+    # 手动注册到AgentFactory
+    AgentFactory.register_agent_class("researcher", ResearchAgent)
+    print("✅ 注册ResearchAgent到AgentFactory")
+except Exception as e:
+    print(f"⚠️  加载ResearchAgent失败: {e}")
+
+try:
+    analysis_agent_module = load_module_from_file("leo_subagents.agents.analysis_agent", str(current_path / "leo-subagents" / "agents" / "analysis-agent" / "analysis_agent.py"))
+    AnalysisAgent = analysis_agent_module.AnalysisAgent
+    # 手动注册到AgentFactory
+    AgentFactory.register_agent_class("analyzer", AnalysisAgent)
+    print("✅ 注册AnalysisAgent到AgentFactory")
+except Exception as e:
+    print(f"⚠️  加载AnalysisAgent失败: {e}")
+
+try:
+    creative_agent_module = load_module_from_file("leo_subagents.agents.creative_agent", str(current_path / "leo-subagents" / "agents" / "creative-agent" / "creative_agent.py"))
+    CreativeAgent = creative_agent_module.CreativeAgent
+    # 手动注册到AgentFactory
+    AgentFactory.register_agent_class("creator", CreativeAgent)
+    print("✅ 注册CreativeAgent到AgentFactory")
+except Exception as e:
+    print(f"⚠️  加载CreativeAgent失败: {e}")
+
+try:
+    realestate_agent_module = load_module_from_file("leo_subagents.agents.realestate_agent", str(current_path / "leo-subagents" / "agents" / "realestate-agent" / "realestate_agent.py"))
+    RealEstateAgent = realestate_agent_module.RealEstateAgent
+    # 手动注册到AgentFactory
+    AgentFactory.register_agent_class("realestate", RealEstateAgent)
+    print("✅ 注册RealEstateAgent到AgentFactory")
+except Exception as e:
+    print(f"⚠️  加载RealEstateAgent失败: {e}")
+
 
 class LeoSystem:
     """
@@ -269,6 +306,19 @@ class LeoSystem:
             print(f"  成功率: {stats['success_rate']:.1f}%")
 
         print("=" * 60 + "\n")
+
+    def run_workflow(self, workflow_name: str, **kwargs) -> Dict[str, Any]:
+        """
+        运行工作流
+
+        Args:
+            workflow_name: 工作流名称
+            **kwargs: 工作流参数
+
+        Returns:
+            工作流执行结果
+        """
+        return self.api.run_workflow(workflow_name, agents=self.agents, **kwargs)
 
 
 # ==================== 全局系统实例 ====================

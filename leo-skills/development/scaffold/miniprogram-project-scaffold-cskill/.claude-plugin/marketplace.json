@@ -1,0 +1,11 @@
+{
+  "name": "miniprogram-project-scaffold-cskill",
+  "version": "1.0.0",
+  "description": "生成微信小程序项目结构",
+  "author": "Leo Liu",
+  "keywords": ["miniprogram", "scaffold", "project", "wechat"],
+  "activation": {
+    "keywords": ["创建小程序项目", "小程序脚手架", "初始化小程序"]
+  },
+  "category": "development/scaffold"
+}

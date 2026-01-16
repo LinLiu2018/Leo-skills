@@ -1,0 +1,103 @@
+<!--pages/share/share.wxml-->
+<view class="container">
+  <!-- 未登录提示 -->
+  <view class="login-tip" wx:if="{{!isLogin}}">
+    <text class="tip-icon">🎁</text>
+    <text class="tip-text">请先领取礼品，再来分享</text>
+    <button class="btn-go-claim" bindtap="goToIndex">去领取</button>
+  </view>
+
+  <!-- 已登录 - 分享数据 -->
+  <view wx:if="{{isLogin}}">
+    <!-- 邀请统计卡片 -->
+    <view class="stats-card card">
+      <view class="stats-header">
+        <text class="stats-title">🎉 已成功邀请</text>
+        <text class="stats-count">{{shareStats.total_invites}}</text>
+        <text class="stats-unit">人</text>
+      </view>
+
+      <!-- 进度条 -->
+      <view class="progress-section">
+        <view class="progress-bar">
+          <view class="progress-fill" style="width: {{progressPercent}}%"></view>
+        </view>
+        <view class="progress-text">
+          再邀请 {{nextGift.required - shareStats.total_invites}} 人解锁 {{nextGift.name}}
+        </view>
+      </view>
+
+      <!-- 今日数据 -->
+      <view class="today-stats">
+        <text>今日新增：{{shareStats.today_invites}} 人</text>
+      </view>
+    </view>
+
+    <!-- 礼品解锁进度 -->
+    <view class="gifts-card card">
+      <view class="section-title">礼品解锁进度</view>
+
+      <view class="gift-progress-list">
+        <view
+          class="gift-progress-item {{item.status}}"
+          wx:for="{{giftList}}"
+          wx:key="level"
+        >
+          <view class="gift-status-icon">
+            <text wx:if="{{item.status === 'claimed'}}">✅</text>
+            <text wx:elif="{{item.status === 'unlocked'}}">🎁</text>
+            <text wx:else>🔒</text>
+          </view>
+
+          <view class="gift-info">
+            <text class="gift-name">{{item.name}}</text>
+            <text class="gift-require">{{item.requireText}}</text>
+          </view>
+
+          <view class="gift-action">
+            <button
+              class="btn-claim-gift"
+              wx:if="{{item.status === 'unlocked'}}"
+              bindtap="claimGift"
+              data-level="{{item.level}}"
+            >
+              领取
+            </button>
+            <text class="status-text" wx:elif="{{item.status === 'claimed'}}">已领取</text>
+            <text class="status-text locked" wx:else>还差{{item.remaining}}人</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 邀请记录 -->
+    <view class="invitees-card card">
+      <view class="section-title">
+        邀请记录
+        <text class="record-count">共 {{shareStats.total_invites}} 人</text>
+      </view>
+
+      <view class="invitee-list" wx:if="{{inviteeList.length > 0}}">
+        <view class="invitee-item" wx:for="{{inviteeList}}" wx:key="id">
+          <image class="invitee-avatar" src="{{item.avatar || '/images/default-avatar.png'}}"></image>
+          <view class="invitee-info">
+            <text class="invitee-name">{{item.nickname}}</text>
+            <text class="invitee-phone">{{item.phone}}</text>
+          </view>
+          <text class="invitee-time">{{item.created_at}}</text>
+        </view>
+      </view>
+
+      <view class="empty-list" wx:else>
+        <text>暂无邀请记录，快去分享吧</text>
+      </view>
+    </view>
+
+    <!-- 分享按钮 -->
+    <view class="share-btn-area">
+      <button class="btn-share-main" open-type="share">
+        📤 分享给好友赚礼品
+      </button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,11 @@
+{
+  "name": "fullstack-project-scaffold-cskill",
+  "version": "1.0.0",
+  "description": "全栈项目脚手架生成器，一键创建完整项目结构",
+  "author": "Leo Liu",
+  "keywords": ["scaffold", "project", "fullstack", "template"],
+  "activation": {
+    "keywords": ["创建项目", "生成项目结构", "项目脚手架"]
+  },
+  "category": "development/scaffold"
+}

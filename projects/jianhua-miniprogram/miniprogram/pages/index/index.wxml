@@ -1,0 +1,156 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <!-- 顶部Banner -->
+  <view class="banner">
+    <view class="banner-placeholder"></view>
+    <view class="banner-overlay">
+      <text class="banner-title">建华观园菜场</text>
+      <text class="banner-subtitle">菜场摊位 · 8-13万/个</text>
+    </view>
+  </view>
+
+  <!-- 项目亮点 -->
+  <view class="highlights">
+    <view class="highlight-item">
+      <text class="highlight-value">8-13万</text>
+      <text class="highlight-label">总价区间</text>
+    </view>
+    <view class="highlight-item">
+      <text class="highlight-value">7%起</text>
+      <text class="highlight-label">预期收益</text>
+    </view>
+    <view class="highlight-item">
+      <text class="highlight-value">14万+</text>
+      <text class="highlight-label">周边人口</text>
+    </view>
+  </view>
+
+  <!-- 产品介绍 -->
+  <view class="product-intro card">
+    <view class="section-title">产品介绍</view>
+
+    <view class="intro-item">
+      <view class="intro-icon">🏪</view>
+      <view class="intro-content">
+        <text class="intro-title">菜场业态展示</text>
+        <text class="intro-desc">生鲜蔬果、肉禽水产、干货调料等多元业态，满足周边居民一站式采购需求</text>
+      </view>
+    </view>
+
+    <view class="intro-item">
+      <view class="intro-icon">✨</view>
+      <view class="intro-content">
+        <text class="intro-title">项目优势</text>
+        <text class="intro-desc">低总价、高回报、统一运营管理，投资门槛低收益稳定</text>
+      </view>
+    </view>
+
+    <view class="intro-item">
+      <view class="intro-icon">👥</view>
+      <view class="intro-content">
+        <text class="intro-title">周边社区流量</text>
+        <text class="intro-desc">辐射14万+常住人口，周边多个成熟社区，客流量有保障</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 视频展示 -->
+  <view class="video-section card" wx:if="{{videoUrl}}">
+    <view class="section-title">项目视频</view>
+    <video
+      class="project-video"
+      src="{{videoUrl}}"
+      poster="{{videoPoster}}"
+      controls
+      show-center-play-btn
+      object-fit="cover"
+    ></video>
+  </view>
+
+  <!-- 图片展示 -->
+  <view class="gallery-section card" wx:if="{{galleryImages.length > 0 && galleryImages[0] !== 'https://placeholder.com/image1.jpg'}}">
+    <view class="section-title">项目实景</view>
+    <swiper class="gallery-swiper" indicator-dots autoplay circular>
+      <swiper-item wx:for="{{galleryImages}}" wx:key="index">
+        <image class="gallery-image" src="{{item}}" mode="aspectFill" bindtap="previewImage" data-src="{{item}}"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 一键领取礼品 -->
+  <view class="gift-section card">
+    <view class="gift-header">
+      <text class="gift-icon">🎁</text>
+      <text class="gift-title">扫码领礼品</text>
+    </view>
+
+    <view class="gift-desc">
+      授权即可领取精美礼品
+    </view>
+
+    <!-- 礼品展示 -->
+    <view class="gift-list">
+      <view class="gift-item" wx:for="{{giftList}}" wx:key="level">
+        <view class="gift-emoji">{{item.emoji}}</view>
+        <text class="gift-name">{{item.name}}</text>
+        <text class="gift-condition">{{item.condition}}</text>
+      </view>
+    </view>
+
+    <!-- 一键领取按钮 -->
+    <button
+      class="btn-claim"
+      open-type="getPhoneNumber"
+      bindgetphonenumber="onGetPhone"
+      wx:if="{{!isLogin}}"
+    >
+      一键领取礼品
+    </button>
+
+    <!-- 已登录状态 -->
+    <view class="claimed-info" wx:if="{{isLogin}}">
+      <view class="claimed-success">
+        <text class="success-icon">✅</text>
+        <text>已领取抽纸1包</text>
+      </view>
+      <view class="claimed-tip">分享给好友一起了解项目</view>
+      <button class="btn-share" open-type="share">
+        立即分享
+      </button>
+    </view>
+  </view>
+
+  <!-- 实时领取动态 -->
+  <view class="dynamics card">
+    <view class="dynamics-header">
+      <text>🔥 已有 {{totalClaimed}} 人领取礼品</text>
+    </view>
+    <view class="dynamics-list">
+      <view class="dynamics-item" wx:for="{{dynamics}}" wx:key="index">
+        <text>{{item.name}} 领取了 {{item.gift}}</text>
+        <text class="dynamics-time">{{item.time}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 咨询入口 -->
+  <view class="contact card">
+    <view class="contact-info">
+      <text class="contact-label">投资顾问</text>
+      <text class="contact-name">童经理</text>
+    </view>
+    <button class="btn-contact" bindtap="callTong">
+      📞 立即咨询
+    </button>
+  </view>
+
+  <view class="contact card">
+    <view class="contact-info">
+      <text class="contact-label">投资顾问</text>
+      <text class="contact-name">刘经理</text>
+    </view>
+    <button class="btn-contact" bindtap="callLiu">
+      📞 立即咨询
+    </button>
+  </view>
+</view>

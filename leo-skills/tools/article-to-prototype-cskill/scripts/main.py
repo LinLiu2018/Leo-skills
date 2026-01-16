@@ -31,10 +31,17 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+
+from core.evolution import EvolvableSkill
 class ArticleToPrototype:
     """Main orchestrator for article-to-prototype conversion"""
 
     def __init__(self):
+
+        super().__init__(
+            skill_name="article-to-prototype-cskill",
+            config_path=str(Path(__file__).parent.parent / "config" / "config.yaml")
+        )
         """Initialize orchestrator"""
         self.pdf_extractor = PDFExtractor()
         self.web_extractor = WebExtractor()

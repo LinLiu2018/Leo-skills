@@ -1,0 +1,11 @@
+{
+  "name": "css-layout-generator-cskill",
+  "version": "1.0.0",
+  "description": "生成响应式CSS布局代码",
+  "author": "Leo Liu",
+  "keywords": ["css", "layout", "responsive", "grid", "flex", "tailwind"],
+  "activation": {
+    "keywords": ["生成CSS布局", "创建布局", "响应式布局"]
+  },
+  "category": "development/frontend"
+}

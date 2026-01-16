@@ -1,0 +1,11 @@
+{
+  "name": "database-model-generator-cskill",
+  "version": "1.0.0",
+  "description": "数据库模型代码生成器，支持SQLAlchemy和Peewee ORM",
+  "author": "Leo Liu",
+  "keywords": ["database", "model", "sqlalchemy", "peewee", "orm"],
+  "activation": {
+    "keywords": ["生成数据库模型", "创建数据模型", "database model", "数据库表"]
+  },
+  "category": "development/backend"
+}

@@ -54,6 +54,9 @@ agents:
       - name: "research-assistant-cskill"
         path: "../leo-skills/utilities/research-assistant-cskill"
         enabled: true
+      - name: "web-search-cskill"  # 🆕 添加WebSearch Skill
+        path: "../leo-skills/utilities/web-search-cskill"
+        enabled: true
       - name: "article-to-prototype-cskill"
         path: "../leo-skills/tools/article-to-prototype-cskill"
         enabled: true
@@ -75,11 +78,9 @@ agents:
     priority: 3
 
     skills:
-      # 待开发：数据分析Skills
       - name: "data-analyzer-cskill"
-        path: "../leo-skills/data-analysis/"
-        enabled: false
-        status: "待开发"
+        path: "../leo-skills/data-analysis/data-analyzer-cskill"
+        enabled: true
 
     config:
       analysis_method: "statistical"
@@ -116,6 +117,37 @@ agents:
       - "创作内容"
       - "生成文案"
       - "写文章"
+
+  # 房地产代理
+  realestate-agent:
+    name: "RealEstate Agent"
+    description: "房地产市场分析、项目营销、政策追踪"
+    type: "realestate"
+    priority: 5
+
+    skills:
+      - name: "project-marketing-doc-generator-cskill"
+        path: "../leo-skills/tools/project-marketing-doc-generator-cskill"
+        enabled: true
+      - name: "realestate-news-publisher-cskill"
+        path: "../leo-skills/content-creation/realestate-news-publisher-cskill"
+        enabled: true
+      - name: "web-search-cskill"
+        path: "../leo-skills/utilities/web-search-cskill"
+        enabled: true
+      - name: "research-assistant-cskill"
+        path: "../leo-skills/utilities/research-assistant-cskill"
+        enabled: true
+
+    config:
+      market_focus: "residential"  # residential, commercial, mixed
+      analysis_depth: 3
+
+    activation_keywords:
+      - "房地产"
+      - "楼盘"
+      - "项目营销"
+      - "市场分析"
 
 # Workflow映射
 workflows:

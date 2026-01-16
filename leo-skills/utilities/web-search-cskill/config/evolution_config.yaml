@@ -1,0 +1,109 @@
+# 技能进化配置模板
+# 将此文件复制到你的技能目录下的 config/evolution_config.yaml
+
+evolution:
+  # 是否启用进化能力
+  enabled: true
+
+  # 学习配置
+  learning:
+    # 最少执行次数才开始学习（建议10-20次）
+    min_executions_for_learning: 10
+
+    # 分析窗口：分析最近N次执行（建议50-100次）
+    analysis_window: 100
+
+    # 成功率阈值：低于此值会触发优化建议
+    success_threshold: 0.8
+
+  # 优化配置
+  optimization:
+    # 是否自动应用优化（建议先设为false，人工审批后再启用）
+    auto_optimize: false
+
+    # 是否需要人工审批
+    require_approval: true
+
+    # 最小置信度：只应用置信度高于此值的优化规则
+    min_confidence: 0.7
+
+    # 每次优化周期最多改变的参数数量
+    max_changes_per_cycle: 3
+
+  # 安全配置
+  safety:
+    # 启用回滚功能
+    enable_rollback: true
+
+    # 保留的快照数量
+    keep_snapshots: 10
+
+    # 应用优化前是否测试
+    test_before_apply: true
+
+  # 指标配置
+  metrics:
+    # 追踪成功率
+    track_success_rate: true
+
+    # 追踪执行时长
+    track_duration: true
+
+    # 追踪质量评分
+    track_quality_score: true
+
+    # 追踪用户反馈
+    track_user_feedback: true
+
+    # 追踪资源使用（可选）
+    track_resource_usage: false
+
+  # AgentDB集成（可选）
+  agentdb:
+    enabled: false
+    store_reflexions: true
+    store_causal_relations: true
+    extract_skills: true
+
+# 技能特定指标定义（根据你的技能自定义）
+skill_metrics:
+  # 输出指标示例
+  - name: "output_count"
+    type: "output"
+    description: "输出数量"
+    target: "3-5"  # 期望范围
+
+  # 质量指标示例
+  - name: "quality_score"
+    type: "quality"
+    description: "输出质量评分"
+    target: ">0.8"  # 期望大于0.8
+
+  # 性能指标示例
+  - name: "duration"
+    type: "performance"
+    description: "执行时长"
+    target: "<60"  # 期望小于60秒
+
+# 可优化参数定义（根据你的技能配置自定义）
+optimizable_parameters:
+  # 参数示例1：浮点数参数
+  - name: "threshold"
+    type: "float"
+    range: [0.5, 0.9]
+    current: 0.7
+    description: "相关性阈值"
+
+  # 参数示例2：整数参数
+  - name: "batch_size"
+    type: "int"
+    range: [1, 10]
+    current: 3
+    description: "批处理大小"
+
+  # 参数示例3：字符串参数（枚举）
+  - name: "mode"
+    type: "enum"
+    options: ["fast", "balanced", "quality"]
+    current: "balanced"
+    description: "执行模式"

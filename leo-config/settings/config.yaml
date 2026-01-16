@@ -3,7 +3,7 @@
 # 统一管理Skills、Subagents、Workflows的配置
 
 version: "1.0.0"
-last_updated: "2026-01-08"
+last_updated: "2026-01-14"
 
 project:
   name: "Leo AI Agent System"
@@ -40,6 +40,23 @@ skills:
     metadata:
       description: "智能研究助手"
 
+  - name: "web-search-cskill"
+    path: "leo-skills/utilities/web-search-cskill"
+    category: "utilities"
+    enabled: true
+    metadata:
+      description: "网络搜索技能"
+      version: "1.0.0"
+
+  # 数据分析类
+  - name: "data-analyzer-cskill"
+    path: "leo-skills/data-analysis/data-analyzer-cskill"
+    category: "data-analysis"
+    enabled: true
+    metadata:
+      description: "数据分析技能"
+      version: "1.0.0"
+
   # 工具框架类
   - name: "agent-skill-creator"
     path: "leo-skills/tools/agent-skill-creator"
@@ -62,6 +79,248 @@ skills:
     metadata:
       description: "项目营销文档生成器"
 
+  # ==================== 开发类Skills (新增) ====================
+
+  # 后端开发
+  - name: "flask-api-generator-cskill"
+    path: "leo-skills/development/backend/flask-api-generator-cskill"
+    category: "development/backend"
+    enabled: true
+    metadata:
+      description: "Flask RESTful API代码生成器"
+      version: "1.0.0"
+      activation_keywords: ["生成Flask API", "创建API接口", "生成后端接口"]
+
+  - name: "database-model-generator-cskill"
+    path: "leo-skills/development/backend/database-model-generator-cskill"
+    category: "development/backend"
+    enabled: true
+    metadata:
+      description: "数据库模型代码生成器"
+      version: "1.0.0"
+      activation_keywords: ["生成数据库模型", "创建数据模型", "数据库表"]
+
+  # 前端开发
+  - name: "miniprogram-page-generator-cskill"
+    path: "leo-skills/development/frontend/miniprogram-page-generator-cskill"
+    category: "development/frontend"
+    enabled: true
+    metadata:
+      description: "微信小程序页面代码生成器"
+      version: "1.0.0"
+      activation_keywords: ["生成小程序页面", "创建小程序页面", "小程序页面"]
+
+  # 部署运维
+  - name: "dockerfile-generator-cskill"
+    path: "leo-skills/development/deployment/dockerfile-generator-cskill"
+    category: "development/deployment"
+    enabled: true
+    metadata:
+      description: "Dockerfile和docker-compose配置生成器"
+      version: "1.0.0"
+      activation_keywords: ["生成Dockerfile", "创建Docker配置", "docker部署"]
+
+  # ==================== 第二阶段Skills ====================
+
+  # Vue组件生成器
+  - name: "vue-component-generator-cskill"
+    path: "leo-skills/development/frontend/vue-component-generator-cskill"
+    category: "development/frontend"
+    enabled: true
+    metadata:
+      description: "Vue3组件代码生成器"
+      version: "1.0.0"
+      activation_keywords: ["生成Vue组件", "创建Vue组件", "Vue3组件"]
+
+  # 全栈项目脚手架
+  - name: "fullstack-project-scaffold-cskill"
+    path: "leo-skills/development/scaffold/fullstack-project-scaffold-cskill"
+    category: "development/scaffold"
+    enabled: true
+    metadata:
+      description: "全栈项目脚手架生成器"
+      version: "1.0.0"
+      activation_keywords: ["创建项目", "生成项目结构", "项目脚手架"]
+
+  # 单元测试生成器
+  - name: "unit-test-generator-cskill"
+    path: "leo-skills/development/testing/unit-test-generator-cskill"
+    category: "development/testing"
+    enabled: true
+    metadata:
+      description: "单元测试代码生成器"
+      version: "1.0.0"
+      activation_keywords: ["生成测试", "创建单元测试", "写测试用例"]
+
+  # Nginx配置生成器
+  - name: "nginx-config-generator-cskill"
+    path: "leo-skills/development/deployment/nginx-config-generator-cskill"
+    category: "development/deployment"
+    enabled: true
+    metadata:
+      description: "Nginx配置生成器"
+      version: "1.0.0"
+      activation_keywords: ["生成Nginx配置", "创建Nginx配置", "配置反向代理"]
+
+  # ==================== 第三阶段Skills ====================
+
+  # React组件生成器
+  - name: "react-component-generator-cskill"
+    path: "leo-skills/development/frontend/react-component-generator-cskill"
+    category: "development/frontend"
+    enabled: true
+    metadata:
+      description: "React组件代码生成器，支持Hooks和TypeScript"
+      version: "1.0.0"
+      activation_keywords: ["生成React组件", "创建React组件", "React组件"]
+
+  # GitHub Actions生成器
+  - name: "github-actions-generator-cskill"
+    path: "leo-skills/development/deployment/github-actions-generator-cskill"
+    category: "development/deployment"
+    enabled: true
+    metadata:
+      description: "GitHub Actions CI/CD工作流生成器"
+      version: "1.0.0"
+      activation_keywords: ["生成GitHub Actions", "创建CI/CD", "配置自动化部署"]
+
+  # E2E测试生成器
+  - name: "e2e-test-generator-cskill"
+    path: "leo-skills/development/testing/e2e-test-generator-cskill"
+    category: "development/testing"
+    enabled: true
+    metadata:
+      description: "端到端测试代码生成器，支持Playwright和Cypress"
+      version: "1.0.0"
+      activation_keywords: ["生成E2E测试", "创建端到端测试", "自动化测试"]
+
+  # 安全扫描技能
+  - name: "security-scan-cskill"
+    path: "leo-skills/development/security/security-scan-cskill"
+    category: "development/security"
+    enabled: true
+    metadata:
+      description: "代码安全检查和漏洞扫描"
+      version: "1.0.0"
+      activation_keywords: ["安全扫描", "代码安全检查", "漏洞扫描"]
+
+  # ==================== 补充Skills ====================
+
+  # 前端补充
+  - name: "vue-page-generator-cskill"
+    path: "leo-skills/development/frontend/vue-page-generator-cskill"
+    category: "development/frontend"
+    enabled: true
+    metadata:
+      description: "Vue3页面生成器"
+      version: "1.0.0"
+      activation_keywords: ["生成Vue页面", "创建Vue页面"]
+
+  - name: "miniprogram-component-generator-cskill"
+    path: "leo-skills/development/frontend/miniprogram-component-generator-cskill"
+    category: "development/frontend"
+    enabled: true
+    metadata:
+      description: "微信小程序组件生成器"
+      version: "1.0.0"
+      activation_keywords: ["生成小程序组件", "创建小程序组件"]
+
+  - name: "css-layout-generator-cskill"
+    path: "leo-skills/development/frontend/css-layout-generator-cskill"
+    category: "development/frontend"
+    enabled: true
+    metadata:
+      description: "CSS布局生成器"
+      version: "1.0.0"
+      activation_keywords: ["生成CSS布局", "创建布局"]
+
+  # 后端补充
+  - name: "flask-auth-generator-cskill"
+    path: "leo-skills/development/backend/flask-auth-generator-cskill"
+    category: "development/backend"
+    enabled: true
+    metadata:
+      description: "Flask认证模块生成器"
+      version: "1.0.0"
+      activation_keywords: ["生成认证模块", "创建登录功能"]
+
+  - name: "fastapi-endpoint-generator-cskill"
+    path: "leo-skills/development/backend/fastapi-endpoint-generator-cskill"
+    category: "development/backend"
+    enabled: true
+    metadata:
+      description: "FastAPI端点生成器"
+      version: "1.0.0"
+      activation_keywords: ["生成FastAPI端点", "创建FastAPI接口"]
+
+  - name: "api-doc-generator-cskill"
+    path: "leo-skills/development/backend/api-doc-generator-cskill"
+    category: "development/backend"
+    enabled: true
+    metadata:
+      description: "API文档生成器"
+      version: "1.0.0"
+      activation_keywords: ["生成API文档", "创建接口文档"]
+
+  # 脚手架补充
+  - name: "miniprogram-project-scaffold-cskill"
+    path: "leo-skills/development/scaffold/miniprogram-project-scaffold-cskill"
+    category: "development/scaffold"
+    enabled: true
+    metadata:
+      description: "微信小程序项目脚手架"
+      version: "1.0.0"
+      activation_keywords: ["创建小程序项目", "小程序脚手架"]
+
+  - name: "flask-api-scaffold-cskill"
+    path: "leo-skills/development/scaffold/flask-api-scaffold-cskill"
+    category: "development/scaffold"
+    enabled: true
+    metadata:
+      description: "Flask API项目脚手架"
+      version: "1.0.0"
+      activation_keywords: ["创建Flask项目", "Flask脚手架"]
+
+  # 部署补充
+  - name: "deployment-script-generator-cskill"
+    path: "leo-skills/development/deployment/deployment-script-generator-cskill"
+    category: "development/deployment"
+    enabled: true
+    metadata:
+      description: "部署脚本生成器"
+      version: "1.0.0"
+      activation_keywords: ["生成部署脚本", "创建部署配置"]
+
+  # 测试补充
+  - name: "api-test-generator-cskill"
+    path: "leo-skills/development/testing/api-test-generator-cskill"
+    category: "development/testing"
+    enabled: true
+    metadata:
+      description: "API测试生成器"
+      version: "1.0.0"
+      activation_keywords: ["生成API测试", "创建接口测试"]
+
+  # 数据库迁移
+  - name: "database-migration-cskill"
+    path: "leo-skills/development/backend/database-migration-cskill"
+    category: "development/backend"
+    enabled: true
+    metadata:
+      description: "数据库迁移脚本生成器，支持Alembic/Flask-Migrate"
+      version: "1.0.0"
+      activation_keywords: ["生成迁移脚本", "数据库迁移", "数据库变更"]
+
+  # Docker Compose生成器
+  - name: "docker-compose-generator-cskill"
+    path: "leo-skills/development/deployment/docker-compose-generator-cskill"
+    category: "development/deployment"
+    enabled: true
+    metadata:
+      description: "Docker Compose配置生成器"
+      version: "1.0.0"
+      activation_keywords: ["生成docker-compose", "Docker编排", "多容器部署"]
+
 # ==================== Subagents配置 ====================
 
 agents:
@@ -83,6 +342,7 @@ agents:
     enabled: true
     skills:
       - "research-assistant-cskill"
+      - "web-search-cskill"
       - "article-to-prototype-cskill"
     metadata:
       description: "研究代理"
@@ -92,9 +352,10 @@ agents:
     type: "analyzer"
     priority: 3
     enabled: true
-    skills: []
+    skills:
+      - "data-analyzer-cskill"
     metadata:
-      description: "分析代理（待实现）"
+      description: "分析代理"
       activation_keywords: ["分析数据", "生成报告"]
 
   - name: "creative-agent"
@@ -107,6 +368,137 @@ agents:
     metadata:
       description: "创作代理"
       activation_keywords: ["创作内容", "生成文案"]
+
+  - name: "realestate-agent"
+    type: "realestate"
+    priority: 5
+    enabled: true
+    skills:
+      - "project-marketing-doc-generator-cskill"
+      - "realestate-news-publisher-cskill"
+      - "web-search-cskill"
+      - "research-assistant-cskill"
+    metadata:
+      description: "房地产专业代理"
+      activation_keywords: ["房地产", "楼盘", "项目营销"]
+
+  # ==================== 开发类Agents (新增) ====================
+
+  - name: "backend-agent"
+    type: "developer"
+    priority: 10
+    enabled: true
+    skills:
+      - "flask-api-generator-cskill"
+      - "database-model-generator-cskill"
+      - "flask-auth-generator-cskill"
+      - "fastapi-endpoint-generator-cskill"
+      - "api-doc-generator-cskill"
+      - "database-migration-cskill"
+    metadata:
+      description: "后端开发代理"
+      activation_keywords: ["生成API", "创建接口", "后端开发", "数据库模型", "认证", "数据库迁移"]
+
+  - name: "frontend-agent"
+    type: "developer"
+    priority: 11
+    enabled: true
+    skills:
+      - "miniprogram-page-generator-cskill"
+      - "vue-component-generator-cskill"
+      - "react-component-generator-cskill"
+      - "vue-page-generator-cskill"
+      - "miniprogram-component-generator-cskill"
+      - "css-layout-generator-cskill"
+    metadata:
+      description: "前端开发代理"
+      activation_keywords: ["生成页面", "小程序开发", "前端开发", "Vue组件", "React组件"]
+
+  - name: "devops-agent"
+    type: "operator"
+    priority: 12
+    enabled: true
+    skills:
+      - "dockerfile-generator-cskill"
+      - "nginx-config-generator-cskill"
+      - "github-actions-generator-cskill"
+      - "deployment-script-generator-cskill"
+      - "docker-compose-generator-cskill"
+    metadata:
+      description: "运维部署代理"
+      activation_keywords: ["部署", "Docker", "上线", "容器化", "Nginx", "CI/CD", "Docker Compose"]
+
+  - name: "test-agent"
+    type: "tester"
+    priority: 13
+    enabled: true
+    skills:
+      - "unit-test-generator-cskill"
+      - "e2e-test-generator-cskill"
+      - "api-test-generator-cskill"
+    metadata:
+      description: "测试代理"
+      activation_keywords: ["生成测试", "单元测试", "测试用例", "E2E测试", "API测试"]
+
+  - name: "scaffold-agent"
+    type: "initializer"
+    priority: 14
+    enabled: true
+    skills:
+      - "fullstack-project-scaffold-cskill"
+      - "miniprogram-project-scaffold-cskill"
+      - "flask-api-scaffold-cskill"
+    metadata:
+      description: "项目初始化代理"
+      activation_keywords: ["创建项目", "项目脚手架", "初始化项目"]
+
+  - name: "security-agent"
+    type: "auditor"
+    priority: 15
+    enabled: true
+    skills:
+      - "security-scan-cskill"
+    metadata:
+      description: "安全审计代理"
+      activation_keywords: ["安全扫描", "代码审计", "漏洞检测", "安全检查"]
+
+  # ==================== 补充Agents ====================
+
+  - name: "product-manager-agent"
+    type: "designer"
+    priority: 20
+    enabled: true
+    skills:
+      - "research-assistant-cskill"
+      - "article-to-prototype-cskill"
+    metadata:
+      description: "产品经理代理，负责需求分析和PRD编写"
+      activation_keywords: ["需求文档", "产品设计", "用户故事", "PRD"]
+
+  - name: "architect-agent"
+    type: "designer"
+    priority: 21
+    enabled: true
+    skills:
+      - "database-model-generator-cskill"
+      - "api-doc-generator-cskill"
+      - "research-assistant-cskill"
+    metadata:
+      description: "架构师代理，负责系统设计和技术选型"
+      activation_keywords: ["架构设计", "技术选型", "系统设计", "数据库设计"]
+
+  - name: "mobile-agent"
+    type: "developer"
+    priority: 22
+    enabled: true
+    skills:
+      - "miniprogram-page-generator-cskill"
+      - "miniprogram-component-generator-cskill"
+      - "miniprogram-project-scaffold-cskill"
+      - "css-layout-generator-cskill"
+    metadata:
+      description: "移动开发代理，负责小程序和移动端开发"
+      activation_keywords: ["小程序开发", "移动端", "微信小程序", "React Native"]
 
 # ==================== Workflows配置 ====================
 
@@ -149,6 +541,68 @@ workflows:
       - name: "report"
         agent: "task-agent"
         description: "生成报告"
+
+  # ==================== 开发类Workflows (新增) ====================
+
+  fullstack-dev-pipeline:
+    name: "全栈开发流水线"
+    description: "需求→设计→后端→前端→部署的完整开发流程"
+    enabled: true
+    steps:
+      - name: "analyze"
+        agent: "research-agent"
+        description: "需求分析"
+      - name: "backend"
+        agent: "backend-agent"
+        description: "后端开发（API + 数据库）"
+      - name: "frontend"
+        agent: "frontend-agent"
+        description: "前端开发"
+      - name: "deploy"
+        agent: "devops-agent"
+        description: "部署上线"
+
+  miniprogram-dev-pipeline:
+    name: "小程序开发流水线"
+    description: "微信小程序专用开发流程"
+    enabled: true
+    steps:
+      - name: "design"
+        agent: "research-agent"
+        description: "产品设计"
+      - name: "pages"
+        agent: "frontend-agent"
+        description: "页面开发"
+      - name: "api"
+        agent: "backend-agent"
+        description: "接口开发"
+      - name: "deploy"
+        agent: "devops-agent"
+        description: "发布上线"
+
+  api-pipeline:
+    name: "API开发流水线"
+    description: "产品设计→架构设计→API开发→测试→部署的完整API开发流程"
+    enabled: true
+    steps:
+      - name: "requirements"
+        agent: "product-manager-agent"
+        description: "需求分析和PRD编写"
+      - name: "design"
+        agent: "architect-agent"
+        description: "系统架构和数据库设计"
+      - name: "develop"
+        agent: "backend-agent"
+        description: "API接口开发"
+      - name: "test"
+        agent: "test-agent"
+        description: "API测试和单元测试"
+      - name: "security"
+        agent: "security-agent"
+        description: "安全扫描"
+      - name: "deploy"
+        agent: "devops-agent"
+        description: "部署上线"
 
 # ==================== 系统配置 ====================
 

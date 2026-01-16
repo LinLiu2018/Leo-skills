@@ -7,7 +7,24 @@
       "Bash(git push:*)",
       "Bash(python test_import.py:*)",
       "Bash(cat:*)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(git clone:*)",
+      "Bash(pip install:*)",
+      "Bash(timeout:*)",
+      "Bash(curl:*)",
+      "Bash(tree:*)",
+      "Bash(ls:*)",
+      "Bash(dir:*)",
+      "Bash(claude:*)",
+      "Bash(npm update:*)",
+      "Bash(findstr:*)",
+      "Bash(Get-ChildItem -Path \"d:\\\\桌面\\\\AI_claude_skills\\\\leo-skills\\\\development\" -Recurse -Directory)",
+      "Bash(Where-Object {$_Name -like '*-cskill'})",
+      "Bash(Select-Object -ExpandProperty FullName)"
+    ],
+    "additionalDirectories": [
+      "d:\\桌面\\AI_claude_skills"
     ]
-  }
+  },
+  "language": "chinese"
 }

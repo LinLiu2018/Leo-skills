@@ -1,0 +1,11 @@
+{
+  "name": "vue-page-generator-cskill",
+  "version": "1.0.0",
+  "description": "生成完整的Vue3页面（含路由配置）",
+  "author": "Leo Liu",
+  "keywords": ["vue", "page", "router", "pinia", "typescript"],
+  "activation": {
+    "keywords": ["生成Vue页面", "创建Vue页面", "Vue页面"]
+  },
+  "category": "development/frontend"
+}
