@@ -51,7 +51,7 @@ class LeoSystem:
         self.api = LeoAPI()
         
         # 使用增强版加载器（如果可用）
-        skills_path = self.base_path / "leo-skills"
+        skills_path = self.base_path / "leo_skills"
         workflows_path = self.base_path / "leo_workflows" / "workflows"
         
         try:

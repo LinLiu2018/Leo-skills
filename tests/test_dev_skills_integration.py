@@ -35,7 +35,7 @@ REGISTER_PAGE_DATA_BINDINGS = [
 
 def setup_dev_skills_paths(project_root: Path):
     """设置开发 Skills 的导入路径"""
-    dev_skills_base = project_root / "leo-skills" / "development"
+    dev_skills_base = project_root / "leo_skills" / "development"
     
     paths = [
         dev_skills_base / "backend" / "flask-api-generator-cskill" / "scripts",
@@ -67,7 +67,7 @@ class TestDatabaseModelGenerator:
         """测试生成器可以导入"""
         try:
             # 尝试从开发目录导入
-            dev_path = self.project_root / "leo-skills" / "development" / "backend" / "database-model-generator-cskill" / "scripts"
+            dev_path = self.project_root / "leo_skills" / "development" / "backend" / "database-model-generator-cskill" / "scripts"
             if dev_path.exists():
                 sys.path.insert(0, str(dev_path))
                 from main import DatabaseModelGenerator
@@ -78,7 +78,7 @@ class TestDatabaseModelGenerator:
     def test_generate_lead_model(self):
         """测试生成 Lead 模型"""
         try:
-            dev_path = self.project_root / "leo-skills" / "development" / "backend" / "database-model-generator-cskill" / "scripts"
+            dev_path = self.project_root / "leo_skills" / "development" / "backend" / "database-model-generator-cskill" / "scripts"
             if not dev_path.exists():
                 pytest.skip("database-model-generator-cskill 不存在")
             
@@ -118,7 +118,7 @@ class TestMiniprogramPageGenerator:
     def test_generator_import(self):
         """测试生成器可以导入"""
         try:
-            dev_path = self.project_root / "leo-skills" / "development" / "frontend" / "miniprogram-page-generator-cskill" / "scripts"
+            dev_path = self.project_root / "leo_skills" / "development" / "frontend" / "miniprogram-page-generator-cskill" / "scripts"
             if dev_path.exists():
                 sys.path.insert(0, str(dev_path))
                 from main import MiniprogramPageGenerator
@@ -129,7 +129,7 @@ class TestMiniprogramPageGenerator:
     def test_generate_register_page(self):
         """测试生成注册页面"""
         try:
-            dev_path = self.project_root / "leo-skills" / "development" / "frontend" / "miniprogram-page-generator-cskill" / "scripts"
+            dev_path = self.project_root / "leo_skills" / "development" / "frontend" / "miniprogram-page-generator-cskill" / "scripts"
             if not dev_path.exists():
                 pytest.skip("miniprogram-page-generator-cskill 不存在")
             
@@ -174,7 +174,7 @@ class TestDockerfileGenerator:
     def test_generator_import(self):
         """测试生成器可以导入"""
         try:
-            dev_path = self.project_root / "leo-skills" / "development" / "deployment" / "dockerfile-generator-cskill" / "scripts"
+            dev_path = self.project_root / "leo_skills" / "development" / "deployment" / "dockerfile-generator-cskill" / "scripts"
             if dev_path.exists():
                 sys.path.insert(0, str(dev_path))
                 from main import DockerfileGenerator
@@ -185,7 +185,7 @@ class TestDockerfileGenerator:
     def test_generate_flask_dockerfile(self):
         """测试生成 Flask Dockerfile"""
         try:
-            dev_path = self.project_root / "leo-skills" / "development" / "deployment" / "dockerfile-generator-cskill" / "scripts"
+            dev_path = self.project_root / "leo_skills" / "development" / "deployment" / "dockerfile-generator-cskill" / "scripts"
             if not dev_path.exists():
                 pytest.skip("dockerfile-generator-cskill 不存在")
             

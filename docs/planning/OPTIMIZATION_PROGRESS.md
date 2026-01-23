@@ -10,12 +10,12 @@
 
 ### 1. WebSearch Skill创建 ✅
 
-**位置**: `leo-skills/utilities/web-search-cskill/`
+**位置**: `leo_skills/utilities/web-search-cskill/`
 
 **文件**:
-- ✅ [README.md](leo-skills/utilities/web-search-cskill/README.md) - 完整文档
-- ✅ [SKILL.md](leo-skills/utilities/web-search-cskill/SKILL.md) - 技能说明
-- ✅ [web_search_skill.py](leo-skills/utilities/web-search-cskill/web_search_skill.py) - Python实现
+- ✅ [README.md](leo_skills/utilities/web-search-cskill/README.md) - 完整文档
+- ✅ [SKILL.md](leo_skills/utilities/web-search-cskill/SKILL.md) - 技能说明
+- ✅ [web_search_skill.py](leo_skills/utilities/web-search-cskill/web_search_skill.py) - Python实现
 
 **功能**:
 - ✅ 网络搜索（search方法）
@@ -56,12 +56,12 @@ research-agent:
 
 ### 3. Data Analyzer Skill创建 ✅
 
-**位置**: `leo-skills/data-analysis/data-analyzer-cskill/`
+**位置**: `leo_skills/data-analysis/data-analyzer-cskill/`
 
 **文件**:
-- ✅ [README.md](leo-skills/data-analysis/data-analyzer-cskill/README.md) - 完整文档
-- ✅ [SKILL.md](leo-skills/data-analysis/data-analyzer-cskill/SKILL.md) - 技能说明
-- ✅ [data_analyzer_skill.py](leo-skills/data-analysis/data-analyzer-cskill/data_analyzer_skill.py) - Python实现
+- ✅ [README.md](leo_skills/data-analysis/data-analyzer-cskill/README.md) - 完整文档
+- ✅ [SKILL.md](leo_skills/data-analysis/data-analyzer-cskill/SKILL.md) - 技能说明
+- ✅ [data_analyzer_skill.py](leo_skills/data-analysis/data-analyzer-cskill/data_analyzer_skill.py) - Python实现
 
 **功能**:
 - ✅ 描述性统计分析（均值、中位数、最小值、最大值等）
@@ -294,12 +294,12 @@ system.execute_task("分析销售数据", agent_name="analysis-agent", data=[100
 ```yaml
 skills:
   - name: "web-search-cskill"
-    path: "leo-skills/utilities/web-search-cskill"
+    path: "leo_skills/utilities/web-search-cskill"
     category: "utilities"
     enabled: true
 
   - name: "data-analyzer-cskill"
-    path: "leo-skills/data-analysis/data-analyzer-cskill"
+    path: "leo_skills/data-analysis/data-analyzer-cskill"
     category: "data-analysis"
     enabled: true
 

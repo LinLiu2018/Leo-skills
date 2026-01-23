@@ -87,7 +87,7 @@ class EnhancedSkillLoader:
         """初始化加载器"""
         if skills_path is None:
             current_file = Path(__file__).parent.parent.parent
-            skills_path = current_file / "leo-skills"
+            skills_path = current_file / "leo_skills"
         if workflows_path is None:
             current_file = Path(__file__).parent.parent.parent
             workflows_path = current_file / "leo_workflows" / "workflows"

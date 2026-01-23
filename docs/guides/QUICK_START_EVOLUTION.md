@@ -5,7 +5,7 @@
 ### 1. 验证框架安装
 
 ```bash
-cd leo-skills
+cd leo_skills
 python test_evolution.py
 ```
 
@@ -87,19 +87,19 @@ python my_skill.py
 
 ```bash
 # 查看执行历史
-cat leo-skills/.evolution_data/my-skill/execution_history.jsonl
+cat leo_skills/.evolution_data/my-skill/execution_history.jsonl
 
 # 查看最佳实践
-cat leo-skills/.evolution_data/my-skill/best_practices.json
+cat leo_skills/.evolution_data/my-skill/best_practices.json
 
 # 查看优化规则
-cat leo-skills/.evolution_data/my-skill/optimization_rules.json
+cat leo_skills/.evolution_data/my-skill/optimization_rules.json
 ```
 
 ## 📚 更多资源
 
-- **完整文档**：`leo-skills/core/evolution/README.md`
-- **配置模板**：`leo-skills/core/evolution/config/evolution_config_template.yaml`
+- **完整文档**：`leo_skills/core/evolution/README.md`
+- **配置模板**：`leo_skills/core/evolution/config/evolution_config_template.yaml`
 - **实施报告**：`SKILL_EVOLUTION_IMPLEMENTATION_REPORT.md`
 
 ## 🎯 改造现有技能
@@ -138,7 +138,7 @@ class MyExistingSkill(EvolvableSkill):
 ### 步骤2：添加进化配置
 
 ```bash
-cp leo-skills/core/evolution/config/evolution_config_template.yaml \
+cp leo_skills/core/evolution/config/evolution_config_template.yaml \
    your-skill/config/evolution_config.yaml
 ```
 

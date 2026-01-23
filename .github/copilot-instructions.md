@@ -18,7 +18,7 @@ Projects (实际应用)
 
 **这不是普通的Python项目**—这是一个多智能体协作框架：
 
-- **Skills** (`leo-skills/`): 模块化能力单元，每个是独立的Claude Code技能
+- **Skills** (`leo_skills/`): 模块化能力单元，每个是独立的Claude Code技能
   - 可独立使用，也可被Agent调用
   - YAML驱动配置，支持热加载
   - 例如：`content-layout-leo-cskill`（排版）、`realestate-news-publisher-cskill`（发布）
@@ -39,7 +39,7 @@ Projects (实际应用)
 ```python
 # 无需手动配置，自动发现所有Skills
 api = LeoAPI()  # 初始化自动发现
-api.auto_discover()  # 扫描leo-skills/目录
+api.auto_discover()  # 扫描leo_skills/目录
 ```
 
 **2. 置信度路由** (`leo-subagents/agents/base_agent.py`)
@@ -58,7 +58,7 @@ api.auto_discover()  # 扫描leo-skills/目录
 
 | 路径 | 用途 | 关键文件 |
 |------|------|---------|
-| `leo-skills/` | 能力库（6个活跃技能） | `*/scripts/main.py` |
+| `leo_skills/` | 能力库（6个活跃技能） | `*/scripts/main.py` |
 | `leo-subagents/agents/` | Agent实现 | `base_agent.py` (继承) |
 | `leo_orchestrator/` | 编排器 | `api.py`, `registry.py`, `workflow_engine.py` |
 | `leo_config/settings/` | 全局配置 | `config.yaml` (Skills列表) |
@@ -84,7 +84,7 @@ api.auto_discover()  # 扫描leo-skills/目录
 
 **目录结构** (遵循严格的约定)
 ```
-leo-skills/{category}/{skill-name}-cskill/
+leo_skills/{category}/{skill-name}-cskill/
 ├── scripts/
 │   ├── main.py              # 入口
 │   ├── collectors/          # 数据收集
@@ -175,7 +175,7 @@ result = api.execute_workflow("文章发布流程", content="...")
 ### 任务1: 添加新能力到系统
 
 ```python
-# 步骤1: 在leo-skills/{category}/中创建{name}-cskill目录
+# 步骤1: 在leo_skills/{category}/中创建{name}-cskill目录
 # 步骤2: 在scripts/main.py中实现能力逻辑
 # 步骤3: 配置config.yaml
 # 步骤4: 在leo_config/settings/config.yaml中注册
@@ -220,7 +220,7 @@ result = self.skill_executor.execute("skill-name", **params)
 
 ### 常见配置
 
-**YAML配置示例** (`leo-skills/content-creation/content-layout-leo-cskill/config/style_profiles.yaml`):
+**YAML配置示例** (`leo_skills/content-creation/content-layout-leo-cskill/config/style_profiles.yaml`):
 ```yaml
 styles:
   story_telling:
@@ -252,7 +252,7 @@ WORKFLOW_TIMEOUT=300
 pip install pyyaml
 
 # 2. 运行Skill单元测试
-cd leo-skills/content-creation/content-layout-leo-cskill
+cd leo_skills/content-creation/content-layout-leo-cskill
 python -m pytest tests/ -v
 
 # 3. 测试Agent
@@ -265,8 +265,8 @@ python tests/run_ningbo_workflow.py
 ### 关键测试文件
 
 - [tests/test_workflows.py](tests/test_workflows.py) - 工作流测试
-- [leo-skills/test_evolution.py](leo-skills/test_evolution.py) - 技能进化测试
-- `leo-skills/*/test_*.py` - 各Skill单元测试
+- [leo_skills/test_evolution.py](leo_skills/test_evolution.py) - 技能进化测试
+- `leo_skills/*/test_*.py` - 各Skill单元测试
 
 ---
 
@@ -357,7 +357,7 @@ skill.evolve()  # 自动改进
 
 **新Skill开发者的学习路径**:
 
-1. 研究 [content-layout-leo-cskill](leo-skills/content-creation/content-layout-leo-cskill/) 目录结构 (10分钟)
+1. 研究 [content-layout-leo-cskill](leo_skills/content-creation/content-layout-leo-cskill/) 目录结构 (10分钟)
 2. 理解 `scripts/main.py` 入口模式 (15分钟)
 3. 学习YAML配置驱动方式 (10分钟)
 4. 创建第一个Skill目录和main.py (30分钟)
@@ -390,7 +390,7 @@ from leo_subagents.agents.base_agent import BaseAgent, AgentConfig
 api = LeoAPI()
 
 # 注册Skill
-api.register("skill", "my-skill", path="leo-skills/category/my-skill")
+api.register("skill", "my-skill", path="leo_skills/category/my-skill")
 
 # 注册Agent
 api.register("agent", "my-agent", type="executor", priority=1)

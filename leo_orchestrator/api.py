@@ -54,7 +54,7 @@ class LeoAPI:
         Examples:
             # 注册Skill
             api.register("skill", "my-skill",
-                        path="leo-skills/content-creation/my-skill",
+                        path="leo_skills/content-creation/my-skill",
                         category="content-creation")
 
             # 注册Agent
@@ -79,7 +79,7 @@ class LeoAPI:
         Returns:
             int: 发现并注册的Skill数量
         """
-        skills_path = self.base_path / "leo-skills"
+        skills_path = self.base_path / "leo_skills"
         return self.registry.auto_discover_skills(str(skills_path))
 
     def _auto_init(self):
@@ -344,7 +344,7 @@ def example_usage():
     leo.register(
         "skill",
         "my-custom-skill",
-        path="leo-skills/content-creation/my-custom-skill",
+        path="leo_skills/content-creation/my-custom-skill",
         category="content-creation"
     )
 

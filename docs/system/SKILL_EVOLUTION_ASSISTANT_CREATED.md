@@ -7,7 +7,7 @@
 ## 📦 创建的文件
 
 ```
-leo-skills/tools/skill-evolution-assistant-cskill/
+leo_skills/tools/skill-evolution-assistant-cskill/
 ├── skill_evolution_assistant.py    # 主程序（400+行）
 ├── quick_evolve_all.py             # 一键进化脚本
 ├── config/
@@ -124,7 +124,7 @@ class WebSearchSkill(EvolvableSkill):
 ### 方式1：一键进化所有技能
 
 ```bash
-cd leo-skills/tools/skill-evolution-assistant-cskill
+cd leo_skills/tools/skill-evolution-assistant-cskill
 python quick_evolve_all.py
 ```
 
@@ -166,7 +166,7 @@ python skill_evolution_assistant.py transform_all
 1. 测试每个技能的功能是否正常
 2. 检查生成的 `evolution_config.yaml`
 3. 运行技能10+次以触发学习
-4. 查看进化数据：`leo-skills/.evolution_data/`
+4. 查看进化数据：`leo_skills/.evolution_data/`
 
 ## 🎉 核心价值
 
@@ -195,9 +195,9 @@ python skill_evolution_assistant.py transform_all
 
 ## 🔗 相关文档
 
-- [README.md](leo-skills/tools/skill-evolution-assistant-cskill/README.md) - 详细使用文档
-- [SKILL.md](leo-skills/tools/skill-evolution-assistant-cskill/SKILL.md) - 技能文档
-- [进化框架文档](leo-skills/core/evolution/README.md) - 进化框架说明
+- [README.md](leo_skills/tools/skill-evolution-assistant-cskill/README.md) - 详细使用文档
+- [SKILL.md](leo_skills/tools/skill-evolution-assistant-cskill/SKILL.md) - 技能文档
+- [进化框架文档](leo_skills/core/evolution/README.md) - 进化框架说明
 - [实施报告](SKILL_EVOLUTION_IMPLEMENTATION_REPORT.md) - 进化框架实施报告
 
 ## 🎯 下一步
@@ -206,7 +206,7 @@ python skill_evolution_assistant.py transform_all
 
 1. **立即运行一键脚本**：
    ```bash
-   cd leo-skills/tools/skill-evolution-assistant-cskill
+   cd leo_skills/tools/skill-evolution-assistant-cskill
    python quick_evolve_all.py
    ```
 

@@ -23,12 +23,12 @@ class SkillLoader:
         初始化加载器
 
         Args:
-            base_path: leo-skills的基础路径
+            base_path: leo_skills的基础路径
         """
         if base_path is None:
-            # 默认路径：项目根目录/leo-skills
+            # 默认路径：项目根目录/leo_skills
             current_file = Path(__file__)
-            base_path = current_file.parent.parent.parent / "leo-skills"
+            base_path = current_file.parent.parent.parent / "leo_skills"
 
         self.base_path = Path(base_path)
         self.skills: Dict[str, SkillAdapter] = {}

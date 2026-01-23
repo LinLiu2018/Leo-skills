@@ -12,7 +12,7 @@
 
 #### 📁 目录结构
 ```
-leo-skills/core/evolution/
+leo_skills/core/evolution/
 ├── __init__.py                              # 模块导出
 ├── metrics.py                               # 数据结构定义
 ├── learner.py                               # 学习器（数据收集与分析）
@@ -151,18 +151,18 @@ leo-skills/core/evolution/
 
 1. **查看文档**
    ```bash
-   cat leo-skills/core/evolution/README.md
+   cat leo_skills/core/evolution/README.md
    ```
 
 2. **运行测试**
    ```bash
-   cd leo-skills
+   cd leo_skills
    python test_evolution.py
    ```
 
 3. **查看配置模板**
    ```bash
-   cat leo-skills/core/evolution/config/evolution_config_template.yaml
+   cat leo_skills/core/evolution/config/evolution_config_template.yaml
    ```
 
 ### 改造现有技能
@@ -171,8 +171,8 @@ leo-skills/core/evolution/
 
 **步骤1：复制配置模板**
 ```bash
-cp leo-skills/core/evolution/config/evolution_config_template.yaml \
-   leo-skills/content-creation/realestate-news-publisher-cskill/config/evolution_config.yaml
+cp leo_skills/core/evolution/config/evolution_config_template.yaml \
+   leo_skills/content-creation/realestate-news-publisher-cskill/config/evolution_config.yaml
 ```
 
 **步骤2：修改技能代码**
@@ -275,19 +275,19 @@ rules = skill.evolver.load_optimization_rules()
 ## 📝 文件清单
 
 ### 核心文件（已创建）
-- ✅ leo-skills/core/evolution/__init__.py
-- ✅ leo-skills/core/evolution/metrics.py
-- ✅ leo-skills/core/evolution/learner.py
-- ✅ leo-skills/core/evolution/evolver.py
-- ✅ leo-skills/core/evolution/adapter.py
-- ✅ leo-skills/core/evolution/performer.py
-- ✅ leo-skills/core/evolution/README.md
-- ✅ leo-skills/core/evolution/config/evolution_config_template.yaml
-- ✅ leo-skills/core/evolution/examples/simple_skill_demo.py
-- ✅ leo-skills/core/evolution/examples/config.yaml
-- ✅ leo-skills/core/__init__.py
-- ✅ leo-skills/__init__.py
-- ✅ leo-skills/test_evolution.py
+- ✅ leo_skills/core/evolution/__init__.py
+- ✅ leo_skills/core/evolution/metrics.py
+- ✅ leo_skills/core/evolution/learner.py
+- ✅ leo_skills/core/evolution/evolver.py
+- ✅ leo_skills/core/evolution/adapter.py
+- ✅ leo_skills/core/evolution/performer.py
+- ✅ leo_skills/core/evolution/README.md
+- ✅ leo_skills/core/evolution/config/evolution_config_template.yaml
+- ✅ leo_skills/core/evolution/examples/simple_skill_demo.py
+- ✅ leo_skills/core/evolution/examples/config.yaml
+- ✅ leo_skills/core/__init__.py
+- ✅ leo_skills/__init__.py
+- ✅ leo_skills/test_evolution.py
 
 ### 测试结果
 ```
@@ -317,10 +317,10 @@ Leo Skills 进化框架 - 基础测试
 
 ## 🎓 学习资源
 
-1. **完整文档**：[leo-skills/core/evolution/README.md](leo-skills/core/evolution/README.md)
-2. **配置模板**：[leo-skills/core/evolution/config/evolution_config_template.yaml](leo-skills/core/evolution/config/evolution_config_template.yaml)
-3. **示例代码**：[leo-skills/core/evolution/examples/simple_skill_demo.py](leo-skills/core/evolution/examples/simple_skill_demo.py)
-4. **测试脚本**：[leo-skills/test_evolution.py](leo-skills/test_evolution.py)
+1. **完整文档**：[leo_skills/core/evolution/README.md](leo_skills/core/evolution/README.md)
+2. **配置模板**：[leo_skills/core/evolution/config/evolution_config_template.yaml](leo_skills/core/evolution/config/evolution_config_template.yaml)
+3. **示例代码**：[leo_skills/core/evolution/examples/simple_skill_demo.py](leo_skills/core/evolution/examples/simple_skill_demo.py)
+4. **测试脚本**：[leo_skills/test_evolution.py](leo_skills/test_evolution.py)
 
 ## 🎉 总结
 

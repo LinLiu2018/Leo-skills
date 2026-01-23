@@ -52,7 +52,7 @@
 
 ```
 AI_claude_skills/
-├── leo-skills/           # Skills 能力库
+├── leo_skills/           # Skills 能力库
 │   ├── content-creation/ # 内容创作（排版、资讯发布）
 │   ├── tools/            # 工具框架（技能创建、原型生成）
 │   ├── utilities/        # 工具类（研究助手、网页搜索、Obsidian同步）
@@ -105,10 +105,10 @@ AI_claude_skills/
 python leo-system.py
 
 # 测试技能
-python leo-skills/test_dev_skills.py
+python leo_skills/test_dev_skills.py
 
 # 测试进化功能
-python leo-skills/test_evolution.py
+python leo_skills/test_evolution.py
 ```
 
 ### 依赖管理
@@ -278,7 +278,7 @@ leo.run_workflow("content-pipeline", topic="...")
 
 ## 开发注意事项
 
-1. **新增 Skill**: 在 `leo-skills/` 对应分类下创建，系统自动发现
+1. **新增 Skill**: 在 `leo_skills/` 对应分类下创建，系统自动发现
 2. **新增 Agent**: 在 `leo-subagents/agents/` 下创建，需在 config 中注册
 3. **配置修改**: 优先修改 `leo_config/settings/config.yaml`
 4. **测试**: 修改后运行相关测试脚本验证

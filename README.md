@@ -49,14 +49,14 @@
 
 ```bash
 # 符号链接到 Claude Code 技能目录
-ln -s ~/ai-agents-workspace/leo-skills/content-creation/realestate-news-publisher-cskill ~/.claude/skills/
+ln -s ~/ai-agents-workspace/leo_skills/content-creation/realestate-news-publisher-cskill ~/.claude/skills/
 ```
 
 ### 方式二：批量注册所有技能
 
 ```bash
 # 批量创建符号链接
-for skill in ~/ai-agents-workspace/leo-skills/*/*-cskill; do
+for skill in ~/ai-agents-workspace/leo_skills/*/*-cskill; do
     ln -s "$skill" ~/.claude/skills/
 done
 ```
@@ -67,7 +67,7 @@ done
 
 ```bash
 # 只加载内容创作类技能
-for skill in ~/ai-agents-workspace/leo-skills/content-creation/*-cskill; do
+for skill in ~/ai-agents-workspace/leo_skills/content-creation/*-cskill; do
     ln -s "$skill" ~/.claude/skills/"
 done
 ```

@@ -36,7 +36,7 @@
 ```
 AI_claude_skills/
 │
-├── leo-skills/              # ✅ Skills能力库
+├── leo_skills/              # ✅ Skills能力库
 │   ├── content-creation/    # 内容创作Skills
 │   ├── tools/               # 工具框架Skills
 │   ├── utilities/           # 工具Skills
@@ -94,7 +94,7 @@ leo.stats()
 leo.register(
     "skill",
     "my-new-skill",
-    path="leo-skills/content-creation/my-new-skill",
+    path="leo_skills/content-creation/my-new-skill",
     category="content-creation"
 )
 
@@ -293,7 +293,7 @@ leo.run_workflow(workflow_name, **kwargs)
 
 ### 创建新Skill
 
-1. 在`leo-skills/`对应分类下创建目录
+1. 在`leo_skills/`对应分类下创建目录
 2. 添加`SKILL.md`和`README.md`
 3. 系统自动发现并注册
 
@@ -326,7 +326,7 @@ leo.run_workflow(workflow_name, **kwargs)
 
 **创建者**: Leo Liu
 **GitHub**: [@LinLiu2018](https://github.com/LinLiu2018)
-**文档**: [leo-skills](https://github.com/LinLiu2018/Leo-skills)
+**文档**: [leo_skills](https://github.com/LinLiu2018/Leo-skills)
 
 ---
 

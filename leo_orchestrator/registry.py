@@ -78,7 +78,7 @@ class UnifiedRegistry:
         用法:
             registry.register_skill(
                 name="content-layout-leo-cskill",
-                path="leo-skills/content-creation/content-layout-leo-cskill",
+                path="leo_skills/content-creation/content-layout-leo-cskill",
                 category="content-creation"
             )
         """
@@ -207,11 +207,11 @@ class UnifiedRegistry:
 
     # ==================== 批量操作 ====================
 
-    def auto_discover_skills(self, base_path: str = "leo-skills") -> int:
+    def auto_discover_skills(self, base_path: str = "leo_skills") -> int:
         """
         自动发现并注册所有Skills
 
-        扫描leo-skills目录，自动注册所有*-cskill目录
+        扫描leo_skills目录，自动注册所有*-cskill目录
         """
         base = Path(base_path)
         discovered = 0
@@ -371,12 +371,12 @@ if __name__ == "__main__":
     # 方式1：手动注册Skills
     registry.register_skill(
         name="content-layout-leo-cskill",
-        path="leo-skills/content-creation/content-layout-leo-cskill",
+        path="leo_skills/content-creation/content-layout-leo-cskill",
         category="content-creation"
     )
 
     # 方式2：自动发现Skills
-    registry.auto_discover_skills("leo-skills")
+    registry.auto_discover_skills("leo_skills")
 
     # 注册Agents
     registry.register_agent(

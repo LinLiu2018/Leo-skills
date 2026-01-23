@@ -185,7 +185,7 @@ def load_enhanced_data():
         from enhanced_skill_loader import EnhancedSkillLoader
         
         loader = EnhancedSkillLoader(
-            skills_path=PROJECT_ROOT / "leo-skills",
+            skills_path=PROJECT_ROOT / "leo_skills",
             workflows_path=PROJECT_ROOT / "leo_workflows" / "workflows"
         )
         loader.discover_all()

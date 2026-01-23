@@ -275,7 +275,7 @@ class CustomDeAIifier(DeAIifier):
 
 - [去AI化指南完整配置](leo_config/guidelines/deaiification_guide.yaml)
 - [去AI化处理器源码](leo_config/guidelines/deaiifier.py)
-- [营销文档生成器Skill](leo-skills/tools/project-marketing-doc-generator-cskill/)
+- [营销文档生成器Skill](leo_skills/tools/project-marketing-doc-generator-cskill/)
 
 ## 🤝 贡献
 

@@ -201,15 +201,15 @@
 
 ```bash
 # 1. 加载单个技能
-ln -s d:/桌面/AI_claude_skills/leo-skills/content-creation/realestate-news-publisher-cskill ~/.claude/skills/
+ln -s d:/桌面/AI_claude_skills/leo_skills/content-creation/realestate-news-publisher-cskill ~/.claude/skills/
 
 # 2. 加载整个分类
-for skill in d:/桌面/AI_claude_skills/leo-skills/content-creation/*; do
+for skill in d:/桌面/AI_claude_skills/leo_skills/content-creation/*; do
     ln -s "$skill" ~/.claude/skills/
 done
 
 # 3. 加载所有技能
-for category in d:/桌面/AI_claude_skills/leo-skills/*; do
+for category in d:/桌面/AI_claude_skills/leo_skills/*; do
     for skill in "$category"/*; do
         ln -s "$skill" ~/.claude/skills/
     done
@@ -220,8 +220,8 @@ done
 
 ```
 ~/.claude/skills/
-├── realestate-news-publisher-cskill -> d:/桌面/AI_claude_skills/leo-skills/content-creation/realestate-news-publisher-cskill
-└── content-layout-leo-cskill -> d:/桌面/AI_claude_skills/leo-skills/content-creation/content-layout-leo-cskill
+├── realestate-news-publisher-cskill -> d:/桌面/AI_claude_skills/leo_skills/content-creation/realestate-news-publisher-cskill
+└── content-layout-leo-cskill -> d:/桌面/AI_claude_skills/leo_skills/content-creation/content-layout-leo-cskill
 ```
 
 ---
@@ -322,7 +322,7 @@ done
 **Leo Liu**
 
 - GitHub: [@LinLiu2018](https://github.com/LinLiu2018)
-- 技能仓库: [leo-skills](https://github.com/LinLiu2018/leo-skills)
+- 技能仓库: [leo_skills](https://github.com/LinLiu2018/leo_skills)
 
 ---
 

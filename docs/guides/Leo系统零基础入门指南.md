@@ -167,7 +167,7 @@ Claude会自动扫描系统配置并更新本文档。
 
 ```
 AI_claude_skills/
-├── leo-skills/          # 所有技能
+├── leo_skills/          # 所有技能
 ├── leo-subagents/       # 所有代理
 ├── leo_workflows/       # 所有工作流
 ├── leo_orchestrator/    # 调度中心

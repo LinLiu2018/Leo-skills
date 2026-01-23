@@ -25,7 +25,7 @@ def project_root() -> Path:
 @pytest.fixture(scope="session")
 def skills_dir(project_root: Path) -> Path:
     """Skills 目录"""
-    return project_root / "leo-skills"
+    return project_root / "leo_skills"
 
 
 @pytest.fixture(scope="session")

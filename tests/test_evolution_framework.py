@@ -72,7 +72,7 @@ except Exception as e:
 print("\n[5/5] 测试适配器...")
 try:
     # 创建临时配置文件
-    test_config_path = project_root / "leo-skills" / ".evolution_data" / "test_config.yaml"
+    test_config_path = project_root / "leo_skills" / ".evolution_data" / "test_config.yaml"
     test_config_path.parent.mkdir(parents=True, exist_ok=True)
 
     with open(test_config_path, 'w') as f:
@@ -92,6 +92,6 @@ print("✓ 所有基础测试通过！")
 print("=" * 60)
 print("\n进化框架已就绪，可以开始使用。")
 print("\n下一步:")
-print("1. 查看文档: leo-skills/core/evolution/README.md")
-print("2. 参考配置模板: leo-skills/core/evolution/config/evolution_config_template.yaml")
+print("1. 查看文档: leo_skills/core/evolution/README.md")
+print("2. 参考配置模板: leo_skills/core/evolution/config/evolution_config_template.yaml")
 print("3. 改造你的技能以支持进化能力")

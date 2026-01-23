@@ -13,8 +13,7 @@ REPLACEMENTS = {
     'leo_config': 'leo_config',
     'leo_workflows': 'leo_workflows',
     'leo_orchestrator': 'leo_orchestrator',
-    # leo-skills 暂时不替换，等手动重命名后再处理
-    # 'leo-skills': 'leo_skills',
+    'leo_skills': 'leo_skills',  # 现在可以替换了
 }
 
 # 需要处理的文件类型

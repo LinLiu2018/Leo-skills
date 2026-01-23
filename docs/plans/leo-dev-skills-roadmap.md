@@ -428,7 +428,7 @@ miniprogram-dev-pipeline:
 ### 5.1 目录结构规划
 
 ```
-leo-skills/
+leo_skills/
 ├── content-creation/     # 已有
 ├── data-analysis/        # 已有
 ├── utilities/            # 已有
@@ -522,10 +522,10 @@ agents:
 
     skills:
       - name: "vue-component-generator-cskill"
-        path: "../leo-skills/development/frontend/vue-component-generator-cskill"
+        path: "../leo_skills/development/frontend/vue-component-generator-cskill"
         enabled: true
       - name: "miniprogram-page-generator-cskill"
-        path: "../leo-skills/development/frontend/miniprogram-page-generator-cskill"
+        path: "../leo_skills/development/frontend/miniprogram-page-generator-cskill"
         enabled: true
 
     config:
@@ -547,10 +547,10 @@ agents:
 
     skills:
       - name: "flask-api-generator-cskill"
-        path: "../leo-skills/development/backend/flask-api-generator-cskill"
+        path: "../leo_skills/development/backend/flask-api-generator-cskill"
         enabled: true
       - name: "database-model-generator-cskill"
-        path: "../leo-skills/development/backend/database-model-generator-cskill"
+        path: "../leo_skills/development/backend/database-model-generator-cskill"
         enabled: true
 
     config:
@@ -572,13 +572,13 @@ agents:
 
     skills:
       - name: "dockerfile-generator-cskill"
-        path: "../leo-skills/development/deployment/dockerfile-generator-cskill"
+        path: "../leo_skills/development/deployment/dockerfile-generator-cskill"
         enabled: true
       - name: "nginx-config-generator-cskill"
-        path: "../leo-skills/development/deployment/nginx-config-generator-cskill"
+        path: "../leo_skills/development/deployment/nginx-config-generator-cskill"
         enabled: true
       - name: "deployment-script-generator-cskill"
-        path: "../leo-skills/development/deployment/deployment-script-generator-cskill"
+        path: "../leo_skills/development/deployment/deployment-script-generator-cskill"
         enabled: true
 
     activation_keywords:
@@ -713,13 +713,13 @@ result = system.execute_task(
 
 ```bash
 # 1. 创建开发Skills目录结构
-mkdir -p leo-skills/development/{frontend,backend,scaffold,deployment,testing}
+mkdir -p leo_skills/development/{frontend,backend,scaffold,deployment,testing}
 
 # 2. 复制参考的subagents
 cp docs/reference/claude-code-subagents/community/claude-code-subagents/subagents/development/*.md leo-subagents/agents/
 
 # 3. 创建第一个Skill
-mkdir -p leo-skills/development/backend/flask-api-generator-cskill
+mkdir -p leo_skills/development/backend/flask-api-generator-cskill
 ```
 
 ---

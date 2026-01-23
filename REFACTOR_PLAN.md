@@ -26,7 +26,7 @@ AI_claude_skills/
 │   │   ├── components/        # UI 组件拆分
 │   │   └── utils/             # 前端工具函数
 │   └── cli/                   # 命令行工具
-├── leo_skills/                # [资产] 技能库 (原 leo-skills 重命名)
+├── leo_skills/                # [资产] 技能库 (原 leo_skills 重命名)
 │   ├── development/
 │   ├── tools/
 │   └── ...
@@ -43,7 +43,7 @@ AI_claude_skills/
 ### 2.2 关键变更点
 
 1.  **模块化核心**：废弃单文件 `leo-system.py`，转为 `leo_system` 包，支持 `import leo_system`。
-2.  **统一命名规范**：所有 Python 模块目录统一使用 `snake_case` (下划线)，资源目录（如技能）若包含代码也建议用下划线，或者建立明确的映射机制。建议将 `leo-skills` 重命名为 `leo_skills` 以便未来支持 Python 动态加载。
+2.  **统一命名规范**：所有 Python 模块目录统一使用 `snake_case` (下划线)，资源目录（如技能）若包含代码也建议用下划线，或者建立明确的映射机制。建议将 `leo_skills` 重命名为 `leo_skills` 以便未来支持 Python 动态加载。
 3.  **UI 独立化**：将散落在根目录的 `leo_web_ui_v*.py` 整合进 `leo_interface/web`，保持根目录整洁。
 4.  **环境隔离**：确保 VS Code (Claude Code) 和 Web UI 运行在同一上下文，通过 `pyproject.toml` 统一管理依赖。
 
@@ -56,7 +56,7 @@ AI_claude_skills/
 - [ ] 验证：`pip install -e .` 后可以在任意位置导入 `leo_system`。
 
 ### 阶段二：资产迁移 (Migration)
-- [ ] 重命名 `leo-skills` -> `leo_skills` (需要批量更新 SKILL.md 中的引用路径，如果不重命名，则需在加载器中做特殊处理。**建议：为保持现有 Skills 兼容性，暂时保留 `leo-skills` 目录名，但在内部映射为模块时处理，或者逐步迁移。考虑到"复利"，长痛不如短痛，建议标准化为 `leo_skills`**)。
+- [ ] 重命名 `leo_skills` -> `leo_skills` (需要批量更新 SKILL.md 中的引用路径，如果不重命名，则需在加载器中做特殊处理。**建议：为保持现有 Skills 兼容性，暂时保留 `leo_skills` 目录名，但在内部映射为模块时处理，或者逐步迁移。考虑到"复利"，长痛不如短痛，建议标准化为 `leo_skills`**)。
 - [ ] 重命名 `leo_workflows` -> `leo_workflows`。
 - [ ] 修复 `SkillLoader` 和 `AgentDiscovery` 中的路径依赖。
 
@@ -75,5 +75,5 @@ AI_claude_skills/
 - **统一视图**：重构后的结构更符合 IDE 的解析习惯，不论是 VS Code 还是其他编辑器，都能更好地支持代码跳转和补全。
 
 ## 5. 待确认事项
-- 是否同意将 `leo-skills` 目录重命名为 `leo_skills`？(这可能涉及修改大量现有 Skill 文件中的路径引用，或者我们可以保留文件夹名为横杠，但在 Python 代码中统一处理)。
-    - *建议方案*：代码包用下划线 (`leo_subagents`)，资源目录保留现有习惯 (`leo-skills`) 以免破坏外部链接，但在加载器中增强兼容性。
+- 是否同意将 `leo_skills` 目录重命名为 `leo_skills`？(这可能涉及修改大量现有 Skill 文件中的路径引用，或者我们可以保留文件夹名为横杠，但在 Python 代码中统一处理)。
+    - *建议方案*：代码包用下划线 (`leo_subagents`)，资源目录保留现有习惯 (`leo_skills`) 以免破坏外部链接，但在加载器中增强兼容性。

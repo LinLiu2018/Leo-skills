@@ -23,13 +23,13 @@ agents:
     # 可调用的Skills
     skills:
       - name: "content-layout-leo-cskill"
-        path: "../leo-skills/content-creation/content-layout-leo-cskill"
+        path: "../leo_skills/content-creation/content-layout-leo-cskill"
         enabled: true
       - name: "realestate-news-publisher-cskill"
-        path: "../leo-skills/content-creation/realestate-news-publisher-cskill"
+        path: "../leo_skills/content-creation/realestate-news-publisher-cskill"
         enabled: true
       - name: "project-marketing-doc-generator-cskill"
-        path: "../leo-skills/tools/project-marketing-doc-generator-cskill"
+        path: "../leo_skills/tools/project-marketing-doc-generator-cskill"
         enabled: true
 
     # 执行参数
@@ -52,13 +52,13 @@ agents:
 
     skills:
       - name: "research-assistant-cskill"
-        path: "../leo-skills/utilities/research-assistant-cskill"
+        path: "../leo_skills/utilities/research-assistant-cskill"
         enabled: true
       - name: "web-search-cskill"  # 🆕 添加WebSearch Skill
-        path: "../leo-skills/utilities/web-search-cskill"
+        path: "../leo_skills/utilities/web-search-cskill"
         enabled: true
       - name: "article-to-prototype-cskill"
-        path: "../leo-skills/tools/article-to-prototype-cskill"
+        path: "../leo_skills/tools/article-to-prototype-cskill"
         enabled: true
 
     config:
@@ -79,7 +79,7 @@ agents:
 
     skills:
       - name: "data-analyzer-cskill"
-        path: "../leo-skills/data-analysis/data-analyzer-cskill"
+        path: "../leo_skills/data-analysis/data-analyzer-cskill"
         enabled: true
 
     config:
@@ -100,10 +100,10 @@ agents:
 
     skills:
       - name: "content-layout-leo-cskill"
-        path: "../leo-skills/content-creation/content-layout-leo-cskill"
+        path: "../leo_skills/content-creation/content-layout-leo-cskill"
         enabled: true
       - name: "article-to-prototype-cskill"
-        path: "../leo-skills/tools/article-to-prototype-cskill"
+        path: "../leo_skills/tools/article-to-prototype-cskill"
         enabled: true
 
     config:
@@ -127,16 +127,16 @@ agents:
 
     skills:
       - name: "project-marketing-doc-generator-cskill"
-        path: "../leo-skills/tools/project-marketing-doc-generator-cskill"
+        path: "../leo_skills/tools/project-marketing-doc-generator-cskill"
         enabled: true
       - name: "realestate-news-publisher-cskill"
-        path: "../leo-skills/content-creation/realestate-news-publisher-cskill"
+        path: "../leo_skills/content-creation/realestate-news-publisher-cskill"
         enabled: true
       - name: "web-search-cskill"
-        path: "../leo-skills/utilities/web-search-cskill"
+        path: "../leo_skills/utilities/web-search-cskill"
         enabled: true
       - name: "research-assistant-cskill"
-        path: "../leo-skills/utilities/research-assistant-cskill"
+        path: "../leo_skills/utilities/research-assistant-cskill"
         enabled: true
 
     config:
@@ -188,11 +188,11 @@ workflows:
 skills_bridge:
   auto_discovery: true  # 自动发现Skills
   skill_paths:
-    - "../leo-skills/content-creation/*"
-    - "../leo-skills/tools/*"
-    - "../leo-skills/utilities/*"
-    - "../leo-skills/data-analysis/*"
-    - "../leo-skills/automation/*"
+    - "../leo_skills/content-creation/*"
+    - "../leo_skills/tools/*"
+    - "../leo_skills/utilities/*"
+    - "../leo_skills/data-analysis/*"
+    - "../leo_skills/automation/*"
 
   load_policy: "lazy"  # lazy, eager, on_demand
 
