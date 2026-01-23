@@ -1,0 +1,74 @@
+# T3 Stack 模板配置
+
+presets:
+  # 最小配置
+  minimal:
+    name: "最小配置"
+    description: "仅 Next.js + TypeScript"
+    options:
+      use_trpc: false
+      use_prisma: false
+      use_drizzle: false
+      use_next_auth: false
+      use_tailwind: false
+      use_app_router: true
+
+  # 标准配置
+  standard:
+    name: "标准配置"
+    description: "Next.js + tRPC + Tailwind"
+    options:
+      use_trpc: true
+      use_prisma: false
+      use_drizzle: false
+      use_next_auth: false
+      use_tailwind: true
+      use_app_router: true
+
+  # 完整配置 (Prisma)
+  full_prisma:
+    name: "完整配置 (Prisma)"
+    description: "Next.js + tRPC + Prisma + NextAuth + Tailwind"
+    options:
+      use_trpc: true
+      use_prisma: true
+      use_drizzle: false
+      use_next_auth: true
+      use_tailwind: true
+      db_provider: "postgres"
+      use_app_router: true
+
+  # 完整配置 (Drizzle)
+  full_drizzle:
+    name: "完整配置 (Drizzle)"
+    description: "Next.js + tRPC + Drizzle + NextAuth + Tailwind"
+    options:
+      use_trpc: true
+      use_prisma: false
+      use_drizzle: true
+      use_next_auth: true
+      use_tailwind: true
+      db_provider: "sqlite"
+      use_app_router: true
+
+# 数据库配置
+databases:
+  sqlite:
+    name: "SQLite"
+    description: "轻量级本地数据库，适合开发和小型项目"
+    connection_string: "file:./dev.db"
+
+  mysql:
+    name: "MySQL"
+    description: "流行的关系型数据库"
+    connection_string: "mysql://root:password@localhost:3306/mydb"
+
+  postgres:
+    name: "PostgreSQL"
+    description: "功能强大的开源数据库"
+    connection_string: "postgresql://user:password@localhost:5432/mydb"
+
+  planetscale:
+    name: "PlanetScale"
+    description: "Serverless MySQL 平台"
+    connection_string: "mysql://user:password@host/db?ssl={\"rejectUnauthorized\":true}"

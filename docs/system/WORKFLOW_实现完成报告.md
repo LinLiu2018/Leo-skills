@@ -9,7 +9,7 @@
 
 ### 1. WorkflowEngine类创建 ✅
 
-**文件**: [leo-orchestrator/workflow_engine.py](leo-orchestrator/workflow_engine.py)
+**文件**: [leo_orchestrator/workflow_engine.py](leo_orchestrator/workflow_engine.py)
 
 **功能**:
 - 工作流执行引擎
@@ -31,7 +31,7 @@ class WorkflowEngine:
 
 ### 2. API更新 ✅
 
-**文件**: [leo-orchestrator/api.py](leo-orchestrator/api.py)
+**文件**: [leo_orchestrator/api.py](leo_orchestrator/api.py)
 
 **更新内容**:
 - 实现了`run_workflow`方法的实际执行逻辑

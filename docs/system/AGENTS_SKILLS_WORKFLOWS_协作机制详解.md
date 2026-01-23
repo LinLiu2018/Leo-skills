@@ -511,7 +511,7 @@ result = system.run_workflow(
 
 **代码位置**:
 ```python
-# leo-orchestrator/api.py:218-242
+# leo_orchestrator/api.py:218-242
 def run_workflow(self, workflow_name: str, **kwargs):
     workflow = self.registry.get_workflow(workflow_name)
 

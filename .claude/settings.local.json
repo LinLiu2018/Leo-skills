@@ -20,7 +20,16 @@
       "Bash(findstr:*)",
       "Bash(Get-ChildItem -Path \"d:\\\\桌面\\\\AI_claude_skills\\\\leo-skills\\\\development\" -Recurse -Directory)",
       "Bash(Where-Object {$_Name -like '*-cskill'})",
-      "Bash(Select-Object -ExpandProperty FullName)"
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(for dir in analysis_agent architect_agent creative_agent mobile_agent product_manager_agent realestate_agent research_agent task_agent)",
+      "Bash(do if [ -d \"$dir\" ])",
+      "Bash([:*)",
+      "Bash(then touch \"$dir/__init__.py\")",
+      "Bash(echo:*)",
+      "Bash(fi)",
+      "Bash(done)",
+      "Bash(npm install)",
+      "mcp__playwright__browser_navigate"
     ],
     "additionalDirectories": [
       "d:\\桌面\\AI_claude_skills"

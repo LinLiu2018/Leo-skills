@@ -15,7 +15,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 PROJECT_ROOT = Path(__file__).parent.parent.parent.parent
 GUIDE_PATH = PROJECT_ROOT / "docs" / "guides" / "Leo系统零基础入门指南.md"
-CONFIG_PATH = PROJECT_ROOT / "leo-config" / "settings" / "config.yaml"
+CONFIG_PATH = PROJECT_ROOT / "leo_config" / "settings" / "config.yaml"
 
 
 def load_config():

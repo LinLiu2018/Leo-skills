@@ -9,6 +9,18 @@
     </view>
   </view>
 
+  <!-- 限时挑战通知 -->
+  <view class="challenge-banner" bindtap="goToShare">
+    <image class="challenge-icon" src="https://placehold.co/40x40/FF6B35/white?text=!" mode="aspectFit"></image>
+    <view class="challenge-content">
+      <text class="challenge-title">限时挑战进行中</text>
+      <text class="challenge-desc">24小时内邀15人，赢取100元超市卡！</text>
+    </view>
+    <view class="challenge-timer">
+      <text>{{challengeTime || '去参与 ›'}}</text>
+    </view>
+  </view>
+
   <!-- 项目亮点 -->
   <view class="highlights">
     <view class="highlight-item">
@@ -25,12 +37,24 @@
     </view>
   </view>
 
+  <!-- 实时领取动态 (弹幕样式) -->
+  <view class="dynamics-bar">
+    <view class="dynamics-icon">🔥</view>
+    <swiper class="dynamics-swiper" vertical autoplay circular interval="2000" style="height: 40rpx;">
+      <swiper-item wx:for="{{dynamics}}" wx:key="index">
+        <view class="dynamics-text">
+          <text class="highlight">{{item.name}}</text> 刚刚领取了 <text class="highlight">{{item.gift}}</text>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
   <!-- 产品介绍 -->
   <view class="product-intro card">
     <view class="section-title">产品介绍</view>
 
     <view class="intro-item">
-      <view class="intro-icon">🏪</view>
+      <image class="intro-img" src="https://placehold.co/120x120?text=Store" mode="aspectFill"></image>
       <view class="intro-content">
         <text class="intro-title">菜场业态展示</text>
         <text class="intro-desc">生鲜蔬果、肉禽水产、干货调料等多元业态，满足周边居民一站式采购需求</text>
@@ -38,7 +62,7 @@
     </view>
 
     <view class="intro-item">
-      <view class="intro-icon">✨</view>
+      <image class="intro-img" src="https://placehold.co/120x120?text=Value" mode="aspectFill"></image>
       <view class="intro-content">
         <text class="intro-title">项目优势</text>
         <text class="intro-desc">低总价、高回报、统一运营管理，投资门槛低收益稳定</text>
@@ -46,7 +70,7 @@
     </view>
 
     <view class="intro-item">
-      <view class="intro-icon">👥</view>
+      <image class="intro-img" src="https://placehold.co/120x120?text=Traffic" mode="aspectFill"></image>
       <view class="intro-content">
         <text class="intro-title">周边社区流量</text>
         <text class="intro-desc">辐射14万+常住人口，周边多个成熟社区，客流量有保障</text>
@@ -68,7 +92,7 @@
   </view>
 
   <!-- 图片展示 -->
-  <view class="gallery-section card" wx:if="{{galleryImages.length > 0 && galleryImages[0] !== 'https://placeholder.com/image1.jpg'}}">
+  <view class="gallery-section card" wx:if="{{galleryImages.length > 0}}">
     <view class="section-title">项目实景</view>
     <swiper class="gallery-swiper" indicator-dots autoplay circular>
       <swiper-item wx:for="{{galleryImages}}" wx:key="index">
@@ -80,7 +104,7 @@
   <!-- 一键领取礼品 -->
   <view class="gift-section card">
     <view class="gift-header">
-      <text class="gift-icon">🎁</text>
+      <image class="gift-header-icon" src="https://placehold.co/60x60/FF6B35/white?text=Gift" mode="aspectFit"></image>
       <text class="gift-title">扫码领礼品</text>
     </view>
 
@@ -88,10 +112,10 @@
       授权即可领取精美礼品
     </view>
 
-    <!-- 礼品展示 -->
-    <view class="gift-list">
-      <view class="gift-item" wx:for="{{giftList}}" wx:key="level">
-        <view class="gift-emoji">{{item.emoji}}</view>
+    <!-- 礼品展示 (图片模式) -->
+    <view class="gift-grid">
+      <view class="gift-card" wx:for="{{giftList}}" wx:key="level">
+        <image class="gift-card-img" src="https://placehold.co/160x160?text=Gift{{index+1}}" mode="aspectFill"></image>
         <text class="gift-name">{{item.name}}</text>
         <text class="gift-condition">{{item.condition}}</text>
       </view>
@@ -106,51 +130,22 @@
     >
       一键领取礼品
     </button>
-
-    <!-- 已登录状态 -->
-    <view class="claimed-info" wx:if="{{isLogin}}">
-      <view class="claimed-success">
-        <text class="success-icon">✅</text>
-        <text>已领取抽纸1包</text>
-      </view>
-      <view class="claimed-tip">分享给好友一起了解项目</view>
-      <button class="btn-share" open-type="share">
-        立即分享
-      </button>
-    </view>
   </view>
 
-  <!-- 实时领取动态 -->
-  <view class="dynamics card">
-    <view class="dynamics-header">
-      <text>🔥 已有 {{totalClaimed}} 人领取礼品</text>
-    </view>
-    <view class="dynamics-list">
-      <view class="dynamics-item" wx:for="{{dynamics}}" wx:key="index">
-        <text>{{item.name}} 领取了 {{item.gift}}</text>
-        <text class="dynamics-time">{{item.time}}</text>
-      </view>
-    </view>
-  </view>
 
   <!-- 咨询入口 -->
-  <view class="contact card">
-    <view class="contact-info">
-      <text class="contact-label">投资顾问</text>
-      <text class="contact-name">童经理</text>
+  <view class="contact-section card">
+    <view class="section-title" style="margin-bottom: 20rpx;">联系顾问</view>
+    <view class="contact-list">
+      <view class="contact-item" wx:for="{{contacts}}" wx:key="phone" style="display: flex; justify-content: space-between; align-items: center; padding: 20rpx 0; border-bottom: 1px solid #eee;">
+        <view class="contact-info">
+          <text class="contact-name" style="font-weight: bold; font-size: 30rpx;">{{item.name}}</text>
+          <text class="contact-label" style="font-size: 24rpx; color: #666; margin-left: 10rpx;">金牌顾问</text>
+        </view>
+        <button class="btn-contact" bindtap="callContact" data-phone="{{item.phone}}" size="mini" style="margin: 0; font-size: 24rpx;">
+          📞 立即咨询
+        </button>
+      </view>
     </view>
-    <button class="btn-contact" bindtap="callTong">
-      📞 立即咨询
-    </button>
-  </view>
-
-  <view class="contact card">
-    <view class="contact-info">
-      <text class="contact-label">投资顾问</text>
-      <text class="contact-name">刘经理</text>
-    </view>
-    <button class="btn-contact" bindtap="callLiu">
-      📞 立即咨询
-    </button>
   </view>
 </view>

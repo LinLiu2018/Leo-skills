@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// 对标账号
+model BenchmarkAccount {
+  id          String   @id @default(cuid())
+  platform    String   // 平台：抖音、小红书、公众号等
+  accountName String   // 账号名称
+  accountId   String?  // 账号ID
+  followers   Int?     // 粉丝数
+  category    String   // 领域：房产、美食、旅游等
+  style       String?  // 风格特点
+  notes       String?  // 备注
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  contents    Content[]
+}
+
+// 爆款内容
+model Content {
+  id          String   @id @default(cuid())
+  accountId   String
+  account     BenchmarkAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  title       String   // 标题
+  content     String?  // 内容正文
+  contentType String   // 类型：短视频、图文、文章
+  likes       Int?     // 点赞数
+  comments    Int?     // 评论数
+  shares      Int?     // 分享数
+  publishDate DateTime? // 发布日期
+  sourceUrl   String?  // 原文链接
+  createdAt   DateTime @default(now())
+  analyses    Analysis[]
+  rewrites    Rewrite[]
+}
+
+// 拆解分析
+model Analysis {
+  id              String   @id @default(cuid())
+  contentId       String
+  content         Content  @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  hookAnalysis    String?  // 开头钩子分析
+  structureAnalysis String? // 结构分析
+  emotionAnalysis String?  // 情绪点分析
+  ctaAnalysis     String?  // 行动号召分析
+  keyTakeaways    String?  // 核心要点
+  createdAt       DateTime @default(now())
+}
+
+// 仿写内容
+model Rewrite {
+  id             String   @id @default(cuid())
+  contentId      String
+  content        Content  @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  title          String   // 仿写标题
+  body           String   // 仿写正文
+  angle          String?  // 切入角度
+  targetAudience String?  // 目标受众
+  status         String   @default("draft") // draft, published
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}

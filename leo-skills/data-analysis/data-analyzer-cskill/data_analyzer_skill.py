@@ -14,8 +14,6 @@ from typing import Dict, Any, List, Optional, Union
 import json
 
 
-
-from core.evolution import EvolvableSkill
 class DataAnalyzerSkill:
     """
     Data Analyzer Skill
@@ -24,11 +22,6 @@ class DataAnalyzerSkill:
     """
 
     def __init__(self, config: Optional[Dict[str, Any]] = None):
-
-        super().__init__(
-            skill_name="data-analyzer-cskill",
-            config_path=str(Path(__file__).parent.parent / "config" / "config.yaml")
-        )
         """
         初始化Data Analyzer Skill
 

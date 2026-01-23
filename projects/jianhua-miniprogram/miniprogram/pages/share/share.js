@@ -17,7 +17,8 @@ Page({
       { level: 2, name: '洗衣液1瓶', requireText: '邀请3人', status: 'claimed', remaining: 0 },
       { level: 3, name: '大米5斤', requireText: '邀请10人', status: 'unlocked', remaining: 0 },
       { level: 4, name: '食用油1桶', requireText: '邀请20人', status: 'locked', remaining: 8 },
-      { level: 5, name: '神秘大奖', requireText: '邀请50人', status: 'locked', remaining: 38 }
+      { level: 5, name: '100元超市卡', requireText: '邀请30人', status: 'locked', remaining: 18 },
+      { level: 6, name: '神秘大奖', requireText: '邀请50人', status: 'locked', remaining: 38 }
     ],
     inviteeList: [
       { id: 1, nickname: '张**', phone: '138****1234', avatar: '', created_at: '今天 10:32' },
@@ -31,6 +32,9 @@ Page({
   },
 
   onShow() {
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({ selected: 1 });
+    }
     this.checkLoginStatus();
     if (app.globalData.isLogin) {
       this.loadShareStats();
@@ -45,58 +49,72 @@ Page({
 
   // 加载分享统计数据
   loadShareStats() {
-    // Mock数据 - 实际开发时替换为API调用
-    const stats = this.data.shareStats;
-    const totalInvites = stats.total_invites;
+    const token = wx.getStorageSync('token');
+    if (!token) return;
 
-    // 计算进度和下一个礼品
-    let nextGift = { name: '神秘大奖', required: 50 };
-    let progressPercent = 100;
+    wx.request({
+      url: `${app.globalData.baseUrl}/gift/progress`,
+      method: 'GET',
+      header: { Authorization: `Bearer ${token}` },
+      success: (res) => {
+        if (res.data.success) {
+          const { inviteCount, gifts, nextTarget, progress } = res.data;
 
-    if (totalInvites < 3) {
-      nextGift = { name: '洗衣液', required: 3 };
-      progressPercent = (totalInvites / 3) * 100;
-    } else if (totalInvites < 10) {
-      nextGift = { name: '大米', required: 10 };
-      progressPercent = (totalInvites / 10) * 100;
-    } else if (totalInvites < 20) {
-      nextGift = { name: '食用油', required: 20 };
-      progressPercent = (totalInvites / 20) * 100;
-    } else if (totalInvites < 50) {
-      nextGift = { name: '神秘大奖', required: 50 };
-      progressPercent = (totalInvites / 50) * 100;
-    }
+          // Map API gifts to view model
+          const giftList = gifts.map((g, index) => ({
+            level: index + 1, // Use index as level for display order
+            giftId: g.id, // Keep real ID for claiming
+            name: g.name,
+            required: g.required,
+            requireText: g.required === 0 ? '授权即领' : `邀请${g.required}人`,
+            status: g.claimed ? 'claimed' : (g.unlocked ? 'unlocked' : 'locked'),
+            remaining: Math.max(0, g.required - inviteCount)
+          }));
 
-    // 更新礼品状态
-    const giftList = this.data.giftList.map(gift => {
-      const thresholds = [0, 3, 10, 20, 50];
-      const threshold = thresholds[gift.level - 1];
+          // Find next target gift name
+          let nextGiftName = '神秘大奖';
+          const nextTargetGift = gifts.find(g => g.required === nextTarget);
+          if (nextTargetGift) {
+            nextGiftName = nextTargetGift.name;
+          }
 
-      if (gift.level <= 2) {
-        // 假设前两个已领取
-        gift.status = 'claimed';
-        gift.remaining = 0;
-      } else if (totalInvites >= threshold) {
-        gift.status = 'unlocked';
-        gift.remaining = 0;
-      } else {
-        gift.status = 'locked';
-        gift.remaining = threshold - totalInvites;
+          this.setData({
+            shareStats: {
+              total_invites: inviteCount,
+              today_invites: 0, // API doesn't return this yet, keep 0 or add to API
+              total_shares: 0   // API doesn't return this yet
+            },
+            nextGift: { name: nextGiftName, required: nextTarget || 50 },
+            progressPercent: progress,
+            giftList,
+            inviteeList: [] // Clear mock data until API is ready
+          });
+        }
+      },
+      fail: (err) => {
+        console.error('Fetch progress failed:', err);
       }
-      return gift;
-    });
-
-    this.setData({
-      nextGift,
-      progressPercent,
-      giftList
     });
   },
 
   // 领取礼品
   claimGift(e) {
+    const index = e.currentTarget.dataset.index; // Use index or get object
+    // Or better, look up in giftList
     const level = e.currentTarget.dataset.level;
     const gift = this.data.giftList.find(g => g.level === level);
+
+    if (!gift) return;
+    if (gift.status === 'locked') {
+      wx.showToast({ title: `还需要邀请${gift.remaining}人`, icon: 'none' });
+      return;
+    }
+    if (gift.status === 'claimed') {
+      wx.navigateTo({
+        url: `/pages/appointment/appointment?giftId=${gift.giftId}&giftName=${gift.name}`
+      });
+      return;
+    }
 
     wx.showModal({
       title: '领取礼品',
@@ -104,10 +122,34 @@ Page({
       confirmText: '确定领取',
       success: (res) => {
         if (res.confirm) {
-          // 跳转到预约页面
-          wx.navigateTo({
-            url: `/pages/appointment/appointment?giftLevel=${level}&giftName=${gift.name}`
-          });
+           const token = wx.getStorageSync('token');
+           wx.showLoading({ title: '处理中' });
+           
+           wx.request({
+             url: `${app.globalData.baseUrl}/gift/claim`,
+             method: 'POST',
+             header: { Authorization: `Bearer ${token}` },
+             data: { giftId: gift.giftId },
+             success: (res) => {
+               wx.hideLoading();
+               if (res.data.success) {
+                  wx.showToast({ title: '领取成功', icon: 'success' });
+                  this.loadShareStats(); // Reload to update status
+                  
+                  setTimeout(() => {
+                    wx.navigateTo({
+                      url: `/pages/appointment/appointment?giftId=${gift.giftId}&giftName=${gift.name}`
+                    });
+                  }, 1500);
+               } else {
+                 wx.showToast({ title: res.data.message || '领取失败', icon: 'none' });
+               }
+             },
+             fail: () => {
+               wx.hideLoading();
+               wx.showToast({ title: '网络错误', icon: 'none' });
+             }
+           });
         }
       }
     });

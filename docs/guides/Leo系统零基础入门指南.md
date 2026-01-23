@@ -158,7 +158,7 @@
 Claude会自动扫描系统配置并更新本文档。
 
 **配置文件位置**：
-- 所有Skills、Agents、Workflows的配置都在：`leo-config/settings/config.yaml`
+- 所有Skills、Agents、Workflows的配置都在：`leo_config/settings/config.yaml`
 - 新增组件后，只需在该文件中添加配置，然后说"更新入门指南"即可
 
 ---
@@ -169,9 +169,9 @@ Claude会自动扫描系统配置并更新本文档。
 AI_claude_skills/
 ├── leo-skills/          # 所有技能
 ├── leo-subagents/       # 所有代理
-├── leo-workflows/       # 所有工作流
-├── leo-orchestrator/    # 调度中心
-├── leo-config/          # 配置文件
+├── leo_workflows/       # 所有工作流
+├── leo_orchestrator/    # 调度中心
+├── leo_config/          # 配置文件
 │   └── settings/
 │       └── config.yaml  # 主配置（新增组件在这里）
 ├── docs/                # 文档

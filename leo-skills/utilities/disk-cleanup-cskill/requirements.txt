@@ -1,0 +1,17 @@
+# 硬盘清理技能依赖包
+# Disk Cleanup Skill Dependencies
+
+# 系统信息获取
+psutil>=5.9.0
+
+# 安全删除（移到回收站）
+send2trash>=1.8.0
+
+# 快速哈希计算（用于重复文件检测）
+xxhash>=3.0.0
+
+# 进度条显示
+tqdm>=4.65.0
+
+# YAML 配置解析
+pyyaml>=6.0

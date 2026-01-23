@@ -66,7 +66,7 @@
 ├─────────────────────────────────────────────────────────────┤
 │  ┌──────────────────────────────────────────────────────┐   │
 │  │                    Orchestrator                       │   │
-│  │         (leo-orchestrator - 已有)                     │   │
+│  │         (leo_orchestrator - 已有)                     │   │
 │  └──────────────────────────────────────────────────────┘   │
 │                            ↓                                 │
 │  ┌──────────────────────────────────────────────────────┐   │
@@ -591,7 +591,7 @@ agents:
 ### 5.4 开发Workflow配置
 
 ```yaml
-# leo-config/settings/config.yaml 新增workflows
+# leo_config/settings/config.yaml 新增workflows
 
 workflows:
   # ... 已有的workflows ...

@@ -13,7 +13,7 @@
 .banner-placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #FF6B35 0%, #FF8F5E 100%);
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8f5e 100%);
 }
 
 .gift-emoji {
@@ -27,7 +27,7 @@
   left: 0;
   right: 0;
   padding: 40rpx;
-  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
   color: #fff;
 }
 
@@ -43,16 +43,97 @@
   margin-top: 8rpx;
 }
 
-/* 项目亮点 */
+/* 限时挑战 Banner */
+.challenge-banner {
+  background: linear-gradient(90deg, #fff0e6 0%, #fff9f2 100%);
+  border: 1rpx solid #ffd8c2;
+  border-radius: 12rpx;
+  margin: -40rpx 24rpx 24rpx; /* 向上重叠一点 */
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 11; /* 比Highlights高 */
+  box-shadow: 0 4rpx 12rpx rgba(255, 107, 53, 0.1);
+}
+
+.challenge-icon {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 20rpx;
+}
+
+.challenge-content {
+  flex: 1;
+}
+
+.challenge-title {
+  display: block;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #ff6b35;
+}
+
+.challenge-desc {
+  display: block;
+  font-size: 22rpx;
+  color: #995232;
+  margin-top: 4rpx;
+}
+
+.challenge-timer {
+  font-size: 24rpx;
+  color: #ff6b35;
+  background: rgba(255, 107, 53, 0.1);
+  padding: 8rpx 16rpx;
+  border-radius: 24rpx;
+}
+
+/* 实时动态 (Bar样式) */
+.dynamics-bar {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 30rpx;
+  padding: 8rpx 20rpx;
+  margin: 0 24rpx 24rpx;
+  color: #fff;
+  font-size: 24rpx;
+}
+
+.dynamics-icon {
+  margin-right: 12rpx;
+}
+
+.dynamics-swiper {
+  flex: 1;
+}
+
+.dynamics-text {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dynamics-text .highlight {
+  color: #ffd700;
+  font-weight: bold;
+  margin: 0 6rpx;
+}
+
+/* 项目亮点 (调整margin) */
 .highlights {
   display: flex;
   background: #fff;
   padding: 30rpx 0;
-  margin: -40rpx 24rpx 0;
+  margin: 0 24rpx 0; /* 取消负margin，因为被Challenge Banner替代 */
   border-radius: 16rpx;
   position: relative;
   z-index: 10;
-  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.1);
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
 }
 
 .highlight-item {
@@ -69,7 +150,7 @@
   display: block;
   font-size: 36rpx;
   font-weight: bold;
-  color: #FF6B35;
+  color: #ff6b35;
 }
 
 .highlight-label {
@@ -79,16 +160,19 @@
   margin-top: 8rpx;
 }
 
-/* 产品介绍 */
+/* 产品介绍 (图片化) */
 .product-intro {
   margin-top: 24rpx;
 }
 
 .section-title {
-  font-size: 36rpx;
+  font-size: 34rpx;
   font-weight: bold;
   color: #333;
-  margin-bottom: 24rpx;
+  padding-left: 20rpx;
+  border-left: 8rpx solid #ff6b35;
+  margin-bottom: 30rpx;
+  line-height: 1;
 }
 
 .intro-item {
@@ -102,17 +186,13 @@
   padding-bottom: 0;
 }
 
-.intro-icon {
-  font-size: 48rpx;
-  width: 80rpx;
-  height: 80rpx;
-  background: #FFF9F5;
-  border-radius: 16rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.intro-img {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 12rpx;
   margin-right: 24rpx;
   flex-shrink: 0;
+  background: #f5f5f5;
 }
 
 .intro-content {
@@ -122,125 +202,76 @@
   justify-content: center;
 }
 
-.intro-title {
-  font-size: 30rpx;
-  font-weight: 500;
-  color: #333;
-  margin-bottom: 8rpx;
-}
+/* ... 视频和图片展示保持不变 ... */
 
-.intro-desc {
-  font-size: 26rpx;
-  color: #666;
-  line-height: 1.5;
-}
-
-/* 视频展示 */
-.video-section {
-  margin-top: 24rpx;
-}
-
-.project-video {
-  width: 100%;
-  height: 400rpx;
-  border-radius: 12rpx;
-}
-
-/* 图片展示 */
-.gallery-section {
-  margin-top: 24rpx;
-}
-
-.gallery-swiper {
-  width: 100%;
-  height: 400rpx;
-  border-radius: 12rpx;
-  overflow: hidden;
-}
-
-.gallery-image {
-  width: 100%;
-  height: 100%;
-}
-
-/* 礼品区域 */
+/* 礼品区域 (网格化) */
 .gift-section {
-  margin-top: 40rpx;
+  margin-top: 24rpx;
 }
 
-.gift-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20rpx;
-}
-
-.gift-icon {
-  font-size: 48rpx;
+.gift-header-icon {
+  width: 48rpx;
+  height: 48rpx;
   margin-right: 16rpx;
 }
 
-.gift-title {
-  font-size: 36rpx;
-  font-weight: bold;
-  color: #333;
-}
-
-.gift-desc {
-  font-size: 28rpx;
-  color: #666;
-  margin-bottom: 30rpx;
-}
-
-/* 礼品列表 */
-.gift-list {
+/* 礼品可以横向滚动 */
+.gift-grid {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 30rpx;
+  overflow-x: auto;
+  padding-bottom: 20rpx;
+  margin: 0 -10rpx 30rpx; /* 抵消item margin */
+  -webkit-overflow-scrolling: touch;
 }
 
-.gift-item {
-  flex: 1;
+.gift-card {
+  flex: 0 0 200rpx; /* 固定宽度 */
+  background: #fff9f5;
+  border-radius: 16rpx;
+  padding: 20rpx;
   text-align: center;
-  padding: 20rpx 10rpx;
-  background: #FFF9F5;
+  margin: 0 10rpx;
+  box-sizing: border-box;
+}
+
+.gift-card-img {
+  width: 120rpx;
+  height: 120rpx;
+  margin-bottom: 16rpx;
+  background: #fff;
   border-radius: 12rpx;
-  margin: 0 8rpx;
-}
-
-.gift-item:first-child {
-  margin-left: 0;
-}
-
-.gift-item:last-child {
-  margin-right: 0;
-}
-
-.gift-img {
-  width: 80rpx;
-  height: 80rpx;
-  margin-bottom: 12rpx;
 }
 
 .gift-name {
   display: block;
-  font-size: 24rpx;
+  font-size: 26rpx;
+  font-weight: bold;
   color: #333;
-  font-weight: 500;
+  margin-bottom: 8rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .gift-condition {
   display: block;
   font-size: 20rpx;
-  color: #FF6B35;
-  margin-top: 6rpx;
+  color: #ff6b35;
+  background: rgba(255, 107, 53, 0.1);
+  padding: 4rpx 10rpx;
+  border-radius: 20rpx;
+  display: inline-block;
 }
 
 /* 领取按钮 */
 .btn-claim {
   width: 100%;
   height: 96rpx;
-  line-height: 96rpx;
-  background: linear-gradient(135deg, #FF6B35 0%, #FF8F5E 100%);
+  /* line-height: 96rpx; Removed in favor of flex */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8f5e 100%);
   color: #fff;
   border-radius: 48rpx;
   font-size: 34rpx;
@@ -281,7 +312,7 @@
   width: 100%;
   height: 88rpx;
   line-height: 88rpx;
-  background: linear-gradient(135deg, #FF6B35 0%, #FF8F5E 100%);
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8f5e 100%);
   color: #fff;
   border-radius: 44rpx;
   font-size: 32rpx;
@@ -352,12 +383,13 @@
 }
 
 .btn-contact {
-  background: #fff;
-  border: 2rpx solid #FF6B35;
-  color: #FF6B35;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8f5e 100%);
+  color: #fff;
   font-size: 28rpx;
-  padding: 16rpx 32rpx;
+  padding: 10rpx 30rpx;
   border-radius: 40rpx;
+  font-weight: 500;
+  box-shadow: 0 4rpx 12rpx rgba(255, 107, 53, 0.3);
 }
 
 .btn-contact::after {

@@ -41,11 +41,27 @@ router.post('/phone-login', async (req, res) => {
 
       // 处理邀请关系
       if (inviteCode) {
-        const [inviters] = await db.execute('SELECT id FROM users WHERE invite_code = ?', [inviteCode]);
+        const [inviters] = await db.execute('SELECT id, created_at, invite_count FROM users WHERE invite_code = ?', [inviteCode]);
         if (inviters.length > 0) {
-          await db.execute('UPDATE users SET inviter_id = ? WHERE id = ?', [inviters[0].id, result.insertId]);
+          const inviter = inviters[0];
+          await db.execute('UPDATE users SET inviter_id = ? WHERE id = ?', [inviter.id, result.insertId]);
           // 增加邀请人的邀请数
-          await db.execute('UPDATE users SET invite_count = invite_count + 1 WHERE id = ?', [inviters[0].id]);
+          await db.execute('UPDATE users SET invite_count = invite_count + 1 WHERE id = ?', [inviter.id]);
+
+          // 限时挑战逻辑：24小时内邀请3人
+          const now = new Date();
+          const created = new Date(inviter.created_at);
+          const diffHours = (now - created) / (1000 * 60 * 60);
+
+          // 之前的邀请数是2，加上这一次变成3
+          if (diffHours <= 24 && inviter.invite_count === 2) {
+            const expireDate = new Date();
+            expireDate.setDate(expireDate.getDate() + 7);
+            await db.execute(
+              'INSERT INTO user_gifts (user_id, gift_id, status, expire_at) VALUES (?, 7, "pending", ?)',
+              [inviter.id, expireDate]
+            );
+          }
         }
       }
 
@@ -81,6 +97,7 @@ router.post('/phone-login', async (req, res) => {
         phone: user.phone.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2'),
         nickname: user.nickname || '微信用户',
         invite_code: user.invite_code,
+        created_at: user.created_at,
         is_new_user: isNewUser,
         initial_gift: gifts.length > 0 ? {
           name: gifts[0].name,

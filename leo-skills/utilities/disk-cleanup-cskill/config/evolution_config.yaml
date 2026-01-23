@@ -1,0 +1,117 @@
+# 进化配置文件
+# Evolution Configuration
+
+evolution:
+  enabled: true
+  version: "1.0.0"
+
+  # 学习设置
+  learning:
+    min_executions_for_learning: 10
+    analysis_window: 100
+    success_threshold: 0.8
+    collect_metrics: true
+    learn_from_failures: true
+
+  # 优化设置
+  optimization:
+    auto_optimize: false
+    require_approval: true
+    min_confidence: 0.7
+    optimization_interval_days: 7
+    max_optimization_attempts: 3
+
+  # 安全设置
+  safety:
+    enable_rollback: true
+    keep_snapshots: 10
+    snapshot_before_evolution: true
+    test_before_deploy: true
+    fallback_on_error: true
+
+  # 备份设置
+  backup:
+    auto_backup: true
+    backup_before_evolution: true
+    backup_retention_days: 30
+    backup_location: ".backup"
+
+# 技能指标
+skill_metrics:
+  - name: "execution_time"
+    type: "performance"
+    target: "<30s"
+    weight: 0.3
+
+  - name: "files_processed"
+    type: "output"
+    target: ">100"
+    weight: 0.2
+
+  - name: "space_freed_gb"
+    type: "output"
+    target: ">1"
+    weight: 0.3
+
+  - name: "error_rate"
+    type: "quality"
+    target: "<0.05"
+    weight: 0.2
+
+# 可优化参数
+optimizable_parameters:
+  - name: "max_threads"
+    type: "int"
+    range: [2, 8]
+    current: 4
+    description: "最大线程数"
+
+  - name: "chunk_size"
+    type: "int"
+    range: [500, 2000]
+    current: 1000
+    description: "批处理大小"
+
+  - name: "cache_duration_hours"
+    type: "int"
+    range: [12, 48]
+    current: 24
+    description: "缓存持续时间"
+
+  - name: "large_file_threshold_mb"
+    type: "int"
+    range: [50, 500]
+    current: 100
+    description: "大文件阈值"
+
+# 学习目标
+learning_objectives:
+  - objective: "提升扫描速度"
+    metric: "execution_time"
+    target_improvement: 0.2  # 提升20%
+
+  - objective: "增加清理效果"
+    metric: "space_freed_gb"
+    target_improvement: 0.3  # 提升30%
+
+  - objective: "降低错误率"
+    metric: "error_rate"
+    target_improvement: 0.5  # 降低50%
+
+# 进化历史
+evolution_history:
+  track_changes: true
+  max_history_entries: 50
+  include_metrics: true
+  include_parameters: true
+
+# 反馈机制
+feedback:
+  collect_user_feedback: true
+  feedback_weight: 0.4
+  auto_adjust_based_on_feedback: false
+  feedback_categories:
+    - "speed"
+    - "effectiveness"
+    - "safety"
+    - "usability"

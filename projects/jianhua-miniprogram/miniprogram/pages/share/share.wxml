@@ -37,21 +37,24 @@
     <view class="gifts-card card">
       <view class="section-title">礼品解锁进度</view>
 
-      <view class="gift-progress-list">
         <view
           class="gift-progress-item {{item.status}}"
           wx:for="{{giftList}}"
           wx:key="level"
         >
-          <view class="gift-status-icon">
-            <text wx:if="{{item.status === 'claimed'}}">✅</text>
-            <text wx:elif="{{item.status === 'unlocked'}}">🎁</text>
-            <text wx:else>🔒</text>
-          </view>
-
+          <image class="gift-img-small" src="https://placehold.co/80x80?text=Gift{{item.level}}" mode="aspectFill"></image>
+          
           <view class="gift-info">
-            <text class="gift-name">{{item.name}}</text>
+            <view class="gift-name-row">
+              <text class="gift-name">{{item.name}}</text>
+              <text class="gift-badge" wx:if="{{item.status === 'claimed'}}">已到手</text>
+            </view>
             <text class="gift-require">{{item.requireText}}</text>
+            
+            <!-- 进度条(微型) -->
+            <view class="mini-progress" wx:if="{{item.status === 'locked'}}">
+              <view class="mini-progress-bar" style="width: {{(item.required - item.remaining)/item.required * 100}}%"></view>
+            </view>
           </view>
 
           <view class="gift-action">
@@ -61,13 +64,16 @@
               bindtap="claimGift"
               data-level="{{item.level}}"
             >
-              领取
+              立即领取
             </button>
-            <text class="status-text" wx:elif="{{item.status === 'claimed'}}">已领取</text>
-            <text class="status-text locked" wx:else>还差{{item.remaining}}人</text>
+            <view class="status-icon-box" wx:elif="{{item.status === 'claimed'}}">
+              <text class="status-icon">✅</text>
+            </view>
+            <view class="status-lock-box" wx:else>
+              <text class="status-lock-text">差{{item.remaining}}人</text>
+            </view>
           </view>
         </view>
-      </view>
     </view>
 
     <!-- 邀请记录 -->

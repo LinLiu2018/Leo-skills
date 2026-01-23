@@ -30,10 +30,11 @@
 - ✅ 务实优先：能用 > 完美
 
 **协作要求**:
+- **语言规则**: 必须全程使用**简体中文**交流
+- **解释规则**: 遇到专业技术术语，必须用**大白话**（通俗易懂的语言）解释，禁止堆砌术语
 - 拒绝AI谄媚，客观务实
 - 可落地执行，小白友好
 - 主动发现问题并提出建议
-- 用通俗语言解释技术概念
 
 ---
 
@@ -57,6 +58,8 @@ AI_claude_skills/
 │   ├── utilities/        # 工具类（研究助手、网页搜索、Obsidian同步）
 │   ├── data-analysis/    # 数据分析
 │   ├── development/      # 开发工具
+│   ├── video-editing/    # 视频编辑（videocut-skills）
+│   ├── prompt-engineering/ # 提示词工程（claude-prompt-engineering-skills）
 │   └── core/             # 核心技能
 ├── leo-subagents/        # Subagents 代理库
 │   ├── agents/           # Agent 实现
@@ -70,9 +73,9 @@ AI_claude_skills/
 │   │   └── realestate-agent/ # 房产专业
 │   ├── skills-bridge/    # Skills 桥接层
 │   └── config/           # Agent 配置
-├── leo-orchestrator/     # 统一编排器
-├── leo-workflows/        # 工作流定义
-├── leo-config/           # 全局配置
+├── leo_orchestrator/     # 统一编排器
+├── leo_workflows/        # 工作流定义
+├── leo_config/           # 全局配置
 │   ├── settings/         # 配置文件
 │   └── guidelines/       # 指南（含去AI化指南）
 └── projects/             # 项目文件
@@ -85,11 +88,11 @@ AI_claude_skills/
 | 文件 | 用途 |
 |------|------|
 | `leo-system.py` | 系统主入口 |
-| `leo-orchestrator/api.py` | 统一 API |
-| `leo-orchestrator/registry.py` | Skills/Agents 注册表 |
-| `leo-orchestrator/workflow_engine.py` | 工作流引擎 |
-| `leo-config/settings/config.yaml` | 全局配置 |
-| `leo-config/guidelines/deaiification_guide.yaml` | 去AI化指南 |
+| `leo_orchestrator/api.py` | 统一 API |
+| `leo_orchestrator/registry.py` | Skills/Agents 注册表 |
+| `leo_orchestrator/workflow_engine.py` | 工作流引擎 |
+| `leo_config/settings/config.yaml` | 全局配置 |
+| `leo_config/guidelines/deaiification_guide.yaml` | 去AI化指南 |
 | `leo-subagents/config/agents.yaml` | Agent 配置 |
 
 ---
@@ -206,6 +209,18 @@ skill-name-cskill/
    - obsidian-sync-cskill: Obsidian 同步
    - project-marketing-doc-generator-cskill: 营销文档生成
    - article-to-prototype-cskill: 文章转原型
+   - **videocut-skills**: 视频剪辑（口播剪辑、字幕生成）
+     - `/videocut:安装` - 环境配置
+     - `/videocut:剪口播` - 口误/静音检测
+     - `/videocut:剪辑` - 执行剪辑
+     - `/videocut:字幕` - 字幕生成
+     - `/videocut:自更新` - 自我进化
+   - **claude-prompt-engineering-skills**: 提示词工程技能库
+     - prompt-optimizer: 提示词优化器
+     - long-context-handler: 长文本处理器
+     - xml-structure-builder: XML结构构建器
+     - chain-of-thought-prompter: 思维链提示器
+     - prompt-chaining-orchestrator: 提示词链编排器
 
 2. **Subagents** - 任务执行者
    - task-agent: 通用任务执行
@@ -226,7 +241,7 @@ skill-name-cskill/
 
 ## 去AI化指南
 
-项目使用双模式去AI化策略（`leo-config/guidelines/deaiification_guide.yaml`）：
+项目使用双模式去AI化策略（`leo_config/guidelines/deaiification_guide.yaml`）：
 
 | 模式 | 适用场景 | 特点 |
 |------|----------|------|
@@ -265,7 +280,7 @@ leo.run_workflow("content-pipeline", topic="...")
 
 1. **新增 Skill**: 在 `leo-skills/` 对应分类下创建，系统自动发现
 2. **新增 Agent**: 在 `leo-subagents/agents/` 下创建，需在 config 中注册
-3. **配置修改**: 优先修改 `leo-config/settings/config.yaml`
+3. **配置修改**: 优先修改 `leo_config/settings/config.yaml`
 4. **测试**: 修改后运行相关测试脚本验证
 
 ---
@@ -282,9 +297,30 @@ leo.run_workflow("content-pipeline", topic="...")
 
 ## 已知问题
 
-- 部分 Agent 状态为 🟡（analysis-agent 待完善）
-- 工作流引擎 `workflow_engine.py` 开发中
+- ✅ ~~部分 Agent 状态为 🟡（analysis-agent 待完善）~~ - 已修复，已集成 data-analyzer-cskill
+- ✅ ~~工作流引擎 `workflow_engine.py` 开发中~~ - 已完善，支持条件分支、并行执行、重试机制、超时控制
+- ✅ ~~重复目录和临时文件~~ - 已清理（2026-01-23）
+- 部分 Agent 类型未实现（developer, operator, tester 等）- 使用 TaskAgent 作为通用执行器
+- 目录结构已重命名：`leo-subagents` → `leo_subagents`（Python 模块命名规范）
+- 目录命名不一致：`leo_orchestrator` vs `leo_orchestrator`（待统一）
 
 ---
 
-*最后更新: 2026-01-16*
+## 最近更新
+
+### 2026-01-23: 项目结构优化
+- ✅ 删除临时目录 `~/`
+- ✅ 删除重复的 `t3-stack-scaffold-cskill` 目录
+- ✅ 清理废弃的空目录（fission-project, docs/reports 等）
+- ✅ 为规划中的目录添加 README.md 说明文档
+- ✅ 验证系统功能正常
+
+**清理成果**:
+- 删除 5 个废弃/临时目录
+- 删除 1 个重复技能目录
+- 新增 4 个 README.md 文档
+- 项目结构更清晰，维护性提升
+
+---
+
+*最后更新: 2026-01-23*

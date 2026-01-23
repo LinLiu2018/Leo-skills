@@ -48,15 +48,18 @@ AI_claude_skills/
 │   ├── skills-bridge/       # Skills桥接层
 │   └── config/              # 配置文件
 │
-├── leo-orchestrator/        # 🆕 统一编排器
+├── leo_orchestrator/        # 🆕 统一编排器
 │   ├── registry.py          # 统一注册表
 │   ├── api.py               # 统一API接口
 │   └── coordinator/         # 协调器
 │
-├── leo-workflows/           # 🆕 工作流定义
+├── projects/                # 🆕 实际项目源码
+│   └── fission/             # 建华官员菜场小程序(裂变模块)
+│
+├── leo_workflows/           # 🆕 工作流定义
 │   └── workflows/           # 预定义工作流
 │
-├── leo-config/              # 🆕 全局配置
+├── leo_config/              # 🆕 全局配置
 │   └── settings/            # 配置文件
 │
 └── README.md                # 本文档
@@ -210,7 +213,7 @@ leo.run_workflow(
 
 ### 全局配置文件
 
-位置：`leo-config/settings/config.yaml`
+位置：`leo_config/settings/config.yaml`
 
 ```yaml
 # Skills配置
@@ -302,7 +305,7 @@ leo.run_workflow(workflow_name, **kwargs)
 
 ### 创建新Workflow
 
-1. 在`leo-workflows/workflows/`下创建定义
+1. 在`leo_workflows/workflows/`下创建定义
 2. 配置步骤和Agent映射
 3. 通过API调用
 

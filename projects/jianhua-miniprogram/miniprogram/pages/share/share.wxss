@@ -26,7 +26,7 @@
 }
 
 .btn-go-claim {
-  background: linear-gradient(135deg, #FF6B35 0%, #FF8F5E 100%);
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8f5e 100%);
   color: #fff;
   border-radius: 44rpx;
   padding: 24rpx 80rpx;
@@ -37,7 +37,7 @@
 /* 统计卡片 */
 .stats-card {
   margin: 24rpx;
-  background: linear-gradient(135deg, #FF6B35 0%, #FF8F5E 100%);
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8f5e 100%);
   color: #fff;
 }
 
@@ -69,7 +69,7 @@
 
 .progress-bar {
   height: 16rpx;
-  background: rgba(255,255,255,0.3);
+  background: rgba(255, 255, 255, 0.3);
   border-radius: 8rpx;
   overflow: hidden;
   margin-bottom: 12rpx;
@@ -91,7 +91,7 @@
   font-size: 24rpx;
   opacity: 0.8;
   padding-top: 16rpx;
-  border-top: 1rpx solid rgba(255,255,255,0.2);
+  border-top: 1rpx solid rgba(255, 255, 255, 0.2);
 }
 
 /* 礼品进度卡片 */
@@ -130,54 +130,94 @@
   border-bottom: none;
 }
 
-.gift-status-icon {
-  width: 60rpx;
-  font-size: 36rpx;
+.gift-img-small {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 12rpx;
+  margin-right: 20rpx;
+  background: #f5f5f5;
+  border: 1rpx solid #eee;
 }
 
 .gift-info {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gift-name-row {
+  display: flex;
+  align-items: center;
 }
 
 .gift-name {
-  display: block;
   font-size: 30rpx;
   color: #333;
   font-weight: 500;
+  margin-right: 12rpx;
+}
+
+.gift-badge {
+  font-size: 20rpx;
+  color: #52c41a;
+  background: rgba(82, 196, 26, 0.1);
+  padding: 2rpx 8rpx;
+  border-radius: 4rpx;
 }
 
 .gift-require {
-  display: block;
   font-size: 24rpx;
   color: #999;
-  margin-top: 4rpx;
+  margin-top: 6rpx;
+}
+
+/* 微型进度条 */
+.mini-progress {
+  width: 160rpx;
+  height: 6rpx;
+  background: #f0f0f0;
+  border-radius: 3rpx;
+  margin-top: 10rpx;
+  overflow: hidden;
+}
+
+.mini-progress-bar {
+  height: 100%;
+  background: #ffd8c2;
 }
 
 .gift-action {
-  min-width: 120rpx;
+  min-width: 140rpx;
   text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .btn-claim-gift {
-  background: #FF6B35;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8f5e 100%);
   color: #fff;
   font-size: 24rpx;
-  padding: 12rpx 24rpx;
+  padding: 10rpx 24rpx;
   border-radius: 30rpx;
   border: none;
   line-height: 1.5;
+  box-shadow: 0 4rpx 12rpx rgba(255, 107, 53, 0.3);
 }
 
 .btn-claim-gift::after {
   border: none;
 }
 
-.status-text {
-  font-size: 24rpx;
-  color: #52c41a;
+.status-lock-box {
+  background: #f5f5f5;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
 }
 
-.status-text.locked {
+.status-lock-text {
+  font-size: 22rpx;
   color: #999;
 }
 
@@ -247,14 +287,14 @@
   right: 0;
   padding: 24rpx;
   background: #fff;
-  box-shadow: 0 -4rpx 12rpx rgba(0,0,0,0.05);
+  box-shadow: 0 -4rpx 12rpx rgba(0, 0, 0, 0.05);
 }
 
 .btn-share-main {
   width: 100%;
   height: 96rpx;
   line-height: 96rpx;
-  background: linear-gradient(135deg, #FF6B35 0%, #FF8F5E 100%);
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8f5e 100%);
   color: #fff;
   border-radius: 48rpx;
   font-size: 34rpx;

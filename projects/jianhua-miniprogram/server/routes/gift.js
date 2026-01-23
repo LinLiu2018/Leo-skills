@@ -9,6 +9,7 @@ const GIFT_RULES = [
   { giftId: 2, required: 3, name: '洗衣液1瓶' },
   { giftId: 3, required: 10, name: '大米5斤' },
   { giftId: 4, required: 20, name: '食用油1桶' },
+  { giftId: 6, required: 30, name: '100元超市卡' },
   { giftId: 5, required: 50, name: '神秘大奖' }
 ];
 
