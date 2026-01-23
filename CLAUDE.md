@@ -287,11 +287,24 @@ leo.run_workflow("content-pipeline", topic="...")
 
 ## 当前工作重点
 
-- [ ] Skills 桥接层完善
-- [ ] Agent 调用逻辑实现
-- [ ] 工作流引擎开发
+### 已完成 ✅
 - [x] 去 AI 化内容处理功能（双模式）
-- [ ] 新 Agent 集成（architect, product-manager, mobile）
+- [x] 目录重命名和标准化（2026-01-23 完成）
+- [x] 工作流引擎开发（已完善）
+
+### 进行中 🚧
+- [ ] 实现 3 个新 Agent：
+  - [ ] Architect Agent（架构设计代理）
+  - [ ] Mobile Agent（移动开发代理）
+  - [ ] Product Manager Agent（产品管理代理）
+- [ ] 实现 3 个工作流：
+  - [ ] Analysis Pipeline（数据分析工作流）
+  - [ ] Content Pipeline（内容创作工作流）
+  - [ ] Research Pipeline（研究调研工作流）
+
+### 待优化 📋
+- [ ] Skills 桥接层完善
+- [ ] Agent 调用逻辑优化
 
 ---
 
@@ -300,26 +313,39 @@ leo.run_workflow("content-pipeline", topic="...")
 - ✅ ~~部分 Agent 状态为 🟡（analysis-agent 待完善）~~ - 已修复，已集成 data-analyzer-cskill
 - ✅ ~~工作流引擎 `workflow_engine.py` 开发中~~ - 已完善，支持条件分支、并行执行、重试机制、超时控制
 - ✅ ~~重复目录和临时文件~~ - 已清理（2026-01-23）
-- 部分 Agent 类型未实现（developer, operator, tester 等）- 使用 TaskAgent 作为通用执行器
-- 目录结构已重命名：`leo-subagents` → `leo_subagents`（Python 模块命名规范）
-- 目录命名不一致：`leo_orchestrator` vs `leo_orchestrator`（待统一）
+- ✅ ~~目录命名不一致~~ - 已统一使用下划线命名（2026-01-23）
+- 部分 Agent 类型未实现（architect, mobile, product-manager）- 待实现
+- 3 个工作流待实现（analysis-pipeline, content-pipeline, research-pipeline）
 
 ---
 
 ## 最近更新
 
-### 2026-01-23: 项目结构优化
+### 2026-01-23: 目录重命名和标准化（完成）
+**第一阶段：项目清理**
 - ✅ 删除临时目录 `~/`
 - ✅ 删除重复的 `t3-stack-scaffold-cskill` 目录
 - ✅ 清理废弃的空目录（fission-project, docs/reports 等）
 - ✅ 为规划中的目录添加 README.md 说明文档
-- ✅ 验证系统功能正常
 
-**清理成果**:
-- 删除 5 个废弃/临时目录
-- 删除 1 个重复技能目录
-- 新增 4 个 README.md 文档
-- 项目结构更清晰，维护性提升
+**第二阶段：目录重命名**
+- ✅ 创建 git 分支 `refactor/standardize-structure`
+- ✅ 合并 `leo-orchestrator/` 和 `leo_orchestrator/`
+- ✅ 重命名 `leo-workflows/` → `leo_workflows/`
+- ✅ 重命名 `leo-config/` → `leo_config/`
+- ✅ 重命名 `leo-skills/` → `leo_skills/`
+- ✅ 批量替换所有文件中的路径引用（46个文件，243处修改）
+- ✅ 验证系统运行正常
+- ✅ 提交更改（2次提交，545个文件被修改）
+
+**成果**:
+- 所有目录已统一使用下划线命名，符合 Python PEP 8 规范
+- 系统运行正常，所有 Skills 和 Agents 成功注册
+- 代码库更规范、更易维护
+
+**下一步**:
+- 实现 3 个新 Agent（architect, mobile, product-manager）
+- 实现 3 个工作流（analysis-pipeline, content-pipeline, research-pipeline）
 
 ---
 
