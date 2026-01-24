@@ -1,0 +1,182 @@
+# Content Pipeline - 内容创作工作流
+# ==================================
+# 完整的内容创作工作流：策划→素材→创作→排版→发布
+
+name: "content-creation-pipeline"
+description: "完整的内容创作工作流：策划→素材→创作→排版→发布"
+version: "1.0.0"
+enabled: true
+author: "Leo Liu"
+created: "2026-01-23"
+
+# 工作流触发器
+triggers:
+  - keyword: "创作内容"
+  - keyword: "写文章"
+  - keyword: "发布内容"
+  - event: "manual"
+
+# 输入参数
+inputs:
+  topic:
+    type: string
+    description: "内容主题"
+    required: true
+  content_type:
+    type: string
+    description: "内容类型：article, news, analysis, tutorial"
+    default: "article"
+  platform:
+    type: string
+    description: "发布平台：wechat, xiaohongshu, weibo, blog"
+    default: "wechat"
+  style:
+    type: string
+    description: "排版风格"
+    default: "data_driven"
+
+# 工作流步骤
+steps:
+  # 步骤1：内容策划
+  - name: "content_planning"
+    description: "策划内容大纲和结构"
+    agent: "research-agent"
+    action: "plan"
+    params:
+      topic: "{{ inputs.topic }}"
+      content_type: "{{ inputs.content_type }}"
+    retries: 2
+    timeout: 60
+
+  # 步骤2：素材收集（并行）
+  - name: "material_collection"
+    description: "并行收集各类素材"
+    type: "parallel"
+    condition: "{{ steps.content_planning.success }}"
+    branches:
+      - name: "text_research"
+        agent: "research-agent"
+        action: "research"
+        params:
+          query: "{{ inputs.topic }}"
+          depth: 2
+
+      - name: "data_collection"
+        agent: "analysis-agent"
+        action: "collect"
+        params:
+          topic: "{{ inputs.topic }}"
+          type: "statistics"
+
+      - name: "case_study"
+        agent: "research-agent"
+        action: "research"
+        params:
+          query: "{{ inputs.topic }} 案例"
+          type: "case_study"
+
+  # 步骤3：内容创作
+  - name: "content_creation"
+    description: "根据素材创作内容"
+    agent: "creative-agent"
+    action: "create"
+    params:
+      outline: "{{ steps.content_planning.result }}"
+      materials:
+        - "{{ steps.material_collection.text_research.result }}"
+        - "{{ steps.material_collection.data_collection.result }}"
+        - "{{ steps.material_collection.case_study.result }}"
+      content_type: "{{ inputs.content_type }}"
+    timeout: 300
+
+  # 步骤4：内容排版
+  - name: "content_formatting"
+    description: "智能排版和格式化"
+    agent: "task-agent"
+    action: "format"
+    skill: "content-layout-leo-cskill"
+    params:
+      content: "{{ steps.content_creation.result }}"
+      platform: "{{ inputs.platform }}"
+      style: "{{ inputs.style }}"
+
+  # 步骤5：去AI化处理
+  - name: "humanize"
+    description: "去除AI痕迹，增加人性化表达"
+    agent: "creative-agent"
+    action: "humanize"
+    params:
+      content: "{{ steps.content_formatting.result }}"
+      techniques:
+        - "口语化"
+        - "增加个人观点"
+        - "调整节奏"
+
+  # 步骤6：质量检查（条件分支）
+  - name: "quality_check"
+    description: "检查内容质量"
+    agent: "analysis-agent"
+    action: "evaluate"
+    params:
+      content: "{{ steps.humanize.result }}"
+      criteria:
+        - "原创性"
+        - "可读性"
+        - "信息量"
+        - "吸引力"
+
+  # 步骤7：修订（条件执行）
+  - name: "revision"
+    description: "根据检查结果修订"
+    agent: "creative-agent"
+    action: "revise"
+    condition: "{{ steps.quality_check.result.score < 80 }}"
+    params:
+      content: "{{ steps.humanize.result }}"
+      feedback: "{{ steps.quality_check.result.feedback }}"
+
+  # 步骤8：内容发布
+  - name: "content_publish"
+    description: "发布到目标平台"
+    agent: "task-agent"
+    action: "publish"
+    skill: "realestate-news-publisher-cskill"
+    condition: "{{ inputs.platform == 'wechat' }}"
+    params:
+      content: "{{ steps.revision.result or steps.humanize.result }}"
+      platform: "{{ inputs.platform }}"
+
+# 输出定义
+outputs:
+  content:
+    description: "最终创作的内容"
+    type: "text"
+    value: "{{ steps.revision.result or steps.humanize.result }}"
+  publish_result:
+    description: "发布结果"
+    type: "object"
+    value: "{{ steps.content_publish.result }}"
+
+# 集成的Skills
+integrated_skills:
+  - name: "content-layout-leo-cskill"
+    description: "智能排版"
+    step: "content_formatting"
+  - name: "realestate-news-publisher-cskill"
+    description: "房产资讯发布"
+    step: "content_publish"
+
+# 错误处理
+error_handling:
+  default_action: "retry"
+  max_retries: 2
+  notification:
+    channel: "log"
+
+# 元数据
+metadata:
+  category: "content-creation"
+  tags:
+    - "内容创作"
+    - "自动排版"
+    - "多平台发布"

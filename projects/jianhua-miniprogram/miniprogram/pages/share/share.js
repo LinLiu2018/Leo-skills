@@ -124,7 +124,7 @@ Page({
         if (res.confirm) {
            const token = wx.getStorageSync('token');
            wx.showLoading({ title: '处理中' });
-           
+
            wx.request({
              url: `${app.globalData.baseUrl}/gift/claim`,
              method: 'POST',
@@ -135,7 +135,7 @@ Page({
                if (res.data.success) {
                   wx.showToast({ title: '领取成功', icon: 'success' });
                   this.loadShareStats(); // Reload to update status
-                  
+
                   setTimeout(() => {
                     wx.navigateTo({
                       url: `/pages/appointment/appointment?giftId=${gift.giftId}&giftName=${gift.name}`

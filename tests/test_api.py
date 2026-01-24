@@ -2,10 +2,11 @@
 """
 测试 Leo API
 """
-import pytest
-from unittest.mock import Mock, patch
-from pathlib import Path
 import sys
+from pathlib import Path
+from unittest.mock import Mock, patch
+
+import pytest
 
 # 添加项目根目录到路径
 project_root = Path(__file__).parent.parent
@@ -15,7 +16,7 @@ sys.path.insert(0, str(project_root))
 class TestLeoAPIInitialization:
     """测试 LeoAPI 初始化"""
 
-    @patch('leo_orchestrator.api.get_registry')
+    @patch("leo_orchestrator.api.get_registry")
     def test_leo_api_basic_initialization(self, mock_get_registry):
         """测试基本初始化"""
         from leo_orchestrator.api import LeoAPI
@@ -32,7 +33,7 @@ class TestLeoAPIInitialization:
         assert api.registry == mock_registry
         mock_get_registry.assert_called_once()
 
-    @patch('leo_orchestrator.api.get_registry')
+    @patch("leo_orchestrator.api.get_registry")
     def test_leo_api_with_custom_base_path(self, mock_get_registry):
         """测试自定义基础路径"""
         from leo_orchestrator.api import LeoAPI
@@ -53,11 +54,12 @@ class TestLeoAPIRegister:
     @pytest.fixture
     def mock_api(self):
         """创建 mock API"""
-        with patch('leo_orchestrator.api.get_registry') as mock_get_registry:
+        with patch("leo_orchestrator.api.get_registry") as mock_get_registry:
             mock_registry = Mock()
             mock_get_registry.return_value = mock_registry
 
             from leo_orchestrator.api import LeoAPI
+
             api = LeoAPI()
             return api, mock_registry
 
@@ -70,8 +72,7 @@ class TestLeoAPIRegister:
 
         assert result is True
         mock_registry.register_skill.assert_called_once_with(
-            name="test-skill",
-            path="/path/to/skill"
+            name="test-skill", path="/path/to/skill"
         )
 
     def test_register_agent(self, mock_api):
@@ -82,10 +83,7 @@ class TestLeoAPIRegister:
         result = api.register("agent", "test-agent", type="executor")
 
         assert result is True
-        mock_registry.register_agent.assert_called_once_with(
-            name="test-agent",
-            type="executor"
-        )
+        mock_registry.register_agent.assert_called_once_with(name="test-agent", type="executor")
 
     def test_register_unknown_type(self, mock_api):
         """测试注册未知类型"""
@@ -118,11 +116,12 @@ class TestLeoAPIQuery:
     @pytest.fixture
     def mock_api(self):
         """创建 mock API"""
-        with patch('leo_orchestrator.api.get_registry') as mock_get_registry:
+        with patch("leo_orchestrator.api.get_registry") as mock_get_registry:
             mock_registry = Mock()
             mock_get_registry.return_value = mock_registry
 
             from leo_orchestrator.api import LeoAPI
+
             api = LeoAPI()
             return api, mock_registry
 
@@ -133,12 +132,12 @@ class TestLeoAPIQuery:
         # 模拟返回技能列表
         mock_skills = [
             {"name": "skill1", "category": "test"},
-            {"name": "skill2", "category": "test"}
+            {"name": "skill2", "category": "test"},
         ]
         mock_registry.list_skills.return_value = mock_skills
 
         # 调用 list 方法（如果存在）
-        if hasattr(api, 'list'):
+        if hasattr(api, "list"):
             result = api.list("skills")
             assert len(result) == 2
 
@@ -151,6 +150,6 @@ class TestLeoAPIQuery:
         mock_registry.get_skill.return_value = mock_skill
 
         # 调用 get 方法（如果存在）
-        if hasattr(api, 'get'):
+        if hasattr(api, "get"):
             result = api.get("skill", "test-skill")
             assert result["name"] == "test-skill"

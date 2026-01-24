@@ -1,0 +1,47 @@
+# Tech Extractor Configuration
+
+# Basic settings
+enable_cache: true
+cache_days: 7
+min_confidence: 0.7
+max_results: 50
+
+# Trend analysis sources
+trend_sources:
+  - github
+  - stackoverflow  
+  - reddit
+  - news
+  - npm
+
+# Supported languages for analysis
+languages:
+  - en
+  - zh
+  - ja
+  - ko
+
+# API settings (placeholder - would need real API keys in production)
+apis:
+  github:
+    token: ""
+    rate_limit: 5000
+  stackoverflow:
+    key: ""
+    rate_limit: 300
+  reddit:
+    client_id: ""
+    client_secret: ""
+    rate_limit: 60
+
+# Output preferences
+default_export_format: json
+default_output_path: output
+
+# Feature flags
+features:
+  trend_analysis: true
+  sentiment_analysis: true
+  prediction_engine: true
+  code_analysis: true
+  document_analysis: true

@@ -11,6 +11,7 @@
 创建了完整的进化框架，包含以下核心模块：
 
 #### 📁 目录结构
+
 ```
 leo_skills/core/evolution/
 ├── __init__.py                              # 模块导出
@@ -30,6 +31,7 @@ leo_skills/core/evolution/
 #### 🧩 核心组件
 
 **1. metrics.py - 数据结构定义**
+
 - `ExecutionMetrics`: 执行指标
 - `AnalysisResult`: 分析结果
 - `BestPractice`: 最佳实践
@@ -37,6 +39,7 @@ leo_skills/core/evolution/
 - `ExecutionResult`: 执行结果
 
 **2. learner.py - 学习器**
+
 - 收集执行数据到JSONL文件
 - 分析执行模式（成功率、质量、时长）
 - 识别最优参数组合
@@ -45,18 +48,21 @@ leo_skills/core/evolution/
 - 发现改进机会
 
 **3. evolver.py - 进化器**
+
 - 从分析结果提取最佳实践
 - 生成优化规则
 - 存储知识到JSON文件
 - 加载历史知识
 
 **4. adapter.py - 适配器**
+
 - 安全应用优化规则
 - 创建配置快照
 - 支持回滚恢复
 - 支持YAML和JSON配置
 
 **5. performer.py - 可进化技能基类**
+
 - 统一执行接口
 - 自动应用最佳实践
 - 自动收集执行数据
@@ -67,6 +73,7 @@ leo_skills/core/evolution/
 ### 2. 配置模板
 
 创建了详细的配置模板 `evolution_config_template.yaml`，包含：
+
 - 进化开关
 - 学习参数（最小执行次数、分析窗口）
 - 优化参数（自动应用、人工审批、置信度阈值）
@@ -77,6 +84,7 @@ leo_skills/core/evolution/
 ### 3. 使用文档
 
 创建了完整的 `README.md` 文档，包含：
+
 - 快速开始指南
 - 核心概念说明
 - 高级功能介绍
@@ -87,6 +95,7 @@ leo_skills/core/evolution/
 ### 4. 测试验证
 
 ✅ 所有核心模块测试通过：
+
 - ✅ 模块导入测试
 - ✅ 数据结构测试
 - ✅ 学习器测试
@@ -150,17 +159,20 @@ leo_skills/core/evolution/
 ### 立即可做
 
 1. **查看文档**
+
    ```bash
    cat leo_skills/core/evolution/README.md
    ```
 
 2. **运行测试**
+
    ```bash
    cd leo_skills
    python test_evolution.py
    ```
 
 3. **查看配置模板**
+
    ```bash
    cat leo_skills/core/evolution/config/evolution_config_template.yaml
    ```
@@ -170,12 +182,14 @@ leo_skills/core/evolution/
 选择一个技能进行改造（建议从简单的开始）：
 
 **步骤1：复制配置模板**
+
 ```bash
 cp leo_skills/core/evolution/config/evolution_config_template.yaml \
    leo_skills/content-creation/realestate-news-publisher-cskill/config/evolution_config.yaml
 ```
 
 **步骤2：修改技能代码**
+
 ```python
 # 原代码
 class RealEstateNewsPublisher:
@@ -222,14 +236,17 @@ class RealEstateNewsPublisher(EvolvableSkill):
 ### 试点技能建议
 
 **优先级1（已有优化基础）：**
+
 - ✅ realestate-news-publisher-cskill（已有optimizer.py）
 - ✅ agent-skill-creator（已有AgentDB集成）
 
 **优先级2（相对简单）：**
+
 - content-layout-leo-cskill
 - research-assistant-cskill
 
 **优先级3（较复杂）：**
+
 - project-marketing-doc-generator-cskill
 - article-to-prototype-cskill
 - web-search-cskill
@@ -238,16 +255,19 @@ class RealEstateNewsPublisher(EvolvableSkill):
 ## 💡 使用建议
 
 ### 1. 渐进式启用
+
 - 初期设置 `auto_optimize: false`
 - 人工审查优化建议
 - 验证效果后再启用自动优化
 
 ### 2. 合理设置阈值
+
 - `min_executions_for_learning`: 10-20次
 - `analysis_window`: 50-100次
 - `min_confidence`: 0.7-0.8
 
 ### 3. 定义清晰的质量指标
+
 ```python
 quality_score = (
     accuracy * 0.4 +
@@ -257,6 +277,7 @@ quality_score = (
 ```
 
 ### 4. 定期审查学习结果
+
 ```python
 status = skill.get_evolution_status()
 practices = skill.evolver.load_best_practices()
@@ -275,7 +296,8 @@ rules = skill.evolver.load_optimization_rules()
 ## 📝 文件清单
 
 ### 核心文件（已创建）
-- ✅ leo_skills/core/evolution/__init__.py
+
+- ✅ leo_skills/core/evolution/**init**.py
 - ✅ leo_skills/core/evolution/metrics.py
 - ✅ leo_skills/core/evolution/learner.py
 - ✅ leo_skills/core/evolution/evolver.py
@@ -285,11 +307,12 @@ rules = skill.evolver.load_optimization_rules()
 - ✅ leo_skills/core/evolution/config/evolution_config_template.yaml
 - ✅ leo_skills/core/evolution/examples/simple_skill_demo.py
 - ✅ leo_skills/core/evolution/examples/config.yaml
-- ✅ leo_skills/core/__init__.py
-- ✅ leo_skills/__init__.py
+- ✅ leo_skills/core/**init**.py
+- ✅ leo_skills/**init**.py
 - ✅ leo_skills/test_evolution.py
 
 ### 测试结果
+
 ```
 ============================================================
 Leo Skills 进化框架 - 基础测试
@@ -327,12 +350,14 @@ Leo Skills 进化框架 - 基础测试
 技能自我进化框架已经完全实现并通过测试！
 
 **核心价值：**
+
 - ✅ 技能可以从执行历史中自动学习
 - ✅ 自动发现最佳实践和优化机会
 - ✅ 安全地应用优化规则
 - ✅ 持续提升技能表现
 
 **下一步：**
+
 1. 选择1-2个技能作为试点
 2. 改造技能以支持进化能力
 3. 运行10-20次收集数据
@@ -340,6 +365,7 @@ Leo Skills 进化框架 - 基础测试
 5. 逐步推广到所有8个技能
 
 **预期时间线：**
+
 - 试点改造：1-2天
 - 数据收集：1周
 - 全面推广：2-3周

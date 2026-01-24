@@ -1,0 +1,216 @@
+# Research Pipeline - 研究调研工作流
+# ==================================
+# 完整的研究调研工作流：搜集→整理→分析→验证→报告
+
+name: "research-pipeline"
+description: "完整的研究调研工作流：搜集→整理→分析→验证→报告"
+version: "1.0.0"
+enabled: true
+author: "Leo Liu"
+created: "2026-01-23"
+
+# 工作流触发器
+triggers:
+  - keyword: "调研"
+  - keyword: "研究"
+  - keyword: "信息收集"
+  - event: "manual"
+
+# 输入参数
+inputs:
+  topic:
+    type: string
+    description: "研究主题"
+    required: true
+  depth:
+    type: integer
+    description: "研究深度：1-浅度、2-中度、3-深度"
+    default: 2
+  output_format:
+    type: string
+    description: "输出格式：markdown, pdf, obsidian"
+    default: "markdown"
+  sync_to_kb:
+    type: boolean
+    description: "是否同步到知识库"
+    default: true
+
+# 工作流步骤
+steps:
+  # 步骤1：多源信息搜集（并行）
+  - name: "multi_source_collection"
+    description: "从多个来源并行收集信息"
+    type: "parallel"
+    branches:
+      - name: "web_search"
+        agent: "research-agent"
+        skill: "web-search-cskill"
+        action: "search"
+        params:
+          query: "{{ inputs.topic }}"
+          max_results: 20
+
+      - name: "database_search"
+        agent: "research-agent"
+        action: "search"
+        params:
+          query: "{{ inputs.topic }}"
+          source: "database"
+
+      - name: "document_search"
+        agent: "research-agent"
+        action: "search"
+        params:
+          query: "{{ inputs.topic }}"
+          source: "documents"
+
+  # 步骤2：信息去重
+  - name: "deduplication"
+    description: "去除重复信息"
+    agent: "research-agent"
+    action: "deduplicate"
+    params:
+      sources:
+        - "{{ steps.multi_source_collection.web_search.result }}"
+        - "{{ steps.multi_source_collection.database_search.result }}"
+        - "{{ steps.multi_source_collection.document_search.result }}"
+      similarity_threshold: 0.85
+
+  # 步骤3：资料分类整理
+  - name: "categorization"
+    description: "对收集的资料进行分类"
+    agent: "research-agent"
+    action: "categorize"
+    params:
+      data: "{{ steps.deduplication.result }}"
+      categories:
+        - "核心概念"
+        - "案例研究"
+        - "数据统计"
+        - "专家观点"
+        - "最新动态"
+
+  # 步骤4：信息质量评估（条件分支）
+  - name: "quality_assessment"
+    description: "评估信息质量"
+    agent: "analysis-agent"
+    action: "evaluate"
+    params:
+      data: "{{ steps.categorization.result }}"
+      criteria:
+        - "可信度"
+        - "时效性"
+        - "相关性"
+        - "完整性"
+
+  # 步骤5：补充搜索（条件执行）
+  - name: "supplementary_search"
+    description: "根据质量评估补充搜索"
+    agent: "research-agent"
+    action: "search"
+    condition: "{{ steps.quality_assessment.result.completeness < 70 }}"
+    params:
+      query: "{{ steps.quality_assessment.result.missing_topics }}"
+      depth: "{{ inputs.depth }}"
+
+  # 步骤6：深度分析
+  - name: "deep_analysis"
+    description: "对整理后的资料进行深度分析"
+    agent: "analysis-agent"
+    action: "analyze"
+    params:
+      data: "{{ steps.categorization.result }}"
+      supplementary: "{{ steps.supplementary_search.result }}"
+      analysis_type: "comprehensive"
+      depth: "{{ inputs.depth }}"
+
+  # 步骤7：交叉验证
+  - name: "cross_validation"
+    description: "对关键信息进行交叉验证"
+    agent: "analysis-agent"
+    action: "validate"
+    params:
+      claims: "{{ steps.deep_analysis.result.key_findings }}"
+      method: "cross_reference"
+
+  # 步骤8：研究报告生成
+  - name: "report_generation"
+    description: "生成研究报告"
+    agent: "creative-agent"
+    action: "generate"
+    params:
+      analysis: "{{ steps.deep_analysis.result }}"
+      validation: "{{ steps.cross_validation.result }}"
+      format: "{{ inputs.output_format }}"
+      template: "research_report"
+      sections:
+        - "执行摘要"
+        - "研究背景"
+        - "方法论"
+        - "主要发现"
+        - "数据分析"
+        - "结论与建议"
+        - "参考来源"
+
+  # 步骤9：同步到知识库（条件执行）
+  - name: "knowledge_sync"
+    description: "同步到Obsidian知识库"
+    agent: "task-agent"
+    skill: "obsidian-sync-cskill"
+    action: "sync"
+    condition: "{{ inputs.sync_to_kb }}"
+    params:
+      content: "{{ steps.report_generation.result }}"
+      vault: "research"
+      folder: "{{ inputs.topic }}"
+      tags:
+        - "研究报告"
+        - "{{ inputs.topic }}"
+
+# 输出定义
+outputs:
+  report:
+    description: "研究报告"
+    type: "file"
+    value: "{{ steps.report_generation.result }}"
+  summary:
+    description: "研究摘要"
+    type: "text"
+    value: "{{ steps.deep_analysis.result.summary }}"
+  sources:
+    description: "参考来源列表"
+    type: "array"
+    value: "{{ steps.cross_validation.result.verified_sources }}"
+
+# 集成的Skills
+integrated_skills:
+  - name: "research-assistant-cskill"
+    description: "研究助手"
+    steps:
+      - "multi_source_collection"
+      - "deduplication"
+      - "categorization"
+  - name: "web-search-cskill"
+    description: "网页搜索"
+    step: "web_search"
+  - name: "obsidian-sync-cskill"
+    description: "Obsidian同步"
+    step: "knowledge_sync"
+
+# 错误处理
+error_handling:
+  default_action: "continue"
+  critical_steps:
+    - "multi_source_collection"
+    - "deep_analysis"
+  notification:
+    channel: "log"
+    level: "warning"
+
+# 元数据
+metadata:
+  category: "research"
+  tags:
+    - "研究调研"
+    - "信息收集"
+    - "知识管理"

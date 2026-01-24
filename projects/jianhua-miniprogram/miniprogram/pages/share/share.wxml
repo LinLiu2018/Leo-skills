@@ -43,14 +43,14 @@
           wx:key="level"
         >
           <image class="gift-img-small" src="https://placehold.co/80x80?text=Gift{{item.level}}" mode="aspectFill"></image>
-          
+
           <view class="gift-info">
             <view class="gift-name-row">
               <text class="gift-name">{{item.name}}</text>
               <text class="gift-badge" wx:if="{{item.status === 'claimed'}}">已到手</text>
             </view>
             <text class="gift-require">{{item.requireText}}</text>
-            
+
             <!-- 进度条(微型) -->
             <view class="mini-progress" wx:if="{{item.status === 'locked'}}">
               <view class="mini-progress-bar" style="width: {{(item.required - item.remaining)/item.required * 100}}%"></view>

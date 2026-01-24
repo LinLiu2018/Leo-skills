@@ -1,134 +1,216 @@
-# Leo Skills Collection
+# Leo AI Agent System
 
-**Leo 的 Claude Code 技能合集** - 按功能分类整理的 AI 技能库
+<div align="center">
 
----
+[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![CI/CD](https://img.shields.io/badge/CI-GitHub_Actions-2088FF.svg)](.github/workflows/ci-cd.yml)
 
-## 简介
+**Leo的AI智能体系统** - Skills + Subagents 协同工作架构
 
-这是我的个人 Claude Code 技能仓库，按照功能模块分类管理，方便高效渐进式加载和使用。
+[快速开始](#-快速开始) · [架构](#-系统架构) · [开发指南](#-开发指南) · [贡献](CONTRIBUTING.md)
 
----
-
-## 技能分类
-
-### 📝 内容创作类 (content-creation)
-
-| 技能 | 描述 | 激活词 |
-|------|------|--------|
-| [realestate-news-publisher-cskill](content-creation/realestate-news-publisher-cskill/) | 房产资讯自动化发布 - 收集政策、市场资讯，AI生成并发布到公众号 | "发布房产资讯"、"生成楼市分析" |
-| [content-layout-leo-cskill](content-creation/content-layout-leo-cskill/) | 智能内容排版 - 多平台排版，10种风格，AI图片匹配 | "帮我排版"、"生成公众号格式" |
-
-### 📊 数据分析类 (data-analysis)
-*待补充*
-
-### 🤖 自动化类 (automation)
-*待补充*
-
-### 🔧 工具类 (utilities)
-
-| 技能 | 描述 | 激活词 |
-|------|------|--------|
-| [research-assistant-cskill](utilities/research-assistant-cskill/) | 智能研究助手 - 文献调研、信息整合、知识管理 | "帮我研究"、"文献调研"、"信息整理" |
+</div>
 
 ---
 
-## 🛠️ 工具框架 (tools)
+## ✨ 特性
 
-| 技能 | 描述 | 激活词 |
-|------|------|--------|
-| [agent-skill-creator](tools/agent-skill-creator/) | 技能创建元技能 - 自动化创建完整Claude技能 | "创建agent"、"自动化工作流"、"创建技能" |
-| [article-to-prototype-cskill](tools/article-to-prototype-cskill/) | 文章转代码原型 - 从技术文档生成可执行代码 | "从论文生成代码"、"实现这个算法" |
-| [project-marketing-doc-generator-cskill](tools/project-marketing-doc-generator-cskill/) | 营销文档生成器 - 快速生成商业项目营销资料 | "生成营销文档"、"创建销售手册"、"项目资料" |
+- 🧠 **智能编排** - Orchestrator统一协调Skills和Agents
+- 🔧 **模块化Skills** - 287+个可复用技能模块
+- 🤖 **多Agent支持** - 支持Research、Analysis、Creative等多种Agent类型
+- 📋 **工作流引擎** - 支持并行、条件分支的复杂工作流
+- 🔌 **易扩展** - 简单的API添加新Skill和Agent
 
 ---
 
-## 快速使用
+## 🚀 快速开始
 
-### 方式一：注册单个技能
+### 系统要求
+
+- Python 3.9+
+- pip 或 poetry
+
+### 安装
 
 ```bash
-# 符号链接到 Claude Code 技能目录
-ln -s ~/ai-agents-workspace/leo_skills/content-creation/realestate-news-publisher-cskill ~/.claude/skills/
+# 克隆项目
+git clone https://github.com/LinLiu2018/Leo-skills.git
+cd Leo-skills
+
+# 安装依赖
+pip install -e .
+
+# 安装开发依赖（可选）
+pip install -e ".[dev]"
 ```
 
-### 方式二：批量注册所有技能
+### 基础使用
+
+```python
+from leo_orchestrator.api import leo
+
+# 查看系统状态
+leo.stats()
+
+# 调用Skill
+result = leo.call(
+    "content-layout-leo-cskill",
+    "layout",
+    content="我的文章内容",
+    style="data_driven"
+)
+
+# 运行Agent
+result = leo.run_agent(
+    "research-agent",
+    "分析宁波房地产市场趋势"
+)
+
+# 执行工作流
+result = leo.run_workflow(
+    "analysis-pipeline",
+    data_source="sales_data.csv"
+)
+```
+
+---
+
+## 🏗️ 系统架构
+
+```
+┌─────────────────────────────────────────────────┐
+│                  Leo Orchestrator               │
+│              (统一编排器 - 大脑)                  │
+└────────────┬────────────────────────────────────┘
+             │
+      ┌──────┴──────┐
+      │             │
+      ▼             ▼
+┌──────────┐  ┌─────────────┐
+│ Subagents│  │   Skills    │
+│ (执行者)  │  │  (能力库)    │
+└──────────┘  └─────────────┘
+```
+
+### 项目结构
+
+```
+Leo-skills/
+├── src/                    # 源代码目录
+│   ├── leo_orchestrator/   # 编排器 - API和协调逻辑
+│   ├── leo_subagents/      # Agent层 - 任务执行者
+│   ├── leo_skills/         # Skill层 - 能力模块库
+│   ├── leo_workflows/      # 工作流定义
+│   ├── leo_system/         # 系统核心(日志/错误/指标)
+│   ├── leo_config/         # 配置管理
+│   └── leo_knowledge/      # 知识库
+│
+├── tests/                  # 测试文件
+├── scripts/                # 工具脚本
+├── docs/                   # 文档
+└── examples/               # 示例代码
+```
+
+### 核心组件
+
+| 组件 | 说明 |
+|------|------|
+| **Skills** | 能力模块，提供具体功能实现 |
+| **Subagents** | 任务执行者，调用Skills完成任务 |
+| **Orchestrator** | 统一协调者，路由和编排 |
+| **Workflows** | 预定义工作流，自动化流程 |
+
+---
+
+## 🤖 可用Agents
+
+| Agent | 类型 | 用途 |
+|-------|------|------|
+| task-agent | 执行者 | 通用任务执行 |
+| research-agent | 研究者 | 信息采集和研究 |
+| analysis-agent | 分析者 | 数据分析 |
+| creative-agent | 创作者 | 内容创作 |
+| architect-agent | 架构师 | 系统设计 |
+| mobile-agent | 移动开发 | 小程序/App开发 |
+| product-manager-agent | 产品经理 | 需求分析和规划 |
+
+---
+
+## 📋 预置工作流
+
+| 工作流 | 说明 |
+|--------|------|
+| analysis-pipeline | 数据分析：采集→清洗→分析→报告 |
+| content-pipeline | 内容创作：策划→创作→排版→发布 |
+| research-pipeline | 研究调研：搜集→整理→分析→报告 |
+
+---
+
+## 🛠️ 开发指南
+
+### 添加新Skill
+
+1. 在 `src/leo_skills/<分类>/` 创建目录
+2. 添加必需文件：
+   - `SKILL.md` - Skill定义
+   - `README.md` - 使用说明
+   - `scripts/main.py` - 入口脚本
+3. 运行发现系统：
+   ```bash
+   python scripts/manage_skills.py update
+   ```
+
+### 添加新Agent
+
+1. 在 `src/leo_subagents/agents/` 创建目录
+2. 继承 `BaseAgent` 类
+3. 实现 `can_handle()` 和 `execute()` 方法
+4. 在 `agents.yaml` 配置文件中注册
+
+### 运行测试
 
 ```bash
-# 批量创建符号链接
-for skill in ~/ai-agents-workspace/leo_skills/*/*-cskill; do
-    ln -s "$skill" ~/.claude/skills/
-done
-```
+# 运行所有测试
+python -m pytest tests/ -v
 
-### 方式三：渐进式加载
-
-根据需要，按分类加载：
-
-```bash
-# 只加载内容创作类技能
-for skill in ~/ai-agents-workspace/leo_skills/content-creation/*-cskill; do
-    ln -s "$skill" ~/.claude/skills/"
-done
+# 带覆盖率
+python -m pytest tests/ --cov=src --cov-report=html
 ```
 
 ---
 
-## 技能开发规范
+## 📚 文档
 
-### 目录结构
-
-```
-category-name/
-└── skill-name-cskill/
-    ├── .claude-plugin/
-    │   └── marketplace.json    # 技能元数据
-    ├── SKILL.md                # 技能文档
-    ├── README.md               # 说明文档
-    ├── config/                 # 配置文件
-    ├── scripts/                # 核心代码
-    │   ├── main.py            # 入口文件
-    │   ├── collectors/        # 数据收集
-    │   ├── analyzers/         # 数据分析
-    │   ├── generators/        # 内容生成
-    │   └── publishers/        # 内容发布
-    └── requirements.txt        # Python依赖
-```
-
-### 命名规范
-
-- 技能目录：`{功能}-{类型}-cskill`
-- 分类目录：英文小写，用连字符分隔
-
-### 元数据规范
-
-每个技能的 `.claude-plugin/marketplace.json` 必须包含：
-
-```json
-{
-  "name": "skill-name-cskill",
-  "version": "1.0.0",
-  "description": "简短描述",
-  "author": "Leo Liu",
-  "keywords": ["关键词"],
-  "activation": {
-    "keywords": ["激活词1", "激活词2"]
-  }
-}
-```
+- [系统架构详解](docs/system/)
+- [Skill开发指南](docs/guides/)
+- [API参考](docs/reference/)
+- [更新日志](CHANGELOG.md)
 
 ---
 
-## 版本信息
+## 🤝 贡献
 
-- **创建者**: Leo Liu
-- **创建时间**: 2026-01-04
-- **最后更新**: 2026-01-08
-- **技能数量**: 6个
-- **分类数量**: 5个 (内容创作2、工具1、工具框架3、数据分析0、自动化0)
+欢迎贡献代码！请查看 [贡献指南](CONTRIBUTING.md)。
+
+1. Fork 项目
+2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'feat: 添加新功能'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 创建 Pull Request
 
 ---
 
-## 技能清单
+## 📄 许可证
 
-详细清单请查看 [SKILLS_MANIFEST.md](SKILLS_MANIFEST.md)
+本项目采用 [MIT 许可证](LICENSE)。
+
+---
+
+<div align="center">
+
+**作者**: Leo Liu ([@LinLiu2018](https://github.com/LinLiu2018))
+
+**版本**: 1.0.0 | **最后更新**: 2026-01-24
+
+</div>

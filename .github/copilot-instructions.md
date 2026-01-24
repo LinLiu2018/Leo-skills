@@ -36,6 +36,7 @@ Projects (实际应用)
 ### 关键设计模式
 
 **1. 自动发现机制** (`leo_orchestrator/api.py:auto_discover()`)
+
 ```python
 # 无需手动配置，自动发现所有Skills
 api = LeoAPI()  # 初始化自动发现
@@ -43,11 +44,13 @@ api.auto_discover()  # 扫描leo_skills/目录
 ```
 
 **2. 置信度路由** (`leo-subagents/agents/base_agent.py`)
+
 ```
 任务 → 所有Agent评分 → can_handle()返回置信度(0-1) → 选择最高分Agent执行
 ```
 
 **3. 去AI化处理** (`leo_config/guidelines/deaiifier.py`)
+
 - 将AI生成内容转换为真人口吻（创意模式/严谨模式）
 - 用于营销文案、技术文档等场景
 - 双模式：`creative`（口语）vs `formal`（客观）
@@ -83,6 +86,7 @@ api.auto_discover()  # 扫描leo_skills/目录
 ### 模式1: 创建新的Skill
 
 **目录结构** (遵循严格的约定)
+
 ```
 leo_skills/{category}/{skill-name}-cskill/
 ├── scripts/
@@ -102,6 +106,7 @@ leo_skills/{category}/{skill-name}-cskill/
 ```
 
 **命名规范**:
+
 - 目录: `{功能}-{分类}-cskill` (例: `content-layout-leo-cskill`)
 - Python模块: 蛇形命名法 (例: `content_layout.py`)
 - 配置键: 蛇形或kebab-case (例: `activation_keywords`)
@@ -115,7 +120,7 @@ from leo-subagents.agents.base_agent import BaseAgent, AgentConfig
 
 class MyAgent(BaseAgent):
     ACTIVATION_KEYWORDS = ["关键词1", "关键词2"]
-    
+
     def can_handle(self, task: str) -> float:
         """返回置信度 0-1"""
         score = 0.0
@@ -123,7 +128,7 @@ class MyAgent(BaseAgent):
             if kw in task.lower():
                 score += 0.2
         return min(1.0, score)
-    
+
     def execute(self, task: str, **kwargs) -> Dict[str, Any]:
         """执行任务，返回结果字典"""
         # 1. 分析任务
@@ -133,9 +138,10 @@ class MyAgent(BaseAgent):
 ```
 
 **注册Agent**:
+
 ```python
-api.register("agent", "my-agent", 
-    type="executor", 
+api.register("agent", "my-agent",
+    type="executor",
     priority=1,
     skills=["skill1", "skill2"])
 ```
@@ -143,6 +149,7 @@ api.register("agent", "my-agent",
 ### 模式3: 定义工作流
 
 **工作流YAML** (`leo_workflows/workflows/`):
+
 ```yaml
 name: "文章发布流程"
 description: "排版→发布→追踪"
@@ -153,7 +160,7 @@ steps:
     input:
       content: "{{ input.content }}"
       style: "story_telling"
-  
+
   - name: "发布"
     agent: "task-agent"
     skill: "realestate-news-publisher-cskill"
@@ -162,6 +169,7 @@ steps:
 ```
 
 **执行工作流**:
+
 ```python
 from leo_orchestrator import LeoAPI
 api = LeoAPI()
@@ -221,13 +229,14 @@ result = self.skill_executor.execute("skill-name", **params)
 ### 常见配置
 
 **YAML配置示例** (`leo_skills/content-creation/content-layout-leo-cskill/config/style_profiles.yaml`):
+
 ```yaml
 styles:
   story_telling:
     name: "故事叙述型"
     emoji_frequency: "high"
     paragraph_length: "medium"
-  
+
   minimalist_professional:
     name: "极简专业型"
     emoji_frequency: "low"
@@ -235,6 +244,7 @@ styles:
 ```
 
 **环境变量** (`.env`):
+
 ```
 DEAI_MODE=creative
 SKILL_LOG_LEVEL=DEBUG
@@ -273,43 +283,48 @@ python tests/run_ningbo_workflow.py
 ## 🚫 常见陷阱
 
 1. **配置文件路径**: 使用相对路径时从项目根目录计算
+
    ```python
    # ✅ 正确
    config_path = Path(__file__).parent / "config.yaml"
-   
+
    # ❌ 错误
    config_path = "config.yaml"  # 依赖当前工作目录
    ```
 
 2. **Skill命名**: 必须以`-cskill`结尾，否则自动发现失败
+
    ```
    ✅ my-skill-cskill
    ❌ my-skill / my_skill
    ```
 
 3. **Agent置信度**: 总分应该在0-1范围，避免返回超过1.0的分数
+
    ```python
    # ✅ 正确
    return min(1.0, calculated_score)
-   
+
    # ❌ 错误
    return calculated_score  # 可能超过1.0
    ```
 
 4. **Skills调用**: 必须通过`SkillExecutor`，不要直接import
+
    ```python
    # ✅ 正确
    result = self.skill_executor.execute(skill_name, **params)
-   
+
    # ❌ 错误
    from leo_skills.content_creation import my_skill
    ```
 
 5. **工作流数据传递**: 使用`{{ steps.step_name.output }}`而非直接变量
+
    ```yaml
    # ✅ 正确
    input: "{{ steps.排版.output }}"
-   
+
    # ❌ 错误
    input: content_from_previous_step
    ```
@@ -330,12 +345,14 @@ content = deaiifier.process(ai_generated_text)
 ```
 
 **模式选择**:
+
 - `creative`: 营销文案、直播脚本、社交内容
 - `formal`: 技术文档、数据分析报告、正式公文
 
 ### 技能进化框架
 
 Skills可自动学习优化（见[SKILL_EVOLUTION_IMPLEMENTATION_REPORT.md](docs/system/SKILL_EVOLUTION_IMPLEMENTATION_REPORT.md)):
+
 ```python
 # Skill可记录执行反馈，自动调整策略
 skill.record_feedback(rating=0.8, reason="用户满意")

@@ -12,12 +12,14 @@
 你的项目中已有丰富的Claude Code subagents参考：
 
 **官方示例 (claude-agent-sdk-demos)**:
+
 - email-agent: 邮件处理Agent示例
 - excel-demo: Excel处理示例
 - research-agent: 多Agent研究系统
 - resume-generator: 简历生成器
 
 **社区资源 (claude-code-subagents)**:
+
 ```
 ├── architecture/      # 架构设计
 │   ├── backend-architect.md
@@ -479,6 +481,7 @@ leo-subagents/
 ### 5.2 实施优先级
 
 **第一阶段：核心开发能力（1-2周）**
+
 ```
 高优先级（与裂变小程序直接相关）：
 1. flask-api-generator-cskill      # 生成Flask API
@@ -488,6 +491,7 @@ leo-subagents/
 ```
 
 **第二阶段：完善开发链路（2-3周）**
+
 ```
 中优先级：
 5. vue-component-generator-cskill
@@ -497,6 +501,7 @@ leo-subagents/
 ```
 
 **第三阶段：高级能力（持续迭代）**
+
 ```
 低优先级：
 9. react-component-generator-cskill

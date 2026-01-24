@@ -1,0 +1,206 @@
+{
+  "timestamp": "2026-01-23T23:39:37.390119",
+  "system": {
+    "cpu_percent": 100.0,
+    "memory_percent": 76.2,
+    "disk_usage_percent": 32.34464276512314,
+    "disk_free_gb": 185.85930633544922,
+    "python_version": "3.13.9",
+    "platform": "win32",
+    "uptime_hours": 149.84300855199496
+  },
+  "skills": {
+    "total_skills": 27,
+    "valid_skills": 7,
+    "invalid_skills": 20,
+    "categories": 10,
+    "last_updated": "2026-01-23T23:27:00.840458",
+    "registry_path": ".claude\\skill_registry.json",
+    "skills_path": "leo_skills",
+    "invalid_skill_details": [
+      {
+        "name": "evolution",
+        "path": "leo_skills\\core\\evolution",
+        "errors": [
+          "Missing required file: SKILL.md"
+        ]
+      },
+      {
+        "name": "__pycache__",
+        "path": "leo_skills\\core\\__pycache__",
+        "errors": [
+          "Missing required file: SKILL.md",
+          "No valid entry point found"
+        ]
+      },
+      {
+        "name": "data-analyzer-cskill",
+        "path": "leo_skills\\data-analysis\\data-analyzer-cskill",
+        "errors": [
+          "No valid entry point found"
+        ]
+      },
+      {
+        "name": "fission_miniprogram",
+        "path": "leo_skills\\demo_output\\fission_miniprogram",
+        "errors": [
+          "Missing required file: SKILL.md",
+          "No valid entry point found"
+        ]
+      },
+      {
+        "name": "backend",
+        "path": "leo_skills\\development\\backend",
+        "errors": [
+          "Missing required file: SKILL.md",
+          "No valid entry point found"
+        ]
+      },
+      {
+        "name": "deployment",
+        "path": "leo_skills\\development\\deployment",
+        "errors": [
+          "Missing required file: SKILL.md",
+          "No valid entry point found"
+        ]
+      },
+      {
+        "name": "frontend",
+        "path": "leo_skills\\development\\frontend",
+        "errors": [
+          "Missing required file: SKILL.md",
+          "No valid entry point found"
+        ]
+      },
+      {
+        "name": "scaffold",
+        "path": "leo_skills\\development\\scaffold",
+        "errors": [
+          "Missing required file: SKILL.md",
+          "No valid entry point found"
+        ]
+      },
+      {
+        "name": "security",
+        "path": "leo_skills\\development\\security",
+        "errors": [
+          "Missing required file: SKILL.md",
+          "No valid entry point found"
+        ]
+      },
+      {
+        "name": "skill-code-generator-cskill",
+        "path": "leo_skills\\development\\skill-code-generator-cskill",
+        "errors": [
+          "Missing required file: SKILL.md"
+        ]
+      },
+      {
+        "name": "testing",
+        "path": "leo_skills\\development\\testing",
+        "errors": [
+          "Missing required file: SKILL.md",
+          "No valid entry point found"
+        ]
+      },
+      {
+        "name": "claude-prompt-engineering-skills",
+        "path": "leo_skills\\prompt-engineering\\claude-prompt-engineering-skills",
+        "errors": [
+          "Missing required file: SKILL.md",
+          "No valid entry point found"
+        ]
+      },
+      {
+        "name": "agent-skill-creator",
+        "path": "leo_skills\\tools\\agent-skill-creator",
+        "errors": [
+          "No valid entry point found"
+        ]
+      },
+      {
+        "name": "project-marketing-doc-generator-cskill",
+        "path": "leo_skills\\tools\\project-marketing-doc-generator-cskill",
+        "errors": [
+          "No valid entry point found"
+        ]
+      },
+      {
+        "name": "skill-evolution-assistant-cskill",
+        "path": "leo_skills\\tools\\skill-evolution-assistant-cskill",
+        "errors": [
+          "No valid entry point found"
+        ]
+      },
+      {
+        "name": "disk-cleanup-cskill",
+        "path": "leo_skills\\utilities\\disk-cleanup-cskill",
+        "errors": [
+          "Missing required file: SKILL.md"
+        ]
+      },
+      {
+        "name": "doc-auto-updater",
+        "path": "leo_skills\\utilities\\doc-auto-updater",
+        "errors": [
+          "Missing required file: SKILL.md",
+          "No valid entry point found"
+        ]
+      },
+      {
+        "name": "tech-extractor-cskill",
+        "path": "leo_skills\\utilities\\tech-extractor-cskill",
+        "errors": [
+          "Missing required file: SKILL.md"
+        ]
+      },
+      {
+        "name": "web-search-cskill",
+        "path": "leo_skills\\utilities\\web-search-cskill",
+        "errors": [
+          "No valid entry point found"
+        ]
+      },
+      {
+        "name": "videocut-skills",
+        "path": "leo_skills\\video-editing\\videocut-skills",
+        "errors": [
+          "Missing required file: SKILL.md",
+          "No valid entry point found"
+        ]
+      }
+    ]
+  },
+  "performance": {
+    "skill_discovery_time": 0.2771916389465332,
+    "validation_time": 0.11318469047546387,
+    "registry_load_time": 0.001903533935546875,
+    "total_skills": 27,
+    "valid_skills": 7,
+    "invalid_skills": 20
+  },
+  "issues": [
+    {
+      "type": "system",
+      "severity": "warning",
+      "category": "performance",
+      "message": "CPU使用率过高: 100.0%",
+      "threshold": 80.0,
+      "current_value": 100.0
+    },
+    {
+      "type": "quality",
+      "severity": "warning",
+      "category": "skills",
+      "message": "有效技能比例过低: 25.9%",
+      "threshold": 0.6,
+      "current_value": 0.25925925925925924
+    }
+  ],
+  "recommendations": [
+    "修复20个无效技能以提高系统质量",
+    "考虑关闭不必要的程序或优化代码以降低CPU使用率",
+    "检查和修复无效技能，确保技能结构完整"
+  ],
+  "overall_score": 65.0
+}

@@ -55,13 +55,8 @@ Repository = "https://github.com/LinLiu2018/Leo-skills"
 Documentation = "https://github.com/LinLiu2018/Leo-skills/blob/main/LEO_SYSTEM_README.md"
 
 [tool.setuptools.packages.find]
-where = ["."]
-include = ["leo_orchestrator*", "leo_subagents*", "leo_skills*", "leo_system*", "leo_interface*"]
-
-[tool.setuptools.package-dir]
-leo_orchestrator = "leo-orchestrator"
-leo_skills = "leo-skills" # 保持资源目录的连字符命名，但映射为下划线包名
-
+where = ["src"]
+include = ["leo_orchestrator*", "leo_subagents*", "leo_skills*", "leo_system*", "leo_interface*", "leo_config*", "leo_knowledge*", "leo_workflows*"]
 
 [tool.setuptools.package-data]
 "*" = ["*.yaml", "*.yml", "*.md", "*.json"]

@@ -3,12 +3,14 @@
 ## 📋 准备清单
 
 ### 1. 需要准备的东西
+
 - [ ] 一台云服务器（推荐阿里云/腾讯云，最低配置：1核2G）
 - [ ] 一个已备案的域名（如：api.yourdomain.com）
 - [ ] 微信小程序账号（已认证）
 - [ ] MySQL数据库（可以和服务器在一起）
 
 ### 2. 需要安装的软件
+
 - [ ] Node.js 16+
 - [ ] MySQL 5.7+
 - [ ] Nginx（用于反向代理）
@@ -19,11 +21,13 @@
 ## 第一步：服务器准备
 
 ### 1.1 购买云服务器
+
 - 推荐：阿里云ECS或腾讯云CVM
 - 配置：1核2G，带宽1M起
 - 系统：Ubuntu 20.04 或 CentOS 7+
 
 ### 1.2 连接服务器
+
 ```bash
 # Windows用户使用 PuTTY 或 Xshell
 # Mac/Linux用户使用终端
@@ -31,6 +35,7 @@ ssh root@你的服务器IP
 ```
 
 ### 1.3 安装Node.js
+
 ```bash
 # 下载Node.js安装脚本
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
@@ -44,6 +49,7 @@ npm -v
 ```
 
 ### 1.4 安装MySQL
+
 ```bash
 # 安装MySQL
 sudo apt-get update
@@ -58,6 +64,7 @@ sudo mysql_secure_installation
 ```
 
 ### 1.5 安装PM2
+
 ```bash
 # 全局安装PM2
 sudo npm install -g pm2
@@ -67,6 +74,7 @@ pm2 -v
 ```
 
 ### 1.6 安装Nginx
+
 ```bash
 # 安装Nginx
 sudo apt-get install nginx -y
@@ -81,12 +89,14 @@ sudo systemctl enable nginx
 ## 第二步：数据库初始化
 
 ### 2.1 登录MySQL
+
 ```bash
 mysql -u root -p
 # 输入你刚才设置的密码
 ```
 
 ### 2.2 创建数据库
+
 ```sql
 -- 在MySQL命令行中执行
 CREATE DATABASE jianhua_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -101,6 +111,7 @@ EXIT;
 ```
 
 ### 2.3 导入数据表
+
 ```bash
 # 上传init.sql到服务器（使用FTP工具或scp命令）
 # 然后执行：
@@ -112,6 +123,7 @@ mysql -u jianhua -p jianhua_db < /path/to/init.sql
 ## 第三步：部署后端代码
 
 ### 3.1 上传代码到服务器
+
 ```bash
 # 在服务器上创建项目目录
 mkdir -p /var/www/jianhua
@@ -126,6 +138,7 @@ cd jianhua-miniprogram/server
 ```
 
 ### 3.2 配置环境变量
+
 ```bash
 # 复制配置文件
 cp .env.example .env
@@ -135,6 +148,7 @@ nano .env
 ```
 
 在.env文件中填写：
+
 ```env
 PORT=3000
 DB_HOST=localhost
@@ -150,11 +164,13 @@ WX_SECRET=你的小程序Secret
 保存：按 `Ctrl+X`，然后按 `Y`，再按 `Enter`
 
 ### 3.3 安装依赖
+
 ```bash
 npm install
 ```
 
 ### 3.4 测试运行
+
 ```bash
 # 测试启动
 npm start
@@ -164,6 +180,7 @@ npm start
 ```
 
 ### 3.5 使用PM2启动
+
 ```bash
 # 启动应用
 pm2 start app.js --name jianhua-api
@@ -184,11 +201,13 @@ pm2 save
 ## 第四步：配置Nginx反向代理
 
 ### 4.1 创建Nginx配置
+
 ```bash
 sudo nano /etc/nginx/sites-available/jianhua
 ```
 
 粘贴以下内容：
+
 ```nginx
 server {
     listen 80;
@@ -208,6 +227,7 @@ server {
 ```
 
 ### 4.2 启用配置
+
 ```bash
 # 创建软链接
 sudo ln -s /etc/nginx/sites-available/jianhua /etc/nginx/sites-enabled/
@@ -220,6 +240,7 @@ sudo systemctl restart nginx
 ```
 
 ### 4.3 配置HTTPS（必需！）
+
 ```bash
 # 安装certbot
 sudo apt-get install certbot python3-certbot-nginx -y
@@ -235,9 +256,11 @@ sudo certbot --nginx -d api.yourdomain.com
 ## 第五步：微信小程序配置
 
 ### 5.1 登录微信公众平台
-访问：https://mp.weixin.qq.com
+
+访问：<https://mp.weixin.qq.com>
 
 ### 5.2 配置服务器域名
+
 1. 进入"开发" -> "开发管理" -> "开发设置"
 2. 找到"服务器域名"
 3. 添加：
@@ -246,6 +269,7 @@ sudo certbot --nginx -d api.yourdomain.com
    - downloadFile合法域名：`https://api.yourdomain.com`
 
 ### 5.3 获取AppID和Secret
+
 1. 在"开发设置"页面找到
 2. AppID：直接显示
 3. AppSecret：点击"生成"并保存（只显示一次！）
@@ -256,6 +280,7 @@ sudo certbot --nginx -d api.yourdomain.com
 ## 第六步：更新小程序前端代码
 
 ### 6.1 创建API配置文件
+
 在小程序项目中创建 `miniprogram/config/api.js`：
 
 ```javascript
@@ -293,6 +318,7 @@ module.exports = {
 ```
 
 ### 6.2 创建请求工具
+
 创建 `miniprogram/utils/request.js`：
 
 ```javascript
@@ -334,6 +360,7 @@ module.exports = { request };
 ```
 
 ### 6.3 更新app.js
+
 修改 `miniprogram/app.js`，替换phoneLogin方法：
 
 ```javascript
@@ -372,6 +399,7 @@ App({
 ## 第七步：测试
 
 ### 7.1 测试后端API
+
 ```bash
 # 在服务器上测试
 curl https://api.yourdomain.com/health
@@ -380,6 +408,7 @@ curl https://api.yourdomain.com/health
 ```
 
 ### 7.2 测试小程序
+
 1. 打开微信开发者工具
 2. 填入真实的AppID
 3. 点击"编译"
@@ -394,6 +423,7 @@ curl https://api.yourdomain.com/health
 ## 第八步：上线发布
 
 ### 8.1 小程序代码上传
+
 1. 在微信开发者工具中点击"上传"
 2. 填写版本号和备注
 3. 登录微信公众平台
@@ -401,6 +431,7 @@ curl https://api.yourdomain.com/health
 5. 提交审核
 
 ### 8.2 审核通过后发布
+
 1. 审核通过后点击"发布"
 2. 用户即可搜索到你的小程序
 
@@ -409,6 +440,7 @@ curl https://api.yourdomain.com/health
 ## 常见问题
 
 ### Q1: 数据库连接失败
+
 ```bash
 # 检查MySQL是否运行
 sudo systemctl status mysql
@@ -418,6 +450,7 @@ mysql -u jianhua -p
 ```
 
 ### Q2: 端口被占用
+
 ```bash
 # 查看3000端口占用
 sudo lsof -i :3000
@@ -427,6 +460,7 @@ sudo kill -9 进程ID
 ```
 
 ### Q3: Nginx配置错误
+
 ```bash
 # 查看错误日志
 sudo tail -f /var/log/nginx/error.log
@@ -436,6 +470,7 @@ sudo nginx -t
 ```
 
 ### Q4: PM2进程崩溃
+
 ```bash
 # 查看日志
 pm2 logs jianhua-api
@@ -445,6 +480,7 @@ pm2 restart jianhua-api
 ```
 
 ### Q5: 小程序请求失败
+
 - 检查服务器域名是否配置
 - 检查HTTPS证书是否有效
 - 检查API地址是否正确
@@ -454,6 +490,7 @@ pm2 restart jianhua-api
 ## 监控和维护
 
 ### 查看服务状态
+
 ```bash
 # 查看PM2进程
 pm2 status
@@ -466,6 +503,7 @@ sudo systemctl status nginx
 ```
 
 ### 数据库备份
+
 ```bash
 # 每天自动备份
 crontab -e
@@ -475,6 +513,7 @@ crontab -e
 ```
 
 ### 更新代码
+
 ```bash
 cd /var/www/jianhua/jianhua-miniprogram/server
 git pull
@@ -484,11 +523,12 @@ pm2 restart jianhua-api
 
 ---
 
-## 🎉 完成！
+## 🎉 完成
 
 恭喜你完成部署！现在你的小程序已经可以正常运行了。
 
 如果遇到问题，可以：
+
 1. 查看服务器日志：`pm2 logs`
 2. 查看Nginx日志：`sudo tail -f /var/log/nginx/error.log`
 3. 检查数据库连接：`mysql -u jianhua -p`

@@ -1,0 +1,293 @@
+# Leo Subagents配置文件
+# 定义所有Subagent的能力和参数
+
+version: "1.0.0"
+last_updated: "2026-01-08"
+
+# 全局配置
+global:
+  default_timeout: 300 # 默认超时时间（秒）
+  max_retries: 3 # 最大重试次数
+  log_level: INFO # 日志级别
+  parallel_execution: true # 是否允许并行执行
+
+# Subagents定义
+agents:
+  # 任务执行代理
+  task-agent:
+    name: "Task Agent"
+    description: "执行具体任务，调用相关Skills"
+    type: "executor"
+    priority: 1
+
+    # 可调用的Skills
+    skills:
+      - name: "content-layout-leo-cskill"
+        path: "../leo_skills/content-creation/content-layout-leo-cskill"
+        enabled: true
+      - name: "realestate-news-publisher-cskill"
+        path: "../leo_skills/content-creation/realestate-news-publisher-cskill"
+        enabled: true
+      - name: "project-marketing-doc-generator-cskill"
+        path: "../leo_skills/tools/project-marketing-doc-generator-cskill"
+        enabled: true
+
+    # 执行参数
+    config:
+      batch_size: 10
+      async_execution: true
+
+    # 激活词
+    activation_keywords:
+      - "执行任务"
+      - "运行流程"
+      - "开始工作"
+
+  # 研究代理
+  research-agent:
+    name: "Research Agent"
+    description: "信息收集、文献调研、知识整理"
+    type: "researcher"
+    priority: 2
+
+    skills:
+      - name: "research-assistant-cskill"
+        path: "../leo_skills/utilities/research-assistant-cskill"
+        enabled: true
+      - name: "web-search-cskill" # 🆕 添加WebSearch Skill
+        path: "../leo_skills/utilities/web-search-cskill"
+        enabled: true
+      - name: "article-to-prototype-cskill"
+        path: "../leo_skills/tools/article-to-prototype-cskill"
+        enabled: true
+
+    config:
+      max_sources: 20
+      research_depth: 3 # 研究深度级别
+
+    activation_keywords:
+      - "帮我研究"
+      - "调研"
+      - "文献查阅"
+
+  # 分析代理
+  analysis-agent:
+    name: "Analysis Agent"
+    description: "数据分析、趋势分析、报告生成"
+    type: "analyzer"
+    priority: 3
+
+    skills:
+      - name: "data-analyzer-cskill"
+        path: "../leo_skills/data-analysis/data-analyzer-cskill"
+        enabled: true
+
+    config:
+      analysis_method: "statistical"
+      visualization: true
+
+    activation_keywords:
+      - "分析数据"
+      - "生成报告"
+      - "趋势分析"
+
+  # 创作代理
+  creative-agent:
+    name: "Creative Agent"
+    description: "内容创作、文案生成、创意输出"
+    type: "creator"
+    priority: 4
+
+    skills:
+      - name: "content-layout-leo-cskill"
+        path: "../leo_skills/content-creation/content-layout-leo-cskill"
+        enabled: true
+      - name: "article-to-prototype-cskill"
+        path: "../leo_skills/tools/article-to-prototype-cskill"
+        enabled: true
+
+    config:
+      creativity_level: "balanced" # conservative, balanced, innovative
+      output_formats:
+        - markdown
+        - html
+        - plain_text
+
+    activation_keywords:
+      - "创作内容"
+      - "生成文案"
+      - "写文章"
+
+  # 房地产代理
+  realestate-agent:
+    name: "RealEstate Agent"
+    description: "房地产市场分析、项目营销、政策追踪"
+    type: "realestate"
+    priority: 5
+
+    skills:
+      - name: "project-marketing-doc-generator-cskill"
+        path: "../leo_skills/tools/project-marketing-doc-generator-cskill"
+        enabled: true
+      - name: "realestate-news-publisher-cskill"
+        path: "../leo_skills/content-creation/realestate-news-publisher-cskill"
+        enabled: true
+      - name: "web-search-cskill"
+        path: "../leo_skills/utilities/web-search-cskill"
+        enabled: true
+      - name: "research-assistant-cskill"
+        path: "../leo_skills/utilities/research-assistant-cskill"
+        enabled: true
+
+    config:
+      market_focus: "residential" # residential, commercial, mixed
+      analysis_depth: 3
+
+    activation_keywords:
+      - "房地产"
+      - "楼盘"
+      - "项目营销"
+      - "市场分析"
+
+  # 架构师代理
+  architect-agent:
+    name: "Architect Agent"
+    description: "技术选型、系统设计和数据库设计"
+    type: "architect"
+    priority: 2
+
+    skills:
+      - name: "database-model-generator-cskill"
+        path: "../leo_skills/tools/database-model-generator-cskill"
+        enabled: true
+      - name: "api-doc-generator-cskill"
+        path: "../leo_skills/tools/api-doc-generator-cskill"
+        enabled: true
+      - name: "research-assistant-cskill"
+        path: "../leo_skills/utilities/research-assistant-cskill"
+        enabled: true
+
+    config:
+      output_format: "mermaid"
+      design_depth: 3
+
+    activation_keywords:
+      - "架构设计"
+      - "技术选型"
+      - "系统设计"
+      - "数据库设计"
+      - "API设计"
+
+  # 移动开发代理
+  mobile-agent:
+    name: "Mobile Agent"
+    description: "小程序、React Native和Flutter开发"
+    type: "mobile"
+    priority: 16
+
+    skills:
+      - name: "miniprogram-page-generator-cskill"
+        path: "../leo_skills/development/miniprogram-page-generator-cskill"
+        enabled: true
+      - name: "miniprogram-component-generator-cskill"
+        path: "../leo_skills/development/miniprogram-component-generator-cskill"
+        enabled: true
+      - name: "miniprogram-project-scaffold-cskill"
+        path: "../leo_skills/development/miniprogram-project-scaffold-cskill"
+        enabled: true
+
+    config:
+      default_platform: "miniprogram"
+      supported_platforms:
+        - miniprogram
+        - flutter
+        - react_native
+        - uniapp
+
+    activation_keywords:
+      - "小程序开发"
+      - "移动开发"
+      - "React Native"
+      - "Flutter"
+      - "微信小程序"
+
+  # 产品经理代理
+  product-manager-agent:
+    name: "Product Manager Agent"
+    description: "需求分析、PRD编写和用户故事设计"
+    type: "product_manager"
+    priority: 1
+
+    skills:
+      - name: "research-assistant-cskill"
+        path: "../leo_skills/utilities/research-assistant-cskill"
+        enabled: true
+      - name: "web-search-cskill"
+        path: "../leo_skills/utilities/web-search-cskill"
+        enabled: true
+
+    config:
+      output_format: "markdown"
+      templates:
+        - prd
+        - user_story
+        - competitor_analysis
+
+    activation_keywords:
+      - "分析需求"
+      - "写PRD"
+      - "用户故事"
+      - "产品设计"
+      - "竞品分析"
+
+# Workflow映射
+workflows:
+  content-pipeline:
+    agents:
+      - research-agent
+      - creative-agent
+      - task-agent
+    sequence:
+      - step: "research"
+        agent: "research-agent"
+      - step: "create"
+        agent: "creative-agent"
+      - step: "publish"
+        agent: "task-agent"
+
+  research-pipeline:
+    agents:
+      - research-agent
+      - analysis-agent
+    sequence:
+      - step: "collect"
+        agent: "research-agent"
+      - step: "analyze"
+        agent: "analysis-agent"
+
+  analysis-pipeline:
+    agents:
+      - analysis-agent
+      - task-agent
+    sequence:
+      - step: "analyze"
+        agent: "analysis-agent"
+      - step: "report"
+        agent: "task-agent"
+
+# 技能桥接配置
+skills_bridge:
+  auto_discovery: true # 自动发现Skills
+  skill_paths:
+    - "../leo_skills/content-creation/*"
+    - "../leo_skills/tools/*"
+    - "../leo_skills/utilities/*"
+    - "../leo_skills/data-analysis/*"
+    - "../leo_skills/automation/*"
+
+  load_policy: "lazy" # lazy, eager, on_demand
+
+  # Skill状态检查
+  health_check:
+    enabled: true
+    interval: 3600 # 每小时检查一次

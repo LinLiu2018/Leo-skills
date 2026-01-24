@@ -1,0 +1,35 @@
+# CODEOWNERS - 代码所有者定义
+# 
+# 当这些文件被修改时，会自动请求对应成员 Review
+# 详情: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# 默认所有者
+* @LinLiu2018
+
+# 核心模块
+/src/leo_orchestrator/ @LinLiu2018
+/src/leo_subagents/ @LinLiu2018
+/src/leo_system/ @LinLiu2018
+
+# Skills 能力库
+/src/leo_skills/content-creation/ @LinLiu2018
+/src/leo_skills/tools/ @LinLiu2018
+/src/leo_skills/intelligence/ @LinLiu2018
+
+# 工作流
+/src/leo_workflows/ @LinLiu2018
+
+# 配置文件
+/src/leo_config/ @LinLiu2018
+*.yaml @LinLiu2018
+*.yml @LinLiu2018
+
+# CI/CD
+/.github/ @LinLiu2018
+
+# 文档
+/docs/ @LinLiu2018
+*.md @LinLiu2018
+
+# 测试
+/tests/ @LinLiu2018

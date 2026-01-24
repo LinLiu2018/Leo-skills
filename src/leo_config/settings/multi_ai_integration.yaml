@@ -1,0 +1,97 @@
+# Leo AI Agent System - 多AI集成配置
+# ================================================
+
+# Claude Code配置 (主开发环境)
+claude_code:
+  extension: "anthropic.claude-code"
+  features:
+    - "实时差异显示"
+    - "内联编辑"
+    - "计划模式"
+    - "Git集成"
+    - "MCP服务器"
+  model: "claude-3-5-sonnet"
+  permission_mode: "plan"  # 计划模式，先规划后执行
+
+# OpenCode配置 (辅助环境)
+opencode:
+  install_method: "vscode_extension"
+  features:
+    - "多提供商支持"
+    - "统一模型选择"
+    - "终端轻量级"
+    - "快速切换"
+  providers:
+    - "anthropic"
+    - "openai"
+    - "google"
+    - "cohere"
+  default_model: "claude-3-5-sonnet"
+
+# 智能路由配置
+routing:
+  strategy: "complexity_based"
+  rules:
+    - simple_tasks: "opencode"    # < 50行代码
+    - complex_tasks: "claude_code" # > 50行或多文件
+    - multi_model_test: "opencode" # 需要对比多模型
+    - ide_integration: "claude_code" # 需要IDE深度集成
+    - terminal_quick: "opencode" # 终端快速任务
+
+# Leo系统集成
+leo_system_integration:
+  enhanced_skills:
+    - 开发类技能: "claude_code主导"
+    - 创意类技能: "opencode辅助"
+    - 分析类技能: "两者并行"
+
+  agent_enhancement:
+    task_agent: "claude_code重构核心逻辑"
+    creative_agent: "opencode快速原型"
+    research_agent: "claude_code深度分析"
+
+# 工作流优化
+workflow_optimization:
+  content_pipeline:
+    design: "claude_code"
+    prototyping: "opencode"
+    review: "claude_code"
+
+  development_pipeline:
+    architecture: "claude_code"
+    coding: "claude_code"
+    testing: "opencode"
+    deployment: "opencode"
+
+# 协作协议
+collaboration:
+  shared_context: true
+  cross_tool_communication: true
+  result_merging: "best_result_wins"
+  fallback_strategy: "auto_switch"
+
+# 快捷键配置
+shortcuts:
+  claude_code:
+    toggle: "Cmd+Esc"
+    new_conversation: "Cmd+Shift+Esc"
+    reference_file: "Option+K"
+
+  opencode:
+    quick_launch: "Cmd+Esc"
+    new_session: "Cmd+Shift+Esc"
+    file_reference: "Cmd+Option+K"
+
+# 成本优化
+cost_optimization:
+  simple_tasks: "use_cheapest_available"
+  complex_tasks: "use_best_quality"
+  development: "claude_code_primary"
+  testing: "opencode_multi_model"
+
+# 质量保证
+quality_assurance:
+  code_review: "claude_code_plan_mode"
+  multi_model_validation: "opencode_parallel"
+  integration_testing: "both_tools_cross_validate"
+  performance_monitoring: "real_time_tracking"

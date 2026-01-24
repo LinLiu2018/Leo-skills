@@ -1,0 +1,147 @@
+# Analysis Pipeline - 数据分析工作流
+# ==================================
+# 完整的数据分析工作流：采集→验证→清洗→分析→报告
+
+name: "data-analysis-pipeline"
+description: "完整的数据分析工作流：采集→清洗→分析→报告"
+version: "1.0.0"
+enabled: true
+author: "Leo Liu"
+created: "2026-01-23"
+
+# 工作流触发器
+triggers:
+  - keyword: "数据分析"
+  - keyword: "生成分析报告"
+  - keyword: "分析数据"
+  - event: "scheduled"
+    cron: "0 9 * * 1"  # 每周一上午9点
+
+# 输入参数
+inputs:
+  data_source:
+    type: string
+    description: "数据源路径或URL"
+    required: true
+  analysis_type:
+    type: string
+    description: "分析类型：descriptive, trend, comparative"
+    default: "descriptive"
+  output_format:
+    type: string
+    description: "输出格式：markdown, json, html"
+    default: "markdown"
+
+# 工作流步骤
+steps:
+  # 步骤1：数据采集
+  - name: "data_collection"
+    description: "从多个数据源采集数据"
+    agent: "research-agent"
+    action: "collect"
+    params:
+      sources: "{{ inputs.data_source }}"
+      depth: 2
+    retries: 3
+    timeout: 120
+    on_failure: "stop"
+
+  # 步骤2：数据验证（条件分支）
+  - name: "data_validation"
+    description: "验证数据完整性和质量"
+    agent: "analysis-agent"
+    action: "validate"
+    condition: "{{ steps.data_collection.success }}"
+    params:
+      validation_rules:
+        - "not_empty"
+        - "format_check"
+        - "duplicate_check"
+    retries: 2
+    timeout: 60
+
+  # 步骤3：数据清洗
+  - name: "data_cleaning"
+    description: "清洗和预处理数据"
+    agent: "analysis-agent"
+    action: "clean"
+    condition: "{{ steps.data_validation.success }}"
+    params:
+      operations:
+        - "remove_duplicates"
+        - "fill_missing"
+        - "normalize"
+    timeout: 180
+
+  # 步骤4：并行分析
+  - name: "parallel_analysis"
+    description: "并行执行多种分析"
+    type: "parallel"
+    condition: "{{ steps.data_cleaning.success }}"
+    branches:
+      - name: "statistical_analysis"
+        agent: "analysis-agent"
+        action: "analyze"
+        params:
+          type: "statistical"
+
+      - name: "trend_analysis"
+        agent: "analysis-agent"
+        action: "analyze"
+        params:
+          type: "trend"
+
+      - name: "correlation_analysis"
+        agent: "analysis-agent"
+        action: "analyze"
+        params:
+          type: "correlation"
+
+  # 步骤5：结果汇总
+  - name: "result_aggregation"
+    description: "汇总所有分析结果"
+    agent: "analysis-agent"
+    action: "aggregate"
+    params:
+      sources:
+        - "{{ steps.parallel_analysis.statistical_analysis.result }}"
+        - "{{ steps.parallel_analysis.trend_analysis.result }}"
+        - "{{ steps.parallel_analysis.correlation_analysis.result }}"
+
+  # 步骤6：报告生成
+  - name: "report_generation"
+    description: "生成最终分析报告"
+    agent: "task-agent"
+    action: "generate_report"
+    params:
+      format: "{{ inputs.output_format }}"
+      template: "analysis_report"
+      include_charts: true
+    output:
+      path: "./output/analysis_report.md"
+
+# 输出定义
+outputs:
+  report:
+    description: "生成的分析报告"
+    type: "file"
+    path: "{{ steps.report_generation.output.path }}"
+  summary:
+    description: "分析摘要"
+    type: "object"
+    value: "{{ steps.result_aggregation.result }}"
+
+# 错误处理
+error_handling:
+  default_action: "notify"
+  notification:
+    channel: "log"
+    level: "error"
+
+# 元数据
+metadata:
+  category: "data-analysis"
+  tags:
+    - "数据分析"
+    - "报告生成"
+    - "自动化"

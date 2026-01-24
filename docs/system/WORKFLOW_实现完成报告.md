@@ -12,12 +12,14 @@
 **文件**: [leo_orchestrator/workflow_engine.py](leo_orchestrator/workflow_engine.py)
 
 **功能**:
+
 - 工作流执行引擎
 - 多步骤Agent协作
 - 数据传递机制
 - 错误处理和状态跟踪
 
 **核心方法**:
+
 ```python
 class WorkflowEngine:
     def execute(self, workflow, **kwargs):
@@ -34,11 +36,13 @@ class WorkflowEngine:
 **文件**: [leo_orchestrator/api.py](leo_orchestrator/api.py)
 
 **更新内容**:
+
 - 实现了`run_workflow`方法的实际执行逻辑
 - 动态加载WorkflowEngine
 - 支持传入agents参数
 
 **使用方式**:
+
 ```python
 result = api.run_workflow(
     "content-pipeline",
@@ -52,6 +56,7 @@ result = api.run_workflow(
 **文件**: [leo-system.py](leo-system.py)
 
 **新增方法**:
+
 ```python
 def run_workflow(self, workflow_name: str, **kwargs):
     """运行工作流"""
@@ -63,6 +68,7 @@ def run_workflow(self, workflow_name: str, **kwargs):
 **文件**: [test_workflows.py](test_workflows.py)
 
 **测试内容**:
+
 - content-pipeline (内容生产线)
 - research-pipeline (研究线)
 - analysis-pipeline (分析线)
@@ -339,10 +345,12 @@ except Exception as e:
 ### 系统能力
 
 **之前**:
+
 - Workflows已配置但无法执行
 - 只能单独调用Agent或Skill
 
 **现在**:
+
 - ✅ Workflows完全可用
 - ✅ 支持多Agent协作
 - ✅ 自动数据传递

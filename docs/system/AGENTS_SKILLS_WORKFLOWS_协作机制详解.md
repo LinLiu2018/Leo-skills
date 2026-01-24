@@ -46,6 +46,7 @@ Leo AI Agent System采用三层架构：
 **定义**: 最小的功能单元，提供具体的能力实现
 
 **特点**:
+
 - 单一职责，专注一个功能
 - 可被多个Agents复用
 - 独立开发和测试
@@ -65,6 +66,7 @@ Leo AI Agent System采用三层架构：
 | project-marketing-doc-generator-cskill | tools | 项目营销文档生成 |
 
 **Skill结构**:
+
 ```python
 class Skill:
     def __init__(self, config):
@@ -85,6 +87,7 @@ class Skill:
 **定义**: 智能代理，负责任务理解、规划和执行
 
 **特点**:
+
 - 具有专业领域知识
 - 可以调用多个Skills
 - 自动选择合适的Skill
@@ -133,6 +136,7 @@ realestate-agent:
 ```
 
 **Agent工作流程**:
+
 ```
 1. 接收任务 → 2. 理解任务 → 3. 规划步骤 → 4. 调用Skills → 5. 返回结果
 ```
@@ -142,6 +146,7 @@ realestate-agent:
 **定义**: 多Agent协作的完整业务流程
 
 **特点**:
+
 - 定义Agent执行顺序
 - 支持数据传递
 - 可配置化管理
@@ -156,6 +161,7 @@ realestate-agent:
 **用途**: 研究→创作→发布的完整内容生产流程
 
 **配置**:
+
 ```yaml
 content-pipeline:
   name: "内容生产线"
@@ -174,6 +180,7 @@ content-pipeline:
 ```
 
 **执行流程**:
+
 ```
 ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
 │ Research     │ →  │ Creative     │ →  │ Task         │
@@ -186,11 +193,13 @@ content-pipeline:
 ```
 
 **应用场景**:
+
 - 房地产市场分析文章生成
 - 项目营销内容创作
 - 行业报告撰写
 
 **使用示例**:
+
 ```python
 # 运行内容生产线
 result = system.run_workflow(
@@ -209,6 +218,7 @@ result = system.run_workflow(
 **用途**: 收集→分析的纯研究流程
 
 **配置**:
+
 ```yaml
 research-pipeline:
   name: "研究线"
@@ -224,6 +234,7 @@ research-pipeline:
 ```
 
 **执行流程**:
+
 ```
 ┌──────────────┐    ┌──────────────┐
 │ Research     │ →  │ Analysis     │
@@ -236,11 +247,13 @@ research-pipeline:
 ```
 
 **应用场景**:
+
 - 市场调研
 - 竞品分析
 - 数据收集和分析
 
 **使用示例**:
+
 ```python
 # 运行研究线
 result = system.run_workflow(
@@ -258,6 +271,7 @@ result = system.run_workflow(
 **用途**: 分析→报告的纯分析流程
 
 **配置**:
+
 ```yaml
 analysis-pipeline:
   name: "分析线"
@@ -273,6 +287,7 @@ analysis-pipeline:
 ```
 
 **执行流程**:
+
 ```
 ┌──────────────┐    ┌──────────────┐
 │ Analysis     │ →  │ Task         │
@@ -285,11 +300,13 @@ analysis-pipeline:
 ```
 
 **应用场景**:
+
 - 销售数据分析
 - 业绩报告生成
 - 趋势预测报告
 
 **使用示例**:
+
 ```python
 # 运行分析线
 result = system.run_workflow(
@@ -310,6 +327,7 @@ result = system.run_workflow(
 ### 1. Skills → Agents (技能被代理调用)
 
 **调用方式**:
+
 ```python
 # Agent内部调用Skill
 class ResearchAgent(BaseAgent):
@@ -320,6 +338,7 @@ class ResearchAgent(BaseAgent):
 ```
 
 **数据流**:
+
 ```
 Task → Agent → Skill → Result → Agent → Final Result
 ```
@@ -327,6 +346,7 @@ Task → Agent → Skill → Result → Agent → Final Result
 ### 2. Agents → Workflows (代理被工作流编排)
 
 **编排方式**:
+
 ```yaml
 workflow:
   steps:
@@ -336,6 +356,7 @@ workflow:
 ```
 
 **数据传递**:
+
 ```
 Step 1 Output → Step 2 Input → Step 2 Output → Step 3 Input
 ```
@@ -382,6 +403,7 @@ Workflow: content-pipeline
 ### 4. 智能路由机制
 
 **自动Agent选择**:
+
 ```python
 # 系统根据任务自动选择最合适的Agent
 def _select_agent(self, task: str):
@@ -398,6 +420,7 @@ def _select_agent(self, task: str):
 ```
 
 **示例**:
+
 ```python
 # 用户输入: "分析房地产市场数据"
 # 系统评分:
@@ -499,17 +522,20 @@ result = system.run_workflow(
 ### ⚠️ Workflows当前状态
 
 **已完成**:
+
 - ✅ Workflow配置定义（config.yaml）
 - ✅ Workflow注册到Registry
 - ✅ Workflow查询接口
 
 **待实现**:
+
 - ⏳ Workflow执行引擎
 - ⏳ Agent间数据传递
 - ⏳ 错误处理和重试
 - ⏳ 执行状态跟踪
 
 **代码位置**:
+
 ```python
 # leo_orchestrator/api.py:218-242
 def run_workflow(self, workflow_name: str, **kwargs):
@@ -529,6 +555,7 @@ def run_workflow(self, workflow_name: str, **kwargs):
 **需要实现的功能**:
 
 1. **Workflow执行引擎**
+
 ```python
 class WorkflowEngine:
     def execute(self, workflow, **kwargs):
@@ -545,6 +572,7 @@ class WorkflowEngine:
 ```
 
 2. **数据传递机制**
+
 ```python
 # Step 1输出 → Step 2输入
 step1_output = research_agent.execute(...)
@@ -553,6 +581,7 @@ step2_output = creative_agent.execute(**step2_input)
 ```
 
 3. **错误处理**
+
 ```python
 try:
     result = agent.execute(...)
@@ -569,11 +598,13 @@ except Exception as e:
 ### 立即可用
 
 **当前可以使用**:
+
 1. ✅ 直接调用任何Agent
 2. ✅ 直接调用任何Skill
 3. ✅ 自动Agent选择
 
 **使用方式**:
+
 ```python
 system = LeoSystem()
 
@@ -587,6 +618,7 @@ system.call_skill("web-search-cskill", "search", query="...")
 ### 需要开发
 
 **Workflow执行**:
+
 - 需要实现WorkflowEngine
 - 预计开发时间: 2-3小时
 - 优先级: 中

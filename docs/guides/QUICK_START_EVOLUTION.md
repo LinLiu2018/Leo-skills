@@ -10,6 +10,7 @@ python test_evolution.py
 ```
 
 应该看到：
+
 ```
 ✓ 所有基础测试通过！
 ```
@@ -150,11 +151,12 @@ result = skill.execute(param1="value1")
 print(skill.get_evolution_status())
 ```
 
-## ✅ 完成！
+## ✅ 完成
 
 你的技能现在具备了自我进化能力！
 
 每次执行都会：
+
 1. 自动收集数据
 2. 达到阈值后自动分析
 3. 提取最佳实践

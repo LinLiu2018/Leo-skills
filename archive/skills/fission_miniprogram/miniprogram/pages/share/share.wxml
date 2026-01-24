@@ -1,0 +1,33 @@
+<!--share.wxml-->
+<view class="container">
+  <view class="card">
+    <view class="coupon-info">
+      <text class="coupon-value">{{couponValue}}元</text>
+      <text class="coupon-desc">优惠券</text>
+    </view>
+
+    <view class="user-info">
+      <text class="invite-count">已邀请 {{inviteCount}} 人</text>
+    </view>
+  </view>
+
+  <view class="share-section">
+    <text class="share-title">分享给好友，再得优惠券</text>
+
+    <button class="share-btn" open-type="share">
+      分享给好友
+    </button>
+
+    <button class="poster-btn" bindtap="generatePoster">
+      生成海报
+    </button>
+  </view>
+
+  <view class="invite-list" wx:if="{{inviteList.length > 0}}">
+    <text class="list-title">邀请记录</text>
+    <view class="invite-item" wx:for="{{inviteList}}" wx:key="id">
+      <text>{{item.name}}</text>
+      <text class="invite-time">{{item.time}}</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,98 @@
+# AI 科技博主列表配置
+# =====================================================
+# 配置要监控的 Twitter 博主
+
+bloggers:
+  # OpenAI/Anthropic 官方账号
+  - username: "OpenAI"
+    display_name: "OpenAI"
+    category: "official"
+    priority: 10
+    enabled: true
+    description: "OpenAI 官方账号"
+
+  - username: "AnthropicAI"
+    display_name: "Anthropic"
+    category: "official"
+    priority: 10
+    enabled: true
+    description: "Anthropic 官方账号"
+
+  # AI 研究者
+  - username: "karpathy"
+    display_name: "Andrej Karpathy"
+    category: "researcher"
+    priority: 9
+    enabled: true
+    description: "前 Tesla AI 总监，OpenAI 创始成员"
+
+  - username: "ylecun"
+    display_name: "Yann LeCun"
+    category: "researcher"
+    priority: 9
+    enabled: true
+    description: "Meta AI 首席科学家，图灵奖得主"
+
+  - username: "goodfellow_ian"
+    display_name: "Ian Goodfellow"
+    category: "researcher"
+    priority: 9
+    enabled: true
+    description: "GAN 之父"
+
+  # AI 工具开发者
+  - username: "LangChainAI"
+    display_name: "LangChain"
+    category: "tool_developer"
+    priority: 8
+    enabled: true
+    description: "LangChain 框架官方账号"
+
+  - username: "AutoGPT"
+    display_name: "AutoGPT"
+    category: "tool_developer"
+    priority: 8
+    enabled: true
+    description: "AutoGPT 项目官方账号"
+
+  - username: "LlamaIndex"
+    display_name: "LlamaIndex"
+    category: "tool_developer"
+    priority: 8
+    enabled: true
+    description: "LlamaIndex 框架官方账号"
+
+  # 中文 AI 社区
+  - username: "dotey"
+    display_name: "宝玉"
+    category: "chinese_community"
+    priority: 7
+    enabled: true
+    description: "知名 AI 技术博主"
+
+  - username: "op7418"
+    display_name: "歸藏"
+    category: "chinese_community"
+    priority: 7
+    enabled: true
+    description: "AI 工具和资讯分享"
+
+# 监控配置
+monitoring:
+  # 每次采集的最大推文数
+  max_tweets_per_user: 100
+
+  # 回溯天数
+  lookback_days: 7
+
+  # 是否包含转发
+  include_retweets: false
+
+  # 是否包含回复
+  include_replies: false
+
+  # 最小点赞数（过滤低质量内容）
+  min_likes: 5
+
+  # 最小转发数
+  min_retweets: 2

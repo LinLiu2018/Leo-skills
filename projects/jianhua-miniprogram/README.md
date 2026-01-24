@@ -1,6 +1,7 @@
 # 建华观园小程序 - 快速启动指南
 
 ## 项目结构
+
 ```
 jianhua-miniprogram/
 ├── miniprogram/          # 小程序前端
@@ -17,6 +18,7 @@ jianhua-miniprogram/
 ## 本地开发
 
 ### 1. 启动后端
+
 ```bash
 cd server
 npm install
@@ -26,11 +28,13 @@ npm run dev
 ```
 
 ### 2. 初始化数据库
+
 ```bash
 mysql -u root -p < server/sql/init.sql
 ```
 
 ### 3. 打开小程序
+
 - 使用微信开发者工具打开 `miniprogram` 目录
 - 修改 `config/api.js` 中的API地址
 - 点击编译运行

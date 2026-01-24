@@ -1,0 +1,266 @@
+{
+  "skills": {
+    "content-creation/content-layout-leo-cskill": {
+      "name": "content-layout-leo-cskill",
+      "path": "leo_skills\\content-creation\\content-layout-leo-cskill",
+      "category": "content-creation",
+      "version": "1.0.0",
+      "description": "Skill in content-creation",
+      "author": "Leo Liu",
+      "keywords": [],
+      "activation_keywords": [],
+      "entry_point": "scripts/main.py",
+      "dependencies": [],
+      "last_modified": "2026-01-23T16:21:46.406207",
+      "checksum": "eec0831239236d282bb44e8dbc330daf",
+      "is_valid": true,
+      "validation_errors": [],
+      "loaded_at": null
+    },
+    "content-creation/realestate-news-publisher-cskill": {
+      "name": "realestate-news-publisher-cskill",
+      "path": "leo_skills\\content-creation\\realestate-news-publisher-cskill",
+      "category": "content-creation",
+      "version": "1.0.0",
+      "description": "Skill in content-creation",
+      "author": "Leo Liu",
+      "keywords": [],
+      "activation_keywords": [],
+      "entry_point": "scripts/main.py",
+      "dependencies": [],
+      "last_modified": "2026-01-24T11:40:01.301117",
+      "checksum": "fdbad6a78a8d6fdf279195a8b01246de",
+      "is_valid": true,
+      "validation_errors": [],
+      "loaded_at": null
+    },
+    "core/text-generator-cskill": {
+      "name": "text-generator-cskill",
+      "path": "leo_skills\\core\\text-generator-cskill",
+      "category": "core",
+      "version": "1.0.0",
+      "description": "Skill in core",
+      "author": "Leo Liu",
+      "keywords": [],
+      "activation_keywords": [],
+      "entry_point": "scripts/main.py",
+      "dependencies": [],
+      "last_modified": "2026-01-23T17:42:03.356228",
+      "checksum": "26485aa2ee946bd2a27ba277a43aa023",
+      "is_valid": true,
+      "validation_errors": [],
+      "loaded_at": null
+    },
+    "core/__pycache__": {
+      "name": "__pycache__",
+      "path": "leo_skills\\core\\__pycache__",
+      "category": "core",
+      "version": "1.0.0",
+      "description": "Skill in core",
+      "author": "Leo Liu",
+      "keywords": [],
+      "activation_keywords": [],
+      "entry_point": "scripts/main.py",
+      "dependencies": [],
+      "last_modified": "2026-01-24T12:02:07.532897",
+      "checksum": "d41d8cd98f00b204e9800998ecf8427e",
+      "is_valid": false,
+      "validation_errors": [
+        "Missing required file: SKILL.md",
+        "No valid entry point found"
+      ],
+      "loaded_at": null
+    },
+    "development/skill-code-generator-cskill": {
+      "name": "skill-code-generator-cskill",
+      "path": "leo_skills\\development\\skill-code-generator-cskill",
+      "category": "development",
+      "version": "1.0.0",
+      "description": "Skill in development",
+      "author": "Leo Liu",
+      "keywords": [],
+      "activation_keywords": [],
+      "entry_point": "scripts/main.py",
+      "dependencies": [],
+      "last_modified": "2026-01-24T11:57:11.005649",
+      "checksum": "f0f8da254a8b26d2dab14b0392356744",
+      "is_valid": true,
+      "validation_errors": [],
+      "loaded_at": null
+    },
+    "intelligence/twitter-monitor-cskill": {
+      "name": "twitter-monitor-cskill",
+      "path": "leo_skills\\intelligence\\twitter-monitor-cskill",
+      "category": "intelligence",
+      "version": "1.0.0",
+      "description": "Skill in intelligence",
+      "author": "Leo Liu",
+      "keywords": [],
+      "activation_keywords": [],
+      "entry_point": "scripts/main.py",
+      "dependencies": [],
+      "last_modified": "2026-01-23T17:33:06.629462",
+      "checksum": "bf82fe20b73411aac4dcec8cd9ea8953",
+      "is_valid": true,
+      "validation_errors": [],
+      "loaded_at": null
+    },
+    "prompt-engineering/claude-prompt-engineering-skills": {
+      "name": "claude-prompt-engineering-skills",
+      "path": "leo_skills\\prompt-engineering\\claude-prompt-engineering-skills",
+      "category": "prompt-engineering",
+      "version": "1.0.0",
+      "description": "Skill in prompt-engineering",
+      "author": "Leo Liu",
+      "keywords": [],
+      "activation_keywords": [],
+      "entry_point": "scripts/main.py",
+      "dependencies": [],
+      "last_modified": "2026-01-24T12:56:17.024253",
+      "checksum": "d41d8cd98f00b204e9800998ecf8427e",
+      "is_valid": false,
+      "validation_errors": [
+        "Missing required file: SKILL.md",
+        "No valid entry point found"
+      ],
+      "loaded_at": null
+    },
+    "tools/agent-skill-creator": {
+      "name": "agent-skill-creator",
+      "path": "leo_skills\\tools\\agent-skill-creator",
+      "category": "tools",
+      "version": "1.0.0",
+      "description": "Skill in tools",
+      "author": "Leo Liu",
+      "keywords": [],
+      "activation_keywords": [],
+      "entry_point": "scripts/main.py",
+      "dependencies": [],
+      "last_modified": "2026-01-23T16:22:18.939826",
+      "checksum": "a801ca791786dfa60cf3cf599f1d14e0",
+      "is_valid": true,
+      "validation_errors": [],
+      "loaded_at": null
+    },
+    "tools/article-to-prototype-cskill": {
+      "name": "article-to-prototype-cskill",
+      "path": "leo_skills\\tools\\article-to-prototype-cskill",
+      "category": "tools",
+      "version": "1.0.0",
+      "description": "Skill in tools",
+      "author": "Leo Liu",
+      "keywords": [],
+      "activation_keywords": [],
+      "entry_point": "scripts/main.py",
+      "dependencies": [],
+      "last_modified": "2026-01-23T16:22:18.979649",
+      "checksum": "67c853b86acae1a63c1cafa84606c0af",
+      "is_valid": true,
+      "validation_errors": [],
+      "loaded_at": null
+    },
+    "tools/skill-evolution-assistant-cskill": {
+      "name": "skill-evolution-assistant-cskill",
+      "path": "leo_skills\\tools\\skill-evolution-assistant-cskill",
+      "category": "tools",
+      "version": "1.0.0",
+      "description": "Skill in tools",
+      "author": "Leo Liu",
+      "keywords": [],
+      "activation_keywords": [],
+      "entry_point": "scripts/main.py",
+      "dependencies": [],
+      "last_modified": "2026-01-24T13:14:58.744617",
+      "checksum": "b4a3a2c95e128d2b057593585f120d6f",
+      "is_valid": true,
+      "validation_errors": [],
+      "loaded_at": null
+    },
+    "utilities/obsidian-sync-cskill": {
+      "name": "obsidian-sync-cskill",
+      "path": "leo_skills\\utilities\\obsidian-sync-cskill",
+      "category": "utilities",
+      "version": "1.0.0",
+      "description": "Skill in utilities",
+      "author": "Leo Liu",
+      "keywords": [],
+      "activation_keywords": [],
+      "entry_point": "scripts/main.py",
+      "dependencies": [],
+      "last_modified": "2026-01-23T17:49:33.871251",
+      "checksum": "3562c432108c394e27bfda8329ba54f8",
+      "is_valid": true,
+      "validation_errors": [],
+      "loaded_at": null
+    },
+    "utilities/research-assistant-cskill": {
+      "name": "research-assistant-cskill",
+      "path": "leo_skills\\utilities\\research-assistant-cskill",
+      "category": "utilities",
+      "version": "1.0.0",
+      "description": "Skill in utilities",
+      "author": "Leo Liu",
+      "keywords": [],
+      "activation_keywords": [],
+      "entry_point": "scripts/main.py",
+      "dependencies": [],
+      "last_modified": "2026-01-23T16:22:19.214767",
+      "checksum": "ec9be4cc812d6d996c3d2dc96e610b6a",
+      "is_valid": true,
+      "validation_errors": [],
+      "loaded_at": null
+    },
+    "video-editing/videocut-skills": {
+      "name": "videocut-skills",
+      "path": "leo_skills\\video-editing\\videocut-skills",
+      "category": "video-editing",
+      "version": "1.0.0",
+      "description": "Skill in video-editing",
+      "author": "Leo Liu",
+      "keywords": [],
+      "activation_keywords": [],
+      "entry_point": "scripts/main.py",
+      "dependencies": [],
+      "last_modified": "2026-01-24T12:56:17.064933",
+      "checksum": "d41d8cd98f00b204e9800998ecf8427e",
+      "is_valid": false,
+      "validation_errors": [
+        "Missing required file: SKILL.md",
+        "No valid entry point found"
+      ],
+      "loaded_at": null
+    }
+  },
+  "categories": {
+    "content-creation": [
+      "content-creation/content-layout-leo-cskill",
+      "content-creation/realestate-news-publisher-cskill"
+    ],
+    "core": [
+      "core/text-generator-cskill",
+      "core/__pycache__"
+    ],
+    "development": [
+      "development/skill-code-generator-cskill"
+    ],
+    "intelligence": [
+      "intelligence/twitter-monitor-cskill"
+    ],
+    "prompt-engineering": [
+      "prompt-engineering/claude-prompt-engineering-skills"
+    ],
+    "tools": [
+      "tools/agent-skill-creator",
+      "tools/article-to-prototype-cskill",
+      "tools/skill-evolution-assistant-cskill"
+    ],
+    "utilities": [
+      "utilities/obsidian-sync-cskill",
+      "utilities/research-assistant-cskill"
+    ],
+    "video-editing": [
+      "video-editing/videocut-skills"
+    ]
+  },
+  "last_updated": "2026-01-24T13:15:21.804499"
+}

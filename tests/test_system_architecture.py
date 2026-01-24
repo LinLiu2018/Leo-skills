@@ -2,11 +2,11 @@
 """
 测试 Leo System - 日志、错误处理和性能监控
 """
-import pytest
 import logging
-from pathlib import Path
 import sys
 import time
+from pathlib import Path
+
 
 # 添加项目根目录到路径
 project_root = Path(__file__).parent.parent
@@ -82,11 +82,7 @@ class TestErrors:
         """测试带详情的异常"""
         from leo_system.errors import LeoError
 
-        error = LeoError(
-            "Test error",
-            error_code="TEST001",
-            details={"key": "value", "count": 42}
-        )
+        error = LeoError("Test error", error_code="TEST001", details={"key": "value", "count": 42})
 
         error_str = str(error)
         assert "TEST001" in error_str
@@ -177,7 +173,7 @@ class TestMetrics:
 
     def test_track_time_decorator(self):
         """测试时间追踪装饰器"""
-        from leo_system.metrics import track_time, get_metrics
+        from leo_system.metrics import get_metrics, track_time
 
         @track_time
         def slow_function():
@@ -195,7 +191,7 @@ class TestMetrics:
 
     def test_track_time_with_custom_name(self):
         """测试自定义名称的时间追踪"""
-        from leo_system.metrics import track_time, get_metrics
+        from leo_system.metrics import get_metrics, track_time
 
         @track_time(name="custom_operation")
         def my_function():
@@ -226,7 +222,7 @@ class TestMetrics:
 
     def test_measure_time(self):
         """测试 measure_time 函数"""
-        from leo_system.metrics import measure_time, get_metrics
+        from leo_system.metrics import get_metrics, measure_time
 
         with measure_time("measured_operation"):
             time.sleep(0.05)
@@ -238,7 +234,7 @@ class TestMetrics:
 
     def test_get_performance_report(self):
         """测试性能报告生成"""
-        from leo_system.metrics import get_performance_report, get_metrics
+        from leo_system.metrics import get_metrics, get_performance_report
 
         metrics = get_metrics()
         metrics.record("op1", 1.0)

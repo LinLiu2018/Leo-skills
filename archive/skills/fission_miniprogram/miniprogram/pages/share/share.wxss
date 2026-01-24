@@ -1,0 +1,90 @@
+/* share.wxss */
+.container {
+  padding: 30rpx;
+  background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+.card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  text-align: center;
+}
+
+.coupon-value {
+  font-size: 72rpx;
+  font-weight: bold;
+  color: #ff4757;
+}
+
+.coupon-desc {
+  font-size: 28rpx;
+  color: #666;
+  display: block;
+  margin-top: 10rpx;
+}
+
+.invite-count {
+  display: block;
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.share-section {
+  margin-top: 40rpx;
+  text-align: center;
+}
+
+.share-title {
+  color: #fff;
+  font-size: 30rpx;
+  display: block;
+  margin-bottom: 30rpx;
+}
+
+.share-btn, .poster-btn {
+  width: 80%;
+  height: 90rpx;
+  line-height: 90rpx;
+  border-radius: 45rpx;
+  font-size: 32rpx;
+  margin-bottom: 20rpx;
+}
+
+.share-btn {
+  background: #07c160;
+  color: #fff;
+}
+
+.poster-btn {
+  background: #fff;
+  color: #333;
+}
+
+.invite-list {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-top: 40rpx;
+}
+
+.list-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 20rpx;
+}
+
+.invite-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+  font-size: 28rpx;
+}
+
+.invite-time {
+  color: #999;
+}

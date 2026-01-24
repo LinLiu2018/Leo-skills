@@ -30,12 +30,14 @@ Leo Orchestrator（大脑）
 #### ✅ 已实现的核心能力
 
 **A. 内容创作能力**
+
 - 房产资讯收集与发布
 - 10种排版风格的智能排版
 - 多平台内容适配（公众号、小红书、微博、博客）
 - 营销文档自动生成
 
 **B. 项目营销能力**
+
 - 项目营销手册生成（全案）
 - 销售速查卡（1页精华版）
 - 投资回报测算
@@ -43,17 +45,20 @@ Leo Orchestrator（大脑）
 - 销售话术生成
 
 **C. 研究与分析能力**
+
 - 信息收集和整理（Research Agent）
 - 文献调研（Research Agent）
 - 数据分析框架（Analysis Agent）
 - 趋势分析（Analysis Agent）
 
 **D. 开发与自动化能力**
+
 - 自动创建新技能（agent-skill-creator）
 - 文章转代码原型（article-to-prototype）
 - 任务持久化追踪（planning-with-files）
 
 **E. 任务执行能力**
+
 - 多步骤任务编排（Task Agent）
 - Skills协调调用（Task Agent）
 - 工作流自动化（3个预定义工作流）
@@ -82,6 +87,7 @@ Leo Orchestrator（大脑）
 根据技能使用手册和项目文件，你的核心业务领域包括：
 
 **主要业务**:
+
 1. **房地产业务** 🏠
    - 宁波本地楼市分析
    - 房产政策解读
@@ -100,6 +106,7 @@ Leo Orchestrator（大脑）
    - 赛道分析
 
 **工作模式**:
+
 - 内容创作为主（房产资讯、营销文档）
 - 项目营销支持（智慧农贸等项目）
 - 技术学习和实践（AI眼镜等新赛道）
@@ -107,6 +114,7 @@ Leo Orchestrator（大脑）
 ### 2.2 当前使用的Skills
 
 **高频使用**:
+
 1. 房产资讯发布（realestate-news-publisher）
 2. 智能内容排版（content-layout-leo）
 3. 项目营销文档生成器（project-marketing-doc-generator）
@@ -121,16 +129,19 @@ Leo Orchestrator（大脑）
 ### 2.3 典型工作场景
 
 **场景1：房产业务日常**
+
 ```
 收集房产政策 → AI分析生成文章 → 智能排版 → 发布到公众号
 ```
 
 **场景2：智慧农贸项目**
+
 ```
 项目信息收集 → 生成营销手册 → 优化排版 → 输出销售资料
 ```
 
 **场景3：新赛道研究**
+
 ```
 市场调研 → 技术学习 → 代码实践 → 持久化追踪
 ```
@@ -142,6 +153,7 @@ Leo Orchestrator（大脑）
 ### 3.1 优势分析
 
 **✅ 强项**:
+
 1. **内容创作能力强大**
    - 10种排版风格
    - 多平台适配
@@ -202,6 +214,7 @@ Leo Orchestrator（大脑）
 **目标**: 让Research Agent真正能够进行网络搜索和信息收集
 
 **行动**:
+
 1. 集成WebSearch能力
    - 添加搜索API（Google、Bing等）
    - 实现网页内容抓取
@@ -218,6 +231,7 @@ Leo Orchestrator（大脑）
    - 结果去重和整合
 
 **预期效果**:
+
 - Research Agent可以真正进行市场调研
 - 支持房地产政策自动收集
 - 支持AI眼镜赛道分析
@@ -227,6 +241,7 @@ Leo Orchestrator（大脑）
 **目标**: 让Analysis Agent具备真实的数据分析能力
 
 **行动**:
+
 1. 创建数据分析Skills
    - `data-analyzer-cskill` - 数据分析
    - `chart-generator-cskill` - 图表生成
@@ -243,6 +258,7 @@ Leo Orchestrator（大脑）
    - 竞品对比分析模板
 
 **预期效果**:
+
 - 可以分析房地产市场数据
 - 可以生成投资回报分析图表
 - 可以进行竞品数据对比
@@ -252,6 +268,7 @@ Leo Orchestrator（大脑）
 **目标**: 为核心业务创建专业化Agent
 
 **行动**:
+
 1. 创建RealEstateAgent（房地产代理）
    - 专注房地产业务
    - 集成房产资讯Skills
@@ -263,6 +280,7 @@ Leo Orchestrator（大脑）
    - 优化销售资料输出
 
 **预期效果**:
+
 - 房地产业务有专用Agent
 - 营销任务处理更专业
 - 提高任务匹配准确度
@@ -274,6 +292,7 @@ Leo Orchestrator（大脑）
 **目标**: 实现自动工作流选择和执行
 
 **行动**:
+
 1. 扩展工作流定义
    - 房地产内容生产线
    - 项目营销全流程
@@ -290,6 +309,7 @@ Leo Orchestrator（大脑）
    - 支持中断和恢复
 
 **预期效果**:
+
 - 复杂任务自动编排
 - 提高工作效率
 - 减少手动干预
@@ -299,6 +319,7 @@ Leo Orchestrator（大脑）
 **目标**: 丰富Skills库，覆盖更多场景
 
 **建议新增Skills**:
+
 1. **房地产领域**
    - `policy-tracker-cskill` - 政策追踪
    - `market-monitor-cskill` - 市场监控
@@ -315,6 +336,7 @@ Leo Orchestrator（大脑）
    - `data-visualizer-cskill` - 数据可视化
 
 **预期效果**:
+
 - Skills库更丰富
 - 覆盖更多业务场景
 - 提高系统实用性
@@ -324,6 +346,7 @@ Leo Orchestrator（大脑）
 **目标**: 实现多Agent协同工作
 
 **行动**:
+
 1. 实现Agent间通信
    - Research Agent → Analysis Agent
    - Analysis Agent → Creative Agent
@@ -340,6 +363,7 @@ Leo Orchestrator（大脑）
    - 添加协作监控
 
 **预期效果**:
+
 - 复杂任务自动分解
 - 多Agent协同完成
 - 提高任务完成质量
@@ -351,6 +375,7 @@ Leo Orchestrator（大脑）
 **目标**: 提升系统智能化水平
 
 **行动**:
+
 1. Agent学习能力
    - 记录任务执行历史
    - 学习用户偏好
@@ -367,6 +392,7 @@ Leo Orchestrator（大脑）
    - 自动调整参数
 
 **预期效果**:
+
 - 系统越用越智能
 - 减少用户配置
 - 提高执行效率
@@ -376,6 +402,7 @@ Leo Orchestrator（大脑）
 **目标**: 提供可视化操作界面
 
 **行动**:
+
 1. 开发Web Dashboard
    - 任务管理界面
    - Agent状态监控
@@ -392,6 +419,7 @@ Leo Orchestrator（大脑）
    - Skills使用热度
 
 **预期效果**:
+
 - 降低使用门槛
 - 提高操作便利性
 - 更好的系统监控
@@ -401,6 +429,7 @@ Leo Orchestrator（大脑）
 **目标**: 支持团队协作和企业应用
 
 **行动**:
+
 1. 多用户支持
    - 用户权限管理
    - 团队协作空间
@@ -417,6 +446,7 @@ Leo Orchestrator（大脑）
    - 第三方服务集成
 
 **预期效果**:
+
 - 支持团队使用
 - 满足企业需求
 - 提高系统价值
@@ -428,21 +458,25 @@ Leo Orchestrator（大脑）
 ### 阶段1：立即行动（本周）
 
 **任务1**: 增强Research Agent
+
 - [ ] 设计WebSearch集成方案
 - [ ] 创建web-search-cskill骨架
 - [ ] 实现基础搜索功能
 
 **任务2**: 为Analysis Agent添加Skills
+
 - [ ] 创建data-analyzer-cskill
 - [ ] 集成pandas和matplotlib
 - [ ] 实现基础数据分析功能
 
 **任务3**: 优化现有Agent
+
 - [ ] 改进Research Agent的任务分解
 - [ ] 优化Creative Agent的Skills利用
 - [ ] 完善Task Agent的错误处理
 
 **预期成果**:
+
 - Research Agent可以进行简单的网络搜索
 - Analysis Agent有1-2个可用的Skills
 - 系统整体稳定性提升
@@ -450,21 +484,25 @@ Leo Orchestrator（大脑）
 ### 阶段2：短期目标（2周内）
 
 **任务1**: 创建领域专用Agent
+
 - [ ] 实现RealEstateAgent
 - [ ] 实现MarketingAgent
 - [ ] 测试和优化
 
 **任务2**: 扩展Skills库
+
 - [ ] 创建3-5个新Skills
 - [ ] 重点关注房地产和农贸市场领域
 - [ ] 完善Skills文档
 
 **任务3**: 优化工作流
+
 - [ ] 定义5个常用工作流
 - [ ] 实现工作流自动选择
 - [ ] 添加执行监控
 
 **预期成果**:
+
 - 6个Agent全部可用
 - 10+个Skills覆盖核心业务
 - 5个智能工作流
@@ -472,21 +510,25 @@ Leo Orchestrator（大脑）
 ### 阶段3：中期目标（1-2月）
 
 **任务1**: Agent协作机制
+
 - [ ] 实现Agent间通信
 - [ ] 创建共享工作空间
 - [ ] 定义协作工作流
 
 **任务2**: 系统优化
+
 - [ ] 性能优化
 - [ ] 错误处理完善
 - [ ] 日志和监控
 
 **任务3**: 文档和培训
+
 - [ ] 完善系统文档
 - [ ] 创建使用教程
 - [ ] 编写最佳实践
 
 **预期成果**:
+
 - 多Agent协同工作
 - 系统性能提升50%
 - 完整的文档体系
@@ -494,21 +536,25 @@ Leo Orchestrator（大脑）
 ### 阶段4：长期目标（3-6月）
 
 **任务1**: AI能力增强
+
 - [ ] 实现Agent学习
 - [ ] 添加智能推荐
 - [ ] 自动优化机制
 
 **任务2**: Web界面
+
 - [ ] 开发Dashboard
 - [ ] 工作流编辑器
 - [ ] 数据可视化
 
 **任务3**: 企业级功能
+
 - [ ] 多用户支持
 - [ ] 数据安全
 - [ ] API和集成
 
 **预期成果**:
+
 - 智能化AI系统
 - 完整的Web界面
 - 企业级应用能力
@@ -520,6 +566,7 @@ Leo Orchestrator（大脑）
 ### 6.1 房地产业务优化
 
 **当前状态**:
+
 - 有房产资讯发布Skill
 - 有内容排版Skill
 - 缺少专业的房地产Agent
@@ -527,6 +574,7 @@ Leo Orchestrator（大脑）
 **优化建议**:
 
 1. **创建RealEstateAgent**
+
 ```python
 class RealEstateAgent(BaseAgent):
     """房地产专业代理"""
@@ -552,6 +600,7 @@ class RealEstateAgent(BaseAgent):
    - `price-monitor-cskill` - 房价监控
 
 3. **定义房地产工作流**
+
 ```yaml
 realestate-content-pipeline:
   steps:
@@ -563,6 +612,7 @@ realestate-content-pipeline:
 ```
 
 **预期效果**:
+
 - 房产资讯生产自动化
 - 从政策收集到发布全流程
 - 每天可生产3-5篇高质量文章
@@ -570,6 +620,7 @@ realestate-content-pipeline:
 ### 6.2 智慧农贸项目优化
 
 **当前状态**:
+
 - 有项目营销文档生成器
 - 缺少农贸市场专业知识
 - 缺少项目管理能力
@@ -577,6 +628,7 @@ realestate-content-pipeline:
 **优化建议**:
 
 1. **创建AgriMarketAgent（农贸市场代理）**
+
 ```python
 class AgriMarketAgent(BaseAgent):
     """农贸市场专业代理"""
@@ -600,6 +652,7 @@ class AgriMarketAgent(BaseAgent):
    - 支持多种项目类型
 
 **预期效果**:
+
 - 农贸市场项目全案自动生成
 - 从设计到营销一站式服务
 - 提高项目交付效率
@@ -607,6 +660,7 @@ class AgriMarketAgent(BaseAgent):
 ### 6.3 AI眼镜赛道优化
 
 **当前状态**:
+
 - 有文章转代码Skill
 - 有文件规划Skill
 - 缺少赛道分析能力
@@ -624,6 +678,7 @@ class AgriMarketAgent(BaseAgent):
    - 投资回报测算
 
 3. **创建学习工作流**
+
 ```yaml
 tech-learning-pipeline:
   steps:
@@ -634,6 +689,7 @@ tech-learning-pipeline:
 ```
 
 **预期效果**:
+
 - 快速了解新赛道
 - 技术学习效率提升
 - 从研究到实践全流程
@@ -656,16 +712,19 @@ tech-learning-pipeline:
 ### 7.2 预期收益
 
 **效率提升**:
+
 - 房产资讯生产效率提升 **300%**
 - 项目营销文档生成时间减少 **80%**
 - 市场调研时间减少 **70%**
 
 **质量提升**:
+
 - 内容质量更专业
 - 数据分析更准确
 - 营销文档更完整
 
 **能力扩展**:
+
 - 支持更多业务场景
 - 可以承接更多项目
 - 系统价值持续增长
@@ -673,6 +732,7 @@ tech-learning-pipeline:
 ### 7.3 优先级建议
 
 **立即开始**（投入产出比最高）:
+
 1. ✅ 增强Research Agent - 解决信息收集痛点
 2. ✅ 为Analysis Agent添加Skills - 提供数据分析能力
 3. ✅ 创建RealEstateAgent - 服务核心业务
@@ -729,12 +789,14 @@ tech-learning-pipeline:
 ### 系统当前能力
 
 **✅ 已经很强大**:
+
 - 4个Agent全部运行
 - 6个Skills覆盖核心场景
 - 架构清晰易扩展
 - 适配你的主要业务
 
 **⚠️ 还需加强**:
+
 - Research Agent缺少实际搜索能力
 - Analysis Agent没有可用Skills
 - 缺少领域专业化
@@ -762,11 +824,13 @@ tech-learning-pipeline:
 ### 下一步行动
 
 **本周就可以开始**:
+
 1. 设计Research Agent的搜索功能
 2. 为Analysis Agent添加第一个Skill
 3. 规划RealEstateAgent的实现
 
 **需要我帮助的**:
+
 - 实现具体的Agent代码
 - 创建新的Skills
 - 优化现有功能
@@ -777,15 +841,18 @@ tech-learning-pipeline:
 ## 📞 附录：参考资源
 
 **系统文档**:
+
 - [LEO_SYSTEM_README.md](LEO_SYSTEM_README.md)
 - [AGENTS_IMPLEMENTATION_REPORT.md](AGENTS_IMPLEMENTATION_REPORT.md)
 - [Leo技能快速使用手册.md](Leo技能快速使用手册.md)
 
 **学习资源**:
+
 - [LEARNING_GUIDE.md](claude-code-subagents/LEARNING_GUIDE.md)
 - [INTEGRATION_REPORT.md](claude-code-subagents/INTEGRATION_REPORT.md)
 
 **官方参考**:
+
 - [claude-agent-sdk-demos](claude-code-subagents/official/claude-agent-sdk-demos/)
 
 ---

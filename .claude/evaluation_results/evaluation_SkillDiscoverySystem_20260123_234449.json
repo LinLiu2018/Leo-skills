@@ -1,0 +1,85 @@
+{
+  "agent_name": "SkillDiscoverySystem",
+  "total_tasks": 5,
+  "successful_tasks": 0,
+  "failed_tasks": 5,
+  "success_rate": 0.0,
+  "average_execution_time": 0,
+  "average_score": 0.0,
+  "total_score": 0.0,
+  "category_performance": {
+    "functional": {
+      "total": 3,
+      "success": 0,
+      "avg_score": 0.0,
+      "success_rate": 0.0
+    },
+    "performance": {
+      "total": 2,
+      "success": 0,
+      "avg_score": 0.0,
+      "success_rate": 0.0
+    }
+  },
+  "recommendations": [
+    "成功率较低，建议检查基本功能和错误处理",
+    "functional类任务表现较差，建议重点优化",
+    "functional类任务得分偏低，建议改进实现质量",
+    "performance类任务表现较差，建议重点优化",
+    "performance类任务得分偏低，建议改进实现质量",
+    "最常见错误类型: unknown，建议针对性修复"
+  ],
+  "evaluation_time": "2026-01-23T23:44:49.263978",
+  "detailed_results": [
+    {
+      "task_name": "basic_skill_discovery",
+      "agent_name": "SkillDiscoverySystem",
+      "success": false,
+      "execution_time": 0.00014138221740722656,
+      "output": null,
+      "error_message": "Agent <leo_subagents.skills_bridge.skill_discovery_simple.SkillDiscoverySystem object at 0x0000013853D3F4D0> does not have a callable method",
+      "score": 0.0,
+      "metrics": {}
+    },
+    {
+      "task_name": "skill_validation",
+      "agent_name": "SkillDiscoverySystem",
+      "success": false,
+      "execution_time": 5.936622619628906e-05,
+      "output": null,
+      "error_message": "Agent <leo_subagents.skills_bridge.skill_discovery_simple.SkillDiscoverySystem object at 0x0000013853D3F4D0> does not have a callable method",
+      "score": 0.0,
+      "metrics": {}
+    },
+    {
+      "task_name": "performance_discovery",
+      "agent_name": "SkillDiscoverySystem",
+      "success": false,
+      "execution_time": 0.00032401084899902344,
+      "output": null,
+      "error_message": "Agent <leo_subagents.skills_bridge.skill_discovery_simple.SkillDiscoverySystem object at 0x0000013853D3F4D0> does not have a callable method",
+      "score": 0.0,
+      "metrics": {}
+    },
+    {
+      "task_name": "concurrent_operations",
+      "agent_name": "SkillDiscoverySystem",
+      "success": false,
+      "execution_time": 0.00022292137145996094,
+      "output": null,
+      "error_message": "Agent <leo_subagents.skills_bridge.skill_discovery_simple.SkillDiscoverySystem object at 0x0000013853D3F4D0> does not have a callable method",
+      "score": 0.0,
+      "metrics": {}
+    },
+    {
+      "task_name": "error_handling",
+      "agent_name": "SkillDiscoverySystem",
+      "success": false,
+      "execution_time": 0.00033211708068847656,
+      "output": null,
+      "error_message": "Agent <leo_subagents.skills_bridge.skill_discovery_simple.SkillDiscoverySystem object at 0x0000013853D3F4D0> does not have a callable method",
+      "score": 0.0,
+      "metrics": {}
+    }
+  ]
+}

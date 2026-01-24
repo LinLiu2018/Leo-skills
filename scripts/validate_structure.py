@@ -3,8 +3,8 @@
 项目结构验证脚本
 功能：验证项目结构的一致性，防止命名和路径问题
 """
-from pathlib import Path
 import sys
+from pathlib import Path
 
 
 class ProjectValidator:
@@ -41,7 +41,11 @@ class ProjectValidator:
             # 跳过特殊目录
             skip_patterns = [
                 ".",  # 隐藏目录
-                "archive", "docs", "tests", "scripts", "examples",  # 标准目录
+                "archive",
+                "docs",
+                "tests",
+                "scripts",
+                "examples",  # 标准目录
                 "__pycache__",  # Python 缓存
                 "node_modules",  # Node.js
                 ".egg-info",  # Python 包信息（后缀匹配）
@@ -60,13 +64,9 @@ class ProjectValidator:
             # 检查 leo_ 开头的目录
             if item.name.startswith("leo"):
                 if "-" in item.name:
-                    self.errors.append(
-                        f"目录使用连字符: {item.name} (应使用下划线，如 leo_xxx)"
-                    )
+                    self.errors.append(f"目录使用连字符: {item.name} (应使用下划线，如 leo_xxx)")
                 elif not item.name.startswith("leo_"):
-                    self.warnings.append(
-                        f"目录命名不规范: {item.name} (建议使用 leo_xxx 格式)"
-                    )
+                    self.warnings.append(f"目录命名不规范: {item.name} (建议使用 leo_xxx 格式)")
 
     def validate_required_files(self):
         """验证必需文件存在"""
@@ -112,14 +112,10 @@ class ProjectValidator:
                 main_py = skill_dir / "scripts" / "main.py"
 
                 if not skill_md.exists():
-                    self.warnings.append(
-                        f"技能缺少 SKILL.md: {skill_dir.name}"
-                    )
+                    self.warnings.append(f"技能缺少 SKILL.md: {skill_dir.name}")
 
                 if not main_py.exists():
-                    self.warnings.append(
-                        f"技能缺少 scripts/main.py: {skill_dir.name}"
-                    )
+                    self.warnings.append(f"技能缺少 scripts/main.py: {skill_dir.name}")
 
     def validate_no_legacy_names(self):
         """验证没有遗留的旧命名"""
@@ -136,9 +132,7 @@ class ProjectValidator:
         for pattern in legacy_patterns:
             path = self.project_root / pattern
             if path.exists():
-                self.errors.append(
-                    f"发现遗留文件/目录: {pattern} (应使用下划线命名)"
-                )
+                self.errors.append(f"发现遗留文件/目录: {pattern} (应使用下划线命名)")
 
     def print_report(self):
         """打印验证报告"""
