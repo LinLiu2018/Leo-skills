@@ -32,10 +32,10 @@ class RealEstateAgent(BaseAgent):
     def __init__(self, config: AgentConfig):
         super().__init__(config)
         self.capabilities = {
-            "market_analysis": "research-assistant-cskill",
-            "marketing_docs": "project-marketing-doc-generator-cskill",
-            "news_publishing": "realestate-news-publisher-cskill",
-            "web_search": "web-search-cskill",
+            "market_analysis": "research_assistant_skill",
+            "marketing_docs": "project_marketing_doc_generator_skill",
+            "news_publishing": "realestate_news_publisher_skill",
+            "web_search": "web_search_skill",
         }
 
     def can_handle(self, task: str) -> float:
@@ -87,7 +87,7 @@ class RealEstateAgent(BaseAgent):
             "task": task,
             "type": "marketing",
             "steps": ["收集项目信息", "分析目标客户", "生成营销文案", "优化内容布局"],
-            "skills_used": ["project-marketing-doc-generator-cskill", "content-layout-leo-cskill"],
+            "skills_used": ["project_marketing_doc_generator_skill", "content_layout_leo_skill"],
             "status": "completed",
         }
 
@@ -100,7 +100,7 @@ class RealEstateAgent(BaseAgent):
             "task": task,
             "type": "analysis",
             "steps": ["搜索市场信息", "收集竞品数据", "分析市场趋势", "生成分析报告"],
-            "skills_used": ["web-search-cskill", "research-assistant-cskill"],
+            "skills_used": ["web_search_skill", "research_assistant_skill"],
             "status": "completed",
         }
 
@@ -113,7 +113,7 @@ class RealEstateAgent(BaseAgent):
             "task": task,
             "type": "policy",
             "steps": ["搜索最新政策", "解读政策内容", "分析影响范围", "生成政策报告"],
-            "skills_used": ["web-search-cskill", "research-assistant-cskill"],
+            "skills_used": ["web_search_skill", "research_assistant_skill"],
             "status": "completed",
         }
 

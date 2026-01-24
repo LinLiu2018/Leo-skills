@@ -66,10 +66,10 @@ def setup_dev_skills_paths(project_root: Path):
     dev_skills_base = project_root / "leo_skills" / "development"
 
     paths = [
-        dev_skills_base / "backend" / "flask-api-generator-cskill" / "scripts",
-        dev_skills_base / "backend" / "database-model-generator-cskill" / "scripts",
-        dev_skills_base / "frontend" / "miniprogram-page-generator-cskill" / "scripts",
-        dev_skills_base / "deployment" / "dockerfile-generator-cskill" / "scripts",
+        dev_skills_base / "backend" / "flask_api_generator_skill" / "scripts",
+        dev_skills_base / "backend" / "database_model_generator_skill" / "scripts",
+        dev_skills_base / "frontend" / "miniprogram_page_generator_skill" / "scripts",
+        dev_skills_base / "deployment" / "dockerfile_generator_skill" / "scripts",
     ]
 
     for path in paths:
@@ -101,7 +101,7 @@ class TestDatabaseModelGenerator:
                 / "leo_skills"
                 / "development"
                 / "backend"
-                / "database-model-generator-cskill"
+                / "database_model_generator_skill"
                 / "scripts"
             )
             if dev_path.exists():
@@ -120,11 +120,11 @@ class TestDatabaseModelGenerator:
                 / "leo_skills"
                 / "development"
                 / "backend"
-                / "database-model-generator-cskill"
+                / "database_model_generator_skill"
                 / "scripts"
             )
             if not dev_path.exists():
-                pytest.skip("database-model-generator-cskill 不存在")
+                pytest.skip("database_model_generator_skill 不存在")
 
             sys.path.insert(0, str(dev_path))
             from main import DatabaseModelGenerator
@@ -167,7 +167,7 @@ class TestMiniprogramPageGenerator:
                 / "leo_skills"
                 / "development"
                 / "frontend"
-                / "miniprogram-page-generator-cskill"
+                / "miniprogram_page_generator_skill"
                 / "scripts"
             )
             if dev_path.exists():
@@ -186,11 +186,11 @@ class TestMiniprogramPageGenerator:
                 / "leo_skills"
                 / "development"
                 / "frontend"
-                / "miniprogram-page-generator-cskill"
+                / "miniprogram_page_generator_skill"
                 / "scripts"
             )
             if not dev_path.exists():
-                pytest.skip("miniprogram-page-generator-cskill 不存在")
+                pytest.skip("miniprogram_page_generator_skill 不存在")
 
             sys.path.insert(0, str(dev_path))
             from main import MiniprogramPageGenerator
@@ -236,7 +236,7 @@ class TestDockerfileGenerator:
                 / "leo_skills"
                 / "development"
                 / "deployment"
-                / "dockerfile-generator-cskill"
+                / "dockerfile_generator_skill"
                 / "scripts"
             )
             if dev_path.exists():
@@ -255,11 +255,11 @@ class TestDockerfileGenerator:
                 / "leo_skills"
                 / "development"
                 / "deployment"
-                / "dockerfile-generator-cskill"
+                / "dockerfile_generator_skill"
                 / "scripts"
             )
             if not dev_path.exists():
-                pytest.skip("dockerfile-generator-cskill 不存在")
+                pytest.skip("dockerfile_generator_skill 不存在")
 
             sys.path.insert(0, str(dev_path))
             from main import DockerfileGenerator

@@ -23,5 +23,5 @@ steps:
 ```
 
 ## 集成技能
-- content-layout-leo-cskill: 智能排版
-- realestate-news-publisher-cskill: 房产资讯发布
+- content_layout_leo_skill: 智能排版
+- realestate_news_publisher_skill: 房产资讯发布

@@ -26,9 +26,9 @@ class TaskAgent(BaseAgent):
     def __init__(self, config: AgentConfig):
         super().__init__(config)
         self.capabilities = {
-            "content_layout": "content-layout-leo-cskill",
-            "news_publish": "realestate-news-publisher-cskill",
-            "marketing_doc": "project-marketing-doc-generator-cskill",
+            "content_layout": "content_layout_leo_skill",
+            "news_publish": "realestate_news_publisher_skill",
+            "marketing_doc": "project_marketing_doc_generator_skill",
         }
 
     def can_handle(self, task: str) -> float:
@@ -143,7 +143,7 @@ class TaskAgent(BaseAgent):
             steps.append(
                 {
                     "step": 1,
-                    "skill": "content-layout-leo-cskill",
+                    "skill": "content_layout_leo_skill",
                     "action": "layout",
                     "params": {
                         "content": kwargs.get("content", ""),
@@ -157,7 +157,7 @@ class TaskAgent(BaseAgent):
             steps.append(
                 {
                     "step": 1,
-                    "skill": "realestate-news-publisher-cskill",
+                    "skill": "realestate_news_publisher_skill",
                     "action": "publish",
                     "params": {
                         "title": kwargs.get("title", ""),
@@ -172,7 +172,7 @@ class TaskAgent(BaseAgent):
             steps.append(
                 {
                     "step": 1,
-                    "skill": "project-marketing-doc-generator-cskill",
+                    "skill": "project_marketing_doc_generator_skill",
                     "action": "generate",
                     "params": {
                         "project_name": kwargs.get("project_name", ""),
@@ -251,9 +251,9 @@ Task Agent 帮助
 ===============
 
 能力:
-1. 内容排版 - 使用 content-layout-leo-cskill
-2. 新闻发布 - 使用 realestate-news-publisher-cskill
-3. 营销文档生成 - 使用 project-marketing-doc-generator-cskill
+1. 内容排版 - 使用 content_layout_leo_skill
+2. 新闻发布 - 使用 realestate_news_publisher_skill
+3. 营销文档生成 - 使用 project_marketing_doc_generator_skill
 
 激活关键词:
 {', '.join(self.ACTIVATION_KEYWORDS)}
@@ -278,9 +278,9 @@ if __name__ == "__main__":
         type="executor",
         priority=1,
         skills=[
-            "content-layout-leo-cskill",
-            "realestate-news-publisher-cskill",
-            "project-marketing-doc-generator-cskill",
+            "content_layout_leo_skill",
+            "realestate_news_publisher_skill",
+            "project_marketing_doc_generator_skill",
         ],
         description="任务执行代理",
     )

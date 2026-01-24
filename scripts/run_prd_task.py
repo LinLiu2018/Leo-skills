@@ -17,7 +17,7 @@ def run_prd_task():
         name="pm-runner",
         type="product_manager",
         priority=1,
-        skills=["research-assistant-cskill", "web-search-cskill", "text-generator-cskill"],
+        skills=["research_assistant_skill", "web_search_skill", "text_generator_skill"],
         description="Runner Agent"
     )
     

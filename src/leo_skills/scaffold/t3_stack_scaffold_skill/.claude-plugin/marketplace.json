@@ -1,0 +1,17 @@
+{
+  "name": "t3_stack_scaffold_skill",
+  "version": "1.0.0",
+  "description": "T3 Stack 项目脚手架 - 快速创建 Next.js + tRPC + Prisma/Drizzle + Tailwind 项目",
+  "author": "Leo Liu",
+  "keywords": ["t3", "nextjs", "trpc", "prisma", "drizzle", "tailwind", "scaffold", "fullstack"],
+  "activation": {
+    "keywords": ["创建T3项目", "T3 Stack", "Next.js项目", "tRPC项目", "全栈项目"]
+  },
+  "capabilities": [
+    "create_project",
+    "scaffold_via_cli",
+    "scaffold_via_template",
+    "get_options"
+  ],
+  "category": "development/scaffold"
+}

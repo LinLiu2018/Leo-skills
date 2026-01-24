@@ -53,7 +53,7 @@ Leo Orchestrator（大脑）
 
 **D. 开发与自动化能力**
 
-- 自动创建新技能（agent-skill-creator）
+- 自动创建新技能（agent_skill_creator_skill）
 - 文章转代码原型（article-to-prototype）
 - 任务持久化追踪（planning-with-files）
 
@@ -121,7 +121,7 @@ Leo Orchestrator（大脑）
 
 **中频使用**:
 4. 文件规划（planning-with-files）
-5. 技能创建器（agent-skill-creator）
+5. 技能创建器（agent_skill_creator_skill）
 
 **低频使用**:
 6. 文章转代码（article-to-prototype）
@@ -221,7 +221,7 @@ Leo Orchestrator（大脑）
    - 添加信息提取和摘要
 
 2. 创建专用Research Skills
-   - `web-search-cskill` - 网络搜索
+   - `web_search_skill` - 网络搜索
    - `content-extractor-cskill` - 内容提取
    - `info-summarizer-cskill` - 信息摘要
 
@@ -243,7 +243,7 @@ Leo Orchestrator（大脑）
 **行动**:
 
 1. 创建数据分析Skills
-   - `data-analyzer-cskill` - 数据分析
+   - `data_analyzer_skill` - 数据分析
    - `chart-generator-cskill` - 图表生成
    - `report-generator-cskill` - 报告生成
 
@@ -460,12 +460,12 @@ Leo Orchestrator（大脑）
 **任务1**: 增强Research Agent
 
 - [ ] 设计WebSearch集成方案
-- [ ] 创建web-search-cskill骨架
+- [ ] 创建web_search_skill骨架
 - [ ] 实现基础搜索功能
 
 **任务2**: 为Analysis Agent添加Skills
 
-- [ ] 创建data-analyzer-cskill
+- [ ] 创建data_analyzer_skill
 - [ ] 集成pandas和matplotlib
 - [ ] 实现基础数据分析功能
 
@@ -582,8 +582,8 @@ class RealEstateAgent(BaseAgent):
     capabilities = {
         "policy_tracking": "policy-tracker-cskill",
         "market_analysis": "market-analyzer-cskill",
-        "content_creation": "realestate-news-publisher-cskill",
-        "layout": "content-layout-leo-cskill"
+        "content_creation": "realestate_news_publisher_skill",
+        "layout": "content_layout_leo_skill"
     }
 
     def execute(self, task, **kwargs):
@@ -606,8 +606,8 @@ realestate-content-pipeline:
   steps:
     - collect_policy: policy-tracker-cskill
     - analyze_market: market-analyzer-cskill
-    - generate_article: realestate-news-publisher-cskill
-    - layout_content: content-layout-leo-cskill
+    - generate_article: realestate_news_publisher_skill
+    - layout_content: content_layout_leo_skill
     - publish: wechat-publisher-cskill
 ```
 
@@ -636,7 +636,7 @@ class AgriMarketAgent(BaseAgent):
     capabilities = {
         "market_design": "market-design-cskill",
         "vendor_management": "vendor-management-cskill",
-        "marketing_doc": "project-marketing-doc-generator-cskill",
+        "marketing_doc": "project_marketing_doc_generator_skill",
         "roi_analysis": "roi-calculator-cskill"
     }
 ```
@@ -753,8 +753,8 @@ tech-learning-pipeline:
 ### 本周行动（必做）
 
 - [ ] 设计Research Agent的WebSearch集成方案
-- [ ] 创建web-search-cskill基础框架
-- [ ] 为Analysis Agent创建data-analyzer-cskill
+- [ ] 创建web_search_skill基础框架
+- [ ] 为Analysis Agent创建data_analyzer_skill
 - [ ] 测试现有4个Agent的稳定性
 - [ ] 更新系统文档
 

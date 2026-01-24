@@ -232,8 +232,8 @@ def clear_adapter_cache():
 if __name__ == "__main__":
     # 示例：创建适配器
     adapter = SkillAdapter(
-        skill_path="leo_skills/content-creation/content-layout-leo-cskill",
-        skill_name="content-layout-leo-cskill",
+        skill_path="leo_skills/content-creation/content_layout_leo_skill",
+        skill_name="content_layout_leo_skill",
     )
 
     # 获取信息

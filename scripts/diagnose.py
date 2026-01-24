@@ -18,7 +18,7 @@ except ImportError as e:
     print(f"[ERROR] zhipuai import failed: {e}")
 
 # Load Skill Main
-skill_path = project_root / "leo_skills/core/text-generator-cskill/scripts/main.py"
+skill_path = project_root / "leo_skills/core/text_generator_skill/scripts/main.py"
 print(f"Loading skill from {skill_path}")
 
 try:

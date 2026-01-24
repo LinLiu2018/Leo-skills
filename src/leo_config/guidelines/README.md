@@ -172,7 +172,7 @@ formal_mode:
 ```yaml
 skill_default_modes:
   # 创意类技能
-  "project-marketing-doc-generator-cskill": "creative"
+  "project_marketing_doc_generator_skill": "creative"
   # 严谨类技能
   "data-analysis-cskill": "formal"
 ```
@@ -201,8 +201,8 @@ skill_default_modes:
 
 **创意类技能（自动使用创意模式）**
 
-- `project-marketing-doc-generator-cskill` - 营销文档生成
-- `content-layout-leo-cskill` - 内容排版
+- `project_marketing_doc_generator_skill` - 营销文档生成
+- `content_layout_leo_skill` - 内容排版
 - `realestate-news-publisher` - 房产资讯发布
 
 **严谨类技能（自动使用严谨模式）**
@@ -287,7 +287,7 @@ class CustomDeAIifier(DeAIifier):
 
 - [去AI化指南完整配置](leo_config/guidelines/deaiification_guide.yaml)
 - [去AI化处理器源码](leo_config/guidelines/deaiifier.py)
-- [营销文档生成器Skill](leo_skills/tools/project-marketing-doc-generator-cskill/)
+- [营销文档生成器Skill](leo_skills/tools/project_marketing_doc_generator_skill/)
 
 ## 🤝 贡献
 

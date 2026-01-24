@@ -114,7 +114,7 @@ class MySkill:
 ```python
 # 直接调用Skill
 result = leo.call(
-    "content-layout-leo-cskill",
+    "content_layout_leo_skill",
     "layout",
     content="我的文章内容",
     style="data_driven"
@@ -142,12 +142,12 @@ result = leo.run_workflow(
 
 | 分类 | Skills | 状态 |
 |------|--------|------|
-| 📝 内容创作 | content-layout-leo-cskill | 🟢 |
-| 📝 内容创作 | realestate-news-publisher-cskill | 🟢 |
-| 🔧 工具 | research-assistant-cskill | 🟢 |
-| 🛠️ 工具框架 | agent-skill-creator | 🟢 |
-| 🛠️ 工具框架 | article-to-prototype-cskill | 🟢 |
-| 🛠️ 工具框架 | project-marketing-doc-generator-cskill | 🟢 |
+| 📝 内容创作 | content_layout_leo_skill | 🟢 |
+| 📝 内容创作 | realestate_news_publisher_skill | 🟢 |
+| 🔧 工具 | research_assistant_skill | 🟢 |
+| 🛠️ 工具框架 | agent_skill_creator_skill | 🟢 |
+| 🛠️ 工具框架 | article_to_prototype_skill | 🟢 |
+| 🛠️ 工具框架 | project_marketing_doc_generator_skill | 🟢 |
 
 ### Subagents（4个已注册）
 
@@ -218,7 +218,7 @@ leo.run_workflow(
 ```yaml
 # Skills配置
 skills:
-  - name: "content-layout-leo-cskill"
+  - name: "content_layout_leo_skill"
     enabled: true
 
 # Subagents配置
@@ -237,13 +237,13 @@ workflows:
 
 ```python
 # 禁用某个Skill
-leo.disable("skill", "content-layout-leo-cskill")
+leo.disable("skill", "content_layout_leo_skill")
 
 # 启用某个Skill
-leo.enable("skill", "content-layout-leo-cskill")
+leo.enable("skill", "content_layout_leo_skill")
 
 # 查询配置
-skill = leo.get("skill", "content-layout-leo-cskill")
+skill = leo.get("skill", "content_layout_leo_skill")
 print(skill.enabled)  # True/False
 ```
 

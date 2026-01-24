@@ -94,7 +94,7 @@ steps:
     description: "智能排版和格式化"
     agent: "task-agent"
     action: "format"
-    skill: "content-layout-leo-cskill"
+    skill: "content_layout_leo_skill"
     params:
       content: "{{ steps.content_creation.result }}"
       platform: "{{ inputs.platform }}"
@@ -140,7 +140,7 @@ steps:
     description: "发布到目标平台"
     agent: "task-agent"
     action: "publish"
-    skill: "realestate-news-publisher-cskill"
+    skill: "realestate_news_publisher_skill"
     condition: "{{ inputs.platform == 'wechat' }}"
     params:
       content: "{{ steps.revision.result or steps.humanize.result }}"
@@ -159,10 +159,10 @@ outputs:
 
 # 集成的Skills
 integrated_skills:
-  - name: "content-layout-leo-cskill"
+  - name: "content_layout_leo_skill"
     description: "智能排版"
     step: "content_formatting"
-  - name: "realestate-news-publisher-cskill"
+  - name: "realestate_news_publisher_skill"
     description: "房产资讯发布"
     step: "content_publish"
 

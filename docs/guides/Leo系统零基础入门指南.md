@@ -26,29 +26,29 @@
 
 | 技能 | 功能 | 激活命令 |
 |------|------|---------|
-| content-layout-leo-cskill | 智能内容排版 | `帮我排版这篇文章` |
-| realestate-news-publisher-cskill | 房产资讯发布 | `帮我发布房产资讯` |
+| content_layout_leo_skill | 智能内容排版 | `帮我排版这篇文章` |
+| realestate_news_publisher_skill | 房产资讯发布 | `帮我发布房产资讯` |
 
 ### 研究分析类
 
 | 技能 | 功能 | 激活命令 |
 |------|------|---------|
-| research-assistant-cskill | 智能研究助手 | `帮我研究这个主题` |
-| web-search-cskill | 网络搜索 | `搜索xxx` |
+| research_assistant_skill | 智能研究助手 | `帮我研究这个主题` |
+| web_search_skill | 网络搜索 | `搜索xxx` |
 
 ### 数据分析类
 
 | 技能 | 功能 | 激活命令 |
 |------|------|---------|
-| data-analyzer-cskill | 数据分析 | `分析这组数据` |
+| data_analyzer_skill | 数据分析 | `分析这组数据` |
 
 ### 工具类
 
 | 技能 | 功能 | 激活命令 |
 |------|------|---------|
-| agent-skill-creator | 技能创建元技能 | `帮我创建一个新技能` |
-| article-to-prototype-cskill | 文章转代码原型 | `把这篇文章转成代码` |
-| project-marketing-doc-generator-cskill | 项目营销文档生成器 | `生成项目营销手册` |
+| agent_skill_creator_skill | 技能创建元技能 | `帮我创建一个新技能` |
+| article_to_prototype_skill | 文章转代码原型 | `把这篇文章转成代码` |
+| project_marketing_doc_generator_skill | 项目营销文档生成器 | `生成项目营销手册` |
 
 ---
 

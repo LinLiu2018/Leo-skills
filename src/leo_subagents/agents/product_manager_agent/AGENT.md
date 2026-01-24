@@ -12,8 +12,8 @@
 
 ## 技能
 
-- research-assistant-cskill: 用于市场调研
-- web-search-cskill: 用于信息收集
+- research_assistant_skill: 用于市场调研
+- web_search_skill: 用于信息收集
 
 ## 激活关键词
 
@@ -37,8 +37,8 @@ type: planner
 priority: 1
 enabled: true
 skills:
-  - research-assistant-cskill
-  - web-search-cskill
+  - research_assistant_skill
+  - web_search_skill
 metadata:
   description: "产品经理代理，负责需求分析和产品设计"
   activation_keywords:

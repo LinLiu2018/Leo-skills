@@ -86,7 +86,7 @@ git push origin feature/your-feature-name
 ### 文件命名
 
 - Python 模块: `snake_case.py`
-- Skills 目录: `kebab-case-cskill/`
+- Skills 目录: `snake_case_skill/` (例如: `data_analyzer_skill/`)
 - 配置文件: `config.yaml`
 
 ### 目录结构

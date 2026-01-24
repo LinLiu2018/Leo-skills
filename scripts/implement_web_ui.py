@@ -48,10 +48,10 @@ def implement_web_ui():
     # Let's use the API to run a "Research Agent" capability directly.
     
     # Ensure Text Generator Skill is enabled
-    leo.enable("skill", "text-generator-cskill")
+    leo.enable("skill", "text_generator_skill")
     
     trends = leo.call(
-        "text-generator-cskill", 
+        "text_generator_skill", 
         "generate", 
         prompt="What are the top Web UI design trends for 2026? Focus on Enterprise AI Dashboards. List 5 key points.",
         format="text"
@@ -65,7 +65,7 @@ def implement_web_ui():
     # leo.call returns ExecutionResult object, not dict
     
     if trends and trends.success and trends.result.get("success"):
-        # trends.result is the dict returned by text-generator-cskill
+        # trends.result is the dict returned by text_generator_skill
         content = trends.result['result']
         print(f"[SUCCESS] Research Complete:\n{content[:200]}...")
         
@@ -83,7 +83,7 @@ def implement_web_ui():
     # 2. Design Phase
     print("\n📍 Phase 2: System Design")
     design_spec = leo.call(
-        "text-generator-cskill",
+        "text_generator_skill",
         "generate",
         prompt="Create a Design System Specification for an AI Agent Dashboard based on these trends.",
         context=research_context,
@@ -114,7 +114,7 @@ def implement_web_ui():
     for comp in components:
         print(f"   Generating {comp}...")
         code_result = leo.call(
-            "text-generator-cskill",
+            "text_generator_skill",
             "generate",
             prompt=f"Write a React/Next.js component for {comp}. Use Tailwind CSS.",
             context=design_context,

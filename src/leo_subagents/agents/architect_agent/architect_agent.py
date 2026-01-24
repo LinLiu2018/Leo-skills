@@ -40,9 +40,9 @@ class ArchitectAgent(BaseAgent):
     def __init__(self, config: AgentConfig):
         super().__init__(config)
         self.capabilities = {
-            "database_design": "database-model-generator-cskill",
-            "api_design": "api-doc-generator-cskill",
-            "tech_research": "research-assistant-cskill"
+            "database_design": "database_model_generator_skill",
+            "api_design": "api_doc_generator_skill",
+            "tech_research": "research_assistant_skill"
         }
 
     def can_handle(self, task: str) -> float:
@@ -275,19 +275,19 @@ class ArchitectAgent(BaseAgent):
         try:
             # 映射 action 到 skill 方法
             action_mapping = {
-                "analyze_requirements": ("research-assistant-cskill", "research", {}),
-                "identify_entities": ("database-model-generator-cskill", "analyze", {}),
-                "model_relationships": ("database-model-generator-cskill", "model", {}),
-                "generate_er_diagram": ("database-model-generator-cskill", "generate", {"format": "mermaid"}),
-                "identify_resources": ("api-doc-generator-cskill", "analyze", {}),
-                "design_endpoints": ("api-doc-generator-cskill", "design", {}),
-                "generate_api_doc": ("api-doc-generator-cskill", "generate", {"format": "openapi"}),
-                "research_technologies": ("research-assistant-cskill", "research", {}),
-                "compare_options": ("research-assistant-cskill", "compare", {}),
-                "generate_report": ("research-assistant-cskill", "report", {}),
-                "design_architecture": ("research-assistant-cskill", "design", {}),
-                "decompose_components": ("research-assistant-cskill", "decompose", {}),
-                "generate_diagram": ("research-assistant-cskill", "diagram", {"format": "mermaid"}),
+                "analyze_requirements": ("research_assistant_skill", "research", {}),
+                "identify_entities": ("database_model_generator_skill", "analyze", {}),
+                "model_relationships": ("database_model_generator_skill", "model", {}),
+                "generate_er_diagram": ("database_model_generator_skill", "generate", {"format": "mermaid"}),
+                "identify_resources": ("api_doc_generator_skill", "analyze", {}),
+                "design_endpoints": ("api_doc_generator_skill", "design", {}),
+                "generate_api_doc": ("api_doc_generator_skill", "generate", {"format": "openapi"}),
+                "research_technologies": ("research_assistant_skill", "research", {}),
+                "compare_options": ("research_assistant_skill", "compare", {}),
+                "generate_report": ("research_assistant_skill", "report", {}),
+                "design_architecture": ("research_assistant_skill", "design", {}),
+                "decompose_components": ("research_assistant_skill", "decompose", {}),
+                "generate_diagram": ("research_assistant_skill", "diagram", {"format": "mermaid"}),
             }
 
             if action in action_mapping:
@@ -436,7 +436,7 @@ if __name__ == "__main__":
         name="architect-agent",
         type="architect",
         priority=2,
-        skills=["database-model-generator-cskill", "api-doc-generator-cskill", "research-assistant-cskill"],
+        skills=["database_model_generator_skill", "api_doc_generator_skill", "research_assistant_skill"],
         description="架构师代理"
     )
 

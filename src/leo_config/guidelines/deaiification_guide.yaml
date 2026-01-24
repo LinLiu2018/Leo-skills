@@ -194,8 +194,8 @@ examples:
 
 skill_default_modes:
   # 创意类技能使用创意模式
-  "project-marketing-doc-generator-cskill": "creative"
-  "content-layout-leo-cskill": "creative"
+  "project_marketing_doc_generator_skill": "creative"
+  "content_layout_leo_skill": "creative"
   "realestate-news-publisher": "creative"
 
   # 严谨类技能使用严谨模式

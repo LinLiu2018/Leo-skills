@@ -298,7 +298,7 @@ BUSINESS_SCENARIOS = [
         "desc": "营销文档、项目分析、资讯发布",
         "agents": ["realestate-agent", "creative-agent"],
         "workflows": ["content-pipeline"],
-        "skills": ["project-marketing-doc-generator-cskill", "realestate-news-publisher-cskill"],
+        "skills": ["project_marketing_doc_generator_skill", "realestate_news_publisher_skill"],
     },
     {
         "icon": "🥬",
@@ -306,7 +306,7 @@ BUSINESS_SCENARIOS = [
         "desc": "摊位销售、项目资料、客户管理",
         "agents": ["task-agent", "research-agent"],
         "workflows": ["research-pipeline"],
-        "skills": ["project-marketing-doc-generator-cskill", "data-analyzer-cskill"],
+        "skills": ["project_marketing_doc_generator_skill", "data_analyzer_skill"],
     },
     {
         "icon": "📱",
@@ -314,7 +314,7 @@ BUSINESS_SCENARIOS = [
         "desc": "裂变小程序、前后端开发、部署",
         "agents": ["frontend-agent", "backend-agent", "devops-agent"],
         "workflows": ["miniprogram-dev-pipeline", "fullstack-dev-pipeline"],
-        "skills": ["miniprogram-page-generator-cskill", "flask-api-generator-cskill"],
+        "skills": ["miniprogram_page_generator_skill", "flask_api_generator_skill"],
     },
     {
         "icon": "🔬",
@@ -322,7 +322,7 @@ BUSINESS_SCENARIOS = [
         "desc": "行业分析、竞品调研、数据报告",
         "agents": ["research-agent", "analysis-agent"],
         "workflows": ["research-pipeline", "analysis-pipeline"],
-        "skills": ["research-assistant-cskill", "data-analyzer-cskill"],
+        "skills": ["research_assistant_skill", "data_analyzer_skill"],
     },
     {
         "icon": "[NOTE]",
@@ -330,7 +330,7 @@ BUSINESS_SCENARIOS = [
         "desc": "公众号文章、排版、多平台发布",
         "agents": ["creative-agent", "task-agent"],
         "workflows": ["content-pipeline"],
-        "skills": ["content-layout-leo-cskill"],
+        "skills": ["content_layout_leo_skill"],
     },
     {
         "icon": "🛡️",
@@ -338,7 +338,7 @@ BUSINESS_SCENARIOS = [
         "desc": "安全扫描、漏洞检测、代码审计",
         "agents": ["security-agent", "test-agent"],
         "workflows": ["api-pipeline"],
-        "skills": ["security-scan-cskill", "unit-test-generator-cskill"],
+        "skills": ["security_scan_skill", "unit_test_generator_skill"],
     },
 ]
 

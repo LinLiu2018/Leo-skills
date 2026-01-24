@@ -75,17 +75,17 @@ src/leo_skills/
 | 技能 | 功能 |
 |------|------|
 | project-marketing-doc-generator | 楼盘/项目营销文档生成 |
-| content-layout-leo-cskill | 智能排版 |
+| content_layout_leo_skill | 智能排版 |
 | realestate-news-publisher | 房产资讯发布 |
 
 ### utilities/
 | 技能 | 功能 |
 |------|------|
-| data-analyzer-cskill | 销售/市场数据分析 |
-| web-search-cskill | 网页搜索与信息采集 |
-| tech-extractor-cskill | 技术文章信息提取 |
-| research-assistant-cskill | 研究助手 |
-| obsidian-sync-cskill | Obsidian笔记同步 |
+| data_analyzer_skill | 销售/市场数据分析 |
+| web_search_skill | 网页搜索与信息采集 |
+| tech_extractor_skill | 技术文章信息提取 |
+| research_assistant_skill | 研究助手 |
+| obsidian_sync_skill | Obsidian笔记同步 |
 
 ---
 

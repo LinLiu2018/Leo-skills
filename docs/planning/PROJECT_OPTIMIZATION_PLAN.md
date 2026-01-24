@@ -224,7 +224,7 @@ User: "帮我发布一篇房产新闻"
   ↓
 Orchestrator: 识别为"内容发布"任务
   ↓
-Creative Agent: 调用realestate-news-publisher-cskill
+Creative Agent: 调用realestate_news_publisher_skill
   ↓
 Skill: 执行新闻采集→分析→生成→发布
   ↓

@@ -71,17 +71,17 @@ archive/             # 27 MB
 
 #### 恢复的3个工具 ✅
 
-1. **agent-skill-creator** (960.43 KB)
+1. **agent_skill_creator_skill** (960.43 KB)
    - 位置：`leo_skills/tools/`
    - 创建标准 `scripts/main.py`
    - 用于创建技能和代理
 
-2. **skill-evolution-assistant-cskill** (36.63 KB)
+2. **skill_evolution_assistant_skill** (36.63 KB)
    - 位置：`leo_skills/tools/`
    - 创建标准 `scripts/main.py`
    - 用于技能进化
 
-3. **skill-code-generator-cskill** (45.49 KB)
+3. **skill_code_generator_skill** (45.49 KB)
    - 位置：`leo_skills/development/`
    - 创建完整 `SKILL.md`
    - 用于快速生成技能代码
@@ -152,9 +152,9 @@ archive/             # 27 MB
 
 **新增的文件**：
 - scripts/cleanup_skills.py (清理工具)
-- leo_skills/tools/agent-skill-creator/scripts/main.py
-- leo_skills/tools/skill-evolution-assistant-cskill/scripts/main.py
-- leo_skills/development/skill-code-generator-cskill/SKILL.md
+- leo_skills/tools/agent_skill_creator_skill/scripts/main.py
+- leo_skills/tools/skill_evolution_assistant_skill/scripts/main.py
+- leo_skills/development/skill_code_generator_skill/SKILL.md
 - docs/planning/PHASE1_COMPLETION_REPORT.md
 - docs/planning/SKILL_TOOLS_RECOVERY_REPORT.md
 - docs/planning/PROJECT_OPTIMIZATION_SUMMARY.md (本文件)

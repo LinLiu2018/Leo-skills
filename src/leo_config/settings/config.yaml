@@ -15,8 +15,8 @@ project:
 
 skills:
   # 内容创作类
-  - name: "content-layout-leo-cskill"
-    path: "leo_skills/content-creation/content-layout-leo-cskill"
+  - name: "content_layout_leo_skill"
+    path: "leo_skills/content-creation/content_layout_leo_skill"
     category: "content-creation"
     enabled: true
     metadata:
@@ -24,8 +24,8 @@ skills:
       version: "1.0.0"
       activation_keywords: ["帮我排版", "生成格式"]
 
-  - name: "realestate-news-publisher-cskill"
-    path: "leo_skills/content-creation/realestate-news-publisher-cskill"
+  - name: "realestate_news_publisher_skill"
+    path: "leo_skills/content-creation/realestate_news_publisher_skill"
     category: "content-creation"
     enabled: true
     metadata:
@@ -33,15 +33,15 @@ skills:
       version: "1.0.0"
 
   # 工具类
-  - name: "research-assistant-cskill"
-    path: "leo_skills/utilities/research-assistant-cskill"
+  - name: "research_assistant_skill"
+    path: "leo_skills/utilities/research_assistant_skill"
     category: "utilities"
     enabled: true
     metadata:
       description: "智能研究助手"
 
-  - name: "web-search-cskill"
-    path: "leo_skills/utilities/web-search-cskill"
+  - name: "web_search_skill"
+    path: "leo_skills/utilities/web_search_skill"
     category: "utilities"
     enabled: true
     metadata:
@@ -49,8 +49,8 @@ skills:
       version: "1.0.0"
 
   # 数据分析类
-  - name: "data-analyzer-cskill"
-    path: "leo_skills/data-analysis/data-analyzer-cskill"
+  - name: "data_analyzer_skill"
+    path: "leo_skills/data-analysis/data_analyzer_skill"
     category: "data-analysis"
     enabled: true
     metadata:
@@ -58,22 +58,22 @@ skills:
       version: "1.0.0"
 
   # 工具框架类
-  - name: "agent-skill-creator"
-    path: "leo_skills/tools/agent-skill-creator"
+  - name: "agent_skill_creator_skill"
+    path: "leo_skills/tools/agent_skill_creator_skill"
     category: "tools"
     enabled: true
     metadata:
       description: "技能创建元技能"
 
-  - name: "article-to-prototype-cskill"
-    path: "leo_skills/tools/article-to-prototype-cskill"
+  - name: "article_to_prototype_skill"
+    path: "leo_skills/tools/article_to_prototype_skill"
     category: "tools"
     enabled: true
     metadata:
       description: "文章转代码原型"
 
-  - name: "project-marketing-doc-generator-cskill"
-    path: "leo_skills/tools/project-marketing-doc-generator-cskill"
+  - name: "project_marketing_doc_generator_skill"
+    path: "leo_skills/tools/project_marketing_doc_generator_skill"
     category: "tools"
     enabled: true
     metadata:
@@ -82,8 +82,8 @@ skills:
   # ==================== 开发类Skills (新增) ====================
 
   # 后端开发
-  - name: "flask-api-generator-cskill"
-    path: "leo_skills/development/backend/flask-api-generator-cskill"
+  - name: "flask_api_generator_skill"
+    path: "leo_skills/development/backend/flask_api_generator_skill"
     category: "development/backend"
     enabled: true
     metadata:
@@ -91,8 +91,8 @@ skills:
       version: "1.0.0"
       activation_keywords: ["生成Flask API", "创建API接口", "生成后端接口"]
 
-  - name: "database-model-generator-cskill"
-    path: "leo_skills/development/backend/database-model-generator-cskill"
+  - name: "database_model_generator_skill"
+    path: "leo_skills/development/backend/database_model_generator_skill"
     category: "development/backend"
     enabled: true
     metadata:
@@ -101,8 +101,8 @@ skills:
       activation_keywords: ["生成数据库模型", "创建数据模型", "数据库表"]
 
   # 前端开发
-  - name: "miniprogram-page-generator-cskill"
-    path: "leo_skills/development/frontend/miniprogram-page-generator-cskill"
+  - name: "miniprogram_page_generator_skill"
+    path: "leo_skills/development/frontend/miniprogram_page_generator_skill"
     category: "development/frontend"
     enabled: true
     metadata:
@@ -111,8 +111,8 @@ skills:
       activation_keywords: ["生成小程序页面", "创建小程序页面", "小程序页面"]
 
   # 部署运维
-  - name: "dockerfile-generator-cskill"
-    path: "leo_skills/development/deployment/dockerfile-generator-cskill"
+  - name: "dockerfile_generator_skill"
+    path: "leo_skills/development/deployment/dockerfile_generator_skill"
     category: "development/deployment"
     enabled: true
     metadata:
@@ -123,8 +123,8 @@ skills:
   # ==================== 第二阶段Skills ====================
 
   # Vue组件生成器
-  - name: "vue-component-generator-cskill"
-    path: "leo_skills/development/frontend/vue-component-generator-cskill"
+  - name: "vue_component_generator_skill"
+    path: "leo_skills/development/frontend/vue_component_generator_skill"
     category: "development/frontend"
     enabled: true
     metadata:
@@ -133,8 +133,8 @@ skills:
       activation_keywords: ["生成Vue组件", "创建Vue组件", "Vue3组件"]
 
   # 全栈项目脚手架
-  - name: "fullstack-project-scaffold-cskill"
-    path: "leo_skills/development/scaffold/fullstack-project-scaffold-cskill"
+  - name: "fullstack_project_scaffold_skill"
+    path: "leo_skills/development/scaffold/fullstack_project_scaffold_skill"
     category: "development/scaffold"
     enabled: true
     metadata:
@@ -143,8 +143,8 @@ skills:
       activation_keywords: ["创建项目", "生成项目结构", "项目脚手架"]
 
   # 单元测试生成器
-  - name: "unit-test-generator-cskill"
-    path: "leo_skills/development/testing/unit-test-generator-cskill"
+  - name: "unit_test_generator_skill"
+    path: "leo_skills/development/testing/unit_test_generator_skill"
     category: "development/testing"
     enabled: true
     metadata:
@@ -153,8 +153,8 @@ skills:
       activation_keywords: ["生成测试", "创建单元测试", "写测试用例"]
 
   # Nginx配置生成器
-  - name: "nginx-config-generator-cskill"
-    path: "leo_skills/development/deployment/nginx-config-generator-cskill"
+  - name: "nginx_config_generator_skill"
+    path: "leo_skills/development/deployment/nginx_config_generator_skill"
     category: "development/deployment"
     enabled: true
     metadata:
@@ -165,8 +165,8 @@ skills:
   # ==================== 第三阶段Skills ====================
 
   # React组件生成器
-  - name: "react-component-generator-cskill"
-    path: "leo_skills/development/frontend/react-component-generator-cskill"
+  - name: "react_component_generator_skill"
+    path: "leo_skills/development/frontend/react_component_generator_skill"
     category: "development/frontend"
     enabled: true
     metadata:
@@ -175,8 +175,8 @@ skills:
       activation_keywords: ["生成React组件", "创建React组件", "React组件"]
 
   # GitHub Actions生成器
-  - name: "github-actions-generator-cskill"
-    path: "leo_skills/development/deployment/github-actions-generator-cskill"
+  - name: "github_actions_generator_skill"
+    path: "leo_skills/development/deployment/github_actions_generator_skill"
     category: "development/deployment"
     enabled: true
     metadata:
@@ -185,8 +185,8 @@ skills:
       activation_keywords: ["生成GitHub Actions", "创建CI/CD", "配置自动化部署"]
 
   # E2E测试生成器
-  - name: "e2e-test-generator-cskill"
-    path: "leo_skills/development/testing/e2e-test-generator-cskill"
+  - name: "e2e_test_generator_skill"
+    path: "leo_skills/development/testing/e2e_test_generator_skill"
     category: "development/testing"
     enabled: true
     metadata:
@@ -195,8 +195,8 @@ skills:
       activation_keywords: ["生成E2E测试", "创建端到端测试", "自动化测试"]
 
   # 安全扫描技能
-  - name: "security-scan-cskill"
-    path: "leo_skills/development/security/security-scan-cskill"
+  - name: "security_scan_skill"
+    path: "leo_skills/development/security/security_scan_skill"
     category: "development/security"
     enabled: true
     metadata:
@@ -207,8 +207,8 @@ skills:
   # ==================== 补充Skills ====================
 
   # 前端补充
-  - name: "vue-page-generator-cskill"
-    path: "leo_skills/development/frontend/vue-page-generator-cskill"
+  - name: "vue_page_generator_skill"
+    path: "leo_skills/development/frontend/vue_page_generator_skill"
     category: "development/frontend"
     enabled: true
     metadata:
@@ -216,8 +216,8 @@ skills:
       version: "1.0.0"
       activation_keywords: ["生成Vue页面", "创建Vue页面"]
 
-  - name: "miniprogram-component-generator-cskill"
-    path: "leo_skills/development/frontend/miniprogram-component-generator-cskill"
+  - name: "miniprogram_component_generator_skill"
+    path: "leo_skills/development/frontend/miniprogram_component_generator_skill"
     category: "development/frontend"
     enabled: true
     metadata:
@@ -225,8 +225,8 @@ skills:
       version: "1.0.0"
       activation_keywords: ["生成小程序组件", "创建小程序组件"]
 
-  - name: "css-layout-generator-cskill"
-    path: "leo_skills/development/frontend/css-layout-generator-cskill"
+  - name: "css_layout_generator_skill"
+    path: "leo_skills/development/frontend/css_layout_generator_skill"
     category: "development/frontend"
     enabled: true
     metadata:
@@ -235,8 +235,8 @@ skills:
       activation_keywords: ["生成CSS布局", "创建布局"]
 
   # 后端补充
-  - name: "flask-auth-generator-cskill"
-    path: "leo_skills/development/backend/flask-auth-generator-cskill"
+  - name: "flask_auth_generator_skill"
+    path: "leo_skills/development/backend/flask_auth_generator_skill"
     category: "development/backend"
     enabled: true
     metadata:
@@ -244,8 +244,8 @@ skills:
       version: "1.0.0"
       activation_keywords: ["生成认证模块", "创建登录功能"]
 
-  - name: "fastapi-endpoint-generator-cskill"
-    path: "leo_skills/development/backend/fastapi-endpoint-generator-cskill"
+  - name: "fastapi_endpoint_generator_skill"
+    path: "leo_skills/development/backend/fastapi_endpoint_generator_skill"
     category: "development/backend"
     enabled: true
     metadata:
@@ -253,8 +253,8 @@ skills:
       version: "1.0.0"
       activation_keywords: ["生成FastAPI端点", "创建FastAPI接口"]
 
-  - name: "api-doc-generator-cskill"
-    path: "leo_skills/development/backend/api-doc-generator-cskill"
+  - name: "api_doc_generator_skill"
+    path: "leo_skills/development/backend/api_doc_generator_skill"
     category: "development/backend"
     enabled: true
     metadata:
@@ -263,8 +263,8 @@ skills:
       activation_keywords: ["生成API文档", "创建接口文档"]
 
   # 脚手架补充
-  - name: "miniprogram-project-scaffold-cskill"
-    path: "leo_skills/development/scaffold/miniprogram-project-scaffold-cskill"
+  - name: "miniprogram_project_scaffold_skill"
+    path: "leo_skills/development/scaffold/miniprogram_project_scaffold_skill"
     category: "development/scaffold"
     enabled: true
     metadata:
@@ -272,8 +272,8 @@ skills:
       version: "1.0.0"
       activation_keywords: ["创建小程序项目", "小程序脚手架"]
 
-  - name: "flask-api-scaffold-cskill"
-    path: "leo_skills/development/scaffold/flask-api-scaffold-cskill"
+  - name: "flask_api_scaffold_skill"
+    path: "leo_skills/development/scaffold/flask_api_scaffold_skill"
     category: "development/scaffold"
     enabled: true
     metadata:
@@ -282,8 +282,8 @@ skills:
       activation_keywords: ["创建Flask项目", "Flask脚手架"]
 
   # 部署补充
-  - name: "deployment-script-generator-cskill"
-    path: "leo_skills/development/deployment/deployment-script-generator-cskill"
+  - name: "deployment_script_generator_skill"
+    path: "leo_skills/development/deployment/deployment_script_generator_skill"
     category: "development/deployment"
     enabled: true
     metadata:
@@ -292,8 +292,8 @@ skills:
       activation_keywords: ["生成部署脚本", "创建部署配置"]
 
   # 测试补充
-  - name: "api-test-generator-cskill"
-    path: "leo_skills/development/testing/api-test-generator-cskill"
+  - name: "api_test_generator_skill"
+    path: "leo_skills/development/testing/api_test_generator_skill"
     category: "development/testing"
     enabled: true
     metadata:
@@ -302,8 +302,8 @@ skills:
       activation_keywords: ["生成API测试", "创建接口测试"]
 
   # 数据库迁移
-  - name: "database-migration-cskill"
-    path: "leo_skills/development/backend/database-migration-cskill"
+  - name: "database_migration_skill"
+    path: "leo_skills/development/backend/database_migration_skill"
     category: "development/backend"
     enabled: true
     metadata:
@@ -312,8 +312,8 @@ skills:
       activation_keywords: ["生成迁移脚本", "数据库迁移", "数据库变更"]
 
   # Docker Compose生成器
-  - name: "docker-compose-generator-cskill"
-    path: "leo_skills/development/deployment/docker-compose-generator-cskill"
+  - name: "docker_compose_generator_skill"
+    path: "leo_skills/development/deployment/docker_compose_generator_skill"
     category: "development/deployment"
     enabled: true
     metadata:
@@ -373,9 +373,9 @@ agents:
     priority: 1
     enabled: true
     skills:
-      - "content-layout-leo-cskill"
-      - "realestate-news-publisher-cskill"
-      - "project-marketing-doc-generator-cskill"
+      - "content_layout_leo_skill"
+      - "realestate_news_publisher_skill"
+      - "project_marketing_doc_generator_skill"
     metadata:
       description: "任务执行代理"
       activation_keywords: ["执行任务", "运行流程"]
@@ -385,9 +385,9 @@ agents:
     priority: 2
     enabled: true
     skills:
-      - "research-assistant-cskill"
-      - "web-search-cskill"
-      - "article-to-prototype-cskill"
+      - "research_assistant_skill"
+      - "web_search_skill"
+      - "article_to_prototype_skill"
     metadata:
       description: "研究代理"
       activation_keywords: ["帮我研究", "调研"]
@@ -397,7 +397,7 @@ agents:
     priority: 3
     enabled: true
     skills:
-      - "data-analyzer-cskill"
+      - "data_analyzer_skill"
     metadata:
       description: "分析代理"
       activation_keywords: ["分析数据", "生成报告"]
@@ -407,8 +407,8 @@ agents:
     priority: 4
     enabled: true
     skills:
-      - "content-layout-leo-cskill"
-      - "article-to-prototype-cskill"
+      - "content_layout_leo_skill"
+      - "article_to_prototype_skill"
     metadata:
       description: "创作代理"
       activation_keywords: ["创作内容", "生成文案"]
@@ -418,10 +418,10 @@ agents:
     priority: 5
     enabled: true
     skills:
-      - "project-marketing-doc-generator-cskill"
-      - "realestate-news-publisher-cskill"
-      - "web-search-cskill"
-      - "research-assistant-cskill"
+      - "project_marketing_doc_generator_skill"
+      - "realestate_news_publisher_skill"
+      - "web_search_skill"
+      - "research_assistant_skill"
     metadata:
       description: "房地产专业代理"
       activation_keywords: ["房地产", "楼盘", "项目营销"]
@@ -433,12 +433,12 @@ agents:
     priority: 10
     enabled: true
     skills:
-      - "flask-api-generator-cskill"
-      - "database-model-generator-cskill"
-      - "flask-auth-generator-cskill"
-      - "fastapi-endpoint-generator-cskill"
-      - "api-doc-generator-cskill"
-      - "database-migration-cskill"
+      - "flask_api_generator_skill"
+      - "database_model_generator_skill"
+      - "flask_auth_generator_skill"
+      - "fastapi_endpoint_generator_skill"
+      - "api_doc_generator_skill"
+      - "database_migration_skill"
     metadata:
       description: "后端开发代理"
       activation_keywords:
@@ -449,12 +449,12 @@ agents:
     priority: 11
     enabled: true
     skills:
-      - "miniprogram-page-generator-cskill"
-      - "vue-component-generator-cskill"
-      - "react-component-generator-cskill"
-      - "vue-page-generator-cskill"
-      - "miniprogram-component-generator-cskill"
-      - "css-layout-generator-cskill"
+      - "miniprogram_page_generator_skill"
+      - "vue_component_generator_skill"
+      - "react_component_generator_skill"
+      - "vue_page_generator_skill"
+      - "miniprogram_component_generator_skill"
+      - "css_layout_generator_skill"
     metadata:
       description: "前端开发代理"
       activation_keywords:
@@ -465,11 +465,11 @@ agents:
     priority: 12
     enabled: true
     skills:
-      - "dockerfile-generator-cskill"
-      - "nginx-config-generator-cskill"
-      - "github-actions-generator-cskill"
-      - "deployment-script-generator-cskill"
-      - "docker-compose-generator-cskill"
+      - "dockerfile_generator_skill"
+      - "nginx_config_generator_skill"
+      - "github_actions_generator_skill"
+      - "deployment_script_generator_skill"
+      - "docker_compose_generator_skill"
     metadata:
       description: "运维部署代理"
       activation_keywords:
@@ -480,9 +480,9 @@ agents:
     priority: 13
     enabled: true
     skills:
-      - "unit-test-generator-cskill"
-      - "e2e-test-generator-cskill"
-      - "api-test-generator-cskill"
+      - "unit_test_generator_skill"
+      - "e2e_test_generator_skill"
+      - "api_test_generator_skill"
     metadata:
       description: "测试代理"
       activation_keywords:
@@ -493,9 +493,9 @@ agents:
     priority: 14
     enabled: true
     skills:
-      - "fullstack-project-scaffold-cskill"
-      - "miniprogram-project-scaffold-cskill"
-      - "flask-api-scaffold-cskill"
+      - "fullstack_project_scaffold_skill"
+      - "miniprogram_project_scaffold_skill"
+      - "flask_api_scaffold_skill"
     metadata:
       description: "项目初始化代理"
       activation_keywords: ["创建项目", "项目脚手架", "初始化项目"]
@@ -505,7 +505,7 @@ agents:
     priority: 15
     enabled: true
     skills:
-      - "security-scan-cskill"
+      - "security_scan_skill"
     metadata:
       description: "安全审计代理"
       activation_keywords: ["安全扫描", "代码审计", "漏洞检测", "安全检查"]
@@ -517,8 +517,8 @@ agents:
     priority: 20
     enabled: true
     skills:
-      - "research-assistant-cskill"
-      - "article-to-prototype-cskill"
+      - "research_assistant_skill"
+      - "article_to_prototype_skill"
     metadata:
       description: "产品经理代理，负责需求分析和PRD编写"
       activation_keywords: ["需求文档", "产品设计", "用户故事", "PRD"]
@@ -528,9 +528,9 @@ agents:
     priority: 21
     enabled: true
     skills:
-      - "database-model-generator-cskill"
-      - "api-doc-generator-cskill"
-      - "research-assistant-cskill"
+      - "database_model_generator_skill"
+      - "api_doc_generator_skill"
+      - "research_assistant_skill"
     metadata:
       description: "架构师代理，负责系统设计和技术选型"
       activation_keywords: ["架构设计", "技术选型", "系统设计", "数据库设计"]
@@ -540,10 +540,10 @@ agents:
     priority: 22
     enabled: true
     skills:
-      - "miniprogram-page-generator-cskill"
-      - "miniprogram-component-generator-cskill"
-      - "miniprogram-project-scaffold-cskill"
-      - "css-layout-generator-cskill"
+      - "miniprogram_page_generator_skill"
+      - "miniprogram_component_generator_skill"
+      - "miniprogram_project_scaffold_skill"
+      - "css_layout_generator_skill"
     metadata:
       description: "移动开发代理，负责小程序和移动端开发"
       activation_keywords:

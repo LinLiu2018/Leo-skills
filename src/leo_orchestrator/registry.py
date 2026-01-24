@@ -88,8 +88,8 @@ class UnifiedRegistry:
 
         用法:
             registry.register_skill(
-                name="content-layout-leo-cskill",
-                path="leo_skills/content-creation/content-layout-leo-cskill",
+                name="content_layout_leo_skill",
+                path="leo_skills/content-creation/content_layout_leo_skill",
                 category="content-creation"
             )
         """
@@ -156,7 +156,7 @@ class UnifiedRegistry:
                 name="task-agent",
                 type="executor",
                 priority=1,
-                skills=["content-layout-leo-cskill", "realestate-news-publisher-cskill"]
+                skills=["content_layout_leo_skill", "realestate_news_publisher_skill"]
             )
         """
         if name in self.agents:
@@ -384,8 +384,8 @@ if __name__ == "__main__":
 
     # 方式1：手动注册Skills
     registry.register_skill(
-        name="content-layout-leo-cskill",
-        path="leo_skills/content-creation/content-layout-leo-cskill",
+        name="content_layout_leo_skill",
+        path="leo_skills/content-creation/content_layout_leo_skill",
         category="content-creation",
     )
 
@@ -397,7 +397,7 @@ if __name__ == "__main__":
         name="task-agent",
         type="executor",
         priority=1,
-        skills=["content-layout-leo-cskill", "realestate-news-publisher-cskill"],
+        skills=["content_layout_leo_skill", "realestate_news_publisher_skill"],
     )
 
     # 打印统计
@@ -405,5 +405,5 @@ if __name__ == "__main__":
 
     # 查询
     logger.info("查询示例:")
-    logger.info(f"content-layout-leo-cskill: {registry.get_skill('content-layout-leo-cskill')}")
+    logger.info(f"content_layout_leo_skill: {registry.get_skill('content_layout_leo_skill')}")
     logger.info(f"task-agent: {registry.get_agent('task-agent')}")

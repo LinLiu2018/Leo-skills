@@ -376,7 +376,7 @@ if __name__ == "__main__":
 
     # 执行单个操作
     result = executor.execute(
-        skill_name="content-layout-leo-cskill",
+        skill_name="content_layout_leo_skill",
         action="layout",
         content="测试内容",
         style="data_driven",
@@ -386,9 +386,9 @@ if __name__ == "__main__":
 
     # 批量执行
     tasks = [
-        {"skill": "content-layout-leo-cskill", "action": "layout", "params": {"content": "内容1"}},
+        {"skill": "content_layout_leo_skill", "action": "layout", "params": {"content": "内容1"}},
         {
-            "skill": "realestate-news-publisher-cskill",
+            "skill": "realestate_news_publisher_skill",
             "action": "publish",
             "params": {"title": "标题"},
         },

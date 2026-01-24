@@ -18,7 +18,7 @@ def test_prd_template_loading():
         name="pm-test",
         type="product_manager",
         priority=1,
-        skills=["research-assistant-cskill"],
+        skills=["research_assistant_skill"],
         description="Test Agent"
     )
     

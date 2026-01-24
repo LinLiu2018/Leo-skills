@@ -39,9 +39,9 @@ class AnalysisAgent(BaseAgent):
     def __init__(self, config: AgentConfig):
         super().__init__(config)
         self.capabilities = {
-            "data_analysis": "data-analyzer-cskill",
-            "trend_analysis": "data-analyzer-cskill",
-            "report_generation": "data-analyzer-cskill",
+            "data_analysis": "data_analyzer_skill",
+            "trend_analysis": "data_analyzer_skill",
+            "report_generation": "data_analyzer_skill",
         }
 
     def can_handle(self, task: str) -> float:
@@ -194,7 +194,7 @@ class AnalysisAgent(BaseAgent):
         """
         action = step["action"]
         params = step.get("params", {})
-        skill_name = "data-analyzer-cskill"
+        skill_name = "data_analyzer_skill"
 
         try:
             # 映射 action 到 skill 方法
@@ -212,7 +212,7 @@ class AnalysisAgent(BaseAgent):
                 skill_action, extra_params = action_mapping[action]
                 # 合并参数
                 call_params = {**params, **extra_params}
-                # 调用 data-analyzer-cskill
+                # 调用 data_analyzer_skill
                 execution_result = self.use_skill(skill_name, skill_action, **call_params)
                 # 处理 ExecutionResult 对象
                 if hasattr(execution_result, "result"):

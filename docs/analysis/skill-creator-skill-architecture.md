@@ -1,7 +1,7 @@
-# agent-skill-creator 技能架构分析报告
+# agent_skill_creator_skill 技能架构分析报告
 
 **分析视角**: 技能管理"创建/训练/维护/使用"全生命周期
-**分析对象**: agent-skill-creator (技能创建工具)
+**分析对象**: agent_skill_creator_skill (技能创建工具)
 **分析时间**: 2026年1月5日
 **分析师**: Claude Code + Leo
 
@@ -9,7 +9,7 @@
 
 ## 执行摘要
 
-agent-skill-creator 是一个强大的元技能工具，用于创建 Claude Skills。本报告从技能管理四要素（创建、训练、维护、使用）的角度，分析其现状、不足及优化建议。
+agent_skill_creator_skill 是一个强大的元技能工具，用于创建 Claude Skills。本报告从技能管理四要素（创建、训练、维护、使用）的角度，分析其现状、不足及优化建议。
 
 **核心结论**: 工具在"创建"和"使用"环节较强，"训练"环节有学习能力设计，"维护"环节缺乏持续监控和优化机制。
 
@@ -19,7 +19,7 @@ agent-skill-creator 是一个强大的元技能工具，用于创建 Claude Skil
 
 ### 1.1 当前机制
 
-**agent-skill-creator 的"创建"流程**:
+**agent_skill_creator_skill 的"创建"流程**:
 
 ```
 PHASE 1: DISCOVERY
@@ -109,7 +109,7 @@ class SkillTestSuite:
 
 ### 2.1 当前机制
 
-**agent-skill-creator 的"训练"设计**:
+**agent_skill_creator_skill 的"训练"设计**:
 
 ```
 PHASE 2: DESIGN

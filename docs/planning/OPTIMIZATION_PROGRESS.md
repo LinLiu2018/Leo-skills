@@ -10,13 +10,13 @@
 
 ### 1. WebSearch Skill创建 ✅
 
-**位置**: `leo_skills/utilities/web-search-cskill/`
+**位置**: `leo_skills/utilities/web_search_skill/`
 
 **文件**:
 
-- ✅ [README.md](leo_skills/utilities/web-search-cskill/README.md) - 完整文档
-- ✅ [SKILL.md](leo_skills/utilities/web-search-cskill/SKILL.md) - 技能说明
-- ✅ [web_search_skill.py](leo_skills/utilities/web-search-cskill/web_search_skill.py) - Python实现
+- ✅ [README.md](leo_skills/utilities/web_search_skill/README.md) - 完整文档
+- ✅ [SKILL.md](leo_skills/utilities/web_search_skill/SKILL.md) - 技能说明
+- ✅ [web_search_skill.py](leo_skills/utilities/web_search_skill/web_search_skill.py) - Python实现
 
 **功能**:
 
@@ -37,7 +37,7 @@
 
 **更新内容**:
 
-- ✅ 添加web-search-cskill到capabilities
+- ✅ 添加web_search_skill到capabilities
 - ✅ 更新config.yaml配置
 - ✅ Research Agent现在有3个Skills
 
@@ -45,8 +45,8 @@
 
 ```python
 capabilities = {
-    "research": "research-assistant-cskill",
-    "web_search": "web-search-cskill",  # 🆕 新增
+    "research": "research_assistant_skill",
+    "web_search": "web_search_skill",  # 🆕 新增
 }
 ```
 
@@ -55,20 +55,20 @@ capabilities = {
 ```yaml
 research-agent:
   skills:
-    - research-assistant-cskill
-    - web-search-cskill  # 🆕 新增
-    - article-to-prototype-cskill
+    - research_assistant_skill
+    - web_search_skill  # 🆕 新增
+    - article_to_prototype_skill
 ```
 
 ### 3. Data Analyzer Skill创建 ✅
 
-**位置**: `leo_skills/data-analysis/data-analyzer-cskill/`
+**位置**: `leo_skills/data-analysis/data_analyzer_skill/`
 
 **文件**:
 
-- ✅ [README.md](leo_skills/data-analysis/data-analyzer-cskill/README.md) - 完整文档
-- ✅ [SKILL.md](leo_skills/data-analysis/data-analyzer-cskill/SKILL.md) - 技能说明
-- ✅ [data_analyzer_skill.py](leo_skills/data-analysis/data-analyzer-cskill/data_analyzer_skill.py) - Python实现
+- ✅ [README.md](leo_skills/data-analysis/data_analyzer_skill/README.md) - 完整文档
+- ✅ [SKILL.md](leo_skills/data-analysis/data_analyzer_skill/SKILL.md) - 技能说明
+- ✅ [data_analyzer_skill.py](leo_skills/data-analysis/data_analyzer_skill/data_analyzer_skill.py) - Python实现
 
 **功能**:
 
@@ -89,7 +89,7 @@ research-agent:
 
 **更新内容**:
 
-- ✅ 添加data-analyzer-cskill到capabilities
+- ✅ 添加data_analyzer_skill到capabilities
 - ✅ 更新config.yaml配置
 - ✅ Analysis Agent现在有1个Skill
 
@@ -97,9 +97,9 @@ research-agent:
 
 ```python
 capabilities = {
-    "data_analysis": "data-analyzer-cskill",
-    "trend_analysis": "data-analyzer-cskill",
-    "report_generation": "data-analyzer-cskill"
+    "data_analysis": "data_analyzer_skill",
+    "trend_analysis": "data_analyzer_skill",
+    "report_generation": "data_analyzer_skill"
 }
 ```
 
@@ -108,7 +108,7 @@ capabilities = {
 ```yaml
 analysis-agent:
   skills:
-    - data-analyzer-cskill  # 🆕 新增
+    - data_analyzer_skill  # 🆕 新增
 ```
 
 ### 5. RealEstate Agent创建 ✅
@@ -129,10 +129,10 @@ analysis-agent:
 
 **集成Skills**:
 
-- project-marketing-doc-generator-cskill
-- realestate-news-publisher-cskill
-- web-search-cskill
-- research-assistant-cskill
+- project_marketing_doc_generator_skill
+- realestate_news_publisher_skill
+- web_search_skill
+- research_assistant_skill
 
 **激活关键词**:
 
@@ -146,10 +146,10 @@ realestate-agent:
   type: realestate
   priority: 5
   skills:
-    - project-marketing-doc-generator-cskill
-    - realestate-news-publisher-cskill
-    - web-search-cskill
-    - research-assistant-cskill
+    - project_marketing_doc_generator_skill
+    - realestate_news_publisher_skill
+    - web_search_skill
+    - research_assistant_skill
 ```
 
 ### 6. 系统测试 ✅
@@ -276,9 +276,9 @@ class Skill:
 system.execute_task("分析宁波房地产市场", agent_name="realestate-agent")
 
 # 自动执行:
-# 1. 搜索市场信息（web-search-cskill）
-# 2. 收集竞品数据（research-assistant-cskill）
-# 3. 分析市场趋势（data-analyzer-cskill）
+# 1. 搜索市场信息（web_search_skill）
+# 2. 收集竞品数据（research_assistant_skill）
+# 3. 分析市场趋势（data_analyzer_skill）
 # 4. 生成分析报告
 ```
 
@@ -291,8 +291,8 @@ system.execute_task("生成淮安建华官园营销手册", agent_name="realesta
 # 自动执行:
 # 1. 收集项目信息
 # 2. 分析目标客户
-# 3. 生成营销文案（project-marketing-doc-generator-cskill）
-# 4. 优化内容布局（content-layout-leo-cskill）
+# 3. 生成营销文案（project_marketing_doc_generator_skill）
+# 4. 优化内容布局（content_layout_leo_skill）
 ```
 
 ### 3. 数据分析和报告
@@ -302,7 +302,7 @@ system.execute_task("生成淮安建华官园营销手册", agent_name="realesta
 system.execute_task("分析销售数据", agent_name="analysis-agent", data=[100, 120, 110, 130, 150])
 
 # 自动执行:
-# 1. 描述性统计（data-analyzer-cskill）
+# 1. 描述性统计（data_analyzer_skill）
 # 2. 趋势分析
 # 3. 生成报告
 ```
@@ -317,35 +317,35 @@ system.execute_task("分析销售数据", agent_name="analysis-agent", data=[100
 
 ```yaml
 skills:
-  - name: "web-search-cskill"
-    path: "leo_skills/utilities/web-search-cskill"
+  - name: "web_search_skill"
+    path: "leo_skills/utilities/web_search_skill"
     category: "utilities"
     enabled: true
 
-  - name: "data-analyzer-cskill"
-    path: "leo_skills/data-analysis/data-analyzer-cskill"
+  - name: "data_analyzer_skill"
+    path: "leo_skills/data-analysis/data_analyzer_skill"
     category: "data-analysis"
     enabled: true
 
 agents:
   - name: "research-agent"
     skills:
-      - "research-assistant-cskill"
-      - "web-search-cskill"  # 新增
-      - "article-to-prototype-cskill"
+      - "research_assistant_skill"
+      - "web_search_skill"  # 新增
+      - "article_to_prototype_skill"
 
   - name: "analysis-agent"
     skills:
-      - "data-analyzer-cskill"  # 新增
+      - "data_analyzer_skill"  # 新增
 
   - name: "realestate-agent"  # 新增
     type: "realestate"
     priority: 5
     skills:
-      - "project-marketing-doc-generator-cskill"
-      - "realestate-news-publisher-cskill"
-      - "web-search-cskill"
-      - "research-assistant-cskill"
+      - "project_marketing_doc_generator_skill"
+      - "realestate_news_publisher_skill"
+      - "web_search_skill"
+      - "research_assistant_skill"
 ```
 
 ### Agent注册

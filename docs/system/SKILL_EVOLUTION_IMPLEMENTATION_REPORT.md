@@ -185,7 +185,7 @@ leo_skills/core/evolution/
 
 ```bash
 cp leo_skills/core/evolution/config/evolution_config_template.yaml \
-   leo_skills/content-creation/realestate-news-publisher-cskill/config/evolution_config.yaml
+   leo_skills/content-creation/realestate_news_publisher_skill/config/evolution_config.yaml
 ```
 
 **步骤2：修改技能代码**
@@ -237,20 +237,20 @@ class RealEstateNewsPublisher(EvolvableSkill):
 
 **优先级1（已有优化基础）：**
 
-- ✅ realestate-news-publisher-cskill（已有optimizer.py）
-- ✅ agent-skill-creator（已有AgentDB集成）
+- ✅ realestate_news_publisher_skill（已有optimizer.py）
+- ✅ agent_skill_creator_skill（已有AgentDB集成）
 
 **优先级2（相对简单）：**
 
-- content-layout-leo-cskill
-- research-assistant-cskill
+- content_layout_leo_skill
+- research_assistant_skill
 
 **优先级3（较复杂）：**
 
-- project-marketing-doc-generator-cskill
-- article-to-prototype-cskill
-- web-search-cskill
-- data-analyzer-cskill
+- project_marketing_doc_generator_skill
+- article_to_prototype_skill
+- web_search_skill
+- data_analyzer_skill
 
 ## 💡 使用建议
 

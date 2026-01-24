@@ -40,8 +40,8 @@ class ProductManagerAgent(BaseAgent):
     def __init__(self, config: AgentConfig):
         super().__init__(config)
         self.capabilities = {
-            "market_research": "research-assistant-cskill",
-            "web_search": "web-search-cskill"
+            "market_research": "research_assistant_skill",
+            "web_search": "web_search_skill"
         }
 
     def can_handle(self, task: str) -> float:
@@ -312,30 +312,30 @@ class ProductManagerAgent(BaseAgent):
         try:
             # 映射 action 到 skill 方法
             action_mapping = {
-                # Research Tasks -> research-assistant-cskill
-                "research_background": ("research-assistant-cskill", "research", {}),
-                "organize_requirements": ("research-assistant-cskill", "organize", {}),
-                "design_features": ("research-assistant-cskill", "design", {}),
-                "identify_personas": ("research-assistant-cskill", "analyze", {}),
-                "analyze_scenarios": ("research-assistant-cskill", "analyze", {}),
+                # Research Tasks -> research_assistant_skill
+                "research_background": ("research_assistant_skill", "research", {}),
+                "organize_requirements": ("research_assistant_skill", "organize", {}),
+                "design_features": ("research_assistant_skill", "design", {}),
+                "identify_personas": ("research_assistant_skill", "analyze", {}),
+                "analyze_scenarios": ("research_assistant_skill", "analyze", {}),
                 
-                # Generation Tasks -> text-generator-cskill (REAL GEN)
-                "generate_prd": ("text-generator-cskill", "generate", {"format": "prd"}),
-                "write_stories": ("text-generator-cskill", "generate", {"format": "user_story"}),
-                "define_acceptance_criteria": ("text-generator-cskill", "generate", {}),
-                "generate_report": ("text-generator-cskill", "generate", {}),
-                "generate_roadmap": ("text-generator-cskill", "generate", {"format": "roadmap"}),
+                # Generation Tasks -> text_generator_skill (REAL GEN)
+                "generate_prd": ("text_generator_skill", "generate", {"format": "prd"}),
+                "write_stories": ("text_generator_skill", "generate", {"format": "user_story"}),
+                "define_acceptance_criteria": ("text_generator_skill", "generate", {}),
+                "generate_report": ("text_generator_skill", "generate", {}),
+                "generate_roadmap": ("text_generator_skill", "generate", {"format": "roadmap"}),
                 
-                # Analysis Tasks -> research-assistant-cskill
-                "identify_competitors": ("web-search-cskill", "search", {}),
-                "compare_features": ("research-assistant-cskill", "compare", {}),
-                "swot_analysis": ("research-assistant-cskill", "analyze", {"type": "swot"}),
-                "set_goals": ("research-assistant-cskill", "plan", {}),
-                "prioritize_features": ("research-assistant-cskill", "prioritize", {}),
-                "plan_timeline": ("research-assistant-cskill", "schedule", {}),
-                "collect_requirements": ("research-assistant-cskill", "collect", {}),
-                "analyze_requirements": ("research-assistant-cskill", "analyze", {}),
-                "confirm_requirements": ("research-assistant-cskill", "confirm", {}),
+                # Analysis Tasks -> research_assistant_skill
+                "identify_competitors": ("web_search_skill", "search", {}),
+                "compare_features": ("research_assistant_skill", "compare", {}),
+                "swot_analysis": ("research_assistant_skill", "analyze", {"type": "swot"}),
+                "set_goals": ("research_assistant_skill", "plan", {}),
+                "prioritize_features": ("research_assistant_skill", "prioritize", {}),
+                "plan_timeline": ("research_assistant_skill", "schedule", {}),
+                "collect_requirements": ("research_assistant_skill", "collect", {}),
+                "analyze_requirements": ("research_assistant_skill", "analyze", {}),
+                "confirm_requirements": ("research_assistant_skill", "confirm", {}),
             }
 
             if action in action_mapping:
@@ -487,7 +487,7 @@ if __name__ == "__main__":
         name="product-manager-agent",
         type="product_manager",
         priority=1,
-        skills=["research-assistant-cskill", "web-search-cskill"],
+        skills=["research_assistant_skill", "web_search_skill"],
         description="产品经理代理"
     )
 

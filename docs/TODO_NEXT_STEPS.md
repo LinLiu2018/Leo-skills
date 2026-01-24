@@ -28,9 +28,9 @@
 
 **关联 Skills**：
 
-- research-assistant-cskill（技术调研）
-- data-analyzer-cskill（数据建模）
-- project-marketing-doc-generator-cskill（文档生成）
+- research_assistant_skill（技术调研）
+- data_analyzer_skill（数据建模）
+- project_marketing_doc_generator_skill（文档生成）
 
 **激活关键词**：
 
@@ -61,9 +61,9 @@
 
 **关联 Skills**：
 
-- miniprogram-page-generator-cskill
-- miniprogram-component-generator-cskill
-- miniprogram-project-scaffold-cskill
+- miniprogram_page_generator_skill
+- miniprogram_component_generator_skill
+- miniprogram_project_scaffold_skill
 
 **激活关键词**：
 
@@ -89,9 +89,9 @@
 
 **关联 Skills**：
 
-- research-assistant-cskill（市场调研）
-- project-marketing-doc-generator-cskill（文档生成）
-- data-analyzer-cskill（数据分析）
+- research_assistant_skill（市场调研）
+- project_marketing_doc_generator_skill（文档生成）
+- data_analyzer_skill（数据分析）
 
 **激活关键词**：
 
@@ -151,8 +151,8 @@ steps:
 
 **集成 Skills**：
 
-- content-layout-leo-cskill（智能排版）
-- realestate-news-publisher-cskill（房产资讯发布）
+- content_layout_leo_skill（智能排版）
+- realestate_news_publisher_skill（房产资讯发布）
 
 ---
 
@@ -177,9 +177,9 @@ steps:
 
 **集成 Skills**：
 
-- research-assistant-cskill（研究助手）
-- web-search-cskill（网页搜索）
-- obsidian-sync-cskill（Obsidian 同步）
+- research_assistant_skill（研究助手）
+- web_search_skill（网页搜索）
+- obsidian_sync_skill（Obsidian 同步）
 
 ---
 

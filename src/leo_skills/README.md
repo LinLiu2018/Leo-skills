@@ -16,8 +16,8 @@
 
 | 技能 | 描述 | 激活词 |
 |------|------|--------|
-| [realestate-news-publisher-cskill](content-creation/realestate-news-publisher-cskill/) | 房产资讯自动化发布 - 收集政策、市场资讯，AI生成并发布到公众号 | "发布房产资讯"、"生成楼市分析" |
-| [content-layout-leo-cskill](content-creation/content-layout-leo-cskill/) | 智能内容排版 - 多平台排版，10种风格，AI图片匹配 | "帮我排版"、"生成公众号格式" |
+| [realestate_news_publisher_skill](content-creation/realestate_news_publisher_skill/) | 房产资讯自动化发布 - 收集政策、市场资讯，AI生成并发布到公众号 | "发布房产资讯"、"生成楼市分析" |
+| [content_layout_leo_skill](content-creation/content_layout_leo_skill/) | 智能内容排版 - 多平台排版，10种风格，AI图片匹配 | "帮我排版"、"生成公众号格式" |
 
 ### 📊 数据分析类 (data-analysis)
 
@@ -31,9 +31,9 @@
 
 | 技能 | 描述 | 激活词 |
 |------|------|--------|
-| [research-assistant-cskill](utilities/research-assistant-cskill/) | 智能研究助手 - 文献调研、信息整合、知识管理 | "帮我研究"、"文献调研"、"信息整理" |
-| [obsidian-sync-cskill](utilities/obsidian-sync-cskill/) | Obsidian同步技能 - Claude/Leo输出同步到Obsidian第二大脑 | "保存到Obsidian"、"同步笔记"、"创建日记" |
-| [web-search-cskill](utilities/web-search-cskill/) | 网络搜索技能 - 网络搜索和信息收集 | "搜索"、"查找资料" |
+| [research_assistant_skill](utilities/research_assistant_skill/) | 智能研究助手 - 文献调研、信息整合、知识管理 | "帮我研究"、"文献调研"、"信息整理" |
+| [obsidian_sync_skill](utilities/obsidian_sync_skill/) | Obsidian同步技能 - Claude/Leo输出同步到Obsidian第二大脑 | "保存到Obsidian"、"同步笔记"、"创建日记" |
+| [web_search_skill](utilities/web_search_skill/) | 网络搜索技能 - 网络搜索和信息收集 | "搜索"、"查找资料" |
 
 ---
 
@@ -41,9 +41,9 @@
 
 | 技能 | 描述 | 激活词 |
 |------|------|--------|
-| [agent-skill-creator](tools/agent-skill-creator/) | 技能创建元技能 - 自动化创建完整Claude技能 | "创建agent"、"自动化工作流"、"创建技能" |
-| [article-to-prototype-cskill](tools/article-to-prototype-cskill/) | 文章转代码原型 - 从技术文档生成可执行代码 | "从论文生成代码"、"实现这个算法" |
-| [project-marketing-doc-generator-cskill](tools/project-marketing-doc-generator-cskill/) | 营销文档生成器 - 快速生成商业项目营销资料 | "生成营销文档"、"创建销售手册"、"项目资料" |
+| [agent_skill_creator_skill](tools/agent_skill_creator_skill/) | 技能创建元技能 - 自动化创建完整Claude技能 | "创建agent"、"自动化工作流"、"创建技能" |
+| [article_to_prototype_skill](tools/article_to_prototype_skill/) | 文章转代码原型 - 从技术文档生成可执行代码 | "从论文生成代码"、"实现这个算法" |
+| [project_marketing_doc_generator_skill](tools/project_marketing_doc_generator_skill/) | 营销文档生成器 - 快速生成商业项目营销资料 | "生成营销文档"、"创建销售手册"、"项目资料" |
 
 ---
 
@@ -53,7 +53,7 @@
 
 ```bash
 # 符号链接到 Claude Code 技能目录
-ln -s ~/ai-agents-workspace/leo-skills/content-creation/realestate-news-publisher-cskill ~/.claude/skills/
+ln -s ~/ai-agents-workspace/leo-skills/content-creation/realestate_news_publisher_skill ~/.claude/skills/
 ```
 
 ### 方式二：批量注册所有技能

@@ -56,14 +56,14 @@ Leo AI Agent System采用三层架构：
 
 | Skill名称 | 分类 | 功能 |
 |----------|------|------|
-| content-layout-leo-cskill | content-creation | 智能内容排版 |
-| realestate-news-publisher-cskill | content-creation | 房产资讯发布 |
-| research-assistant-cskill | utilities | 智能研究助手 |
-| web-search-cskill | utilities | 网络搜索 |
-| data-analyzer-cskill | data-analysis | 数据分析 |
-| agent-skill-creator | tools | 技能创建元技能 |
-| article-to-prototype-cskill | tools | 文章转代码原型 |
-| project-marketing-doc-generator-cskill | tools | 项目营销文档生成 |
+| content_layout_leo_skill | content-creation | 智能内容排版 |
+| realestate_news_publisher_skill | content-creation | 房产资讯发布 |
+| research_assistant_skill | utilities | 智能研究助手 |
+| web_search_skill | utilities | 网络搜索 |
+| data_analyzer_skill | data-analysis | 数据分析 |
+| agent_skill_creator_skill | tools | 技能创建元技能 |
+| article_to_prototype_skill | tools | 文章转代码原型 |
+| project_marketing_doc_generator_skill | tools | 项目营销文档生成 |
 
 **Skill结构**:
 
@@ -108,31 +108,31 @@ class Skill:
 ```yaml
 task-agent:
   skills:
-    - content-layout-leo-cskill
-    - realestate-news-publisher-cskill
-    - project-marketing-doc-generator-cskill
+    - content_layout_leo_skill
+    - realestate_news_publisher_skill
+    - project_marketing_doc_generator_skill
 
 research-agent:
   skills:
-    - research-assistant-cskill
-    - web-search-cskill          # 🆕 新增
-    - article-to-prototype-cskill
+    - research_assistant_skill
+    - web_search_skill          # 🆕 新增
+    - article_to_prototype_skill
 
 analysis-agent:
   skills:
-    - data-analyzer-cskill       # 🆕 新增
+    - data_analyzer_skill       # 🆕 新增
 
 creative-agent:
   skills:
-    - content-layout-leo-cskill
-    - article-to-prototype-cskill
+    - content_layout_leo_skill
+    - article_to_prototype_skill
 
 realestate-agent:
   skills:
-    - project-marketing-doc-generator-cskill
-    - realestate-news-publisher-cskill
-    - web-search-cskill
-    - research-assistant-cskill
+    - project_marketing_doc_generator_skill
+    - realestate_news_publisher_skill
+    - web_search_skill
+    - research_assistant_skill
 ```
 
 **Agent工作流程**:
@@ -332,8 +332,8 @@ result = system.run_workflow(
 # Agent内部调用Skill
 class ResearchAgent(BaseAgent):
     def execute(self, task, **kwargs):
-        # 调用web-search-cskill
-        results = self.use_skill("web-search-cskill", "search", query=task)
+        # 调用web_search_skill
+        results = self.use_skill("web_search_skill", "search", query=task)
         return results
 ```
 
@@ -372,9 +372,9 @@ Workflow: content-pipeline
     ↓
 ┌─────────────────────────────────────────┐
 │ Step 1: Research Agent                  │
-│ ├─ 调用 web-search-cskill              │
+│ ├─ 调用 web_search_skill              │
 │ │  └─ 搜索"宁波房地产市场"             │
-│ ├─ 调用 research-assistant-cskill      │
+│ ├─ 调用 research_assistant_skill      │
 │ │  └─ 整理搜索结果                     │
 │ └─ 输出: 市场数据和信息                │
 └─────────────────────────────────────────┘
@@ -382,7 +382,7 @@ Workflow: content-pipeline
 ┌─────────────────────────────────────────┐
 │ Step 2: Creative Agent                  │
 │ ├─ 接收: 市场数据                      │
-│ ├─ 调用 article-to-prototype-cskill    │
+│ ├─ 调用 article_to_prototype_skill    │
 │ │  └─ 生成文章结构                     │
 │ └─ 输出: 文章草稿                      │
 └─────────────────────────────────────────┘
@@ -390,9 +390,9 @@ Workflow: content-pipeline
 ┌─────────────────────────────────────────┐
 │ Step 3: Task Agent                      │
 │ ├─ 接收: 文章草稿                      │
-│ ├─ 调用 content-layout-leo-cskill      │
+│ ├─ 调用 content_layout_leo_skill      │
 │ │  └─ 优化排版                         │
-│ ├─ 调用 realestate-news-publisher-cskill│
+│ ├─ 调用 realestate_news_publisher_skill│
 │ │  └─ 发布文章                         │
 │ └─ 输出: 最终发布结果                  │
 └─────────────────────────────────────────┘
@@ -458,17 +458,17 @@ result = system.execute_task(
 ### 示例2: 直接调用Skill
 
 ```python
-# 调用web-search-cskill
+# 调用web_search_skill
 result = system.call_skill(
-    "web-search-cskill",
+    "web_search_skill",
     "search",
     query="人工智能发展趋势",
     max_results=10
 )
 
-# 调用data-analyzer-cskill
+# 调用data_analyzer_skill
 result = system.call_skill(
-    "data-analyzer-cskill",
+    "data_analyzer_skill",
     "analyze",
     data=[100, 120, 110, 130, 150],
     analysis_type="trend"
@@ -612,7 +612,7 @@ system = LeoSystem()
 system.execute_task("分析数据", agent_name="analysis-agent")
 
 # 使用Skill
-system.call_skill("web-search-cskill", "search", query="...")
+system.call_skill("web_search_skill", "search", query="...")
 ```
 
 ### 需要开发

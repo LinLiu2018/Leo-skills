@@ -24,13 +24,13 @@
 | 归档大小 | - | 27 MB | - |
 
 **保留的7个有效技能**：
-1. content-layout-leo-cskill (73.19 KB)
-2. realestate-news-publisher-cskill (1.0 MB，清理venv后)
-3. text-generator-cskill (14.69 KB)
-4. twitter-monitor-cskill (49.71 KB)
-5. article-to-prototype-cskill (204.79 KB)
-6. obsidian-sync-cskill (76.39 KB)
-7. research-assistant-cskill (174.66 KB)
+1. content_layout_leo_skill (73.19 KB)
+2. realestate_news_publisher_skill (1.0 MB，清理venv后)
+3. text_generator_skill (14.69 KB)
+4. twitter_monitor_skill (49.71 KB)
+5. article_to_prototype_skill (204.79 KB)
+6. obsidian_sync_skill (76.39 KB)
+7. research_assistant_skill (174.66 KB)
 
 ---
 

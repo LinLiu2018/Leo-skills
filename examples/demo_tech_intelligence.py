@@ -12,7 +12,7 @@ project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
 # 导入 Obsidian Sync
-sys.path.insert(0, str(project_root / "leo_skills" / "utilities" / "obsidian-sync-cskill"))
+sys.path.insert(0, str(project_root / "leo_skills" / "utilities" / "obsidian_sync_skill"))
 from scripts.main import ObsidianSync
 
 

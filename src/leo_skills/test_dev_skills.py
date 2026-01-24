@@ -9,16 +9,16 @@ from pathlib import Path
 
 # 添加Skills路径
 sys.path.insert(
-    0, str(Path(__file__).parent / "development/backend/flask-api-generator-cskill/scripts")
+    0, str(Path(__file__).parent / "development/backend/flask_api_generator_skill/scripts")
 )
 sys.path.insert(
-    0, str(Path(__file__).parent / "development/backend/database-model-generator-cskill/scripts")
+    0, str(Path(__file__).parent / "development/backend/database_model_generator_skill/scripts")
 )
 sys.path.insert(
-    0, str(Path(__file__).parent / "development/frontend/miniprogram-page-generator-cskill/scripts")
+    0, str(Path(__file__).parent / "development/frontend/miniprogram_page_generator_skill/scripts")
 )
 sys.path.insert(
-    0, str(Path(__file__).parent / "development/deployment/dockerfile-generator-cskill/scripts")
+    0, str(Path(__file__).parent / "development/deployment/dockerfile_generator_skill/scripts")
 )
 
 # 测试输出目录
@@ -98,7 +98,7 @@ def test_flask_api_generator():
 
     # 需要先切换到正确的模块
     sys.path.insert(
-        0, str(Path(__file__).parent / "development/backend/flask-api-generator-cskill/scripts")
+        0, str(Path(__file__).parent / "development/backend/flask_api_generator_skill/scripts")
     )
 
     from main import FlaskAPIGenerator
@@ -139,7 +139,7 @@ def test_miniprogram_page_generator():
     sys.path.insert(
         0,
         str(
-            Path(__file__).parent / "development/frontend/miniprogram-page-generator-cskill/scripts"
+            Path(__file__).parent / "development/frontend/miniprogram_page_generator_skill/scripts"
         ),
     )
 
@@ -207,7 +207,7 @@ def test_dockerfile_generator():
 
     # 切换模块路径
     sys.path.insert(
-        0, str(Path(__file__).parent / "development/deployment/dockerfile-generator-cskill/scripts")
+        0, str(Path(__file__).parent / "development/deployment/dockerfile_generator_skill/scripts")
     )
 
     import importlib

@@ -197,10 +197,10 @@ class ResearchAgent(BaseAgent):
         # 1. 分解研究任务
         subtopics = self._break_down_task(task)
 
-        # 2. 并行研究（调用research-assistant-cskill）
+        # 2. 并行研究（调用research_assistant_skill）
         results = []
         for subtopic in subtopics:
-            result = self.use_skill("research-assistant-cskill", "research", topic=subtopic)
+            result = self.use_skill("research_assistant_skill", "research", topic=subtopic)
             results.append(result)
 
         # 3. 汇总结果

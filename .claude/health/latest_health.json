@@ -34,8 +34,8 @@
         ]
       },
       {
-        "name": "data-analyzer-cskill",
-        "path": "leo_skills\\data-analysis\\data-analyzer-cskill",
+        "name": "data_analyzer_skill",
+        "path": "leo_skills\\data-analysis\\data_analyzer_skill",
         "errors": [
           "No valid entry point found"
         ]
@@ -89,8 +89,8 @@
         ]
       },
       {
-        "name": "skill-code-generator-cskill",
-        "path": "leo_skills\\development\\skill-code-generator-cskill",
+        "name": "skill_code_generator_skill",
+        "path": "leo_skills\\development\\skill_code_generator_skill",
         "errors": [
           "Missing required file: SKILL.md"
         ]
@@ -112,22 +112,22 @@
         ]
       },
       {
-        "name": "agent-skill-creator",
-        "path": "leo_skills\\tools\\agent-skill-creator",
+        "name": "agent_skill_creator_skill",
+        "path": "leo_skills\\tools\\agent_skill_creator_skill",
         "errors": [
           "No valid entry point found"
         ]
       },
       {
-        "name": "project-marketing-doc-generator-cskill",
-        "path": "leo_skills\\tools\\project-marketing-doc-generator-cskill",
+        "name": "project_marketing_doc_generator_skill",
+        "path": "leo_skills\\tools\\project_marketing_doc_generator_skill",
         "errors": [
           "No valid entry point found"
         ]
       },
       {
-        "name": "skill-evolution-assistant-cskill",
-        "path": "leo_skills\\tools\\skill-evolution-assistant-cskill",
+        "name": "skill_evolution_assistant_skill",
+        "path": "leo_skills\\tools\\skill_evolution_assistant_skill",
         "errors": [
           "No valid entry point found"
         ]
@@ -148,15 +148,15 @@
         ]
       },
       {
-        "name": "tech-extractor-cskill",
-        "path": "leo_skills\\utilities\\tech-extractor-cskill",
+        "name": "tech_extractor_skill",
+        "path": "leo_skills\\utilities\\tech_extractor_skill",
         "errors": [
           "Missing required file: SKILL.md"
         ]
       },
       {
-        "name": "web-search-cskill",
-        "path": "leo_skills\\utilities\\web-search-cskill",
+        "name": "web_search_skill",
+        "path": "leo_skills\\utilities\\web_search_skill",
         "errors": [
           "No valid entry point found"
         ]

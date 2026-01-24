@@ -13,7 +13,7 @@ OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # 添加Skills路径
 SKILLS_BASE = Path(__file__).parent / "development"
-sys.path.insert(0, str(SKILLS_BASE / "backend/database-model-generator-cskill/scripts"))
+sys.path.insert(0, str(SKILLS_BASE / "backend/database_model_generator_skill/scripts"))
 
 print("=" * 60)
 print("裂变小程序完整代码生成")
@@ -101,7 +101,7 @@ print("  [OK] Reward模型生成完成")
 print("\n[2/5] 生成Flask API...")
 
 # 重新加载模块
-sys.path.insert(0, str(SKILLS_BASE / "backend/flask-api-generator-cskill/scripts"))
+sys.path.insert(0, str(SKILLS_BASE / "backend/flask_api_generator_skill/scripts"))
 import importlib
 
 import main
@@ -145,7 +145,7 @@ print("  [OK] Reward API生成完成")
 # ==================== 3. 生成小程序页面 ====================
 print("\n[3/5] 生成小程序页面...")
 
-sys.path.insert(0, str(SKILLS_BASE / "frontend/miniprogram-page-generator-cskill/scripts"))
+sys.path.insert(0, str(SKILLS_BASE / "frontend/miniprogram_page_generator_skill/scripts"))
 importlib.reload(main)
 from main import MiniprogramPageGenerator
 
@@ -194,7 +194,7 @@ print("  [OK] 邀请列表页生成完成")
 # ==================== 4. 生成Docker配置 ====================
 print("\n[4/5] 生成Docker部署配置...")
 
-sys.path.insert(0, str(SKILLS_BASE / "deployment/dockerfile-generator-cskill/scripts"))
+sys.path.insert(0, str(SKILLS_BASE / "deployment/dockerfile_generator_skill/scripts"))
 importlib.reload(main)
 from main import DockerfileGenerator
 

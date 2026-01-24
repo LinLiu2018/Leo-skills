@@ -22,14 +22,14 @@ agents:
 
     # 可调用的Skills
     skills:
-      - name: "content-layout-leo-cskill"
-        path: "../leo_skills/content-creation/content-layout-leo-cskill"
+      - name: "content_layout_leo_skill"
+        path: "../leo_skills/content-creation/content_layout_leo_skill"
         enabled: true
-      - name: "realestate-news-publisher-cskill"
-        path: "../leo_skills/content-creation/realestate-news-publisher-cskill"
+      - name: "realestate_news_publisher_skill"
+        path: "../leo_skills/content-creation/realestate_news_publisher_skill"
         enabled: true
-      - name: "project-marketing-doc-generator-cskill"
-        path: "../leo_skills/tools/project-marketing-doc-generator-cskill"
+      - name: "project_marketing_doc_generator_skill"
+        path: "../leo_skills/tools/project_marketing_doc_generator_skill"
         enabled: true
 
     # 执行参数
@@ -51,14 +51,14 @@ agents:
     priority: 2
 
     skills:
-      - name: "research-assistant-cskill"
-        path: "../leo_skills/utilities/research-assistant-cskill"
+      - name: "research_assistant_skill"
+        path: "../leo_skills/utilities/research_assistant_skill"
         enabled: true
-      - name: "web-search-cskill" # 🆕 添加WebSearch Skill
-        path: "../leo_skills/utilities/web-search-cskill"
+      - name: "web_search_skill" # 🆕 添加WebSearch Skill
+        path: "../leo_skills/utilities/web_search_skill"
         enabled: true
-      - name: "article-to-prototype-cskill"
-        path: "../leo_skills/tools/article-to-prototype-cskill"
+      - name: "article_to_prototype_skill"
+        path: "../leo_skills/tools/article_to_prototype_skill"
         enabled: true
 
     config:
@@ -78,8 +78,8 @@ agents:
     priority: 3
 
     skills:
-      - name: "data-analyzer-cskill"
-        path: "../leo_skills/data-analysis/data-analyzer-cskill"
+      - name: "data_analyzer_skill"
+        path: "../leo_skills/data-analysis/data_analyzer_skill"
         enabled: true
 
     config:
@@ -99,11 +99,11 @@ agents:
     priority: 4
 
     skills:
-      - name: "content-layout-leo-cskill"
-        path: "../leo_skills/content-creation/content-layout-leo-cskill"
+      - name: "content_layout_leo_skill"
+        path: "../leo_skills/content-creation/content_layout_leo_skill"
         enabled: true
-      - name: "article-to-prototype-cskill"
-        path: "../leo_skills/tools/article-to-prototype-cskill"
+      - name: "article_to_prototype_skill"
+        path: "../leo_skills/tools/article_to_prototype_skill"
         enabled: true
 
     config:
@@ -126,17 +126,17 @@ agents:
     priority: 5
 
     skills:
-      - name: "project-marketing-doc-generator-cskill"
-        path: "../leo_skills/tools/project-marketing-doc-generator-cskill"
+      - name: "project_marketing_doc_generator_skill"
+        path: "../leo_skills/tools/project_marketing_doc_generator_skill"
         enabled: true
-      - name: "realestate-news-publisher-cskill"
-        path: "../leo_skills/content-creation/realestate-news-publisher-cskill"
+      - name: "realestate_news_publisher_skill"
+        path: "../leo_skills/content-creation/realestate_news_publisher_skill"
         enabled: true
-      - name: "web-search-cskill"
-        path: "../leo_skills/utilities/web-search-cskill"
+      - name: "web_search_skill"
+        path: "../leo_skills/utilities/web_search_skill"
         enabled: true
-      - name: "research-assistant-cskill"
-        path: "../leo_skills/utilities/research-assistant-cskill"
+      - name: "research_assistant_skill"
+        path: "../leo_skills/utilities/research_assistant_skill"
         enabled: true
 
     config:
@@ -157,14 +157,14 @@ agents:
     priority: 2
 
     skills:
-      - name: "database-model-generator-cskill"
-        path: "../leo_skills/tools/database-model-generator-cskill"
+      - name: "database_model_generator_skill"
+        path: "../leo_skills/tools/database_model_generator_skill"
         enabled: true
-      - name: "api-doc-generator-cskill"
-        path: "../leo_skills/tools/api-doc-generator-cskill"
+      - name: "api_doc_generator_skill"
+        path: "../leo_skills/tools/api_doc_generator_skill"
         enabled: true
-      - name: "research-assistant-cskill"
-        path: "../leo_skills/utilities/research-assistant-cskill"
+      - name: "research_assistant_skill"
+        path: "../leo_skills/utilities/research_assistant_skill"
         enabled: true
 
     config:
@@ -186,14 +186,14 @@ agents:
     priority: 16
 
     skills:
-      - name: "miniprogram-page-generator-cskill"
-        path: "../leo_skills/development/miniprogram-page-generator-cskill"
+      - name: "miniprogram_page_generator_skill"
+        path: "../leo_skills/development/miniprogram_page_generator_skill"
         enabled: true
-      - name: "miniprogram-component-generator-cskill"
-        path: "../leo_skills/development/miniprogram-component-generator-cskill"
+      - name: "miniprogram_component_generator_skill"
+        path: "../leo_skills/development/miniprogram_component_generator_skill"
         enabled: true
-      - name: "miniprogram-project-scaffold-cskill"
-        path: "../leo_skills/development/miniprogram-project-scaffold-cskill"
+      - name: "miniprogram_project_scaffold_skill"
+        path: "../leo_skills/development/miniprogram_project_scaffold_skill"
         enabled: true
 
     config:
@@ -219,11 +219,11 @@ agents:
     priority: 1
 
     skills:
-      - name: "research-assistant-cskill"
-        path: "../leo_skills/utilities/research-assistant-cskill"
+      - name: "research_assistant_skill"
+        path: "../leo_skills/utilities/research_assistant_skill"
         enabled: true
-      - name: "web-search-cskill"
-        path: "../leo_skills/utilities/web-search-cskill"
+      - name: "web_search_skill"
+        path: "../leo_skills/utilities/web_search_skill"
         enabled: true
 
     config:

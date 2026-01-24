@@ -23,6 +23,6 @@ steps:
 ```
 
 ## 集成技能
-- research-assistant-cskill: 研究助手
-- web-search-cskill: 网页搜索
-- obsidian-sync-cskill: Obsidian 同步
+- research_assistant_skill: 研究助手
+- web_search_skill: 网页搜索
+- obsidian_sync_skill: Obsidian 同步

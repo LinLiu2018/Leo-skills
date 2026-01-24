@@ -126,35 +126,35 @@
 ```yaml
 frontend-skills:
   # Vue生态
-  - name: vue-component-generator-cskill
+  - name: vue_component_generator_skill
     description: "生成Vue3组件（Composition API + TypeScript）"
     inputs: [component_name, props_definition, functionality]
     outputs: [vue_component, types, unit_test]
 
-  - name: vue-page-generator-cskill
+  - name: vue_page_generator_skill
     description: "生成完整的Vue页面（含路由配置）"
     inputs: [page_name, layout_type, api_endpoints]
     outputs: [vue_page, router_config, store_module]
 
   # React生态
-  - name: react-component-generator-cskill
+  - name: react_component_generator_skill
     description: "生成React组件（Hooks + TypeScript）"
     inputs: [component_name, props_interface, features]
     outputs: [react_component, types, test_file]
 
   # 微信小程序
-  - name: miniprogram-page-generator-cskill
+  - name: miniprogram_page_generator_skill
     description: "生成微信小程序页面"
     inputs: [page_name, page_config, data_bindings]
     outputs: [wxml, wxss, js, json]
 
-  - name: miniprogram-component-generator-cskill
+  - name: miniprogram_component_generator_skill
     description: "生成微信小程序组件"
     inputs: [component_name, properties, methods]
     outputs: [component_files]
 
   # 通用
-  - name: css-layout-generator-cskill
+  - name: css_layout_generator_skill
     description: "生成响应式CSS布局"
     inputs: [layout_type, breakpoints, design_spec]
     outputs: [css_code, tailwind_classes]
@@ -165,35 +165,35 @@ frontend-skills:
 ```yaml
 backend-skills:
   # Flask生态
-  - name: flask-api-generator-cskill
+  - name: flask_api_generator_skill
     description: "生成Flask RESTful API"
     inputs: [resource_name, endpoints, database_model]
     outputs: [blueprint, models, schemas]
 
-  - name: flask-auth-generator-cskill
+  - name: flask_auth_generator_skill
     description: "生成Flask认证模块（JWT/Session）"
     inputs: [auth_type, user_model]
     outputs: [auth_blueprint, middleware, utils]
 
   # FastAPI生态
-  - name: fastapi-endpoint-generator-cskill
+  - name: fastapi_endpoint_generator_skill
     description: "生成FastAPI端点"
     inputs: [endpoint_spec, pydantic_models]
     outputs: [router, schemas, crud]
 
   # 数据库
-  - name: database-model-generator-cskill
+  - name: database_model_generator_skill
     description: "生成SQLAlchemy/Peewee模型"
     inputs: [entity_name, fields, relationships]
     outputs: [model_file, migration]
 
-  - name: database-migration-cskill
+  - name: database_migration_skill
     description: "生成数据库迁移脚本"
     inputs: [changes_description]
     outputs: [migration_script]
 
   # API文档
-  - name: api-doc-generator-cskill
+  - name: api_doc_generator_skill
     description: "生成API文档（OpenAPI/Swagger）"
     inputs: [api_routes]
     outputs: [openapi_spec, markdown_doc]
@@ -204,7 +204,7 @@ backend-skills:
 ```yaml
 scaffold-skills:
   # 全栈项目
-  - name: fullstack-project-scaffold-cskill
+  - name: fullstack_project_scaffold_skill
     description: "生成全栈项目结构"
     inputs: [project_name, frontend_framework, backend_framework]
     outputs: [project_structure, configs, docker_compose]
@@ -223,7 +223,7 @@ scaffold-skills:
       └── docker-compose.yml
 
   # 微信小程序项目
-  - name: miniprogram-project-scaffold-cskill
+  - name: miniprogram_project_scaffold_skill
     description: "生成微信小程序项目结构"
     inputs: [project_name, features]
     outputs: [miniprogram_structure]
@@ -239,7 +239,7 @@ scaffold-skills:
       └── project.config.json
 
   # Flask API项目
-  - name: flask-api-scaffold-cskill
+  - name: flask_api_scaffold_skill
     description: "生成Flask API项目结构"
     inputs: [project_name, database_type]
     outputs: [flask_structure]
@@ -262,30 +262,30 @@ scaffold-skills:
 ```yaml
 deployment-skills:
   # Docker
-  - name: dockerfile-generator-cskill
+  - name: dockerfile_generator_skill
     description: "生成优化的Dockerfile"
     inputs: [app_type, runtime, requirements]
     outputs: [dockerfile, dockerignore]
 
-  - name: docker-compose-generator-cskill
+  - name: docker_compose_generator_skill
     description: "生成docker-compose配置"
     inputs: [services, networks, volumes]
     outputs: [docker_compose_yaml]
 
   # Nginx
-  - name: nginx-config-generator-cskill
+  - name: nginx_config_generator_skill
     description: "生成Nginx配置"
     inputs: [domain, upstream, ssl_enabled]
     outputs: [nginx_conf]
 
   # CI/CD
-  - name: github-actions-generator-cskill
+  - name: github_actions_generator_skill
     description: "生成GitHub Actions工作流"
     inputs: [workflow_type, triggers, steps]
     outputs: [workflow_yaml]
 
   # 一键部署
-  - name: deployment-script-generator-cskill
+  - name: deployment_script_generator_skill
     description: "生成部署脚本"
     inputs: [server_info, deploy_type]
     outputs: [deploy_script, rollback_script]
@@ -295,17 +295,17 @@ deployment-skills:
 
 ```yaml
 test-skills:
-  - name: unit-test-generator-cskill
+  - name: unit_test_generator_skill
     description: "生成单元测试"
     inputs: [source_code, test_framework]
     outputs: [test_file]
 
-  - name: api-test-generator-cskill
+  - name: api_test_generator_skill
     description: "生成API测试用例"
     inputs: [api_spec]
     outputs: [test_cases, postman_collection]
 
-  - name: e2e-test-generator-cskill
+  - name: e2e_test_generator_skill
     description: "生成端到端测试"
     inputs: [user_flows]
     outputs: [cypress_tests, playwright_tests]
@@ -326,7 +326,7 @@ fullstack-dev-pipeline:
     - name: "需求分析"
       agent: product-manager-agent
       skills:
-        - research-assistant-cskill  # 已有
+        - research_assistant_skill  # 已有
       outputs:
         - prd_document
         - user_stories
@@ -334,8 +334,8 @@ fullstack-dev-pipeline:
     - name: "架构设计"
       agent: architect-agent
       skills:
-        - database-model-generator-cskill
-        - api-doc-generator-cskill
+        - database_model_generator_skill
+        - api_doc_generator_skill
       outputs:
         - system_design
         - database_schema
@@ -344,8 +344,8 @@ fullstack-dev-pipeline:
     - name: "项目初始化"
       agent: devops-agent
       skills:
-        - fullstack-project-scaffold-cskill
-        - docker-compose-generator-cskill
+        - fullstack_project_scaffold_skill
+        - docker_compose_generator_skill
       outputs:
         - project_structure
         - dev_environment
@@ -353,9 +353,9 @@ fullstack-dev-pipeline:
     - name: "后端开发"
       agent: backend-agent
       skills:
-        - flask-api-generator-cskill
-        - database-model-generator-cskill
-        - flask-auth-generator-cskill
+        - flask_api_generator_skill
+        - database_model_generator_skill
+        - flask_auth_generator_skill
       outputs:
         - api_code
         - models
@@ -364,9 +364,9 @@ fullstack-dev-pipeline:
     - name: "前端开发"
       agent: frontend-agent
       skills:
-        - vue-page-generator-cskill
-        - vue-component-generator-cskill
-        - css-layout-generator-cskill
+        - vue_page_generator_skill
+        - vue_component_generator_skill
+        - css_layout_generator_skill
       outputs:
         - frontend_code
         - components
@@ -374,17 +374,17 @@ fullstack-dev-pipeline:
     - name: "测试"
       agent: test-agent
       skills:
-        - unit-test-generator-cskill
-        - api-test-generator-cskill
+        - unit_test_generator_skill
+        - api_test_generator_skill
       outputs:
         - test_reports
 
     - name: "部署"
       agent: devops-agent
       skills:
-        - dockerfile-generator-cskill
-        - nginx-config-generator-cskill
-        - deployment-script-generator-cskill
+        - dockerfile_generator_skill
+        - nginx_config_generator_skill
+        - deployment_script_generator_skill
       outputs:
         - deployed_app
 ```
@@ -403,14 +403,14 @@ miniprogram-dev-pipeline:
 
     - name: "项目初始化"
       skills:
-        - miniprogram-project-scaffold-cskill
+        - miniprogram_project_scaffold_skill
       outputs: [project_structure]
 
     - name: "页面开发"
       agent: frontend-agent
       skills:
-        - miniprogram-page-generator-cskill
-        - miniprogram-component-generator-cskill
+        - miniprogram_page_generator_skill
+        - miniprogram_component_generator_skill
       outputs: [pages, components]
 
     - name: "云函数开发"
@@ -438,27 +438,27 @@ leo_skills/
 │
 ├── development/          # 🆕 新增：开发类Skills
 │   ├── frontend/
-│   │   ├── vue-component-generator-cskill/
-│   │   ├── react-component-generator-cskill/
-│   │   ├── miniprogram-page-generator-cskill/
-│   │   └── css-layout-generator-cskill/
+│   │   ├── vue_component_generator_skill/
+│   │   ├── react_component_generator_skill/
+│   │   ├── miniprogram_page_generator_skill/
+│   │   └── css_layout_generator_skill/
 │   ├── backend/
-│   │   ├── flask-api-generator-cskill/
-│   │   ├── fastapi-endpoint-generator-cskill/
-│   │   ├── database-model-generator-cskill/
-│   │   └── api-doc-generator-cskill/
+│   │   ├── flask_api_generator_skill/
+│   │   ├── fastapi_endpoint_generator_skill/
+│   │   ├── database_model_generator_skill/
+│   │   └── api_doc_generator_skill/
 │   ├── scaffold/
-│   │   ├── fullstack-project-scaffold-cskill/
-│   │   ├── miniprogram-project-scaffold-cskill/
-│   │   └── flask-api-scaffold-cskill/
+│   │   ├── fullstack_project_scaffold_skill/
+│   │   ├── miniprogram_project_scaffold_skill/
+│   │   └── flask_api_scaffold_skill/
 │   ├── deployment/
-│   │   ├── dockerfile-generator-cskill/
-│   │   ├── nginx-config-generator-cskill/
-│   │   ├── github-actions-generator-cskill/
-│   │   └── deployment-script-generator-cskill/
+│   │   ├── dockerfile_generator_skill/
+│   │   ├── nginx_config_generator_skill/
+│   │   ├── github_actions_generator_skill/
+│   │   └── deployment_script_generator_skill/
 │   └── testing/
-│       ├── unit-test-generator-cskill/
-│       └── api-test-generator-cskill/
+│       ├── unit_test_generator_skill/
+│       └── api_test_generator_skill/
 
 leo-subagents/
 ├── agents/               # 已有
@@ -484,30 +484,30 @@ leo-subagents/
 
 ```
 高优先级（与裂变小程序直接相关）：
-1. flask-api-generator-cskill      # 生成Flask API
-2. miniprogram-page-generator-cskill # 生成小程序页面
-3. database-model-generator-cskill  # 生成数据库模型
-4. dockerfile-generator-cskill      # 生成Docker配置
+1. flask_api_generator_skill      # 生成Flask API
+2. miniprogram_page_generator_skill # 生成小程序页面
+3. database_model_generator_skill  # 生成数据库模型
+4. dockerfile_generator_skill      # 生成Docker配置
 ```
 
 **第二阶段：完善开发链路（2-3周）**
 
 ```
 中优先级：
-5. vue-component-generator-cskill
-6. fullstack-project-scaffold-cskill
-7. unit-test-generator-cskill
-8. nginx-config-generator-cskill
+5. vue_component_generator_skill
+6. fullstack_project_scaffold_skill
+7. unit_test_generator_skill
+8. nginx_config_generator_skill
 ```
 
 **第三阶段：高级能力（持续迭代）**
 
 ```
 低优先级：
-9. react-component-generator-cskill
-10. github-actions-generator-cskill
-11. e2e-test-generator-cskill
-12. security-scan-cskill
+9. react_component_generator_skill
+10. github_actions_generator_skill
+11. e2e_test_generator_skill
+12. security_scan_skill
 ```
 
 ### 5.3 Subagent配置模板
@@ -526,11 +526,11 @@ agents:
     priority: 10
 
     skills:
-      - name: "vue-component-generator-cskill"
-        path: "../leo_skills/development/frontend/vue-component-generator-cskill"
+      - name: "vue_component_generator_skill"
+        path: "../leo_skills/development/frontend/vue_component_generator_skill"
         enabled: true
-      - name: "miniprogram-page-generator-cskill"
-        path: "../leo_skills/development/frontend/miniprogram-page-generator-cskill"
+      - name: "miniprogram_page_generator_skill"
+        path: "../leo_skills/development/frontend/miniprogram_page_generator_skill"
         enabled: true
 
     config:
@@ -551,11 +551,11 @@ agents:
     priority: 11
 
     skills:
-      - name: "flask-api-generator-cskill"
-        path: "../leo_skills/development/backend/flask-api-generator-cskill"
+      - name: "flask_api_generator_skill"
+        path: "../leo_skills/development/backend/flask_api_generator_skill"
         enabled: true
-      - name: "database-model-generator-cskill"
-        path: "../leo_skills/development/backend/database-model-generator-cskill"
+      - name: "database_model_generator_skill"
+        path: "../leo_skills/development/backend/database_model_generator_skill"
         enabled: true
 
     config:
@@ -576,14 +576,14 @@ agents:
     priority: 12
 
     skills:
-      - name: "dockerfile-generator-cskill"
-        path: "../leo_skills/development/deployment/dockerfile-generator-cskill"
+      - name: "dockerfile_generator_skill"
+        path: "../leo_skills/development/deployment/dockerfile_generator_skill"
         enabled: true
-      - name: "nginx-config-generator-cskill"
-        path: "../leo_skills/development/deployment/nginx-config-generator-cskill"
+      - name: "nginx_config_generator_skill"
+        path: "../leo_skills/development/deployment/nginx_config_generator_skill"
         enabled: true
-      - name: "deployment-script-generator-cskill"
-        path: "../leo_skills/development/deployment/deployment-script-generator-cskill"
+      - name: "deployment_script_generator_skill"
+        path: "../leo_skills/development/deployment/deployment_script_generator_skill"
         enabled: true
 
     activation_keywords:
@@ -661,7 +661,7 @@ from leo_system import LeoSystem
 system = LeoSystem()
 result = system.execute_task(
     "创建裂变小程序项目",
-    skill_name="miniprogram-project-scaffold-cskill",
+    skill_name="miniprogram_project_scaffold_skill",
     project_name="fission-miniprogram",
     features=["裂变分享", "用户信息收集", "邀请统计"]
 )
@@ -673,7 +673,7 @@ result = system.execute_task(
 # 使用Flask API Skill
 result = system.execute_task(
     "生成线索收集API",
-    skill_name="flask-api-generator-cskill",
+    skill_name="flask_api_generator_skill",
     resource_name="leads",
     endpoints=[
         {"method": "POST", "path": "/leads", "description": "创建线索"},
@@ -689,7 +689,7 @@ result = system.execute_task(
 # 使用部署Skill
 result = system.execute_task(
     "生成部署配置",
-    skill_name="dockerfile-generator-cskill",
+    skill_name="dockerfile_generator_skill",
     app_type="flask",
     runtime="python:3.9",
     requirements="requirements.txt"
@@ -707,7 +707,7 @@ result = system.execute_task(
    - 重命名并调整为符合Leo规范
 
 2. **创建第一个开发Skill**
-   - 建议从 `flask-api-generator-cskill` 开始
+   - 建议从 `flask_api_generator_skill` 开始
    - 因为你的裂变小程序后端就是Flask
 
 3. **测试开发流程**
@@ -724,7 +724,7 @@ mkdir -p leo_skills/development/{frontend,backend,scaffold,deployment,testing}
 cp docs/reference/claude-code-subagents/community/claude-code-subagents/subagents/development/*.md leo-subagents/agents/
 
 # 3. 创建第一个Skill
-mkdir -p leo_skills/development/backend/flask-api-generator-cskill
+mkdir -p leo_skills/development/backend/flask_api_generator_skill
 ```
 
 ---

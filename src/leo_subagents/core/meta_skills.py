@@ -17,8 +17,8 @@ class MetaSkillsManager:
     """
 
     META_SKILLS = {
-        "creator": "agent-skill-creator",
-        "evolver": "skill-evolution-assistant-cskill",
+        "creator": "agent_skill_creator_skill",
+        "evolver": "skill_evolution_assistant_skill",
         "optimizer": "claude-prompt-engineering-skills",
     }
 
@@ -44,7 +44,7 @@ class MetaSkillsManager:
         self, name: str, description: str, domain: str, requirements: str, interactive: bool = False
     ) -> Dict[str, Any]:
         """
-        创建新技能 (Meta-Skill: agent-skill-creator)
+        创建新技能 (Meta-Skill: agent_skill_creator_skill)
 
         Args:
             name: 技能名称
@@ -70,7 +70,7 @@ class MetaSkillsManager:
         print(f"🧬 调用元技能 [{skill_name}] 创建新技能: {name}")
 
         try:
-            # 调用 agent-skill-creator
+            # 调用 agent_skill_creator_skill
             # 注意：实际调用可能需要根据该 Skill 的具体接口调整
             result = self.system.call_skill(
                 skill_name, "create_agent", prompt=prompt, interactive=interactive

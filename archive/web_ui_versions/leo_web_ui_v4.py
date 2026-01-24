@@ -202,7 +202,7 @@ def render_skill_workshop():
 
     with st.expander("ℹ️ 帮助与说明", expanded=True):
         st.info(
-            "基于 `agent-skill-creator` 元技能。此工具将为您自动生成完整的 Skill 目录结构、代码和配置。"
+            "基于 `agent_skill_creator_skill` 元技能。此工具将为您自动生成完整的 Skill 目录结构、代码和配置。"
         )
 
     with st.form("create_skill_form"):

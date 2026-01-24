@@ -12,9 +12,9 @@
 
 ## 技能
 
-- miniprogram-page-generator-cskill: 小程序页面生成
-- miniprogram-component-generator-cskill: 小程序组件生成
-- miniprogram-project-scaffold-cskill: 小程序项目脚手架
+- miniprogram_page_generator_skill: 小程序页面生成
+- miniprogram_component_generator_skill: 小程序组件生成
+- miniprogram_project_scaffold_skill: 小程序项目脚手架
 
 ## 激活关键词
 
@@ -38,9 +38,9 @@ type: developer
 priority: 16
 enabled: true
 skills:
-  - miniprogram-page-generator-cskill
-  - miniprogram-component-generator-cskill
-  - miniprogram-project-scaffold-cskill
+  - miniprogram_page_generator_skill
+  - miniprogram_component_generator_skill
+  - miniprogram_project_scaffold_skill
 metadata:
   description: "移动开发代理，负责小程序和移动端开发"
   activation_keywords:

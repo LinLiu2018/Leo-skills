@@ -173,8 +173,8 @@ class LeoAPI:
             操作结果
 
         Examples:
-            # 调用content-layout-leo-cskill进行排版
-            result = api.call("content-layout-leo-cskill",
+            # 调用content_layout_leo_skill进行排版
+            result = api.call("content_layout_leo_skill",
                              "layout",
                              content="...", style="data_driven")
         """
@@ -409,7 +409,7 @@ def example_usage():
 
     # 调用Skill
     result = leo.call(
-        "content-layout-leo-cskill", "layout", content="测试内容", style="data_driven"
+        "content_layout_leo_skill", "layout", content="测试内容", style="data_driven"
     )
 
     # 运行Agent

@@ -315,7 +315,7 @@ tags: [tech-intelligence, weekly, ai]
 
 ## 三、实现方案
 
-### 3.1 创建 obsidian-sync-cskill
+### 3.1 创建 obsidian_sync_skill
 
 **核心功能**：
 1. **写入日记**：每日技术情报自动写入 Daily 笔记
@@ -343,7 +343,7 @@ steps:
   - name: "obsidian_sync"
     description: "同步到 Obsidian 知识库"
     agent: "task-agent"
-    skill: "obsidian-sync-cskill"
+    skill: "obsidian_sync_skill"
     action: "sync_daily"
     params:
       technologies: "{{ steps.tech_filtering.result }}"
@@ -354,7 +354,7 @@ steps:
   # 步骤8：更新技术卡片
   - name: "update_tech_cards"
     agent: "task-agent"
-    skill: "obsidian-sync-cskill"
+    skill: "obsidian_sync_skill"
     action: "update_cards"
     params:
       technologies: "{{ steps.tech_filtering.result }}"
@@ -363,7 +363,7 @@ steps:
   # 步骤9：生成周报（条件执行：每周日）
   - name: "generate_weekly_report"
     agent: "task-agent"
-    skill: "obsidian-sync-cskill"
+    skill: "obsidian_sync_skill"
     action: "generate_weekly"
     condition: "{{ is_sunday }}"
     params:
@@ -403,11 +403,11 @@ steps:
 
 ## 五、实施步骤
 
-### 第一步：创建 obsidian-sync-cskill
+### 第一步：创建 obsidian_sync_skill
 
 ```bash
 # 目录结构
-leo_skills/utilities/obsidian-sync-cskill/
+leo_skills/utilities/obsidian_sync_skill/
 ├── scripts/
 │   ├── main.py              # 主入口
 │   ├── writers/
@@ -498,11 +498,11 @@ scheduler.add_job(
 
 您希望我：
 
-1. **立即实现 obsidian-sync-cskill**？
+1. **立即实现 obsidian_sync_skill**？
    - 创建完整的 Obsidian 同步技能
    - 包含所有模板和功能
 
-2. **先完成 tech-extractor-cskill**？
+2. **先完成 tech_extractor_skill**？
    - 先实现技术提取功能
    - 再集成 Obsidian
 

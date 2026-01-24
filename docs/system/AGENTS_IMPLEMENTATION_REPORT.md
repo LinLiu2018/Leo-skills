@@ -67,7 +67,7 @@
 
 **使用的Skills**:
 
-- research-assistant-cskill
+- research_assistant_skill
 
 **使用示例**:
 
@@ -130,9 +130,9 @@ agent.execute("对比产品性能", analysis_type="comparative")
 
 **使用的Skills**:
 
-- content-layout-leo-cskill
-- article-to-prototype-cskill
-- project-marketing-doc-generator-cskill
+- content_layout_leo_skill
+- article_to_prototype_skill
+- project_marketing_doc_generator_skill
 
 **内容类型**:
 
@@ -258,7 +258,7 @@ config = AgentConfig(
     name="research-agent",
     type="researcher",
     priority=2,
-    skills=["research-assistant-cskill"]
+    skills=["research_assistant_skill"]
 )
 
 # 创建Agent

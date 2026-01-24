@@ -72,7 +72,7 @@ def agent_config():
         name="test-agent",
         type="executor",
         priority=1,
-        skills=["content-layout-leo-cskill"],
+        skills=["content_layout_leo_skill"],
         description="Test Agent",
     )
 

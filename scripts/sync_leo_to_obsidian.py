@@ -9,7 +9,7 @@ from datetime import datetime
 
 # 添加路径
 project_root = Path(__file__).parent
-sys.path.insert(0, str(project_root / "leo_skills" / "utilities" / "obsidian-sync-cskill"))
+sys.path.insert(0, str(project_root / "leo_skills" / "utilities" / "obsidian_sync_skill"))
 from scripts.main import ObsidianSync
 
 
@@ -121,10 +121,10 @@ Leo AI Agent System 是一个 Skills + Subagents 协同工作的 AI 智能体系
 ## 核心组件
 
 ### Skills（能力库）
-- [[Skill-twitter-monitor-cskill]] - Twitter 监控
-- [[Skill-obsidian-sync-cskill]] - Obsidian 同步
-- [[Skill-content-layout-leo-cskill]] - 内容排版
-- [[Skill-research-assistant-cskill]] - 研究助手
+- [[Skill-twitter_monitor_skill]] - Twitter 监控
+- [[Skill-obsidian_sync_skill]] - Obsidian 同步
+- [[Skill-content_layout_leo_skill]] - 内容排版
+- [[Skill-research_assistant_skill]] - 研究助手
 
 ### Subagents（执行者）
 - Task Agent - 通用任务执行
@@ -152,14 +152,14 @@ Leo AI Agent System 是一个 Skills + Subagents 协同工作的 AI 智能体系
 ## 开发日志
 
 ### 2026-01-23
-- 实现 twitter-monitor-cskill
-- 实现 obsidian-sync-cskill
+- 实现 twitter_monitor_skill
+- 实现 obsidian_sync_skill
 - 打通技术情报到知识库的完整流程
 
 ## 下一步计划
 
-- [ ] 实现 tech-extractor-cskill
-- [ ] 实现 skill-code-generator-cskill
+- [ ] 实现 tech_extractor_skill
+- [ ] 实现 skill_code_generator_skill
 - [ ] 创建 3 个新 Agents
 - [ ] 完善工作流引擎
 
@@ -192,20 +192,20 @@ Leo AI Agent System 是一个 Skills + Subagents 协同工作的 AI 智能体系
 
 ## 进行中 🚧
 
-- [x] 实现 twitter-monitor-cskill
-- [x] 实现 obsidian-sync-cskill
+- [x] 实现 twitter_monitor_skill
+- [x] 实现 obsidian_sync_skill
 - [x] 打通 Obsidian 知识复利流程
 
 ## 待实现 📋
 
 ### 阶段 2：技术提取
-- [ ] 创建 tech-extractor-cskill
+- [ ] 创建 tech_extractor_skill
 - [ ] 实现关键词提取器
 - [ ] 实现 LLM 提取器
 - [ ] 实现技术分类器
 
 ### 阶段 3：代码生成
-- [ ] 创建 skill-code-generator-cskill
+- [ ] 创建 skill_code_generator_skill
 - [ ] 实现 Skill 生成器
 - [ ] 实现 Agent 生成器
 - [ ] 实现 Workflow 生成器

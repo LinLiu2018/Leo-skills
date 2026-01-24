@@ -38,8 +38,8 @@ class ResearchAgent(BaseAgent):
     def __init__(self, config: AgentConfig):
         super().__init__(config)
         self.capabilities = {
-            "research": "research-assistant-cskill",
-            "web_search": "web-search-cskill",  # 🆕 添加WebSearch能力
+            "research": "research_assistant_skill",
+            "web_search": "web_search_skill",  # 🆕 添加WebSearch能力
         }
 
     def can_handle(self, task: str) -> float:
@@ -126,7 +126,7 @@ class ResearchAgent(BaseAgent):
                 {
                     "step": i + 1,
                     "subtopic": subtopic,
-                    "skill": "research-assistant-cskill",
+                    "skill": "research_assistant_skill",
                     "action": "research",
                     "params": {"topic": subtopic, "depth": depth},
                 }
@@ -172,7 +172,7 @@ class ResearchAgent(BaseAgent):
         params = step.get("params", {})
 
         try:
-            # 调用research-assistant-cskill
+            # 调用research_assistant_skill
             result = self.use_skill(skill_name, action, **params)
 
             return {
@@ -268,7 +268,7 @@ Research Agent 帮助
 ==================
 
 能力:
-1. 信息收集 - 使用 research-assistant-cskill
+1. 信息收集 - 使用 research_assistant_skill
 2. 文献调研 - 深度研究和分析
 3. 知识整理 - 结构化组织信息
 4. 报告生成 - 生成研究摘要
@@ -303,7 +303,7 @@ if __name__ == "__main__":
         name="research-agent",
         type="researcher",
         priority=2,
-        skills=["research-assistant-cskill"],
+        skills=["research_assistant_skill"],
         description="研究代理",
     )
 

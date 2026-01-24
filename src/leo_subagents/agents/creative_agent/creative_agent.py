@@ -39,9 +39,9 @@ class CreativeAgent(BaseAgent):
     def __init__(self, config: AgentConfig):
         super().__init__(config)
         self.capabilities = {
-            "content_creation": "content-layout-leo-cskill",
-            "article_writing": "article-to-prototype-cskill",
-            "marketing_copy": "project-marketing-doc-generator-cskill",
+            "content_creation": "content_layout_leo_skill",
+            "article_writing": "article_to_prototype_skill",
+            "marketing_copy": "project_marketing_doc_generator_skill",
         }
 
     def can_handle(self, task: str) -> float:
@@ -157,7 +157,7 @@ class CreativeAgent(BaseAgent):
                 {
                     "step": 1,
                     "name": "生成营销文档",
-                    "skill": "project-marketing-doc-generator-cskill",
+                    "skill": "project_marketing_doc_generator_skill",
                     "action": "generate",
                     "params": {
                         "project_name": kwargs.get("project_name", ""),
@@ -173,7 +173,7 @@ class CreativeAgent(BaseAgent):
                 {
                     "step": 1,
                     "name": "文章原型生成",
-                    "skill": "article-to-prototype-cskill",
+                    "skill": "article_to_prototype_skill",
                     "action": "create",
                     "params": {
                         "topic": kwargs.get("topic", task),
@@ -185,7 +185,7 @@ class CreativeAgent(BaseAgent):
                 {
                     "step": 2,
                     "name": "内容排版",
-                    "skill": "content-layout-leo-cskill",
+                    "skill": "content_layout_leo_skill",
                     "action": "layout",
                     "params": {
                         "content": "",  # 将从上一步获取
@@ -200,7 +200,7 @@ class CreativeAgent(BaseAgent):
                 {
                     "step": 1,
                     "name": "报告内容生成",
-                    "skill": "content-layout-leo-cskill",
+                    "skill": "content_layout_leo_skill",
                     "action": "layout",
                     "params": {"content": kwargs.get("content", ""), "style": "professional"},
                 }
@@ -212,7 +212,7 @@ class CreativeAgent(BaseAgent):
                 {
                     "step": 1,
                     "name": "内容生成",
-                    "skill": "content-layout-leo-cskill",
+                    "skill": "content_layout_leo_skill",
                     "action": "layout",
                     "params": {
                         "content": kwargs.get("content", task),
@@ -317,9 +317,9 @@ Creative Agent 帮助
 ===================
 
 能力:
-1. 内容创作 - 使用 content-layout-leo-cskill
-2. 文章撰写 - 使用 article-to-prototype-cskill
-3. 营销文案 - 使用 project-marketing-doc-generator-cskill
+1. 内容创作 - 使用 content_layout_leo_skill
+2. 文章撰写 - 使用 article_to_prototype_skill
+3. 营销文案 - 使用 project_marketing_doc_generator_skill
 
 激活关键词:
 {', '.join(self.ACTIVATION_KEYWORDS)}
@@ -355,9 +355,9 @@ if __name__ == "__main__":
         type="creator",
         priority=4,
         skills=[
-            "content-layout-leo-cskill",
-            "article-to-prototype-cskill",
-            "project-marketing-doc-generator-cskill",
+            "content_layout_leo_skill",
+            "article_to_prototype_skill",
+            "project_marketing_doc_generator_skill",
         ],
         description="创作代理",
     )

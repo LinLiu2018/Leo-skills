@@ -7,7 +7,7 @@
 ## 📦 创建的文件
 
 ```
-leo_skills/tools/skill-evolution-assistant-cskill/
+leo_skills/tools/skill_evolution_assistant_skill/
 ├── skill_evolution_assistant.py    # 主程序（400+行）
 ├── quick_evolve_all.py             # 一键进化脚本
 ├── config/
@@ -42,7 +42,7 @@ python skill_evolution_assistant.py analyze
 
 ```bash
 # 改造单个技能
-python skill_evolution_assistant.py transform web-search-cskill
+python skill_evolution_assistant.py transform web_search_skill
 
 # 一键改造所有技能
 python skill_evolution_assistant.py transform_all
@@ -88,7 +88,7 @@ from core.evolution import EvolvableSkill
 class WebSearchSkill(EvolvableSkill):
     def __init__(self):
         super().__init__(
-            skill_name="web-search-cskill",
+            skill_name="web_search_skill",
             config_path="config/config.yaml"
         )
 
@@ -114,13 +114,13 @@ class WebSearchSkill(EvolvableSkill):
   "needs_evolution": 7,
   "has_evolution": 1,
   "needs_evolution_list": [
-    "content-layout-leo-cskill",
-    "realestate-news-publisher-cskill",
-    "data-analyzer-cskill",
-    "research-assistant-cskill",
-    "web-search-cskill",
-    "article-to-prototype-cskill",
-    "project-marketing-doc-generator-cskill"
+    "content_layout_leo_skill",
+    "realestate_news_publisher_skill",
+    "data_analyzer_skill",
+    "research_assistant_skill",
+    "web_search_skill",
+    "article_to_prototype_skill",
+    "project_marketing_doc_generator_skill"
   ],
   "quality_score": 0.125
 }
@@ -133,7 +133,7 @@ class WebSearchSkill(EvolvableSkill):
 ### 方式1：一键进化所有技能
 
 ```bash
-cd leo_skills/tools/skill-evolution-assistant-cskill
+cd leo_skills/tools/skill_evolution_assistant_skill
 python quick_evolve_all.py
 ```
 
@@ -152,7 +152,7 @@ python quick_evolve_all.py
 python skill_evolution_assistant.py analyze
 
 # 改造一个测试
-python skill_evolution_assistant.py transform web-search-cskill
+python skill_evolution_assistant.py transform web_search_skill
 
 # 验证成功后改造所有
 python skill_evolution_assistant.py transform_all
@@ -170,7 +170,7 @@ python skill_evolution_assistant.py transform_all
 ### 首次使用
 
 1. 先运行 `analyze` 了解情况
-2. 选择一个简单技能测试（如 web-search-cskill）
+2. 选择一个简单技能测试（如 web_search_skill）
 3. 验证改造成功后再批量处理
 
 ### 改造后
@@ -209,8 +209,8 @@ python skill_evolution_assistant.py transform_all
 
 ## 🔗 相关文档
 
-- [README.md](leo_skills/tools/skill-evolution-assistant-cskill/README.md) - 详细使用文档
-- [SKILL.md](leo_skills/tools/skill-evolution-assistant-cskill/SKILL.md) - 技能文档
+- [README.md](leo_skills/tools/skill_evolution_assistant_skill/README.md) - 详细使用文档
+- [SKILL.md](leo_skills/tools/skill_evolution_assistant_skill/SKILL.md) - 技能文档
 - [进化框架文档](leo_skills/core/evolution/README.md) - 进化框架说明
 - [实施报告](SKILL_EVOLUTION_IMPLEMENTATION_REPORT.md) - 进化框架实施报告
 
@@ -221,14 +221,14 @@ python skill_evolution_assistant.py transform_all
 1. **立即运行一键脚本**：
 
    ```bash
-   cd leo_skills/tools/skill-evolution-assistant-cskill
+   cd leo_skills/tools/skill_evolution_assistant_skill
    python quick_evolve_all.py
    ```
 
 2. **或者先测试单个技能**：
 
    ```bash
-   python skill_evolution_assistant.py transform web-search-cskill
+   python skill_evolution_assistant.py transform web_search_skill
    ```
 
 3. **查看详细文档**：

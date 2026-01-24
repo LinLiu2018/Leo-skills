@@ -225,7 +225,7 @@ python test_twitter_api.py
 
 1. ✅ 填写 `.env` 文件
 2. ✅ 运行测试脚本验证连接
-3. ✅ 开始实现 twitter-monitor-cskill
+3. ✅ 开始实现 twitter_monitor_skill
 
 ## 参考资料
 

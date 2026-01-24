@@ -51,9 +51,9 @@ leo-subagents/
 
 **职责**：执行具体任务，调用相关Skills
 
-- 调用content-layout-leo-cskill进行内容排版
-- 调用realestate-news-publisher-cskill发布资讯
-- 调用project-marketing-doc-generator-cskill生成文档
+- 调用content_layout_leo_skill进行内容排版
+- 调用realestate_news_publisher_skill发布资讯
+- 调用project_marketing_doc_generator_skill生成文档
 
 **激活词**："执行任务"、"运行流程"
 
@@ -61,7 +61,7 @@ leo-subagents/
 
 **职责**：信息收集、文献调研、知识整理
 
-- 调用research-assistant-cskill进行研究
+- 调用research_assistant_skill进行研究
 - 整合多个信息源
 - 生成研究报告
 
@@ -185,12 +185,12 @@ result = content_pipeline.run(orchestrator, {
 | Subagent | 使用的Skills |
 |----------|-------------|
 | Task Agent | 所有工具框架Skills |
-| Research Agent | research-assistant-cskill, web-search-cskill |
-| Analysis Agent | data-analyzer-cskill |
-| Creative Agent | content-layout-leo-cskill, article-to-prototype-cskill |
-| Architect Agent | database-model-generator-cskill, api-doc-generator-cskill |
+| Research Agent | research_assistant_skill, web_search_skill |
+| Analysis Agent | data_analyzer_skill |
+| Creative Agent | content_layout_leo_skill, article_to_prototype_skill |
+| Architect Agent | database_model_generator_skill, api_doc_generator_skill |
 | Mobile Agent | miniprogram-page/component/project-skills |
-| Product Manager Agent | research-assistant-cskill, web-search-cskill |
+| Product Manager Agent | research_assistant_skill, web_search_skill |
 
 ---
 

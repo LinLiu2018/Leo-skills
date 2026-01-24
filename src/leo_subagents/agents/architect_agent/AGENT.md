@@ -12,9 +12,9 @@
 
 ## 技能
 
-- database-model-generator-cskill: 用于数据库设计
-- api-doc-generator-cskill: 用于API文档生成
-- research-assistant-cskill: 用于技术调研
+- database_model_generator_skill: 用于数据库设计
+- api_doc_generator_skill: 用于API文档生成
+- research_assistant_skill: 用于技术调研
 
 ## 激活关键词
 
@@ -38,9 +38,9 @@ type: designer
 priority: 2
 enabled: true
 skills:
-  - database-model-generator-cskill
-  - api-doc-generator-cskill
-  - research-assistant-cskill
+  - database_model_generator_skill
+  - api_doc_generator_skill
+  - research_assistant_skill
 metadata:
   description: "架构师代理，负责系统设计和技术选型"
   activation_keywords:

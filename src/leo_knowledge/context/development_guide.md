@@ -71,7 +71,7 @@ python scripts/validate_structure.py
 
 ### Skill 开发规范
 
-- **命名**: `{function}-{type}-cskill` (e.g., `web-search-cskill`)
+- **命名**: `{function}-{type}-cskill` (e.g., `web_search_skill`)
   - 注意：技能目录名可以使用连字符（历史原因）
   - 但内部 Python 文件必须使用下划线
 - **结构**: 必须包含 `SKILL.md` (定义) 和 `scripts/main.py` (入口)。

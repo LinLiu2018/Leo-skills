@@ -44,7 +44,7 @@ steps:
     branches:
       - name: "web_search"
         agent: "research-agent"
-        skill: "web-search-cskill"
+        skill: "web_search_skill"
         action: "search"
         params:
           query: "{{ inputs.topic }}"
@@ -156,7 +156,7 @@ steps:
   - name: "knowledge_sync"
     description: "同步到Obsidian知识库"
     agent: "task-agent"
-    skill: "obsidian-sync-cskill"
+    skill: "obsidian_sync_skill"
     action: "sync"
     condition: "{{ inputs.sync_to_kb }}"
     params:
@@ -184,16 +184,16 @@ outputs:
 
 # 集成的Skills
 integrated_skills:
-  - name: "research-assistant-cskill"
+  - name: "research_assistant_skill"
     description: "研究助手"
     steps:
       - "multi_source_collection"
       - "deduplication"
       - "categorization"
-  - name: "web-search-cskill"
+  - name: "web_search_skill"
     description: "网页搜索"
     step: "web_search"
-  - name: "obsidian-sync-cskill"
+  - name: "obsidian_sync_skill"
     description: "Obsidian同步"
     step: "knowledge_sync"
 

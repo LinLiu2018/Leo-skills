@@ -7,8 +7,8 @@
 
 ## ✅ 恢复的技能
 
-### 1. agent-skill-creator (960.43 KB)
-**位置**: `leo_skills/tools/agent-skill-creator/`
+### 1. agent_skill_creator_skill (960.43 KB)
+**位置**: `leo_skills/tools/agent_skill_creator_skill/`
 
 **恢复动作**：
 - ✅ 从归档恢复到 tools 目录
@@ -23,14 +23,14 @@
 
 **使用方法**：
 ```bash
-cd leo_skills/tools/agent-skill-creator
+cd leo_skills/tools/agent_skill_creator_skill
 python scripts/main.py [skill_path] [options]
 ```
 
 ---
 
-### 2. skill-evolution-assistant-cskill (36.63 KB)
-**位置**: `leo_skills/tools/skill-evolution-assistant-cskill/`
+### 2. skill_evolution_assistant_skill (36.63 KB)
+**位置**: `leo_skills/tools/skill_evolution_assistant_skill/`
 
 **恢复动作**：
 - ✅ 从归档恢复到 tools 目录
@@ -47,7 +47,7 @@ python scripts/main.py [skill_path] [options]
 
 **使用方法**：
 ```bash
-cd leo_skills/tools/skill-evolution-assistant-cskill
+cd leo_skills/tools/skill_evolution_assistant_skill
 python scripts/main.py scan              # 扫描所有技能
 python scripts/main.py evolve [skill]    # 为指定技能添加进化能力
 python scripts/main.py evolve-all        # 为所有技能添加进化能力
@@ -55,8 +55,8 @@ python scripts/main.py evolve-all        # 为所有技能添加进化能力
 
 ---
 
-### 3. skill-code-generator-cskill (45.49 KB)
-**位置**: `leo_skills/development/skill-code-generator-cskill/`
+### 3. skill_code_generator_skill (45.49 KB)
+**位置**: `leo_skills/development/skill_code_generator_skill/`
 
 **恢复动作**：
 - ✅ 从归档恢复到 development 目录
@@ -73,7 +73,7 @@ python scripts/main.py evolve-all        # 为所有技能添加进化能力
 
 **使用方法**：
 ```bash
-cd leo_skills/development/skill-code-generator-cskill
+cd leo_skills/development/skill_code_generator_skill
 python scripts/main.py create --name my-skill --category tools
 python scripts/main.py create --name my-skill --template api-client
 python scripts/main.py create --interactive
@@ -93,16 +93,16 @@ python scripts/main.py create --interactive
 
 ### 当前有效技能列表（10个）
 
-1. content-layout-leo-cskill (73.19 KB)
-2. realestate-news-publisher-cskill (254.26 KB)
-3. text-generator-cskill (14.69 KB)
-4. **skill-code-generator-cskill (45.49 KB)** ⭐ 新恢复
-5. twitter-monitor-cskill (49.71 KB)
-6. **agent-skill-creator (960.43 KB)** ⭐ 新恢复
-7. article-to-prototype-cskill (204.79 KB)
-8. **skill-evolution-assistant-cskill (36.63 KB)** ⭐ 新恢复
-9. obsidian-sync-cskill (76.39 KB)
-10. research-assistant-cskill (174.66 KB)
+1. content_layout_leo_skill (73.19 KB)
+2. realestate_news_publisher_skill (254.26 KB)
+3. text_generator_skill (14.69 KB)
+4. **skill_code_generator_skill (45.49 KB)** ⭐ 新恢复
+5. twitter_monitor_skill (49.71 KB)
+6. **agent_skill_creator_skill (960.43 KB)** ⭐ 新恢复
+7. article_to_prototype_skill (204.79 KB)
+8. **skill_evolution_assistant_skill (36.63 KB)** ⭐ 新恢复
+9. obsidian_sync_skill (76.39 KB)
+10. research_assistant_skill (174.66 KB)
 
 ---
 
@@ -110,17 +110,17 @@ python scripts/main.py create --interactive
 
 ### 创建的文件
 
-1. **agent-skill-creator/scripts/main.py**
+1. **agent_skill_creator_skill/scripts/main.py**
    - 标准入口点
    - 调用 export_utils 主函数
    - 添加使用说明
 
-2. **skill-evolution-assistant-cskill/scripts/main.py**
+2. **skill_evolution_assistant_skill/scripts/main.py**
    - 标准入口点
    - 支持 scan/evolve/evolve-all 命令
    - 命令行参数解析
 
-3. **skill-code-generator-cskill/SKILL.md**
+3. **skill_code_generator_skill/SKILL.md**
    - 完整的技能定义文档
    - 功能特性说明
    - 使用方法和示例
@@ -132,15 +132,15 @@ python scripts/main.py create --interactive
 
 ### 技能创建工作流
 
-1. **规划阶段**：使用 `agent-skill-creator` 设计技能架构
-2. **生成阶段**：使用 `skill-code-generator-cskill` 快速生成代码框架
-3. **进化阶段**：使用 `skill-evolution-assistant-cskill` 添加进化能力
+1. **规划阶段**：使用 `agent_skill_creator_skill` 设计技能架构
+2. **生成阶段**：使用 `skill_code_generator_skill` 快速生成代码框架
+3. **进化阶段**：使用 `skill_evolution_assistant_skill` 添加进化能力
 
 ### 最佳实践
 
-- 新建技能时优先使用 `skill-code-generator-cskill`
-- 复杂代理创建使用 `agent-skill-creator`
-- 批量改造现有技能使用 `skill-evolution-assistant-cskill`
+- 新建技能时优先使用 `skill_code_generator_skill`
+- 复杂代理创建使用 `agent_skill_creator_skill`
+- 批量改造现有技能使用 `skill_evolution_assistant_skill`
 
 ---
 

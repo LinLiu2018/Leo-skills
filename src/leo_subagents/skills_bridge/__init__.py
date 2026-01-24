@@ -17,7 +17,7 @@ Leo Skills桥接层
 
     # 执行Skill
     executor = SkillExecutor(loader)
-    result = executor.execute("content-layout-leo-cskill", "layout", content="...")
+    result = executor.execute("content_layout_leo_skill", "layout", content="...")
 """
 
 from .skill_adapter import SkillAdapter, SkillMetadata, clear_adapter_cache, get_skill_adapter

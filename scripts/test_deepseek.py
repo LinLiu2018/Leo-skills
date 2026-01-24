@@ -13,7 +13,7 @@ key = os.environ.get("DEEPSEEK_API_KEY")
 print(f"DeepSeek Key: {key[:5]}..." if key else "DeepSeek Key NOT FOUND")
 
 # Add skill path
-sys.path.append(str(project_root / "leo_skills/core/text-generator-cskill/scripts"))
+sys.path.append(str(project_root / "leo_skills/core/text_generator_skill/scripts"))
 
 try:
     from main import TextGeneratorSkill

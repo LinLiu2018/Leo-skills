@@ -1,8 +1,8 @@
 {
   "skills": {
-    "content-creation/content-layout-leo-cskill": {
-      "name": "content-layout-leo-cskill",
-      "path": "leo_skills\\content-creation\\content-layout-leo-cskill",
+    "content-creation/content_layout_leo_skill": {
+      "name": "content_layout_leo_skill",
+      "path": "leo_skills\\content-creation\\content_layout_leo_skill",
       "category": "content-creation",
       "version": "1.0.0",
       "description": "Skill in content-creation",
@@ -17,9 +17,9 @@
       "validation_errors": [],
       "loaded_at": null
     },
-    "content-creation/realestate-news-publisher-cskill": {
-      "name": "realestate-news-publisher-cskill",
-      "path": "leo_skills\\content-creation\\realestate-news-publisher-cskill",
+    "content-creation/realestate_news_publisher_skill": {
+      "name": "realestate_news_publisher_skill",
+      "path": "leo_skills\\content-creation\\realestate_news_publisher_skill",
       "category": "content-creation",
       "version": "1.0.0",
       "description": "Skill in content-creation",
@@ -34,9 +34,9 @@
       "validation_errors": [],
       "loaded_at": null
     },
-    "core/text-generator-cskill": {
-      "name": "text-generator-cskill",
-      "path": "leo_skills\\core\\text-generator-cskill",
+    "core/text_generator_skill": {
+      "name": "text_generator_skill",
+      "path": "leo_skills\\core\\text_generator_skill",
       "category": "core",
       "version": "1.0.0",
       "description": "Skill in core",
@@ -71,9 +71,9 @@
       ],
       "loaded_at": null
     },
-    "development/skill-code-generator-cskill": {
-      "name": "skill-code-generator-cskill",
-      "path": "leo_skills\\development\\skill-code-generator-cskill",
+    "development/skill_code_generator_skill": {
+      "name": "skill_code_generator_skill",
+      "path": "leo_skills\\development\\skill_code_generator_skill",
       "category": "development",
       "version": "1.0.0",
       "description": "Skill in development",
@@ -88,9 +88,9 @@
       "validation_errors": [],
       "loaded_at": null
     },
-    "intelligence/twitter-monitor-cskill": {
-      "name": "twitter-monitor-cskill",
-      "path": "leo_skills\\intelligence\\twitter-monitor-cskill",
+    "intelligence/twitter_monitor_skill": {
+      "name": "twitter_monitor_skill",
+      "path": "leo_skills\\intelligence\\twitter_monitor_skill",
       "category": "intelligence",
       "version": "1.0.0",
       "description": "Skill in intelligence",
@@ -125,9 +125,9 @@
       ],
       "loaded_at": null
     },
-    "tools/agent-skill-creator": {
-      "name": "agent-skill-creator",
-      "path": "leo_skills\\tools\\agent-skill-creator",
+    "tools/agent_skill_creator_skill": {
+      "name": "agent_skill_creator_skill",
+      "path": "leo_skills\\tools\\agent_skill_creator_skill",
       "category": "tools",
       "version": "1.0.0",
       "description": "Skill in tools",
@@ -142,9 +142,9 @@
       "validation_errors": [],
       "loaded_at": null
     },
-    "tools/article-to-prototype-cskill": {
-      "name": "article-to-prototype-cskill",
-      "path": "leo_skills\\tools\\article-to-prototype-cskill",
+    "tools/article_to_prototype_skill": {
+      "name": "article_to_prototype_skill",
+      "path": "leo_skills\\tools\\article_to_prototype_skill",
       "category": "tools",
       "version": "1.0.0",
       "description": "Skill in tools",
@@ -159,9 +159,9 @@
       "validation_errors": [],
       "loaded_at": null
     },
-    "tools/skill-evolution-assistant-cskill": {
-      "name": "skill-evolution-assistant-cskill",
-      "path": "leo_skills\\tools\\skill-evolution-assistant-cskill",
+    "tools/skill_evolution_assistant_skill": {
+      "name": "skill_evolution_assistant_skill",
+      "path": "leo_skills\\tools\\skill_evolution_assistant_skill",
       "category": "tools",
       "version": "1.0.0",
       "description": "Skill in tools",
@@ -176,9 +176,9 @@
       "validation_errors": [],
       "loaded_at": null
     },
-    "utilities/obsidian-sync-cskill": {
-      "name": "obsidian-sync-cskill",
-      "path": "leo_skills\\utilities\\obsidian-sync-cskill",
+    "utilities/obsidian_sync_skill": {
+      "name": "obsidian_sync_skill",
+      "path": "leo_skills\\utilities\\obsidian_sync_skill",
       "category": "utilities",
       "version": "1.0.0",
       "description": "Skill in utilities",
@@ -193,9 +193,9 @@
       "validation_errors": [],
       "loaded_at": null
     },
-    "utilities/research-assistant-cskill": {
-      "name": "research-assistant-cskill",
-      "path": "leo_skills\\utilities\\research-assistant-cskill",
+    "utilities/research_assistant_skill": {
+      "name": "research_assistant_skill",
+      "path": "leo_skills\\utilities\\research_assistant_skill",
       "category": "utilities",
       "version": "1.0.0",
       "description": "Skill in utilities",
@@ -233,30 +233,30 @@
   },
   "categories": {
     "content-creation": [
-      "content-creation/content-layout-leo-cskill",
-      "content-creation/realestate-news-publisher-cskill"
+      "content-creation/content_layout_leo_skill",
+      "content-creation/realestate_news_publisher_skill"
     ],
     "core": [
-      "core/text-generator-cskill",
+      "core/text_generator_skill",
       "core/__pycache__"
     ],
     "development": [
-      "development/skill-code-generator-cskill"
+      "development/skill_code_generator_skill"
     ],
     "intelligence": [
-      "intelligence/twitter-monitor-cskill"
+      "intelligence/twitter_monitor_skill"
     ],
     "prompt-engineering": [
       "prompt-engineering/claude-prompt-engineering-skills"
     ],
     "tools": [
-      "tools/agent-skill-creator",
-      "tools/article-to-prototype-cskill",
-      "tools/skill-evolution-assistant-cskill"
+      "tools/agent_skill_creator_skill",
+      "tools/article_to_prototype_skill",
+      "tools/skill_evolution_assistant_skill"
     ],
     "utilities": [
-      "utilities/obsidian-sync-cskill",
-      "utilities/research-assistant-cskill"
+      "utilities/obsidian_sync_skill",
+      "utilities/research_assistant_skill"
     ],
     "video-editing": [
       "video-editing/videocut-skills"

@@ -40,9 +40,9 @@ class MobileAgent(BaseAgent):
     def __init__(self, config: AgentConfig):
         super().__init__(config)
         self.capabilities = {
-            "miniprogram_page": "miniprogram-page-generator-cskill",
-            "miniprogram_component": "miniprogram-component-generator-cskill",
-            "miniprogram_scaffold": "miniprogram-project-scaffold-cskill"
+            "miniprogram_page": "miniprogram_page_generator_skill",
+            "miniprogram_component": "miniprogram_component_generator_skill",
+            "miniprogram_scaffold": "miniprogram_project_scaffold_skill"
         }
 
     def can_handle(self, task: str) -> float:
@@ -267,15 +267,15 @@ class MobileAgent(BaseAgent):
             # 根据平台选择技能
             skill_mapping = {
                 "miniprogram": {
-                    "configure_project": ("miniprogram-project-scaffold-cskill", "configure"),
-                    "generate_structure": ("miniprogram-project-scaffold-cskill", "scaffold"),
-                    "generate_base_files": ("miniprogram-project-scaffold-cskill", "generate"),
-                    "design_component": ("miniprogram-component-generator-cskill", "design"),
-                    "generate_component": ("miniprogram-component-generator-cskill", "generate"),
-                    "design_page": ("miniprogram-page-generator-cskill", "design"),
-                    "generate_page": ("miniprogram-page-generator-cskill", "generate"),
-                    "generate_styles": ("miniprogram-page-generator-cskill", "style"),
-                    "update_config": ("miniprogram-project-scaffold-cskill", "config"),
+                    "configure_project": ("miniprogram_project_scaffold_skill", "configure"),
+                    "generate_structure": ("miniprogram_project_scaffold_skill", "scaffold"),
+                    "generate_base_files": ("miniprogram_project_scaffold_skill", "generate"),
+                    "design_component": ("miniprogram_component_generator_skill", "design"),
+                    "generate_component": ("miniprogram_component_generator_skill", "generate"),
+                    "design_page": ("miniprogram_page_generator_skill", "design"),
+                    "generate_page": ("miniprogram_page_generator_skill", "generate"),
+                    "generate_styles": ("miniprogram_page_generator_skill", "style"),
+                    "update_config": ("miniprogram_project_scaffold_skill", "config"),
                 }
             }
 
@@ -442,7 +442,7 @@ if __name__ == "__main__":
         name="mobile-agent",
         type="mobile",
         priority=16,
-        skills=["miniprogram-page-generator-cskill", "miniprogram-component-generator-cskill", "miniprogram-project-scaffold-cskill"],
+        skills=["miniprogram_page_generator_skill", "miniprogram_component_generator_skill", "miniprogram_project_scaffold_skill"],
         description="移动开发代理"
     )
 

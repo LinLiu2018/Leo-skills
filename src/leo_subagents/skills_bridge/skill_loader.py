@@ -282,7 +282,7 @@ if __name__ == "__main__":
     logger.info(f"内容创作类Skills: {loader.list_skills('content-creation')}")
 
     # 获取特定Skill
-    skill = loader.get_skill("content-layout-leo-cskill")
+    skill = loader.get_skill("content_layout_leo_skill")
     if skill:
         info = skill.get_skill_info()
         logger.info(f"Skill详情: {info}")

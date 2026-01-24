@@ -55,7 +55,7 @@ leo.stats()
 
 # 调用Skill
 result = leo.call(
-    "content-layout-leo-cskill",
+    "content_layout_leo_skill",
     "layout",
     content="我的文章内容",
     style="data_driven"
