@@ -9,7 +9,9 @@ from pathlib import Path
 
 # 添加路径
 current_path = Path(__file__).parent.absolute()
-sys.path.insert(0, str(current_path))
+project_root = current_path.parent
+sys.path.insert(0, str(project_root))
+sys.path.insert(0, str(project_root / "src"))
 
 # 使用importlib直接加载模块
 import importlib.util
@@ -24,8 +26,8 @@ def load_module_from_file(module_name: str, file_path: str):
     return module
 
 
-# 加载leo_system模块 - 修正路径
-leo_system_module = load_module_from_file("leo_system", str(current_path.parent / "leo_system.py"))
+# 加载leo_system模块 - 使用src/目录
+leo_system_module = load_module_from_file("leo_system", str(project_root / "src" / "leo_system.py"))
 LeoSystem = leo_system_module.LeoSystem
 
 

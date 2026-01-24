@@ -9,9 +9,11 @@ from pathlib import Path
 
 import pytest
 
-# 确保项目根目录在 Python 路径中
+# 确保项目根目录和 src 目录在 Python 路径中
 PROJECT_ROOT = Path(__file__).parent.parent.absolute()
+SRC_ROOT = PROJECT_ROOT / "src"
 sys.path.insert(0, str(PROJECT_ROOT))
+sys.path.insert(0, str(SRC_ROOT))
 
 
 # ==================== Fixtures ====================
@@ -25,14 +27,14 @@ def project_root() -> Path:
 
 @pytest.fixture(scope="session")
 def skills_dir(project_root: Path) -> Path:
-    """Skills 目录"""
-    return project_root / "leo_skills"
+    """Skills 目录（src/布局）"""
+    return project_root / "src" / "leo_skills"
 
 
 @pytest.fixture(scope="session")
 def agents_dir(project_root: Path) -> Path:
-    """Agents 目录"""
-    return project_root / "leo_subagents" / "agents"
+    """Agents 目录（src/布局）"""
+    return project_root / "src" / "leo_subagents" / "agents"
 
 
 @pytest.fixture(scope="module")

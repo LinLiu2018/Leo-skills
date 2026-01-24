@@ -9,9 +9,10 @@ import tempfile
 import shutil
 from pathlib import Path
 
-# 确保项目根目录在Python路径中
+# 确保项目根目录和src目录在Python路径中
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
+sys.path.insert(0, str(project_root / "src"))
 
 from leo_subagents.skills_bridge.skill_discovery_simple import SkillDiscoverySystem, SkillMetadata
 
