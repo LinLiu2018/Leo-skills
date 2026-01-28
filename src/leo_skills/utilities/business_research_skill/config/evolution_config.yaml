@@ -1,0 +1,12 @@
+# 技能进化配置
+
+evolution:
+  enabled: true
+  learning:
+    min_executions_for_learning: 10
+    analysis_window: 100
+    success_threshold: 0.8
+  optimization:
+    auto_optimize: false
+    require_approval: true
+    min_confidence: 0.7

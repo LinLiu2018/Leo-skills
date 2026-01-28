@@ -1,0 +1,32 @@
+# Skill Evolution Manager Skill 配置
+
+skill:
+  name: skill_evolution_manager
+  version: 1.0.0
+  type: meta
+  category: tools
+
+# 进化设置
+evolution:
+  auto_update_skill_md: true
+  merge_strategy: smart  # smart, append, replace
+  batch_scan_depth: 3
+  max_tips_per_skill: 100
+
+# 反馈提取
+feedback:
+  min_tip_length: 10
+  max_tip_length: 200
+  extract_patterns:
+    - "(?:Add|Use|Remember|Always|No debe|Asegúrate de)\\s+(.+?)(?:\\.|，|$)"
+    - "(?:When|In case of|Si|Al)\\s+(.+?)(?:\\.|，|$)"
+
+# 会话处理
+session:
+  extract_skills_pattern: "(\\w+_skill)\\s*[:：]\\s*(.+?)(?:\\n\\w+_skill\\s*:|$)"
+
+# 分析设置
+analysis:
+  include_keyword_analysis: true
+  top_keywords_limit: 20
+  skills_in_report: 5

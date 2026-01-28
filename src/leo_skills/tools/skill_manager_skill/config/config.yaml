@@ -1,0 +1,48 @@
+# Skill Manager Skill 配置
+
+skill:
+  name: skill_manager
+  version: 1.0.0
+  type: meta
+  category: tools
+
+# 扫描设置
+scan:
+  categories:
+    - content-creation
+    - development
+    - utilities
+    - tools
+    - intelligence
+    - frontend
+    - backend
+    - devops
+    - security
+    - testing
+    - scaffold
+    - prompt-engineering
+
+  exclude_patterns:
+    - ".backup"
+    - "__pycache__"
+    - ".git"
+    - "output"
+    - "tests"
+
+# 远程检查
+remote:
+  enabled: true
+  check_interval_hours: 24
+  notify_on_update: true
+
+# 自动备份
+backup:
+  enabled: true
+  before_upgrade: true
+  retention_days: 7
+
+# 报告设置
+report:
+  format: markdown
+  include_details: true
+  output_dir: docs/reports

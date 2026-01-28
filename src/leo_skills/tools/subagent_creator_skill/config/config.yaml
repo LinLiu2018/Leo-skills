@@ -1,0 +1,43 @@
+# Subagent Creator Skill 配置
+
+skill:
+  name: subagent_creator
+  version: 1.0.0
+  type: meta
+  category: tools
+
+# Agent 模板
+templates:
+  executor:
+    description: 任务执行代理
+    priority: 10
+  researcher:
+    description: 研究代理 - 信息收集和分析
+    priority: 10
+  analyzer:
+    description: 分析代理 - 数据分析和趋势
+    priority: 10
+  creator:
+    description: 创作代理 - 内容和文案生成
+    priority: 10
+  custom:
+    description: 自定义代理
+    priority: 10
+
+# 技能推荐
+skill_recommendations:
+  researcher:
+    - research_assistant_skill
+    - web_search_skill
+  analyzer:
+    - data_analyzer_skill
+  creator:
+    - content_layout_leo_skill
+    - article_to_prototype_skill
+  executor: []
+
+# 进化配置
+evolution:
+  enabled: true
+  learn_on_creation: true
+  auto_optimize: true

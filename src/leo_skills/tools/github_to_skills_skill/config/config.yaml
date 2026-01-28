@@ -1,0 +1,34 @@
+# GitHub to Skills Skill 配置
+
+skill:
+  name: github_to_skills
+  version: 1.0.0
+  type: meta
+  category: tools
+
+# 转换设置
+convert:
+  output_base_dir: src/leo_skills
+  default_category: tools
+  auto_create_category: true
+
+# 模板设置
+template:
+  version: "1.0.0"
+  type: "standard"
+  include_evolution: true
+
+# 排除规则
+exclude:
+  - ".git"
+  - "__pycache__"
+  - ".backup"
+  - "node_modules"
+  - "*.pyc"
+
+# 进化配置
+evolution:
+  enabled: true
+  learn_on_failure: true
+  max_tips: 100
+  auto_save: true

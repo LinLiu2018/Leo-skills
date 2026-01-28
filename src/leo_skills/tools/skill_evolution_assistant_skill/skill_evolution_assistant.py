@@ -47,7 +47,7 @@ class SkillEvolutionAssistant(EvolvableSkill):
         self.skills_root = Path(__file__).parent.parent.parent
         self.categories = ["content-creation", "data-analysis", "utilities", "tools", "automation"]
 
-    def _execute_core(self, action: str = "scan", **kwargs) -> Dict[str, Any]:
+    def execute(self, action: str = "scan", **kwargs) -> Dict[str, Any]:
         """
         核心执行逻辑
 
@@ -61,12 +61,12 @@ class SkillEvolutionAssistant(EvolvableSkill):
             return self.scan_skills()
         elif action == "analyze":
             return self.analyze_skills()
-        elif action == "transform":
+        elif action in ["transform", "evolve"]:
             skill_name = kwargs.get("skill_name")
             if not skill_name:
                 return {"success": False, "error": "skill_name is required"}
             return self.transform_skill(skill_name)
-        elif action == "transform_all":
+        elif action in ["transform_all", "evolve_all"]:
             return self.transform_all_skills()
         else:
             return {"success": False, "error": f"Unknown action: {action}"}
@@ -81,7 +81,7 @@ class SkillEvolutionAssistant(EvolvableSkill):
                 continue
 
             for skill_dir in category_path.iterdir():
-                if not skill_dir.is_dir() or not skill_dir.name.endswith("-cskill"):
+                if not skill_dir.is_dir() or not (skill_dir.name.endswith("-cskill") or skill_dir.name.endswith("_skill")):
                     continue
 
                 skill_info = self._analyze_skill(skill_dir, category)

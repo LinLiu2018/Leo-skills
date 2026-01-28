@@ -1,0 +1,265 @@
+# RealEstate Pipeline - 房产营销工作流
+# =====================================
+# 专为房地产业务设计的完整营销工作流
+
+name: "realestate-marketing-pipeline"
+description: "房产项目营销全流程：市场调研→竞品分析→营销策划→内容创作→多渠道发布"
+version: "1.0.0"
+enabled: true
+author: "Leo Liu"
+created: "2026-01-27"
+
+# 工作流触发器
+triggers:
+  - keyword: "房产营销"
+  - keyword: "楼盘推广"
+  - keyword: "项目营销"
+  - event: "manual"
+
+# 输入参数
+inputs:
+  project_name:
+    type: string
+    description: "项目名称"
+    required: true
+  location:
+    type: string
+    description: "项目位置"
+    required: true
+  project_type:
+    type: string
+    description: "项目类型：residential(住宅), commercial(商业), villa(别墅)"
+    default: "residential"
+  target_audience:
+    type: string
+    description: "目标客群"
+    default: "刚需改善"
+  platforms:
+    type: array
+    description: "发布平台列表"
+    default: ["wechat", "xiaohongshu"]
+
+# 工作流步骤
+steps:
+  # 步骤1：市场调研
+  - name: "market_research"
+    description: "调研当地房地产市场情况"
+    agent: "research-agent"
+    skill: "web_search_skill"
+    action: "search"
+    params:
+      query: "{{ inputs.location }} 房地产市场 {{ inputs.project_type }} 2026"
+      max_results: 20
+    retries: 2
+    timeout: 120
+
+  # 步骤2：竞品分析（并行）
+  - name: "competitor_analysis"
+    description: "分析周边竞品项目"
+    type: "parallel"
+    condition: "{{ steps.market_research.success }}"
+    branches:
+      - name: "competitor_search"
+        agent: "research-agent"
+        skill: "web_search_skill"
+        action: "search"
+        params:
+          query: "{{ inputs.location }} {{ inputs.project_type }} 楼盘 竞品"
+          max_results: 15
+
+      - name: "price_analysis"
+        agent: "analysis-agent"
+        action: "analyze"
+        params:
+          topic: "{{ inputs.location }} 房价走势"
+          type: "trend"
+
+      - name: "policy_research"
+        agent: "research-agent"
+        action: "search"
+        params:
+          query: "{{ inputs.location }} 房产政策 限购 贷款"
+          type: "policy"
+
+  # 步骤3：项目定位分析
+  - name: "positioning_analysis"
+    description: "分析项目定位和卖点"
+    agent: "realestate-agent"
+    action: "analyze_positioning"
+    params:
+      project_name: "{{ inputs.project_name }}"
+      location: "{{ inputs.location }}"
+      project_type: "{{ inputs.project_type }}"
+      market_data: "{{ steps.market_research.result }}"
+      competitor_data: "{{ steps.competitor_analysis.competitor_search.result }}"
+      price_data: "{{ steps.competitor_analysis.price_analysis.result }}"
+    timeout: 180
+
+  # 步骤4：营销策略制定
+  - name: "marketing_strategy"
+    description: "制定营销策略和推广计划"
+    agent: "realestate-agent"
+    action: "create_strategy"
+    params:
+      project_name: "{{ inputs.project_name }}"
+      positioning: "{{ steps.positioning_analysis.result }}"
+      target_audience: "{{ inputs.target_audience }}"
+      platforms: "{{ inputs.platforms }}"
+    timeout: 180
+
+  # 步骤5：营销内容创作（并行）
+  - name: "content_creation"
+    description: "创作多平台营销内容"
+    type: "parallel"
+    condition: "{{ steps.marketing_strategy.success }}"
+    branches:
+      - name: "wechat_article"
+        agent: "creative-agent"
+        action: "create"
+        params:
+          content_type: "wechat_article"
+          project_name: "{{ inputs.project_name }}"
+          strategy: "{{ steps.marketing_strategy.result }}"
+          style: "professional"
+
+      - name: "xiaohongshu_note"
+        agent: "creative-agent"
+        action: "create"
+        params:
+          content_type: "xiaohongshu_note"
+          project_name: "{{ inputs.project_name }}"
+          strategy: "{{ steps.marketing_strategy.result }}"
+          style: "lifestyle"
+
+      - name: "short_copy"
+        agent: "creative-agent"
+        action: "create"
+        params:
+          content_type: "short_copy"
+          project_name: "{{ inputs.project_name }}"
+          strategy: "{{ steps.marketing_strategy.result }}"
+          count: 10
+
+  # 步骤6：内容排版优化
+  - name: "content_formatting"
+    description: "优化内容排版"
+    agent: "task-agent"
+    skill: "content_layout_leo_skill"
+    action: "format_wechat"
+    params:
+      content: "{{ steps.content_creation.wechat_article.result }}"
+      style: "data_driven"
+      title: "{{ inputs.project_name }}"
+    timeout: 60
+
+  # 步骤7：去AI化处理
+  - name: "humanize_content"
+    description: "去除AI痕迹，增加人性化表达"
+    agent: "creative-agent"
+    action: "humanize"
+    params:
+      content: "{{ steps.content_formatting.result }}"
+      techniques:
+        - "口语化"
+        - "增加个人观点"
+        - "调整节奏"
+        - "添加本地化表达"
+
+  # 步骤8：质量检查
+  - name: "quality_check"
+    description: "检查内容质量和合规性"
+    agent: "analysis-agent"
+    action: "evaluate"
+    params:
+      content: "{{ steps.humanize_content.result }}"
+      criteria:
+        - "原创性"
+        - "可读性"
+        - "营销吸引力"
+        - "合规性"
+        - "本地化程度"
+
+  # 步骤9：修订（条件执行）
+  - name: "revision"
+    description: "根据检查结果修订"
+    agent: "creative-agent"
+    action: "revise"
+    condition: "{{ steps.quality_check.result.score < 80 }}"
+    params:
+      content: "{{ steps.humanize_content.result }}"
+      feedback: "{{ steps.quality_check.result.feedback }}"
+
+  # 步骤10：生成营销报告
+  - name: "generate_report"
+    description: "生成完整的营销方案报告"
+    agent: "task-agent"
+    action: "generate_report"
+    params:
+      project_name: "{{ inputs.project_name }}"
+      market_research: "{{ steps.market_research.result }}"
+      competitor_analysis: "{{ steps.competitor_analysis.*.result }}"
+      positioning: "{{ steps.positioning_analysis.result }}"
+      strategy: "{{ steps.marketing_strategy.result }}"
+      content:
+        wechat: "{{ steps.revision.result or steps.humanize_content.result }}"
+        xiaohongshu: "{{ steps.content_creation.xiaohongshu_note.result }}"
+        short_copy: "{{ steps.content_creation.short_copy.result }}"
+      quality_score: "{{ steps.quality_check.result.score }}"
+      format: "markdown"
+
+# 输出定义
+outputs:
+  report:
+    description: "完整营销方案报告"
+    type: "file"
+    value: "{{ steps.generate_report.result }}"
+  wechat_content:
+    description: "微信公众号文章"
+    type: "text"
+    value: "{{ steps.revision.result or steps.humanize_content.result }}"
+  xiaohongshu_content:
+    description: "小红书笔记"
+    type: "text"
+    value: "{{ steps.content_creation.xiaohongshu_note.result }}"
+  short_copies:
+    description: "短文案集合"
+    type: "array"
+    value: "{{ steps.content_creation.short_copy.result }}"
+  market_insights:
+    description: "市场洞察"
+    type: "object"
+    value: "{{ steps.positioning_analysis.result }}"
+
+# 集成的Skills
+integrated_skills:
+  - name: "web_search_skill"
+    description: "网络搜索"
+    steps: ["market_research", "competitor_search", "policy_research"]
+  - name: "content_layout_leo_skill"
+    description: "内容排版"
+    step: "content_formatting"
+  - name: "research_assistant_skill"
+    description: "研究助手"
+    steps: ["market_research", "competitor_analysis"]
+
+# 错误处理
+error_handling:
+  default_action: "continue"
+  critical_steps:
+    - "market_research"
+    - "content_creation"
+  max_retries: 2
+  notification:
+    channel: "log"
+    level: "warning"
+
+# 元数据
+metadata:
+  category: "realestate"
+  tags:
+    - "房产营销"
+    - "项目推广"
+    - "内容创作"
+    - "多平台发布"
+  estimated_duration: "15-30分钟"
+  complexity: "high"

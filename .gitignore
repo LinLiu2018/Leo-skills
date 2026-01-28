@@ -58,3 +58,16 @@ nul
 
 # Demo output
 demo_output/
+
+# Temporary files
+temp_*.txt
+temp_*.json
+
+# Research reports (generated)
+*_report_*.md
+due_diligence_*.md
+marketing_manual_*.md
+roi_report_*.md
+
+# Deep research scripts (temporary)
+deep_research_*.py

@@ -120,7 +120,7 @@ server {{
         # 缓存配置
         cache_block = ""
         if 'cache' in features:
-            cache_block = """
+            cache_block = r"""
     # 静态资源缓存
     location ~* \.(jpg|jpeg|png|gif|ico|css|js|woff2?)$ {
         expires 30d;

@@ -34,10 +34,6 @@ logger = logging.getLogger(__name__)
 
 
 @dataclass
-
-from core.evolution import EvolvableSkill
-
-
 class Paper:
     """Data class representing an academic paper."""
     paper_id: str

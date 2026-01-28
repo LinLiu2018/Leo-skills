@@ -1,0 +1,246 @@
+# Ecommerce Pipeline - 电商分析工作流
+# ====================================
+# 专为电商业务设计的竞品分析和营销工作流
+
+name: "ecommerce-analysis-pipeline"
+description: "电商竞品分析全流程：市场调研→竞品分析→选品建议→文案创作→营销策略"
+version: "1.0.0"
+enabled: true
+author: "Leo Liu"
+created: "2026-01-27"
+
+# 工作流触发器
+triggers:
+  - keyword: "电商分析"
+  - keyword: "竞品分析"
+  - keyword: "选品"
+  - keyword: "AI眼镜"
+  - event: "manual"
+
+# 输入参数
+inputs:
+  product_category:
+    type: string
+    description: "产品类目"
+    required: true
+  product_name:
+    type: string
+    description: "具体产品名称（可选）"
+    default: ""
+  platforms:
+    type: array
+    description: "分析平台：taobao, jd, pinduoduo, douyin"
+    default: ["taobao", "jd", "douyin"]
+  analysis_depth:
+    type: string
+    description: "分析深度：quick(快速), standard(标准), deep(深度)"
+    default: "standard"
+  output_type:
+    type: string
+    description: "输出类型：report(报告), copywriting(文案), both(两者)"
+    default: "both"
+
+# 工作流步骤
+steps:
+  # 步骤1：市场趋势调研
+  - name: "market_trend_research"
+    description: "调研市场趋势和热度"
+    agent: "research-agent"
+    skill: "web_search_skill"
+    action: "search"
+    params:
+      query: "{{ inputs.product_category }} 市场趋势 2026 销量 热度"
+      max_results: 20
+    retries: 2
+    timeout: 120
+
+  # 步骤2：竞品信息收集（并行）
+  - name: "competitor_collection"
+    description: "收集各平台竞品信息"
+    type: "parallel"
+    condition: "{{ steps.market_trend_research.success }}"
+    branches:
+      - name: "taobao_competitors"
+        agent: "ecommerce-agent"
+        action: "analyze_platform"
+        params:
+          platform: "taobao"
+          category: "{{ inputs.product_category }}"
+          product: "{{ inputs.product_name }}"
+
+      - name: "jd_competitors"
+        agent: "ecommerce-agent"
+        action: "analyze_platform"
+        params:
+          platform: "jd"
+          category: "{{ inputs.product_category }}"
+          product: "{{ inputs.product_name }}"
+
+      - name: "douyin_competitors"
+        agent: "ecommerce-agent"
+        action: "analyze_platform"
+        params:
+          platform: "douyin"
+          category: "{{ inputs.product_category }}"
+          product: "{{ inputs.product_name }}"
+
+  # 步骤3：竞品深度分析
+  - name: "competitor_deep_analysis"
+    description: "深度分析竞品数据"
+    agent: "analysis-agent"
+    action: "analyze"
+    params:
+      data:
+        taobao: "{{ steps.competitor_collection.taobao_competitors.result }}"
+        jd: "{{ steps.competitor_collection.jd_competitors.result }}"
+        douyin: "{{ steps.competitor_collection.douyin_competitors.result }}"
+      analysis_type: "comprehensive"
+      metrics:
+        - "价格区间"
+        - "销量分布"
+        - "评价分析"
+        - "卖点提取"
+        - "差评痛点"
+    timeout: 180
+
+  # 步骤4：选品建议生成
+  - name: "product_selection"
+    description: "生成选品建议"
+    agent: "ecommerce-agent"
+    action: "generate_selection"
+    params:
+      market_data: "{{ steps.market_trend_research.result }}"
+      competitor_analysis: "{{ steps.competitor_deep_analysis.result }}"
+      criteria:
+        - "市场空间"
+        - "竞争程度"
+        - "利润空间"
+        - "差异化机会"
+    timeout: 120
+
+  # 步骤5：爆款文案创作（并行）
+  - name: "copywriting_creation"
+    description: "创作多平台爆款文案"
+    type: "parallel"
+    condition: "{{ inputs.output_type in ['copywriting', 'both'] }}"
+    branches:
+      - name: "product_title"
+        agent: "creative-agent"
+        action: "create"
+        params:
+          content_type: "product_title"
+          category: "{{ inputs.product_category }}"
+          selling_points: "{{ steps.competitor_deep_analysis.result.selling_points }}"
+          count: 10
+
+      - name: "product_description"
+        agent: "creative-agent"
+        action: "create"
+        params:
+          content_type: "product_description"
+          category: "{{ inputs.product_category }}"
+          analysis: "{{ steps.competitor_deep_analysis.result }}"
+          style: "viral"
+
+      - name: "douyin_script"
+        agent: "creative-agent"
+        action: "create"
+        params:
+          content_type: "short_video_script"
+          category: "{{ inputs.product_category }}"
+          duration: 30
+          style: "hook_first"
+
+      - name: "xiaohongshu_note"
+        agent: "creative-agent"
+        action: "create"
+        params:
+          content_type: "xiaohongshu_note"
+          category: "{{ inputs.product_category }}"
+          style: "experience_sharing"
+
+  # 步骤6：营销策略制定
+  - name: "marketing_strategy"
+    description: "制定营销推广策略"
+    agent: "ecommerce-agent"
+    action: "create_strategy"
+    params:
+      product_category: "{{ inputs.product_category }}"
+      market_analysis: "{{ steps.market_trend_research.result }}"
+      competitor_analysis: "{{ steps.competitor_deep_analysis.result }}"
+      selection_advice: "{{ steps.product_selection.result }}"
+      platforms: "{{ inputs.platforms }}"
+    timeout: 180
+
+  # 步骤7：生成分析报告
+  - name: "generate_report"
+    description: "生成完整分析报告"
+    agent: "task-agent"
+    action: "generate_report"
+    condition: "{{ inputs.output_type in ['report', 'both'] }}"
+    params:
+      report_type: "ecommerce_analysis"
+      sections:
+        - title: "市场概况"
+          data: "{{ steps.market_trend_research.result }}"
+        - title: "竞品分析"
+          data: "{{ steps.competitor_deep_analysis.result }}"
+        - title: "选品建议"
+          data: "{{ steps.product_selection.result }}"
+        - title: "营销策略"
+          data: "{{ steps.marketing_strategy.result }}"
+      format: "markdown"
+
+# 输出定义
+outputs:
+  analysis_report:
+    description: "完整分析报告"
+    type: "file"
+    value: "{{ steps.generate_report.result }}"
+  selection_advice:
+    description: "选品建议"
+    type: "object"
+    value: "{{ steps.product_selection.result }}"
+  copywriting:
+    description: "营销文案集合"
+    type: "object"
+    value:
+      titles: "{{ steps.copywriting_creation.product_title.result }}"
+      description: "{{ steps.copywriting_creation.product_description.result }}"
+      douyin_script: "{{ steps.copywriting_creation.douyin_script.result }}"
+      xiaohongshu: "{{ steps.copywriting_creation.xiaohongshu_note.result }}"
+  marketing_strategy:
+    description: "营销策略"
+    type: "object"
+    value: "{{ steps.marketing_strategy.result }}"
+
+# 集成的Skills
+integrated_skills:
+  - name: "web_search_skill"
+    description: "网络搜索"
+    step: "market_trend_research"
+  - name: "research_assistant_skill"
+    description: "研究助手"
+    steps: ["market_trend_research", "competitor_collection"]
+
+# 错误处理
+error_handling:
+  default_action: "continue"
+  critical_steps:
+    - "market_trend_research"
+    - "competitor_deep_analysis"
+  max_retries: 2
+  notification:
+    channel: "log"
+    level: "warning"
+
+# 元数据
+metadata:
+  category: "ecommerce"
+  tags:
+    - "电商分析"
+    - "竞品分析"
+    - "选品"
+    - "爆款文案"
+  estimated_duration: "10-20分钟"
+  complexity: "medium"
