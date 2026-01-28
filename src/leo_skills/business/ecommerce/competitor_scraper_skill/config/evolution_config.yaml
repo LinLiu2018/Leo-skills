@@ -1,0 +1,15 @@
+# 进化配置 - 竞品抓取技能
+evolution:
+  enabled: true
+  learning:
+    min_executions_for_learning: 5    # 至少5次执行后开始学习
+    analysis_window: 50               # 分析最近50条记录
+  optimization:
+    auto_optimize: false              # 自动优化需要审批
+    require_approval: true
+  # 竞品抓取特定的进化触发条件
+  triggers:
+    - type: error_rate                # 错误率触发
+      threshold: 0.3                  # 错误率超过30%触发学习
+    - type: success_rate              # 成功率触发
+      threshold: 0.7                  # 成功率低于70%触发学习

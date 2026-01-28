@@ -1,0 +1,133 @@
+# Data Sources Configuration
+# 数据源配置文件
+
+government_sources:
+  - name: "宁波市住建局"
+    url: "http://zjj.ningbo.gov.cn"
+    rss_url: "http://zjj.ningbo.gov.cn/col/col1229123510/index.html"
+    type: "government"
+    region: "ningbo"
+    update_frequency: "daily"
+    priority: 10
+    enabled: true
+    selectors:
+      list: "ul.news_list li"
+      title: "a"
+      link: "a"
+      date: ".date"
+
+  - name: "余姚市政府"
+    url: "http://www.yuyao.gov.cn"
+    type: "government"
+    region: "yuyao"
+    update_frequency: "daily"
+    priority: 9
+    enabled: true
+
+  - name: "镇海区政府"
+    url: "http://www.zh.gov.cn"
+    type: "government"
+    region: "zhenhai"
+    update_frequency: "daily"
+    priority: 9
+    enabled: true
+
+  - name: "奉化区政府"
+    url: "http://www.fh.gov.cn"
+    type: "government"
+    region: "fenghua"
+    update_frequency: "daily"
+    priority: 9
+    enabled: true
+
+news_sources:
+  - name: "新华网房产"
+    url: "http://www.xinhuanet.com/house/index.htm"
+    type: "news"
+    update_frequency: "hourly"
+    priority: 7
+    enabled: true
+    selectors:
+      articles: ".liBox"
+
+  - name: "人民网房产"
+    url: "http://house.people.com.cn"
+    type: "news"
+    update_frequency: "hourly"
+    priority: 7
+    enabled: true
+
+  - name: "浙江在线"
+    url: "http://www.zjol.com.cn"
+    type: "news"
+    region: "zhejiang"
+    update_frequency: "hourly"
+    priority: 6
+    enabled: true
+
+  - name: "宁波日报"
+    url: "http://www.cnnb.com.cn"
+    type: "news"
+    region: "ningbo"
+    update_frequency: "hourly"
+    priority: 7
+    enabled: true
+
+industry_sources:
+  - name: "贝壳研究院"
+    url: "https://research.ke.com"
+    type: "industry"
+    update_frequency: "daily"
+    priority: 6
+    enabled: true
+    note: "Requires authentication for full access"
+
+  - name: "链家市场报告"
+    url: "https://www.lianjia.com"
+    type: "industry"
+    update_frequency: "daily"
+    priority: 6
+    enabled: true
+
+  - name: "安居客市场数据"
+    url: "https://www.anjuke.com"
+    type: "industry"
+    update_frequency: "daily"
+    priority: 6
+    enabled: true
+
+social_sources:
+  - name: "微博房产话题"
+    url: "https://weibo.com"
+    type: "social"
+    platform: "weibo"
+    update_frequency: "continuous"
+    priority: 3
+    enabled: false
+    note: "Requires API access"
+
+  - name: "知乎房产问答"
+    url: "https://www.zhihu.com"
+    type: "social"
+    platform: "zhihu"
+    update_frequency: "continuous"
+    priority: 3
+    enabled: false
+    note: "Requires API access"
+
+# Source-specific settings
+source_settings:
+  request_headers:
+    User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    Accept-Language: "zh-CN,zh;q=0.9,en;q=0.8"
+
+  rate_limits:
+    government: 60  # seconds between requests
+    news: 30
+    industry: 60
+    social: 120
+
+  cache_settings:
+    enabled: true
+    ttl: 3600  # seconds

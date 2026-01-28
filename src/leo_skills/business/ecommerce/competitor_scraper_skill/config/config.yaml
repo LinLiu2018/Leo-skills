@@ -1,0 +1,17 @@
+# 竞品抓取技能配置
+competitor_scraper:
+  platforms:
+    - jd           # 京东
+    - taobao       # 淘宝
+    - amazon       # 亚马逊
+  settings:
+    request_delay: 2.0        # 请求间隔(秒)
+    max_retries: 3            # 最大重试次数
+    timeout: 30               # 请求超时(秒)
+    max_pages: 10             # 最大抓取页数
+  user_agents:
+    - "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    - "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Safari/605.1.15"
+  output:
+    format: json              # 输出格式
+    save_dir: "data/output"   # 保存目录
