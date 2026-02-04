@@ -1,0 +1,77 @@
+{
+  "models": {
+    "claude": {
+      "name": "Claude 3.5 Sonnet",
+      "provider": "anthropic",
+      "model_id": "claude-3-5-sonnet",
+      "api_base": "https://api.anthropic.com",
+      "features": ["代码生成", "长文本分析", "多语言支持"],
+      "cost": "中等",
+      "speed": "快",
+      "context_window": "200K tokens"
+    },
+    "haiku": {
+      "name": "Claude 3.5 Haiku",
+      "provider": "anthropic",
+      "model_id": "claude-3-5-haiku",
+      "api_base": "https://api.anthropic.com",
+      "features": ["快速响应", "低成本", "简单任务"],
+      "cost": "低",
+      "speed": "最快",
+      "context_window": "200K tokens"
+    },
+    "opus": {
+      "name": "Claude Opus 4.5",
+      "provider": "anthropic",
+      "model_id": "claude-opus-4-5",
+      "api_base": "https://api.anthropic.com",
+      "features": ["复杂推理", "架构设计", "最强能力"],
+      "cost": "高",
+      "speed": "较慢",
+      "context_window": "200K tokens"
+    },
+    "kimi": {
+      "name": "Kimi 2.5 (Moonshot)",
+      "provider": "moonshot",
+      "model_id": "moonshot-v1-128k",
+      "api_base": "https://api.moonshot.cn/v1",
+      "api_key_file": "kimi_api_key.txt",
+      "features": ["超长上下文", "中文优化", "联网搜索"],
+      "cost": "低",
+      "speed": "快",
+      "context_window": "128K tokens",
+      "signup_url": "https://platform.moonshot.cn/"
+    },
+    "minimax": {
+      "name": "MiniMax 2.1",
+      "provider": "minimax",
+      "model_id": "abab6.5-chat",
+      "api_base": "https://api.minimax.chat/v1",
+      "api_key_file": "minimax_api_key.txt",
+      "features": ["性价比高", "中文优化", "多模态"],
+      "cost": "低",
+      "speed": "快",
+      "context_window": "245K tokens",
+      "signup_url": "https://www.minimaxi.com/"
+    },
+    "deepseek": {
+      "name": "DeepSeek V3",
+      "provider": "deepseek",
+      "model_id": "deepseek-chat",
+      "api_base": "https://api.deepseek.com/v1",
+      "api_key_file": "deepseek_api_key.txt",
+      "features": ["代码能力强", "价格便宜", "推理能力"],
+      "cost": "极低",
+      "speed": "快",
+      "context_window": "64K tokens",
+      "signup_url": "https://platform.deepseek.com/"
+    }
+  },
+  "usage_recommendations": {
+    "日常开发": ["claude", "haiku"],
+    "复杂架构设计": ["opus", "claude"],
+    "长文本分析": ["kimi", "claude"],
+    "代码生成": ["deepseek", "claude"],
+    "成本优化": ["haiku", "deepseek", "minimax"]
+  }
+}

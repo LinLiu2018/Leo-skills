@@ -6,6 +6,7 @@ Leo System - 统一日志系统
 """
 import logging
 import sys
+import re
 from pathlib import Path
 from typing import Optional
 
@@ -21,6 +22,36 @@ DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 # 全局日志级别配置
 DEFAULT_LOG_LEVEL = logging.INFO
+
+
+def _strip_emoji(text: str) -> str:
+    """移除消息中的 emoji 和特殊符号（解决 Windows 控制台编码问题）"""
+    # 移除常见 emoji
+    emoji_pattern = re.compile(
+        "["
+        "\U0001F600-\U0001F64F"  # emoticons
+        "\U0001F300-\U0001F5FF"  # symbols & pictographs
+        "\U0001F680-\U0001F6FF"  # transport & map symbols
+        "\U0001F1E0-\U0001F1FF"  # flags
+        "\U00002702-\U000027B0"  # dingbats
+        "\U000024C2-\U0001F251"  # enclosed characters
+        "\U0001f900-\U0001f9ff"  # supplemental symbols
+        "\U0001FA00-\U0001FA6F"  # chess symbols
+        "\U0001FA70-\U0001FAFF"  # symbols and pictographs extended-a
+        "\U00002600-\U000026FF"  # misc symbols
+        "]+",
+        flags=re.UNICODE
+    )
+    return emoji_pattern.sub('', text)
+
+
+class SafeFormatter(logging.Formatter):
+    """安全的日志格式化器，自动移除 emoji"""
+    def format(self, record):
+        # 移除消息中的 emoji
+        if record.msg:
+            record.msg = _strip_emoji(str(record.msg))
+        return super().format(record)
 
 
 def get_logger(
@@ -50,8 +81,8 @@ def get_logger(
     # 设置日志级别
     logger.setLevel(level or DEFAULT_LOG_LEVEL)
 
-    # 创建格式化器
-    formatter = logging.Formatter(LOG_FORMAT, datefmt=DATE_FORMAT)
+    # 创建安全的格式化器
+    safe_formatter = SafeFormatter(LOG_FORMAT, datefmt=DATE_FORMAT)
 
     # 文件处理器
     if log_to_file:
@@ -59,14 +90,14 @@ def get_logger(
         log_file = LOGS_DIR / f"{name.replace('.', '_')}.log"
         file_handler = logging.FileHandler(log_file, encoding="utf-8")
         file_handler.setLevel(level or DEFAULT_LOG_LEVEL)
-        file_handler.setFormatter(formatter)
+        file_handler.setFormatter(safe_formatter)
         logger.addHandler(file_handler)
 
     # 控制台处理器
     if log_to_console:
         console_handler = logging.StreamHandler(sys.stdout)
         console_handler.setLevel(level or DEFAULT_LOG_LEVEL)
-        console_handler.setFormatter(formatter)
+        console_handler.setFormatter(safe_formatter)
         logger.addHandler(console_handler)
 
     return logger

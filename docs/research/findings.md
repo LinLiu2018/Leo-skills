@@ -1,5 +1,6 @@
-# 发现与决策: Claude Code + OpenClaw + 飞书 集成
+# 发现与决策: Claude Code + OpenClaw + Leo System 集成
 
+> **最后更新**: 2026-02-04
 > **官方仓库**: https://github.com/openclaw/openclaw
 
 ## 需求
@@ -8,9 +9,201 @@
 - 支持定时任务自动运转
 - 实现7x24小时自动化运营
 
-## 研究发现
+---
 
-### OpenClaw 核心能力
+## 🔥 最新研究: Claude Code vs OpenClaw vs Leo System 架构对比 (2026-02-04)
+
+### 一、系统概览
+
+| 维度 | Claude Code | OpenClaw | Leo System |
+|------|-------------|----------|------------|
+| **定位** | Anthropic 官方 AI 编程工具 | 开源多渠道 AI 代理框架 | 个人 AI 智能体系统 |
+| **核心能力** | 代码编辑、调试、理解 | 多平台消息路由、任务执行 | 业务自动化、内容创作 |
+| **部署方式** | CLI/IDE 插件/Web | 本地自托管 (Docker) | 本地 Python 服务 |
+| **开源状态** | 闭源 (Anthropic 产品) | 开源 (GitHub) | 私有项目 |
+
+### 二、架构对比
+
+#### 2.1 Claude Code 架构
+```
+┌─────────────────────────────────────────────────────────┐
+│                    Claude Code                          │
+├─────────────────────────────────────────────────────────┤
+│  入口层: CLI | VSCode | JetBrains | Slack | Web        │
+├─────────────────────────────────────────────────────────┤
+│  工具层: Read | Write | Edit | Bash | Glob | Grep      │
+├─────────────────────────────────────────────────────────┤
+│  扩展层: MCP Tools (外部集成)                           │
+├─────────────────────────────────────────────────────────┤
+│  上下文层: CLAUDE.md | settings.json | Subagents       │
+├─────────────────────────────────────────────────────────┤
+│  技能层: .claude/skills/*.md (Markdown 定义)           │
+└─────────────────────────────────────────────────────────┘
+```
+
+#### 2.2 OpenClaw 架构
+```
+┌─────────────────────────────────────────────────────────┐
+│                    OpenClaw                             │
+├─────────────────────────────────────────────────────────┤
+│  渠道层: 飞书|WhatsApp|Telegram|Discord|Slack|微信     │
+├─────────────────────────────────────────────────────────┤
+│  Gateway: WebSocket 控制平面 (ws://127.0.0.1:18789)    │
+├─────────────────────────────────────────────────────────┤
+│  Brain: 模型无关 (Claude/GPT/Llama/本地模型)           │
+├─────────────────────────────────────────────────────────┤
+│  Sandbox: Docker 隔离执行环境                          │
+├─────────────────────────────────────────────────────────┤
+│  Skills: JS/TS 函数 + ClawdHub 技能市场                │
+└─────────────────────────────────────────────────────────┘
+```
+
+#### 2.3 Leo System 架构
+```
+┌─────────────────────────────────────────────────────────┐
+│                    Leo AI System                        │
+├─────────────────────────────────────────────────────────┤
+│  入口层: Claude Code | OpenClaw (飞书) | MCP Server    │
+├─────────────────────────────────────────────────────────┤
+│  编排层: Leo Orchestrator (意图识别+任务路由)          │
+├─────────────────────────────────────────────────────────┤
+│  代理层: 9 个 Agents (研究/房产/创作/分析/架构...)     │
+├─────────────────────────────────────────────────────────┤
+│  技能层: 98 个 Skills (13 大分类)                      │
+├─────────────────────────────────────────────────────────┤
+│  工作流层: 5 个 Workflows (内容/房产/分析/研究/电商)   │
+├─────────────────────────────────────────────────────────┤
+│  知识层: leo_knowledge (用户画像/开发规范/框架模板)    │
+└─────────────────────────────────────────────────────────┘
+```
+
+### 三、核心能力对比
+
+| 能力维度 | Claude Code | OpenClaw | Leo System |
+|---------|-------------|----------|------------|
+| **代码编辑** | ⭐⭐⭐⭐⭐ 原生支持 | ⭐⭐ 通过 Sandbox | ⭐⭐⭐ 通过 Claude Code |
+| **多渠道消息** | ⭐⭐ Slack 集成 | ⭐⭐⭐⭐⭐ 12+ 平台 | ⭐⭐⭐ 飞书 (通过 OpenClaw) |
+| **技能系统** | ⭐⭐⭐ Markdown 定义 | ⭐⭐⭐⭐ JS/TS + 市场 | ⭐⭐⭐⭐⭐ 98 个 Python 技能 |
+| **代理系统** | ⭐⭐⭐ Subagents | ⭐⭐ 单一 Brain | ⭐⭐⭐⭐⭐ 9 个专业代理 |
+| **工作流** | ⭐⭐ 手动编排 | ⭐⭐⭐ Lobster 管道 | ⭐⭐⭐⭐ 5 个自动化流水线 |
+| **上下文管理** | ⭐⭐⭐⭐ 分层配置 | ⭐⭐⭐ 本地持久化 | ⭐⭐⭐⭐⭐ 五层记忆架构 |
+| **MCP 支持** | ⭐⭐⭐⭐⭐ 原生支持 | ⭐⭐⭐ 可集成 | ⭐⭐⭐⭐ MCP Server 暴露 |
+| **业务定制** | ⭐⭐ 通用工具 | ⭐⭐⭐ 可扩展 | ⭐⭐⭐⭐⭐ 房产/电商/内容 |
+
+### 四、知识管理对比
+
+| 维度 | Claude Code | OpenClaw | Leo System |
+|------|-------------|----------|------------|
+| **记忆机制** | CLAUDE.md 项目记忆 | 本地文件持久化 | 五层记忆架构 |
+| **用户画像** | 无 | 无 | user_profile.md |
+| **开发规范** | 项目级 settings | 无 | development_guide.md |
+| **框架模板** | 无 | 无 | frameworks/ + templates/ |
+| **上下文工程** | 基础支持 | 无 | planning_with_files 方法论 |
+
+### 五、Leo System 独特优势
+
+#### 5.1 业务深度定制
+- **房产经纪**: realestate_agent + 市场调研工作流
+- **内容创作**: creative_agent + 内容流水线 (8 步自动化)
+- **AI 眼镜电商**: ecommerce_agent + 电商工作流
+
+#### 5.2 上下文工程方法论
+```
+Context Window = RAM (易失、有限)
+Filesystem = Disk (持久、无限)
+```
+- `docs/planning/task_plan.md` - 任务规划
+- `docs/research/findings.md` - 研究发现
+- `docs/progress/progress.md` - 进度日志
+
+#### 5.3 三层能力体系
+```
+Skills (98) → 原子能力
+    ↓
+Agents (9) → 专业执行者
+    ↓
+Workflows (5) → 自动化流水线
+```
+
+#### 5.4 统一 MCP 暴露
+通过 `.mcp/leo_mcp_server.py`，所有能力可被 Claude Code 和 OpenClaw 共享调用。
+
+### 六、系统协作关系图
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    用户交互层                           │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐     │
+│  │ VSCode IDE  │  │  飞书消息   │  │  终端 CLI   │     │
+│  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘     │
+└─────────┼────────────────┼────────────────┼────────────┘
+          │                │                │
+          ▼                ▼                ▼
+┌─────────────────┐  ┌─────────────┐  ┌─────────────────┐
+│   Claude Code   │  │  OpenClaw   │  │   直接调用      │
+│   (编程助手)    │  │  (消息路由) │  │   (Python)      │
+└────────┬────────┘  └──────┬──────┘  └────────┬────────┘
+         │                  │                   │
+         └──────────────────┼───────────────────┘
+                            │ MCP Protocol
+                            ▼
+┌─────────────────────────────────────────────────────────┐
+│                  Leo AI System                          │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │              Leo MCP Server                      │   │
+│  │         (.mcp/leo_mcp_server.py)                │   │
+│  └─────────────────────┬───────────────────────────┘   │
+│                        │                                │
+│  ┌─────────────────────▼───────────────────────────┐   │
+│  │              Leo Orchestrator                    │   │
+│  │           (意图识别 + 任务路由)                  │   │
+│  └─────────────────────┬───────────────────────────┘   │
+│           ┌────────────┼────────────┐                  │
+│           ▼            ▼            ▼                  │
+│  ┌─────────────┐ ┌──────────┐ ┌──────────────┐        │
+│  │ Skills (98) │ │Agents (9)│ │Workflows (5) │        │
+│  └─────────────┘ └──────────┘ └──────────────┘        │
+└─────────────────────────────────────────────────────────┘
+```
+
+### 七、总结与建议
+
+#### 7.1 当前状态评估
+
+| 系统 | 成熟度 | 适用场景 |
+|------|--------|----------|
+| **Claude Code** | 生产级 | 日常编程、代码审查、调试 |
+| **OpenClaw** | 生产级 | 多渠道消息、飞书机器人 |
+| **Leo System** | 开发中 | 业务自动化、内容创作、房产分析 |
+
+#### 7.2 Leo System 改进建议
+
+1. **完善 MCP Server**: 确保所有 98 个 Skills 都能正确暴露
+2. **增强 Orchestrator**: 提升意图识别准确率
+3. **云端部署**: 将 OpenClaw Gateway 迁移到 Vultr 提高稳定性
+4. **技能进化**: 利用 evolution 系统持续优化技能表现
+
+#### 7.3 三系统协同价值
+
+- **Claude Code**: 提供强大的编程能力和 MCP 协议支持
+- **OpenClaw**: 提供多渠道消息路由和飞书集成
+- **Leo System**: 提供业务定制能力和领域知识
+
+三者结合实现了 **"一人 = 10亿级公司生产力"** 的愿景基础设施。
+
+### 八、参考资源
+
+- [Claude Code 官方页面](https://claude.com/product/claude-code)
+- [Claude Code Cheatsheet](https://shipyard.build/blog/claude-code-cheat-sheet/)
+- [OpenClaw 架构介绍](https://macaron.im/en/blog/what-is-openclaw)
+- [OpenClaw 开发者指南](https://aimlapi.com/blog/openclaw-a-practical-guide-to-local-ai-agents-for-developers)
+- [OpenClaw 2026.2.2 发布](https://blockchain.news/ainews/openclaw-2026-2-2-release-feishu-integration-security-hardening-and-faster-builds-latest-ai-chat-client-advances)
+
+---
+
+## 历史研究发现
+
+### OpenClaw 核心能力 (2026-01)
 - **Gateway控制平面**: WebSocket网络，统一管理所有渠道
 - **多渠道支持**: 12+平台（包含飞书原生支持）
 - **技能平台**: 支持bundled、managed、workspace三种技能类型
@@ -30,15 +223,13 @@
 - **关键规则**: 2-动作规则、3-Strike错误协议、5问题重启测试
 - **价值**: 解决AI代理的上下文丢失、目标漂移问题
 
-## 技术决策
+### 技术决策
 | 决策 | 理由 |
 |------|------|
 | 采用 OpenClaw 作为中间层 | 统一多渠道、内置定时任务、技能管理 |
 | 使用内置飞书支持 | 官方支持，稳定可靠 |
 | 命令行方式集成Leo System | 快速验证，Python与Node.js解耦 |
 | 将planning_with_files升级为核心技能 | 提升整个系统的上下文工程能力 |
-
-## 架构发现
 
 ### 三层架构
 ```
@@ -47,156 +238,13 @@
 能力层: Leo System → Skills/Agents/Workflows
 ```
 
-### 数据流
-```
-用户消息 → 飞书 → OpenClaw Gateway
-    → 解析意图 → 调用Leo System → 返回结果 → 飞书
-```
-
-## 遇到的问题
-| 问题 | 解决方案 |
-|------|----------|
-| OpenClaw原生支持飞书 | 使用内置飞书插件 (channels.feishu) |
-| Windows环境兼容性 | 直接运行，Node.js ≥22 |
-
-## 资源
+### 资源
 - OpenClaw官网: https://www.openclaw.dev/
 - OpenClaw GitHub: https://github.com/openclaw/openclaw
-- Clawdbot-feishu: https://github.com/m1heng/Clawdbot-feishu (已弃用，OpenClaw内置支持)
 - Planning-with-files: https://github.com/OthmanAdi/planning-with-files
 - 飞书开放平台: https://open.feishu.cn/
 - obra/superpowers: https://github.com/obra/superpowers (TDD/调试/协作技能库)
 
-## 视觉/浏览器发现
-- OpenClaw 2026.1.30 内置飞书支持
-- Clawdbot-feishu README显示完整的权限配置和使用方法
-- Planning-with-files项目有13+ IDE适配版本
-
-## 项目架构优化相关发现（2026-01-29 新增）
-
-### 发现的优质项目
-
-| 项目 | 用途 | 价值 |
-|------|------|------|
-| **AI Coding Project Toolkit** | 结构化开发工作流 | 三阶段工作流（Specify→Plan→Execute） |
-| **Repomix Explorer Skill** | 代码库分析 | 自然语言分析代码库结构 |
-| **awesome-claude-skills** | 技能集合 | 6.2k stars，包含多种架构相关技能 |
-| **obra/superpowers** | 20+核心技能库 | TDD、调试、协作模式 |
-
-### AI Coding Project Toolkit 核心文档结构
-```
-project/
-├── PRODUCT_SPEC.md        # 产品规格说明
-├── TECHNICAL_SPEC.md      # 技术架构设计
-├── EXECUTION_PLAN.md      # 带验收标准的任务清单
-├── AGENTS.md              # AI代理工作流规则
-├── LEARNINGS.md           # 项目特定模式和经验
-├── DEFERRED.md            # 延期需求记录
-└── .claude/
-    └── skills/            # 执行技能
-```
-
-### 与Leo System的对比
-| 维度 | AI Coding Project Toolkit | Leo System |
-|------|---------------------------|------------|
-| 规划文件 | PRODUCT_SPEC + TECHNICAL_SPEC | task_plan.md |
-| 发现记录 | LEARNINGS.md | findings.md |
-| 进度跟踪 | EXECUTION_PLAN.md | progress.md |
-| 技能管理 | .claude/skills/ | src/leo_skills/ |
-
-### 建议整合方向
-1. 保留Leo System的三文件模式（更简洁）
-2. 借鉴TECHNICAL_SPEC.md的架构设计思路
-3. 引入AGENTS.md的工作流规则概念
-4. 考虑添加DEFERRED.md延期需求管理
-
 ---
+
 *每2次查看/浏览/搜索操作后更新此文件*
-
----
-
-## ϵͳ�������Ż����� (2026-01-30)
-
-### ������Χ
-- **��Ŀ·��**: D:\����\leo_ai_system
-- **����ʱ��**: 2026-01-30 16:10
-
-### ϵͳ��ģ����
-
-| ָ�� | ��ֵ | ���� |
-|------|------|------|
-| ���ܷ���Ŀ¼ | 23�� | ? �ṹ���� |
-| ������Ŀ¼ | 352�� | ?? ���ܴ������� |
-| ����ģ���� | 8�� | ? �ܹ����� |
-| ��Ŀ�ļ����� | 200+ | ?? ��Ҫ���� |
-
-### ����ģ��ṹ����
-
-`
-src/
-������ leo_orchestrator/  ? ����������
-������ leo_skills/        ?? ��Ҫ��֤��Ч��
-������ leo_subagents/     ?? ��agents (capability_index��ʾ)
-������ leo_workflows/     ?? ��workflows (capability_index��ʾ)
-������ leo_system/        ? ϵͳ����
-������ leo_config/        ? ���ù���
-������ leo_knowledge/     ? ֪ʶ��
-������ leo_interface/     ? �ӿڲ�
-`
-
-### ���ֵ�����
-
-1. **Skills vs Subagentsʧ��**
-   - Skills: 287+ (��Ч)
-   - Subagents: 0 (capability_index��ʾ)
-   - ����: ȱ��Agentʵ�֣��ܹ�������
-
-2. **Workflowsȱʧ**
-   - Ԥ���幤����δע��
-   - �޷�ʹ��Ԥ�õ� analysis/content/research pipeline
-
-3. **����Ŀ¼����**
-   - 352����Ŀ¼���ܰ���:
-     - �������ܣ���SKILL.md��
-     - �ظ�����
-     - �������ܣ���Ҫ�鵵��archive/��
-
-4. **�ɰ�Skillsδ����**
-   - leo-skills-old/ Ŀ¼����
-   - ����Ӱ��ϵͳ����
-
-5. **֪ʶ�ⲻ����**
-   - system_architecture.md ȱʧ
-   - user_profile.md ȱʧ
-   - development_guide.md ȱʧ
-
-6. **���Ը��ǲ���**
-   - tests/ Ŀ¼����Ϊ�ջ�ϡ��
-
-### �Ż��������ȼ�
-
-#### P0 (�����޸�)
-1. ����ȱʧ��֪ʶ���ļ�
-2. ��֤Skills��Ч��
-3. ��������/��������
-
-#### P1 (�������)
-4. ʵ�ֻ���Subagents
-5. ע��Ԥ��Workflows
-6. ���䵥Ԫ����
-
-#### P2 (�¸�����)
-7. �鵵leo-skills-old
-8. �Ż���Ŀ�ṹ
-9. �����ĵ�
-
-### ��Դռ�÷���
-- ��Ŀ��Ŀ¼: 200+ �ļ�
-- docs/: 50+ �ĵ��ļ�
-- examples/: 3 ��ʾ����Ŀ
-- archive/: ���ֹ鵵����
-
-### ��ȷ������
-1. Subagents�Ƿ�ƻ��ں���Phaseʵ�֣�
-2. Workflows��ע�᷽ʽ�Ƿ���ȷ����
-3. Skills��ά����׼��ʲô��

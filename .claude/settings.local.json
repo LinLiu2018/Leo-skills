@@ -53,5 +53,10 @@
       "d:\\桌面\\leo_ai_system"
     ]
   },
-  "language": "chinese"
+  "language": "chinese",
+  "enabledMcpjsonServers": [
+    "playwright",
+    "leo-system"
+  ],
+  "enableAllProjectMcpServers": true
 }

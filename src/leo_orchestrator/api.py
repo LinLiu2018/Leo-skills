@@ -10,19 +10,42 @@ Leo统一API
 """
 
 import sys
+import warnings
 from pathlib import Path
 from typing import Any, Dict, List, Optional
+
+# 抑制循环导入警告
+warnings.filterwarnings('ignore', message='.*partially initialized module.*')
+warnings.filterwarnings('ignore', category=DeprecationWarning)
 
 # 添加父目录到路径
 parent_path = Path(__file__).parent.parent
 if str(parent_path) not in sys.path:
     sys.path.insert(0, str(parent_path))
 
-from leo_system.logger import get_logger
+# 延迟导入，避免循环导入问题
 from .registry import AgentRegistration, SkillRegistration, get_registry
 
-# 创建日志记录器
-logger = get_logger(__name__)
+# 延迟导入 logger
+_logger = None
+
+def _get_logger():
+    global _logger
+    if _logger is None:
+        try:
+            from leo_system.logger import get_logger as _get_logger
+            _logger = _get_logger(__name__)
+        except Exception:
+            import logging
+            _logger = logging.getLogger(__name__)
+    return _logger
+
+class _LoggerProxy:
+    """Logger 代理类，支持延迟初始化"""
+    def __getattr__(self, name):
+        return getattr(_get_logger(), name)
+
+logger = _LoggerProxy()
 
 
 class LeoAPI:
