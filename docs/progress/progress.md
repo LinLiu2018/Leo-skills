@@ -493,4 +493,61 @@ openclaw cron runs --id <job-id>
 ```
 
 ---
-*每完成一个阶段或遇到错误后更新 | 最后更新: 2026-02-03 Phase 4 + Phase 10*
+
+## Phase 11: 三系统综合优化 - P0 任务完成 ✅
+
+- **状态:** complete ✅
+- **完成时间:** 2026-02-04
+- **背景:** 基于 Claude Code、OpenClaw 最佳实践和 Leo System 现状的综合分析
+
+### 已完成优化项
+
+| 优先级 | 任务 | 状态 | 关键操作 |
+|--------|------|------|----------|
+| P0 | 修复 leo-system 插件 trim 错误 | ✅ | 修复 `lines[1].trim()` 空值问题和 `registerTool` API 调用方式 |
+| P0 | 确保 Gateway 稳定运行 | ✅ | 端口 18789 正常监听，飞书已连接 |
+| P0 | 配置定时任务 | ✅ | 新增 3 个任务，共 6 个定时任务运行中 |
+
+### 11.1 修复 leo-system 插件错误
+
+**问题:** `TypeError: Cannot read properties of undefined (reading 'trim')`
+
+**修复文件:** `C:\Users\刘方林\.openclaw\extensions\leo-system\index.js`
+
+**修复内容:**
+1. 将 `log` 移到模块级别避免 undefined 错误
+2. 添加 `lines[1]` 空值检查防止 `trim` 错误
+3. 修复 `api.registerTool()` 调用方式（改为传递工具对象 `{ name, description, parameters, handler }`）
+
+### 11.2 定时任务配置 (6个)
+
+| 任务名 | 调度 | 说明 |
+|--------|------|------|
+| health_check_hourly | 每小时 | 系统健康检查 |
+| capability_index_daily | 每天 06:00 | 自动更新能力索引 |
+| github_skills_daily | 每天 08:00 | GitHub 技能检查 |
+| memory_cleanup_weekly | 每周六 03:00 | 清理过期记忆 |
+| skills_update_weekly | 每周日 22:00 | 技能更新检查 |
+| repo_watch_weekly | 每周一 09:00 | 仓库监控报告 |
+
+### 11.3 待完成优化 (P1/P2)
+
+| 优先级 | 任务 |
+|--------|------|
+| P1 | 实现 Orchestrator 意图识别 |
+| P1 | 为所有 Agents 添加 AGENT.md 激活文件 |
+| P1 | 实现 Workflow 引擎 |
+| P2 | 统一所有 SKILL.md 格式 |
+| P2 | 实现能力索引自动更新 |
+| P2 | 实现共享记忆持久化 |
+
+### 11.4 关键文件更新
+
+| 文件 | 修改内容 |
+|------|----------|
+| `CLAUDE.md` | 添加第6节"系统优化完成记录" |
+| `docs/progress/progress.md` | 添加 Phase 11 完成记录 |
+
+---
+
+*每完成一个阶段或遇到错误后更新 | 最后更新: 2026-02-04 Phase 11 - P0优化完成*

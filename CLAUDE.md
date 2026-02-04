@@ -149,3 +149,43 @@ netstat -ano | findstr "18789"
 | 运行日志 | `\tmp\openclaw\openclaw-{date}.log` |
 | 会话历史 | `C:\Users\刘方林\.openclaw\agents\leo-assistant\sessions\` |
 | 守护脚本日志 | `C:\Users\刘方林\.openclaw\logs\auto_healer_*.log` |
+
+---
+
+## 6. ✅ 系统优化完成记录
+
+### 2026-02-04 完成 P0 优化
+
+#### 6.1 修复 leo-system 插件错误
+- **问题**: `TypeError: Cannot read properties of undefined (reading 'trim')`
+- **修复文件**: `C:\Users\刘方林\.openclaw\extensions\leo-system\index.js`
+- **修复内容**:
+  1. 将 `log` 移到模块级别，避免 `undefined` 错误
+  2. 添加 `lines[1]` 空值检查防止 `trim` 错误
+  3. 修复 `api.registerTool()` 调用方式（改为传递工具对象）
+
+#### 6.2 配置定时任务 (6个)
+```bash
+# 新增任务
+openclaw cron add --name capability_index_daily --cron "0 6 * * *" --tz Asia/Shanghai --system-event "capability_index_daily" --agent leo-assistant
+openclaw cron add --name health_check_hourly --cron "0 * * * *" --tz Asia/Shanghai --system-event "health_check_hourly" --agent leo-assistant
+openclaw cron add --name memory_cleanup_weekly --cron "0 3 * * 6" --tz Asia/Shanghai --system-event "memory_cleanup_weekly" --agent leo-assistant
+
+# 所有任务
+| 任务名                  | 调度                  | 说明           |
+|------------------------|----------------------|----------------|
+| health_check_hourly    | 每小时               | 系统健康检查   |
+| capability_index_daily | 每天 06:00           | 自动更新能力索引 |
+| github_skills_daily    | 每天 08:00           | GitHub 技能检查 |
+| memory_cleanup_weekly  | 每周六 03:00         | 清理过期记忆   |
+| skills_update_weekly   | 每周日 22:00         | 技能更新检查   |
+| repo_watch_weekly      | 每周一 09:00         | 仓库监控报告   |
+```
+
+#### 6.3 待完成优化 (P1/P2)
+- [ ] P1: 实现 Orchestrator 意图识别
+- [ ] P1: 为所有 Agents 添加 AGENT.md 激活文件
+- [ ] P1: 实现 Workflow 引擎
+- [ ] P2: 统一所有 SKILL.md 格式
+- [ ] P2: 实现能力索引自动更新
+- [ ] P2: 实现共享记忆持久化
