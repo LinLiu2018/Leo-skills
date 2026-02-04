@@ -1,3 +1,22 @@
+---
+name: realestate_agent
+description: 房地产专业代理，负责房产业务自动化、客户跟进和房源管理
+type: realestate
+priority: 5
+triggers:
+  - 房地产
+  - 楼盘
+  - 项目营销
+  - 房源
+  - real estate
+skills:
+  - project_marketing_doc_generator_skill
+  - realestate_news_publisher_skill
+  - web_search_skill
+  - research_assistant_skill
+model: claude-opus-4-5
+---
+
 # Real Estate Agent
 
 房地产专业代理，负责房产业务自动化、客户跟进和房源管理。

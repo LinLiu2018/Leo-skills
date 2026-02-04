@@ -1,3 +1,24 @@
+---
+name: ai_news_summary_agent
+description: 每日情报战略官 - 全球商业情报深度版，自动推送到飞书
+type: intelligence
+priority: 7
+triggers:
+  - 今日新闻摘要
+  - 全球商业情报
+  - 每日情报
+  - 新闻摘要
+  - 定时推送
+  - 深度情报
+  - news summary
+  - daily intelligence
+skills:
+  - web_search_skill
+  - research_assistant_skill
+  - obsidian_sync_skill
+model: claude-opus-4-5
+---
+
 # Daily News Summary Agent
 
 **每日情报战略官** - 全球商业情报深度版，自动推送到飞书

@@ -1,0 +1,91 @@
+---
+# 内容生产流水线
+# ==============
+# 从研究到发布的完整内容生产流程
+
+name: content-pipeline
+description: 从研究到发布的完整内容生产流程
+version: "1.0"
+continue_on_error: false
+
+# 输入参数定义
+inputs:
+  topic:
+    type: string
+    required: true
+    description: 内容主题
+  depth:
+    type: integer
+    default: 2
+    description: 研究深度 (1-3)
+  output_format:
+    type: string
+    default: markdown
+    enum: [markdown, json]
+
+# 工作流步骤
+steps:
+  - name: research
+    type: sequential
+    agent: research_agent
+    description: 收集相关资料和信息
+    retries: 2
+    timeout: 120
+
+  - name: parallel_analysis
+    type: parallel
+    description: 并行分析多个维度
+    parallel_steps:
+      - name: market_analysis
+        agent: analysis_agent
+        description: 市场趋势分析
+      - name: competitor_analysis
+        agent: research_agent
+        description: 竞品分析
+      - name: trend_analysis
+        agent: analysis_agent
+        description: 趋势预测
+
+  - name: content_creation
+    type: sequential
+    agent: creative_agent
+    description: 基于研究结果创作内容
+    retries: 1
+
+  - name: quality_check
+    type: conditional
+    description: 根据质量分数决定下一步
+    condition_key: quality_score
+    branches:
+      "high": publish
+      "medium": revise
+      "low": recreate
+    default: revise
+
+  - name: revise
+    type: sequential
+    agent: creative_agent
+    description: 修订内容
+
+  - name: publish
+    type: sequential
+    agent: task_agent
+    description: 发布内容
+    retries: 3
+
+  - name: notify
+    type: sequential
+    agent: task_agent
+    description: 发送完成通知
+
+# 输出定义
+outputs:
+  - name: final_content
+    type: markdown
+    description: 最终生成的内容
+  - name: research_summary
+    type: json
+    description: 研究摘要
+  - name: publish_url
+    type: string
+    description: 发布链接

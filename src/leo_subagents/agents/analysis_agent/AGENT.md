@@ -1,3 +1,20 @@
+---
+name: analysis_agent
+description: 分析代理，负责数据分析、趋势洞察和决策支持
+type: analyzer
+priority: 3
+triggers:
+  - 分析数据
+  - 生成报告
+  - 统计
+  - 洞察
+  - analyze
+  - statistics
+skills:
+  - data_analyzer_skill
+model: claude-opus-4-5
+---
+
 # Analysis Agent
 
 分析代理，负责数据分析、趋势洞察和决策支持。

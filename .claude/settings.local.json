@@ -47,16 +47,18 @@
       "WebFetch(domain:docs.openclaw.dev)",
       "Bash(ren:*)",
       "Bash(npx openclaw doctor:*)",
-      "Bash(npx openclaw onboard:*)"
+      "Bash(npx openclaw onboard:*)",
+      "Bash(git stash:*)",
+      "Bash(git pull:*)"
     ],
     "additionalDirectories": [
       "d:\\桌面\\leo_ai_system"
     ]
   },
-  "language": "chinese",
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "playwright",
     "leo-system"
   ],
-  "enableAllProjectMcpServers": true
+  "language": "chinese"
 }

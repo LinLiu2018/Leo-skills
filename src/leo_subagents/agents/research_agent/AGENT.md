@@ -1,3 +1,22 @@
+---
+name: research_agent
+description: 研究代理，负责信息收集、文献调研和研究报告生成
+type: researcher
+priority: 2
+triggers:
+  - 研究
+  - 调研
+  - 收集信息
+  - 分析报告
+  - research
+  - analyze
+skills:
+  - research_assistant_skill
+  - web_search_skill
+  - article_to_prototype_skill
+model: claude-opus-4-5
+---
+
 # Research Agent
 
 研究代理，负责信息收集、文献调研和研究报告生成。

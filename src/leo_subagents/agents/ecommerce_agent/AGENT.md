@@ -1,3 +1,22 @@
+---
+name: ecommerce_agent
+description: 电商代理，负责电商运营自动化、订单处理和竞品分析
+type: ecommerce
+priority: 6
+triggers:
+  - 电商
+  - 商城
+  - 订单
+  - 运营
+  - 竞品分析
+  - ecommerce
+  - shop
+skills:
+  - research_assistant_skill
+  - article_to_prototype_skill
+model: claude-opus-4-5
+---
+
 # Ecommerce Agent
 
 电商代理，负责电商运营自动化、订单处理和竞品分析。

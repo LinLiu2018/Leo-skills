@@ -1,3 +1,22 @@
+---
+name: mobile_agent
+description: 移动开发代理，负责小程序、React Native和Flutter开发
+type: developer
+priority: 16
+triggers:
+  - 小程序开发
+  - 移动开发
+  - React Native
+  - Flutter
+  - mobile
+  - app
+skills:
+  - miniprogram_page_generator_skill
+  - miniprogram_component_generator_skill
+  - miniprogram_project_scaffold_skill
+model: claude-opus-4-5
+---
+
 # Mobile Agent
 
 移动开发代理，负责小程序、React Native和Flutter开发。

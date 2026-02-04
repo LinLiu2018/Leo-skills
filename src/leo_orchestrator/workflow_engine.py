@@ -11,14 +11,16 @@ Workflow Engine
 - 超时控制
 - Agent间数据传递
 - 执行状态跟踪
+- YAML工作流定义支持
 """
 
 import sys
 import time
+import yaml
 from concurrent.futures import ThreadPoolExecutor
 from concurrent.futures import TimeoutError as FuturesTimeoutError
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 # 添加父目录到路径
 parent_path = Path(__file__).parent.parent
@@ -398,6 +400,92 @@ class WorkflowEngine:
     def get_execution_history(self) -> List[Dict[str, Any]]:
         """获取执行历史"""
         return self.execution_history
+
+    def load_workflow_from_yaml(self, yaml_path: str) -> Dict[str, Any]:
+        """
+        从YAML文件加载工作流定义
+
+        Args:
+            yaml_path: YAML文件路径
+
+        Returns:
+            工作流配置字典
+        """
+        path = Path(yaml_path)
+        if not path.exists():
+            raise FileNotFoundError(f"工作流文件不存在: {yaml_path}")
+
+        with open(path, 'r', encoding='utf-8') as f:
+            workflow = yaml.safe_load(f)
+
+        logger.info(f"从 {yaml_path} 加载工作流: {workflow.get('name', 'Unknown')}")
+        return workflow
+
+    def execute_from_yaml(self, yaml_path: str, **kwargs) -> Dict[str, Any]:
+        """
+        从YAML文件加载并执行工作流
+
+        Args:
+            yaml_path: YAML文件路径
+            **kwargs: 工作流参数
+
+        Returns:
+            执行结果
+        """
+        workflow = self.load_workflow_from_yaml(yaml_path)
+        return self.execute(workflow, **kwargs)
+
+
+class WorkflowDefinition:
+    """
+    工作流定义类
+    =============
+    用于创建和验证工作流定义
+    """
+
+    @staticmethod
+    def create(
+        name: str,
+        description: str,
+        steps: List[Dict[str, Any]],
+        continue_on_error: bool = False
+    ) -> Dict[str, Any]:
+        """
+        创建工作流定义
+
+        Args:
+            name: 工作流名称
+            description: 工作流描述
+            steps: 步骤列表
+            continue_on_error: 错误时是否继续
+
+        Returns:
+            工作流定义字典
+        """
+        return {
+            "name": name,
+            "description": description,
+            "steps": steps,
+            "continue_on_error": continue_on_error,
+            "version": "1.0"
+        }
+
+    @staticmethod
+    def save_to_yaml(workflow: Dict[str, Any], yaml_path: str):
+        """
+        保存工作流到YAML文件
+
+        Args:
+            workflow: 工作流定义
+            yaml_path: 保存路径
+        """
+        path = Path(yaml_path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+
+        with open(path, 'w', encoding='utf-8') as f:
+            yaml.dump(workflow, f, allow_unicode=True, sort_keys=False)
+
+        logger.info(f"工作流已保存到: {yaml_path}")
 
 
 # ==================== 使用示例 ====================

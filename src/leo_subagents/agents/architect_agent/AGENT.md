@@ -1,3 +1,22 @@
+---
+name: architect_agent
+description: 架构师代理，负责技术选型、系统设计和数据库设计
+type: designer
+priority: 2
+triggers:
+  - 架构设计
+  - 技术选型
+  - 系统设计
+  - 数据库设计
+  - architecture
+  - design
+skills:
+  - database_model_generator_skill
+  - api_doc_generator_skill
+  - research_assistant_skill
+model: claude-opus-4-5
+---
+
 # Architect Agent
 
 架构师代理，负责技术选型、系统设计和数据库设计。

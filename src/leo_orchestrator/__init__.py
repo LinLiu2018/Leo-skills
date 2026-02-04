@@ -28,10 +28,24 @@ def get_api():
     return LeoAPI()
 
 
+def get_intent_recognizer(registry=None):
+    """获取意图识别器实例"""
+    from .intent_recognizer import get_intent_recognizer as _get_recognizer
+    return _get_recognizer(registry)
+
+
+def get_workflow_engine(agents=None, max_workers=4):
+    """获取工作流引擎实例"""
+    from .workflow_engine import WorkflowEngine
+    return WorkflowEngine(agents or {}, max_workers)
+
+
 # 导出的公共接口
 __all__ = [
     "__version__",
     "PACKAGE_DIR",
     "get_registry",
     "get_api",
+    "get_intent_recognizer",
+    "get_workflow_engine",
 ]

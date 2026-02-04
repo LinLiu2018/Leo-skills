@@ -1,0 +1,75 @@
+---
+# 全栈开发流水线
+# ==============
+# 从需求到部署的完整开发流程
+
+name: fullstack-dev-pipeline
+description: 从需求到部署的完整开发流程
+version: "1.0"
+continue_on_error: false
+
+inputs:
+  project_name:
+    type: string
+    required: true
+    description: 项目名称
+  tech_stack:
+    type: string
+    default: react-express-postgres
+    description: 技术栈
+  features:
+    type: array
+    required: true
+    description: 功能列表
+
+steps:
+  - name: requirements_analysis
+    type: sequential
+    agent: product_manager_agent
+    description: 需求分析
+    retries: 1
+
+  - name: architecture_design
+    type: sequential
+    agent: architect_agent
+    description: 架构设计
+    retries: 1
+
+  - name: parallel_development
+    type: parallel
+    description: 前后端并行开发
+    parallel_steps:
+      - name: backend_development
+        agent: task_agent
+        description: 后端API开发
+      - name: frontend_development
+        agent: task_agent
+        description: 前端页面开发
+      - name: database_setup
+        agent: architect_agent
+        description: 数据库设计
+
+  - name: integration
+    type: sequential
+    agent: task_agent
+    description: 前后端集成
+
+  - name: testing
+    type: sequential
+    agent: task_agent
+    description: 测试
+    retries: 2
+
+  - name: deployment
+    type: sequential
+    agent: task_agent
+    description: 部署
+    retries: 3
+
+outputs:
+  - name: deployed_url
+    type: string
+    description: 部署后的URL
+  - name: project_code
+    type: directory
+    description: 项目代码

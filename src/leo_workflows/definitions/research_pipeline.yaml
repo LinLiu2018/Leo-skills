@@ -1,0 +1,64 @@
+---
+# 研究流水线
+# ==========
+# 深度研究报告生成流程
+
+name: research-pipeline
+description: 深度研究报告生成流程
+version: "1.0"
+continue_on_error: false
+
+inputs:
+  topic:
+    type: string
+    required: true
+    description: 研究主题
+  depth:
+    type: integer
+    default: 2
+    description: 研究深度 (1-3)
+  sources:
+    type: array
+    default: [web, database]
+    description: 数据来源
+
+steps:
+  - name: initial_research
+    type: sequential
+    agent: research_agent
+    description: 初步信息收集
+    retries: 2
+    timeout: 180
+
+  - name: data_analysis
+    type: sequential
+    agent: analysis_agent
+    description: 数据分析
+    retries: 1
+
+  - name: deep_research
+    type: conditional
+    description: 根据深度决定是否深入研究
+    condition_key: depth
+    branches:
+      "3": extended_research
+    default: synthesis
+
+  - name: extended_research
+    type: sequential
+    agent: research_agent
+    description: 扩展研究
+    retries: 1
+
+  - name: synthesis
+    type: sequential
+    agent: research_agent
+    description: 综合研究结果
+
+outputs:
+  - name: research_report
+    type: markdown
+    description: 研究报告
+  - name: data_insights
+    type: json
+    description: 数据洞察

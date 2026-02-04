@@ -1,3 +1,21 @@
+---
+name: product_manager_agent
+description: 产品经理代理，负责需求分析、PRD编写和用户故事设计
+type: planner
+priority: 1
+triggers:
+  - 分析需求
+  - 写PRD
+  - 用户故事
+  - 产品设计
+  - PRD
+  - requirements
+skills:
+  - research_assistant_skill
+  - web_search_skill
+model: claude-opus-4-5
+---
+
 # Product Manager Agent
 
 产品经理代理，负责需求分析、PRD编写和用户故事设计。

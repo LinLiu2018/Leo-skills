@@ -1,3 +1,21 @@
+---
+name: creative_agent
+description: 创作代理，负责内容创作、创意生成和文案撰写
+type: creator
+priority: 4
+triggers:
+  - 创作内容
+  - 生成文案
+  - 写作
+  - 设计
+  - create
+  - write
+skills:
+  - content_layout_leo_skill
+  - article_to_prototype_skill
+model: claude-opus-4-5
+---
+
 # Creative Agent
 
 创作代理，负责内容创作、创意生成和文案撰写。
