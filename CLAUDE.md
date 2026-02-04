@@ -182,10 +182,119 @@ openclaw cron add --name memory_cleanup_weekly --cron "0 3 * * 6" --tz Asia/Shan
 | repo_watch_weekly      | 每周一 09:00         | 仓库监控报告   |
 ```
 
-#### 6.3 待完成优化 (P1/P2)
-- [ ] P1: 实现 Orchestrator 意图识别
-- [ ] P1: 为所有 Agents 添加 AGENT.md 激活文件
-- [ ] P1: 实现 Workflow 引擎
-- [ ] P2: 统一所有 SKILL.md 格式
-- [ ] P2: 实现能力索引自动更新
-- [ ] P2: 实现共享记忆持久化
+#### 6.3 P1: 意图识别与 Agent 系统 ✅
+
+**意图识别引擎** ([`src/leo_orchestrator/intent_recognizer.py`](src/leo_orchestrator/intent_recognizer.py))
+```python
+from leo_orchestrator import get_intent_recognizer
+
+recognizer = get_intent_recognizer()
+match = recognizer.recognize("帮我研究量子计算")
+# 返回: IntentMatch(intent_type='agent', target='research_agent', confidence=0.9)
+```
+
+**9 个 Agents 已配置 AGENT.md**:
+| Agent | 类型 | 触发词 |
+|-------|------|--------|
+| research_agent | researcher | 研究、调研、分析 |
+| analysis_agent | analyzer | 分析、统计、数据 |
+| creative_agent | creator | 创作、生成、写作 |
+| architect_agent | designer | 架构设计、技术选型 |
+| product_manager_agent | planner | 需求分析、PRD |
+| mobile_agent | developer | 小程序、移动开发 |
+| realestate_agent | specialist | 房地产、房产 |
+| ecommerce_agent | ecommerce | 电商、运营 |
+| ai_news_summary_agent | intelligence | 新闻摘要、情报 |
+
+**Workflow 引擎** ([`src/leo_orchestrator/workflow_engine.py`](src/leo_orchestrator/workflow_engine.py))
+```python
+from leo_orchestrator import get_workflow_engine
+
+engine = get_workflow_engine(agents)
+result = engine.execute_from_yaml('src/leo_workflows/definitions/content_pipeline.yaml')
+```
+
+**工作流定义示例** ([`src/leo_workflows/definitions/*.yaml`](src/leo_workflows/definitions/)):
+- `content_pipeline.yaml` - 内容生产流水线
+- `research_pipeline.yaml` - 研究流水线
+- `fullstack_dev_pipeline.yaml` - 全栈开发流水线
+
+#### 6.4 P2: 知识管理与标准化 ✅
+
+**共享记忆系统** ([`src/leo_memory/shared_memory.py`](src/leo_memory/shared_memory.py))
+```python
+from leo_memory import get_shared_memory
+
+memory = get_shared_memory()
+memory.remember(key="user_pref", value="喜欢简洁回答", category="user_profile")
+entry = memory.recall("user_pref")
+```
+
+**能力索引自动更新** ([`scripts/update_capability_index.py`](scripts/update_capability_index.py))
+```bash
+# 手动更新
+python scripts/update_capability_index.py
+
+# 定时任务已配置 (capability_index_daily)
+```
+
+**SKILL.md 标准化脚本** ([`scripts/standardize_skills.py`](scripts/standardize_skills.py))
+```bash
+# 预览模式
+python scripts/standardize_skills.py --dry-run
+
+# 执行标准化
+python scripts/standardize_skills.py
+```
+
+---
+
+## 7. 快速开始指南
+
+### 7.1 意图识别路由
+
+```python
+from leo_orchestrator import get_intent_recognizer
+
+recognizer = get_intent_recognizer()
+routing = recognizer.route("帮我研究量子计算")
+
+# routing = {
+#   "intent": IntentMatch(...),
+#   "action": "delegate_to_agent",
+#   "target": "research_agent",
+#   "params": {...}
+# }
+```
+
+### 7.2 执行工作流
+
+```python
+from leo_orchestrator import get_workflow_engine
+
+engine = get_workflow_engine(agents)
+result = engine.execute(workflow_def, topic="AI发展趋势")
+```
+
+### 7.3 共享记忆
+
+```python
+from leo_memory import get_shared_memory
+
+memory = get_shared_memory()
+memory.remember("project_context", "Leo AI System优化", "project", importance=5)
+entries = memory.search("优化")
+```
+
+### 7.4 开发命令
+
+```bash
+# 更新能力索引
+python scripts/update_capability_index.py
+
+# 测试所有功能
+python scripts/quick_test.py
+
+# 标准化 SKILL.md
+python scripts/standardize_skills.py --dry-run
+```

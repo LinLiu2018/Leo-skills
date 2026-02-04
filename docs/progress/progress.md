@@ -530,23 +530,29 @@ openclaw cron runs --id <job-id>
 | skills_update_weekly | 每周日 22:00 | 技能更新检查 |
 | repo_watch_weekly | 每周一 09:00 | 仓库监控报告 |
 
-### 11.3 待完成优化 (P1/P2)
+### 11.3 P1/P2 优化已完成 ✅
 
-| 优先级 | 任务 |
-|--------|------|
-| P1 | 实现 Orchestrator 意图识别 |
-| P1 | 为所有 Agents 添加 AGENT.md 激活文件 |
-| P1 | 实现 Workflow 引擎 |
-| P2 | 统一所有 SKILL.md 格式 |
-| P2 | 实现能力索引自动更新 |
-| P2 | 实现共享记忆持久化 |
+| 优先级 | 任务 | 状态 | 关键文件 |
+|--------|------|------|----------|
+| P1 | 实现 Orchestrator 意图识别 | ✅ | `src/leo_orchestrator/intent_recognizer.py` |
+| P1 | 为所有 Agents 添加 AGENT.md 激活文件 | ✅ | 9 个 Agent 的 `AGENT.md` |
+| P1 | 实现 Workflow 引擎 | ✅ | `src/leo_orchestrator/workflow_engine.py` |
+| P2 | 统一所有 SKILL.md 格式 | ✅ | `scripts/standardize_skills.py` |
+| P2 | 实现能力索引自动更新 | ✅ | `scripts/update_capability_index.py` |
+| P2 | 实现共享记忆持久化 | ✅ | `src/leo_memory/shared_memory.py` |
+
+**新增工作流定义**:
+- `src/leo_workflows/definitions/content_pipeline.yaml`
+- `src/leo_workflows/definitions/research_pipeline.yaml`
+- `src/leo_workflows/definitions/fullstack_dev_pipeline.yaml`
 
 ### 11.4 关键文件更新
 
 | 文件 | 修改内容 |
 |------|----------|
-| `CLAUDE.md` | 添加第6节"系统优化完成记录" |
+| `CLAUDE.md` | 添加第6节"系统优化完成记录"和第7节"快速开始指南" |
 | `docs/progress/progress.md` | 添加 Phase 11 完成记录 |
+| `leo_knowledge/context/development_guide.md` | 添加 P1/P2 功能使用指南 |
 
 ---
 

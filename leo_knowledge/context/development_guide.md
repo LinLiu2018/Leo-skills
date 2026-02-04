@@ -46,6 +46,22 @@ python tests/verify_setup.py
 pytest tests/
 ```
 
+### P1/P2 新功能命令
+
+```bash
+# 更新能力索引（自动生成 capability_index.md）
+python scripts/update_capability_index.py
+
+# 测试所有 P1/P2 功能
+python scripts/quick_test.py
+
+# 标准化 SKILL.md 格式（预览模式）
+python scripts/standardize_skills.py --dry-run
+
+# 执行标准化
+python scripts/standardize_skills.py
+```
+
 ### 依赖管理
 
 ```bash
@@ -250,3 +266,174 @@ python scripts/create_skill.py --name my_new_skill --category tools
 | ✅ 已完成 | `字幕` | `subtitle_skill` |
 | ✅ 已完成 | `安装` | `install_skill` |
 | ✅ 已完成 | `自更新` | `auto_update_skill` |
+
+---
+
+## 7. P1/P2 功能使用指南
+
+### 7.1 意图识别引擎
+
+**用途**: 自动识别用户意图，路由到合适的 Agent 或 Skill
+
+```python
+from leo_orchestrator import get_intent_recognizer
+
+recognizer = get_intent_recognizer()
+
+# 识别意图
+match = recognizer.recognize("帮我研究量子计算")
+print(match.intent_type)  # 'agent'
+print(match.target)         # 'research_agent'
+print(match.confidence)     # 0.9
+
+# 获取路由决策
+routing = recognizer.route("分析销售数据")
+# routing = {
+#   "action": "delegate_to_agent",
+#   "target": "analysis_agent",
+#   "params": {...}
+# }
+```
+
+### 7.2 Workflow 引擎
+
+**用途**: 编排多步骤、多 Agent 协作流程
+
+```python
+from leo_orchestrator import get_workflow_engine
+
+# 创建引擎
+engine = get_workflow_engine(agents_dict)
+
+# 从 YAML 加载并执行
+result = engine.execute_from_yaml(
+    'src/leo_workflows/definitions/content_pipeline.yaml',
+    topic="AI发展趋势"
+)
+
+# 或使用 Python 字典定义
+workflow_def = {
+    "name": "simple-flow",
+    "steps": [
+        {"name": "research", "agent": "research_agent"},
+        {"name": "create", "agent": "creative_agent"},
+    ]
+}
+result = engine.execute(workflow_def)
+```
+
+**工作流定义 YAML 格式**:
+```yaml
+name: content-pipeline
+description: 内容生产流水线
+version: "1.0"
+
+inputs:
+  topic:
+    type: string
+    required: true
+
+steps:
+  - name: research
+    type: sequential
+    agent: research_agent
+    retries: 2
+    timeout: 120
+
+  - name: parallel_analysis
+    type: parallel
+    parallel_steps:
+      - name: market_analysis
+        agent: analysis_agent
+      - name: trend_analysis
+        agent: analysis_agent
+
+  - name: create
+    type: sequential
+    agent: creative_agent
+```
+
+### 7.3 共享记忆系统
+
+**用途**: 跨会话持久化用户偏好、项目上下文等信息
+
+```python
+from leo_memory import get_shared_memory
+
+memory = get_shared_memory()
+
+# 记住信息
+memory.remember(
+    key="user_name",
+    value="张三",
+    category="user_profile",
+    importance=4,
+    expires_in_days=365  # 可选：过期时间
+)
+
+# 回忆信息
+entry = memory.recall("user_name")
+print(entry.value)  # "张三"
+
+# 搜索记忆
+results = memory.search("用户偏好")
+
+# 获取统计
+stats = memory.get_stats()
+```
+
+**记忆存储位置**: `leo_knowledge/context/shared_memory.md`
+
+### 7.4 能力索引自动更新
+
+**用途**: 自动扫描并生成所有 Skills、Agents、Workflows 的索引文档
+
+```bash
+# 手动执行
+python scripts/update_capability_index.py
+
+# 输出位置
+# leo_knowledge/context/capability_index.md
+```
+
+**定时任务已配置**: `capability_index_daily` (每天 06:00 自动执行)
+
+### 7.5 SKILL.md 标准化
+
+**用途**: 统一所有 SKILL.md 文件格式（添加 YAML frontmatter）
+
+```bash
+# 预览（不实际修改）
+python scripts/standardize_skills.py --dry-run
+
+# 执行标准化
+python scripts/standardize_skills.py
+
+# 指定目录
+python scripts/standardize_skills.py --path src/leo_skills/custom_category
+```
+
+**标准 SKILL.md 格式**:
+```markdown
+---
+name: skill_name
+version: 1.0.0
+category: tools
+description: 技能描述
+triggers:
+  - "触发词1"
+  - "触发词2"
+inputs:
+  - name: input
+    type: string
+    required: true
+outputs:
+  - name: output
+    type: string
+author: Leo Liu
+---
+
+# Skill Title
+
+技能详细说明...
+```
