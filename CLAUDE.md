@@ -111,14 +111,23 @@ type \tmp\openclaw\openclaw-2026-02-04.log | more
 | 飞书消息无响应 | 网关进程停止 | 重启网关: `cd D:\moltbot && node openclaw.mjs gateway --port 18789` |
 | `plugin not found: feishu` | plugins.entries 配置错误 | feishu 是 channel 不是 plugin，从 plugins.entries 移除 |
 | `Cannot read properties of undefined (reading 'trim')` | leo-system 插件配置问题 | 清空 plugins.entries 或修复插件代码 |
+| `Unrecognized key: "schedules"` | 配置文件使用了不支持的键 | 移除 schedules，使用 `openclaw cron add` 命令添加定时任务 |
 | 配置被自动恢复 | OpenClaw doctor 自动修复 | 手动编辑后立即重启网关 |
 
 ### 5.3 配置保护规则
 
 **绝对禁止**：
 1. 不要在飞书对话中请求 AI 修改 OpenClaw 配置
-2. 不要手动添加 `mcpTools`, `systemPrompt`, `cron` 到 openclaw.json
+2. 不要手动添加 `mcpTools`, `systemPrompt`, `cron`, `schedules` 到 openclaw.json
 3. 不要在 plugins.entries 中添加 channel 类型（如 feishu）
+
+**定时任务正确配置方式**：
+```bash
+# 使用 openclaw cron 命令管理定时任务（不要在配置文件中添加 schedules）
+openclaw cron add --expr "0 9 * * 1" --tz Asia/Shanghai --message "生成周报"
+openclaw cron list   # 查看所有定时任务
+openclaw cron status # 查看调度器状态
+```
 
 **安全修改流程**：
 ```bash

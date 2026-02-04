@@ -1,0 +1,43 @@
+{
+  "说明": "OpenClaw 定时任务备份 - 需要通过 openclaw cron add 命令添加",
+  "schedules": {
+    "repo_watch_weekly": {
+      "description": "每周一早上9点监控 Claude Code 和 OpenClaw 更新",
+      "cron": "0 9 * * 1",
+      "timezone": "Asia/Shanghai",
+      "enabled": true,
+      "action": {
+        "type": "skill",
+        "skill": "repo_watch",
+        "method": "send_feishu_report"
+      }
+    },
+    "github_skills_daily": {
+      "description": "每天早上8点扫描 GitHub 优质技能",
+      "cron": "0 8 * * *",
+      "timezone": "Asia/Shanghai",
+      "enabled": true,
+      "action": {
+        "type": "skill",
+        "skill": "github_skills_monitor",
+        "method": "scan_all"
+      }
+    },
+    "skills_update_weekly": {
+      "description": "每周日晚上10点自动更新已加载的 GitHub 技能",
+      "cron": "0 22 * * 0",
+      "timezone": "Asia/Shanghai",
+      "enabled": true,
+      "action": {
+        "type": "skill",
+        "skill": "github_skills_updater",
+        "method": "update_all"
+      }
+    }
+  },
+  "添加命令示例": [
+    "openclaw cron add --expr '0 9 * * 1' --tz Asia/Shanghai --message '请生成本周更新报告'",
+    "openclaw cron add --expr '0 8 * * *' --tz Asia/Shanghai --message '扫描 GitHub 优质技能'",
+    "openclaw cron add --expr '0 22 * * 0' --tz Asia/Shanghai --message '更新已加载的技能'"
+  ]
+}

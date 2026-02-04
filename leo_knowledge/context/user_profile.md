@@ -310,6 +310,41 @@ cd D:\moltbot && node openclaw.mjs gateway --port 18789
 
 **新增运维指南**: 已添加到 [CLAUDE.md](../../CLAUDE.md) 第 5 节
 
+### 2026-02-04 Bug 修复记录 (第二次)
+
+**问题**: 飞书消息返回为空
+**诊断命令**: `netstat -ano | findstr "18789"` 返回空
+
+**根本原因**:
+- 配置文件中存在不被识别的 `schedules` 键
+- OpenClaw 2026.1.30/2026.2.3 不支持在配置文件中直接定义定时任务
+
+**错误日志**:
+```
+Invalid config at C:\Users\刘方林\.openclaw\openclaw.json:
+- <root>: Unrecognized key: "schedules"
+```
+
+**修复方案**:
+```bash
+# 1. 移除 schedules 配置（已备份到 docs/reference/openclaw_schedules_backup.json）
+# 2. 重启网关
+cd D:\moltbot && node openclaw.mjs gateway --port 18789
+
+# 3. 使用正确的方式添加定时任务
+openclaw cron add --expr "0 9 * * 1" --tz Asia/Shanghai --message "生成周报"
+```
+
+**当前状态** (2026-02-04 15:08):
+- ✅ Gateway PID: 58796
+- ✅ 端口 18789 已监听
+- ✅ 飞书 WebSocket 已连接
+- ✅ schedules 配置已备份
+
+**新增红线规则**:
+- 不要在 openclaw.json 中添加 `schedules` 键
+- 定时任务必须使用 `openclaw cron add` 命令添加
+
 ### 下一步计划
 - [ ] Vultr 创建新服务器 (美西, 2GB RAM)
 - [ ] 部署 OpenClaw + PM2
