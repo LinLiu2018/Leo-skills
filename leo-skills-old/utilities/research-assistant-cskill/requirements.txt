@@ -1,0 +1,28 @@
+# Research Assistant - Dependencies
+# Install with: pip install -r requirements.txt
+
+# Core Dependencies
+requests>=2.28.0
+beautifulsoup4>=4.11.0
+lxml>=4.9.0
+pyyaml>=6.0
+python-dateutil>=2.8.0
+
+# Async Support
+aiohttp>=3.8.0
+aiofiles>=22.0.0
+
+# Retry Logic
+tenacity>=8.2.0
+
+# Optional: Enhanced text processing
+nltk>=3.8.0
+regex>=2022.9.13
+
+# Development/Testing
+pytest>=7.0.0
+pytest-asyncio>=0.20.0
+pytest-cov>=4.0.0
+
+# Documentation
+sphinx>=5.0.0

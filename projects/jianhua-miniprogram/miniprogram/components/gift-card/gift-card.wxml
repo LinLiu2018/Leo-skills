@@ -1,0 +1,31 @@
+<!--components/gift-card/gift-card.wxml-->
+<view class="gift-card {{size}} {{status}}">
+  <view class="gift-badge" wx:if="{{badge}}">{{badge}}</view>
+  <image
+    class="gift-image"
+    src="{{image || '/images/gift-placeholder.png'}}"
+    mode="aspectFill"
+  />
+  <view class="gift-content">
+    <text class="gift-name">{{name}}</text>
+    <text class="gift-desc" wx:if="{{desc}}">{{desc}}</text>
+    <view class="gift-condition" wx:if="{{condition}}">
+      <text class="condition-text">{{condition}}</text>
+    </view>
+    <view class="gift-progress" wx:if="{{showProgress && progress !== undefined}}">
+      <view class="progress-bar">
+        <view class="progress-fill" style="width: {{progress}}%"></view>
+      </view>
+      <text class="progress-text">{{progressText}}</text>
+    </view>
+  </view>
+  <view class="gift-action" wx:if="{{actionText}}">
+    <button
+      class="btn-action {{actionType}}"
+      bindtap="onAction"
+      disabled="{{actionDisabled}}"
+    >
+      {{actionText}}
+    </button>
+  </view>
+</view>

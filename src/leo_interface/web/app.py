@@ -1,470 +1,479 @@
 """
-Leo Web UI 主程序
-=================
-Leo AI 智能工作台的 Streamlit 入口。
-路径: leo_interface/web/app.py
+Leo Web UI 主程序 v2.1
+======================
+Leo AI 智能工作台 - 中文优化版
+基于 2026 UX 最佳实践重构
 """
 
 import sys
-import time
+import os
 
-# 标准库导入成功前提：已执行 pip install -e .
+# 先设置路径，确保模块可以被找到
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../"))
+src_path = os.path.join(project_root, "src")
+if src_path not in sys.path:
+    sys.path.insert(0, src_path)
+
+# 导入依赖
 try:
     import streamlit as st
-    from streamlit_autorefresh import st_autorefresh
-
-    from leo_subagents.core.meta_skills import get_meta_manager
-    from leo_subagents.core.task_executor import get_executor
+    import plotly.express as px
+    import plotly.graph_objects as go
+    import pandas as pd
     from leo_subagents.skills_bridge.enhanced_skill_loader import get_enhanced_loader
-
-    # 核心包导入
-    from leo_system import get_system
 except ImportError as e:
-    import os
+    print(f"[ERROR] 无法加载核心组件: {e}")
+    sys.exit(1)
 
-    # 如果标准导入失败（开发环境下可能发生），尝试回退到路径追加模式
-    # 这确保了在未完全安装环境下的鲁棒性
-    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../"))
-    if project_root not in sys.path:
-        sys.path.insert(0, project_root)
+# ==================== 中文描述映射 ====================
 
-    try:
-        import streamlit as st
-        from streamlit_autorefresh import st_autorefresh
+# 分类中文名称
+CATEGORY_CN = {
+    "backend": "后端开发",
+    "frontend": "前端开发",
+    "tools": "开发工具",
+    "utilities": "实用工具",
+    "automation": "自动化",
+    "content_creation": "内容创作",
+    "business": "商业应用",
+    "devops": "运维部署",
+    "scaffold": "项目脚手架",
+    "testing": "测试工具",
+    "security": "安全工具",
+    "intelligence": "智能分析",
+    "development": "开发辅助",
+    "core": "核心功能",
+    "general": "通用技能",
+}
 
-        from leo_subagents.core.meta_skills import get_meta_manager
-        from leo_subagents.core.task_executor import get_executor
-        from leo_subagents.skills_bridge.enhanced_skill_loader import get_enhanced_loader
-        from leo_system import get_system
-    except ImportError as final_e:
-        print(
-            f"[ERROR] 严重错误: 无法加载核心组件。请确保在项目根目录运行了 `pip install -e .`\n详情: {final_e}"
-        )
-        sys.exit(1)
+# 技能中文描述
+SKILL_CN = {
+    # 后端技能
+    "flask_api_generator_skill": ("Flask API 生成器", "自动生成 Flask RESTful API 代码，包含路由、模型和蓝图"),
+    "database_migration_skill": ("数据库迁移工具", "管理数据库版本迁移，支持 SQLAlchemy 和 Alembic"),
+    "database_model_generator_skill": ("数据库模型生成器", "根据需求自动生成 SQLAlchemy ORM 模型"),
+    "flask_auth_generator_skill": ("Flask 认证生成器", "生成用户认证模块，支持 JWT 和 Session"),
+    "fastapi_endpoint_generator_skill": ("FastAPI 端点生成器", "快速创建 FastAPI 异步 API 端点"),
+
+    # 前端技能
+    "miniprogram_page_generator_skill": ("小程序页面生成器", "生成微信小程序页面，包含 WXML/WXSS/JS"),
+    "react_component_generator_skill": ("React 组件生成器", "创建 React 函数组件，支持 Hooks"),
+    "vue_component_generator_skill": ("Vue 组件生成器", "生成 Vue 3 组合式 API 组件"),
+    "css_layout_generator_skill": ("CSS 布局生成器", "生成响应式 CSS 布局代码"),
+    "vant_weapp_skill": ("Vant Weapp 组件", "使用 Vant UI 库创建小程序组件"),
+    "weui_miniprogram_skill": ("WeUI 小程序组件", "使用 WeUI 样式库开发小程序"),
+    "miniprogram_component_generator_skill": ("小程序组件生成器", "创建可复用的小程序自定义组件"),
+    "vue_page_generator_skill": ("Vue 页面生成器", "生成完整的 Vue 页面模板"),
+
+    # 内容创作
+    "content_layout_leo_skill": ("内容排版工具", "自动排版公众号文章，支持多种样式模板"),
+    "project_marketing_doc_generator_skill": ("营销文档生成器", "生成项目营销文案、宣传材料"),
+    "realestate_news_publisher_skill": ("房产资讯发布器", "采集和发布房产行业新闻资讯"),
+    "text_generator_skill": ("文本生成器", "AI 驱动的文本内容生成工具"),
+    "image_generator_skill": ("图片生成器", "AI 图片生成，支持多种风格"),
+
+    # 开发工具
+    "agent_skill_creator_skill": ("技能创建器", "元技能：自动创建新的 Agent 技能"),
+    "subagent_creator_skill": ("子代理创建器", "创建和配置新的 AI 子代理"),
+    "article_to_prototype_skill": ("文章转原型", "将技术文章转换为可执行的代码原型"),
+    "skill_code_generator_skill": ("技能代码生成器", "自动生成技能的核心代码逻辑"),
+
+    # DevOps
+    "dockerfile_generator_skill": ("Dockerfile 生成器", "自动生成 Docker 容器配置文件"),
+    "docker_compose_generator_skill": ("Docker Compose 生成器", "生成多容器编排配置"),
+    "github_actions_generator_skill": ("GitHub Actions 生成器", "创建 CI/CD 工作流配置"),
+    "nginx_config_generator_skill": ("Nginx 配置生成器", "生成 Nginx 反向代理配置"),
+
+    # 脚手架
+    "flask_api_scaffold_skill": ("Flask 项目脚手架", "快速搭建 Flask 项目结构"),
+    "fullstack_project_scaffold_skill": ("全栈项目脚手架", "一键生成前后端分离项目"),
+    "t3_stack_scaffold_skill": ("T3 Stack 脚手架", "创建 Next.js + tRPC + Prisma 项目"),
+
+    # 商业应用
+    "fission_miniprogram": ("裂变小程序", "微信裂变营销小程序解决方案"),
+    "realestate": ("房产业务模块", "房产项目管理和营销工具集"),
+    "ecommerce": ("电商模块", "电商业务相关功能集合"),
+
+    # 实用工具
+    "research_assistant_skill": ("研究助手", "辅助市场调研和信息收集"),
+    "business_research_skill": ("商业研究工具", "企业和行业分析研究"),
+    "tech_extractor_skill": ("技术提取器", "从文档中提取技术栈信息"),
+    "obsidian_sync_skill": ("Obsidian 同步", "与 Obsidian 笔记同步集成"),
+
+    # 测试
+    "unit_test_generator_skill": ("单元测试生成器", "自动生成 Python 单元测试代码"),
+    "api_test_generator_skill": ("API 测试生成器", "生成 API 接口测试用例"),
+
+    # 安全
+    "security_scan_skill": ("安全扫描工具", "代码安全漏洞检测和审计"),
+
+    # 智能分析
+    "twitter_monitor_skill": ("Twitter 监控", "监控 Twitter 关键词和趋势"),
+    "data_analyzer_skill": ("数据分析器", "数据可视化和统计分析"),
+
+    # 其他
+    "automation": ("自动化工具", "通用自动化任务处理"),
+    "evolution": ("进化模块", "技能自我优化和进化"),
+}
+
+# 工作流中文描述
+WORKFLOW_CN = {
+    "content-pipeline": ("内容创作流水线", "从选题到发布的完整内容创作流程"),
+    "research-pipeline": ("研究分析流水线", "市场调研和竞品分析工作流"),
+    "analysis-pipeline": ("数据分析流水线", "数据收集、处理和可视化流程"),
+    "fullstack-dev-pipeline": ("全栈开发流水线", "前后端一体化开发工作流"),
+    "miniprogram-dev-pipeline": ("小程序开发流水线", "微信小程序完整开发流程"),
+    "api-pipeline": ("API 开发流水线", "RESTful API 设计和实现流程"),
+    "realestate-pipeline": ("房产业务流水线", "房产项目营销和管理流程"),
+    "ecommerce-pipeline": ("电商业务流水线", "电商运营和管理工作流"),
+}
+
+
+def get_skill_cn(name):
+    """获取技能的中文名称和描述"""
+    if name in SKILL_CN:
+        return SKILL_CN[name]
+    # 尝试模糊匹配
+    for key, value in SKILL_CN.items():
+        if key in name or name in key:
+            return value
+    return (name, "暂无中文描述")
+
+
+def get_category_cn(name):
+    """获取分类的中文名称"""
+    return CATEGORY_CN.get(name, name)
+
+
+def get_workflow_cn(name):
+    """获取工作流的中文名称和描述"""
+    return WORKFLOW_CN.get(name, (name, "暂无中文描述"))
 
 # ==================== 页面配置 ====================
 
 st.set_page_config(
-    page_title="Leo AI 实战工作台", page_icon="⚡", layout="wide", initial_sidebar_state="expanded"
+    page_title="Leo AI 工作台",
+    page_icon="⚡",
+    layout="wide",
+    initial_sidebar_state="collapsed"  # 默认收起侧边栏，更简洁
 )
 
-# 自动刷新（用于实时日志）
-count = st_autorefresh(interval=2000, limit=None, key="log_refresh")
+# ==================== 简洁样式 ====================
 
-# ==================== 样式 ====================
-
-st.markdown(
-    """
+st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;600;700&display=swap');
+    /* 简洁现代风格 */
+    .main > div { padding-top: 1rem; }
 
-    html, body, [class*="css"] {
-        font-family: 'Inter', sans-serif;
-    }
-
-    code {
-        font-family: 'JetBrains Mono', monospace;
-    }
-
-    .meta-card {
-        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-        color: white;
+    /* 统计卡片 */
+    .stat-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         border-radius: 12px;
-        padding: 1.5rem;
-        border: 1px solid #334155;
-        height: 100%;
-        transition: transform 0.2s;
+        padding: 1.2rem;
+        color: white;
+        text-align: center;
     }
+    .stat-value { font-size: 2rem; font-weight: 700; }
+    .stat-label { font-size: 0.85rem; opacity: 0.9; }
 
-    .meta-card:hover { transform: translateY(-3px); }
-    .meta-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; color: #38bdf8; }
-    .meta-desc { font-size: 0.9rem; color: #94a3b8; }
-
-    .terminal-box {
-        background: #0f172a;
-        color: #38bdf8;
-        font-family: 'JetBrains Mono', monospace;
-        padding: 1rem;
+    /* 快捷操作按钮 */
+    .action-btn {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
         border-radius: 8px;
-        height: 300px;
-        overflow-y: auto;
-        border: 1px solid #1e293b;
-        font-size: 0.85rem;
-        line-height: 1.5;
+        padding: 1rem;
+        text-align: center;
+        transition: all 0.2s;
+        cursor: pointer;
     }
+    .action-btn:hover {
+        border-color: #667eea;
+        transform: translateY(-2px);
+    }
+
+    /* 隐藏默认元素 */
+    #MainMenu, footer { visibility: hidden; }
 </style>
-""",
-    unsafe_allow_html=True,
-)
+""", unsafe_allow_html=True)
 
 
 # ==================== 数据加载 ====================
 
-
 @st.cache_resource
-def load_core_modules():
-    """加载核心模块"""
+def load_data():
+    """加载系统数据"""
     try:
-        system = get_system()
-        # 确保元技能管理器持有系统引用
-        meta_manager = get_meta_manager()
-        if not meta_manager.system:
-            meta_manager.system = system
-
-        executor = get_executor()
-        if not executor.system:
-            executor.system = system
-
+        loader = get_enhanced_loader()
         return {
-            "system": system,
-            "meta": meta_manager,
-            "executor": executor,
-            "loader": get_enhanced_loader(),
-            # 获取 Agents 列表（通过系统实例）
-            "agents": system.agents,
+            "loader": loader,
+            "skills": loader.skills,
+            "workflows": loader.workflows,
+            "categories": loader.categories,
         }
     except Exception as e:
         return {"error": str(e)}
 
 
-core = load_core_modules()
+data = load_data()
 
 
-# ==================== 功能模块 ====================
+# ==================== 组件函数 ====================
+
+def render_stats_row():
+    """渲染统计指标行"""
+    skills_count = len(data.get("skills", {}))
+    workflows_count = len(data.get("workflows", {}))
+    categories_count = len(data.get("categories", {}))
+
+    col1, col2, col3, col4 = st.columns(4)
+
+    with col1:
+        st.metric("📦 技能总数", skills_count, help="已加载的技能数量")
+    with col2:
+        st.metric("⚡ 工作流", workflows_count, help="可用的工作流数量")
+    with col3:
+        st.metric("📁 分类数", categories_count, help="技能分类数量")
+    with col4:
+        st.metric("🟢 系统状态", "正常", help="系统运行状态")
 
 
-def render_meta_skills_engine():
-    """渲染元技能引擎面板"""
-    st.markdown("### ⚡ 元技能引擎 (Meta-Skills Engine)")
-    st.markdown("系统的自我进化中心，用于创建新能力和优化现有能力。")
+def render_skills_chart():
+    """渲染 Skills 分布图表 (Plotly 交互式)"""
+    categories = data.get("categories", {})
+
+    if not categories:
+        st.info("暂无技能数据")
+        return
+
+    # 准备数据 - 使用中文分类名
+    chart_data = pd.DataFrame([
+        {"分类": get_category_cn(cat), "数量": len(skills)}
+        for cat, skills in categories.items()
+    ])
+
+    # 创建交互式柱状图
+    fig = px.bar(
+        chart_data,
+        x="分类",
+        y="数量",
+        color="数量",
+        color_continuous_scale="Viridis",
+        title="技能分类分布"
+    )
+    fig.update_layout(
+        height=300,
+        margin=dict(l=20, r=20, t=40, b=20),
+        showlegend=False
+    )
+    st.plotly_chart(fig, use_container_width=True)
+
+
+def render_skills_pie():
+    """渲染 Skills 饼图"""
+    categories = data.get("categories", {})
+
+    if not categories:
+        return
+
+    # 使用中文分类名
+    chart_data = pd.DataFrame([
+        {"分类": get_category_cn(cat), "数量": len(skills)}
+        for cat, skills in categories.items()
+    ])
+
+    fig = px.pie(
+        chart_data,
+        values="数量",
+        names="分类",
+        title="技能占比分布",
+        hole=0.4  # 环形图
+    )
+    fig.update_layout(
+        height=300,
+        margin=dict(l=20, r=20, t=40, b=20)
+    )
+    st.plotly_chart(fig, use_container_width=True)
+
+
+def render_quick_actions():
+    """渲染快捷操作区"""
+    st.subheader("⚡ 快捷操作")
 
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.markdown(
-            """
-        <div class="meta-card">
-            <div class="meta-title">🔨 技能工坊</div>
-            <div class="meta-desc">创建新的 Agent 技能。描述你的需求，自动生成代码、配置和文档。</div>
-        </div>
-        """,
-            unsafe_allow_html=True,
-        )
-        if st.button("启动技能工坊", key="btn_workshop", use_container_width=True):
-            st.session_state.current_view = "workshop"
+        if st.button("🔨 创建新技能", use_container_width=True, type="primary"):
+            st.session_state.view = "create_skill"
             st.rerun()
 
     with col2:
-        st.markdown(
-            """
-        <div class="meta-card">
-            <div class="meta-title">🧬 进化实验室</div>
-            <div class="meta-desc">优化现有技能。提供反馈，自动重构代码和改进逻辑。</div>
-        </div>
-        """,
-            unsafe_allow_html=True,
-        )
-        if st.button("启动进化实验", key="btn_evolution", use_container_width=True):
-            st.session_state.current_view = "evolution"
+        if st.button("📚 浏览资源库", use_container_width=True):
+            st.session_state.view = "resources"
             st.rerun()
 
     with col3:
-        st.markdown(
-            """
-        <div class="meta-card">
-            <div class="meta-title">🧠 提示词优化</div>
-            <div class="meta-desc">优化 Claude 提示词。提升准确性、鲁棒性和创造力。</div>
-        </div>
-        """,
-            unsafe_allow_html=True,
-        )
-        if st.button("优化提示词", key="btn_optimizer", use_container_width=True):
-            st.session_state.current_view = "optimizer"
+        if st.button("🔍 搜索技能", use_container_width=True):
+            st.session_state.view = "search"
             st.rerun()
 
 
-def render_skill_workshop():
-    """技能工坊界面"""
-    st.markdown("#### 🔨 技能工坊 (Skill Workshop)")
+def render_skills_list():
+    """渲染技能列表"""
+    skills = data.get("skills", {})
+    categories = data.get("categories", {})
 
-    with st.expander("ℹ️ 帮助与说明", expanded=True):
-        st.info(
-            "基于 `agent_skill_creator_skill` 元技能。此工具将为您自动生成完整的 Skill 目录结构、代码和配置。"
-        )
-
-    with st.form("create_skill_form"):
-        col1, col2 = st.columns(2)
-        with col1:
-            name = st.text_input("技能名称 (英文)", placeholder="e.g. video-transcriber-cskill")
-            domain = st.selectbox(
-                "领域", ["backend", "frontend", "data-analysis", "automation", "tools"]
-            )
-        with col2:
-            desc = st.text_input("简短描述", placeholder="e.g. Transcribe videos using Whisper API")
-            interactive = st.checkbox("交互式创建 mode", value=False)
-
-        requirements = st.text_area(
-            "详细需求描述",
-            height=150,
-            placeholder="描述该技能具体需要做什么、输入输出是什么、使用什么库或API...",
-        )
-
-        submitted = st.form_submit_button("[LAUNCH] 开始创建技能", type="primary")
-
-        if submitted and name and requirements:
-            with st.spinner(f"正在调用元技能创建 {name}..."):
-                result = core["meta"].create_skill(name, desc, domain, requirements, interactive)
-                if result.get("success"):
-                    st.success("[SUCCESS] 技能创建指令已发送！")
-                    st.json(result)
-                else:
-                    st.error(f"[ERROR] 创建失败: {result.get('error')}")
-
-
-def render_task_monitor():
-    """任务监控与日志"""
-    st.markdown("### 📡 任务监控 (Real-time Monitor)")
-
-    executor = core.get("executor")
-    if not executor:
-        st.warning("任务执行器未就绪")
+    if not skills:
+        st.info("暂无技能")
         return
 
-    tasks = executor.tasks
-    if not tasks:
-        st.info("暂无活动任务")
+    # 搜索框
+    search = st.text_input("🔍 搜索技能", placeholder="输入关键词...")
+
+    # 分类选择 - 使用中文名称
+    cat_options = ["全部"] + [f"{get_category_cn(c)} ({c})" for c in sorted(categories.keys())]
+    selected_option = st.selectbox("选择分类", cat_options)
+
+    # 解析选择的分类
+    if selected_option == "全部":
+        filtered = list(skills.keys())
     else:
-        sorted_tasks = sorted(tasks.values(), key=lambda x: x["created_at"], reverse=True)[:5]
+        # 从选项中提取英文分类名
+        selected_cat = selected_option.split("(")[-1].rstrip(")")
+        filtered = categories.get(selected_cat, [])
 
-        for task in sorted_tasks:
-            status = task.get("status", "unknown")
-            with st.expander(
-                f"[{status.upper()}] {task['description'][:50]}...", expanded=(status == "running")
-            ):
-                st.caption(
-                    f"ID: {task['id']} | Agent: {task['agent']} | Time: {task['created_at'].strftime('%H:%M:%S')}"
-                )
+    if search:
+        # 搜索时同时匹配英文名和中文名
+        filtered = [s for s in filtered if search.lower() in s.lower() or search in get_skill_cn(s)[0]]
 
-                logs = task.get("logs", [])
-                log_text = "\n".join(logs)
-                st.code(log_text, language="bash")
+    # 显示技能
+    st.caption(f"共 {len(filtered)} 个技能")
 
-                if task.get("result"):
-                    st.json(task["result"])
-
-
-def render_execution_panel():
-    """主执行面板"""
-    st.markdown("### [LAUNCH] 任务执行 (Task Execution)")
-
-    with st.form("execution_form"):
-        task_input = st.text_area("输入任务指令", height=100, placeholder="描述要做什么...")
-
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            agent_list = list(core["agents"].keys()) if "agents" in core else []
-            agents = ["🔮 自动选择"] + [f"🤖 {name}" for name in agent_list]
-            agent = st.selectbox("选择 Agent", agents)
-        with col2:
-            workflow_list = list(core["loader"].workflows.keys()) if "loader" in core else []
-            workflows = ["不使用 Workflow"] + [f"⚡ {name}" for name in workflow_list]
-            workflow = st.selectbox("选择 Workflow", workflows)
-        with col3:
-            # TODO: 实现真实的项目加载
-            projects = ["无关联项目", "演示项目A"]
-            project = st.selectbox("上下文项目", projects)
-
-        submitted = st.form_submit_button(
-            "[LAUNCH] 立即执行", type="primary", use_container_width=True
-        )
-
-        if submitted and task_input:
-            executor = core["executor"]
-            task_id = executor.submit_task(
-                task_description=task_input,
-                agent_name=agent,
-                workflow_name=workflow,
-                project_context=project,
-            )
-            st.success(f"[SUCCESS] 任务已提交 (ID: {task_id})")
-            time.sleep(0.5)
-            st.rerun()
+    for name in filtered[:20]:  # 限制显示数量
+        skill = skills.get(name)
+        if skill:
+            cn_name, cn_desc = get_skill_cn(name)
+            with st.expander(f"📦 {cn_name} ({name})"):
+                st.markdown(f"**中文说明**: {cn_desc}")
+                if skill.description and skill.description != cn_desc:
+                    st.markdown(f"**原始描述**: {skill.description}")
+                st.caption(f"📁 路径: {skill.path}")
+                st.caption(f"路径: {skill.path}")
 
 
-# ==================== 资源库视图 (Resource Library) ====================
+def render_workflows_list():
+    """渲染工作流列表"""
+    workflows = data.get("workflows", {})
 
+    if not workflows:
+        st.info("暂无工作流")
+        return
 
-def render_resource_library():
-    """渲染资源库主视图"""
-    st.markdown("### 📚 资源库 (Resource Library)")
-    st.markdown("查看和管理系统中的所有能力资产。")
-
-    tab1, tab2, tab3 = st.tabs(
-        ["📦 技能库 (Skills)", "🤖 代理库 (Agents)", "⚡ 工作流 (Workflows)"]
-    )
-
-    # --- Tab 1: 技能库 ---
-    with tab1:
-        skills = core["loader"].skills if "loader" in core else {}
-        categories = core["loader"].categories if "loader" in core else {}
-
-        if not skills:
-            st.info("暂无技能数据")
-        else:
-            # 搜索框
-            search_query = st.text_input(
-                "[SEARCH] 搜索技能", placeholder="输入关键词...", key="skill_search"
-            )
-
-            # 1. 整理分类
-            # 如果有搜索，暂不按分类折叠，直接展示列表
-            if search_query:
-                filtered_skills = {
-                    k: v for k, v in skills.items() if search_query.lower() in k.lower()
-                }
-                st.write(f"找到 {len(filtered_skills)} 个匹配的技能:")
-                for name, skill in filtered_skills.items():
-                    with st.expander(f"📦 {name}", expanded=True):
-                        st.write(f"**描述**: {skill.description}")
-                        st.caption(f"路径: {skill.path}")
-            else:
-                # 按分类展示 (Tabs inside Tab)
-                # 使用 Streamlit 的 Tabs 来做顶层分类
-                sorted_cats = sorted(categories.keys())
-                cat_tabs = st.tabs([f"{c} ({len(categories[c])})" for c in sorted_cats])
-
-                for idx, cat in enumerate(sorted_cats):
-                    with cat_tabs[idx]:
-                        skill_names = categories[cat]
-                        for name in skill_names:
-                            skill = skills.get(name)
-                            if skill:
-                                with st.expander(f"📦 {name}"):
-                                    st.write(f"**描述**: {skill.description}")
-                                    # SkillInfo 对象没有 metadata 属性，我们改用 to_dict() 展示完整信息
-                                    # 排除一些不必要的字段以保持整洁
-                                    info = skill.to_dict()
-                                    display_info = {
-                                        k: v
-                                        for k, v in info.items()
-                                        if k not in ["name", "description", "path"]
-                                    }
-                                    st.json(display_info, expanded=False)
-                                    st.caption(f"路径: {skill.path}")
-
-    # --- Tab 2: 代理库 ---
-    with tab2:
-        agents = core.get("agents", {})
-        if not agents:
-            st.info("暂无代理数据")
-        else:
-            # 1. 按类型/职能分类 Agents
-            agent_types = {}
-            for name, agent in agents.items():
-                a_type = agent.config.type if hasattr(agent, "config") else "unknown"
-                if a_type not in agent_types:
-                    agent_types[a_type] = []
-                agent_types[a_type].append(agent)
-
-            for a_type, agent_list in agent_types.items():
-                st.markdown(f"#### 🏷️ 类型: {a_type.capitalize()}")
-                cols = st.columns(2)
-                for i, agent in enumerate(agent_list):
-                    with cols[i % 2]:
-                        with st.container():
-                            st.markdown(
-                                f"""
-                            <div class="meta-card" style="padding: 1rem; margin-bottom: 1rem;">
-                                <div class="meta-title">🤖 {agent.config.name}</div>
-                                <div class="meta-desc">{agent.config.description or '暂无描述'}</div>
-                                <div style="margin-top:0.5rem; font-size: 0.8rem; color:#64748b;">
-                                    Skills: {len(agent.config.skills)} | Priority: {agent.config.priority}
-                                </div>
-                            </div>
-                            """,
-                                unsafe_allow_html=True,
-                            )
-
-    # --- Tab 3: 工作流 ---
-    with tab3:
-        workflows = core["loader"].workflows if "loader" in core else {}
-        if not workflows:
-            st.info("暂无工作流数据")
-        else:
-            # 可以按名称前缀简单归类，或者直接列表
-            # 这里尝试简单归类：Content, Research, Dev 等
-            for name, wf in workflows.items():
-                with st.expander(f"⚡ {name}", expanded=False):
-                    st.write(f"**描述**: {wf.description}")
-                    st.markdown("**步骤流程:**")
-                    for i, step in enumerate(wf.steps, 1):
-                        # 兼容不同的 step 格式
-                        step_name = (
-                            step.get("name", "未命名步骤") if isinstance(step, dict) else str(step)
-                        )
-                        step_desc = step.get("description", "") if isinstance(step, dict) else ""
+    for name, wf in workflows.items():
+        cn_name, cn_desc = get_workflow_cn(name)
+        with st.expander(f"⚡ {cn_name} ({name})"):
+            st.markdown(f"**中文说明**: {cn_desc}")
+            if wf.description and wf.description != cn_desc:
+                st.markdown(f"**原始描述**: {wf.description}")
+            if wf.steps:
+                st.markdown("**执行步骤:**")
+                for i, step in enumerate(wf.steps, 1):
+                    step_name = step.get("name", str(step)) if isinstance(step, dict) else str(step)
+                    step_desc = step.get("description", "") if isinstance(step, dict) else ""
+                    if step_desc:
                         st.markdown(f"{i}. **{step_name}** - {step_desc}")
+                    else:
+                        st.markdown(f"{i}. {step_name}")
+
+
+def render_create_skill():
+    """渲染创建技能表单"""
+    st.subheader("🔨 创建新技能")
+
+    if st.button("← 返回"):
+        st.session_state.view = "dashboard"
+        st.rerun()
+
+    with st.form("create_skill"):
+        col1, col2 = st.columns(2)
+        with col1:
+            name = st.text_input("技能名称", placeholder="my_new_skill")
+            category = st.selectbox("分类", ["backend", "frontend", "tools", "automation", "content_creation"])
+        with col2:
+            desc = st.text_input("简短描述", placeholder="这个技能用于...")
+
+        requirements = st.text_area("详细需求", height=150, placeholder="描述技能的具体功能...")
+
+        if st.form_submit_button("创建技能", type="primary"):
+            st.success(f"✅ 技能 '{name}' 创建请求已提交！")
+            st.info("提示: 实际创建需要通过 Claude Code 执行")
 
 
 # ==================== 主程序 ====================
 
-
 def main():
-    if "current_view" not in st.session_state:
-        st.session_state.current_view = "dashboard"
+    # 初始化视图状态
+    if "view" not in st.session_state:
+        st.session_state.view = "dashboard"
 
-    # 侧边栏导航
-    with st.sidebar:
-        st.title("⚡ Leo工作台")
+    # 页面标题
+    st.title("⚡ Leo AI 工作台")
 
-        if st.button("[DATA] 仪表盘", use_container_width=True):
-            st.session_state.current_view = "dashboard"
-            st.rerun()
-        if st.button("🔨 技能工坊", use_container_width=True):
-            st.session_state.current_view = "workshop"
-            st.rerun()
-        if st.button("📚 资源库", use_container_width=True):
-            st.session_state.current_view = "resources"
-            st.rerun()
-        if st.button("🧬 进化实验室", use_container_width=True):
-            st.session_state.current_view = "evolution"
-            st.rerun()
+    # 检查错误
+    if "error" in data:
+        st.error(f"系统错误: {data['error']}")
+        return
 
-        st.markdown("---")
-        st.markdown("### 系统状态")
-        if "error" in core:
-            st.error(f"系统错误: {core['error']}")
-        else:
-            agent_count = len(core.get("agents", []))
-            skill_count = len(core["loader"].skills) if "loader" in core else 0
-            st.success("🟢 系统运行正常")
-            st.caption(f"Skills: {skill_count}")
-            st.caption(f"Agents: {agent_count}")
-
-    # 主视图路由
-    view = st.session_state.current_view
+    # 路由
+    view = st.session_state.view
 
     if view == "dashboard":
-        render_meta_skills_engine()
+        # 统计指标
+        render_stats_row()
         st.markdown("---")
-        render_execution_panel()
-        st.markdown("---")
-        render_task_monitor()
 
-    elif view == "workshop":
-        if st.button("← 返回仪表盘"):
-            st.session_state.current_view = "dashboard"
-            st.rerun()
-        render_skill_workshop()
+        # 图表区
+        col1, col2 = st.columns(2)
+        with col1:
+            render_skills_chart()
+        with col2:
+            render_skills_pie()
+
+        st.markdown("---")
+
+        # 快捷操作
+        render_quick_actions()
+
+        st.markdown("---")
+
+        # 最近技能
+        st.subheader("📦 技能概览")
+        render_skills_list()
 
     elif view == "resources":
-        render_resource_library()
-
-    elif view == "evolution":
-        if st.button("← 返回仪表盘"):
-            st.session_state.current_view = "dashboard"
+        st.subheader("📚 资源库")
+        if st.button("← 返回"):
+            st.session_state.view = "dashboard"
             st.rerun()
-        st.info("进化实验室功能正在开发中...")
+
+        tab1, tab2 = st.tabs(["📦 技能库", "⚡ 工作流"])
+        with tab1:
+            render_skills_list()
+        with tab2:
+            render_workflows_list()
+
+    elif view == "create_skill":
+        render_create_skill()
+
+    elif view == "search":
+        st.subheader("🔍 搜索技能")
+        if st.button("← 返回"):
+            st.session_state.view = "dashboard"
+            st.rerun()
+        render_skills_list()
+
+    # 页脚
+    st.markdown("---")
+    st.caption("Leo AI 智能工作台 v2.1 | 简体中文版 | Powered by Streamlit & Plotly")
 
 
 if __name__ == "__main__":

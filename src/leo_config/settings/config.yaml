@@ -9,15 +9,15 @@ project:
   name: "Leo AI Agent System"
   description: "Leo的AI智能体系统 - Skills + Subagents协同工作"
   author: "Leo Liu"
-  base_path: "d:\\桌面\\AI_claude_skills"
+  base_path: "d:\\桌面\\leo_ai_system"
 
 # ==================== Skills配置 ====================
 
 skills:
   # 内容创作类
   - name: "content_layout_leo_skill"
-    path: "leo_skills/content-creation/content_layout_leo_skill"
-    category: "content-creation"
+    path: "src/leo_skills/content_creation/content_layout_leo_skill"
+    category: "content_creation"
     enabled: true
     metadata:
       description: "智能内容排版技能"
@@ -25,8 +25,8 @@ skills:
       activation_keywords: ["帮我排版", "生成格式"]
 
   - name: "realestate_news_publisher_skill"
-    path: "leo_skills/content-creation/realestate_news_publisher_skill"
-    category: "content-creation"
+    path: "src/leo_skills/content_creation/realestate_news_publisher_skill"
+    category: "content_creation"
     enabled: true
     metadata:
       description: "房产资讯发布技能"
@@ -34,14 +34,14 @@ skills:
 
   # 工具类
   - name: "research_assistant_skill"
-    path: "leo_skills/utilities/research_assistant_skill"
+    path: "src/leo_skills/utilities/research_assistant_skill"
     category: "utilities"
     enabled: true
     metadata:
       description: "智能研究助手"
 
   - name: "web_search_skill"
-    path: "leo_skills/utilities/web_search_skill"
+    path: "src/leo_skills/utilities/web_search_skill"
     category: "utilities"
     enabled: true
     metadata:
@@ -50,8 +50,8 @@ skills:
 
   # 数据分析类
   - name: "data_analyzer_skill"
-    path: "leo_skills/data-analysis/data_analyzer_skill"
-    category: "data-analysis"
+    path: "src/leo_skills/utilities/data_analyzer_skill"
+    category: "utilities"
     enabled: true
     metadata:
       description: "数据分析技能"
@@ -59,22 +59,22 @@ skills:
 
   # 工具框架类
   - name: "agent_skill_creator_skill"
-    path: "leo_skills/tools/agent_skill_creator_skill"
+    path: "src/leo_skills/tools/agent_skill_creator_skill"
     category: "tools"
     enabled: true
     metadata:
       description: "技能创建元技能"
 
   - name: "article_to_prototype_skill"
-    path: "leo_skills/tools/article_to_prototype_skill"
+    path: "src/leo_skills/tools/article_to_prototype_skill"
     category: "tools"
     enabled: true
     metadata:
       description: "文章转代码原型"
 
   - name: "project_marketing_doc_generator_skill"
-    path: "leo_skills/tools/project_marketing_doc_generator_skill"
-    category: "tools"
+    path: "src/leo_skills/content_creation/project_marketing_doc_generator_skill"
+    category: "content_creation"
     enabled: true
     metadata:
       description: "项目营销文档生成器"
@@ -83,8 +83,8 @@ skills:
 
   # 后端开发
   - name: "flask_api_generator_skill"
-    path: "leo_skills/development/backend/flask_api_generator_skill"
-    category: "development/backend"
+    path: "src/leo_skills/backend/flask_api_generator_skill"
+    category: "backend"
     enabled: true
     metadata:
       description: "Flask RESTful API代码生成器"
@@ -92,8 +92,8 @@ skills:
       activation_keywords: ["生成Flask API", "创建API接口", "生成后端接口"]
 
   - name: "database_model_generator_skill"
-    path: "leo_skills/development/backend/database_model_generator_skill"
-    category: "development/backend"
+    path: "src/leo_skills/backend/database_model_generator_skill"
+    category: "backend"
     enabled: true
     metadata:
       description: "数据库模型代码生成器"
@@ -102,8 +102,8 @@ skills:
 
   # 前端开发
   - name: "miniprogram_page_generator_skill"
-    path: "leo_skills/development/frontend/miniprogram_page_generator_skill"
-    category: "development/frontend"
+    path: "src/leo_skills/frontend/miniprogram_page_generator_skill"
+    category: "frontend"
     enabled: true
     metadata:
       description: "微信小程序页面代码生成器"
@@ -112,8 +112,8 @@ skills:
 
   # 部署运维
   - name: "dockerfile_generator_skill"
-    path: "leo_skills/development/deployment/dockerfile_generator_skill"
-    category: "development/deployment"
+    path: "src/leo_skills/devops/dockerfile_generator_skill"
+    category: "devops"
     enabled: true
     metadata:
       description: "Dockerfile和docker-compose配置生成器"
@@ -124,8 +124,8 @@ skills:
 
   # Vue组件生成器
   - name: "vue_component_generator_skill"
-    path: "leo_skills/development/frontend/vue_component_generator_skill"
-    category: "development/frontend"
+    path: "src/leo_skills/frontend/vue_component_generator_skill"
+    category: "frontend"
     enabled: true
     metadata:
       description: "Vue3组件代码生成器"
@@ -134,8 +134,8 @@ skills:
 
   # 全栈项目脚手架
   - name: "fullstack_project_scaffold_skill"
-    path: "leo_skills/development/scaffold/fullstack_project_scaffold_skill"
-    category: "development/scaffold"
+    path: "src/leo_skills/scaffold/fullstack_project_scaffold_skill"
+    category: "scaffold"
     enabled: true
     metadata:
       description: "全栈项目脚手架生成器"
@@ -144,8 +144,8 @@ skills:
 
   # 单元测试生成器
   - name: "unit_test_generator_skill"
-    path: "leo_skills/development/testing/unit_test_generator_skill"
-    category: "development/testing"
+    path: "src/leo_skills/testing/unit_test_generator_skill"
+    category: "testing"
     enabled: true
     metadata:
       description: "单元测试代码生成器"
@@ -154,8 +154,8 @@ skills:
 
   # Nginx配置生成器
   - name: "nginx_config_generator_skill"
-    path: "leo_skills/development/deployment/nginx_config_generator_skill"
-    category: "development/deployment"
+    path: "src/leo_skills/devops/nginx_config_generator_skill"
+    category: "devops"
     enabled: true
     metadata:
       description: "Nginx配置生成器"
@@ -166,8 +166,8 @@ skills:
 
   # React组件生成器
   - name: "react_component_generator_skill"
-    path: "leo_skills/development/frontend/react_component_generator_skill"
-    category: "development/frontend"
+    path: "src/leo_skills/frontend/react_component_generator_skill"
+    category: "frontend"
     enabled: true
     metadata:
       description: "React组件代码生成器，支持Hooks和TypeScript"
@@ -176,8 +176,8 @@ skills:
 
   # GitHub Actions生成器
   - name: "github_actions_generator_skill"
-    path: "leo_skills/development/deployment/github_actions_generator_skill"
-    category: "development/deployment"
+    path: "src/leo_skills/devops/github_actions_generator_skill"
+    category: "devops"
     enabled: true
     metadata:
       description: "GitHub Actions CI/CD工作流生成器"
@@ -186,30 +186,20 @@ skills:
 
   # E2E测试生成器
   - name: "e2e_test_generator_skill"
-    path: "leo_skills/development/testing/e2e_test_generator_skill"
-    category: "development/testing"
+    path: "src/leo_skills/testing/e2e_test_generator_skill"
+    category: "testing"
     enabled: true
     metadata:
       description: "端到端测试代码生成器，支持Playwright和Cypress"
       version: "1.0.0"
       activation_keywords: ["生成E2E测试", "创建端到端测试", "自动化测试"]
 
-  # 安全扫描技能
-  - name: "security_scan_skill"
-    path: "leo_skills/development/security/security_scan_skill"
-    category: "development/security"
-    enabled: true
-    metadata:
-      description: "代码安全检查和漏洞扫描"
-      version: "1.0.0"
-      activation_keywords: ["安全扫描", "代码安全检查", "漏洞扫描"]
-
   # ==================== 补充Skills ====================
 
   # 前端补充
   - name: "vue_page_generator_skill"
-    path: "leo_skills/development/frontend/vue_page_generator_skill"
-    category: "development/frontend"
+    path: "src/leo_skills/frontend/vue_page_generator_skill"
+    category: "frontend"
     enabled: true
     metadata:
       description: "Vue3页面生成器"
@@ -217,8 +207,8 @@ skills:
       activation_keywords: ["生成Vue页面", "创建Vue页面"]
 
   - name: "miniprogram_component_generator_skill"
-    path: "leo_skills/development/frontend/miniprogram_component_generator_skill"
-    category: "development/frontend"
+    path: "src/leo_skills/frontend/miniprogram_component_generator_skill"
+    category: "frontend"
     enabled: true
     metadata:
       description: "微信小程序组件生成器"
@@ -226,8 +216,8 @@ skills:
       activation_keywords: ["生成小程序组件", "创建小程序组件"]
 
   - name: "css_layout_generator_skill"
-    path: "leo_skills/development/frontend/css_layout_generator_skill"
-    category: "development/frontend"
+    path: "src/leo_skills/frontend/css_layout_generator_skill"
+    category: "frontend"
     enabled: true
     metadata:
       description: "CSS布局生成器"
@@ -236,8 +226,8 @@ skills:
 
   # 后端补充
   - name: "flask_auth_generator_skill"
-    path: "leo_skills/development/backend/flask_auth_generator_skill"
-    category: "development/backend"
+    path: "src/leo_skills/backend/flask_auth_generator_skill"
+    category: "backend"
     enabled: true
     metadata:
       description: "Flask认证模块生成器"
@@ -245,8 +235,8 @@ skills:
       activation_keywords: ["生成认证模块", "创建登录功能"]
 
   - name: "fastapi_endpoint_generator_skill"
-    path: "leo_skills/development/backend/fastapi_endpoint_generator_skill"
-    category: "development/backend"
+    path: "src/leo_skills/backend/fastapi_endpoint_generator_skill"
+    category: "backend"
     enabled: true
     metadata:
       description: "FastAPI端点生成器"
@@ -254,8 +244,8 @@ skills:
       activation_keywords: ["生成FastAPI端点", "创建FastAPI接口"]
 
   - name: "api_doc_generator_skill"
-    path: "leo_skills/development/backend/api_doc_generator_skill"
-    category: "development/backend"
+    path: "src/leo_skills/backend/api_doc_generator_skill"
+    category: "backend"
     enabled: true
     metadata:
       description: "API文档生成器"
@@ -264,8 +254,8 @@ skills:
 
   # 脚手架补充
   - name: "miniprogram_project_scaffold_skill"
-    path: "leo_skills/development/scaffold/miniprogram_project_scaffold_skill"
-    category: "development/scaffold"
+    path: "src/leo_skills/scaffold/miniprogram_project_scaffold_skill"
+    category: "scaffold"
     enabled: true
     metadata:
       description: "微信小程序项目脚手架"
@@ -273,8 +263,8 @@ skills:
       activation_keywords: ["创建小程序项目", "小程序脚手架"]
 
   - name: "flask_api_scaffold_skill"
-    path: "leo_skills/development/scaffold/flask_api_scaffold_skill"
-    category: "development/scaffold"
+    path: "src/leo_skills/scaffold/flask_api_scaffold_skill"
+    category: "scaffold"
     enabled: true
     metadata:
       description: "Flask API项目脚手架"
@@ -283,8 +273,8 @@ skills:
 
   # 部署补充
   - name: "deployment_script_generator_skill"
-    path: "leo_skills/development/deployment/deployment_script_generator_skill"
-    category: "development/deployment"
+    path: "src/leo_skills/devops/deployment_script_generator_skill"
+    category: "devops"
     enabled: true
     metadata:
       description: "部署脚本生成器"
@@ -293,8 +283,8 @@ skills:
 
   # 测试补充
   - name: "api_test_generator_skill"
-    path: "leo_skills/development/testing/api_test_generator_skill"
-    category: "development/testing"
+    path: "src/leo_skills/testing/api_test_generator_skill"
+    category: "testing"
     enabled: true
     metadata:
       description: "API测试生成器"
@@ -303,8 +293,8 @@ skills:
 
   # 数据库迁移
   - name: "database_migration_skill"
-    path: "leo_skills/development/backend/database_migration_skill"
-    category: "development/backend"
+    path: "src/leo_skills/backend/database_migration_skill"
+    category: "backend"
     enabled: true
     metadata:
       description: "数据库迁移脚本生成器，支持Alembic/Flask-Migrate"
@@ -313,8 +303,8 @@ skills:
 
   # Docker Compose生成器
   - name: "docker_compose_generator_skill"
-    path: "leo_skills/development/deployment/docker_compose_generator_skill"
-    category: "development/deployment"
+    path: "src/leo_skills/devops/docker_compose_generator_skill"
+    category: "devops"
     enabled: true
     metadata:
       description: "Docker Compose配置生成器"
@@ -324,9 +314,9 @@ skills:
   # ==================== 视频编辑类Skills ====================
 
   # 视频剪辑技能
-  - name: "videocut-skills"
-    path: "leo_skills/video-editing/videocut-skills"
-    category: "video-editing"
+  - name: "videocut_skills"
+    path: "src/leo_skills/videocut_skills"
+    category: "video_editing"
     enabled: true
     metadata:
       description: "视频剪辑技能（口播剪辑、字幕生成、自更新）"
@@ -335,18 +325,18 @@ skills:
       activation_keywords:
         ["视频剪辑", "剪口播", "加字幕", "视频编辑", "剪视频"]
       commands:
-        - "/videocut:安装"
-        - "/videocut:剪口播"
-        - "/videocut:剪辑"
-        - "/videocut:字幕"
-        - "/videocut:自更新"
+        - "/videocut:install"
+        - "/videocut:cut_speech"
+        - "/videocut:video_editing"
+        - "/videocut:subtitle"
+        - "/videocut:auto_update"
 
   # ==================== 提示词工程类Skills ====================
 
   # 提示词工程技能库
-  - name: "claude-prompt-engineering-skills"
-    path: "leo_skills/prompt-engineering/claude-prompt-engineering-skills"
-    category: "prompt-engineering"
+  - name: "claude_prompt_engineering_skills"
+    path: "src/leo_skills/prompt_engineering/claude_prompt_engineering_skills"
+    category: "prompt_engineering"
     enabled: true
     metadata:
       description: "基于Claude官方最佳实践的提示词工程技能库"
@@ -354,21 +344,137 @@ skills:
       source: "https://github.com/ponyodong2026/claude-prompt-engineering-skills"
       activation_keywords: ["提示词优化", "长文本处理", "思维链", "提示词工程"]
       sub_skills:
-        - name: "prompt-optimizer"
+        - name: "prompt_optimizer"
           description: "分析和改进提示词的清晰度和有效性"
-        - name: "long-context-handler"
+        - name: "long_context_handler"
           description: "管理长文档和多文档处理"
-        - name: "xml-structure-builder"
+        - name: "xml_structure_builder"
           description: "使用XML标签组织复杂提示词"
-        - name: "chain-of-thought-prompter"
+        - name: "chain_of_thought_prompter"
           description: "引导逐步推理解决复杂问题"
-        - name: "prompt-chaining-orchestrator"
+        - name: "prompt_chaining_orchestrator"
           description: "将复杂任务拆解为顺序步骤"
+
+  # ==================== 补充Skills (自动发现) ====================
+
+  # 核心技能
+  - name: "text_generator_skill"
+    path: "src/leo_skills/core/text_generator_skill"
+    category: "core"
+    enabled: true
+    metadata:
+      description: "文本生成器核心技能"
+      version: "1.0.0"
+
+  # 开发技能
+  - name: "skill_code_generator_skill"
+    path: "src/leo_skills/development/skill_code_generator_skill"
+    category: "development"
+    enabled: true
+    metadata:
+      description: "技能代码生成器"
+      version: "1.0.0"
+      activation_keywords: ["生成技能", "创建skill"]
+
+  # 智能技能
+  - name: "twitter_monitor_skill"
+    path: "src/leo_skills/intelligence/twitter_monitor_skill"
+    category: "intelligence"
+    enabled: true
+    metadata:
+      description: "Twitter监控和分析"
+      version: "1.0.0"
+
+  # 脚手架技能
+  - name: "t3_stack_scaffold_skill"
+    path: "src/leo_skills/scaffold/t3_stack_scaffold_skill"
+    category: "scaffold"
+    enabled: true
+    metadata:
+      description: "T3 Stack项目脚手架"
+      version: "1.0.0"
+      activation_keywords: ["创建T3项目", "T3脚手架"]
+
+  # 安全技能
+  - name: "security_scan_skill"
+    path: "src/leo_skills/security/security_scan_skill"
+    category: "security"
+    enabled: true
+    metadata:
+      description: "代码安全扫描"
+      version: "1.0.0"
+      activation_keywords: ["安全扫描", "漏洞检测"]
+
+  # 工具技能
+  - name: "github_to_skills_skill"
+    path: "src/leo_skills/tools/github_to_skills_skill"
+    category: "tools"
+    enabled: true
+    metadata:
+      description: "GitHub仓库转技能"
+      version: "1.0.0"
+
+  - name: "skill_evolution_assistant_skill"
+    path: "src/leo_skills/tools/skill_evolution_assistant_skill"
+    category: "tools"
+    enabled: true
+    metadata:
+      description: "技能进化助手"
+      version: "1.0.0"
+
+  - name: "skill_evolution_manager_skill"
+    path: "src/leo_skills/tools/skill_evolution_manager_skill"
+    category: "tools"
+    enabled: true
+    metadata:
+      description: "技能进化管理器"
+      version: "1.0.0"
+
+  - name: "skill_manager_skill"
+    path: "src/leo_skills/tools/skill_manager_skill"
+    category: "tools"
+    enabled: true
+    metadata:
+      description: "技能管理器"
+      version: "1.0.0"
+
+  - name: "subagent_creator_skill"
+    path: "src/leo_skills/tools/subagent_creator_skill"
+    category: "tools"
+    enabled: true
+    metadata:
+      description: "子代理创建器"
+      version: "1.0.0"
+
+  # 实用工具技能
+  - name: "obsidian_sync_skill"
+    path: "src/leo_skills/utilities/obsidian_sync_skill"
+    category: "utilities"
+    enabled: true
+    metadata:
+      description: "Obsidian笔记同步"
+      version: "1.0.0"
+
+  - name: "tech_extractor_skill"
+    path: "src/leo_skills/utilities/tech_extractor_skill"
+    category: "utilities"
+    enabled: true
+    metadata:
+      description: "技术栈提取器"
+      version: "1.0.0"
+
+  - name: "business_research_skill"
+    path: "src/leo_skills/utilities/business_research_skill"
+    category: "utilities"
+    enabled: true
+    metadata:
+      description: "商业研究技能"
+      version: "1.0.0"
 
 # ==================== Subagents配置 ====================
 
 agents:
-  - name: "task-agent"
+  - name: "task_agent"
     type: "executor"
     priority: 1
     enabled: true
@@ -380,7 +486,7 @@ agents:
       description: "任务执行代理"
       activation_keywords: ["执行任务", "运行流程"]
 
-  - name: "research-agent"
+  - name: "research_agent"
     type: "researcher"
     priority: 2
     enabled: true
@@ -392,7 +498,7 @@ agents:
       description: "研究代理"
       activation_keywords: ["帮我研究", "调研"]
 
-  - name: "analysis-agent"
+  - name: "analysis_agent"
     type: "analyzer"
     priority: 3
     enabled: true
@@ -402,7 +508,7 @@ agents:
       description: "分析代理"
       activation_keywords: ["分析数据", "生成报告"]
 
-  - name: "creative-agent"
+  - name: "creative_agent"
     type: "creator"
     priority: 4
     enabled: true
@@ -413,7 +519,7 @@ agents:
       description: "创作代理"
       activation_keywords: ["创作内容", "生成文案"]
 
-  - name: "realestate-agent"
+  - name: "realestate_agent"
     type: "realestate"
     priority: 5
     enabled: true
@@ -428,7 +534,7 @@ agents:
 
   # ==================== 开发类Agents (新增) ====================
 
-  - name: "backend-agent"
+  - name: "backend_agent"
     type: "developer"
     priority: 10
     enabled: true
@@ -444,7 +550,7 @@ agents:
       activation_keywords:
         ["生成API", "创建接口", "后端开发", "数据库模型", "认证", "数据库迁移"]
 
-  - name: "frontend-agent"
+  - name: "frontend_agent"
     type: "developer"
     priority: 11
     enabled: true
@@ -460,7 +566,7 @@ agents:
       activation_keywords:
         ["生成页面", "小程序开发", "前端开发", "Vue组件", "React组件"]
 
-  - name: "devops-agent"
+  - name: "devops_agent"
     type: "operator"
     priority: 12
     enabled: true
@@ -475,7 +581,7 @@ agents:
       activation_keywords:
         ["部署", "Docker", "上线", "容器化", "Nginx", "CI/CD", "Docker Compose"]
 
-  - name: "test-agent"
+  - name: "test_agent"
     type: "tester"
     priority: 13
     enabled: true
@@ -488,7 +594,7 @@ agents:
       activation_keywords:
         ["生成测试", "单元测试", "测试用例", "E2E测试", "API测试"]
 
-  - name: "scaffold-agent"
+  - name: "scaffold_agent"
     type: "initializer"
     priority: 14
     enabled: true
@@ -500,7 +606,7 @@ agents:
       description: "项目初始化代理"
       activation_keywords: ["创建项目", "项目脚手架", "初始化项目"]
 
-  - name: "security-agent"
+  - name: "security_agent"
     type: "auditor"
     priority: 15
     enabled: true
@@ -512,7 +618,7 @@ agents:
 
   # ==================== 补充Agents ====================
 
-  - name: "product-manager-agent"
+  - name: "product_manager_agent"
     type: "designer"
     priority: 20
     enabled: true
@@ -523,7 +629,7 @@ agents:
       description: "产品经理代理，负责需求分析和PRD编写"
       activation_keywords: ["需求文档", "产品设计", "用户故事", "PRD"]
 
-  - name: "architect-agent"
+  - name: "architect_agent"
     type: "designer"
     priority: 21
     enabled: true
@@ -535,7 +641,7 @@ agents:
       description: "架构师代理，负责系统设计和技术选型"
       activation_keywords: ["架构设计", "技术选型", "系统设计", "数据库设计"]
 
-  - name: "mobile-agent"
+  - name: "mobile_agent"
     type: "developer"
     priority: 22
     enabled: true
@@ -558,13 +664,13 @@ workflows:
     enabled: true
     steps:
       - name: "research"
-        agent: "research-agent"
+        agent: "research_agent"
         description: "信息收集和研究"
       - name: "create"
-        agent: "creative-agent"
+        agent: "creative_agent"
         description: "内容创作"
       - name: "publish"
-        agent: "task-agent"
+        agent: "task_agent"
         description: "发布和推广"
 
   research-pipeline:
@@ -573,10 +679,10 @@ workflows:
     enabled: true
     steps:
       - name: "collect"
-        agent: "research-agent"
+        agent: "research_agent"
         description: "信息收集"
       - name: "analyze"
-        agent: "analysis-agent"
+        agent: "analysis_agent"
         description: "数据分析"
 
   analysis-pipeline:
@@ -585,10 +691,10 @@ workflows:
     enabled: true
     steps:
       - name: "analyze"
-        agent: "analysis-agent"
+        agent: "analysis_agent"
         description: "执行分析"
       - name: "report"
-        agent: "task-agent"
+        agent: "task_agent"
         description: "生成报告"
 
   # ==================== 开发类Workflows (新增) ====================
@@ -599,16 +705,16 @@ workflows:
     enabled: true
     steps:
       - name: "analyze"
-        agent: "research-agent"
+        agent: "research_agent"
         description: "需求分析"
       - name: "backend"
-        agent: "backend-agent"
+        agent: "backend_agent"
         description: "后端开发（API + 数据库）"
       - name: "frontend"
-        agent: "frontend-agent"
+        agent: "frontend_agent"
         description: "前端开发"
       - name: "deploy"
-        agent: "devops-agent"
+        agent: "devops_agent"
         description: "部署上线"
 
   miniprogram-dev-pipeline:
@@ -617,16 +723,16 @@ workflows:
     enabled: true
     steps:
       - name: "design"
-        agent: "research-agent"
+        agent: "research_agent"
         description: "产品设计"
       - name: "pages"
-        agent: "frontend-agent"
+        agent: "frontend_agent"
         description: "页面开发"
       - name: "api"
-        agent: "backend-agent"
+        agent: "backend_agent"
         description: "接口开发"
       - name: "deploy"
-        agent: "devops-agent"
+        agent: "devops_agent"
         description: "发布上线"
 
   api-pipeline:
@@ -635,23 +741,88 @@ workflows:
     enabled: true
     steps:
       - name: "requirements"
-        agent: "product-manager-agent"
+        agent: "product_manager_agent"
         description: "需求分析和PRD编写"
       - name: "design"
-        agent: "architect-agent"
+        agent: "architect_agent"
         description: "系统架构和数据库设计"
       - name: "develop"
-        agent: "backend-agent"
+        agent: "backend_agent"
         description: "API接口开发"
       - name: "test"
-        agent: "test-agent"
+        agent: "test_agent"
         description: "API测试和单元测试"
       - name: "security"
-        agent: "security-agent"
+        agent: "security_agent"
         description: "安全扫描"
       - name: "deploy"
-        agent: "devops-agent"
+        agent: "devops_agent"
         description: "部署上线"
+
+  # ==================== 补充Workflows (自动发现) ====================
+
+  realestate-pipeline:
+    name: "房地产营销工作流"
+    description: "市场研究→竞品分析→产品定位→营销策略→内容创作→格式化→质量检查→修改→报告"
+    enabled: true
+    steps:
+      - name: "market_research"
+        agent: "research_agent"
+        description: "市场调研"
+      - name: "competitor_analysis"
+        agent: "analysis_agent"
+        description: "竞品分析"
+      - name: "positioning"
+        agent: "realestate_agent"
+        description: "产品定位"
+      - name: "strategy"
+        agent: "realestate_agent"
+        description: "营销策略"
+      - name: "content_creation"
+        agent: "creative_agent"
+        description: "内容创作"
+      - name: "formatting"
+        agent: "task_agent"
+        description: "格式化处理"
+      - name: "humanize"
+        agent: "creative_agent"
+        description: "人性化处理"
+      - name: "quality_check"
+        agent: "analysis_agent"
+        description: "质量检查"
+      - name: "revision"
+        agent: "creative_agent"
+        description: "修改完善"
+      - name: "report"
+        agent: "task_agent"
+        description: "生成报告"
+
+  ecommerce-pipeline:
+    name: "电商分析工作流"
+    description: "市场趋势→竞品收集→深度分析→选品→文案创作→营销策略→报告"
+    enabled: true
+    steps:
+      - name: "market_trends"
+        agent: "research_agent"
+        description: "市场趋势分析"
+      - name: "competitor_collection"
+        agent: "research_agent"
+        description: "竞品收集"
+      - name: "deep_analysis"
+        agent: "analysis_agent"
+        description: "深度分析"
+      - name: "product_selection"
+        agent: "ecommerce_agent"
+        description: "选品决策"
+      - name: "copywriting"
+        agent: "creative_agent"
+        description: "文案创作"
+      - name: "marketing_strategy"
+        agent: "realestate_agent"
+        description: "营销策略"
+      - name: "report"
+        agent: "task_agent"
+        description: "生成分析报告"
 
 # ==================== 系统配置 ====================
 
@@ -699,9 +870,10 @@ integrations:
 
   # 飞书集成
   feishu:
-    enabled: false
+    enabled: true
     app_id: ""
     app_secret: ""
+    webhook_url: ""  # 飞书机器人 Webhook URL，用于发送通知
 
   # 企业微信集成
   wechat_work:

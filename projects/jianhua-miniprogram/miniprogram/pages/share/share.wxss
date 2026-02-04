@@ -184,7 +184,7 @@
 
 .mini-progress-bar {
   height: 100%;
-  background: #ffd8c2;
+  background: linear-gradient(90deg, #ff6b35, #ff8f5e);
 }
 
 .gift-action {

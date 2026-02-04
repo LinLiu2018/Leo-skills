@@ -30,8 +30,9 @@
 }
 
 .tab-bar-icon {
-  width: 54rpx; /* Larger icon */
+  font-size: 44rpx;
   height: 54rpx;
+  line-height: 54rpx;
   margin-bottom: 6rpx;
 }
 

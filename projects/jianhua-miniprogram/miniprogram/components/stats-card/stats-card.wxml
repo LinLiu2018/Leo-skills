@@ -1,0 +1,32 @@
+<!--components/stats-card/stats-card.wxml-->
+<view class="stats-card {{theme}}">
+  <view class="stats-header" wx:if="{{title}}">
+    <text class="stats-icon" wx:if="{{icon}}">{{icon}}</text>
+    <text class="stats-title">{{title}}</text>
+  </view>
+
+  <view class="stats-main">
+    <text class="stats-value">{{value}}</text>
+    <text class="stats-unit" wx:if="{{unit}}">{{unit}}</text>
+  </view>
+
+  <view class="stats-sub" wx:if="{{subText}}">
+    <text class="sub-text">{{subText}}</text>
+  </view>
+
+  <!-- 进度条 -->
+  <view class="stats-progress" wx:if="{{showProgress}}">
+    <view class="progress-bar">
+      <view class="progress-fill" style="width: {{progress}}%"></view>
+    </view>
+    <text class="progress-text" wx:if="{{progressText}}">{{progressText}}</text>
+  </view>
+
+  <!-- 多项统计 -->
+  <view class="stats-items" wx:if="{{items.length > 0}}">
+    <view class="stats-item" wx:for="{{items}}" wx:key="label">
+      <text class="item-value">{{item.value}}</text>
+      <text class="item-label">{{item.label}}</text>
+    </view>
+  </view>
+</view>

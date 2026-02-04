@@ -1,3 +1,8 @@
-from .ecommerce import Ecommerce
+# -*- coding: utf-8 -*-
+"""
+ecommerce - 电商运营技能
+"""
 
-__all__ = ["Ecommerce"]
+from .ecommerce_skill import EcommerceSkill, Ecommerce_Skill
+
+__all__ = ["EcommerceSkill", "Ecommerce_Skill"]

@@ -34,18 +34,18 @@
 ## 📁 项目结构
 
 ```
-AI_claude_skills/
+leo_ai_system/
 │
 ├── leo_skills/              # ✅ Skills能力库
-│   ├── content-creation/    # 内容创作Skills
+│   ├── content_creation/    # 内容创作Skills
 │   ├── tools/               # 工具框架Skills
 │   ├── utilities/           # 工具Skills
-│   ├── data-analysis/       # 数据分析Skills（待开发）
+│   ├── data_analysis/       # 数据分析Skills（待开发）
 │   └── automation/          # 自动化Skills（待开发）
 │
-├── leo-subagents/           # 🆕 Subagents代理库
+├── leo_subagents/           # 🆕 Subagents代理库
 │   ├── agents/              # 各类Subagent
-│   ├── skills-bridge/       # Skills桥接层
+│   ├── skills_bridge/       # Skills桥接层
 │   └── config/              # 配置文件
 │
 ├── leo_orchestrator/        # 🆕 统一编排器

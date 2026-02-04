@@ -35,8 +35,8 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/LinLiu2018/Leo-skills.git
-cd Leo-skills
+git clone https://github.com/LinLiu2018/leo_ai_system.git
+cd leo_ai_system
 
 # 安装依赖
 pip install -e .
@@ -96,7 +96,7 @@ result = leo.run_workflow(
 ### 项目结构
 
 ```
-Leo-skills/
+leo_ai_system/
 ├── src/                    # 源代码目录
 │   ├── leo_orchestrator/   # 编排器 - API和协调逻辑
 │   ├── leo_subagents/      # Agent层 - 任务执行者

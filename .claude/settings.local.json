@@ -18,8 +18,8 @@
       "Bash(claude:*)",
       "Bash(npm update:*)",
       "Bash(findstr:*)",
-      "Bash(Get-ChildItem -Path \"d:\\\\桌面\\\\AI_claude_skills\\\\leo_skills\\\\development\" -Recurse -Directory)",
-      "Bash(Where-Object {$_Name -like '*-cskill'})",
+      "Bash(Get-ChildItem -Path \"d:\\\\桌面\\\\leo_ai_system\\\\leo_skills\\\\development\" -Recurse -Directory)",
+      "Bash(Where-Object {$_Name -like '*_skill'})",
       "Bash(Select-Object -ExpandProperty FullName)",
       "Bash(for dir in analysis_agent architect_agent creative_agent mobile_agent product_manager_agent realestate_agent research_agent task_agent)",
       "Bash(do if [ -d \"$dir\" ])",
@@ -29,10 +29,28 @@
       "Bash(fi)",
       "Bash(done)",
       "Bash(npm install)",
-      "mcp__playwright__browser_navigate"
+      "mcp__playwright__browser_navigate",
+      "Read(//d/桌面/leo_ai_system/**)",
+      "mcp__playwright__browser_wait_for",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_take_screenshot",
+      "WebFetch(domain:www.nngroup.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(powershell:*)",
+      "Bash(HTTP_PROXY=http://127.0.0.1:7897 HTTPS_PROXY=http://127.0.0.1:7897 node:*)",
+      "Bash(powershell.exe:*)",
+      "Bash(npx openclaw plugins install:*)",
+      "Bash(node:*)",
+      "Bash(netstat:*)",
+      "Bash(\"d:\\\\桌面\\\\leo_ai_system\\\\scripts\\\\创建桌面快捷方式.bat\")",
+      "WebFetch(domain:docs.openclaw.dev)",
+      "Bash(ren:*)",
+      "Bash(npx openclaw doctor:*)",
+      "Bash(npx openclaw onboard:*)"
     ],
     "additionalDirectories": [
-      "d:\\桌面\\AI_claude_skills"
+      "d:\\桌面\\leo_ai_system"
     ]
   },
   "language": "chinese"

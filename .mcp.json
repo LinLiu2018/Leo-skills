@@ -3,6 +3,14 @@
     "playwright": {
       "command": "npx",
       "args": ["@playwright/mcp"]
+    },
+    "leo-system": {
+      "command": "python",
+      "args": ["D:/桌面/leo_ai_system/.mcp/leo_mcp_server.py"],
+      "env": {
+        "PYTHONPATH": "D:/桌面/leo_ai_system/src",
+        "PYTHONIOENCODING": "utf-8"
+      }
     }
   }
 }

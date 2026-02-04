@@ -20,7 +20,7 @@ src/leo_skills/
 ├── utilities/              # 通用工具
 ├── intelligence/           # 情报分析
 ├── tools/                  # 工具框架
-├── videocut-skills/        # 视频剪辑
+├── videocut_skills/        # 视频剪辑
 └── ...
 ```
 
@@ -109,12 +109,12 @@ src/leo_skills/
 | react-component-generator | React组件生成 |
 | css-layout-generator | CSS布局生成 |
 
-### videocut-skills/
+### videocut_skills/
 | 技能 | 功能 |
 |------|------|
-| 剪口播 | 口播视频剪辑 |
-| 字幕 | 字幕生成与编辑 |
-| 剪辑 | 通用视频剪辑 |
+| cut_speech_skill | 口播视频剪辑 |
+| subtitle_skill | 字幕生成与编辑 |
+| video_editing_skill | 通用视频剪辑 |
 
 ---
 

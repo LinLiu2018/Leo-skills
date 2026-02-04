@@ -29,6 +29,7 @@ if str(parent_path) not in sys.path:
 from leo_system.logger import get_logger
 from leo_system.errors import WorkflowExecutionError, AgentNotFoundError
 from leo_system.metrics import track_time
+from leo_system.interaction_logger import get_interaction_logger
 
 # 创建日志记录器
 logger = get_logger(__name__)
@@ -80,6 +81,15 @@ class WorkflowEngine:
         logger.info(f"描述: {workflow.get('description', '')}")
         logger.info(f"步骤数: {len(steps)}")
 
+        # 记录工作流开始
+        interaction_logger = get_interaction_logger()
+        workflow_id = interaction_logger.log_workflow_start(
+            workflow_name=workflow_name,
+            inputs=kwargs,
+            total_steps=len(steps)
+        )
+        workflow_start_time = time.time()
+
         results = []
         context = kwargs.copy()  # 初始上下文
 
@@ -90,6 +100,7 @@ class WorkflowEngine:
             step_type = step.get("type", "sequential")  # sequential, parallel, conditional
 
             logger.info(f"执行步骤 {i+1}/{len(steps)}: {step_name} (类型: {step_type})")
+            step_start_time = time.time()
 
             try:
                 if step_type == "parallel":
@@ -121,10 +132,32 @@ class WorkflowEngine:
 
                 logger.info(f"步骤 {step_name} 完成")
 
+                # 记录步骤完成
+                step_time = time.time() - step_start_time
+                interaction_logger.log_workflow_step(
+                    step_name=step_name,
+                    step_number=i + 1,
+                    agent=step.get("agent", "unknown"),
+                    status="completed",
+                    result_summary=str(step_result)[:200] if step_result else None,
+                    execution_time=step_time
+                )
+
             except Exception as e:
                 logger.error(f"步骤 {step_name} 失败: {e}")
                 results.append(
                     {"step": step_name, "type": step_type, "success": False, "error": str(e)}
+                )
+
+                # 记录步骤失败
+                step_time = time.time() - step_start_time
+                interaction_logger.log_workflow_step(
+                    step_name=step_name,
+                    step_number=i + 1,
+                    agent=step.get("agent", "unknown"),
+                    status="failed",
+                    result_summary=str(e),
+                    execution_time=step_time
                 )
 
                 if not workflow.get("continue_on_error", False):
@@ -138,6 +171,16 @@ class WorkflowEngine:
 
         # 记录执行历史
         self.execution_history.append({"workflow": workflow_name, "result": final_result})
+
+        # 记录工作流结束
+        total_time = time.time() - workflow_start_time
+        completed_steps = sum(1 for r in results if r.get("success", False))
+        interaction_logger.log_workflow_end(
+            success=final_result.get("success", False),
+            total_time=total_time,
+            completed_steps=completed_steps,
+            output_summary=str(final_result.get("output", ""))[:200]
+        )
 
         return final_result
 

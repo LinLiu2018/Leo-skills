@@ -1,0 +1,106 @@
+{
+  "name": "content-layout-cskill",
+  "version": "1.0.0",
+  "type": "skill",
+  "description": "Intelligent content layout skill for WeChat, Xiaohongshu, Weibo, and blogs with AI-powered image matching and multi-platform formatting",
+  "author": "Agent-Skill-Creator",
+  "keywords": [
+    "content-layout",
+    "formatter",
+    "wechat-layout",
+    "xiaohongshu-layout",
+    "image-matching",
+    "article-formatting",
+    "multi-platform",
+    "visual-design",
+    "typography",
+    "emoji-enhancement"
+  ],
+  "activation": {
+    "keywords": [
+      "帮我排版",
+      "生成排版",
+      "优化排版",
+      "转为公众号格式",
+      "小红书排版",
+      "文章美化",
+      "添加配图",
+      "智能排版"
+    ],
+    "patterns": [
+      "(?i)(排版|格式化|美化)\\s*(文章|内容)",
+      "(?i)(生成|创建|转为).*(公众号|小红书|微博)\\s*格式",
+      "(?i)(添加|插入)\\s*(图片|配图)",
+      "(?i)优化\\s*(排版|格式)"
+    ]
+  },
+  "capabilities": [
+    "multi-platform-layout",
+    "intelligent-image-matching",
+    "automatic-emoji-insertion",
+    "smart-highlight-extraction",
+    "typography-optimization",
+    "style-library",
+    "preview-generation"
+  ],
+  "supported_platforms": [
+    "wechat-official-account",
+    "xiaohongshu",
+    "weibo",
+    "zhihu",
+    "blog",
+    "toutiao"
+  ],
+  "style_templates": [
+    "data-driven",
+    "story-telling",
+    "minimalist",
+    "vibrant",
+    "professional",
+    "emotional",
+    "listicle",
+    "qa-format",
+    "case-study",
+    "comparison"
+  ],
+  "dependencies": {
+    "python": ">=3.9",
+    "pip": [
+      "requests>=2.31.0",
+      "pillow>=10.0.0",
+      "openai>=1.0.0",
+      "zhipuai>=2.0.0",
+      "beautifulsoup4>=4.12.0",
+      "pyyaml>=6.0"
+    ]
+  },
+  "features": [
+    "10-predefined-styles",
+    "ai-image-matching",
+    "smart-emoji-placement",
+    "golden-quote-extraction",
+    "multi-format-export",
+    "real-time-preview"
+  ],
+  "usage": {
+    "example": "Format this article for WeChat with matching images and professional layout",
+    "input_types": [
+      "article_text",
+      "markdown",
+      "plain_text"
+    ],
+    "output_types": [
+      "wechat_html",
+      "xiaohongshu_text",
+      "formatted_markdown"
+    ]
+  },
+  "metadata": {
+    "category": "content-creation",
+    "subcategory": "layout-formatting",
+    "complexity": "medium",
+    "estimated_lines": 2500,
+    "created_by": "agent-skill-creator",
+    "architecture": "simple-skill"
+  }
+}

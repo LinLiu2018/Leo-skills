@@ -1,0 +1,49 @@
+# 技能进化助手配置
+
+skill_name: "skill-evolution-assistant"
+version: "1.0.0"
+description: "自动为所有技能添加进化能力的元技能"
+
+# 进化配置
+evolution:
+  enabled: true
+  learning:
+    min_executions_for_learning: 5
+    analysis_window: 50
+  optimization:
+    auto_optimize: false
+    require_approval: true
+
+# 扫描配置
+scan:
+  categories:
+    - content-creation
+    - data-analysis
+    - utilities
+    - tools
+    - automation
+
+  # 排除的技能
+  exclude:
+    - skill-evolution-assistant-cskill  # 自己
+    - agent-skill-creator  # 已有AgentDB集成
+
+# 改造配置
+transform:
+  # 是否创建备份
+  create_backup: true
+
+  # 是否自动测试
+  auto_test: false
+
+  # 改造策略
+  strategy:
+    # 主方法名称（按优先级）
+    main_methods:
+      - run
+      - execute
+      - process
+      - main
+
+    # 是否保留原方法
+    keep_original: true

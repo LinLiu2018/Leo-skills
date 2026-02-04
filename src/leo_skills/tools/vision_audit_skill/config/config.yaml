@@ -1,0 +1,14 @@
+skill:
+  name: vision_audit_skill
+  version: 1.0.0
+  category: tools
+  author: Leo AI System
+
+execution:
+  timeout: 300
+  retry: 1
+
+evolution:
+  enabled: true
+  learn_on_failure: true
+  max_tips: 50

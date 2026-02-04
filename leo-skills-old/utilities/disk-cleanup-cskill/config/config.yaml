@@ -1,0 +1,128 @@
+# 硬盘清理技能配置文件
+# Disk Cleanup Skill Configuration
+
+# 基础设置
+settings:
+  default_profile: "standard"  # conservative, standard, aggressive
+  enable_cache: true
+  cache_duration_hours: 24
+  max_threads: 4
+  enable_logging: true
+  log_level: "INFO"
+
+# 扫描设置
+scanning:
+  large_file_threshold_mb: 100
+  duplicate_min_size_mb: 1
+  max_scan_depth: 10
+  exclude_paths:
+    - "C:\\Windows\\System32"
+    - "C:\\Windows\\SysWOW64"
+    - "C:\\Program Files"
+    - "C:\\Program Files (x86)"
+    - "C:\\ProgramData\\Microsoft"
+  include_hidden_files: false
+  follow_symlinks: false
+
+# 清理配置文件
+cleanup_profiles:
+  conservative:
+    description: "保守模式 - 只清理明确安全的文件"
+    clean_temp: true
+    clean_recycle_bin: false
+    clean_logs: false
+    clean_browser_cache: false
+    clean_old_downloads: false
+    require_confirmation: true
+    dry_run_default: true
+
+  standard:
+    description: "标准模式 - 平衡安全和效果"
+    clean_temp: true
+    clean_recycle_bin: true
+    clean_logs: false
+    clean_browser_cache: true
+    clean_old_downloads: false
+    require_confirmation: true
+    dry_run_default: true
+
+  aggressive:
+    description: "激进模式 - 最大化清理空间"
+    clean_temp: true
+    clean_recycle_bin: true
+    clean_logs: true
+    clean_browser_cache: true
+    clean_old_downloads: true
+    require_confirmation: true
+    dry_run_default: false
+
+# 临时文件清理设置
+temp_cleanup:
+  locations:
+    - "%TEMP%"
+    - "%TMP%"
+    - "C:\\Windows\\Temp"
+    - "C:\\Windows\\Prefetch"
+    - "%LOCALAPPDATA%\\Temp"
+  browser_cache_paths:
+    chrome: "%LOCALAPPDATA%\\Google\\Chrome\\User Data\\Default\\Cache"
+    edge: "%LOCALAPPDATA%\\Microsoft\\Edge\\User Data\\Default\\Cache"
+    firefox: "%APPDATA%\\Mozilla\\Firefox\\Profiles\\*\\cache2"
+  windows_update_cache: "C:\\Windows\\SoftwareDistribution\\Download"
+  max_file_age_days: 30  # 只清理超过30天的文件
+
+# 安全设置
+safety:
+  enable_whitelist: true
+  enable_blacklist: true
+  protected_extensions:
+    - ".sys"
+    - ".dll"
+    - ".exe"
+    - ".ini"
+    - ".reg"
+    - ".bat"
+    - ".cmd"
+    - ".ps1"
+    - ".vbs"
+  dry_run_by_default: true
+  require_admin: false
+  use_send2trash: true  # 使用回收站而非永久删除
+  confirm_before_delete: true
+
+# 性能设置
+performance:
+  use_multithreading: true
+  max_workers: 4
+  chunk_size: 1000
+  enable_progress_bar: true
+  cache_scan_results: true
+  incremental_scan: true
+
+# 报告设置
+reporting:
+  generate_report: true
+  report_format: "markdown"  # markdown, json, html
+  save_history: true
+  history_retention_days: 30
+  report_output_dir: "outputs/reports"
+
+# 磁盘使用率阈值
+thresholds:
+  critical: 90  # 使用率超过90%为危险
+  warning: 75   # 使用率超过75%为警告
+  normal: 50    # 使用率低于50%为正常
+
+# 大文件扫描设置
+large_files:
+  default_threshold_mb: 100
+  max_results: 50
+  sort_by: "size"  # size, date, name
+  sort_order: "desc"  # asc, desc
+
+# 重复文件检测设置
+duplicate_detection:
+  min_file_size_mb: 1
+  hash_algorithm: "xxhash"  # xxhash, md5, sha256
+  compare_content: true
+  group_by_size_first: true  # 先按大小分组，提升性能

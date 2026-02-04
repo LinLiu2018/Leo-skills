@@ -17,6 +17,8 @@ if str(parent_path) not in sys.path:
 
 from leo_system.logger import get_logger
 from leo_system.metrics import track_time
+from leo_system.interaction_logger import get_interaction_logger
+from leo_system.skill_usage_stats import get_usage_tracker
 from .skill_adapter import SkillAdapter
 from .skill_loader import SkillLoader, get_loader
 
@@ -130,6 +132,34 @@ class SkillExecutor:
 
         # 记录历史
         self.execution_history.append(execution_result)
+
+        # 记录到交互日志
+        try:
+            interaction_logger = get_interaction_logger()
+            interaction_logger.log_skill_call(
+                skill_name=skill_name,
+                action=action,
+                params=kwargs,
+                result=execution_result.result,
+                success=execution_result.success,
+                execution_time=execution_result.execution_time,
+            )
+        except Exception:
+            pass  # 日志记录失败不影响主流程
+
+        # 记录到使用统计
+        try:
+            usage_tracker = get_usage_tracker()
+            error_type = type(execution_result.error).__name__ if execution_result.error else None
+            usage_tracker.record_call(
+                skill_name=skill_name,
+                action=action,
+                success=execution_result.success,
+                execution_time=execution_result.execution_time,
+                error_type=error_type,
+            )
+        except Exception:
+            pass  # 统计记录失败不影响主流程
 
         return execution_result
 

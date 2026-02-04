@@ -1,0 +1,140 @@
+/* components/stats-card/stats-card.wxss */
+.stats-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+/* 主题变体 */
+.stats-card.primary {
+  background: linear-gradient(135deg, #FF6B35 0%, #ff8f5e 100%);
+  color: #fff;
+}
+
+.stats-card.primary .stats-title,
+.stats-card.primary .stats-value,
+.stats-card.primary .stats-unit,
+.stats-card.primary .sub-text,
+.stats-card.primary .progress-text {
+  color: #fff;
+}
+
+.stats-card.primary .progress-bar {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.stats-card.primary .progress-fill {
+  background: #fff;
+}
+
+/* 头部 */
+.stats-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.stats-icon {
+  font-size: 32rpx;
+  margin-right: 12rpx;
+}
+
+.stats-title {
+  font-size: 28rpx;
+  color: #666;
+}
+
+/* 主数值 */
+.stats-main {
+  display: flex;
+  align-items: baseline;
+}
+
+.stats-value {
+  font-size: 64rpx;
+  font-weight: bold;
+  color: #FF6B35;
+  line-height: 1;
+}
+
+.stats-unit {
+  font-size: 28rpx;
+  color: #FF6B35;
+  margin-left: 8rpx;
+}
+
+/* 副文本 */
+.stats-sub {
+  margin-top: 12rpx;
+}
+
+.sub-text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 进度条 */
+.stats-progress {
+  margin-top: 20rpx;
+}
+
+.progress-bar {
+  height: 16rpx;
+  background: #f0f0f0;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FF6B35 0%, #ff8f5e 100%);
+  border-radius: 8rpx;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  display: block;
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 12rpx;
+}
+
+/* 多项统计 */
+.stats-items {
+  display: flex;
+  margin-top: 24rpx;
+  padding-top: 24rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.stats-card.primary .stats-items {
+  border-top-color: rgba(255, 255, 255, 0.2);
+}
+
+.stats-item {
+  flex: 1;
+  text-align: center;
+}
+
+.item-value {
+  display: block;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.stats-card.primary .item-value {
+  color: #fff;
+}
+
+.item-label {
+  display: block;
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+
+.stats-card.primary .item-label {
+  color: rgba(255, 255, 255, 0.8);
+}

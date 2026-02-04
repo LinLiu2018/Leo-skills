@@ -1,0 +1,20 @@
+# 简单示例技能配置文件
+
+# 基础配置
+skill_name: "simple-text-processor"
+version: "1.0.0"
+
+# 处理配置
+processing:
+  default_mode: "upper"
+  max_length: 1000
+
+# 进化配置（引用模板）
+evolution:
+  enabled: true
+  learning:
+    min_executions_for_learning: 5  # 演示用，设置较小值
+    analysis_window: 50
+  optimization:
+    auto_optimize: false
+    require_approval: true

@@ -1,0 +1,52 @@
+# GitHub Skills Monitor Skill 配置
+
+skill:
+  name: github_skills_monitor
+  version: 1.0.0
+  type: meta
+  category: tools
+
+# 监控设置
+monitor:
+  # 最低星标数阈值
+  min_stars: 10
+  # 扫描间隔（小时）
+  scan_interval_hours: 24
+  # 是否自动导入
+  auto_import: false
+
+# 输出设置
+output:
+  base_dir: src/leo_skills
+  skills_dir: tools
+  agents_dir: collaboration
+  workflows_dir: content_creation
+
+# 数据源配置
+sources:
+  - name: anthropics_skills
+    type: skills
+    url: https://github.com/anthropics/skills
+    priority: high
+
+  - name: obra_superpowers
+    type: skills
+    url: https://github.com/obra/superpowers
+    priority: high
+
+  - name: awesome_claude_skills
+    type: skills
+    url: https://github.com/travisvn/awesome-claude-skills
+    priority: medium
+
+  - name: awesome_claude_code_agents
+    type: agents
+    url: https://github.com/hesreallyhim/awesome-claude-code-agents
+    priority: medium
+
+# 进化配置
+evolution:
+  enabled: true
+  learn_on_failure: true
+  max_tips: 100
+  auto_save: true

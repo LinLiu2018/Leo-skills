@@ -1,0 +1,27 @@
+{
+  "name": "chart_generator_skill",
+  "version": "1.0.0",
+  "description": "Generate professional charts for business plans using Python + Matplotlib",
+  "entry_point": "chart_generator.py",
+  "author": "Claude Code",
+  "commands": [
+    {
+      "name": "生成图表",
+      "description": "Generate charts for business plans",
+      "examples": [
+        "生成市场规模饼图",
+        "创建租金趋势折线图",
+        "绘制竞争格局图"
+      ]
+    },
+    {
+      "name": "生成所有图表",
+      "description": "Generate all charts for a business plan",
+      "examples": [
+        "生成商业计划书所有图表"
+      ]
+    }
+  ],
+  "tags": ["visualization", "charts", "business", "matplotlib"],
+  "platforms": ["windows", "linux", "macos"]
+}

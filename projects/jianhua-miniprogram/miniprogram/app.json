@@ -4,6 +4,8 @@
     "pages/share/share",
     "pages/appointment/appointment",
     "pages/user/user",
+    "pages/ranking/ranking",
+    "pages/gift-detail/gift-detail",
     "pages/privacy/privacy"
   ],
   "window": {
@@ -32,6 +34,11 @@
         "text": "我的"
       }
     ]
+  },
+  "usingComponents": {
+    "gift-card": "/components/gift-card/gift-card",
+    "stats-card": "/components/stats-card/stats-card",
+    "loading": "/components/loading/loading"
   },
   "sitemapLocation": "sitemap.json"
 }

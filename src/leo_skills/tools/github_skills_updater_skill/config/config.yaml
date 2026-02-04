@@ -1,0 +1,39 @@
+# GitHub Skills Updater Skill 配置
+
+skill:
+  name: github_skills_updater
+  version: 1.0.0
+  type: meta
+  category: tools
+
+# 更新设置
+update:
+  # 是否自动更新（需要确认）
+  auto_update: false
+  # 检测间隔（小时）
+  check_interval_hours: 24
+  # 最大历史记录数
+  max_history: 100
+
+# GitHub设置
+github:
+  # 默认分支
+  default_branch: main
+  # 超时时间（秒）
+  timeout: 60
+
+# 路径设置
+paths:
+  # 技能基础目录
+  base_dir: src/leo_skills
+  # 注册表文件
+  registry_file: registered_skills.json
+  # 历史记录文件
+  history_file: update_history.json
+
+# 进化配置
+evolution:
+  enabled: true
+  learn_on_failure: true
+  max_tips: 100
+  auto_save: true

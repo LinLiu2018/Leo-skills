@@ -22,6 +22,8 @@ try:
     from .mobile_agent.mobile_agent import MobileAgent
     from .product_manager_agent.product_manager_agent import ProductManagerAgent
     from .research_agent.research_agent import ResearchAgent
+    from .realestate_agent.realestate_agent import RealEstateAgent
+    from .ecommerce_agent.ecommerce_agent import EcommerceAgent
 
     __all__ = [
         "BaseAgent",
@@ -34,6 +36,8 @@ try:
         "ArchitectAgent",
         "MobileAgent",
         "ProductManagerAgent",
+        "RealEstateAgent",
+        "EcommerceAgent",
     ]
 except ImportError as e:
     print(f"[WARNING]  导入Agent失败: {e}")
@@ -43,3 +47,4 @@ except ImportError as e:
         "AgentFactory",
         "TaskAgent",
     ]
+from .ai_news_summary_agent import AiNewsSummaryAgent

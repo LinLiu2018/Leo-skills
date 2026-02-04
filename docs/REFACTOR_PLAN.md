@@ -13,8 +13,8 @@
 我们将从当前的混合结构迁移到以下标准结构：
 
 ```text
-AI_claude_skills/
-├── leo_system/                 # [核心] 系统核心逻辑包 (原 leo-system.py 拆分)
+leo_ai_system/
+├── leo_system/                 # [核心] 系统核心逻辑包 (原 leo_system.py 拆分)
 │   ├── __init__.py            # 暴露 get_system()
 │   ├── core.py                # LeoSystem 主类
 │   └── config.py              # 配置加载逻辑

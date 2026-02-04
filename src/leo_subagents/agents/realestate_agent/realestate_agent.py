@@ -9,14 +9,15 @@ from pathlib import Path
 from typing import Any, Dict
 
 # 添加父目录到路径
-parent_path = Path(__file__).parent.parent.parent
+parent_path = Path(__file__).parent.parent.parent.parent
 if str(parent_path) not in sys.path:
     sys.path.insert(0, str(parent_path))
 
 from leo_subagents.agents.base_agent import AgentConfig, AgentFactory, BaseAgent
+from leo_skills.core.evolution.base import EvolvableSkill
 
 
-class RealEstateAgent(BaseAgent):
+class RealEstateAgent(BaseAgent, EvolvableSkill):
     """
     RealEstate Agent
     ================
@@ -37,6 +38,11 @@ class RealEstateAgent(BaseAgent):
             "news_publishing": "realestate_news_publisher_skill",
             "web_search": "web_search_skill",
         }
+
+        # 初始化进化能力
+        # 经验存档位于 agent 同级目录
+        evolution_path = Path(__file__).parent / "evolution.json"
+        EvolvableSkill.__init__(self, config.name, evolution_path)
 
     def can_handle(self, task: str) -> float:
         """判断是否能处理此任务"""
@@ -90,6 +96,12 @@ class RealEstateAgent(BaseAgent):
             "skills_used": ["project_marketing_doc_generator_skill", "content_layout_leo_skill"],
             "status": "completed",
         }
+
+        # 注入进化经验
+        experience = self.get_experience_context()
+        if experience:
+            result["experience_applied"] = experience
+            # 模拟：如果经验中包含"使用xx模板"，则可能会调整 steps (此处仅作演示)
 
         self.log_task(task, result)
         return result
@@ -157,6 +169,10 @@ RealEstate Agent 帮助
 - agent.execute("分析宁波房地产市场")
 - agent.execute("生成淮安建华官园营销手册")
 - agent.execute("追踪最新房地产政策")
+
+进化能力:
+该 Agent 具备自我进化能力，会记录并复用过往经验。
+存档位置: {self.evolution_path}
 """
 
 
@@ -179,5 +195,10 @@ if __name__ == "__main__":
     print(f"- 房地产任务: {agent.can_handle('分析宁波房地产市场')}")
     print(f"- 营销任务: {agent.can_handle('生成项目营销手册')}")
     print(f"- 政策任务: {agent.can_handle('追踪房地产政策')}")
+
+    print("\n进化能力测试:")
+    print(f"- 初始经验: {agent.get_tips()}")
+    agent.learn("对于宁波市场，重点关注海曙区学区房政策")
+    print(f"- 学习后经验: {agent.get_tips()}")
 
     print(agent.get_help_text())

@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.1.30",
+    "lastTouchedAt": "2026-02-03T00:00:00.000Z",
+    "_comment": "此文件为标准配置模板，请勿直接使用，需要替换敏感信息"
+  },
+  "wizard": {
+    "completed": true
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "minimax/MiniMax-M2.1"
+      }
+    },
+    "list": [
+      {
+        "id": "leo-assistant",
+        "name": "Leo Assistant",
+        "identity": {},
+        "workspace": "D:/桌面/leo_ai_system"
+      }
+    ]
+  },
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true
+  },
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "appId": "YOUR_APP_ID",
+      "appSecret": "YOUR_APP_SECRET",
+      "domain": "feishu",
+      "connectionMode": "websocket",
+      "dmPolicy": "open",
+      "groupPolicy": "open",
+      "requireMention": false,
+      "blockStreaming": true
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "auth": {
+      "token": "YOUR_TOKEN"
+    }
+  },
+  "skills": {
+    "load": {
+      "extraDirs": [
+        "D:\\桌面\\leo_ai_system\\src\\leo_skills"
+      ],
+      "watch": true,
+      "watchDebounceMs": 250
+    }
+  },
+  "plugins": {
+    "entries": {}
+  }
+}

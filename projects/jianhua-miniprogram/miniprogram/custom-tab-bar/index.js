@@ -5,18 +5,15 @@ Component({
     selectedColor: "#FF6B35",
     list: [{
       pagePath: "/pages/index/index",
-      iconPath: "https://placehold.co/60x60/999999/ffffff?text=Home",
-      selectedIconPath: "https://placehold.co/60x60/FF6B35/ffffff?text=Home",
+      icon: "🏠",
       text: "首页"
     }, {
       pagePath: "/pages/share/share",
-      iconPath: "https://placehold.co/60x60/999999/ffffff?text=Gift",
-      selectedIconPath: "https://placehold.co/60x60/FF6B35/ffffff?text=Gift",
+      icon: "🎁",
       text: "分享"
     }, {
       pagePath: "/pages/user/user",
-      iconPath: "https://placehold.co/60x60/999999/ffffff?text=Me",
-      selectedIconPath: "https://placehold.co/60x60/FF6B35/ffffff?text=Me",
+      icon: "👤",
       text: "我的"
     }]
   },

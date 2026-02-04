@@ -1,0 +1,57 @@
+# Image Generator Skill 配置
+
+skill:
+  name: image_generator_skill
+  version: 1.0.0
+  category: content_creation
+  description: AI图片生成技能，基于OpenAI DALL-E API
+
+# OpenAI 配置
+openai:
+  # API Key (也可通过环境变量 OPENAI_API_KEY 设置)
+  api_key: ""
+
+  # 模型选择: dall-e-3, gpt-image-1
+  model: "dall-e-3"
+
+  # 默认图片尺寸: 1024x1024, 1792x1024, 1024x1792
+  default_size: "1024x1024"
+
+  # 默认质量: standard, hd
+  default_quality: "standard"
+
+# 输出配置
+output:
+  # 自动保存生成的图片
+  auto_save: true
+
+  # 输出目录 (相对于技能目录)
+  directory: "output"
+
+  # 文件命名格式
+  naming_format: "{timestamp}_{prompt_short}"
+
+# 进化配置
+evolution:
+  enabled: true
+  learn_on_success: true
+  learn_on_failure: true
+  max_tips: 100
+
+# 预设风格
+styles:
+  miniprogram-ui:
+    description: "微信小程序UI界面"
+    template: "微信小程序UI界面设计，现代简约风格，圆角卡片，清晰的图标，{prompt}"
+
+  app-ui:
+    description: "移动应用UI"
+    template: "移动应用UI界面设计，Material Design风格，{prompt}"
+
+  web-ui:
+    description: "网页UI设计"
+    template: "网页UI设计，响应式布局，现代扁平化风格，{prompt}"
+
+  marketing:
+    description: "营销海报"
+    template: "营销海报设计，吸引眼球，专业商业风格，{prompt}"

@@ -1,0 +1,26 @@
+# Chart Generator Skill 配置
+
+# 输出目录
+output_dir: "./charts"
+
+# 图表设置
+chart:
+  dpi: 150
+  format: "png"
+  facecolor: "white"
+  figsize:
+    width: 12
+    height: 8
+
+# 配色方案
+colors:
+  primary: "#3498DB"
+  secondary: "#E74C3C"
+  success: "#2ECC71"
+  warning: "#F39C12"
+  info: "#9B59B6"
+
+# 中文字体
+font:
+  chinese: "Microsoft YaHei"
+  english: "DejaVu Sans"

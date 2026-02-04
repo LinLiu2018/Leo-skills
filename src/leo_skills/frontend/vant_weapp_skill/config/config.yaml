@@ -1,0 +1,31 @@
+# Vant Weapp Skill 配置
+
+skill:
+  name: vant_weapp_skill
+  version: 1.0.0
+  category: frontend
+  description: 基于 Vant Weapp 的小程序UI组件生成技能
+
+# 来源信息
+source:
+  github: https://github.com/vant-ui/vant-weapp
+  stars: 18300
+  docs: https://vant-contrib.gitee.io/vant-weapp/
+
+# 默认主题
+theme:
+  primary_color: "#FF6B35"
+  success_color: "#07c160"
+  warning_color: "#ff976a"
+  danger_color: "#ee0a24"
+
+# 组件配置
+components:
+  npm_package: "@vant/weapp"
+  min_base_library: "2.6.5"
+
+# 进化配置
+evolution:
+  enabled: true
+  learn_on_success: true
+  max_tips: 100

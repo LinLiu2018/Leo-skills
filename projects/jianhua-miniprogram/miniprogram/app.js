@@ -4,7 +4,8 @@ App({
     userInfo: null,
     isLogin: false,
     inviteCode: '', // 邀请码（从URL参数获取）
-    baseUrl: 'http://localhost:3000/api/v1' // 后端API地址
+    baseUrl: 'http://localhost:3000/api/v1', // 后端API地址
+    mockMode: true // 开发模式：使用模拟数据
   },
 
   onLaunch(options) {
@@ -25,6 +26,36 @@ App({
   // 一键手机授权登录
   phoneLogin(code) {
     return new Promise((resolve, reject) => {
+      // 模拟模式：直接返回模拟数据
+      if (this.globalData.mockMode) {
+        console.log('[Mock] 模拟登录成功');
+        const mockUser = {
+          id: 'mock_user_001',
+          nickname: '测试用户',
+          avatar: '',
+          phone: '138****8888',
+          inviteCode: 'MOCK001',
+          inviteCount: 5,
+          createdAt: new Date().toISOString()
+        };
+        const mockToken = 'mock_token_' + Date.now();
+
+        this.globalData.isLogin = true;
+        this.globalData.userInfo = mockUser;
+        wx.setStorageSync('token', mockToken);
+        wx.setStorageSync('userInfo', mockUser);
+
+        setTimeout(() => {
+          resolve({
+            success: true,
+            user: mockUser,
+            token: mockToken
+          });
+        }, 500); // 模拟网络延迟
+        return;
+      }
+
+      // 真实API调用
       const inviteCode = this.globalData.inviteCode || wx.getStorageSync('inviteCode');
 
       wx.request({

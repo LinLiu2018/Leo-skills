@@ -14,7 +14,7 @@ global:
 # Subagents定义
 agents:
   # 任务执行代理
-  task-agent:
+  task_agent:
     name: "Task Agent"
     description: "执行具体任务，调用相关Skills"
     type: "executor"
@@ -23,13 +23,13 @@ agents:
     # 可调用的Skills
     skills:
       - name: "content_layout_leo_skill"
-        path: "../leo_skills/content-creation/content_layout_leo_skill"
+        path: "../leo_skills/content_creation/content_layout_leo_skill"
         enabled: true
       - name: "realestate_news_publisher_skill"
-        path: "../leo_skills/content-creation/realestate_news_publisher_skill"
+        path: "../leo_skills/content_creation/realestate_news_publisher_skill"
         enabled: true
       - name: "project_marketing_doc_generator_skill"
-        path: "../leo_skills/tools/project_marketing_doc_generator_skill"
+        path: "../leo_skills/content_creation/project_marketing_doc_generator_skill"
         enabled: true
 
     # 执行参数
@@ -44,7 +44,7 @@ agents:
       - "开始工作"
 
   # 研究代理
-  research-agent:
+  research_agent:
     name: "Research Agent"
     description: "信息收集、文献调研、知识整理"
     type: "researcher"
@@ -71,28 +71,37 @@ agents:
       - "文献查阅"
 
   # 分析代理
-  analysis-agent:
+  analysis_agent:
     name: "Analysis Agent"
-    description: "数据分析、趋势分析、报告生成"
+    description: "数据分析、趋势分析、报告生成、市场研究"
     type: "analyzer"
     priority: 3
 
     skills:
       - name: "data_analyzer_skill"
-        path: "../leo_skills/data-analysis/data_analyzer_skill"
+        path: "../leo_skills/utilities/data_analyzer_skill"
+        enabled: true
+      - name: "web_search_skill"
+        path: "../leo_skills/utilities/web_search_skill"
+        enabled: true
+      - name: "research_assistant_skill"
+        path: "../leo_skills/utilities/research_assistant_skill"
         enabled: true
 
     config:
       analysis_method: "statistical"
       visualization: true
+      research_depth: 2
 
     activation_keywords:
       - "分析数据"
       - "生成报告"
       - "趋势分析"
+      - "市场研究"
+      - "数据统计"
 
   # 创作代理
-  creative-agent:
+  creative_agent:
     name: "Creative Agent"
     description: "内容创作、文案生成、创意输出"
     type: "creator"
@@ -100,7 +109,7 @@ agents:
 
     skills:
       - name: "content_layout_leo_skill"
-        path: "../leo_skills/content-creation/content_layout_leo_skill"
+        path: "../leo_skills/content_creation/content_layout_leo_skill"
         enabled: true
       - name: "article_to_prototype_skill"
         path: "../leo_skills/tools/article_to_prototype_skill"
@@ -119,7 +128,7 @@ agents:
       - "写文章"
 
   # 房地产代理
-  realestate-agent:
+  realestate_agent:
     name: "RealEstate Agent"
     description: "房地产市场分析、项目营销、政策追踪"
     type: "realestate"
@@ -127,10 +136,10 @@ agents:
 
     skills:
       - name: "project_marketing_doc_generator_skill"
-        path: "../leo_skills/tools/project_marketing_doc_generator_skill"
+        path: "../leo_skills/content_creation/project_marketing_doc_generator_skill"
         enabled: true
       - name: "realestate_news_publisher_skill"
-        path: "../leo_skills/content-creation/realestate_news_publisher_skill"
+        path: "../leo_skills/content_creation/realestate_news_publisher_skill"
         enabled: true
       - name: "web_search_skill"
         path: "../leo_skills/utilities/web_search_skill"
@@ -150,7 +159,7 @@ agents:
       - "市场分析"
 
   # 架构师代理
-  architect-agent:
+  architect_agent:
     name: "Architect Agent"
     description: "技术选型、系统设计和数据库设计"
     type: "architect"
@@ -158,10 +167,10 @@ agents:
 
     skills:
       - name: "database_model_generator_skill"
-        path: "../leo_skills/tools/database_model_generator_skill"
+        path: "../leo_skills/backend/database_model_generator_skill"
         enabled: true
       - name: "api_doc_generator_skill"
-        path: "../leo_skills/tools/api_doc_generator_skill"
+        path: "../leo_skills/backend/api_doc_generator_skill"
         enabled: true
       - name: "research_assistant_skill"
         path: "../leo_skills/utilities/research_assistant_skill"
@@ -179,7 +188,7 @@ agents:
       - "API设计"
 
   # 移动开发代理
-  mobile-agent:
+  mobile_agent:
     name: "Mobile Agent"
     description: "小程序、React Native和Flutter开发"
     type: "mobile"
@@ -187,13 +196,13 @@ agents:
 
     skills:
       - name: "miniprogram_page_generator_skill"
-        path: "../leo_skills/development/miniprogram_page_generator_skill"
+        path: "../leo_skills/frontend/miniprogram_page_generator_skill"
         enabled: true
       - name: "miniprogram_component_generator_skill"
-        path: "../leo_skills/development/miniprogram_component_generator_skill"
+        path: "../leo_skills/frontend/miniprogram_component_generator_skill"
         enabled: true
       - name: "miniprogram_project_scaffold_skill"
-        path: "../leo_skills/development/miniprogram_project_scaffold_skill"
+        path: "../leo_skills/scaffold/miniprogram_project_scaffold_skill"
         enabled: true
 
     config:
@@ -212,7 +221,7 @@ agents:
       - "微信小程序"
 
   # 产品经理代理
-  product-manager-agent:
+  product_manager_agent:
     name: "Product Manager Agent"
     description: "需求分析、PRD编写和用户故事设计"
     type: "product_manager"
@@ -240,49 +249,102 @@ agents:
       - "产品设计"
       - "竞品分析"
 
+  # 电商代理 (新增)
+  ecommerce_agent:
+    name: "Ecommerce Agent"
+    description: "AI眼镜电商、竞品分析和爆款文案"
+    type: "ecommerce"
+    priority: 6
+
+    skills:
+      - name: "research_assistant_skill"
+        path: "../leo_skills/utilities/research_assistant_skill"
+        enabled: true
+      - name: "web_search_skill"
+        path: "../leo_skills/utilities/web_search_skill"
+        enabled: true
+      - name: "content_layout_leo_skill"
+        path: "../leo_skills/content_creation/content_layout_leo_skill"
+        enabled: true
+      - name: "article_to_prototype_skill"
+        path: "../leo_skills/tools/article_to_prototype_skill"
+        enabled: true
+
+    config:
+      market_niche: "smart_glasses"
+      copywriting_style: "viral" # viral, professional, storytelling
+
+    activation_keywords:
+      - "电商"
+      - "AI眼镜"
+      - "竞品分析"
+      - "爆款文案"
+      - "选品"
+
+  # AI新闻摘要代理
+  ai_news_summary_agent:
+    name: "AI News Summary"
+    description: "AI新闻摘要代理，自动收集和生成AI相关新闻摘要"
+    type: "researcher"
+    priority: 10
+
+    skills:
+      - name: "research_assistant_skill"
+        path: "../leo_skills/utilities/research_assistant_skill"
+        enabled: true
+      - name: "web_search_skill"
+        path: "../leo_skills/utilities/web_search_skill"
+        enabled: true
+
+    config:
+      output_format: "json"
+
+    activation_keywords:
+      - "ai_news_summary"
+
 # Workflow映射
 workflows:
-  content-pipeline:
+  content_pipeline:
     agents:
-      - research-agent
-      - creative-agent
-      - task-agent
+      - research_agent
+      - creative_agent
+      - task_agent
     sequence:
       - step: "research"
-        agent: "research-agent"
+        agent: "research_agent"
       - step: "create"
-        agent: "creative-agent"
+        agent: "creative_agent"
       - step: "publish"
-        agent: "task-agent"
+        agent: "task_agent"
 
-  research-pipeline:
+  research_pipeline:
     agents:
-      - research-agent
-      - analysis-agent
+      - research_agent
+      - analysis_agent
     sequence:
       - step: "collect"
-        agent: "research-agent"
+        agent: "research_agent"
       - step: "analyze"
-        agent: "analysis-agent"
+        agent: "analysis_agent"
 
-  analysis-pipeline:
+  analysis_pipeline:
     agents:
-      - analysis-agent
-      - task-agent
+      - analysis_agent
+      - task_agent
     sequence:
       - step: "analyze"
-        agent: "analysis-agent"
+        agent: "analysis_agent"
       - step: "report"
-        agent: "task-agent"
+        agent: "task_agent"
 
 # 技能桥接配置
 skills_bridge:
   auto_discovery: true # 自动发现Skills
   skill_paths:
-    - "../leo_skills/content-creation/*"
+    - "../leo_skills/content_creation/*"
     - "../leo_skills/tools/*"
     - "../leo_skills/utilities/*"
-    - "../leo_skills/data-analysis/*"
+    - "../leo_skills/data_analysis/*"
     - "../leo_skills/automation/*"
 
   load_policy: "lazy" # lazy, eager, on_demand

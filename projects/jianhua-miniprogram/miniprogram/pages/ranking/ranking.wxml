@@ -1,0 +1,79 @@
+<!--pages/ranking/ranking.wxml-->
+<view class="container">
+  <!-- 顶部背景 -->
+  <view class="header-bg">
+    <view class="header-content">
+      <text class="header-title">🏆 邀请排行榜</text>
+      <text class="header-desc">邀请好友越多，排名越靠前</text>
+    </view>
+  </view>
+
+  <!-- 我的排名卡片 -->
+  <view class="my-rank-card" wx:if="{{isLogin}}">
+    <view class="my-rank-left">
+      <text class="my-rank-label">我的排名</text>
+      <text class="my-rank-value">{{myRank || '--'}}</text>
+    </view>
+    <view class="my-rank-center">
+      <image class="my-avatar" src="{{userInfo.avatar || '/images/default-avatar.png'}}"/>
+      <text class="my-name">{{userInfo.nickname}}</text>
+    </view>
+    <view class="my-rank-right">
+      <text class="my-invite-label">已邀请</text>
+      <text class="my-invite-value">{{myInviteCount}}</text>
+      <text class="my-invite-unit">人</text>
+    </view>
+  </view>
+
+  <!-- 排行榜列表 -->
+  <view class="rank-list card">
+    <view class="rank-header">
+      <text class="rank-col">排名</text>
+      <text class="rank-col user">用户</text>
+      <text class="rank-col count">邀请数</text>
+    </view>
+
+    <loading type="loading" text="加载中..." wx:if="{{loading}}"/>
+
+    <block wx:else>
+      <loading
+        type="empty"
+        icon="🏆"
+        text="暂无排行数据"
+        wx:if="{{rankList.length === 0}}"
+      />
+
+      <view class="rank-item {{index < 3 ? 'top-' + (index + 1) : ''}}"
+            wx:for="{{rankList}}"
+            wx:key="id"
+            wx:if="{{rankList.length > 0}}">
+      <view class="rank-num">
+        <text class="rank-medal" wx:if="{{index === 0}}">🥇</text>
+        <text class="rank-medal" wx:elif="{{index === 1}}">🥈</text>
+        <text class="rank-medal" wx:elif="{{index === 2}}">🥉</text>
+        <text class="rank-number" wx:else>{{index + 1}}</text>
+      </view>
+      <view class="rank-user">
+        <image class="rank-avatar" src="{{item.avatar || '/images/default-avatar.png'}}"/>
+        <text class="rank-name">{{item.nickname}}</text>
+      </view>
+      <view class="rank-count">
+        <text class="count-value">{{item.invite_count}}</text>
+        <text class="count-unit">人</text>
+      </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 底部提示 -->
+  <view class="bottom-tip">
+    <text>排行榜每小时更新一次</text>
+  </view>
+
+  <!-- 分享按钮 -->
+  <view class="share-btn-area" wx:if="{{isLogin}}">
+    <button class="btn-share" open-type="share">
+      📤 分享邀请，冲击榜首
+    </button>
+  </view>
+</view>

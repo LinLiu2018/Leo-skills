@@ -1,0 +1,30 @@
+# WeUI Miniprogram Skill 配置
+
+skill:
+  name: weui_miniprogram_skill
+  version: 1.0.0
+  category: frontend
+  description: 微信官方小程序组件库技能
+
+# 来源信息
+source:
+  github: https://github.com/wechat-miniprogram/weui-miniprogram
+  stars: 2400
+  docs: https://wechat-miniprogram.github.io/weui/docs/
+
+# 组件配置
+components:
+  npm_package: "weui-miniprogram"
+  style_import: "weui-miniprogram/weui-wxss/dist/style/weui.wxss"
+
+# 深色模式
+dark_mode:
+  enabled: true
+  attribute: "data-weui-theme"
+  value: "dark"
+
+# 进化配置
+evolution:
+  enabled: true
+  learn_on_success: true
+  max_tips: 100

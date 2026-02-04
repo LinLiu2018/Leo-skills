@@ -16,28 +16,50 @@ from .metrics import track_time
 # 创建日志记录器
 logger = get_logger(__name__)
 
-# 导入内部组件
-# 注意：这里假设 leo_subagents 和 leo_orchestrator 已经在路径中或已安装
+# 导入内部组件 - 使用安全的导入方式
+LeoAPI = None
+SKILL_LOADER_CLASS = None
+SkillExecutor = None
+AgentConfig = None
+AgentFactory = None
+get_registry = None
+
 try:
-    from leo_orchestrator.api import LeoAPI
-    from leo_orchestrator.registry import get_registry
-    from leo_subagents.agents.base_agent import AgentConfig, AgentFactory
-    from leo_subagents.skills_bridge.skill_executor import SkillExecutor
-    from leo_subagents.skills_bridge.skill_loader import SkillLoader
-
-    # 动态加载增强版加载器（如果存在）
-    try:
-        from leo_subagents.skills_bridge.enhanced_skill_loader import EnhancedSkillLoader
-
-        SKILL_LOADER_CLASS = EnhancedSkillLoader
-    except ImportError:
-        SKILL_LOADER_CLASS = SkillLoader
-
-    # 尝试导入特定 Agent 类以便注册
-    # 注意：在重构后的结构中，建议使用更动态的注册机制
+    from leo_orchestrator.api import LeoAPI as LeoAPIClass
+    LeoAPI = LeoAPIClass
 except ImportError as e:
-    logger.warning(f"核心依赖导入失败: {e}")
-    # 提供空实现或抛出错误，视情况而定
+    logger.warning(f"LeoAPI 导入失败: {e}")
+
+try:
+    from leo_orchestrator.registry import get_registry as get_reg
+    get_registry = get_reg
+except ImportError as e:
+    logger.warning(f"get_registry 导入失败: {e}")
+
+try:
+    from leo_subagents.agents.base_agent import AgentConfig as AgentConfigClass, AgentFactory as AgentFactoryClass
+    AgentConfig = AgentConfigClass
+    AgentFactory = AgentFactoryClass
+except ImportError as e:
+    logger.warning(f"AgentConfig/AgentFactory 导入失败: {e}")
+
+try:
+    from leo_subagents.skills_bridge.skill_executor import SkillExecutor as SkillExecutorClass
+    SkillExecutor = SkillExecutorClass
+except ImportError as e:
+    logger.warning(f"SkillExecutor 导入失败: {e}")
+
+try:
+    from leo_subagents.skills_bridge.skill_loader import SkillLoader
+    SKILL_LOADER_CLASS = SkillLoader
+except ImportError as e:
+    logger.warning(f"SkillLoader 导入失败: {e}")
+
+try:
+    from leo_subagents.skills_bridge.enhanced_skill_loader import EnhancedSkillLoader
+    SKILL_LOADER_CLASS = EnhancedSkillLoader
+except ImportError:
+    pass
 
 
 class LeoSystem:
@@ -56,24 +78,36 @@ class LeoSystem:
         """
         logger.info("Initializing Leo System...")
         self.base_path = base_path or Path(__file__).parent.parent
-        self.api = LeoAPI()
+        
+        # 初始化 api
+        self.api = None
+        if LeoAPI:
+            try:
+                self.api = LeoAPI()
+            except Exception as e:
+                logger.warning(f"LeoAPI 初始化失败: {e}")
 
-        # 使用增强版加载器（如果可用）
+        # 初始化 skill_loader
+        self.skill_loader = None
         skills_path = self.base_path / "leo_skills"
-        workflows_path = self.base_path / "leo_workflows" / "workflows"
+        
+        if SKILL_LOADER_CLASS:
+            try:
+                self.skill_loader = SKILL_LOADER_CLASS(base_path=skills_path)
+            except Exception as e:
+                logger.warning(f"SkillLoader 初始化失败: {e}")
 
-        try:
-            self.skill_loader = SKILL_LOADER_CLASS(
-                skills_path=skills_path, workflows_path=workflows_path
-            )
-        except TypeError:
-            # 回退到旧版构造函数
-            self.skill_loader = SKILL_LOADER_CLASS(base_path=skills_path)
+        # 初始化 skill_executor
+        self.skill_executor = None
+        if SkillExecutor and self.skill_loader:
+            try:
+                self.skill_executor = SkillExecutor(self.skill_loader)
+            except Exception as e:
+                logger.warning(f"SkillExecutor 初始化失败: {e}")
 
-        self.skill_executor = SkillExecutor(self.skill_loader)
         self.agents: Dict[str, Any] = {}
 
-        # 注册核心 Agents (硬编码注册，未来应改为配置驱动)
+        # 注册核心 Agents
         self._register_core_agents()
 
         # 初始化系统
@@ -83,8 +117,9 @@ class LeoSystem:
 
     def _register_core_agents(self):
         """注册核心 Agent 类到工厂"""
-        # 这里模拟之前 leo-system.py 中的手动注册逻辑
-        # 理想情况下，这些应该在各自的模块加载时自动注册
+        if not AgentFactory:
+            return
+            
         agent_paths = {
             "researcher": ("leo_subagents.agents.research_agent.research_agent", "ResearchAgent"),
             "analyzer": ("leo_subagents.agents.analysis_agent.analysis_agent", "AnalysisAgent"),
@@ -104,51 +139,50 @@ class LeoSystem:
                 AgentFactory.register_agent_class(type_name, agent_class)
                 logger.debug(f"Registered agent class: {class_name}")
             except Exception as e:
-                # 静默失败或记录日志，避免阻塞启动
                 logger.debug(f"Failed to load agent {class_name}: {e}")
 
     def _initialize(self):
         """初始化系统组件"""
         # 加载 Skills
-        try:
-            if hasattr(self.skill_loader, "discover_all"):
-                self.skill_loader.discover_all()
-            else:
+        if self.skill_loader and hasattr(self.skill_loader, 'discover_and_load'):
+            try:
                 self.skill_loader.discover_and_load()
-            logger.info("Skills loaded successfully")
-        except Exception as e:
-            logger.error(f"Skills loading error: {e}")
-            raise InitializationError("skill_loader", str(e))
+                logger.info("Skills loaded successfully")
+            except Exception as e:
+                logger.warning(f"Skills loading warning: {e}")
 
         # 创建 Agents
         self._create_agents()
 
     def _create_agents(self):
         """从配置创建 Agents"""
-        registry = get_registry()
+        if not get_registry or not AgentConfig or not AgentFactory:
+            return
 
-        # 确保 registry 已加载数据
-        # 这里可能需要手动触发 registry 的加载，视 registry 实现而定
+        try:
+            registry = get_registry()
 
-        for agent_name, agent_reg in registry.agents.items():
-            if not agent_reg.enabled:
-                continue
+            for agent_name, agent_reg in registry.agents.items():
+                if not agent_reg.enabled:
+                    continue
 
-            config = AgentConfig(
-                name=agent_name,
-                type=agent_reg.type,
-                priority=agent_reg.priority,
-                skills=agent_reg.skills,
-                enabled=agent_reg.enabled,
-                description=agent_reg.metadata.get("description", "") if agent_reg.metadata else "",
-            )
+                config = AgentConfig(
+                    name=agent_name,
+                    type=agent_reg.type,
+                    priority=agent_reg.priority,
+                    skills=agent_reg.skills,
+                    enabled=agent_reg.enabled,
+                    description=agent_reg.metadata.get("description", "") if agent_reg.metadata else "",
+                )
 
-            try:
-                agent = AgentFactory.create_agent(config)
-                self.agents[agent_name] = agent
-                logger.debug(f"Created agent: {agent_name}")
-            except Exception as e:
-                logger.debug(f"Failed to create agent {agent_name}: {e}")
+                try:
+                    agent = AgentFactory.create_agent(config)
+                    self.agents[agent_name] = agent
+                    logger.debug(f"Created agent: {agent_name}")
+                except Exception as e:
+                    logger.debug(f"Failed to create agent {agent_name}: {e}")
+        except Exception as e:
+            logger.warning(f"Agent creation warning: {e}")
 
     @track_time
     def execute_task(self, task: str, agent_name: str = None, **kwargs) -> Dict[str, Any]:
@@ -157,7 +191,6 @@ class LeoSystem:
 
         # 1. 指定 Agent
         if agent_name:
-            # 移除 emoji 前缀（如果 UI 传过来了）
             clean_name = agent_name.replace("🤖 ", "").strip()
             if clean_name in self.agents:
                 result = self.agents[clean_name].execute(task, **kwargs)
@@ -184,6 +217,9 @@ class LeoSystem:
 
     def _select_agent(self, task: str) -> Optional[Any]:
         """选择最佳 Agent"""
+        if not self.agents:
+            return None
+            
         best_agent = None
         best_score = 0.0
 
@@ -198,6 +234,9 @@ class LeoSystem:
     @track_time
     def call_skill(self, skill_name: str, action: str, **kwargs) -> Any:
         """直接调用 Skill"""
+        if not self.skill_executor:
+            raise SkillExecutionError(skill_name, "SkillExecutor 未初始化")
+            
         logger.info(f"Calling skill: {skill_name}.{action}")
         try:
             result = self.skill_executor.execute(skill_name, action, **kwargs)
@@ -208,7 +247,9 @@ class LeoSystem:
             raise SkillExecutionError(skill_name, str(e))
 
     def list_skills(self, category: str = None) -> List[str]:
-        return self.skill_loader.list_skills(category)
+        if self.skill_loader and hasattr(self.skill_loader, 'list_skills'):
+            return self.skill_loader.list_skills(category)
+        return []
 
     def list_agents(self) -> List[str]:
         return list(self.agents.keys())

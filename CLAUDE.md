@@ -3,6 +3,26 @@
 > **⚠️ Attention Strategy**: DO NOT read all referenced files immediately.
 > Read only the specific module required for your current task.
 
+## 0. 🧠 上下文工程 (Context Engineering) - 核心方法论
+
+> **"Context Window = RAM（易失、有限），Filesystem = Disk（持久、无限）"**
+
+对于复杂任务（3+步骤、研究项目、多次工具调用），使用 **planning_with_files_skill**：
+
+| 文件 | 用途 | 位置 |
+|------|------|------|
+| `docs/planning/task_plan.md` | 阶段、进度、决策 | 任务规划 |
+| `docs/research/findings.md` | 研究、发现 | 研究发现 |
+| `docs/progress/progress.md` | 会话日志、测试结果 | 进度日志 |
+
+**关键规则**：
+1. 复杂任务先创建 `docs/planning/task_plan.md`
+2. 每2次搜索/浏览后更新 `docs/research/findings.md`
+3. 决策前重读计划文件
+4. 记录所有错误，永不重复失败
+
+---
+
 ## 1. 🗺️ Context Map (静态上下文)
 
 | Module | Path | Description |
@@ -21,8 +41,39 @@
 
 ## 3. 📍 Active Work (动态状态)
 
-- **Current Task**: `task.md` (Check this FIRST)
-- **Implementation**: `implementation_plan.md` (Strategic roadmap)
+- **Current Task**: `docs/planning/task_plan.md` (Check this FIRST - 上下文工程核心文件)
+- **Findings**: `docs/research/findings.md` (研究发现和技术决策)
+- **Progress**: `docs/progress/progress.md` (会话日志和测试结果)
+- **Implementation**: `docs/planning/implementation_plan.md` (Strategic roadmap)
+
+## 4. 📁 文件路径规则
+
+```
+根目录 (只放入口和配置):
+├── CLAUDE.md              # 系统入口 (必须)
+├── README.md              # 项目说明
+├── .claude/               # Claude 配置
+├── src/                   # 源代码
+├── projects/              # 项目文件
+└── leo_knowledge/         # 知识库 (静态上下文)
+
+docs/ (所有文档):
+├── identity/              # 身份与灵魂
+│   └── IDENTITY.md, SOUL.md, USER.md
+├── reference/             # 索引与清单
+│   ├── AGENTS.md, TOOLS.md, SKILLS_MANIFEST.md
+├── guides/                # 操作指南
+│   ├── BOOTSTRAP.md, CONTRIBUTING.md, SECURITY.md
+├── planning/              # 任务规划
+│   ├── task_plan.md, implementation_plan.md
+├── progress/              # 进度日志
+│   └── progress.md
+├── research/              # 研究发现
+│   ├── findings.md
+│   └── reports/           # 研究报告
+└── memory/                # 共享记忆 (可选)
+    └── shared_memory.md
+```
 
 ---
 
@@ -30,6 +81,62 @@
 
 **To start working:**
 
-1. Check `task.md` for current status.
-2. If new to the project, read `user_profile.md` and `development_guide.md`.
-3. If implementing code, check `capability_index.md` to avoid duplication.
+1. Check `docs/planning/task_plan.md` for current status (如果存在).
+2. If new to the project, read `leo_knowledge/context/user_profile.md` and `leo_knowledge/context/development_guide.md`.
+3. If implementing code, check `leo_knowledge/context/capability_index.md` to avoid duplication.
+4. For complex tasks, create planning files using `planning_with_files_skill`.
+5. **新建文件时**: 先判断类型 → 放到 `docs/` 对应目录 → 禁止放根目录
+
+---
+
+## 5. 🔧 OpenClaw 运维故障排查
+
+### 5.1 飞书消息无响应 - 快速诊断
+
+```bash
+# 1. 检查网关端口是否监听
+netstat -ano | findstr "18789"
+
+# 2. 如果端口未监听，启动网关
+cd D:\moltbot && node openclaw.mjs gateway --port 18789
+
+# 3. 检查实时日志
+type \tmp\openclaw\openclaw-2026-02-04.log | more
+```
+
+### 5.2 常见问题归因表
+
+| 现象 | 根因 | 解决方案 |
+|------|------|----------|
+| 飞书消息无响应 | 网关进程停止 | 重启网关: `cd D:\moltbot && node openclaw.mjs gateway --port 18789` |
+| `plugin not found: feishu` | plugins.entries 配置错误 | feishu 是 channel 不是 plugin，从 plugins.entries 移除 |
+| `Cannot read properties of undefined (reading 'trim')` | leo-system 插件配置问题 | 清空 plugins.entries 或修复插件代码 |
+| 配置被自动恢复 | OpenClaw doctor 自动修复 | 手动编辑后立即重启网关 |
+
+### 5.3 配置保护规则
+
+**绝对禁止**：
+1. 不要在飞书对话中请求 AI 修改 OpenClaw 配置
+2. 不要手动添加 `mcpTools`, `systemPrompt`, `cron` 到 openclaw.json
+3. 不要在 plugins.entries 中添加 channel 类型（如 feishu）
+
+**安全修改流程**：
+```bash
+# 1. 备份
+copy %USERPROFILE%\.openclaw\openclaw.json openclaw.json.backup
+
+# 2. 编辑配置后立即重启
+cd D:\moltbot && node openclaw.mjs gateway --port 18789
+
+# 3. 验证
+netstat -ano | findstr "18789"
+```
+
+### 5.4 关键文件路径
+
+| 文件 | 路径 |
+|------|------|
+| OpenClaw 配置 | `C:\Users\刘方林\.openclaw\openclaw.json` |
+| 运行日志 | `\tmp\openclaw\openclaw-{date}.log` |
+| 会话历史 | `C:\Users\刘方林\.openclaw\agents\leo-assistant\sessions\` |
+| 守护脚本日志 | `C:\Users\刘方林\.openclaw\logs\auto_healer_*.log` |

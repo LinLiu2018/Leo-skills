@@ -1,19 +1,8 @@
 # -*- coding: utf-8 -*-
-import importlib.util
-import sys
-from pathlib import Path
+"""
+claude_prompt_engineering_skills - Claude提示工程技能
+"""
 
-# 动态导入连字符模块
-_module_name = "claude-prompt-engineering-skills"
-_spec = importlib.util.spec_from_file_location(
-    _module_name,
-    Path(__file__).parent / "claude-prompt-engineering-skills.py"
-)
-_module = importlib.util.module_from_spec(_spec)
-sys.modules[_module_name] = _module
-_spec.loader.exec_module(_module)
+from .claude_prompt_engineering_skills import ClaudePromptEngineeringSkills, Claude_Prompt_Engineering_Skills
 
-# 导出类
-ChainOfThoughtPrompter = _module.ChainOfThoughtPrompter
-
-__all__ = ["ChainOfThoughtPrompter"]
+__all__ = ["ClaudePromptEngineeringSkills", "Claude_Prompt_Engineering_Skills"]

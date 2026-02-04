@@ -70,8 +70,8 @@ class TestSkillsDirectory:
 
     def test_content_creation_category(self, skills_dir):
         """测试内容创作分类存在"""
-        content_creation = skills_dir / "content-creation"
-        assert content_creation.exists(), "content-creation 目录不存在"
+        content_creation = skills_dir / "content_creation"
+        assert content_creation.exists(), "content_creation 目录不存在"
 
     def test_tools_category(self, skills_dir):
         """测试工具分类存在"""
@@ -80,7 +80,7 @@ class TestSkillsDirectory:
 
     def test_skill_has_skill_md(self, skills_dir):
         """测试每个 Skill 包含 SKILL.md 文件"""
-        content_creation = skills_dir / "content-creation"
+        content_creation = skills_dir / "content_creation"
         if content_creation.exists():
             for skill_dir in content_creation.iterdir():
                 if skill_dir.is_dir() and not skill_dir.name.startswith(("_", ".")):

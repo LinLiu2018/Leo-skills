@@ -1,5 +1,6 @@
 // pages/user/user.js
 const app = getApp();
+const mockApi = require('../../utils/mockApi');
 
 Page({
   data: {
@@ -7,8 +8,7 @@ Page({
     userInfo: {},
     stats: {
       inviteCount: 0,
-      giftCount: 0,
-      visitCount: 0
+      giftCount: 0
     },
     gifts: []
   },
@@ -24,51 +24,77 @@ Page({
     this.checkLogin();
   },
 
-  checkLogin() {
-    const isLogin = app.globalData.isLogin;
-    const userInfo = app.globalData.userInfo || {};
-
-    this.setData({ isLogin, userInfo });
-
-    if (isLogin) {
-      this.loadUserData();
-    }
-  },
-
-  loadUserData() {
-    // Mock数据
-    this.setData({
-      stats: {
-        inviteCount: 3,
-        giftCount: 2,
-        visitCount: 0
-      },
-      gifts: [
-        { id: 1, name: '抽纸1包', status: 'pending', statusText: '待领取', expire: '有效期至1月22日' },
-        { id: 2, name: '洗衣液1瓶', status: 'claimed', statusText: '已领取', expire: '1月10日领取' }
-      ]
-    });
-  },
-
-  onGetPhone(e) {
-    if (e.detail.code) {
-      wx.showLoading({ title: '登录中...' });
-
-      app.phoneLogin(e.detail.code).then(res => {
-        wx.hideLoading();
-        if (res.success) {
-          this.checkLogin();
-          wx.showToast({ title: '登录成功', icon: 'success' });
-        }
-      }).catch(() => {
-        wx.hideLoading();
-        wx.showToast({ title: '登录失败', icon: 'none' });
+  async checkLogin() {
+    const user = mockApi.getCurrentUser();
+    if (user) {
+      const res = await mockApi.getUserInfo();
+      if (res.success) {
+        this.setData({
+          isLogin: true,
+          userInfo: res.data
+        });
+        app.globalData.isLogin = true;
+        app.globalData.userInfo = res.data;
+        this.loadUserData();
+      }
+    } else {
+      this.setData({
+        isLogin: false,
+        userInfo: {},
+        stats: { inviteCount: 0, giftCount: 0 },
+        gifts: []
       });
     }
   },
 
-  goToAppointment() {
-    wx.navigateTo({ url: '/pages/appointment/appointment' });
+  async loadUserData() {
+    const [inviteRes, giftRes] = await Promise.all([
+      mockApi.getMyInvites(),
+      mockApi.getMyGifts()
+    ]);
+
+    const inviteCount = inviteRes.success ? inviteRes.data.total : 0;
+    const gifts = giftRes.success ? giftRes.data.map(g => ({
+      id: g.id,
+      name: g.giftName,
+      status: g.status === 'unused' ? 'pending' : 'used',
+      statusText: g.status === 'unused' ? '待核销' : '已使用',
+      code: g.code,
+      expire: `有效期至 ${g.expireAt}`
+    })) : [];
+
+    this.setData({
+      stats: {
+        inviteCount,
+        giftCount: gifts.length
+      },
+      gifts
+    });
+  },
+
+  async onGetPhone(e) {
+    if (!e.detail.code) {
+      wx.showToast({ title: '需要授权手机号', icon: 'none' });
+      return;
+    }
+
+    wx.showLoading({ title: '登录中...' });
+    try {
+      const res = await mockApi.phoneLogin(e.detail.code);
+      wx.hideLoading();
+      if (res.success) {
+        this.checkLogin();
+        wx.showToast({ title: '登录成功', icon: 'success' });
+      }
+    } catch (err) {
+      wx.hideLoading();
+      wx.showToast({ title: '登录失败', icon: 'none' });
+    }
+  },
+
+  goToGiftDetail(e) {
+    const id = e.currentTarget.dataset.id;
+    wx.navigateTo({ url: `/pages/gift-detail/gift-detail?id=${id}` });
   },
 
   goToShare() {
@@ -76,7 +102,7 @@ Page({
   },
 
   makePhoneCall() {
-    wx.makePhoneCall({ phoneNumber: '400-888-8888' });
+    wx.makePhoneCall({ phoneNumber: '17855076342' });
   },
 
   showAbout() {
@@ -88,7 +114,7 @@ Page({
   },
 
   viewAllGifts() {
-    wx.showToast({ title: '功能开发中', icon: 'none' });
+    wx.switchTab({ url: '/pages/share/share' });
   },
 
   logout() {
@@ -97,15 +123,14 @@ Page({
       content: '确定要退出登录吗？',
       success: (res) => {
         if (res.confirm) {
+          mockApi.resetAllData();
           app.globalData.isLogin = false;
           app.globalData.userInfo = null;
-          wx.removeStorageSync('token');
-          wx.removeStorageSync('userInfo');
 
           this.setData({
             isLogin: false,
             userInfo: {},
-            stats: { inviteCount: 0, giftCount: 0, visitCount: 0 },
+            stats: { inviteCount: 0, giftCount: 0 },
             gifts: []
           });
 

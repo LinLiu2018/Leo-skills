@@ -1,0 +1,130 @@
+/* components/gift-card/gift-card.wxss */
+.gift-card {
+  background: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+/* 尺寸变体 */
+.gift-card.small {
+  display: flex;
+  flex-direction: row;
+  padding: 20rpx;
+}
+
+.gift-card.small .gift-image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 12rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.gift-card.medium {
+  width: 200rpx;
+  padding: 20rpx;
+  text-align: center;
+}
+
+.gift-card.medium .gift-image {
+  width: 120rpx;
+  height: 120rpx;
+  margin: 0 auto 16rpx;
+  border-radius: 12rpx;
+}
+
+.gift-card.large {
+  padding: 30rpx;
+}
+
+.gift-card.large .gift-image {
+  width: 100%;
+  height: 300rpx;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+}
+
+/* 状态样式 */
+.gift-card.locked {
+  opacity: 0.7;
+}
+
+.gift-card.unlocked {
+  border: 2rpx solid #FF6B35;
+}
+
+.gift-card.claimed {
+  background: #f9f9f9;
+}
+
+/* 角标 */
+.gift-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: linear-gradient(135deg, #FF6B35 0%, #ff8f5e 100%);
+  color: #fff;
+  font-size: 20rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 0 16rpx 0 16rpx;
+}
+
+/* 内容区 */
+.gift-content {
+  flex: 1;
+}
+
+.gift-name {
+  display: block;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.gift-desc {
+  display: block;
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 12rpx;
+}
+
+.gift-condition {
+  display: inline-block;
+}
+
+.condition-text {
+  font-size: 22rpx;
+  color: #FF6B35;
+  background: rgba(255, 107, 53, 0.1);
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+/* 进度条 */
+.gift-progress {
+  margin-top: 16rpx;
+}
+
+.progress-bar {
+  height: 12rpx;
+  background: #f0f0f0;
+  border-radius: 6rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FF6B35 0%, #ff8f5e 100%);
+  border-radius: 6rpx;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  display: block;
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 8rpx;
+}

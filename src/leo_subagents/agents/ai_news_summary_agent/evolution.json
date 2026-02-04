@@ -1,0 +1,38 @@
+{
+  "name": "daily_news_summary_agent",
+  "display_name": "每日新闻摘要代理",
+  "version": "2.0.0",
+  "last_updated": "2026-02-02",
+  "author": "Leo Liu",
+  "description": "每日新闻摘要代理，支持 AI、财经、政治三类新闻",
+  "changes": [
+    {
+      "version": "2.0.0",
+      "date": "2026-02-02",
+      "author": "Leo Liu",
+      "description": "扩展支持 AI + 财经 + 政治三类新闻",
+      "features": [
+        "新增 AI 新闻收集能力（大模型、LLM、ChatGPT、Claude等）",
+        "新增 财经 新闻收集能力（股市、经济、基金、加密货币等）",
+        "新增 政治 新闻收集能力（政策、国际动态等）",
+        "支持单一类别或综合日报生成",
+        "自动保存到 Obsidian 知识库",
+        "新增激活关键词：新闻摘要、每日快报、要闻汇总"
+      ],
+      "compatibility": {
+        "skills": ["web_search_skill", "research_assistant_skill"]
+      }
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-01-01",
+      "author": "Leo Liu",
+      "description": "初始版本，仅支持 AI 新闻",
+      "features": [
+        "AI 新闻收集",
+        "新闻摘要生成",
+        "趋势分析"
+      ]
+    }
+  ]
+}

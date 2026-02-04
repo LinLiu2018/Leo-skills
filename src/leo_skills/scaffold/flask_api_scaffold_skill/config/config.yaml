@@ -1,0 +1,14 @@
+skill:
+  name: flask_api_scaffold_skill
+  version: 1.0.0
+  category: scaffold
+  author: Leo AI System
+
+execution:
+  timeout: 300
+  retry: 1
+
+evolution:
+  enabled: true
+  learn_on_failure: true
+  max_tips: 50

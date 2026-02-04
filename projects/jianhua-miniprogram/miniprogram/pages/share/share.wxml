@@ -40,7 +40,9 @@
         <view
           class="gift-progress-item {{item.status}}"
           wx:for="{{giftList}}"
-          wx:key="level"
+          wx:key="id"
+          bindtap="goToGiftDetail"
+          data-id="{{item.id}}"
         >
           <image class="gift-img-small" src="https://placehold.co/80x80?text=Gift{{item.level}}" mode="aspectFill"></image>
 
@@ -52,17 +54,15 @@
             <text class="gift-require">{{item.requireText}}</text>
 
             <!-- 进度条(微型) -->
-            <view class="mini-progress" wx:if="{{item.status === 'locked'}}">
-              <view class="mini-progress-bar" style="width: {{(item.required - item.remaining)/item.required * 100}}%"></view>
+            <view class="mini-progress" wx:if="{{item.status === 'locked' && item.progress > 0}}">
+              <view class="mini-progress-bar" style="width: {{item.progress}}%"></view>
             </view>
           </view>
 
-          <view class="gift-action">
+          <view class="gift-action" catchtap="claimGift" data-id="{{item.id}}">
             <button
               class="btn-claim-gift"
               wx:if="{{item.status === 'unlocked'}}"
-              bindtap="claimGift"
-              data-level="{{item.level}}"
             >
               立即领取
             </button>
@@ -102,7 +102,10 @@
     <!-- 分享按钮 -->
     <view class="share-btn-area">
       <button class="btn-share-main" open-type="share">
-        📤 分享给好友赚礼品
+        分享给好友赚礼品
+      </button>
+      <button class="btn-test" bindtap="testAddInvite" size="mini">
+        [测试] 模拟邀请+1
       </button>
     </view>
   </view>

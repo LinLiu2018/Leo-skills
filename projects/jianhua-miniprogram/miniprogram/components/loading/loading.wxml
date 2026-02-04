@@ -1,0 +1,34 @@
+<!--components/loading/loading.wxml-->
+<view class="loading-container {{type}}">
+  <!-- 加载中 -->
+  <view class="loading-spinner" wx:if="{{type === 'loading'}}">
+    <view class="spinner"></view>
+    <text class="loading-text" wx:if="{{text}}">{{text}}</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:elif="{{type === 'empty'}}">
+    <text class="empty-icon">{{icon || '📭'}}</text>
+    <text class="empty-text">{{text || '暂无数据'}}</text>
+    <button class="btn-action" wx:if="{{actionText}}" bindtap="onAction">
+      {{actionText}}
+    </button>
+  </view>
+
+  <!-- 错误状态 -->
+  <view class="error-state" wx:elif="{{type === 'error'}}">
+    <text class="error-icon">{{icon || '😵'}}</text>
+    <text class="error-text">{{text || '加载失败'}}</text>
+    <button class="btn-retry" bindtap="onRetry">重新加载</button>
+  </view>
+
+  <!-- 骨架屏 -->
+  <view class="skeleton" wx:elif="{{type === 'skeleton'}}">
+    <view class="skeleton-avatar" wx:if="{{showAvatar}}"></view>
+    <view class="skeleton-content">
+      <view class="skeleton-title"></view>
+      <view class="skeleton-text"></view>
+      <view class="skeleton-text short"></view>
+    </view>
+  </view>
+</view>

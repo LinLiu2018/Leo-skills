@@ -106,18 +106,39 @@
     <view class="gift-header">
       <image class="gift-header-icon" src="https://placehold.co/60x60/FF6B35/white?text=Gift" mode="aspectFit"></image>
       <text class="gift-title">扫码领礼品</text>
+      <text class="gift-count" wx:if="{{isLogin}}">已邀请 {{inviteCount}} 人</text>
     </view>
 
     <view class="gift-desc">
-      授权即可领取精美礼品
+      {{isLogin ? '邀请好友解锁更多礼品' : '授权即可领取精美礼品'}}
     </view>
 
-    <!-- 礼品展示 (图片模式) -->
+    <!-- 礼品展示 -->
     <view class="gift-grid">
-      <view class="gift-card" wx:for="{{giftList}}" wx:key="level">
-        <image class="gift-card-img" src="https://placehold.co/160x160?text=Gift{{index+1}}" mode="aspectFill"></image>
+      <view
+        class="gift-card {{item.status}}"
+        wx:for="{{giftList}}"
+        wx:key="id"
+        bindtap="goToGiftDetail"
+        data-id="{{item.id}}"
+      >
+        <view class="gift-img-wrapper">
+          <image class="gift-card-img" src="https://minimax-algeng-chat-tts.oss-cn-wulanchabu.aliyuncs.com/ccv2%2F2026-01-29%2FMiniMax-M2.1%2F2007435025913487546%2Fcc93a2a28346b24744c11b2d530e966b186ef4ebfbe7050b01bcdd510eb40870..png?Expires=1769744971&OSSAccessKeyId=LTAI5tGLnRTkBjLuYPjNcKQ8&Signature=NNWXQq3CpvkHRFSThimooVZQfuI%3D" mode="widthFix"></image>
+          <view class="gift-status-overlay" wx:if="{{item.status === 'claimed'}}">
+            <view class="status-badge claimed">已领取</view>
+          </view>
+          <view class="gift-status-overlay" wx:elif="{{item.status === 'unlocked'}}">
+            <view class="status-badge unlocked">可领取</view>
+          </view>
+        </view>
         <text class="gift-name">{{item.name}}</text>
         <text class="gift-condition">{{item.condition}}</text>
+        <view class="gift-progress-mini" wx:if="{{item.status === 'locked' && item.progress > 0}}">
+          <view class="progress-track">
+            <view class="progress-fill" style="width: {{item.progress}}%"></view>
+          </view>
+          <text class="progress-text">{{item.progress}}%</text>
+        </view>
       </view>
     </view>
 
@@ -130,6 +151,16 @@
     >
       一键领取礼品
     </button>
+
+    <!-- 已登录用户的分享引导 -->
+    <view class="share-guide" wx:if="{{isLogin}}">
+      <button class="btn-share" open-type="share">
+        分享给好友，解锁更多礼品
+      </button>
+      <button class="btn-test" bindtap="testAddInvite" size="mini">
+        [测试] 模拟邀请+1
+      </button>
+    </view>
   </view>
 
 

@@ -1,0 +1,94 @@
+<!--pages/gift-detail/gift-detail.wxml-->
+<view class="container">
+  <!-- 加载状态 -->
+  <view class="loading-wrap" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 礼品内容 -->
+  <view wx:else class="gift-content">
+    <!-- 礼品图片 -->
+    <view class="gift-image-section">
+      <image
+        class="gift-main-image"
+        src="https://minimax-algeng-chat-tts.oss-cn-wulanchabu.aliyuncs.com/ccv2%2F2026-01-29%2FMiniMax-M2.1%2F2007435025913487546%2Ff95014dd1ebab21c6cd717804b99d62d15c60ba64538793ee4f7e706a7112245..png?Expires=1769752316&OSSAccessKeyId=LTAI5tGLnRTkBjLuYPjNcKQ8&Signature=3QBCZL6OxrXHzk5qVpQt0h2ZmXA%3D"
+        mode="aspectFill"
+      ></image>
+      <!-- 状态标签 -->
+      <view class="status-tag {{gift.status}}">
+        <text wx:if="{{gift.status === 'claimed'}}">已领取</text>
+        <text wx:elif="{{gift.status === 'unlocked'}}">可领取</text>
+        <text wx:else>待解锁</text>
+      </view>
+    </view>
+
+    <!-- 礼品信息卡片 -->
+    <view class="gift-info-card">
+      <text class="gift-name">{{gift.name}}</text>
+      <text class="gift-desc">{{gift.description}}</text>
+
+      <!-- 领取条件 -->
+      <view class="condition-section">
+        <view class="condition-header">
+          <text class="condition-icon">🎯</text>
+          <text class="condition-title">领取条件</text>
+        </view>
+        <text class="condition-text">{{gift.conditionText || '邀请好友解锁礼品'}}</text>
+
+        <!-- 进度条 -->
+        <view class="progress-wrap" wx:if="{{gift.status !== 'claimed'}}">
+          <view class="progress-bar">
+            <view class="progress-fill" style="width: {{gift.progress || 0}}%"></view>
+          </view>
+          <text class="progress-text">{{gift.progressText || '0/0人'}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 使用说明 -->
+    <view class="rules-card">
+      <view class="rules-title">📋 使用说明</view>
+      <view class="rules-list">
+        <view class="rule-item" wx:for="{{usageRules}}" wx:key="index">
+          <text class="rule-num">{{index + 1}}</text>
+          <text class="rule-text">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 兑换信息（已领取时显示） -->
+    <view class="code-card" wx:if="{{gift.status === 'claimed' && gift.code}}">
+      <view class="code-header">🎁 兑换信息</view>
+      <view class="code-row">
+        <text class="code-label">领取时间</text>
+        <text class="code-value">{{gift.claimedAt || '-'}}</text>
+      </view>
+      <view class="code-row">
+        <text class="code-label">有效期至</text>
+        <text class="code-value highlight">{{gift.expireAt || '-'}}</text>
+      </view>
+      <view class="code-row" bindtap="copyCode">
+        <text class="code-label">兑换码</text>
+        <view class="code-row-right">
+          <text class="code-value code-highlight">{{gift.code}}</text>
+          <text class="copy-btn">复制</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部按钮 -->
+    <view class="bottom-bar">
+      <button class="btn-share-small" open-type="share" wx:if="{{gift.status === 'locked'}}">
+        📤 分享给好友
+      </button>
+      <button class="btn-claim-main" bindtap="claimGift" wx:if="{{gift.status === 'unlocked'}}">
+        🎁 立即领取
+      </button>
+      <view class="claimed-tip" wx:if="{{gift.status === 'claimed'}}">
+        <text class="tip-icon">✅</text>
+        <text class="tip-text">礼品已领取，请到店核销</text>
+      </view>
+    </view>
+  </view>
+</view>

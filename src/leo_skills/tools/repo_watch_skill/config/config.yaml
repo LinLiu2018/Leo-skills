@@ -1,0 +1,71 @@
+# Repo Watch Skill 配置
+
+skill:
+  name: repo_watch
+  version: 1.0.0
+  type: monitor
+  category: tools
+  description: 监控核心依赖仓库更新，生成周报
+
+# 监控的仓库
+repositories:
+  - name: claude-code
+    owner: anthropics
+    repo: claude-code
+    description: Anthropic 官方 CLI 工具
+    priority: highest
+    check_releases: true
+    check_commits: true
+    check_issues: false
+
+  - name: openclaw
+    owner: openclaw
+    repo: openclaw
+    description: 飞书/多渠道机器人框架
+    priority: high
+    check_releases: true
+    check_commits: true
+    check_issues: false
+
+# 定时任务配置
+schedule:
+  # 每周一早上9点
+  cron: "0 9 * * 1"
+  timezone: Asia/Shanghai
+  enabled: true
+
+# 报告配置
+report:
+  # 报告格式
+  format: markdown
+  # 包含的内容
+  include:
+    - releases
+    - commits
+    - update_suggestion
+  # 最大显示的提交数
+  max_commits: 10
+  # 时间范围（天）
+  days_range: 7
+
+# 通知配置
+notification:
+  # 飞书通知
+  feishu:
+    enabled: true
+    # 发送到私聊
+    chat_type: p2p
+    # 接收人 (Leo 的飞书 ID)
+    receiver: ou_099438b3924bd34e5f9445bc8220a460
+
+  # 本地日志
+  local:
+    enabled: true
+    log_dir: logs/repo_watch
+
+# 进化配置
+evolution:
+  enabled: true
+  learn_on_failure: true
+  max_tips: 50
+  auto_save: true
