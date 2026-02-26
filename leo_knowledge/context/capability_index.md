@@ -1,6 +1,6 @@
 # Leo AI System - 能力索引
 
-> **自动生成** - 2026-02-26 09:30:14
+> **自动生成** - 2026-02-26 10:03:06
 >
 > 本文件由 `scripts/update_capability_index.py` 自动生成
 > 请勿手动编辑，运行脚本即可更新
@@ -66,11 +66,11 @@
 - **描述**: N/A
 - **路径**: `leo_skills\business\ecommerce\competitor_scraper_skill`
 
-#### video_monitor
+#### video_monitor_skill
 - **描述**: 监测视频号账号数据，包括粉丝增长、视频表现、互动数据等。
 支持单账号监测和多账号对比分析。
 
-- **路径**: `leo_skills\business\video_monitor`
+- **路径**: `leo_skills\business\video_monitor_skill`
 
 
 ### collaboration
@@ -301,25 +301,25 @@
 
 ### prompt_engineering
 
-#### Chain of Thought Prompter
+#### chain_of_thought_prompter_skill
 - **描述**: 使用思维链技术引导 AI 进行结构化推理,提高复杂任务的准确性
-- **路径**: `leo_skills\prompt_engineering\chain_of_thought_prompter`
+- **路径**: `leo_skills\prompt_engineering\chain_of_thought_prompter_skill`
 
-#### Long Context Handler
+#### long_context_handler_skill
 - **描述**: 优化长文本上下文处理,确保 AI 能够有效处理和理解大量文档内容
-- **路径**: `leo_skills\prompt_engineering\long_context_handler`
+- **路径**: `leo_skills\prompt_engineering\long_context_handler_skill`
 
-#### Prompt Chaining Orchestrator
+#### prompt_chaining_orchestrator_skill
 - **描述**: 将复杂任务分解为多个顺序步骤,通过提示词链提高准确性和可靠性
-- **路径**: `leo_skills\prompt_engineering\prompt_chaining_orchestrator`
+- **路径**: `leo_skills\prompt_engineering\prompt_chaining_orchestrator_skill`
 
-#### Prompt Optimizer
+#### prompt_optimizer_skill
 - **描述**: 优化和改进用户的提示词,使其更加明确、具体和有效,基于 Claude 官方最佳实践
-- **路径**: `leo_skills\prompt_engineering\prompt_optimizer`
+- **路径**: `leo_skills\prompt_engineering\prompt_optimizer_skill`
 
-#### XML Structure Builder
+#### xml_structure_builder_skill
 - **描述**: 使用 XML 标签结构化提示词,提高清晰度、准确性和可维护性
-- **路径**: `leo_skills\prompt_engineering\xml_structure_builder`
+- **路径**: `leo_skills\prompt_engineering\xml_structure_builder_skill`
 
 
 ### scaffold
@@ -763,4 +763,4 @@ result = engine.execute_from_yaml('src/leo_workflows/definitions/content_pipelin
 
 ---
 
-*最后更新: 2026-02-26 09:30:14*
+*最后更新: 2026-02-26 10:03:06*
