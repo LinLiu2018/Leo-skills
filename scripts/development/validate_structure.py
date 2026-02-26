@@ -46,6 +46,12 @@ class ProjectValidator:
                 "tests",
                 "scripts",
                 "examples",  # 标准目录
+                "src",
+                "projects",
+                "output",
+                "reports",
+                "leo_knowledge",
+                "leo-skills-old",
                 "__pycache__",  # Python 缓存
                 "node_modules",  # Node.js
                 ".egg-info",  # Python 包信息（后缀匹配）
@@ -76,8 +82,7 @@ class ProjectValidator:
             "README.md",
             "CLAUDE.md",
             ".gitignore",
-            "requirements.txt",
-            "leo_system.py",  # 注意：使用下划线
+            "pyproject.toml",
         ]
 
         for file_name in required_files:
@@ -89,9 +94,9 @@ class ProjectValidator:
         """验证技能结构"""
         print("[检查] 技能结构...")
 
-        skills_dir = self.project_root / "leo_skills"
+        skills_dir = self.project_root / "src" / "leo_skills"
         if not skills_dir.exists():
-            self.errors.append("leo_skills 目录不存在")
+            self.errors.append("src/leo_skills 目录不存在")
             return
 
         # 遍历所有技能
