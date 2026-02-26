@@ -71,26 +71,28 @@ roi_report_*.md
 
 # Deep research scripts (temporary)
 deep_research_*.py
-# === 2026-02-25 改造补�?===
-# 数据库文�?*.db
+
+# === 2026-02-25 改造补充 ===
+
+# 数据库文件
+*.db
 *.sqlite
 *.sqlite3
 
 # 输出目录
 output/
 
-# 临时生成的源�?scripts/src/
+# 临时生成的源码
+scripts/src/
 
-# Web 前端产物（双重保险）
+# Web 前端产物
 src/leo_interface/web_v2/node_modules/
 src/leo_interface/web_v2/.env
 src/leo_interface/web_v2/api/.env
 src/leo_interface/web_v2/api/*.db
 
-# �ɻع�������
+# 可回滚清理区
 .trash/
 
-# ����ɼ���Ŀ¼����������
+# 旧版遗留目录
 leo-skills-old/
-
-
