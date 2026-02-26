@@ -11,6 +11,10 @@ ROOT = Path(__file__).resolve().parents[2]
 SKILLS_ROOT = ROOT / "src" / "leo_skills"
 AGENTS_ROOT = ROOT / "src" / "leo_subagents"
 WORKFLOWS_ROOT = ROOT / "src" / "leo_workflows"
+EXCLUDE_PATTERNS = {
+    "stock-analyzer-cskill",  # 第三方参考示例
+    "agents",  # leo_subagents 结构性目录
+}
 
 
 def invalid_reason(name: str, required_suffix: str) -> List[str]:
@@ -32,7 +36,7 @@ def collect_skill_dirs() -> List[Path]:
         return dirs
     for md in SKILLS_ROOT.rglob("SKILL.md"):
         dirs.append(md.parent)
-    return sorted(set(dirs))
+    return sorted({d for d in dirs if d.name not in EXCLUDE_PATTERNS})
 
 
 def collect_agent_dirs() -> List[Path]:
@@ -43,7 +47,7 @@ def collect_agent_dirs() -> List[Path]:
         dirs.append(md.parent)
     for py in AGENTS_ROOT.rglob("*_agent.py"):
         dirs.append(py.parent)
-    return sorted(set(dirs))
+    return sorted({d for d in dirs if d.name not in EXCLUDE_PATTERNS})
 
 
 def collect_workflow_dirs() -> List[Path]:
@@ -54,7 +58,7 @@ def collect_workflow_dirs() -> List[Path]:
         dirs.append(wf.parent)
     for py in WORKFLOWS_ROOT.rglob("*_pipeline.py"):
         dirs.append(py.parent)
-    return sorted(set(dirs))
+    return sorted({d for d in dirs if d.name not in EXCLUDE_PATTERNS})
 
 
 def validate(items: List[Path], suffix: str) -> Tuple[int, int]:
