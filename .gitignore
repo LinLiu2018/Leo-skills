@@ -88,3 +88,7 @@ src/leo_interface/web_v2/node_modules/
 src/leo_interface/web_v2/.env
 src/leo_interface/web_v2/api/.env
 src/leo_interface/web_v2/api/*.db
+
+# 可回滚清理区
+.trash/
+
