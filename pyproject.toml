@@ -47,7 +47,7 @@ all = [
 ]
 
 [project.scripts]
-leo = "leo_system:main"
+leo = "leo_system.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/LinLiu2018/Leo-skills"
