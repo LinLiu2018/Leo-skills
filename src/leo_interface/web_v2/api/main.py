@@ -1,4 +1,4 @@
-"""
+﻿"""
 Leo AI System Web UI - Backend API
 FastAPI application providing REST endpoints for the React frontend.
 Connects to real Leo system data.
@@ -14,17 +14,12 @@ from datetime import datetime
 from typing import List, Optional, Dict, Any
 from pydantic import BaseModel
 
-# 加载环境变量
+# 鍔犺浇鐜鍙橀噺
 from dotenv import load_dotenv
 from pathlib import Path
 env_path = Path(__file__).parent / '.env'
 load_dotenv(dotenv_path=env_path)
 
-# 调试: 打印环境变量
-print(f"[DEBUG] Loading .env from: {env_path}")
-print(f"[DEBUG] AI_PROVIDER: {os.getenv('AI_PROVIDER', 'NOT SET')}")
-print(f"[DEBUG] AI_MODEL: {os.getenv('AI_MODEL', 'NOT SET')}")
-print(f"[DEBUG] MINIMAX_API_KEY exists: {bool(os.getenv('MINIMAX_API_KEY'))}")
 
 # Add project root to path
 project_root = Path(__file__).parent.parent.parent.parent.parent
@@ -34,8 +29,7 @@ sys.path.insert(0, str(project_root / "src"))
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 
-# 导入数据库模型和AI客户端
-sys.path.insert(0, str(Path(__file__).parent))
+# 瀵煎叆鏁版嵁搴撴ā鍨嬪拰AI瀹㈡埛绔?sys.path.insert(0, str(Path(__file__).parent))
 from models import (
     init_db, SessionLocal, get_db,
     ConversationDB, MessageDB, ExecutionLogDB,
@@ -332,13 +326,13 @@ def load_all_agents() -> List[Agent]:
     # If no agents found from files, use default list from capability_index
     if not agents:
         default_agents = [
-            {"name": "research_agent", "display_name": "研究员", "role": "researcher", "description": "擅长深度研究和信息收集"},
-            {"name": "creative_agent", "display_name": "创意设计师", "role": "creator", "description": "专注于内容创作和设计"},
-            {"name": "analysis_agent", "display_name": "数据分析师", "role": "analyst", "description": "擅长数据分析和洞察提取"},
-            {"name": "architect_agent", "display_name": "系统架构师", "role": "architect", "description": "负责系统设计和架构规划"},
-            {"name": "product_manager_agent", "display_name": "产品经理", "role": "product", "description": "产品规划和需求分析"},
-            {"name": "realestate_agent", "display_name": "房产顾问", "role": "realestate", "description": "房产市场分析和咨询"},
-            {"name": "mobile_agent", "display_name": "移动端开发", "role": "mobile_dev", "description": "移动端应用开发"},
+            {"name": "research_agent", "display_name": "鐮旂┒鍛?, "role": "researcher", "description": "鎿呴暱娣卞害鐮旂┒鍜屼俊鎭敹闆?},
+            {"name": "creative_agent", "display_name": "鍒涙剰璁捐甯?, "role": "creator", "description": "涓撴敞浜庡唴瀹瑰垱浣滃拰璁捐"},
+            {"name": "analysis_agent", "display_name": "鏁版嵁鍒嗘瀽甯?, "role": "analyst", "description": "鎿呴暱鏁版嵁鍒嗘瀽鍜屾礊瀵熸彁鍙?},
+            {"name": "architect_agent", "display_name": "绯荤粺鏋舵瀯甯?, "role": "architect", "description": "璐熻矗绯荤粺璁捐鍜屾灦鏋勮鍒?},
+            {"name": "product_manager_agent", "display_name": "浜у搧缁忕悊", "role": "product", "description": "浜у搧瑙勫垝鍜岄渶姹傚垎鏋?},
+            {"name": "realestate_agent", "display_name": "鎴夸骇椤鹃棶", "role": "realestate", "description": "鎴夸骇甯傚満鍒嗘瀽鍜屽挩璇?},
+            {"name": "mobile_agent", "display_name": "绉诲姩绔紑鍙?, "role": "mobile_dev", "description": "绉诲姩绔簲鐢ㄥ紑鍙?},
         ]
 
         for agent_data in default_agents:
@@ -440,10 +434,10 @@ def load_memory_entries() -> List[MemoryEntry]:
             # Check for category headers
             if line.startswith('# ') or line.startswith('## '):
                 category_map = {
-                    '系统': 'system',
-                    '用户': 'user_profile',
-                    '项目': 'project',
-                    '配置': 'config'
+                    '绯荤粺': 'system',
+                    '鐢ㄦ埛': 'user_profile',
+                    '椤圭洰': 'project',
+                    '閰嶇疆': 'config'
                 }
                 for cn, en in category_map.items():
                     if cn in line:
@@ -501,7 +495,7 @@ async def reload_system():
 
 @app.post("/api/v2/execute", response_model=LeoResponse)
 async def execute_unified(request: LeoRequest):
-    """统一执行入口。"""
+    """缁熶竴鎵ц鍏ュ彛銆?""
     api = get_leo_api()
     try:
         routing = api.registry.intent_recognizer.route(request.intent)
@@ -510,14 +504,14 @@ async def execute_unified(request: LeoRequest):
         elif routing["action"] == "call_skill":
             result = api.call(routing["target"], "execute", **request.params)
         else:
-            result = {"message": routing.get("response", "未识别的意图")}
+            result = {"message": routing.get("response", "鏈瘑鍒殑鎰忓浘")}
         return LeoResponse(
             trace_id=request.trace_id,
             status="ok",
             intent=routing.get("intent_type"),
             target=routing.get("target"),
             data=result,
-            message="执行成功",
+            message="鎵ц鎴愬姛",
         )
     except Exception as e:
         return LeoResponse(
@@ -557,19 +551,19 @@ async def get_skill(skill_id: str):
 
 @app.post("/api/skills", response_model=ApiResponse)
 async def create_skill(skill: Skill):
-    """创建新技能：生成目录结构和 SKILL.md"""
+    """鍒涘缓鏂版妧鑳斤細鐢熸垚鐩綍缁撴瀯鍜?SKILL.md"""
     global _skills_cache
     try:
         skill_dir = SKILLS_DIR / skill.category / f"{skill.name}_skill"
         if skill_dir.exists():
             raise HTTPException(status_code=409, detail=f"Skill '{skill.name}' already exists")
 
-        # 创建目录结构
+        # 鍒涘缓鐩綍缁撴瀯
         skill_dir.mkdir(parents=True, exist_ok=True)
         (skill_dir / "scripts").mkdir(exist_ok=True)
         (skill_dir / "config").mkdir(exist_ok=True)
 
-        # 生成 SKILL.md
+        # 鐢熸垚 SKILL.md
         skill_md = f"""---
 name: {skill.name}
 version: "{skill.version}"
@@ -590,7 +584,7 @@ triggers: {skill.triggers}
             encoding="utf-8"
         )
 
-        _skills_cache = None  # 清除缓存
+        _skills_cache = None  # 娓呴櫎缂撳瓨
         return ApiResponse(success=True, data=skill.dict(), message=f"Skill '{skill.name}' created")
     except HTTPException:
         raise
@@ -600,11 +594,10 @@ triggers: {skill.triggers}
 
 @app.put("/api/skills/{skill_id}", response_model=ApiResponse)
 async def update_skill(skill_id: str, skill: Skill):
-    """更新技能的 SKILL.md 内容"""
+    """鏇存柊鎶€鑳界殑 SKILL.md 鍐呭"""
     global _skills_cache
     try:
-        # 查找技能目录
-        skill_path = find_skill_module(skill_id)
+        # 鏌ユ壘鎶€鑳界洰褰?        skill_path = find_skill_module(skill_id)
         if not skill_path:
             raise HTTPException(status_code=404, detail=f"Skill '{skill_id}' not found")
 
@@ -637,7 +630,7 @@ triggers: {skill.triggers}
 
 @app.delete("/api/skills/{skill_id}", response_model=ApiResponse)
 async def delete_skill(skill_id: str):
-    """删除技能目录"""
+    """鍒犻櫎鎶€鑳界洰褰?""
     global _skills_cache
     try:
         skill_path = find_skill_module(skill_id)
@@ -884,7 +877,7 @@ async def execute_agent(agent_id: str, request: AgentExecuteRequest, db: Session
             tb_str = traceback.format_exc()
             print(f"AI service error: {ai_error}")
             print(f"Traceback: {tb_str}")
-            response_text = f"AI服务错误: {ai_error}\n\nTraceback:\n{tb_str}\n\n原始请求：{request.message}"
+            response_text = f"AI鏈嶅姟閿欒: {ai_error}\n\nTraceback:\n{tb_str}\n\n鍘熷璇锋眰锛歿request.message}"
             status = "error"
 
         execution_time = int((time.time() - start_time) * 1000)
@@ -920,7 +913,7 @@ async def execute_agent(agent_id: str, request: AgentExecuteRequest, db: Session
         return ApiResponse(
             success=True,
             data=result,
-            message=f"Agent {agent.display_name} 执行成功"
+            message=f"Agent {agent.display_name} 鎵ц鎴愬姛"
         )
     except HTTPException:
         raise
@@ -1005,7 +998,7 @@ async def execute_workflow(workflow_id: str, request: WorkflowExecuteRequest):
                 "type": step.get('type', 'sequential'),
                 "agent": step.get('agent', 'unknown'),
                 "status": "simulated",
-                "message": f"步骤 {step.get('name')} 模拟执行完成"
+                "message": f"姝ラ {step.get('name')} 妯℃嫙鎵ц瀹屾垚"
             })
 
         result = {
@@ -1014,7 +1007,7 @@ async def execute_workflow(workflow_id: str, request: WorkflowExecuteRequest):
             "total_steps": len(steps),
             "step_results": step_results,
             "status": "simulated",
-            "message": "工作流模拟执行完成（实际执行需要配置 Agent 实例）"
+            "message": "宸ヤ綔娴佹ā鎷熸墽琛屽畬鎴愶紙瀹為檯鎵ц闇€瑕侀厤缃?Agent 瀹炰緥锛?
         }
 
         return ApiResponse(success=True, data=result, message="Workflow execution simulated")
@@ -1131,22 +1124,22 @@ async def recognize_intent(data: Dict[str, str]):
         text = data.get("text", "").lower()
 
         # Simple keyword matching
-        if "研究" in text or "调查" in text or "调研" in text:
+        if "鐮旂┒" in text or "璋冩煡" in text or "璋冪爺" in text:
             intent_type, target, confidence = "agent", "research_agent", 0.9
-        elif "搜索" in text or "查找" in text:
+        elif "鎼滅储" in text or "鏌ユ壘" in text:
             intent_type, target, confidence = "skill", "web_search_skill", 0.85
-        elif "分析" in text or "数据分析" in text or "统计" in text:
+        elif "鍒嗘瀽" in text or "鏁版嵁鍒嗘瀽" in text or "缁熻" in text:
             intent_type, target, confidence = "agent", "analysis_agent", 0.88
-        elif "创建" in text or "生成" in text or "制作" in text:
+        elif "鍒涘缓" in text or "鐢熸垚" in text or "鍒朵綔" in text:
             intent_type, target, confidence = "agent", "creative_agent", 0.82
-        elif "工作流" in text or "流程" in text or "pipeline" in text:
+        elif "宸ヤ綔娴? in text or "娴佺▼" in text or "pipeline" in text:
             intent_type, target, confidence = "workflow", "content_pipeline", 0.8
-        elif "视频号" in text or "账号监测" in text or "监测" in text:
+        elif "瑙嗛鍙? in text or "璐﹀彿鐩戞祴" in text or "鐩戞祴" in text:
             intent_type, target, confidence = "skill", "video_monitor", 0.88
-        elif "开发" in text or "编程" in text or "代码" in text:
+        elif "寮€鍙? in text or "缂栫▼" in text or "浠ｇ爜" in text:
             intent_type, target, confidence = "agent", "mobile_agent", 0.85
         else:
-            # 对于其他查询，默认使用 research_agent 处理
+            # 瀵逛簬鍏朵粬鏌ヨ锛岄粯璁や娇鐢?research_agent 澶勭悊
             intent_type, target, confidence = "agent", "research_agent", 0.6
 
         return ApiResponse(success=True, data={
@@ -1173,9 +1166,9 @@ async def route_intent(data: Dict[str, str]):
         # Fallback
         text = data.get("text", "").lower()
 
-        if "研究" in text or "调查" in text:
+        if "鐮旂┒" in text or "璋冩煡" in text:
             action, target = "delegate_to_agent", "research_agent"
-        elif "搜索" in text or "查找" in text:
+        elif "鎼滅储" in text or "鏌ユ壘" in text:
             action, target = "execute_skill", "web_search_skill"
         else:
             action, target = "chat", "default"
@@ -1243,18 +1236,18 @@ async def get_category_stats():
 
     # Map to labels
     category_labels = {
-        'automation': '自动化',
-        'backend': '后端',
-        'business': '业务',
-        'collaboration': '协作',
-        'content_creation': '内容创作',
-        'core': '核心',
-        'debugging': '调试',
-        'development': '开发',
-        'devops': '运维',
-        'frontend': '前端',
-        'intelligence': '智能',
-        'uncategorized': '未分类'
+        'automation': '鑷姩鍖?,
+        'backend': '鍚庣',
+        'business': '涓氬姟',
+        'collaboration': '鍗忎綔',
+        'content_creation': '鍐呭鍒涗綔',
+        'core': '鏍稿績',
+        'debugging': '璋冭瘯',
+        'development': '寮€鍙?,
+        'devops': '杩愮淮',
+        'frontend': '鍓嶇',
+        'intelligence': '鏅鸿兘',
+        'uncategorized': '鏈垎绫?
     }
 
     categories = [
@@ -1273,7 +1266,7 @@ async def get_health():
 # ===== Conversation API =====
 
 class ConversationCreate(BaseModel):
-    title: Optional[str] = "新对话"
+    title: Optional[str] = "鏂板璇?
 
 
 class ConversationUpdate(BaseModel):
@@ -1282,42 +1275,40 @@ class ConversationUpdate(BaseModel):
 
 @app.get("/api/conversations", response_model=ApiResponse)
 async def get_conversations(db: Session = Depends(get_db)):
-    """获取所有对话历史"""
+    """鑾峰彇鎵€鏈夊璇濆巻鍙?""
     conversations = db.query(ConversationDB).order_by(ConversationDB.updated_at.desc()).all()
     return ApiResponse(success=True, data=[conv.to_dict() for conv in conversations])
 
 
 @app.post("/api/conversations", response_model=ApiResponse)
 async def create_conversation(request: ConversationCreate, db: Session = Depends(get_db)):
-    """创建新对话"""
+    """鍒涘缓鏂板璇?""
     conversation = ConversationDB(title=request.title)
     db.add(conversation)
     db.commit()
     db.refresh(conversation)
-    return ApiResponse(success=True, data=conversation.to_dict(), message="对话创建成功")
+    return ApiResponse(success=True, data=conversation.to_dict(), message="瀵硅瘽鍒涘缓鎴愬姛")
 
 
 @app.get("/api/conversations/{conversation_id}", response_model=ApiResponse)
 async def get_conversation(conversation_id: int, db: Session = Depends(get_db)):
-    """获取单个对话详情"""
+    """鑾峰彇鍗曚釜瀵硅瘽璇︽儏"""
     conversation = db.query(ConversationDB).filter(ConversationDB.id == conversation_id).first()
     if not conversation:
-        raise HTTPException(status_code=404, detail="对话不存在")
+        raise HTTPException(status_code=404, detail="瀵硅瘽涓嶅瓨鍦?)
     return ApiResponse(success=True, data=conversation.to_dict())
 
 
 @app.put("/api/conversations/{conversation_id}", response_model=ApiResponse)
 async def update_conversation(conversation_id: int, request: ConversationUpdate, db: Session = Depends(get_db)):
-    """更新对话消息"""
+    """鏇存柊瀵硅瘽娑堟伅"""
     conversation = db.query(ConversationDB).filter(ConversationDB.id == conversation_id).first()
     if not conversation:
-        raise HTTPException(status_code=404, detail="对话不存在")
+        raise HTTPException(status_code=404, detail="瀵硅瘽涓嶅瓨鍦?)
 
-    # 删除旧消息
-    db.query(MessageDB).filter(MessageDB.conversation_id == conversation_id).delete()
+    # 鍒犻櫎鏃ф秷鎭?    db.query(MessageDB).filter(MessageDB.conversation_id == conversation_id).delete()
 
-    # 添加新消息
-    for msg in request.messages:
+    # 娣诲姞鏂版秷鎭?    for msg in request.messages:
         message = MessageDB(
             conversation_id=conversation_id,
             role=msg.get("type", "system"),
@@ -1326,7 +1317,7 @@ async def update_conversation(conversation_id: int, request: ConversationUpdate,
         )
         db.add(message)
 
-    # 更新标题
+    # 鏇存柊鏍囬
     for msg in request.messages:
         if msg.get("type") == "user":
             content = msg.get("content", "")[:20]
@@ -1336,30 +1327,30 @@ async def update_conversation(conversation_id: int, request: ConversationUpdate,
     conversation.updated_at = datetime.utcnow()
     db.commit()
 
-    return ApiResponse(success=True, data=conversation.to_dict(), message="对话更新成功")
+    return ApiResponse(success=True, data=conversation.to_dict(), message="瀵硅瘽鏇存柊鎴愬姛")
 
 
 @app.delete("/api/conversations/{conversation_id}", response_model=ApiResponse)
 async def delete_conversation(conversation_id: int, db: Session = Depends(get_db)):
-    """删除对话"""
+    """鍒犻櫎瀵硅瘽"""
     conversation = db.query(ConversationDB).filter(ConversationDB.id == conversation_id).first()
     if not conversation:
-        raise HTTPException(status_code=404, detail="对话不存在")
+        raise HTTPException(status_code=404, detail="瀵硅瘽涓嶅瓨鍦?)
 
     db.delete(conversation)
     db.commit()
 
-    return ApiResponse(success=True, message="对话删除成功")
+    return ApiResponse(success=True, message="瀵硅瘽鍒犻櫎鎴愬姛")
 
 
 # ===== Database Initialization =====
 
 @app.on_event("startup")
 async def startup_event():
-    """应用启动时初始化数据库"""
-    print("正在初始化数据库...")
+    """搴旂敤鍚姩鏃跺垵濮嬪寲鏁版嵁搴?""
+    print("姝ｅ湪鍒濆鍖栨暟鎹簱...")
     init_db()
-    print("数据库初始化完成")
+    print("鏁版嵁搴撳垵濮嬪寲瀹屾垚")
 
 
 if __name__ == "__main__":
