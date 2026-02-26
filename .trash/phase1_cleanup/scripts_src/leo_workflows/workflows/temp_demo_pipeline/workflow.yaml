@@ -1,0 +1,24 @@
+name: temp-demo-pipeline
+description: |
+  工作流描述
+
+version: "1.0.0"
+author: Leo AI System
+
+steps:
+  - name: step1
+    agent: agent_name
+    description: "第一步描述"
+    input:
+      param1: value1
+
+  - name: step2
+    agent: agent_name
+    description: "第二步描述"
+    depends_on:
+      - step1
+
+config:
+  timeout: 300
+  retry: 1
+  parallel: false
