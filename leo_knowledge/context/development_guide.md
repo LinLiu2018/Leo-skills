@@ -1,4 +1,4 @@
-# Development Guide - Leo AI System
+﻿# Development Guide - Leo AI System
 
 ## 0. 核心原则 (Core Principles) ⚠️ 最重要
 
@@ -36,10 +36,10 @@
 python leo_system.py  # 注意：使用下划线
 
 # 验证项目结构
-python scripts/validate_structure.py
+python scripts/development/validate_structure.py
 
 # 自动发现并更新 Manifest
-python scripts/update_manifests.py
+python scripts/maintenance/update_manifests.py
 
 # 运行测试
 python tests/verify_setup.py
@@ -50,16 +50,16 @@ pytest tests/
 
 ```bash
 # 更新能力索引（自动生成 capability_index.md）
-python scripts/update_capability_index.py
+python scripts/maintenance/update_capability_index.py
 
 # 测试所有 P1/P2 功能
-python scripts/quick_test.py
+python scripts/testing/quick_test.py
 
 # 标准化 SKILL.md 格式（预览模式）
-python scripts/standardize_skills.py --dry-run
+python scripts/development/standardize_skills.py --dry-run
 
 # 执行标准化
-python scripts/standardize_skills.py
+python scripts/development/standardize_skills.py
 ```
 
 ### 依赖管理
@@ -120,7 +120,7 @@ pip install -r requirements.txt
 
 ```bash
 # 运行结构验证脚本
-python scripts/validate_structure.py
+python scripts/development/validate_structure.py
 ```
 
 ### Skill 开发规范
@@ -219,20 +219,20 @@ from leo_system.paths import (
 
 ```bash
 # 验证技能结构
-python scripts/validate_skills.py
+python scripts/development/validate_skills.py
 
 # 验证命名规范
-python scripts/validate_naming.py
+python scripts/development/validate_naming.py
 
 # 检查重复技能
-python scripts/check_duplicates.py
+python scripts/development/check_duplicates.py
 ```
 
 ### 新建技能模板
 
 ```bash
 # 使用模板创建新技能
-python scripts/create_skill.py --name my_new_skill --category tools
+python scripts/development/create_skill.py --name my_new_skill --category tools
 ```
 
 ---
@@ -390,7 +390,7 @@ stats = memory.get_stats()
 
 ```bash
 # 手动执行
-python scripts/update_capability_index.py
+python scripts/maintenance/update_capability_index.py
 
 # 输出位置
 # leo_knowledge/context/capability_index.md
@@ -404,13 +404,13 @@ python scripts/update_capability_index.py
 
 ```bash
 # 预览（不实际修改）
-python scripts/standardize_skills.py --dry-run
+python scripts/development/standardize_skills.py --dry-run
 
 # 执行标准化
-python scripts/standardize_skills.py
+python scripts/development/standardize_skills.py
 
 # 指定目录
-python scripts/standardize_skills.py --path src/leo_skills/custom_category
+python scripts/development/standardize_skills.py --path src/leo_skills/custom_category
 ```
 
 **标准 SKILL.md 格式**:
@@ -437,3 +437,70 @@ author: Leo Liu
 
 技能详细说明...
 ```
+
+---
+
+## 8. Superpowers 开发工作流 (v4.2.0)
+
+> 集成自 [obra/superpowers](https://github.com/obra/superpowers)，提供 14 个开发工作流技能
+
+### 8.1 核心工作流
+
+**推荐的开发流程**：
+
+```
+brainstorming → writing_plans → executing_plans → finishing_work
+     ↓               ↓               ↓                ↓
+  头脑风暴       编写计划        执行计划          完成收尾
+```
+
+### 8.2 关键规则
+
+| 规则 | 说明 |
+|------|------|
+| **Git 工作树隔离** | 执行计划前**必须**使用 `using_git_worktrees_skill` 创建隔离工作区 |
+| **主分支保护** | 未经用户明确同意，不得在 main/master 分支上直接开发 |
+| **TDD 优先** | 使用 `tdd_skill` 先写测试再写实现 |
+| **代码审查** | 完成后使用 `requesting_code_review_skill` 请求审查 |
+
+### 8.3 Superpowers 与 Leo 技能对照
+
+| Superpowers (英文原版) | Leo 系统 (中文版) | 使用场景 |
+|------------------------|-------------------|----------|
+| brainstorming | brainstorming_skill | 需求分析、方案探索 |
+| writing-plans | writing_plans_skill | 编写实施计划 |
+| executing-plans | executing_plans_skill | 执行计划中的任务 |
+| tdd | tdd_skill | 测试驱动开发 |
+| debugging | debugging_skill | 系统化调试 |
+| using-git-worktrees | using_git_worktrees_skill | Git 工作树隔离 |
+| finishing-work | finishing_work_skill | 完成收尾、清理 |
+
+### 8.4 SessionStart Hook
+
+每次 Claude Code 会话启动时，自动注入 `using-superpowers` 技能上下文：
+
+```json
+// .claude/hooks.json
+{
+  "hooks": {
+    "SessionStart": [{
+      "matcher": "startup|resume|clear|compact",
+      "hooks": [{
+        "type": "command",
+        "command": "bash \"~/.claude/skills/superpowers/hooks/session-start.sh\"",
+        "async": true
+      }]
+    }]
+  }
+}
+```
+
+### 8.5 文件位置
+
+| 内容 | 路径 |
+|------|------|
+| Superpowers 原始技能 | `~/.claude/skills/superpowers/skills/` |
+| Leo 中文版技能 | `src/leo_skills/` 各类别目录下 |
+| 参考文档 | `docs/reference/superpowers/` |
+| Hook 配置 | `.claude/hooks.json` |
+

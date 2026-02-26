@@ -1,7 +1,7 @@
-# System Architecture - Leo AI System
+﻿# System Architecture - Leo AI System
 
 > **统一系统架构与记忆体系**
-> 包含：三大系统关系 + 五层记忆架构 + 核心工作流程
+> 包含：四方系统关系 + 五层记忆架构 + 核心工作流程 + Superpowers 集成
 
 ---
 
@@ -9,7 +9,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                        Leo AI System (你的核心大脑)                   │
+│                        Leo AI System (核心大脑)                       │
 │                                                                      │
 │  ┌─────────────────────────────────────────────────────────────┐    │
 │  │                     记忆体系 (Memory)                        │    │
@@ -25,26 +25,26 @@
 │                                                                      │
 │  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐                  │
 │  │   Skills    │  │  Subagents  │  │  Workflows  │                  │
-│  │  (能力库)    │  │  (执行者)    │  │  (流水线)   │                  │
+│  │ (107个能力)  │  │  (9个代理)   │  │ (5条流水线) │                  │
 │  └─────────────┘  └─────────────┘  └─────────────┘                  │
-└─────────────────────────────┬───────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│                    OpenClaw (大龙虾系统)                             │
-│  ┌─────────────────────────────────────────────────────────────┐    │
-│  │  Gateway 控制平面                                            │    │
-│  │  • 多渠道路由 (飞书/微信/Telegram等)                         │    │
-│  │  • 定时任务                                                   │    │
-│  │  • 技能管理                                                   │    │
-│  └─────────────────────────────────────────────────────────────┘    │
-│                                                                      │
-│  部署状态:                                                           │
-│  ✅ 本地 Windows: 稳定运行                                          │
-│  ⚠️  腾讯云硅谷: 不稳定，计划迁移到 Vultr                            │
-└─────────────────────────────┬───────────────────────────────────────┘
-                              │
-                              ▼
+└──────────┬──────────────────────────────────┬─────────────────────┘
+           │                                  │
+           ▼                                  ▼
+┌──────────────────────────┐  ┌──────────────────────────────────────┐
+│  OpenClaw (大龙虾系统)    │  │  Superpowers (v4.2.0)                │
+│  ┌────────────────────┐  │  │  ┌──────────────────────────────┐    │
+│  │ Gateway 控制平面    │  │  │  │ Claude Code 技能框架          │    │
+│  │ • 飞书/微信/TG 路由 │  │  │  │ • 14 个开发工作流技能         │    │
+│  │ • 定时任务          │  │  │  │ • SessionStart Hook 自动注入  │    │
+│  │ • 技能管理          │  │  │  │ • TDD/调试/代码审查/Git 工作树 │    │
+│  └────────────────────┘  │  │  └──────────────────────────────┘    │
+│                          │  │                                      │
+│  部署状态:               │  │  存储位置:                            │
+│  ✅ 本地 Windows: 稳定   │  │  ~/.claude/skills/superpowers/       │
+│  ⚠️ 腾讯云: 计划迁移     │  │  docs/reference/superpowers/ (参考)  │
+└──────────┬───────────────┘  └──────────────────────────────────────┘
+           │
+           ▼
 ┌─────────────────────────────────────────────────────────────────────┐
 │                         飞书 (Feishu)                                │
 │  • 消息推送通道                                                      │
@@ -55,13 +55,60 @@
 
 ---
 
-## 2. 三大系统关系
+## 2. 四方系统关系
 
 | 系统 | 角色 | 职责 | 存储位置 |
 |------|------|------|----------|
-| **Leo AI System** | 核心大脑 | 技能、代理、工作流、决策 | 本地 `src/` 目录 |
-| **OpenClaw (大龙虾)** | 消息网关 | 多渠道分发、飞书集成、云端执行 | 云端 Linux 服务器 |
-| **飞书** | 交互界面 | 用户消息输入、AI响应输出 | 飞书平台 |
+| **Leo AI System** | 核心大脑 | 107 技能、9 代理、5 工作流、决策引擎 | 本地 `src/` 目录 |
+| **OpenClaw (大龙虾)** | 消息网关 | 多渠道分发、飞书集成、定时任务 | `~/.openclaw/` |
+| **Superpowers (v4.2.0)** | 开发工作流 | TDD、调试、代码审查、Git 工作树、计划执行 | `~/.claude/skills/superpowers/` |
+| **飞书** | 交互界面 | 用户消息输入、AI 响应输出 | 飞书平台 |
+
+### 2.1 数据流与入口隔离
+
+```
+飞书用户 ──→ OpenClaw Gateway ──→ Leo Skills (中文版) ──→ 飞书响应
+                                      │
+开发者 ────→ Claude Code (VSCode) ──→ Superpowers Skills (英文版) ──→ 开发输出
+                                      │
+                                      └──→ MCP leo-system ──→ Leo Skills (按需)
+```
+
+**关键设计**：两条入口路径互不干扰
+- **飞书路径**：飞书 → OpenClaw → Leo 技能 (snake_case, 中文)
+- **开发路径**：Claude Code → Superpowers Hook → Superpowers 技能 (kebab-case, 英文)
+- **命名空间隔离**：Leo 用 `skill_name_skill`，Superpowers 用 `skill-name`
+
+### 2.2 Superpowers 集成详情
+
+| 项目 | 说明 |
+|------|------|
+| **版本** | v4.2.0 (2026-02 同步) |
+| **来源** | [obra/superpowers](https://github.com/obra/superpowers) |
+| **技能数** | 14 个开发工作流技能 |
+| **Hook** | SessionStart 自动注入 `using-superpowers` 技能 |
+| **原始存储** | `~/.claude/skills/superpowers/` |
+| **参考文档** | `docs/reference/superpowers/` |
+| **Leo 对应** | `src/leo_skills/` 下 14 个 snake_case 中文版 |
+
+**14 个 Superpowers 技能**：
+
+| 类别 | 技能 | Leo 对应 |
+|------|------|----------|
+| 核心 | using-superpowers | using_superpowers_skill |
+| 核心 | writing-skills | writing_skills_skill |
+| 规划 | brainstorming | brainstorming_skill |
+| 规划 | writing-plans | writing_plans_skill |
+| 规划 | planning-with-files | planning_with_files_skill |
+| 执行 | executing-plans | executing_plans_skill |
+| 执行 | subagent-driven-development | subagent_driven_development_skill |
+| 开发 | tdd | tdd_skill |
+| 开发 | debugging | debugging_skill |
+| 开发 | requesting-code-review | requesting_code_review_skill |
+| DevOps | using-git-worktrees | using_git_worktrees_skill |
+| DevOps | finishing-work | finishing_work_skill |
+| 协作 | code-reviewer (Agent) | code_reviewer_agent |
+| 进阶 | evolving-skills | evolution (核心模块) |
 
 ---
 
@@ -125,9 +172,9 @@ OpenClaw (结果分发)
 | 组件 | 路径 | 职责 |
 |------|------|------|
 | **Leo Orchestrator** | `src/leo_orchestrator/` | 意图识别、任务拆解、调度 |
-| **Skills** | `src/leo_skills/` | 原子能力库 (40+ 技能) |
-| **Subagents** | `src/leo_subagents/` | 任务执行代理 (10+ 代理) |
-| **Workflows** | `src/leo_workflows/` | 流水线定义 (5+ 工作流) |
+| **Skills** | `src/leo_skills/` | 原子能力库 (107 技能, 18 类别) |
+| **Subagents** | `src/leo_subagents/` | 任务执行代理 (9 代理) |
+| **Workflows** | `src/leo_workflows/` | 流水线定义 (5 工作流) |
 
 ### 5.2 OpenClaw (大龙虾) 配置
 
@@ -270,24 +317,26 @@ graph TD
 ## 4. 外部集成架构
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                      用户交互层                              │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐                  │
-│  │  飞书    │  │  微信    │  │ Claude   │                  │
-│  │(OpenClaw)│  │ (Future) │  │  Code    │                  │
-│  └────┬─────┘  └────┬─────┘  └────┬─────┘                  │
-│       └─────────────┴──────┬──────┘                         │
-│                            │                                 │
-│  ┌─────────────────────────▼─────────────────────────────┐  │
-│  │              OpenClaw Gateway (编排层)                 │  │
-│  │  • 多渠道路由  • 定时任务  • 技能管理                   │  │
-│  └─────────────────────────┬─────────────────────────────┘  │
-│                            │                                 │
-│  ┌─────────────────────────▼─────────────────────────────┐  │
-│  │              Leo AI System (能力层)                    │  │
-│  │  Skills + Agents + Workflows + Context Engineering    │  │
-│  └───────────────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────┐
+│                      用户交互层                                  │
+│  ┌──────────┐  ┌──────────┐  ┌──────────────┐                  │
+│  │  飞书    │  │  微信    │  │  Claude Code  │                  │
+│  │(OpenClaw)│  │ (Future) │  │  (VSCode)     │                  │
+│  └────┬─────┘  └────┬─────┘  └──┬────────┬──┘                  │
+│       └─────────────┴───┬───────┘        │                      │
+│                         │                │                      │
+│  ┌──────────────────────▼──────────┐  ┌──▼───────────────────┐  │
+│  │     OpenClaw Gateway (编排层)   │  │ Superpowers (v4.2.0) │  │
+│  │  • 多渠道路由  • 定时任务       │  │ • SessionStart Hook  │  │
+│  │  • 技能管理    • 消息分发       │  │ • 14 个开发工作流技能 │  │
+│  └──────────────────────┬──────────┘  └──┬───────────────────┘  │
+│                         │                │                      │
+│  ┌──────────────────────▼────────────────▼───────────────────┐  │
+│  │              Leo AI System (能力层)                        │  │
+│  │  Skills(107) + Agents(9) + Workflows(5)                   │  │
+│  │  + Context Engineering + Shared Memory                    │  │
+│  └───────────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ## 5. 三阶段项目执行工作流 🆕
@@ -528,18 +577,20 @@ evolution:
 
 ```bash
 # 验证所有技能结构
-python scripts/validate_skills.py
+python scripts/development/validate_skills.py
 
 # 验证命名规范
-python scripts/validate_naming.py
+python scripts/development/validate_naming.py
 
 # 生成缺失的骨架文件
-python scripts/scaffold_skills.py
+python scripts/development/scaffold_skills.py
 ```
 
 ---
 
-## 7. 文件修改规则
+## 7. 去重与规范化机制 (Deduplication & Standardization)
+
+> **强制执行**: 所有 Skills、Agents、Workflows 必须符合以下去重和命名规范
 
 ### 7.1 确认用户意图规则（强制）
 
@@ -558,11 +609,6 @@ python scripts/scaffold_skills.py
 3. 明确说明改动内容
 4. **等待用户确认后再执行**
 
-```markdown
-❌ 错误：直接执行改动
-✅ 正确：先确认 → 用户同意 → 再执行
-```
-
 ### 7.2 代码质量规则
 
 - 复杂逻辑必须包含**中文注释**
@@ -570,32 +616,13 @@ python scripts/scaffold_skills.py
 - 遵循 PEP 8 规范
 - 避免硬编码路径（使用路径常量）
 
----
+### 7.3 命名规范
 
-## 7. 去重与规范化机制 (Deduplication & Standardization)
+> 与第 6.8 节相同，详见上方命名规范表
 
-> **强制执行**: 所有 Skills、Agents、Workflows 必须符合以下去重和命名规范
+### 7.4 强制去重机制
 
-### 7.1 命名规范（强制）
-
-| 类型 | 格式 | 示例 |
-|-----|------|------|
-| 技能目录 | `{功能}_{类型}_skill` | `web_search_skill` |
-| 代理目录 | `{领域}_agent` | `research_agent` |
-| 工作流目录 | `{业务}_pipeline` | `content_pipeline` |
-| Python类 | `PascalCase` | `ResearchAgent` |
-| Python函数/变量 | `snake_case` | `execute_task` |
-| 配置文件 | `snake_case.yaml` | `config.yaml` |
-
-**禁止使用**:
-- `-` 连字符（hyphen）
-- 空格
-- 大写字母开头的目录/文件名
-- 中文目录名
-
-### 7.2 强制去重机制
-
-#### 7.2.1 去重检查清单
+#### 7.4.1 去重检查清单
 
 新增任何 Skills/Agents/Workflows 前，必须检查：
 
@@ -605,7 +632,7 @@ python scripts/scaffold_skills.py
 | **命名冲突检查** | 确认目录名/文件名唯一 |
 | **能力重叠检查** | 评估与现有技能的能力边界 |
 
-#### 7.2.2 重复处理策略
+#### 7.4.2 重复处理策略
 
 | 场景 | 处理方式 |
 |------|----------|
@@ -614,20 +641,20 @@ python scripts/scaffold_skills.py
 | 功能相似但不同 | 保留各自，明确区分使用场景 |
 | 命名冲突 | 使用更精确的命名区分 |
 
-#### 7.2.3 去重验证命令
+#### 7.4.3 去重验证命令
 
 ```bash
 # 验证命名规范
-python scripts/validate_naming.py
+python scripts/development/validate_naming.py
 
 # 验证技能结构
-python scripts/validate_skills.py
+python scripts/development/validate_skills.py
 
 # 检查重复技能
-python scripts/check_duplicates.py
+python scripts/development/check_duplicates.py
 ```
 
-### 7.3 目录规范化状态
+### 7.5 目录规范化状态
 
 | 状态 | 类别 | 原名称 | 新名称 |
 |------|------|--------|--------|
@@ -637,7 +664,7 @@ python scripts/check_duplicates.py
 | ✅ 已完成 | videocut_skills | `安装` | `install_skill` |
 | ✅ 已完成 | videocut_skills | `自更新` | `auto_update_skill` |
 
-### 7.4 目录结构标准
+### 7.6 目录结构标准
 
 ```
 src/
@@ -664,9 +691,11 @@ src/
 |------|------|----------|
 | 2026-02-01 | 1.0.0 | 初始最佳实践标准定义 |
 | 2026-02-01 | 1.1.0 | 新增去重与规范化机制 |
+| 2026-02-06 | 1.2.0 | 集成 Superpowers v4.2.0，升级为四方系统架构 |
 
 ### 参考资源
 
-- [obra/superpowers](https://github.com/obra/superpowers) - 社区最佳实践参考
+- [obra/superpowers](https://github.com/obra/superpowers) - Superpowers v4.2.0 (已集成)
 - [anthropics/skills](https://github.com/anthropics/skills) - 官方技能标准
 - [ai_coding_project_base](docs/reference/ai_coding_project_base/) - 项目执行最佳实践
+

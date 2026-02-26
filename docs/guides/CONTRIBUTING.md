@@ -1,4 +1,4 @@
-# Contributing to Leo AI Agent System
+﻿# Contributing to Leo AI Agent System
 
 感谢你对 Leo AI Agent System 的兴趣！我们欢迎各种形式的贡献。
 
@@ -123,7 +123,7 @@ pytest tests/test_agents.py -v
 
 3. 运行发现系统验证:
    ```bash
-   python scripts/manage_skills.py update
+   python scripts/development/manage_skills.py update
    ```
 
 ## 🤖 添加新 Agent
@@ -146,3 +146,4 @@ pytest tests/test_agents.py -v
 ---
 
 感谢你的贡献！🎉
+

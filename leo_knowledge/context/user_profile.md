@@ -1,4 +1,4 @@
-# User Profile: Leo Liu (佬流)
+﻿# User Profile: Leo Liu (佬流)
 
 ## 0. 🚀 终极愿景 (North Star)
 
@@ -30,7 +30,7 @@
 
 ## 1. 基础画像
 - **身份**: 36岁，宁波，8年创业经验，自由创业者
-- **当前状态**: 房产/商业地产/AI电商/AI技术学习多业务并行
+- **当前状态**: 房产/商业地产/智能穿戴跨境电商/AI技术学习多业务并行
 - **技术起点**: AI Coding初学者，目标成为AI赋能专家
 - **每日投入**: 18小时/天（学习+实操+迭代）
 
@@ -40,7 +40,7 @@
 |------|------|----------|
 | 🏠 **房产经纪** | 10人团队，度假别墅，扩展商业 | 核心业务 |
 | 🏪 **商业地产** | 不良资产、摊位销售、菜场项目 | 拓展期 |
-| 👓 **AI眼镜电商** | 智能眼镜代理销售 | 筹备期 |
+| 👓 **智能穿戴跨境电商** | 智能穿戴设备跨境销售 | 筹备期 |
 | 💻 **AI Coding** | Cursor/Claude Code技能开发 | 学习中 |
 | 📚 **Obsidian知识管理** | 个人知识库、AI学习笔记 | 日常使用 |
 
@@ -81,7 +81,7 @@
 
 ### 业务目标
 1. **AI赋能房产**: 全媒体营销自动化、客户转化率提升
-2. **业务多元化**: 稳固商业地产，跑通AI眼镜电商闭环
+2. **业务多元化**: 稳固商业地产，跑通智能穿戴跨境电商闭环
 3. **技术进阶**: 精通AI工具链，建立个人技能库
 4. **系统进化**: Leo AI System成为真正的"数字分身"
 
@@ -427,7 +427,7 @@ openclaw cron add --expr "0 9 * * 1" --tz Asia/Shanghai --message "生成周报"
 
 1. **创建前**: 阅读 [system_architecture.md#6](src/leo_knowledge/context/system_architecture.md#6-最佳实践标准-best-practice-standards)
 2. **创建时**: 使用标准模板，确保包含所有必需文件
-3. **创建后**: 运行验证脚本 `python scripts/validate_skills.py`
+3. **创建后**: 运行验证脚本 `python scripts/development/validate_skills.py`
 
 ### 9.6 验收标准
 
@@ -435,7 +435,7 @@ openclaw cron add --expr "0 9 * * 1" --tz Asia/Shanghai --message "生成周报"
 - [ ] 符合标准文件结构
 - [ ] 命名符合 snake_case 规范
 - [ ] 包含必需的元数据文件（SKILL.md/AGENT.md/workflow.yaml）
-- [ ] 通过命名验证 `python scripts/validate_naming.py`
+- [ ] 通过命名验证 `python scripts/development/validate_naming.py`
 
 ---
 
@@ -509,4 +509,5 @@ openclaw cron add --expr "0 9 * * 1" --tz Asia/Shanghai --message "生成周报"
 | [obra/superpowers](https://github.com/obra/superpowers) | 社区技能库 | 优质工作流技能 |
 | [awesome-claude-skills](https://github.com/travisvn/awesome-claude-skills) | 技能汇总 | 全网技能索引 |
 | [awesome-claude-code-agents](https://github.com/hesreallyhim/awesome-claude-code-agents) | 代理汇总 | 全网代理索引 |
+
 

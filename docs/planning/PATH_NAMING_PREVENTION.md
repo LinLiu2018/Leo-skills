@@ -1,4 +1,4 @@
-# 路径和命名问题预防机制
+﻿# 路径和命名问题预防机制
 
 > **创建时间**: 2026-01-24
 > **目的**: 防止项目中再次出现文件路径和命名不一致的问题
@@ -93,7 +93,7 @@ CLAUDE_MD            # CLAUDE.md
 
 ```bash
 # 手动运行
-python scripts/validate_structure.py
+python scripts/development/validate_structure.py
 
 # 查看所有路径配置
 python leo_system/paths.py
@@ -204,7 +204,7 @@ git commit -m "feat: add new feature"
 
    ```bash
    # 手动验证（可选）
-   python scripts/validate_structure.py
+   python scripts/development/validate_structure.py
 
    # Git 提交（自动验证）
    git add .
@@ -227,7 +227,7 @@ git commit -m "feat: add new feature"
    # 手动更新所有引用
 
    # 3. 验证
-   python scripts/validate_structure.py
+   python scripts/development/validate_structure.py
    ```
 
 2. **更新路径常量**：
@@ -251,7 +251,7 @@ git commit -m "feat: add new feature"
 ### 如果验证失败
 
 ```bash
-$ python scripts/validate_structure.py
+$ python scripts/development/validate_structure.py
 
 [错误] 发现 1 个错误:
   - 目录使用连字符: leo-old-name (应使用下划线)
@@ -261,7 +261,7 @@ $ python scripts/validate_structure.py
 
 1. 重命名文件/目录：`mv leo-old-name leo_old_name`
 2. 更新所有引用：`grep -r "leo-old-name" . | grep -v ".git"`
-3. 重新验证：`python scripts/validate_structure.py`
+3. 重新验证：`python scripts/development/validate_structure.py`
 
 ---
 
@@ -289,7 +289,7 @@ Leo Structure Validation...Failed
 
 - [ ] 使用下划线而非连字符
 - [ ] 更新 `leo_system/paths.py`（如果是重要路径）
-- [ ] 运行 `python scripts/validate_structure.py`
+- [ ] 运行 `python scripts/development/validate_structure.py`
 
 ### 重构代码时
 
@@ -301,7 +301,7 @@ Leo Structure Validation...Failed
 
 ### 提交代码前
 
-- [ ] 运行 `python scripts/validate_structure.py`
+- [ ] 运行 `python scripts/development/validate_structure.py`
 - [ ] 运行 `pytest tests/test_system_basics.py`
 - [ ] 提交（pre-commit hooks 会自动验证）
 
@@ -336,3 +336,4 @@ Leo Structure Validation...Failed
 **维护人**: Claude Opus 4.5
 **最后更新**: 2026-01-24
 **状态**: ✅ 已实施并测试
+

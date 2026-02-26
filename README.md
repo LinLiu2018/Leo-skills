@@ -1,4 +1,4 @@
-# Leo AI Agent System
+﻿# Leo AI Agent System
 
 <div align="center">
 
@@ -158,7 +158,7 @@ leo_ai_system/
    - `scripts/main.py` - 入口脚本
 3. 运行发现系统：
    ```bash
-   python scripts/manage_skills.py update
+   python scripts/development/manage_skills.py update
    ```
 
 ### 添加新Agent

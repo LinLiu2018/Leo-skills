@@ -1,4 +1,4 @@
-# 最佳实践标准速查表
+﻿# 最佳实践标准速查表
 
 > **Leo AI System 文件架构标准** | 参考: [system_architecture.md](src/leo_knowledge/context/system_architecture.md#6-最佳实践标准-best-practice-standards)
 
@@ -144,13 +144,13 @@ evolution:
 
 ```bash
 # 验证所有技能结构
-python scripts/validate_skills.py
+python scripts/development/validate_skills.py
 
 # 验证命名规范
-python scripts/validate_naming.py
+python scripts/development/validate_naming.py
 
 # 创建新技能模板
-python scripts/create_skill.py --name my_new_skill --category tools
+python scripts/development/create_skill.py --name my_new_skill --category tools
 ```
 
 ---
@@ -184,3 +184,4 @@ python scripts/create_skill.py --name my_new_skill --category tools
 ---
 
 *最后更新: 2026-02-01*
+
