@@ -1,4 +1,4 @@
-# Leo AI System CI/CD
+﻿# Leo AI System CI/CD
 # 简化版配置 - 符合务实优先原则
 
 name: CI
@@ -32,6 +32,19 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e ".[dev]"
 
+      - name: 结构校验
+        run: python scripts/development/validate_structure.py
+
+      - name: 命名校验
+        run: python scripts/development/validate_naming.py
+
+      - name: 敏感文件检查
+        run: |
+          if git diff --cached --name-only | grep -E '\.(env|db|sqlite)$'; then
+            echo "错误：检测到敏感文件"
+            exit 1
+          fi
+
       - name: 代码格式检查
         run: |
           black --check . || echo "⚠️ 代码格式需要调整"
@@ -44,3 +57,4 @@ jobs:
       - name: 测试摘要
         if: always()
         run: echo "✅ CI 流程完成"
+
