@@ -1,6 +1,6 @@
 # Leo AI System - 能力索引
 
-> **自动生成** - 2026-02-26 10:03:06
+> **自动生成** - 2026-02-26 11:10:58
 >
 > 本文件由 `scripts/update_capability_index.py` 自动生成
 > 请勿手动编辑，运行脚本即可更新
@@ -763,4 +763,4 @@ result = engine.execute_from_yaml('src/leo_workflows/definitions/content_pipelin
 
 ---
 
-*最后更新: 2026-02-26 10:03:06*
+*最后更新: 2026-02-26 11:10:58*
