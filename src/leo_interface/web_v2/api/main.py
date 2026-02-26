@@ -1135,7 +1135,7 @@ async def recognize_intent(data: Dict[str, str]):
         elif "宸ヤ綔娴? in text or "娴佺▼" in text or "pipeline" in text:
             intent_type, target, confidence = "workflow", "content_pipeline", 0.8
         elif "瑙嗛鍙? in text or "璐﹀彿鐩戞祴" in text or "鐩戞祴" in text:
-            intent_type, target, confidence = "skill", "video_monitor", 0.88
+            intent_type, target, confidence = "skill", "video_monitor_skill", 0.88
         elif "寮€鍙? in text or "缂栫▼" in text or "浠ｇ爜" in text:
             intent_type, target, confidence = "agent", "mobile_agent", 0.85
         else:

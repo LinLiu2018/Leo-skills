@@ -1,5 +1,5 @@
 ---
-name: Prompt Chaining Orchestrator
+name: prompt_chaining_orchestrator_skill
 description: 将复杂任务分解为多个顺序步骤,通过提示词链提高准确性和可靠性
 ---
 
@@ -614,3 +614,4 @@ chain_b = [step1, validate, step2, step3]
 
 - [Prompt Chaining](https://claude.com/blog/best-practices-for-prompt-engineering)
 - [Building Effective Agents](https://www.anthropic.com/research/building-effective-agents)
+

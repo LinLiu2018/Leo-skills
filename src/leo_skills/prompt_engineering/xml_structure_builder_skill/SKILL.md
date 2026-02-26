@@ -1,5 +1,5 @@
 ---
-name: XML Structure Builder
+name: xml_structure_builder_skill
 description: 使用 XML 标签结构化提示词,提高清晰度、准确性和可维护性
 ---
 
@@ -534,3 +534,4 @@ high_priority_recs = [r.text for r in root.findall(".//recommendation[@priority=
 
 - [Use XML Tags](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/use-xml-tags)
 - [Prompt Engineering Overview](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview)
+

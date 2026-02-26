@@ -55,7 +55,7 @@ class ChainOfThoughtPrompterSkill:
     """
 
     def __init__(self):
-        self.name = "chain_of_thought_prompter"
+        self.name = "chain_of_thought_prompter_skill"
         self.version = "1.0.0"
         self.description = "思维链提示技能 - 引导模型逐步推理"
 
@@ -506,3 +506,4 @@ B管效率 = 1/8
 
 if __name__ == "__main__":
     main()
+

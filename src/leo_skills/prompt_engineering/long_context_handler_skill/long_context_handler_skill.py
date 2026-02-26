@@ -49,7 +49,7 @@ class LongContextHandlerSkill:
     """
 
     def __init__(self):
-        self.name = "long_context_handler"
+        self.name = "long_context_handler_skill"
         self.version = "1.0.0"
         self.description = "长上下文窗口处理和优化"
         self.category = "prompt_engineering"
@@ -170,3 +170,4 @@ def main():
 
 if __name__ == "__main__":
     skill = main()
+

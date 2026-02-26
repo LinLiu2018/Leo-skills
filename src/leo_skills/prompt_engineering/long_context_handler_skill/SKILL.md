@@ -1,5 +1,5 @@
 ---
-name: Long Context Handler
+name: long_context_handler_skill
 description: 优化长文本上下文处理,确保 AI 能够有效处理和理解大量文档内容
 ---
 
@@ -327,3 +327,4 @@ final_result = synthesize_summaries(summaries)
 
 - [Long Context Tips](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/long-context-tips)
 - [Effective Context Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
+

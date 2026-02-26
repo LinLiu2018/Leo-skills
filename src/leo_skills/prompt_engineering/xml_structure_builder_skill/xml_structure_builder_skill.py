@@ -38,7 +38,7 @@ class XmlStructureBuilderSkill:
     """
 
     def __init__(self):
-        self.name = "xml_structure_builder"
+        self.name = "xml_structure_builder_skill"
         self.version = "1.0.0"
         self.description = "使用XML结构化提示"
         self.category = "prompt_engineering"
@@ -150,3 +150,4 @@ def main():
 
 if __name__ == "__main__":
     skill = main()
+

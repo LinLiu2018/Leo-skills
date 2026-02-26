@@ -60,7 +60,7 @@ class PromptOptimizerSkill:
     """
 
     def __init__(self):
-        self.name = "prompt_optimizer"
+        self.name = "prompt_optimizer_skill"
         self.version = "1.0.0"
         self.description = "提示词优化技能 - 提升AI输出质量"
 
@@ -569,3 +569,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

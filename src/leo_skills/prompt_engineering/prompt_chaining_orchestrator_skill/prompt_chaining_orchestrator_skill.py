@@ -60,7 +60,7 @@ class PromptChainingOrchestratorSkill:
     """
 
     def __init__(self):
-        self.name = "prompt_chaining_orchestrator"
+        self.name = "prompt_chaining_orchestrator_skill"
         self.version = "1.0.0"
         self.description = "编排多步骤提示链"
         self.category = "prompt_engineering"
@@ -186,3 +186,4 @@ def main():
 
 if __name__ == "__main__":
     skill = main()
+

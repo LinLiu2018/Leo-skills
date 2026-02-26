@@ -1,5 +1,5 @@
 ---
-name: Prompt Optimizer
+name: prompt_optimizer_skill
 description: 优化和改进用户的提示词,使其更加明确、具体和有效,基于 Claude 官方最佳实践
 ---
 
@@ -173,3 +173,4 @@ description: 优化和改进用户的提示词,使其更加明确、具体和有
 
 - [Claude Prompt Engineering Best Practices](https://claude.com/blog/best-practices-for-prompt-engineering)
 - [Claude 4 Best Practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-4-best-practices)
+

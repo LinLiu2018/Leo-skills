@@ -143,12 +143,12 @@
 ### 11. Prompt Engineering (提示工程) - 6个
 | 技能名称 | 路径 |
 |----------|------|
-| chain_of_thought_prompter | `src/leo_skills/prompt_engineering/chain_of_thought_prompter/` |
+| chain_of_thought_prompter_skill | `src/leo_skills/prompt_engineering/chain_of_thought_prompter_skill/` |
 | claude_prompt_engineering_skills | `src/leo_skills/prompt_engineering/claude_prompt_engineering_skills/` |
-| long_context_handler | `src/leo_skills/prompt_engineering/long_context_handler/` |
-| prompt_chaining_orchestrator | `src/leo_skills/prompt_engineering/prompt_chaining_orchestrator/` |
-| prompt_optimizer | `src/leo_skills/prompt_engineering/prompt_optimizer/` |
-| xml_structure_builder | `src/leo_skills/prompt_engineering/xml_structure_builder/` |
+| long_context_handler_skill | `src/leo_skills/prompt_engineering/long_context_handler_skill/` |
+| prompt_chaining_orchestrator_skill | `src/leo_skills/prompt_engineering/prompt_chaining_orchestrator_skill/` |
+| prompt_optimizer_skill | `src/leo_skills/prompt_engineering/prompt_optimizer_skill/` |
+| xml_structure_builder_skill | `src/leo_skills/prompt_engineering/xml_structure_builder_skill/` |
 
 ### 12. Scaffold (脚手架) - 6个
 | 技能名称 | 路径 |

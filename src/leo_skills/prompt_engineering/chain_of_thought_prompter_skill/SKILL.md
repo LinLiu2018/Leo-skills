@@ -1,5 +1,5 @@
 ---
-name: Chain of Thought Prompter
+name: chain_of_thought_prompter_skill
 description: 使用思维链技术引导 AI 进行结构化推理,提高复杂任务的准确性
 ---
 
@@ -386,3 +386,4 @@ Claude 提供了扩展思维功能,可以自动进行结构化推理。当扩展
 
 - [Chain of Thought Prompting](https://claude.com/blog/best-practices-for-prompt-engineering)
 - [Extended Thinking](https://www.anthropic.com/news/visible-extended-thinking)
+

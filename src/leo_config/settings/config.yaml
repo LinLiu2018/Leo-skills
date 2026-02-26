@@ -344,15 +344,15 @@ skills:
       source: "https://github.com/ponyodong2026/claude-prompt-engineering-skills"
       activation_keywords: ["提示词优化", "长文本处理", "思维链", "提示词工程"]
       sub_skills:
-        - name: "prompt_optimizer"
+        - name: "prompt_optimizer_skill"
           description: "分析和改进提示词的清晰度和有效性"
-        - name: "long_context_handler"
+        - name: "long_context_handler_skill"
           description: "管理长文档和多文档处理"
-        - name: "xml_structure_builder"
+        - name: "xml_structure_builder_skill"
           description: "使用XML标签组织复杂提示词"
-        - name: "chain_of_thought_prompter"
+        - name: "chain_of_thought_prompter_skill"
           description: "引导逐步推理解决复杂问题"
-        - name: "prompt_chaining_orchestrator"
+        - name: "prompt_chaining_orchestrator_skill"
           description: "将复杂任务拆解为顺序步骤"
 
   # ==================== 补充Skills (自动发现) ====================
