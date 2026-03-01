@@ -8,7 +8,7 @@ stock-analyzer-cskill - 技能实现
 from typing import Dict, Any, Optional
 
 
-class Stock-analyzer-cskillSkill:
+class StockAnalyzerCskillSkill:
     """
     Stock-analyzer-cskillSkill
 
@@ -27,7 +27,7 @@ class Stock-analyzer-cskillSkill:
 
 def main():
     """入口函数"""
-    return Stock-analyzer-cskillSkill()
+    return StockAnalyzerCskillSkill()
 
 
 if __name__ == "__main__":

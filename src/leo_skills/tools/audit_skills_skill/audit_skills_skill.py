@@ -4,6 +4,7 @@ audit_skills_skill - 技能审计技能
 
 审计技能是否符合最佳实践，包括长度、检查清单、验证步骤和渐进式披露。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -49,7 +50,7 @@ class AuditResult:
     message: str = ""
 
 
-class AuditSkillsSkill:
+class AuditSkillsSkill(BaseExecutor):
     """
     技能审计技能
 

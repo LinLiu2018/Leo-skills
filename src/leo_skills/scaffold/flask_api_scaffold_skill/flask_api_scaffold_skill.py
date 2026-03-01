@@ -1,9 +1,358 @@
 """
-flask_api_scaffold_skill
+Flask API 脚手架技能
 
-Flask API脚手架技能
+根据项目配置一键生成 Flask API 项目结构，包括应用工厂、配置类、
+数据模型基类、蓝图、依赖清单、Dockerfile 和环境变量模板。
 """
 
-from .scripts.main import FlaskAPIScaffold
+from __future__ import annotations
+
+from pathlib import Path
+from typing import Any, Dict, List, Optional
+
+from leo_skills.core.base_executor import BaseExecutor
+
+
+class FlaskAPIScaffold(BaseExecutor):
+    """Flask API 项目脚手架生成器。
+
+    支持的操作：
+        - generate: 生成项目结构（返回文件名→内容的字典）
+        - save:     生成并写入磁盘
+    """
+
+    def __init__(self) -> None:
+        self.name = "flask_api_scaffold_skill"
+
+    # ------------------------------------------------------------------ #
+    #  BaseExecutor 接口
+    # ------------------------------------------------------------------ #
+
+    def execute(
+        self,
+        action: str = "generate",
+        context: Optional[Dict[str, Any]] = None,
+        **kwargs,
+    ) -> Dict[str, Any]:
+        """统一入口。
+
+        Args:
+            action: 操作类型 ("generate" / "save")
+            context: 执行上下文
+            **kwargs: 额外参数，直接传递给内部方法
+        """
+        params: Dict[str, Any] = dict(context or {})
+        params.update(kwargs)
+
+        if action in ("generate", "run"):
+            return self._action_generate(params)
+        elif action == "save":
+            return self._action_save(params)
+        else:
+            return {"status": "error", "message": f"未知操作: {action}"}
+
+    # ------------------------------------------------------------------ #
+    #  动作方法
+    # ------------------------------------------------------------------ #
+
+    def _action_generate(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """生成 Flask API 项目文件内容（不写盘）。"""
+        project_name = params.get("project_name", "my_api")
+        database_type = params.get("database_type", "mysql")
+        features: List[str] = params.get("features", [])
+
+        files = self.generate(project_name, database_type, features)
+        return {
+            "status": "success",
+            "action": "generate",
+            "project_name": project_name,
+            "files": list(files.keys()),
+            "data": files,
+        }
+
+    def _action_save(self, params: Dict[str, Any]) -> Dict[str, Any]:
+        """生成文件并写入磁盘。"""
+        project_name = params.get("project_name", "my_api")
+        database_type = params.get("database_type", "mysql")
+        features: List[str] = params.get("features", [])
+        output_dir = params.get("output_dir", ".")
+
+        files = self.generate(project_name, database_type, features)
+        saved = self.save_files(project_name, files, output_dir)
+        return {
+            "status": "success",
+            "action": "save",
+            "project_name": project_name,
+            "files_saved": len(saved),
+            "paths": {k: str(v) for k, v in saved.items()},
+        }
+
+    # ------------------------------------------------------------------ #
+    #  核心生成逻辑（合并自 scripts/main.py）
+    # ------------------------------------------------------------------ #
+
+    def generate(
+        self,
+        project_name: str,
+        database_type: str = "mysql",
+        features: Optional[List[str]] = None,
+    ) -> Dict[str, str]:
+        """生成 Flask API 项目文件。
+
+        Args:
+            project_name: 项目名称
+            database_type: 数据库类型 (mysql / postgresql / sqlite)
+            features: 功能特性列表（如 "jwt", "redis"）
+
+        Returns:
+            文件名→内容的字典
+        """
+        features = features or []
+        return {
+            "app/__init__.py": self._gen_app_init(project_name, database_type),
+            "config.py": self._gen_config(database_type),
+            "app/models/__init__.py": self._gen_models_init(),
+            "app/api/__init__.py": self._gen_api_init(),
+            "requirements.txt": self._gen_requirements(database_type, features),
+            "run.py": self._gen_run_file(),
+            "Dockerfile": self._gen_dockerfile(),
+            ".env.example": self._gen_env_example(database_type),
+        }
+
+    def save_files(
+        self,
+        project_name: str,
+        files: Dict[str, str],
+        output_dir: str = ".",
+    ) -> Dict[str, Path]:
+        """将生成的文件写入磁盘。"""
+        saved: Dict[str, Path] = {}
+        project_dir = Path(output_dir) / project_name
+        for file_path, content in files.items():
+            full_path = project_dir / file_path
+            full_path.parent.mkdir(parents=True, exist_ok=True)
+            full_path.write_text(content, encoding="utf-8")
+            saved[file_path] = full_path
+        return saved
+
+    # ------------------------------------------------------------------ #
+    #  模板生成方法
+    # ------------------------------------------------------------------ #
+
+    def _gen_app_init(self, name: str, db_type: str) -> str:
+        """生成 app/__init__.py"""
+        return f'''"""
+{name} Flask Application
+Generated by Leo Flask API Scaffold
+"""
+
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from flask_cors import CORS
+
+from config import config
+
+db = SQLAlchemy()
+migrate = Migrate()
+
+
+def create_app(config_name='development'):
+    """Application Factory"""
+    app = Flask(__name__)
+    app.config.from_object(config[config_name])
+
+    # 初始化扩展
+    db.init_app(app)
+    migrate.init_app(app, db)
+    CORS(app)
+
+    # 注册蓝图
+    from app.api import api_bp
+    app.register_blueprint(api_bp, url_prefix='/api')
+
+    # 健康检查
+    @app.route('/health')
+    def health_check():
+        return {{'status': 'healthy', 'app': '{name}'}}
+
+    return app
+'''
+
+    def _gen_config(self, db_type: str) -> str:
+        """生成 config.py"""
+        db_drivers = {
+            "mysql": "mysql+pymysql",
+            "postgresql": "postgresql",
+            "sqlite": "sqlite",
+        }
+        driver = db_drivers.get(db_type, "mysql+pymysql")
+
+        return f'''"""
+Flask Configuration
+Generated by Leo Flask API Scaffold
+"""
+
+import os
+from datetime import timedelta
+
+
+class Config:
+    """基础配置"""
+    SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-secret-key')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    JSON_AS_ASCII = False
+
+
+class DevelopmentConfig(Config):
+    """开发环境配置"""
+    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = os.environ.get(
+        'DATABASE_URL',
+        '{driver}://root:password@localhost/db_dev'
+    )
+
+
+class ProductionConfig(Config):
+    """生产环境配置"""
+    DEBUG = False
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+
+
+class TestingConfig(Config):
+    """测试环境配置"""
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
+
+
+config = {{
+    'development': DevelopmentConfig,
+    'production': ProductionConfig,
+    'testing': TestingConfig,
+    'default': DevelopmentConfig
+}}
+'''
+
+    def _gen_models_init(self) -> str:
+        """生成 app/models/__init__.py"""
+        return '''"""
+Database Models
+"""
+
+from app import db
+from datetime import datetime
+
+
+class BaseModel(db.Model):
+    """通用基础模型"""
+    __abstract__ = True
+
+    id = db.Column(db.Integer, primary_key=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+    def to_dict(self):
+        """模型转字典"""
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+'''
+
+    def _gen_api_init(self) -> str:
+        """生成 app/api/__init__.py"""
+        return '''"""
+API Blueprints
+"""
+
+from flask import Blueprint
+
+api_bp = Blueprint('api', __name__)
+
+
+@api_bp.route('/')
+def api_index():
+    return {'message': 'API is running'}
+
+
+# 导入其他路由模块
+# from app.api import users, products
+'''
+
+    def _gen_requirements(self, db_type: str, features: List[str]) -> str:
+        """生成 requirements.txt"""
+        requirements = [
+            "flask>=2.0.0",
+            "flask-sqlalchemy>=3.0.0",
+            "flask-migrate>=4.0.0",
+            "flask-cors>=4.0.0",
+            "python-dotenv>=1.0.0",
+            "gunicorn>=21.0.0",
+        ]
+
+        if db_type == "mysql":
+            requirements.append("pymysql>=1.0.0")
+        elif db_type == "postgresql":
+            requirements.append("psycopg2-binary>=2.9.0")
+
+        if "jwt" in features:
+            requirements.append("flask-jwt-extended>=4.0.0")
+        if "redis" in features:
+            requirements.append("redis>=4.0.0")
+
+        return "\n".join(requirements)
+
+    def _gen_run_file(self) -> str:
+        """生成 run.py"""
+        return '''"""
+Run Flask Application
+"""
+
+import os
+from app import create_app, db
+
+app = create_app(os.getenv('FLASK_ENV', 'development'))
+
+
+@app.shell_context_processor
+def make_shell_context():
+    return {'db': db}
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+'''
+
+    def _gen_dockerfile(self) -> str:
+        """生成 Dockerfile"""
+        return """FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 5000
+
+CMD ["gunicorn", "-b", "0.0.0.0:5000", "run:app"]
+"""
+
+    def _gen_env_example(self, db_type: str) -> str:
+        """生成 .env.example"""
+        db_examples = {
+            "mysql": "mysql+pymysql://user:password@localhost/dbname",
+            "postgresql": "postgresql://user:password@localhost/dbname",
+            "sqlite": "sqlite:///app.db",
+        }
+        return f"""# Flask Configuration
+FLASK_ENV=development
+SECRET_KEY=your-secret-key
+
+# Database
+DATABASE_URL={db_examples.get(db_type, db_examples['mysql'])}
+
+# JWT (if enabled)
+JWT_SECRET_KEY=your-jwt-secret
+"""
+
 
 __all__ = ["FlaskAPIScaffold"]

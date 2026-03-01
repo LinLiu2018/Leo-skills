@@ -45,8 +45,8 @@ class ChainExecution:
 class ChainResult:
     """链结果"""
     status: str
-    final_output: Any = None_outputs: Dict
-    step[str, Any] = field(default_factory=dict)
+    final_output: Any = None
+    step_outputs: Dict[str, Any] = field(default_factory=dict)
     execution_time: float = 0.0
     message: str = ""
 

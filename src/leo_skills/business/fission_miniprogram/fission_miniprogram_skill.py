@@ -4,6 +4,7 @@ fission_miniprogram_skill - 裂变小程序技能
 
 提供裂变营销小程序的设计、开发和管理功能，包括分享机制、激励机制和数据分析。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 import json
 import uuid
@@ -52,7 +53,7 @@ class FissionParticipant:
     joined_at: str = ""
 
 
-class FissionMiniprogramSkill:
+class FissionMiniprogramSkill(BaseExecutor):
     """
     裂变小程序技能
 

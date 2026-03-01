@@ -6,6 +6,7 @@ dispatching_parallel_agents_skill - 分发并行代理协作技能
 核心理念：每个问题域分发一个代理。让它们并发工作。
 基于 obra/superpowers 的 dispatching-parallel-agents 技能。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 import os
 import uuid
@@ -54,7 +55,7 @@ class DispatchResult:
     summary: str = ""
 
 
-class DispatchingParallelAgentsSkill:
+class DispatchingParallelAgentsSkill(BaseExecutor):
     """
     分发并行代理技能 - 并行化独立任务处理
 

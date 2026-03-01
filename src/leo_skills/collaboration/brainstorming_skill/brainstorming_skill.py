@@ -6,6 +6,7 @@ brainstorming_skill - 头脑风暴协作技能
 通过自然协作对话帮助将想法转化为完全形成的设计和规范。
 基于 obra/superpowers 的 brainstorming 技能。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 import os
 from datetime import datetime
@@ -44,7 +45,7 @@ class BrainstormingResult:
     error: Optional[str] = None
 
 
-class BrainstormingSkill:
+class BrainstormingSkill(BaseExecutor):
     """
     头脑风暴技能 - 创造性设计探索
 

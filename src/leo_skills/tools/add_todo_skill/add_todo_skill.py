@@ -5,6 +5,7 @@ add_todo_skill - 添加TODO技能
 向 TODOS.md 添加格式化的TODO项，与 /list-todos 和 /run-todos 集成。
 基于 obra/superpowers 的 add-todo 技能实现。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 import re
 from datetime import datetime
@@ -39,7 +40,7 @@ class TodoItem:
     multiplier: float = 1.0
 
 
-class AddTodoSkill:
+class AddTodoSkill(BaseExecutor):
     """
     添加TODO技能
 

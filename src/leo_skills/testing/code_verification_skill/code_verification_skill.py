@@ -12,6 +12,8 @@ from typing import Dict, Any, Optional, List, Union
 from dataclasses import dataclass, field
 from enum import Enum
 
+from leo_skills.core.base_executor import BaseExecutor
+
 
 class CheckType(Enum):
     """检查类型"""
@@ -49,7 +51,7 @@ class VerificationReport:
     score: float = 100.0
 
 
-class CodeVerificationSkill:
+class CodeVerificationSkill(BaseExecutor):
     """
     代码验证技能 - 自动化代码质量检查
 
@@ -335,7 +337,7 @@ class CodeVerificationSkill:
                         ))
 
                     # 参数数量检查
-n                    arg_count = len(node.args.args) + len(node.args.kwonlyargs)
+                    arg_count = len(node.args.args) + len(node.args.kwonlyargs)
                     if arg_count > 5:
                         issues.append(CodeIssue(
                             line=node.lineno,

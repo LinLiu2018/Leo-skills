@@ -5,6 +5,7 @@ subagent_driven_development_skill - 子代理驱动开发技能
 基于 obra/superpowers 的 subagent-driven-development 技能。
 核心理念：每个任务一个新子代理 + 两阶段审查 = 高质量，快速迭代。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -64,7 +65,7 @@ class SubagentDrivenDevelopmentResult:
     message: str = ""
 
 
-class SubagentDrivenDevelopmentSkill:
+class SubagentDrivenDevelopmentSkill(BaseExecutor):
     """
     子代理驱动开发技能
 

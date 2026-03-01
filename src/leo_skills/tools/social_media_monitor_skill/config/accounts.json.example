@@ -1,0 +1,60 @@
+{
+  "x": [
+    {
+      "name": "向阳乔木",
+      "id": "@vista8",
+      "added_date": "2026-03-01",
+      "category": "AI 科技"
+    },
+    {
+      "name": "OpenClaw",
+      "id": "@openclaw",
+      "added_date": "2026-03-01",
+      "category": "AI 工具"
+    }
+  ],
+  "wechat_official": [
+    {
+      "name": "宁波房产发布",
+      "id": "nb_fdc_fb",
+      "added_date": "2026-03-01",
+      "category": "房产"
+    }
+  ],
+  "wechat_channels": [
+    {
+      "name": "宁波楼市观察",
+      "id": "",
+      "added_date": "2026-03-01",
+      "category": "房产"
+    }
+  ],
+  "douyin": [
+    {
+      "name": "宁波大鹏别墅",
+      "id": "",
+      "added_date": "2026-03-01",
+      "category": "房产竞品"
+    },
+    {
+      "name": "专注捡漏别墅",
+      "id": "",
+      "added_date": "2026-03-01",
+      "category": "房产竞品"
+    }
+  ],
+  "xiaohongshu": [
+    {
+      "name": "金金爸爸",
+      "id": "",
+      "added_date": "2026-03-01",
+      "category": "房产竞品"
+    },
+    {
+      "name": "宁波好墅推荐",
+      "id": "",
+      "added_date": "2026-03-01",
+      "category": "房产竞品"
+    }
+  ]
+}

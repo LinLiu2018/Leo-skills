@@ -5,6 +5,7 @@ requesting_code_review_skill - 请求代码审查技能
 基于 obra/superpowers 的 requesting-code-review 技能。
 核心理念：早审查，常审查。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -58,7 +59,7 @@ class ReviewResult:
     summary: str = ""
 
 
-class RequestingCodeReviewSkill:
+class RequestingCodeReviewSkill(BaseExecutor):
     """
     请求代码审查技能
 

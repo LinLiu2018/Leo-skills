@@ -5,6 +5,7 @@ finishing_development_branch_skill - 完成开发分支技能
 当实现完成、所有测试通过，需要决定如何集成工作时使用。
 基于 obra/superpowers 的 finishing-development-branch 技能实现。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 import subprocess
 from pathlib import Path
@@ -33,7 +34,7 @@ class FinishResult:
     worktree_cleaned: bool = False
 
 
-class FinishingDevelopmentBranchSkill:
+class FinishingDevelopmentBranchSkill(BaseExecutor):
     """
     完成开发分支技能
 

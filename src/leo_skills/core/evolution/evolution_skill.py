@@ -13,6 +13,8 @@ from typing import Any, Dict, List, Optional
 from dataclasses import dataclass, field
 from enum import Enum
 
+from leo_skills.base import BaseSkill, SkillResult
+
 
 class EvolutionStage(Enum):
     """进化阶段"""
@@ -42,7 +44,7 @@ class PerformanceMetric:
     unit: str = ""
 
 
-class EvolutionSkill:
+class EvolutionSkill(BaseSkill):
     """
     技能进化管理技能
 
@@ -59,6 +61,8 @@ class EvolutionSkill:
     - 性能调优
     - 策略优化
     """
+    supports_direct_execution = True
+    default_schedule = "0 */4 * * *"
 
     def __init__(
         self,
@@ -66,7 +70,7 @@ class EvolutionSkill:
         evolution_path: str = None,
         config_path: str = None
     ):
-        self.name = skill_name
+        self._name = skill_name
         self.version = "1.0.0"
         self.description = "技能进化管理技能 - 支持自我学习和进化"
 
@@ -75,6 +79,14 @@ class EvolutionSkill:
 
         # 初始化进化数据
         self.experience_data = self._load_experience()
+
+    @property
+    def name(self) -> str:
+        return self._name
+
+    def get_actions(self) -> List[str]:
+        return ["learn", "get_tips", "record_metric", "get_metrics",
+                "get_stage", "evolve", "history", "reset", "health_check"]
 
     def _load_experience(self) -> Dict[str, Any]:
         """加载进化数据"""
@@ -109,7 +121,12 @@ class EvolutionSkill:
         except Exception as e:
             print(f"[Error] Failed to save evolution data: {e}")
 
-    def execute(self, **kwargs) -> Dict[str, Any]:
+    def execute(
+        self,
+        action: str = "learn",
+        context: Optional[Dict[str, Any]] = None,
+        **kwargs,
+    ) -> SkillResult:
         """
         执行进化操作
 
@@ -123,34 +140,68 @@ class EvolutionSkill:
                 - evolve: 执行进化
                 - history: 获取历史记录
                 - reset: 重置进化数据
+                - health_check: 系统健康检查（定时直连场景）
 
         Returns:
-            Dict 包含执行结果
+            SkillResult 标准结果
         """
-        action = kwargs.get("action", "learn")
+        params: Dict[str, Any] = {}
+        if isinstance(context, dict):
+            context_params = context.get("params")
+            if isinstance(context_params, dict):
+                params.update(context_params)
+            params.update(context)
+        if isinstance(kwargs.get("params"), dict):
+            params.update(kwargs.pop("params"))
+        params.update(kwargs)
+
+        requested_action = str(params.get("action", action))
+        if context is not None and requested_action == "learn" and not params.get("tip"):
+            requested_action = "health_check"
 
         try:
-            if action == "learn":
-                return self._learn(kwargs)
-            elif action == "get_tips":
-                return self._get_tips()
-            elif action == "record_metric":
-                return self._record_metric(kwargs)
-            elif action == "get_metrics":
-                return self._get_metrics(kwargs)
-            elif action == "get_stage":
-                return self._get_stage()
-            elif action == "evolve":
-                return self._evolve(kwargs)
-            elif action == "history":
-                return self._get_history(kwargs.get("limit", 50))
-            elif action == "reset":
-                return self._reset()
+            if requested_action == "learn":
+                data = self._learn(params)
+            elif requested_action == "get_tips":
+                data = self._get_tips()
+            elif requested_action == "record_metric":
+                data = self._record_metric(params)
+            elif requested_action == "get_metrics":
+                data = self._get_metrics(params)
+            elif requested_action == "get_stage":
+                data = self._get_stage()
+            elif requested_action == "evolve":
+                data = self._evolve(params)
+            elif requested_action == "history":
+                data = self._get_history(params.get("limit", 50))
+            elif requested_action == "reset":
+                data = self._reset()
+            elif requested_action == "health_check":
+                data = self._health_check()
             else:
-                return {"status": "error", "message": f"Unknown action: {action}"}
+                return SkillResult.fail(f"Unknown action: {requested_action}")
+
+            if data.get("status") == "error":
+                return SkillResult.fail(data.get("message", data.get("error", "")))
+            return SkillResult.ok(data=data)
 
         except Exception as e:
-            return {"status": "error", "error": str(e), "skill": self.name}
+            return SkillResult.fail(str(e))
+
+    def _health_check(self) -> Dict[str, Any]:
+        """健康检查：返回当前阶段、经验数量和指标数量。"""
+        tips_count = len(self.experience_data.get("tips", []))
+        metrics_count = len(self.experience_data.get("metrics", []))
+        stage_info = self._get_stage()
+        return {
+            "status": "success",
+            "skill": self.name,
+            "health": "ok",
+            "stage": stage_info.get("stage"),
+            "tips_count": tips_count,
+            "metrics_count": metrics_count,
+            "updated_at": self.experience_data.get("updated_at"),
+        }
 
     def _learn(self, kwargs: Dict) -> Dict[str, Any]:
         """学习新经验"""
@@ -375,7 +426,6 @@ class EvolutionSkill:
             context=context,
             success=success
         )
-
     def get_experience_context(self) -> str:
         """获取用于Prompt的经验上下文"""
         tips = [t["tip"] for t in self.experience_data.get("tips", [])]
@@ -447,15 +497,15 @@ def main():
     print("\n2. 获取进化阶段")
     print("-" * 40)
     result = skill.execute(action="get_stage")
-    print(f"当前阶段: {result['stage']}")
-    print(f"描述: {result['description']}")
+    print(f"当前阶段: {result.data['stage']}")
+    print(f"描述: {result.data['description']}")
 
     # 演示3: 获取经验提示
     print("\n3. 获取经验提示")
     print("-" * 40)
     result = skill.execute(action="get_tips")
-    print(f"经验数: {result['count']}")
-    for tip in result['tips']:
+    print(f"经验数: {result.data['count']}")
+    for tip in result.data['tips']:
         print(f"  - {tip}")
 
     # 演示4: 记录性能指标
@@ -474,14 +524,14 @@ def main():
     print("-" * 40)
     result = skill.execute(action="evolve")
     print(f"进化建议:")
-    for s in result['suggestions']:
+    for s in result.data['suggestions']:
         print(f"  - {s}")
 
     # 演示6: 获取历史
     print("\n6. 获取历史记录")
     print("-" * 40)
     result = skill.execute(action="history")
-    print(f"历史总数: {result['total_count']}")
+    print(f"历史总数: {result.data['total_count']}")
 
     print("\n" + "=" * 60)
     print("演示完成！")

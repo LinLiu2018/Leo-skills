@@ -28,6 +28,7 @@ skill_folders:
   tech_extractor_skill: tech-intelligence
   content_layout_leo_skill: content-layout
   research_assistant_skill: research
+  prompt_vault_skill: ../30-Resources/Prompts
 
 # 日期格式
 daily_format: "%Y-%m-%d"

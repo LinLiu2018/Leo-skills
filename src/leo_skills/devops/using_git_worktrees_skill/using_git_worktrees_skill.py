@@ -5,6 +5,7 @@ using_git_worktrees_skill - 使用 Git Worktree 技能
 创建 Git Worktree 隔离工作空间，允许同时在多个分支上工作而无需切换。
 基于 obra/superpowers 的 using-git-worktrees 技能实现。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 import subprocess
 from pathlib import Path
@@ -21,7 +22,7 @@ class WorktreeResult:
     message: str
 
 
-class UsingGitWorktreesSkill:
+class UsingGitWorktreesSkill(BaseExecutor):
     """
     使用 Git Worktree 技能
 

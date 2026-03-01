@@ -4,6 +4,7 @@ realestate_skill - 房地产运营技能
 
 提供房产数据分析、价格评估、市场分析和投资建议功能。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 import json
 from dataclasses import dataclass, field
@@ -55,7 +56,7 @@ class MarketAnalysis:
     days_on_market: float
 
 
-class RealEstateSkill:
+class RealEstateSkill(BaseExecutor):
     """
     房地产运营技能
 

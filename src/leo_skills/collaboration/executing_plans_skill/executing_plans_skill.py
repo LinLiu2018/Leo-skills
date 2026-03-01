@@ -6,6 +6,7 @@ executing_plans_skill - 执行计划技能
 加载计划，批判性地审查，批量执行任务，批次之间报告审查。
 核心理念：批量执行，架构师审查检查点。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -77,7 +78,7 @@ class ExecutionResult:
     message: str = ""
 
 
-class ExecutingPlansSkill:
+class ExecutingPlansSkill(BaseExecutor):
     """
     执行计划技能
 

@@ -1,12 +1,16 @@
 skill:
   name: analyze_sessions_skill
-  version: 1.0.0
+  version: 2.0.0
   category: utilities
   author: Leo AI System
+  dependencies:
+    - dataclaw>=0.3.0
 
 execution:
-  timeout: 300
+  timeout: 600
   retry: 1
+  env:
+    PYTHONUTF8: "1"
 
 evolution:
   enabled: true

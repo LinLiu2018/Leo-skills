@@ -6,6 +6,7 @@ vercel_preview_skill - Vercel Preview 技能
 用于浏览器验证和阶段检查点。
 基于 obra/superpowers 的 vercel-preview 技能实现。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 import subprocess
 from pathlib import Path
@@ -24,7 +25,7 @@ class PreviewResult:
     message: str
 
 
-class VercelPreviewSkill:
+class VercelPreviewSkill(BaseExecutor):
     """
     Vercel Preview 技能
 

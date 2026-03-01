@@ -13,8 +13,10 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, List, Optional, Any
 
+from leo_skills.base import BaseSkill, SkillResult
 
-class RepoWatchSkill:
+
+class RepoWatchSkill(BaseSkill):
     """核心仓库监控技能"""
 
     def __init__(self, config_path: str = None):
@@ -24,6 +26,13 @@ class RepoWatchSkill:
         self.log_dir = Path(self.config.get("notification", {}).get("local", {}).get("log_dir", "logs/repo_watch"))
         self.log_dir.mkdir(parents=True, exist_ok=True)
 
+    @property
+    def name(self) -> str:
+        return "repo_watch_skill"
+
+    def get_actions(self) -> List[str]:
+        return ["check_all", "check", "generate_report", "send_feishu_report", "get_status"]
+
     def _load_config(self) -> Dict:
         """加载配置文件"""
         if self.config_path.exists():
@@ -31,7 +40,7 @@ class RepoWatchSkill:
                 return yaml.safe_load(f)
         return {}
 
-    def execute(self, action: str, **kwargs) -> Dict[str, Any]:
+    def execute(self, action: str = "check_all", **kwargs) -> SkillResult:
         """执行技能动作"""
         actions = {
             "check_all": self._check_all_repos,
@@ -42,9 +51,15 @@ class RepoWatchSkill:
         }
 
         if action not in actions:
-            return {"success": False, "error": f"Unknown action: {action}"}
+            return SkillResult.fail(f"Unknown action: {action}")
 
-        return actions[action](**kwargs)
+        try:
+            data = actions[action](**kwargs)
+            if not data.get("success", True):
+                return SkillResult.fail(data.get("error", "Unknown error"))
+            return SkillResult.ok(data=data)
+        except Exception as e:
+            return SkillResult.fail(str(e))
 
     def _github_api_request(self, url: str) -> Optional[Any]:
         """发送 GitHub API 请求"""

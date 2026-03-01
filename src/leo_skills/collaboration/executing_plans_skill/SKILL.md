@@ -100,6 +100,14 @@ allowed-tools:
 - 计划说引用技能时引用技能
 - 批次之间：只报告并等待
 - 阻塞时停止，不要猜测
+- 未经用户明确同意，不要在 main/master 分支上开始实施
+
+## 集成
+
+**必需工作流技能**：
+- **using_git_worktrees_skill** - **必需**：开始前设置隔离工作区
+- **writing_plans_skill** - 创建此技能执行的计划
+- **finishing_development_branch_skill** - 所有任务后完成开发
 
 ## 与 writing-plans 配对使用
 

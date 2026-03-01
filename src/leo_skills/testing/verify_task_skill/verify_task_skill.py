@@ -5,6 +5,7 @@ verify_task_skill - 验证任务技能
 使用代码验证工作流验证特定任务的验收标准。
 基于 EXECUTION_PLAN.md 解析任务并验证每个验收标准。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -64,7 +65,7 @@ class VerificationResult:
     message: str = ""
 
 
-class VerifyTaskSkill:
+class VerifyTaskSkill(BaseExecutor):
     """
     验证任务技能
 

@@ -8,6 +8,7 @@ auto_verify_skill - 自动验证技能
 - 执行结果验证
 - 回归测试验证
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 import os
 import re
@@ -57,7 +58,7 @@ class VerifyResult:
     duration_ms: float = 0.0
 
 
-class AutoVerifySkill:
+class AutoVerifySkill(BaseExecutor):
     """
     自动验证技能 - 自动化验证任务结果
 

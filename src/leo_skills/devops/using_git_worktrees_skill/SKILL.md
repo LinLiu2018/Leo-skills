@@ -230,12 +230,13 @@ Worktree 准备就绪于 /Users/jesse/myproject/.worktrees/auth
 ## 集成
 
 **被调用**：
-- **brainstorming**（第4阶段）- 设计和批准后需要实施时必需
+- **brainstorming_skill**（第4阶段）- 设计批准后需要实施时必需
+- **subagent_driven_development_skill** - **必需**：执行任何任务前
+- **executing_plans_skill** - **必需**：执行任何任务前
 - 任何需要隔离工作空间的技能
 
 **与以下配对**：
-- **finishing_a_development_branch_skill** - 工作完成后必需清理
-- **executing_plans_skill** 或 **subagent_driven_development_skill** - 在此 worktree 中进行工作
+- **finishing_development_branch_skill** - 工作完成后必需清理
 
 ## 相关技能
 

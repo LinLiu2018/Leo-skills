@@ -1,3 +1,3 @@
-from .scripts.main import TwitterMonitor
+from .twitter_monitor_skill import TwitterMonitor, TwitterMonitorSkill
 
-__all__ = ["TwitterMonitor"]
+__all__ = ["TwitterMonitorSkill", "TwitterMonitor"]

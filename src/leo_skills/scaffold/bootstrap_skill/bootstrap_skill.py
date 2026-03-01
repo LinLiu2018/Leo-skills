@@ -5,6 +5,7 @@ bootstrap_skill - Bootstrap 引导技能
 在现有代码库中启动新功能时使用，跳过完整规格工作流。
 扫描代码库，理解现有模式，创建有针对性的功能规格和执行计划。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -44,7 +45,7 @@ class BootstrapResult:
     message: str = ""
 
 
-class BootstrapSkill:
+class BootstrapSkill(BaseExecutor):
     """
     Bootstrap 引导技能
 

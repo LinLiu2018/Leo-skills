@@ -15,6 +15,9 @@ from dataclasses import dataclass, field
 from enum import Enum
 import threading
 
+from leo_skills.core.base_executor import BaseExecutor
+from leo_skills.base import SkillResult
+
 
 class LogLevel(Enum):
     """日志级别"""
@@ -46,7 +49,7 @@ class LogEntry:
     details: Dict[str, Any] = field(default_factory=dict)
 
 
-class AutoLoggerSkill:
+class AutoLoggerSkill(BaseExecutor):
     """
     自动日志记录技能
 
@@ -67,6 +70,8 @@ class AutoLoggerSkill:
     DEFAULT_LOG_DIR = "logs"
     DEFAULT_MAX_SIZE = 10 * 1024 * 1024  # 10MB
     DEFAULT_BACKUP_COUNT = 5
+    supports_direct_execution = True
+    default_schedule = "0 * * * *"
 
     def __init__(self, log_dir: str = None, level: str = "INFO"):
         self.name = "auto_logger_skill"
@@ -110,7 +115,7 @@ class AutoLoggerSkill:
         self.logger.addHandler(file_handler)
         self.logger.addHandler(console_handler)
 
-    def execute(self, **kwargs) -> Dict[str, Any]:
+    def execute(self, context: Optional[Dict[str, Any]] = None, **kwargs) -> Any:
         """
         执行日志记录
 
@@ -125,22 +130,45 @@ class AutoLoggerSkill:
         Returns:
             Dict 包含执行结果
         """
-        action = kwargs.get("action", "log")
+        params: Dict[str, Any] = {}
+        if isinstance(context, dict):
+            context_params = context.get("params")
+            if isinstance(context_params, dict):
+                params.update(context_params)
+            params.update(context)
+        if isinstance(kwargs.get("params"), dict):
+            params.update(kwargs.pop("params"))
+        params.update(kwargs)
+
+        action = params.get("action", "log")
 
         try:
             if action == "log":
-                return self._log_message(kwargs)
+                result = self._log_message(params)
             elif action == "rotate":
-                return self._rotate_logs()
+                result = self._rotate_logs()
             elif action == "clear":
-                return self._clear_logs(kwargs.get("before_days", 7))
+                result = self._clear_logs(int(params.get("before_days", 7)))
             elif action == "query":
-                return self._query_logs(kwargs)
+                result = self._query_logs(params)
             else:
-                return {"status": "error", "message": f"Unknown action: {action}"}
+                result = {"status": "error", "message": f"Unknown action: {action}"}
 
         except Exception as e:
-            return {"status": "error", "error": str(e), "skill": self.name}
+            result = {"status": "error", "error": str(e), "skill": self.name}
+
+        if context is None:
+            return result
+
+        if result.get("status") == "error":
+            return SkillResult(
+                success=False,
+                data=result,
+                error=result.get("error") or result.get("message", "auto_logger 执行失败"),
+            )
+        summary = result.get("message") or f"Auto logger action '{action}' completed"
+        markdown = f"## Auto Logger\n\n- action: `{action}`\n- status: `{result.get('status', 'success')}`\n"
+        return SkillResult.ok(data=result, content=summary, markdown=markdown)
 
     def _log_message(self, kwargs: Dict) -> Dict[str, Any]:
         """记录日志消息"""

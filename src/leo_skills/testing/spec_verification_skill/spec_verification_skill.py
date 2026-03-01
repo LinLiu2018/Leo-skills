@@ -5,6 +5,7 @@ spec_verification_skill - 规格验证技能
 验证实现是否符合规格说明书。
 基于 FEATURE_SPEC.md 验证功能实现。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -41,7 +42,7 @@ class SpecVerificationResult:
     message: str = ""
 
 
-class SpecVerificationSkill:
+class SpecVerificationSkill(BaseExecutor):
     """
     规格验证技能
 

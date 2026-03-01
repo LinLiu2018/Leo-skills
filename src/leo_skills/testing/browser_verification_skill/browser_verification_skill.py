@@ -5,6 +5,7 @@ browser_verification_skill - 浏览器验证技能
 使用 Playwright 或 Browser MCP 工具进行浏览器自动化验证。
 支持导航、点击、表单填写、元素检查等操作。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -60,7 +61,7 @@ class BrowserVerificationResult:
     message: str = ""
 
 
-class BrowserVerificationSkill:
+class BrowserVerificationSkill(BaseExecutor):
     """
     浏览器验证技能
 

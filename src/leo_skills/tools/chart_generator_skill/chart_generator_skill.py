@@ -4,6 +4,7 @@ chart_generator_skill - 图表生成技能
 
 使用 Matplotlib 生成商业图表：饼图、柱状图、折线图、热力图等。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -52,7 +53,7 @@ class ChartResult:
     message: str = ""
 
 
-class ChartGeneratorSkill:
+class ChartGeneratorSkill(BaseExecutor):
     """
     图表生成技能
 

@@ -1,0 +1,124 @@
+{
+  "x": [
+    {
+      "name": "向阳乔木",
+      "id": "@vista8",
+      "added_date": "2026-03-01",
+      "category": "AI 科技",
+      "priority": "high"
+    },
+    {
+      "name": "OpenClaw",
+      "id": "@openclaw",
+      "added_date": "2026-03-01",
+      "category": "AI 工具",
+      "priority": "high"
+    },
+    {
+      "name": "Anthropic AI",
+      "id": "@AnthropicAI",
+      "added_date": "2026-03-01",
+      "category": "AI 公司",
+      "priority": "medium"
+    },
+    {
+      "name": "GitHub",
+      "id": "@github",
+      "added_date": "2026-03-01",
+      "category": "开发工具",
+      "priority": "medium"
+    }
+  ],
+  "wechat_official": [
+    {
+      "name": "宁波房产发布",
+      "id": "nb_fdc_fb",
+      "added_date": "2026-03-01",
+      "category": "房产",
+      "priority": "high"
+    },
+    {
+      "name": "宁波楼市观察",
+      "id": "nb_lsgc",
+      "added_date": "2026-03-01",
+      "category": "房产",
+      "priority": "high"
+    }
+  ],
+  "wechat_channels": [
+    {
+      "name": "宁波楼市观察",
+      "id": "",
+      "added_date": "2026-03-01",
+      "category": "房产",
+      "priority": "high"
+    }
+  ],
+  "douyin": [
+    {
+      "name": "宁波大鹏别墅",
+      "id": "",
+      "added_date": "2026-03-01",
+      "category": "房产竞品",
+      "priority": "high"
+    },
+    {
+      "name": "逸别墅日子",
+      "id": "",
+      "added_date": "2026-03-01",
+      "category": "房产竞品",
+      "priority": "high"
+    },
+    {
+      "name": "专注捡漏别墅",
+      "id": "",
+      "added_date": "2026-03-01",
+      "category": "房产竞品",
+      "priority": "high"
+    },
+    {
+      "name": "捡漏别墅王",
+      "id": "",
+      "added_date": "2026-03-01",
+      "category": "房产竞品",
+      "priority": "medium"
+    },
+    {
+      "name": "宁波周周别墅",
+      "id": "",
+      "added_date": "2026-03-01",
+      "category": "房产竞品",
+      "priority": "medium"
+    }
+  ],
+  "xiaohongshu": [
+    {
+      "name": "金金爸爸",
+      "id": "",
+      "added_date": "2026-03-01",
+      "category": "房产竞品",
+      "priority": "high"
+    },
+    {
+      "name": "宁波好墅推荐",
+      "id": "",
+      "added_date": "2026-03-01",
+      "category": "房产竞品",
+      "priority": "high"
+    },
+    {
+      "name": "之里好别墅丨安家",
+      "id": "",
+      "added_date": "2026-03-01",
+      "category": "房产竞品",
+      "priority": "medium"
+    },
+    {
+      "name": "飞鱼自然地",
+      "id": "",
+      "added_date": "2026-03-01",
+      "category": "房产竞品",
+      "priority": "medium"
+    }
+  ]
+}

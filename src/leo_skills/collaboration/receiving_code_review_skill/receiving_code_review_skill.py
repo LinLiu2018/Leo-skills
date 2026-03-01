@@ -5,6 +5,7 @@ receiving_code_review_skill - 接收代码审查技能
 基于 obra/superpowers 的 receiving-code-review 技能。
 验证后再实现。询问后再假设。技术正确性高于社交舒适度。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -60,7 +61,7 @@ class CodeReviewResult:
     message: str = ""
 
 
-class ReceivingCodeReviewSkill:
+class ReceivingCodeReviewSkill(BaseExecutor):
     """
     接收代码审查技能
 

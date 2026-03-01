@@ -5,6 +5,7 @@ update_docs_skill - 更新文档技能
 在提交后更新文档，同步README、AGENTS.md、CHANGELOG等。
 基于 obra/superpowers 的 update-docs 技能实现。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 import re
 import subprocess
@@ -33,7 +34,7 @@ class DocUpdateResult:
     summary: str = ""
 
 
-class UpdateDocsSkill:
+class UpdateDocsSkill(BaseExecutor):
     """
     更新文档技能
 

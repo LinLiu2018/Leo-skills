@@ -238,4 +238,4 @@ git commit -m "feat: add User model"
 
 ## 致谢
 
-基于 [obra/superpowers](https://github.com/obra/superpowers) 项目
+基于 [obra/superpowers](https://github.com/obra/superpowers) v4.3.1

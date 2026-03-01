@@ -4,6 +4,7 @@ criteria_audit_skill - 标准审计技能
 
 审计验收标准是否符合SMART原则：具体、可衡量、可实现、相关、有时限。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -37,7 +38,7 @@ class AuditReport:
     criteria: List[CriterionAudit] = field(default_factory=list)
 
 
-class CriteriaAuditSkill:
+class CriteriaAuditSkill(BaseExecutor):
     """
     标准审计技能
 

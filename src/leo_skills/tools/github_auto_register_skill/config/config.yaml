@@ -1,0 +1,30 @@
+skill:
+  name: github_auto_register_skill
+  version: 1.0.0
+  category: tools
+
+execution:
+  timeout: 300
+  retry: 3
+
+evolution:
+  enabled: true
+  learn_on_failure: true
+  max_tips: 100
+
+# GitHub 扫描配置
+github:
+  min_stars: 50
+  max_age_days: 90
+  auto_mode: false
+  sources:
+    - anthropics/skills
+    - obra/superpowers
+    - travisvn/awesome-claude-skills
+    - hesreallyhim/awesome-claude-code-agents
+
+# 目标目录
+target_dirs:
+  - src/leo_skills/tools/
+  - src/leo_skills/utilities/
+  - src/leo_skills/core/

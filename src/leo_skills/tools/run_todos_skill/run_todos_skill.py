@@ -5,6 +5,7 @@ run_todos_skill - 执行TODO技能
 实现标记为 [ready] 的TODO项，自动提交更改。
 基于 obra/superpowers 的 run-todos 技能实现。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 import re
 import subprocess
@@ -24,7 +25,7 @@ class TodoImplementation:
     skipped: bool = False
 
 
-class RunTodosSkill:
+class RunTodosSkill(BaseExecutor):
     """
     执行TODO技能
 

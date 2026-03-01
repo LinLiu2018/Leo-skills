@@ -4,6 +4,7 @@ ecommerce_skill - 电商运营技能
 
 提供电商数据分析、竞品监控、营销策略和运营优化功能。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 import json
 import re
@@ -57,7 +58,7 @@ class CompetitorAnalysis:
     weaknesses: List[str] = field(default_factory=list)
 
 
-class EcommerceSkill:
+class EcommerceSkill(BaseExecutor):
     """
     电商运营技能
 

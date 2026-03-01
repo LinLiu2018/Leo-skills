@@ -5,6 +5,7 @@ test_driven_development_skill - 测试驱动开发技能
 基于 obra/superpowers 的 test-driven-development 技能。
 核心理念：先写测试，观察失败，编写最少代码通过。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -57,7 +58,7 @@ class TDDResult:
     message: str = ""
 
 
-class TestDrivenDevelopmentSkill:
+class TestDrivenDevelopmentSkill(BaseExecutor):
     """
     测试驱动开发技能
 

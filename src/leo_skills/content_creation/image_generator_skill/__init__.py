@@ -1,3 +1,2 @@
-from .image_generator_skill import ImageGeneratorSkill
-
-__all__ = ["ImageGeneratorSkill"]
+# image_generator_skill
+# 图片生成

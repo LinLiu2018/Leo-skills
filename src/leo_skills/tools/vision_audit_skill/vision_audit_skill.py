@@ -4,11 +4,12 @@ vision_audit_skill - 技能实现
 
 详情请查看 SKILL.md
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 from typing import Dict, Any, Optional
 
 
-class VisionAuditSkill:
+class VisionAuditSkill(BaseExecutor):
     """
     VisionAuditSkill
 

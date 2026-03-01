@@ -1,0 +1,371 @@
+{
+  "version": "1.0.0",
+  "source": "精选自 claude-skill-prompt-architect + claude-code-skill-factory + 12精选框架图",
+  "prompts": [
+    {
+      "title": "CO-STAR 通用框架",
+      "content": "# Context（背景）\n{context}\n\n# Objective（目标）\n{objective}\n\n# Style（风格）\n{style}\n\n# Tone（语气）\n{tone}\n\n# Audience（受众）\n{audience}\n\n# Response（响应格式）\n{response_format}",
+      "category": "system",
+      "framework": "CO-STAR",
+      "score": 90,
+      "tags": [
+        "框架",
+        "通用",
+        "结构化"
+      ],
+      "use_case": "适用于任何需要结构化输出的场景"
+    },
+    {
+      "title": "RISEN 多步骤流程框架",
+      "content": "# Role（角色）\n你是{role}\n\n# Instructions（指令）\n{instructions}\n\n# Steps（步骤）\n1. {step1}\n2. {step2}\n3. {step3}\n\n# End Goal（目标）\n{end_goal}\n\n# Narrowing（约束）\n{constraints}",
+      "category": "system",
+      "framework": "RISEN",
+      "score": 88,
+      "tags": [
+        "框架",
+        "多步骤",
+        "流程"
+      ],
+      "use_case": "适用于需要分步骤执行的复杂任务"
+    },
+    {
+      "title": "TIDD-EC 高精度任务框架",
+      "content": "# Task（任务）\n{task}\n\n# Instructions（指令）\n{instructions}\n\n# Do（要做的）\n- {do_1}\n- {do_2}\n\n# Don't（不要做的）\n- {dont_1}\n- {dont_2}\n\n# Examples（示例）\n{examples}\n\n# Constraints（约束）\n{constraints}",
+      "category": "system",
+      "framework": "TIDD-EC",
+      "score": 92,
+      "tags": [
+        "框架",
+        "高精度",
+        "约束"
+      ],
+      "use_case": "适用于需要精确控制输出的任务"
+    },
+    {
+      "title": "RTF 简单任务框架",
+      "content": "# Role（角色）\n你是{role}\n\n# Task（任务）\n{task}\n\n# Format（格式）\n{format}",
+      "category": "system",
+      "framework": "custom",
+      "score": 75,
+      "tags": [
+        "框架",
+        "简单",
+        "快速"
+      ],
+      "use_case": "适用于简单直接的任务"
+    },
+    {
+      "title": "Chain of Thought 推理模板",
+      "content": "请一步步思考以下问题：\n\n问题：{question}\n\n请按以下步骤推理：\n1. 理解问题：明确问题的核心是什么\n2. 分解问题：将复杂问题拆解为子问题\n3. 逐步推理：对每个子问题进行分析\n4. 综合结论：整合所有分析得出最终答案\n5. 自我检验：检查推理过程是否有逻辑漏洞\n\n在每一步之前，先说明你的思考过程。",
+      "category": "analysis",
+      "framework": "chain_of_thought",
+      "score": 88,
+      "tags": [
+        "推理",
+        "思维链",
+        "分析"
+      ],
+      "use_case": "复杂问题分析和推理"
+    },
+    {
+      "title": "Chain of Density 迭代精炼模板",
+      "content": "请对以下内容进行5轮迭代精炼：\n\n原始内容：{content}\n\n每轮要求：\n- 保持总长度不变\n- 增加信息密度\n- 替换冗余表述为更精确的描述\n- 融入更多关键实体和细节\n\n输出格式：\n第1轮：[精炼结果]\n第2轮：[精炼结果]\n...\n第5轮：[最终精炼结果]",
+      "category": "writing",
+      "framework": "custom",
+      "score": 85,
+      "tags": [
+        "精炼",
+        "迭代",
+        "写作"
+      ],
+      "use_case": "内容精炼和信息密度提升"
+    },
+    {
+      "title": "代码审查 Prompt",
+      "content": "请审查以下代码，关注：\n1. 安全漏洞（注入、XSS、认证绕过）\n2. 性能问题（N+1查询、内存泄漏）\n3. 代码规范（命名、结构、注释）\n4. 边界情况处理\n\n代码：\n```\n{code}\n```\n\n请以表格形式输出：| 问题 | 严重程度 | 位置 | 建议修复 |",
+      "category": "coding",
+      "framework": "custom",
+      "score": 85,
+      "tags": [
+        "代码审查",
+        "安全",
+        "质量"
+      ],
+      "use_case": "代码审查时使用"
+    },
+    {
+      "title": "技术方案设计 Prompt",
+      "content": "请为以下需求设计技术方案：\n\n需求：{requirement}\n\n请包含：\n1. 架构设计（组件图）\n2. 技术选型及理由\n3. 数据模型设计\n4. API 接口设计\n5. 部署方案\n6. 风险评估和应对\n\n约束：\n- 技术栈：{tech_stack}\n- 预算：{budget}\n- 时间：{timeline}",
+      "category": "coding",
+      "framework": "custom",
+      "score": 87,
+      "tags": [
+        "架构",
+        "设计",
+        "方案"
+      ],
+      "use_case": "新项目或新功能的技术方案设计"
+    },
+    {
+      "title": "商业分析 Prompt",
+      "content": "请分析以下商业场景：\n\n背景：{background}\n行业：{industry}\n\n分析维度：\n1. 市场规模和增长趋势\n2. 竞争格局（主要玩家、市场份额）\n3. 用户画像和需求痛点\n4. 商业模式可行性\n5. SWOT 分析\n6. 建议的切入策略\n\n请用数据支撑观点，输出结构化报告。",
+      "category": "business",
+      "framework": "custom",
+      "score": 83,
+      "tags": [
+        "商业分析",
+        "市场",
+        "策略"
+      ],
+      "use_case": "商业决策和市场分析"
+    },
+    {
+      "title": "内容创作 Prompt",
+      "content": "请创作以下内容：\n\n主题：{topic}\n类型：{content_type}\n目标受众：{audience}\n字数：{word_count}\n风格：{style}\n\n要求：\n- 开头要有吸引力的 hook\n- 使用具体案例和数据支撑\n- 结尾有明确的行动号召\n- 适合{platform}平台传播\n\n参考风格：{reference}",
+      "category": "writing",
+      "framework": "CO-STAR",
+      "score": 82,
+      "tags": [
+        "内容创作",
+        "写作",
+        "营销"
+      ],
+      "use_case": "公众号、社交媒体等内容创作"
+    },
+    {
+      "title": "Few-Shot 少样本学习模板",
+      "content": "请根据以下示例，完成类似的任务：\n\n示例1：\n输入：{example1_input}\n输出：{example1_output}\n\n示例2：\n输入：{example2_input}\n输出：{example2_output}\n\n示例3：\n输入：{example3_input}\n输出：{example3_output}\n\n现在请处理：\n输入：{actual_input}\n输出：",
+      "category": "system",
+      "framework": "few_shot",
+      "score": 86,
+      "tags": [
+        "少样本",
+        "学习",
+        "模板"
+      ],
+      "use_case": "需要AI学习特定模式后执行任务"
+    },
+    {
+      "title": "XML 结构化 Prompt 模板",
+      "content": "<task>\n{task_description}\n</task>\n\n<context>\n{context}\n</context>\n\n<instructions>\n{instructions}\n</instructions>\n\n<constraints>\n{constraints}\n</constraints>\n\n<output_format>\n{output_format}\n</output_format>\n\n<examples>\n{examples}\n</examples>",
+      "category": "system",
+      "framework": "xml_structure",
+      "score": 89,
+      "tags": [
+        "XML",
+        "结构化",
+        "Claude最佳实践"
+      ],
+      "use_case": "Claude API 调用时使用XML标签提高准确性"
+    },
+    {
+      "title": "Bug 诊断 Prompt",
+      "content": "请帮我诊断以下 bug：\n\n现象：{symptom}\n环境：{environment}\n复现步骤：\n1. {step1}\n2. {step2}\n3. {step3}\n\n已尝试的解决方案：{tried_solutions}\n\n相关代码：\n```\n{code}\n```\n\n请分析：\n1. 可能的根因（按可能性排序）\n2. 每个根因的验证方法\n3. 推荐的修复方案\n4. 如何防止类似问题再次发生",
+      "category": "coding",
+      "framework": "custom",
+      "score": 86,
+      "tags": [
+        "调试",
+        "bug",
+        "诊断"
+      ],
+      "use_case": "排查和修复代码bug"
+    },
+    {
+      "title": "数据分析报告 Prompt",
+      "content": "请基于以下数据生成分析报告：\n\n数据描述：{data_description}\n分析目标：{analysis_goal}\n\n请包含：\n1. 数据概览（关键指标摘要）\n2. 趋势分析（同比/环比变化）\n3. 异常值识别和解释\n4. 关键发现（3-5个核心洞察）\n5. 可视化建议（推荐的图表类型）\n6. 行动建议（基于数据的决策建议）\n\n输出格式：Markdown 结构化报告",
+      "category": "analysis",
+      "framework": "custom",
+      "score": 84,
+      "tags": [
+        "数据分析",
+        "报告",
+        "洞察"
+      ],
+      "use_case": "数据分析和报告生成"
+    },
+    {
+      "title": "MetaPrompt - 提示词生成器",
+      "content": "你是一个专业的提示词工程师。请根据用户的需求，生成一个高质量的提示词。\n\n用户需求：{user_need}\n目标模型：{target_model}\n\n生成的提示词应该：\n1. 明确角色定义\n2. 清晰的任务描述\n3. 具体的输出格式要求\n4. 适当的约束条件\n5. 包含1-2个示例（如适用）\n\n请输出：\n- 生成的提示词\n- 使用说明\n- 适用场景\n- 预期效果评分（1-10）",
+      "category": "system",
+      "framework": "custom",
+      "score": 91,
+      "tags": [
+        "元提示词",
+        "生成器",
+        "提示词工程"
+      ],
+      "use_case": "需要自动生成高质量提示词时使用"
+    },
+    {
+      "title": "A.P.E 行动目的期望框架",
+      "content": "# Action（行动）\n定义需要执行的具体行动或活动。\n{action}\n\n# Purpose（目的）\n说明行动背后的意图或目标。\n{purpose}\n\n# Expectation（期望）\n描述期望的结果或输出标准。\n{expectation}",
+      "category": "system",
+      "framework": "APE",
+      "score": 82,
+      "tags": [
+        "框架",
+        "行动导向",
+        "目标明确",
+        "简洁"
+      ],
+      "use_case": "快速定义任务时使用，适合目标明确的单步任务"
+    },
+    {
+      "title": "B.R.O.K.E 全面任务框架",
+      "content": "# Background（背景）\n{background}\n\n# Role（角色）\n你是{role}\n\n# Objective（目标）\n{objective}\n\n# Key Result（关键结果）\n期望达成的关键结果：\n- {key_result_1}\n- {key_result_2}\n- {key_result_3}\n\n# Evolve（改进）\n基于初始输出，请进一步优化：\n{evolve_instructions}",
+      "category": "system",
+      "framework": "BROKE",
+      "score": 87,
+      "tags": [
+        "框架",
+        "全面",
+        "OKR",
+        "迭代优化"
+      ],
+      "use_case": "需要全面定义任务并带有迭代改进机制的场景"
+    },
+    {
+      "title": "C.O.A.S.T 场景化任务框架",
+      "content": "# Context（背景）\n{context}\n\n# Objective（目标）\n{objective}\n\n# Actions（行动）\n需要执行的具体步骤：\n1. {action_1}\n2. {action_2}\n3. {action_3}\n\n# Scenario（场景）\n具体应用场景：{scenario}\n\n# Task（任务）\n最终需要完成的任务：{task}",
+      "category": "system",
+      "framework": "COAST",
+      "score": 85,
+      "tags": [
+        "框架",
+        "场景化",
+        "行动步骤",
+        "结构化"
+      ],
+      "use_case": "需要在特定场景下执行多步骤任务"
+    },
+    {
+      "title": "T.A.G 极简任务框架",
+      "content": "# Task（任务）\n{task}\n\n# Action（行动）\n{action}\n\n# Goal（目标）\n{goal}",
+      "category": "system",
+      "framework": "TAG",
+      "score": 78,
+      "tags": [
+        "框架",
+        "极简",
+        "快速",
+        "入门"
+      ],
+      "use_case": "最简单的提示词框架，适合新手快速上手"
+    },
+    {
+      "title": "R.I.S.E 角色输入步骤期望框架",
+      "content": "# Role（角色）\n你是{role}\n\n# Input（输入）\n以下是需要处理的输入信息：\n{input}\n\n# Steps（步骤）\n请按以下步骤执行：\n1. {step_1}\n2. {step_2}\n3. {step_3}\n\n# Expectation（期望）\n期望输出：{expectation}",
+      "category": "system",
+      "framework": "RISE",
+      "score": 86,
+      "tags": [
+        "框架",
+        "角色扮演",
+        "步骤化",
+        "输入输出"
+      ],
+      "use_case": "需要明确角色、输入数据和执行步骤的任务"
+    },
+    {
+      "title": "T.R.A.C.E 任务请求行动上下文示例框架",
+      "content": "# Task（任务）\n{task}\n\n# Request（请求）\n具体请求：{request}\n\n# Action（行动）\n需要采取的行动：{action}\n\n# Context（上下文）\n相关背景信息：{context}\n\n# Example（示例）\n参考示例：\n输入：{example_input}\n输出：{example_output}",
+      "category": "system",
+      "framework": "TRACE",
+      "score": 88,
+      "tags": [
+        "框架",
+        "示例驱动",
+        "上下文",
+        "全面"
+      ],
+      "use_case": "需要提供示例来引导AI输出的复杂任务"
+    },
+    {
+      "title": "E.R.A 期望角色行动框架",
+      "content": "# Expectation（期望）\n期望的输出结果：{expectation}\n\n# Role（角色）\n你是{role}\n\n# Action（行动）\n请执行以下行动：{action}",
+      "category": "system",
+      "framework": "ERA",
+      "score": 80,
+      "tags": [
+        "框架",
+        "期望优先",
+        "简洁",
+        "结果导向"
+      ],
+      "use_case": "先定义期望结果再分配角色和行动，适合结果导向的任务"
+    },
+    {
+      "title": "C.A.R.E 上下文行动结果示例框架",
+      "content": "# Context（上下文）\n{context}\n\n# Action（行动）\n需要执行的行动：{action}\n\n# Result（结果）\n期望的结果：{result}\n\n# Example（示例）\n参考示例：\n{example}",
+      "category": "system",
+      "framework": "CARE",
+      "score": 85,
+      "tags": [
+        "框架",
+        "示例驱动",
+        "结果导向",
+        "上下文"
+      ],
+      "use_case": "需要通过示例引导输出并明确期望结果的任务"
+    },
+    {
+      "title": "R.O.S.E.S 角色目标场景解决方案步骤框架",
+      "content": "# Role（角色）\n你是{role}\n\n# Objective（目标）\n{objective}\n\n# Scenario（场景）\n当前场景：{scenario}\n\n# Expected Solution（期望解决方案）\n{expected_solution}\n\n# Steps（步骤）\n执行步骤：\n1. {step_1}\n2. {step_2}\n3. {step_3}\n4. {step_4}",
+      "category": "system",
+      "framework": "ROSES",
+      "score": 89,
+      "tags": [
+        "框架",
+        "场景化",
+        "解决方案",
+        "全面",
+        "步骤化"
+      ],
+      "use_case": "复杂问题求解，需要在特定场景下给出完整解决方案"
+    },
+    {
+      "title": "I.C.I.O 指令背景输入输出框架",
+      "content": "# Instruction（指令）\n{instruction}\n\n# Context（背景）\n{context}\n\n# Input Data（输入数据）\n{input_data}\n\n# Output Indicator（输出引导）\n请按以下格式输出：\n{output_format}",
+      "category": "system",
+      "framework": "ICIO",
+      "score": 84,
+      "tags": [
+        "框架",
+        "数据处理",
+        "输入输出",
+        "格式化"
+      ],
+      "use_case": "数据处理和转换任务，有明确的输入输出格式要求"
+    },
+    {
+      "title": "C.R.I.S.P.E 角色洞察声明个性实验框架",
+      "content": "# Capacity/Role（角色）\n你是{role}，具备{capacity}\n\n# Insight（洞察）\n关键洞察和背景知识：\n{insight}\n\n# Statement（声明）\n需要你完成的任务：{statement}\n\n# Personality（个性）\n回复风格：{personality}\n\n# Experiment（实验）\n请提供多个不同角度的方案供选择：\n- 方案A：{approach_a}\n- 方案B：{approach_b}\n- 方案C：{approach_c}",
+      "category": "system",
+      "framework": "CRISPE",
+      "score": 90,
+      "tags": [
+        "框架",
+        "创意",
+        "多方案",
+        "个性化",
+        "高级"
+      ],
+      "use_case": "需要AI展现特定个性并提供多种创意方案的高级任务"
+    },
+    {
+      "title": "R.A.C.E 角色行动背景期望框架",
+      "content": "# Role（角色）\n你是{role}\n\n# Action（行动）\n{action}\n\n# Context（背景）\n{context}\n\n# Expectation（期望）\n{expectation}",
+      "category": "system",
+      "framework": "RACE",
+      "score": 83,
+      "tags": [
+        "框架",
+        "角色扮演",
+        "通用",
+        "平衡"
+      ],
+      "use_case": "通用型框架，平衡了角色、行动、背景和期望四个维度"
+    }
+  ]
+}

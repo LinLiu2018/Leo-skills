@@ -1,0 +1,72 @@
+# 多平台自动发布配置
+
+# 平台配置
+platforms:
+  douyin:
+    enabled: true
+    cookie_file: "cookies/douyin_cookie.json"
+    headless: false
+    max_title_length: 30
+    max_tags: 5
+    content_style: "hook"  # 钩子开头+悬念
+
+  shipinhao:
+    enabled: true
+    cookie_file: "cookies/shipinhao_cookie.json"
+    headless: false
+    max_title_length: 20
+    max_tags: 3
+    content_style: "trust"  # 信任感+深度
+
+  xiaohongshu:
+    enabled: true
+    cookie_file: "cookies/xhs_cookie.json"
+    headless: false
+    max_title_length: 20
+    max_tags: 10
+    content_style: "seedling"  # 种草+emoji
+
+  kuaishou:
+    enabled: false
+    cookie_file: "cookies/ks_cookie.json"
+    headless: false
+
+  xianyu:
+    enabled: false
+    cookie_file: "cookies/xianyu_cookie.json"
+    headless: false
+    content_style: "direct"  # 直给+价格
+
+# 发布策略
+publish_strategy:
+  # 最佳发布时间（各平台）
+  optimal_times:
+    douyin: ["12:00", "18:00", "21:00"]
+    shipinhao: ["08:00", "12:00", "20:00"]
+    xiaohongshu: ["12:00", "18:00", "22:00"]
+    xianyu: ["09:00", "14:00", "20:00"]
+
+  # 发布间隔（分钟），避免被平台检测
+  interval_between_platforms: 5
+
+  # 失败重试
+  retry_count: 3
+  retry_delay: 60  # 秒
+
+# 内容适配
+content_adaptation:
+  # 房地产专用标签库
+  realestate_tags:
+    douyin: ["宁波买房", "宁波别墅", "度假养老", "房产", "新房推荐"]
+    xiaohongshu: ["宁波买房攻略", "别墅推荐", "度假房产", "养老地产", "宁波周边游"]
+    shipinhao: ["宁波房产", "别墅生活", "养老度假"]
+
+# Chrome 配置
+chrome:
+  path: ""  # 留空使用 Playwright 内置浏览器
+  headless: false
+
+# 日志
+logging:
+  level: "INFO"
+  file: "logs/publish.log"

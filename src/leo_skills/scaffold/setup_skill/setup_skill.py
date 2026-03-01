@@ -4,6 +4,7 @@ setup_skill - 设置技能
 
 用于项目初始设置和配置。检测项目类型，安装依赖，配置环境。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -51,7 +52,7 @@ class SetupResult:
     message: str = ""
 
 
-class SetupSkill:
+class SetupSkill(BaseExecutor):
     """
     设置技能
 

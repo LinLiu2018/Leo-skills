@@ -5,6 +5,7 @@ configure_verification_skill - 配置验证技能
 配置项目的验证命令，用于测试、lint、类型检查等。
 基于 obra/superpowers 的 configure-verification 技能实现。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 import json
 from pathlib import Path
@@ -25,7 +26,7 @@ class VerificationConfig:
     dev_server_startup_seconds: int = 5
 
 
-class ConfigureVerificationSkill:
+class ConfigureVerificationSkill(BaseExecutor):
     """
     配置验证技能
 

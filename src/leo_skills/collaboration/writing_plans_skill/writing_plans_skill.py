@@ -5,6 +5,7 @@ writing_plans_skill - 编写实施计划技能
 基于 obra/superpowers 的 writing-plans 技能。
 编写全面的实施计划，假设工程师对代码库零上下文。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -69,7 +70,7 @@ class WritingPlansResult:
     message: str = ""
 
 
-class WritingPlansSkill:
+class WritingPlansSkill(BaseExecutor):
     """
     编写实施计划技能
 

@@ -211,6 +211,7 @@ vs. Executing Plans（并行会话）：
 ## 红旗
 
 **永远不要**：
+- 未经用户明确同意，在 main/master 分支上开始实施
 - 跳过审查（规范符合性 或 代码质量）
 - 继续未修复的问题
 - 并行分发多个实施子代理（冲突）
@@ -241,7 +242,9 @@ vs. Executing Plans（并行会话）：
 ## 集成
 
 **必需工作流技能**：
+- **using_git_worktrees_skill** - **必需**：开始前设置隔离工作区
 - **writing_plans_skill** - 创建此技能执行的计划
+- **requesting_code_review_skill** - 审查子代理的代码审查模板
 - **finishing_development_branch_skill** - 所有任务后完成开发
 
 **子代理应使用**：

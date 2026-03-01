@@ -248,6 +248,40 @@ tags: [MOC, 索引]
 ---
 *最后更新: {{datetime}}*
 """,
+            "prompt": """---
+created: {{datetime}}
+prompt_id: {{prompt_id}}
+category: {{category}}
+framework: {{framework}}
+version: {{version}}
+score: {{score}}
+tags: [提示词, {{category}}, {{tags}}]
+usage_count: {{usage_count}}
+---
+
+# {{title}}
+
+## 提示词内容
+
+```
+{{content}}
+```
+
+## 元信息
+
+- 分类: {{category}}
+- 框架: {{framework}}
+- 评分: {{score}}/100
+- 版本: v{{version}}
+- 使用次数: {{usage_count}}
+
+## 使用场景
+
+{{use_case}}
+
+## 相关链接
+{{links}}
+""",
         }
 
     def _render_template(self, template_name: str, variables: Dict[str, Any]) -> str:
@@ -835,7 +869,7 @@ Obsidian Sync Skill 帮助
 
 使用示例:
 ```python
-sync = ObsidianSync(vault_path="D:/Obsidian/MyVault")
+sync = ObsidianSync(vault_path="/path/to/your/vault")
 sync.quick_capture("重要内容...", title="学习笔记")
 sync.create_daily_note(plan=["任务1", "任务2"])
 ```

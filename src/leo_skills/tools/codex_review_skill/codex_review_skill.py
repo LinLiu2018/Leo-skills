@@ -4,6 +4,7 @@ codex_review_skill - Codex代码审查技能
 
 使用 Claude Code 的规范化代码审查流程进行审查。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -48,7 +49,7 @@ class CodeReviewResult:
     approved: bool = False
 
 
-class CodexReviewSkill:
+class CodexReviewSkill(BaseExecutor):
     """
     Codex代码审查技能
 

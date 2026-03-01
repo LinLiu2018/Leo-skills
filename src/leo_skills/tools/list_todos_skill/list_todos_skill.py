@@ -5,6 +5,7 @@ list_todos_skill - 列出TODO技能
 分析并优先处理 TODOS.md 中的TODO项，提供实现指导。
 基于 obra/superpowers 的 list-todos 技能实现。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 import re
 from pathlib import Path
@@ -51,7 +52,7 @@ class TodoAnalysis:
     next_action: str = ""
 
 
-class ListTodosSkill:
+class ListTodosSkill(BaseExecutor):
     """
     列出TODO技能
 

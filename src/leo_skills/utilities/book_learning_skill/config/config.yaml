@@ -1,0 +1,45 @@
+# 书籍学习助手配置
+
+# Obsidian Vault 路径
+vault_path: "d:/桌面/Leo-Outputs"
+
+# 书籍下载目录（留空则使用默认目录）
+download_dir: ""
+
+# AI 提供商: anthropic / openai / local
+llm_provider: "anthropic"
+
+# Obsidian 笔记输出子目录
+obsidian_output_folder: "30-Resources/Books"
+
+# 知识点分析设置
+analysis:
+  max_chunk_size: 4000  # 每次发送给 AI 的最大字符数
+  max_knowledge_points_per_chapter: 8  # 每章最大知识点数
+
+# 中文翻译标注（强制规则）
+# 所有英文书籍的书名、章节名自动标注简体中文翻译
+auto_translate_chinese: true
+
+# 常用书名翻译映射（优先使用，避免 AI 翻译不一致）
+title_translations:
+  "Artificial Intelligence: A Modern Approach": "人工智能：一种现代方法"
+  "Deep Learning": "深度学习"
+  "Pattern Recognition and Machine Learning": "模式识别与机器学习"
+  "Machine Learning": "机器学习"
+  "Introduction to Algorithms": "算法导论"
+  "Computer Networking: A Top-Down Approach": "计算机网络：自顶向下方法"
+  "Design Patterns": "设计模式"
+  "Clean Code": "代码整洁之道"
+  "The Pragmatic Programmer": "程序员修炼之道"
+  "Structure and Interpretation of Computer Programs": "计算机程序的构造和解释"
+  "Reinforcement Learning: An Introduction": "强化学习导论"
+  "Speech and Language Processing": "语音与语言处理"
+  "Computer Vision: Algorithms and Applications": "计算机视觉：算法与应用"
+  "Natural Language Processing with Python": "Python自然语言处理"
+  "Hands-On Machine Learning": "机器学习实战"
+
+# 默认标签
+default_tags:
+  - 学习笔记
+  - book

@@ -1,0 +1,15 @@
+# Prompt Vault 配置
+obsidian_vault_path: "d:/桌面/Leo-Outputs"
+obsidian_prompt_folder: "30-Resources/Prompts"
+auto_score: true
+auto_export_to_obsidian: false
+max_versions_per_prompt: 10
+
+# 自动进化配置
+evolution:
+  auto_evolve: true                # 是否开启自动进化
+  min_feedback_count: 3            # 最少反馈次数才触发自动进化
+  low_rating_threshold: 3.5        # 平均评分低于此值触发进化
+  min_usage_for_score_check: 5     # 使用次数达到此值后检查评分
+  low_score_threshold: 70          # 评分低于此值触发进化
+  max_auto_evolve_per_day: 5       # 每天最多自动进化次数

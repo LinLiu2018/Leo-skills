@@ -5,6 +5,7 @@ verification_before_completion_skill - 完成前验证技能
 基于 obra/superpowers 的 verification-before-completion 技能。
 核心理念：证据在断言之前，始终。
 """
+from leo_skills.core.base_executor import BaseExecutor
 
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -53,7 +54,7 @@ class VerificationResult:
     message: str = ""
 
 
-class VerificationBeforeCompletionSkill:
+class VerificationBeforeCompletionSkill(BaseExecutor):
     """
     完成前验证技能
 

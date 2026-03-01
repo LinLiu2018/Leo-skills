@@ -1,0 +1,65 @@
+# Skill Vetter Security Rules
+
+# 危险函数分类
+dangerous_functions:
+  critical:
+    - eval
+    - exec
+    - compile
+    - __import__
+    - getattr
+    - setattr
+    description: "可能导致代码注入，极度危险"
+  
+  high:
+    - os.system
+    - os.popen
+    - subprocess.call
+    - subprocess.check_output
+    - subprocess.run
+    description: "系统命令执行，高风险"
+  
+  medium:
+    - requests.get
+    - requests.post
+    - urllib.request
+    - http.client
+    - socket
+    description: "网络请求，中等风险"
+  
+  low:
+    - open
+    - write
+    - read
+    - os.remove
+    - os.unlink
+    - shutil.rmtree
+    description: "文件操作，低风险"
+
+# 敏感路径
+sensitive_paths:
+  - /etc/
+  - /root/
+  - /home/
+  - C:\\Users\\
+  - .ssh/
+  - .git/
+  - credentials
+  - password
+  - token
+  - secret
+  - api_key
+  - private
+
+# 安全评分权重
+scoring:
+  critical: 25
+  high: 15
+  medium: 5
+  low: 1
+
+# 安全等级阈值
+thresholds:
+  safe: 90
+  warning: 60
+  danger: 0
