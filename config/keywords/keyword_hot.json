@@ -1,0 +1,422 @@
+{
+  "meta": {
+    "version": "1.1.0",
+    "updated_at": "2026-02-28",
+    "update_frequency": "daily",
+    "source": "auto_generated + manual_curation"
+  },
+  "hot_keywords": {
+    "房产经纪": [
+      {
+        "keyword": "医院式养老",
+        "trend": "up",
+        "trend_percent": 500,
+        "search_volume": 8000,
+        "last_updated": "2026-02-28",
+        "source": "小红书监控",
+        "notes": "36 氪报道引发热议，花小钱住度假村概念爆火"
+      },
+      {
+        "keyword": "反向养老",
+        "trend": "up",
+        "trend_percent": 300,
+        "search_volume": 5000,
+        "last_updated": "2026-02-28",
+        "source": "小红书监控",
+        "notes": "年轻人接父母到工作城市过年后关注度假养老居所"
+      },
+      {
+        "keyword": "5+2 生活模式",
+        "trend": "up",
+        "trend_percent": 150,
+        "search_volume": 4000,
+        "last_updated": "2026-02-28",
+        "source": "内容策略",
+        "notes": "周末度假 + 工作日市区居住模式"
+      },
+      {
+        "keyword": "宁波别墅捡漏",
+        "trend": "up",
+        "trend_percent": 80,
+        "search_volume": 6000,
+        "last_updated": "2026-02-28",
+        "source": "抖音监控",
+        "notes": "马督工视频 48 万播放，法拍房话题持续升温"
+      },
+      {
+        "keyword": "东钱湖度假别墅",
+        "trend": "up",
+        "trend_percent": 60,
+        "search_volume": 5000,
+        "last_updated": "2026-02-28",
+        "source": "小红书监控",
+        "notes": "宁波热门度假区域"
+      },
+      {
+        "keyword": "真实入住体验",
+        "trend": "up",
+        "trend_percent": 120,
+        "search_volume": 7000,
+        "last_updated": "2026-02-28",
+        "source": "小红书监控",
+        "notes": "入住感受、费用分析类内容点赞高 (610 赞)"
+      },
+      {
+        "keyword": "一镜到底",
+        "trend": "up",
+        "trend_percent": 100,
+        "search_volume": 5500,
+        "last_updated": "2026-02-28",
+        "source": "抖音监控",
+        "notes": "真实房源展示，增强信任感"
+      },
+      {
+        "keyword": "祛魅系列",
+        "trend": "up",
+        "trend_percent": 200,
+        "search_volume": 4500,
+        "last_updated": "2026-02-28",
+        "source": "视频号监控",
+        "notes": "阳台网红设计祛魅，系列化内容粘性强"
+      },
+      {
+        "keyword": "宁波养老小别墅",
+        "trend": "stable",
+        "trend_percent": 20,
+        "search_volume": 4000,
+        "last_updated": "2026-02-28",
+        "source": "小红书监控",
+        "notes": "稳定需求"
+      },
+      {
+        "keyword": "法拍房攻略",
+        "trend": "up",
+        "trend_percent": 90,
+        "search_volume": 7000,
+        "last_updated": "2026-02-28",
+        "source": "抖音监控",
+        "notes": "避坑指南类内容收藏率高"
+      },
+      {
+        "keyword": "80-100 万小户型",
+        "trend": "up",
+        "trend_percent": 70,
+        "search_volume": 6000,
+        "last_updated": "2026-02-28",
+        "source": "抖音监控",
+        "notes": "价格带需求最大"
+      },
+      {
+        "keyword": "中式合院",
+        "trend": "up",
+        "trend_percent": 150,
+        "search_volume": 3500,
+        "last_updated": "2026-02-28",
+        "source": "小红书监控",
+        "notes": "宁波 500 平中式四合院 1055 赞爆款"
+      },
+      {
+        "keyword": "搬离别墅",
+        "trend": "up",
+        "trend_percent": 80,
+        "search_volume": 3000,
+        "last_updated": "2026-02-28",
+        "source": "小红书监控",
+        "notes": "话题讨论类 441 赞"
+      },
+      {
+        "keyword": "代价式开头",
+        "trend": "up",
+        "trend_percent": 180,
+        "search_volume": 2500,
+        "last_updated": "2026-02-28",
+        "source": "内容创意",
+        "notes": "花了 X 万才明白/住了半年才发现，黄金开头公式"
+      },
+      {
+        "keyword": "对比清单",
+        "trend": "up",
+        "trend_percent": 120,
+        "search_volume": 3000,
+        "last_updated": "2026-02-28",
+        "source": "内容创意",
+        "notes": "左边网红设计/右边真实入住，视觉冲击强"
+      }
+    ],
+    "AI 科技": [
+      {
+        "keyword": "超级个体",
+        "trend": "up",
+        "trend_percent": 200,
+        "search_volume": 10000,
+        "last_updated": "2026-02-28",
+        "source": "36 氪",
+        "notes": "OpenClaw 之父，AI 时代的第一个超级个体"
+      },
+      {
+        "keyword": "OpenClaw 教程",
+        "trend": "up",
+        "trend_percent": 150,
+        "search_volume": 12000,
+        "last_updated": "2026-02-28",
+        "source": "X 平台监控",
+        "notes": "向阳乔木推荐，手把手教程"
+      },
+      {
+        "keyword": "AI Agent 实战",
+        "trend": "up",
+        "trend_percent": 120,
+        "search_volume": 9000,
+        "last_updated": "2026-02-28",
+        "source": "36 氪",
+        "notes": "从最顶级的 30 个 AI Agent 产品里看懂三个趋势"
+      },
+      {
+        "keyword": "AI 变现",
+        "trend": "up",
+        "trend_percent": 100,
+        "search_volume": 8000,
+        "last_updated": "2026-02-28",
+        "source": "阿里云",
+        "notes": "2026 年阿里云及本地部署 OpenClaw 搞钱指南"
+      },
+      {
+        "keyword": "AI 眼镜",
+        "trend": "up",
+        "trend_percent": 400,
+        "search_volume": 15000,
+        "last_updated": "2026-02-28",
+        "source": "新浪财经",
+        "notes": "阿里千问布局 AI 硬件，计划在 MWC 2026 发布首款 AI 眼镜"
+      },
+      {
+        "keyword": "AI 编排系统",
+        "trend": "up",
+        "trend_percent": 90,
+        "search_volume": 5000,
+        "last_updated": "2026-02-28",
+        "source": "阿里云",
+        "notes": "一个人顶一个开发团队，用 OpenClaw 实现 AI 编排系统"
+      },
+      {
+        "keyword": "一人创业",
+        "trend": "up",
+        "trend_percent": 150,
+        "search_volume": 7000,
+        "last_updated": "2026-02-28",
+        "source": "36 氪",
+        "notes": "AI 工具成熟让一人创业成为可能"
+      },
+      {
+        "keyword": "AI 替代人工",
+        "trend": "up",
+        "trend_percent": 180,
+        "search_volume": 9000,
+        "last_updated": "2026-02-28",
+        "source": "36 氪",
+        "notes": "Block 暴裁 4000 人，股价涨 25%，AI 时代不需要那么多人"
+      }
+    ],
+    "流量运营": [
+      {
+        "keyword": "小红书祛魅",
+        "trend": "up",
+        "trend_percent": 250,
+        "search_volume": 6000,
+        "last_updated": "2026-02-28",
+        "source": "视频号监控",
+        "notes": "系列化内容粘性强，满足用户避坑心理"
+      },
+      {
+        "keyword": "劝退型内容",
+        "trend": "up",
+        "trend_percent": 200,
+        "search_volume": 5000,
+        "last_updated": "2026-02-28",
+        "source": "B 站监控",
+        "notes": "429 万播放，劝退型内容信任度高，反向种草更有效"
+      },
+      {
+        "keyword": "私域教辅变现",
+        "trend": "up",
+        "trend_percent": 150,
+        "search_volume": 4000,
+        "last_updated": "2026-02-28",
+        "source": "高羽网创",
+        "notes": "完整私域教辅项目实战教程"
+      },
+      {
+        "keyword": "聚合 AI 统一 API",
+        "trend": "up",
+        "trend_percent": 120,
+        "search_volume": 3000,
+        "last_updated": "2026-02-28",
+        "source": "网创项目",
+        "notes": "为中小企业提供定制化 AI 接口服务，单客利润高"
+      },
+      {
+        "keyword": "情绪化标题",
+        "trend": "up",
+        "trend_percent": 100,
+        "search_volume": 3500,
+        "last_updated": "2026-02-28",
+        "source": "内容创意",
+        "notes": "掀桌子/彻底没落等强情绪词搭配具体数据，提升点击率"
+      }
+    ],
+    "商业地产": [
+      {
+        "keyword": "宁波不良资产",
+        "trend": "stable",
+        "trend_percent": 15,
+        "search_volume": 3000,
+        "last_updated": "2026-02-28",
+        "source": "基础库",
+        "notes": "稳定需求"
+      },
+      {
+        "keyword": "宁波商铺投资",
+        "trend": "stable",
+        "trend_percent": 10,
+        "search_volume": 2500,
+        "last_updated": "2026-02-28",
+        "source": "基础库",
+        "notes": "稳定需求"
+      },
+      {
+        "keyword": "20 万亿城市更新",
+        "trend": "up",
+        "trend_percent": 80,
+        "search_volume": 4000,
+        "last_updated": "2026-02-28",
+        "source": "政策热点",
+        "notes": "政策红利释放，建筑行业触底反弹"
+      }
+    ],
+    "跨境电商": [
+      {
+        "keyword": "智能穿戴选品",
+        "trend": "up",
+        "trend_percent": 50,
+        "search_volume": 5000,
+        "last_updated": "2026-02-28",
+        "source": "业务需求",
+        "notes": "智能穿戴跨境电商筹备期"
+      },
+      {
+        "keyword": "亚马逊运营",
+        "trend": "stable",
+        "trend_percent": 10,
+        "search_volume": 8000,
+        "last_updated": "2026-02-28",
+        "source": "基础库",
+        "notes": "稳定需求"
+      }
+    ]
+  },
+  "emerging_keywords": [
+    {
+      "keyword": "医院式养老",
+      "category": "房产经纪",
+      "first_seen": "2026-02-27",
+      "growth_rate": 500,
+      "potential": "high",
+      "source": "36 氪报道引发热议"
+    },
+    {
+      "keyword": "AI 眼镜",
+      "category": "AI 科技",
+      "first_seen": "2026-02-27",
+      "growth_rate": 400,
+      "potential": "high",
+      "source": "阿里千问布局 AI 硬件"
+    },
+    {
+      "keyword": "反向养老",
+      "category": "房产经纪",
+      "first_seen": "2026-02-26",
+      "growth_rate": 300,
+      "potential": "medium",
+      "source": "年轻人接父母到工作城市过年"
+    },
+    {
+      "keyword": "小红书祛魅",
+      "category": "流量运营",
+      "first_seen": "2026-02-27",
+      "growth_rate": 250,
+      "potential": "high",
+      "source": "视频号爆款内容"
+    },
+    {
+      "keyword": "超级个体",
+      "category": "AI 科技",
+      "first_seen": "2026-02-27",
+      "growth_rate": 200,
+      "potential": "high",
+      "source": "36 氪 OpenClaw 之父报道"
+    },
+    {
+      "keyword": "劝退型内容",
+      "category": "流量运营",
+      "first_seen": "2026-02-27",
+      "growth_rate": 200,
+      "potential": "medium",
+      "source": "B 站 429 万播放爆款"
+    },
+    {
+      "keyword": "代价式开头",
+      "category": "流量运营",
+      "first_seen": "2026-02-28",
+      "growth_rate": 180,
+      "potential": "medium",
+      "source": "房产内容创意日报"
+    },
+    {
+      "keyword": "AI 替代人工",
+      "category": "AI 科技",
+      "first_seen": "2026-02-27",
+      "growth_rate": 180,
+      "potential": "high",
+      "source": "Block 裁员 4000 人事件"
+    },
+    {
+      "keyword": "中式合院",
+      "category": "房产经纪",
+      "first_seen": "2026-02-26",
+      "growth_rate": 150,
+      "potential": "medium",
+      "source": "小红书 1055 赞爆款"
+    },
+    {
+      "keyword": "一人创业",
+      "category": "AI 科技",
+      "first_seen": "2026-02-27",
+      "growth_rate": 150,
+      "potential": "medium",
+      "source": "36 氪报道"
+    }
+  ],
+  "content_formulas": {
+    "标题公式": [
+      "数字 + 痛点 + 解决方案",
+      "对比 + 悬念",
+      "身份 + 场景 + 价值",
+      "热点 + 本地化",
+      "情绪化标题 + 数据支撑"
+    ],
+    "开头公式": [
+      "代价式：花了 X 万才明白...",
+      "时间式：住了半年才发现...",
+      "反差式：以为...结果...",
+      "问题式：为什么...",
+      "数字式：3 个...5 个..."
+    ],
+    "内容形式": [
+      "一镜到底实景 tour",
+      "数据可视化 + 口播",
+      "对比清单图文",
+      "真实入住体验分享",
+      "避坑指南长图"
+    ]
+  }
+}

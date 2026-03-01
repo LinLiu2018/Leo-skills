@@ -1,0 +1,25 @@
+{
+  "sandbox": {
+    "enabled": true,
+    "level": 2,
+    "allowed_paths": [
+      "~/.openclaw/workspace",
+      "/tmp/openclaw",
+      "D:/桌面/leo_ai_system"
+    ],
+    "blocked_commands": [
+      "rm -rf",
+      "sudo",
+      "chmod 777",
+      "del /F /Q /A"
+    ],
+    "network": {
+      "enabled": true,
+      "allowed_hosts": [
+        "api.openclaw.ai",
+        "github.com",
+        "api.baidu.com"
+      ]
+    }
+  }
+}

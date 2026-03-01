@@ -1,0 +1,17 @@
+{
+  "clawhub": {
+    "import": {
+      "enabled": true,
+      "target_count": 20,
+      "priority_skills": [
+        "tavily-search",
+        "twitter-monitor",
+        "youtube-summarizer",
+        "pdf-analyzer",
+        "calendar-integration"
+      ],
+      "auto_scan": true,
+      "auto_register": false
+    }
+  }
+}

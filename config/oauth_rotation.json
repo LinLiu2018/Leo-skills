@@ -1,0 +1,22 @@
+{
+  "oauth": {
+    "rotation": {
+      "enabled": true,
+      "interval": "24h",
+      "refresh_before": "1h",
+      "backup_tokens": 2
+    },
+    "storage": {
+      "type": "encrypted",
+      "keychain": false,
+      "file": "~/.openclaw/oauth_tokens.json"
+    },
+    "providers": {
+      "feishu": {
+        "enabled": true,
+        "appId": "cli_a9f18849edbb9cb1",
+        "autoRotate": true
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "nodes": {
+    "enabled": true,
+    "camera": {
+      "enabled": false,
+      "defaultDevice": "back"
+    },
+    "screen": {
+      "enabled": false,
+      "fps": 30
+    },
+    "location": {
+      "enabled": false,
+      "accuracy": "balanced"
+    },
+    "notifications": {
+      "enabled": true,
+      "sound": true
+    }
+  }
+}

@@ -1,0 +1,624 @@
+{
+  "meta": {
+    "version": "1.1.0",
+    "created_at": "2026-02-28",
+    "updated_at": "2026-02-28",
+    "total_keywords": 65,
+    "categories": ["房产经纪", "商业地产", "AI 科技", "跨境电商", "流量运营"]
+  },
+  "categories": {
+    "房产经纪": {
+      "description": "房产经纪业务相关关键词",
+      "keywords": [
+        {
+          "keyword": "宁波别墅",
+          "level": "S",
+          "search_volume": 10000,
+          "competition": "high",
+          "tags": ["别墅", "宁波", "高端"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 150, "conversions": 8, "ctr": 5.33}
+        },
+        {
+          "keyword": "宁波度假别墅",
+          "level": "S",
+          "search_volume": 8000,
+          "competition": "high",
+          "tags": ["别墅", "度假", "宁波"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 120, "conversions": 6, "ctr": 5.0}
+        },
+        {
+          "keyword": "宁波养老别墅",
+          "level": "S",
+          "search_volume": 6000,
+          "competition": "medium",
+          "tags": ["别墅", "养老", "宁波"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 100, "conversions": 5, "ctr": 5.0}
+        },
+        {
+          "keyword": "医院式养老",
+          "level": "S",
+          "search_volume": 8000,
+          "competition": "low",
+          "tags": ["养老", "医院式", "热点"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 200, "conversions": 15, "ctr": 7.5},
+          "notes": "36 氪报道引发热议，新增 S 级"
+        },
+        {
+          "keyword": "反向养老",
+          "level": "A",
+          "search_volume": 5000,
+          "competition": "low",
+          "tags": ["养老", "反向", "热点"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 80, "conversions": 4, "ctr": 5.0},
+          "notes": "年轻人新趋势，新增 A 级"
+        },
+        {
+          "keyword": "5+2 生活模式",
+          "level": "A",
+          "search_volume": 4000,
+          "competition": "low",
+          "tags": ["度假", "养老", "模式"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 60, "conversions": 3, "ctr": 5.0},
+          "notes": "周末度假 + 工作日市区，新增 A 级"
+        },
+        {
+          "keyword": "东钱湖别墅",
+          "level": "A",
+          "search_volume": 5000,
+          "competition": "medium",
+          "tags": ["别墅", "东钱湖", "度假"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 90, "conversions": 4, "ctr": 4.44}
+        },
+        {
+          "keyword": "宁波法拍房",
+          "level": "A",
+          "search_volume": 4000,
+          "competition": "medium",
+          "tags": ["法拍", "捡漏", "宁波"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 70, "conversions": 5, "ctr": 7.14}
+        },
+        {
+          "keyword": "宁波捡漏别墅",
+          "level": "A",
+          "search_volume": 6000,
+          "competition": "low",
+          "tags": ["别墅", "捡漏", "低价"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 110, "conversions": 7, "ctr": 6.36},
+          "notes": "马督工视频 48 万播放，升级为 A 级"
+        },
+        {
+          "keyword": "宁波小别墅",
+          "level": "A",
+          "search_volume": 4000,
+          "competition": "low",
+          "tags": ["别墅", "小户型", "宁波"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 65, "conversions": 3, "ctr": 4.62}
+        },
+        {
+          "keyword": "80-100 万小户型",
+          "level": "A",
+          "search_volume": 6000,
+          "competition": "medium",
+          "tags": ["小户型", "价格带", "刚需"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 95, "conversions": 6, "ctr": 6.32},
+          "notes": "抖音监控发现价格带需求最大，新增 A 级"
+        },
+        {
+          "keyword": "中式合院",
+          "level": "A",
+          "search_volume": 3500,
+          "competition": "low",
+          "tags": ["中式", "合院", "风格"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 85, "conversions": 6, "ctr": 7.06},
+          "notes": "小红书 1055 赞爆款，新增 A 级"
+        },
+        {
+          "keyword": "真实入住体验",
+          "level": "A",
+          "search_volume": 7000,
+          "competition": "low",
+          "tags": ["体验", "真实", "内容形式"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 130, "conversions": 8, "ctr": 6.15},
+          "notes": "小红书 610 赞爆款，新增 A 级内容形式词"
+        },
+        {
+          "keyword": "宁波二手房",
+          "level": "B",
+          "search_volume": 2500,
+          "competition": "high",
+          "tags": ["二手房", "宁波"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 30, "conversions": 1, "ctr": 3.33}
+        },
+        {
+          "keyword": "宁波新房",
+          "level": "B",
+          "search_volume": 2000,
+          "competition": "high",
+          "tags": ["新房", "宁波"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 25, "conversions": 1, "ctr": 4.0}
+        },
+        {
+          "keyword": "宁波豪宅",
+          "level": "B",
+          "search_volume": 1500,
+          "competition": "medium",
+          "tags": ["豪宅", "高端", "宁波"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 20, "conversions": 1, "ctr": 5.0}
+        },
+        {
+          "keyword": "搬离别墅",
+          "level": "B",
+          "search_volume": 3000,
+          "competition": "low",
+          "tags": ["话题", "讨论", "热点"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 45, "conversions": 2, "ctr": 4.44},
+          "notes": "话题讨论类 441 赞，新增 B 级"
+        },
+        {
+          "keyword": "法拍房攻略",
+          "level": "A",
+          "search_volume": 7000,
+          "competition": "medium",
+          "tags": ["法拍", "攻略", "避坑"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 105, "conversions": 7, "ctr": 6.67},
+          "notes": "避坑指南类收藏率高，新增 A 级"
+        }
+      ]
+    },
+    "商业地产": {
+      "description": "商业地产相关关键词",
+      "keywords": [
+        {
+          "keyword": "宁波商业地产",
+          "level": "A",
+          "search_volume": 3000,
+          "competition": "medium",
+          "tags": ["商业", "地产", "宁波"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 40, "conversions": 2, "ctr": 5.0}
+        },
+        {
+          "keyword": "宁波不良资产",
+          "level": "A",
+          "search_volume": 2500,
+          "competition": "low",
+          "tags": ["不良资产", "投资", "宁波"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 35, "conversions": 2, "ctr": 5.71}
+        },
+        {
+          "keyword": "20 万亿城市更新",
+          "level": "A",
+          "search_volume": 4000,
+          "competition": "low",
+          "tags": ["政策", "城市更新", "热点"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 60, "conversions": 3, "ctr": 5.0},
+          "notes": "政策红利释放，新增 A 级"
+        },
+        {
+          "keyword": "宁波摊位销售",
+          "level": "B",
+          "search_volume": 1500,
+          "competition": "low",
+          "tags": ["摊位", "销售", "宁波"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 15, "conversions": 1, "ctr": 6.67}
+        },
+        {
+          "keyword": "宁波菜场项目",
+          "level": "B",
+          "search_volume": 1000,
+          "competition": "low",
+          "tags": ["菜场", "项目", "宁波"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 10, "conversions": 0, "ctr": 0}
+        },
+        {
+          "keyword": "宁波商铺投资",
+          "level": "A",
+          "search_volume": 2000,
+          "competition": "medium",
+          "tags": ["商铺", "投资", "宁波"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 30, "conversions": 2, "ctr": 6.67}
+        }
+      ]
+    },
+    "AI 科技": {
+      "description": "AI 科技相关关键词",
+      "keywords": [
+        {
+          "keyword": "OpenClaw",
+          "level": "S",
+          "search_volume": 50000,
+          "competition": "high",
+          "tags": ["AI", "开源", "自动化"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 500, "conversions": 30, "ctr": 6.0}
+        },
+        {
+          "keyword": "AI Agent",
+          "level": "S",
+          "search_volume": 40000,
+          "competition": "high",
+          "tags": ["AI", "Agent", "智能体"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 400, "conversions": 25, "ctr": 6.25}
+        },
+        {
+          "keyword": "大模型",
+          "level": "S",
+          "search_volume": 30000,
+          "competition": "high",
+          "tags": ["AI", "大模型", "LLM"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 300, "conversions": 18, "ctr": 6.0}
+        },
+        {
+          "keyword": "超级个体",
+          "level": "S",
+          "search_volume": 10000,
+          "competition": "medium",
+          "tags": ["AI", "创业", "热点"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 150, "conversions": 10, "ctr": 6.67},
+          "notes": "36 氪 OpenClaw 之父报道，新增 S 级"
+        },
+        {
+          "keyword": "AI 创业",
+          "level": "A",
+          "search_volume": 15000,
+          "competition": "medium",
+          "tags": ["AI", "创业", "商业"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 180, "conversions": 10, "ctr": 5.56}
+        },
+        {
+          "keyword": "AI 工具",
+          "level": "A",
+          "search_volume": 20000,
+          "competition": "high",
+          "tags": ["AI", "工具", "效率"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 220, "conversions": 12, "ctr": 5.45}
+        },
+        {
+          "keyword": "AI 自动化",
+          "level": "A",
+          "search_volume": 12000,
+          "competition": "medium",
+          "tags": ["AI", "自动化", "效率"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 140, "conversions": 8, "ctr": 5.71}
+        },
+        {
+          "keyword": "AI 眼镜",
+          "level": "S",
+          "search_volume": 15000,
+          "competition": "high",
+          "tags": ["AI", "硬件", "热点"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 200, "conversions": 12, "ctr": 6.0},
+          "notes": "阿里千问布局 AI 硬件，新增 S 级"
+        },
+        {
+          "keyword": "OpenClaw 教程",
+          "level": "A",
+          "search_volume": 12000,
+          "competition": "low",
+          "tags": ["OpenClaw", "教程", "学习"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 160, "conversions": 10, "ctr": 6.25},
+          "notes": "向阳乔木推荐，新增 A 级"
+        },
+        {
+          "keyword": "AI Agent 实战",
+          "level": "A",
+          "search_volume": 9000,
+          "competition": "medium",
+          "tags": ["AI", "Agent", "实战"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 120, "conversions": 7, "ctr": 5.83},
+          "notes": "36 氪 30 个 AI Agent 产品分析，新增 A 级"
+        },
+        {
+          "keyword": "AI 变现",
+          "level": "A",
+          "search_volume": 8000,
+          "competition": "medium",
+          "tags": ["AI", "变现", "商业"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 100, "conversions": 6, "ctr": 6.0},
+          "notes": "阿里云搞钱指南，新增 A 级"
+        },
+        {
+          "keyword": "AI 编排系统",
+          "level": "B",
+          "search_volume": 5000,
+          "competition": "low",
+          "tags": ["AI", "编排", "系统"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 60, "conversions": 3, "ctr": 5.0},
+          "notes": "阿里云开发者社区，新增 B 级"
+        },
+        {
+          "keyword": "一人创业",
+          "level": "A",
+          "search_volume": 7000,
+          "competition": "medium",
+          "tags": ["创业", "一人", "热点"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 90, "conversions": 5, "ctr": 5.56},
+          "notes": "36 氪报道，新增 A 级"
+        },
+        {
+          "keyword": "AI 替代人工",
+          "level": "A",
+          "search_volume": 9000,
+          "competition": "high",
+          "tags": ["AI", "替代", "热点"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 130, "conversions": 7, "ctr": 5.38},
+          "notes": "Block 裁员 4000 人事件，新增 A 级"
+        }
+      ]
+    },
+    "跨境电商": {
+      "description": "跨境电商相关关键词",
+      "keywords": [
+        {
+          "keyword": "智能穿戴",
+          "level": "A",
+          "search_volume": 10000,
+          "competition": "high",
+          "tags": ["智能穿戴", "电商", "跨境"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 100, "conversions": 5, "ctr": 5.0}
+        },
+        {
+          "keyword": "智能穿戴选品",
+          "level": "A",
+          "search_volume": 5000,
+          "competition": "medium",
+          "tags": ["智能穿戴", "选品", "跨境"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 60, "conversions": 4, "ctr": 6.67},
+          "notes": "业务需求，新增 A 级"
+        },
+        {
+          "keyword": "亚马逊选品",
+          "level": "A",
+          "search_volume": 8000,
+          "competition": "high",
+          "tags": ["亚马逊", "选品", "电商"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 85, "conversions": 4, "ctr": 4.71}
+        },
+        {
+          "keyword": "跨境电商",
+          "level": "S",
+          "search_volume": 15000,
+          "competition": "high",
+          "tags": ["跨境", "电商", "外贸"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 150, "conversions": 8, "ctr": 5.33}
+        },
+        {
+          "keyword": "独立站运营",
+          "level": "B",
+          "search_volume": 5000,
+          "competition": "medium",
+          "tags": ["独立站", "运营", "电商"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 50, "conversions": 2, "ctr": 4.0}
+        },
+        {
+          "keyword": "亚马逊运营",
+          "level": "A",
+          "search_volume": 8000,
+          "competition": "high",
+          "tags": ["亚马逊", "运营", "电商"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 80, "conversions": 4, "ctr": 5.0},
+          "notes": "稳定需求"
+        }
+      ]
+    },
+    "流量运营": {
+      "description": "流量运营相关关键词",
+      "keywords": [
+        {
+          "keyword": "小红书运营",
+          "level": "A",
+          "search_volume": 12000,
+          "competition": "high",
+          "tags": ["小红书", "运营", "流量"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 120, "conversions": 6, "ctr": 5.0}
+        },
+        {
+          "keyword": "抖音运营",
+          "level": "A",
+          "search_volume": 15000,
+          "competition": "high",
+          "tags": ["抖音", "运营", "流量"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 150, "conversions": 7, "ctr": 4.67}
+        },
+        {
+          "keyword": "私域流量",
+          "level": "A",
+          "search_volume": 10000,
+          "competition": "medium",
+          "tags": ["私域", "流量", "运营"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 100, "conversions": 5, "ctr": 5.0}
+        },
+        {
+          "keyword": "内容创作",
+          "level": "B",
+          "search_volume": 8000,
+          "competition": "medium",
+          "tags": ["内容", "创作", "运营"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 70, "conversions": 3, "ctr": 4.29}
+        },
+        {
+          "keyword": "小红书祛魅",
+          "level": "A",
+          "search_volume": 6000,
+          "competition": "low",
+          "tags": ["小红书", "祛魅", "热点"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 90, "conversions": 6, "ctr": 6.67},
+          "notes": "视频号爆款，新增 A 级"
+        },
+        {
+          "keyword": "劝退型内容",
+          "level": "A",
+          "search_volume": 5000,
+          "competition": "low",
+          "tags": ["劝退", "内容形式", "热点"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 80, "conversions": 5, "ctr": 6.25},
+          "notes": "B 站 429 万播放爆款，新增 A 级"
+        },
+        {
+          "keyword": "一镜到底",
+          "level": "A",
+          "search_volume": 5500,
+          "competition": "medium",
+          "tags": ["内容形式", "视频", "信任"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 75, "conversions": 4, "ctr": 5.33},
+          "notes": "真实房源展示，新增 A 级"
+        },
+        {
+          "keyword": "情绪化标题",
+          "level": "B",
+          "search_volume": 3500,
+          "competition": "low",
+          "tags": ["标题", "内容形式", "技巧"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 45, "conversions": 2, "ctr": 4.44},
+          "notes": "掀桌子/彻底没落等强情绪词，新增 B 级"
+        },
+        {
+          "keyword": "代价式开头",
+          "level": "B",
+          "search_volume": 2500,
+          "competition": "low",
+          "tags": ["开头", "内容形式", "技巧"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 35, "conversions": 2, "ctr": 5.71},
+          "notes": "花了 X 万才明白，新增 B 级"
+        },
+        {
+          "keyword": "对比清单",
+          "level": "B",
+          "search_volume": 3000,
+          "competition": "low",
+          "tags": ["内容形式", "图文", "技巧"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 40, "conversions": 2, "ctr": 5.0},
+          "notes": "左边网红设计/右边真实入住，新增 B 级"
+        },
+        {
+          "keyword": "私域教辅变现",
+          "level": "B",
+          "search_volume": 4000,
+          "competition": "low",
+          "tags": ["私域", "教辅", "变现"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 50, "conversions": 3, "ctr": 6.0},
+          "notes": "高羽网创教程，新增 B 级"
+        },
+        {
+          "keyword": "聚合 AI 统一 API",
+          "level": "B",
+          "search_volume": 3000,
+          "competition": "low",
+          "tags": ["AI", "API", "变现"],
+          "created_at": "2026-02-28",
+          "last_used": "2026-02-28",
+          "effect": {"clicks": 35, "conversions": 2, "ctr": 5.71},
+          "notes": "网创项目，新增 B 级"
+        }
+      ]
+    }
+  }
+}

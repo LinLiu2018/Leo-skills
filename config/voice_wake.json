@@ -1,0 +1,17 @@
+{
+  "voice": {
+    "wake": {
+      "enabled": false,
+      "keyword": "Hey Leo",
+      "sensitivity": 0.7
+    },
+    "talk": {
+      "enabled": false,
+      "timeout": 30
+    },
+    "tts": {
+      "provider": "edge",
+      "voice": "zh-CN-XiaoxiaoNeural"
+    }
+  }
+}

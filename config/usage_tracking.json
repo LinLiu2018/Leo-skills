@@ -1,0 +1,18 @@
+{
+  "usage": {
+    "tracking": {
+      "enabled": true,
+      "interval": "1h",
+      "export": {
+        "enabled": true,
+        "format": "json",
+        "path": "~/.openclaw/usage"
+      }
+    },
+    "limits": {
+      "dailyTokens": 1000000,
+      "dailyCost": 10.0,
+      "notifyThreshold": 0.8
+    }
+  }
+}

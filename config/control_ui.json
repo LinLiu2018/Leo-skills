@@ -1,0 +1,15 @@
+{
+  "ui": {
+    "enabled": true,
+    "port": 18788,
+    "host": "0.0.0.0",
+    "auth": {
+      "enabled": false
+    }
+  },
+  "webchat": {
+    "enabled": true,
+    "port": 18790,
+    "host": "0.0.0.0"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "models": {
+    "default": "qwen3.5-plus",
+    "failover": {
+      "enabled": true,
+      "maxRetries": 3,
+      "timeout": 30000,
+      "fallbacks": [
+        "qwen-plus",
+        "qwen-turbo"
+      ]
+    }
+  },
+  "providers": {
+    "bailian": {
+      "enabled": true,
+      "models": ["qwen3.5-plus", "qwen-plus", "qwen-turbo"]
+    }
+  }
+}

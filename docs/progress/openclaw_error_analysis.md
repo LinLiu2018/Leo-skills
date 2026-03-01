@@ -152,9 +152,181 @@ node openclaw.mjs gateway --port 18789
 
 更新 `leo_knowledge/context/openclaw_operations.md` 添加配置保护规则。
 
+---
+
 ## 6. 相关文件
 
 - OpenClaw 配置: `C:\Users\刘方林\.openclaw\openclaw.json`
 - 守护脚本: `scripts/openclaw_auto_healer.ps1`
 - 用户档案: `leo_knowledge/context/user_profile.md`
 - 运维手册: `leo_knowledge/context/openclaw_operations.md`
+
+---
+
+# 2026-02-25: HTTP 401 认证错误 + 多模型配置
+
+> **日期**: 2026-02-25
+> **问题**: OpenClaw 飞书消息无响应，HTTP 401 认证错误
+> **解决**: 修复 MiniMax API 端点，配置多模型 (MiniMax/Kimi/GLM)
+
+## 1. 问题现象
+
+### 1.1 错误日志
+
+```
+HTTP 401: authentication_error: invalid api key
+```
+
+### 1.2 飞书表现
+
+- 发送消息无 AI 响应
+- 网关端口 18789 正常监听
+
+## 2. 根因分析
+
+### 2.1 MiniMax API 端点问题
+
+| 尝试 | 端点 | API 类型 | 结果 |
+|------|------|---------|------|
+| 1 | `https://api.minimax.io/anthropic` | anthropic-messages | ❌ 401 错误 |
+| 2 | `https://api.minimax.chat/v1` | chat/completions | ❌ OpenClaw 不支持 |
+| 3 | `https://api.minimaxi.com/anthropic` | anthropic-messages | ✅ 成功 |
+
+**结论**: MiniMax 需要使用**中国区端点** `api.minimaxi.com`，国际区端点 `api.minimax.io` 对新 API Key 无效。
+
+### 2.2 API 类型限制
+
+OpenClaw 只支持两种 API 类型：
+- `anthropic-messages` - 用于 Anthropic 兼容 API (MiniMax)
+- `openai-completions` - 用于 OpenAI 兼容 API (Kimi, GLM)
+
+**错误**: 使用 `chat/completions` 会被 OpenClaw 拒绝
+
+## 3. 修复过程
+
+### 3.1 修复配置
+
+编辑 `C:\Users\刘方林\.openclaw\openclaw.json`:
+
+```json
+{
+  "models": {
+    "providers": {
+      "minimax": {
+        "baseUrl": "https://api.minimaxi.com/anthropic",
+        "apiKey": "sk-api-lyPJcMI3FdlNODeFtBxJoXDKaeWJACDsI9_cPrDTd7ztwNO5VfwM5ZR7OJlcUnvWuiavLFbDkxzDSYJKP9NaOCYtAUU59n460d6RJpddNc3EmvNPbpaENwA",
+        "api": "anthropic-messages",
+        "models": [...]
+      }
+    }
+  }
+}
+```
+
+### 3.2 配置多模型
+
+| Provider | Model ID | Alias | API 类型 |
+|----------|----------|-------|---------|
+| MiniMax | MiniMax-M2.5 | Minimax | anthropic-messages |
+| MiniMax | MiniMax-M2.1 | M2.1 | anthropic-messages |
+| MiniMax | MiniMax-VL-01 | Vision | anthropic-messages |
+| Moonshot | kimi-k2.5 | Kimi | openai-completions |
+| Z.AI | glm-5 | GLM-5 | openai-completions |
+| Z.AI | glm-4v | GLM-Vision | openai-completions |
+
+### 3.3 模型别名配置
+
+```json
+{
+  "agents": {
+    "defaults": {
+      "models": {
+        "minimax/MiniMax-M2.5": {"alias": "Minimax"},
+        "moonshot/kimi-k2.5": {"alias": "Kimi"},
+        "zai/glm-5": {"alias": "GLM-5"}
+      }
+    }
+  }
+}
+```
+
+## 4. 飞书使用方法
+
+### 4.1 默认模型
+
+直接发送消息，使用默认模型 (Minimax)
+
+### 4.2 切换模型
+
+| 命令 | 效果 |
+|------|------|
+| `@Leo 切换到 Kimi` | 使用 Kimi k2.5 |
+| `@Leo 使用 GLM-5` | 使用 GLM-5 |
+| `@Leo 视觉模型` | 使用 MiniMax-VL-01 |
+
+## 5. 最佳实践总结
+
+### 5.1 MiniMax 配置要点
+
+1. **必须使用中国区端点**: `https://api.minimaxi.com/anthropic`
+2. **API 类型必须是**: `anthropic-messages`
+3. **API Key 格式**: `sk-api-...` (不是 `sk-cp-...`)
+
+### 5.2 多模型配置模板
+
+```json
+{
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "minimax": {
+        "baseUrl": "https://api.minimaxi.com/anthropic",
+        "apiKey": "${MINIMAX_API_KEY}",
+        "api": "anthropic-messages",
+        "models": [
+          {"id": "MiniMax-M2.5", "name": "M2.5", "reasoning": true, "contextWindow": 200000}
+        ]
+      },
+      "moonshot": {
+        "baseUrl": "https://api.moonshot.cn/v1",
+        "apiKey": "${MOONSHOT_API_KEY}",
+        "api": "openai-completions",
+        "models": [
+          {"id": "kimi-k2.5", "name": "Kimi", "contextWindow": 256000}
+        ]
+      },
+      "zai": {
+        "baseUrl": "https://api.zai.io/v1",
+        "apiKey": "${ZAI_API_KEY}",
+        "api": "openai-completions",
+        "models": [
+          {"id": "glm-5", "name": "GLM-5", "contextWindow": 200000}
+        ]
+      }
+    }
+  }
+}
+```
+
+### 5.3 快速诊断命令
+
+```bash
+# 检查端口
+netstat -ano | findstr "18789"
+
+# 测试 API 端点 (MiniMax)
+curl -X POST "https://api.minimaxi.com/anthropic/v1/messages" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"model":"MiniMax-M2.5","max_tokens":10,"messages":[{"role":"user","content":"hi"}]}'
+
+# 重启网关
+cd D:\openclaw && node openclaw.mjs gateway --port 18789
+```
+
+## 6. 相关文件
+
+- OpenClaw 配置: `C:\Users\刘方林\.openclaw\openclaw.json`
+- Agent 模型配置: `C:\Users\刘方林\.openclaw\agents\leo-assistant\agent\models.json`
+- 启动脚本: `C:\Users\刘方林\.openclaw\gateway.cmd`
+- OpenClaw 官方文档: `D:\openclaw\docs\`

@@ -1,0 +1,61 @@
+{
+  "opencode_root": "D:/\u684c\u9762/AI_claude_skills/opencode-ai",
+  "company_profile": {
+    "name": "internal_company_pilot",
+    "goal": "verify integration before mass promotion"
+  },
+  "pilot_workflows": [
+    {
+      "id": "content_production",
+      "input": {
+        "topic": "coffee short video lead generation",
+        "platform": "douyin",
+        "property_info": {
+          "title": "pilot service package",
+          "location": "ningbo",
+          "highlights": [
+            "ai generated content",
+            "auto comment interception",
+            "private domain conversion"
+          ]
+        }
+      }
+    },
+    {
+      "id": "lead_distribution",
+      "input": {
+        "lead": {
+          "name": "pilot_customer",
+          "phone": "13800138000",
+          "source": "douyin_comment",
+          "budget": "500000-800000",
+          "requirement": "consultation and demo"
+        }
+      }
+    },
+    {
+      "id": "followup_reminder",
+      "input": {}
+    },
+    {
+      "id": "effect_analysis",
+      "input": {
+        "start_date": "2026-02-01",
+        "end_date": "2026-02-28"
+      }
+    }
+  ],
+  "scale_gate": {
+    "min_success_rate": 0.85,
+    "required_workflows": [
+      "content_production",
+      "lead_distribution",
+      "followup_reminder"
+    ]
+  },
+  "promotion_rollout": {
+    "stage_1": "internal pilot in one company team",
+    "stage_2": "limited rollout to 3-5 customer accounts",
+    "stage_3": "mass promotion with standard onboarding playbook"
+  }
+}

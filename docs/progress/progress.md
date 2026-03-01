@@ -557,3 +557,14 @@ openclaw cron runs --id <job-id>
 ---
 
 *æ¯å®Œæˆä¸€ä¸ªé˜¶æ®µæˆ–é‡åˆ°é”™è¯¯åæ›´æ–° | æœ€åæ›´æ–°: 2026-02-04 Phase 11 - P0ä¼˜åŒ–å®Œæˆ*
+
+## 2026-02-27 WebUIÊµÊ©ÂäµØ£¨Codex£©
+- Ä¿±ê£º½»¸¶¿ÉÔËĞĞµÄ¿ÉÊÓ»¯Í³Ò»½»»¥ÏµÍ³£¨Web v2£©¡£
+- ºó¶Ë£ºÖØ½¨ `src/leo_interface/web_v2/api/main.py`£¬Í³Ò»Ö´ĞĞÈë¿Ú `/api/v2/execute`£¬²¢ÎªĞ´/Ö´ĞĞ½Ó¿ÚÔö¼Ó `LEO_WEB_API_TOKEN` ¼øÈ¨ÒÀÀµ¡£
+- °²È«£ºÖØÖÃ `src/leo_interface/web_v2/api/.env` ÎªÕ¼Î»Öµ£¬ĞÂÔö `src/leo_interface/web_v2/api/.env.example` Óë `src/leo_interface/web_v2/.env.example`¡£
+- Ç°¶Ë£ºÖØ¹¹ `SmartExecutor.tsx`£¬Í³Ò»×ß `unifiedApi.execute`£¬±£ÁôÖ´ĞĞ¹ì¼£Óë»á»°ÀúÊ·¿ÉÊÓ»¯£»Ìæ»»Ëğ»µµÄ `Workflows.tsx` ÎªÎÈ¶¨¿ÉÖ´ĞĞ°æ±¾¡£
+- ÀàĞÍ£º¸üĞÂ `src/leo_interface/web_v2/src/types/index.ts` Óë `src/leo_interface/web_v2/src/services/api.ts`£¬ĞÂÔöÍ³Ò»Ö´ĞĞÇëÇó/ÏìÓ¦ÀàĞÍ¡£
+- ÑéÖ¤£º
+  - `python -m py_compile src/leo_interface/web_v2/api/main.py src/leo_interface/web_v2/api/schemas.py src/leo_interface/web_v2/api/leo_api_adapter.py` ?
+  - `npm run build` (workdir=`src/leo_interface/web_v2`) ?
+- ÒÑÖª·çÏÕ£º`leo_orchestrator` Æô¶¯Ê±ÈÕÖ¾´æÔÚ GBK emoji Êä³ö±¨´í£¨²»×è¶Ï API Æô¶¯£©¡£

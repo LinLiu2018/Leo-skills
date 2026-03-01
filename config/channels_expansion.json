@@ -1,0 +1,24 @@
+{
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "provider": "feishu",
+      "appId": "cli_a9f18849edbb9cb1"
+    },
+    "whatsapp": {
+      "enabled": false,
+      "provider": "baileys",
+      "note": "待配置"
+    },
+    "telegram": {
+      "enabled": false,
+      "provider": "grammy",
+      "note": "待配置"
+    },
+    "wecom": {
+      "enabled": false,
+      "provider": "wecom",
+      "note": "待配置 (企业微信)"
+    }
+  }
+}

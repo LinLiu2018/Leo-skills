@@ -1,0 +1,132 @@
+{
+  "provider": "aigocode",
+  "name": "AIgocode 中转",
+  "description": "AIgocode 第三方 API 中转服务",
+  "apiType": "openai-completions",
+  "baseUrl": "https://api.aigocode.cn/v1",
+  "apiKey": "请替换为你的 AIgocode API Key",
+  "models": [
+    {
+      "id": "gpt-4o",
+      "name": "GPT-4o",
+      "context": 128000,
+      "inputPrice": 0.005,
+      "outputPrice": 0.015,
+      "currency": "USD",
+      "enabled": true
+    },
+    {
+      "id": "gpt-4o-mini",
+      "name": "GPT-4o Mini",
+      "context": 128000,
+      "inputPrice": 0.00015,
+      "outputPrice": 0.0006,
+      "currency": "USD",
+      "enabled": true
+    },
+    {
+      "id": "gpt-4-turbo",
+      "name": "GPT-4 Turbo",
+      "context": 128000,
+      "inputPrice": 0.01,
+      "outputPrice": 0.03,
+      "currency": "USD",
+      "enabled": true
+    },
+    {
+      "id": "gpt-3.5-turbo",
+      "name": "GPT-3.5 Turbo",
+      "context": 16385,
+      "inputPrice": 0.0005,
+      "outputPrice": 0.0015,
+      "currency": "USD",
+      "enabled": true
+    },
+    {
+      "id": "claude-3-5-sonnet",
+      "name": "Claude 3.5 Sonnet",
+      "context": 200000,
+      "inputPrice": 0.003,
+      "outputPrice": 0.015,
+      "currency": "USD",
+      "enabled": true
+    },
+    {
+      "id": "claude-3-opus",
+      "name": "Claude 3 Opus",
+      "context": 200000,
+      "inputPrice": 0.015,
+      "outputPrice": 0.075,
+      "currency": "USD",
+      "enabled": true
+    },
+    {
+      "id": "qwen-plus",
+      "name": "通义千问 Plus",
+      "context": 256000,
+      "inputPrice": 0.004,
+      "outputPrice": 0.012,
+      "currency": "CNY",
+      "enabled": true
+    },
+    {
+      "id": "qwen-max",
+      "name": "通义千问 Max",
+      "context": 256000,
+      "inputPrice": 0.04,
+      "outputPrice": 0.12,
+      "currency": "CNY",
+      "enabled": true
+    },
+    {
+      "id": "deepseek-chat",
+      "name": "DeepSeek Chat",
+      "context": 128000,
+      "inputPrice": 0.001,
+      "outputPrice": 0.004,
+      "currency": "CNY",
+      "enabled": true
+    },
+    {
+      "id": "deepseek-coder",
+      "name": "DeepSeek Coder",
+      "context": 128000,
+      "inputPrice": 0.001,
+      "outputPrice": 0.002,
+      "currency": "CNY",
+      "enabled": true
+    },
+    {
+      "id": "glm-4-plus",
+      "name": "智谱 GLM-4 Plus",
+      "context": 128000,
+      "inputPrice": 0.05,
+      "outputPrice": 0.05,
+      "currency": "CNY",
+      "enabled": true
+    },
+    {
+      "id": "kimi-plus",
+      "name": "Kimi Plus",
+      "context": 200000,
+      "inputPrice": 0.04,
+      "outputPrice": 0.12,
+      "currency": "CNY",
+      "enabled": true
+    }
+  ],
+  "features": {
+    "streaming": true,
+    "functionCalling": true,
+    "vision": true,
+    "embedding": false
+  },
+  "limits": {
+    "rpm": 100,
+    "tpm": 100000
+  },
+  "retry": {
+    "maxRetries": 3,
+    "backoff": "exponential"
+  }
+}
