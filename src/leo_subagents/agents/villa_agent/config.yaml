@@ -1,0 +1,13 @@
+name: villa_agent
+type: realestate
+description: Villa-focused real estate agent
+version: 1.0.0
+owner: leo
+enabled: true
+model: qwen3.5-plus
+workspace: ~/.openclaw/workspace-villa
+triggers:
+  - villa
+  - vacation
+  - retirement
+  - asset_allocation

@@ -1,0 +1,102 @@
+# Agent 通信工作流
+# 多 Agent 间通信和消息传递
+
+name: agent-communication-workflow
+description: Agent 通信自动工作流
+version: 1.0.0
+category: collaboration
+
+# 触发条件
+triggers:
+  - type: event
+    event: agent_message  # Agent 消息
+  - type: manual
+    description: 手动通信
+
+# 输入参数
+inputs:
+  - name: sender_agent
+    type: string
+    required: true
+    description: 发送 Agent
+  - name: receiver_agent
+    type: string
+    required: true
+    description: 接收 Agent
+  - name: message
+    type: string
+    required: true
+    description: 消息内容
+  - name: message_type
+    type: string
+    default: "info"
+    options: ["info", "request", "command", "response"]
+    description: 消息类型
+
+# 执行步骤
+steps:
+  - name: validate_message
+    description: 验证消息
+    agent: task_agent
+    skill: analytics-skill
+    action: validate_message
+    params:
+      message: "{{inputs.message}}"
+      type: "{{inputs.message_type}}"
+    output: validation_result
+
+  - name: format_message
+    description: 格式化消息
+    agent: creative_agent
+    skill: content-generator-skill
+    action: format_agent_message
+    params:
+      sender: "{{inputs.sender_agent}}"
+      receiver: "{{inputs.receiver_agent}}"
+      message: "{{inputs.message}}"
+    output: formatted_message
+
+  - name: route_message
+    description: 路由消息
+    agent: task_agent
+    skill: scheduler-skill
+    action: route_to_agent
+    params:
+      message: "{{steps.format_message.output}}"
+      receiver: "{{inputs.receiver_agent}}"
+    output: routing_result
+
+  - name: confirm_delivery
+    description: 确认送达
+    agent: task_agent
+    skill: analytics-skill
+    action: confirm_delivery
+    params:
+      routing_result: "{{steps.route_message.output}}"
+    output: delivery_confirmation
+
+  - name: log_communication
+    description: 记录通信
+    agent: task_agent
+    skill: Write
+    action: log_communication
+    params:
+      communication: "{{steps.format_message.output}}"
+      delivery: "{{steps.confirm_delivery.output}}"
+    output: log_result
+
+# 输出
+outputs:
+  - name: delivery_status
+    value: "{{steps.confirm_delivery.output.status}}"
+  - message_id
+    value: "{{steps.route_message.output.message_id}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "Agent 通信工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

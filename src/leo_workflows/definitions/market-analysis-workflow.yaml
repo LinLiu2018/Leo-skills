@@ -1,0 +1,104 @@
+# 市场分析工作流
+# 自动生成市场分析报告
+
+name: market-analysis-workflow
+description: 市场自动分析工作流
+version: 1.0.0
+category: realestate
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 9 * * 1"  # 每周一 9 点
+  - type: manual
+    description: 手动触发市场分析
+
+# 输入参数
+inputs:
+  - name: location
+    type: string
+    required: true
+    description: 分析区域
+  - name: property_type
+    type: string
+    default: "all"
+    options: ["all", "residential", "commercial", "villa"]
+    description: 房产类型
+
+# 执行步骤
+steps:
+  - name: fetch_market_data
+    description: 获取市场数据
+    agent: analysis_agent
+    skill: market-analysis-skill
+    action: get_market_data
+    params:
+      location: "{{inputs.location}}"
+      property_type: "{{inputs.property_type}}"
+      period: "3months"
+    output: market_data
+
+  - name: fetch_policy_updates
+    description: 获取政策更新
+    agent: analysis_agent
+    skill: google-search-skill
+    action: search_policy
+    params:
+      query: "{{inputs.location}} 房地产政策 最新"
+    output: policy_updates
+
+  - name: analyze_trends
+    description: 分析趋势
+    agent: analysis_agent
+    skill: analytics-skill
+    action: analyze_trends
+    params:
+      market_data: "{{steps.fetch_market_data.output}}"
+      policy_updates: "{{steps.fetch_policy_updates.output}}"
+    output: trends
+
+  - name: generate_insights
+    description: 生成洞察
+    agent: analysis_agent
+    skill: analytics-skill
+    action: generate_insights
+    params:
+      trends: "{{steps.analyze_trends.output}}"
+    output: insights
+
+  - name: generate_report
+    description: 生成报告
+    agent: creative_agent
+    skill: doc-generator-skill
+    action: generate_market_report
+    params:
+      location: "{{inputs.location}}"
+      market_data: "{{steps.fetch_market_data.output}}"
+      insights: "{{steps.generate_insights.output}}"
+    output: report
+
+  - name: distribute_report
+    description: 分发报告
+    agent: distribution_agent
+    skill: email-skill
+    action: send_to_team
+    params:
+      report: "{{steps.generate_report.output}}"
+      recipients: ["sales_team", "management"]
+    output: distribute_result
+
+# 输出
+outputs:
+  - name: report_id
+    value: "{{steps.generate_report.output.id}}"
+  - name: key_insights
+    value: "{{steps.generate_insights.output.summary}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "市场分析工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

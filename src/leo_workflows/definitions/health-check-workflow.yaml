@@ -1,0 +1,116 @@
+# 健康检查工作流
+# 每 4 小时自动执行系统健康检查
+
+name: health-check-workflow
+description: 系统健康自动检查工作流
+version: 1.0.0
+category: system
+
+# 触发条件 - 每 4 小时执行
+triggers:
+  - type: cron
+    expr: "0 */4 * * *"  # 每 4 小时 (0:00, 4:00, 8:00, 12:00, 16:00, 20:00)
+
+# 执行步骤
+steps:
+  - name: check_gateway_status
+    description: 检查 Gateway 状态
+    agent: task_agent
+    skill: monitoring-skill
+    action: check_gateway
+    output: gateway_status
+
+  - name: check_agents_status
+    description: 检查 Agents 状态
+    agent: task_agent
+    skill: monitoring-skill
+    action: check_agents
+    params:
+      agents: ["sales_agent", "support_agent", "leasing_agent", "marketing_agent", "service_agent", "realestate_agent", "loan_agent", "product_agent", "operation_agent", "logistics_agent", "distribution_agent", "analysis_agent", "creative_agent", "memory_agent", "self_improving_agent", "proactive_agent", "x_monitor_agent"]
+    output: agents_status
+
+  - name: check_skills_status
+    description: 检查 Skills 状态
+    agent: task_agent
+    skill: monitoring-skill
+    action: check_skills
+    params:
+      sample_size: 20
+    output: skills_status
+
+  - name: check_cron_jobs
+    description: 检查 Cron 任务
+    agent: task_agent
+    skill: monitoring-skill
+    action: check_cron_jobs
+    output: cron_status
+
+  - name: check_api_connections
+    description: 检查 API 连接
+    agent: task_agent
+    skill: monitoring-skill
+    action: check_apis
+    params:
+      apis: ["bailian", "deepseek", "minimax", "zhipu", "kimi"]
+    output: api_status
+
+  - name: check_system_resources
+    description: 检查系统资源
+    agent: task_agent
+    skill: monitoring-skill
+    action: check_resources
+    params:
+      metrics: ["cpu", "memory", "disk", "network"]
+    output: resources_status
+
+  - name: generate_health_report
+    description: 生成健康报告
+    agent: analysis_agent
+    skill: doc-generator-skill
+    action: generate_health_report
+    params:
+      gateway: "{{steps.check_gateway_status.output}}"
+      agents: "{{steps.check_agents_status.output}}"
+      skills: "{{steps.check_skills_status.output}}"
+      cron: "{{steps.check_cron_jobs.output}}"
+      apis: "{{steps.check_api_connections.output}}"
+      resources: "{{steps.check_system_resources.output}}"
+    output: health_report
+
+  - name: send_health_report
+    description: 发送健康报告
+    agent: support_agent
+    skill: email-skill
+    action: send_feishu_message
+    params:
+      to: "ou_099438b3924bd34e5f9445bc8220a460"
+      report: "{{steps.generate_health_report.output}}"
+      format: "markdown"
+    output: send_result
+
+# 输出
+outputs:
+  - name: health_status
+    value: "{{steps.generate_health_report.output.status}}"
+  - name: issues_count
+    value: "{{steps.generate_health_report.output.issues_count}}"
+
+# 告警
+alerting:
+  - condition: "{{steps.generate_health_report.output.status}} == 'critical'"
+    action: notify
+    channel: feishu
+    message: "🚨 系统健康告警：严重问题"
+  - condition: "{{steps.generate_health_report.output.issues_count}} > 5"
+    action: notify
+    channel: feishu
+    message: "⚠️ 系统健康告警：多个问题"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "健康检查工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

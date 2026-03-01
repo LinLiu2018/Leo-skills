@@ -1,0 +1,76 @@
+# 负载均衡工作流
+# 多 Agent 负载均衡和调度
+
+name: load-balancing-workflow
+description: 负载自动平衡工作流
+version: 1.0.0
+category: collaboration
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 */1 * * *"  # 每小时
+  - type: event
+    event: high_load_detected  # 高负载检测
+
+# 执行步骤
+steps:
+  - name: check_agent_load
+    description: 检查 Agent 负载
+    agent: analysis_agent
+    skill: analytics-skill
+    action: check_agent_workload
+    output: load_data
+
+  - name: identify_overloaded
+    description: 识别过载
+    agent: analysis_agent
+    skill: analytics-skill
+    action: identify_overloaded_agents
+    params:
+      load: "{{steps.check_agent_load.output}}"
+    output: overloaded_agents
+
+  - name: identify_underutilized
+    description: 识别低负载
+    agent: analysis_agent
+    skill: analytics-skill
+    action: identify_underutilized_agents
+    params:
+      load: "{{steps.check_agent_load.output}}"
+    output: underutilized_agents
+
+  - name: rebalance_tasks
+    description: 重新平衡任务
+    agent: task_agent
+    skill: scheduler-skill
+    action: rebalance_workload
+    params:
+      overloaded: "{{steps.identify_overloaded.output}}"
+      underutilized: "{{steps.identify_underutilized.output}}"
+    output: rebalance_result
+
+  - name: verify_balance
+    description: 验证平衡
+    agent: analysis_agent
+    skill: analytics-skill
+    action: verify_load_balance
+    params:
+      rebalance: "{{steps.rebalance_tasks.output}}"
+    output: verification_result
+
+# 输出
+outputs:
+  - name: balance_status
+    value: "{{steps.verify_balance.output.status}}"
+  - name: tasks_redistributed
+    value: "{{steps.rebalance_tasks.output.redistributed_count}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "负载均衡工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

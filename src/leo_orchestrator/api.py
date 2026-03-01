@@ -9,6 +9,7 @@ Leo统一API
 - 统一调用，一个接口处理所有
 """
 
+import importlib
 import sys
 import warnings
 from pathlib import Path
@@ -227,6 +228,28 @@ class LeoAPI:
             logger.error(f"Skill调用失败: {e}")
             return None
 
+    def _ensure_agent_type_loaded(self, agent_name: str, agent_type: str) -> bool:
+        """Best-effort load agent modules so AgentFactory has the target type."""
+        from leo_subagents.agents.base_agent import AgentFactory
+
+        if agent_type in AgentFactory._agent_classes:
+            return True
+
+        normalized = agent_name.replace("-", "_")
+        candidates = [
+            f"leo_subagents.agents.{normalized}.{normalized}",
+            f"leo_subagents.agents.{normalized}",
+            "leo_subagents.agents.task_agent",
+        ]
+        for module_name in candidates:
+            try:
+                importlib.import_module(module_name)
+            except Exception:
+                continue
+            if agent_type in AgentFactory._agent_classes:
+                return True
+        return agent_type in AgentFactory._agent_classes
+
     def run_agent(self, agent_name: str, task: str, **kwargs) -> Any:
         """
         运行Agent执行任务
@@ -266,13 +289,21 @@ class LeoAPI:
 
             # 2. 如果不存在，则根据Registry信息临时创建
             if not agent_instance:
+                resolved_type = agent.type
+                self._ensure_agent_type_loaded(agent.name, resolved_type)
+                if resolved_type not in AgentFactory._agent_classes:
+                    logger.warning(
+                        f"Agent type not registered: {resolved_type}, fallback to executor"
+                    )
+                    self._ensure_agent_type_loaded("task_agent", "executor")
+                    resolved_type = "executor"
                 # 重建配置
                 config = AgentConfig(
                     name=agent.name,
-                    type=agent.type,
+                    type=resolved_type,
                     priority=agent.priority or 1,
                     skills=list(agent.skills) if agent.skills else [],
-                    description=agent.description or "",
+                    description=str((agent.metadata or {}).get("description", "")),
                 )
                 agent_instance = AgentFactory.create_agent(config)
 
@@ -380,10 +411,27 @@ class LeoAPI:
         return result
 
 
-# ==================== 全局实例 ====================
+# ==================== 全局实例（惰性加载）====================
 
-# 创建全局API实例
-leo = LeoAPI()
+_leo_api: Optional[LeoAPI] = None
+
+
+def get_leo_api() -> LeoAPI:
+    """获取全局 LeoAPI 实例（惰性加载，线程安全）"""
+    global _leo_api
+    if _leo_api is None:
+        from leo_system.singleton import thread_safe_singleton
+        _leo_api = thread_safe_singleton("leo_api", _leo_api, LeoAPI)
+    return _leo_api
+
+
+# 向后兼容：延迟属性访问
+class _LazyLeoAPI:
+    """惰性代理，避免模块导入时触发磁盘扫描"""
+    def __getattr__(self, name):
+        return getattr(get_leo_api(), name)
+
+leo = _LazyLeoAPI()
 
 
 # ==================== 极简使用示例 ====================

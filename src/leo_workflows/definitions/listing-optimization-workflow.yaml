@@ -1,0 +1,116 @@
+# Listing 优化工作流
+# 自动优化产品 Listing
+
+name: listing-optimization-workflow
+description: Listing 自动优化工作流
+version: 1.0.0
+category: ecommerce
+
+# 触发条件
+triggers:
+  - type: event
+    event: new_product  # 新产品上架
+  - type: manual
+    description: 手动优化 Listing
+
+# 输入参数
+inputs:
+  - name: product_id
+    type: string
+    required: true
+    description: 产品 ID
+  - name: platform
+    type: string
+    default: "amazon"
+    options: ["amazon", "shopify", "ebay"]
+    description: 销售平台
+
+# 执行步骤
+steps:
+  - name: fetch_product_info
+    description: 获取产品信息
+    agent: product_agent
+    skill: shopify-skill
+    action: get_product
+    params:
+      product_id: "{{inputs.product_id}}"
+    output: product_info
+
+  - name: keyword_research
+    description: 关键词研究
+    agent: operation_agent
+    skill: keyword-research-skill
+    action: research_keywords
+    params:
+      product_category: "{{steps.fetch_product_info.output.category}}"
+      target_market: "US"
+    output: keywords
+
+  - name: optimize_title
+    description: 优化标题
+    agent: creative_agent
+    skill: content-generator-skill
+    action: optimize_title
+    params:
+      original_title: "{{steps.fetch_product_info.output.title}}"
+      keywords: "{{steps.keyword_research.output}}"
+      platform: "{{inputs.platform}}"
+    output: optimized_title
+
+  - name: optimize_description
+    description: 优化描述
+    agent: creative_agent
+    skill: content-generator-skill
+    action: optimize_description
+    params:
+      original_description: "{{steps.fetch_product_info.output.description}}"
+      keywords: "{{steps.keyword_research.output}}"
+      platform: "{{inputs.platform}}"
+    output: optimized_description
+
+  - name: generate_bullet_points
+    description: 生成卖点
+    agent: creative_agent
+    skill: content-generator-skill
+    action: generate_bullets
+    params:
+      product_info: "{{steps.fetch_product_info.output}}"
+      keywords: "{{steps.keyword_research.output}}"
+    output: bullet_points
+
+  - name: update_listing
+    description: 更新 Listing
+    agent: operation_agent
+    skill: shopify-skill
+    action: update_product
+    params:
+      product_id: "{{inputs.product_id}}"
+      title: "{{steps.optimize_title.output}}"
+      description: "{{steps.optimize_description.output}}"
+      bullet_points: "{{steps.generate_bullet_points.output}}"
+    output: update_result
+
+  - name: verify_listing
+    description: 验证 Listing
+    agent: operation_agent
+    skill: shopify-skill
+    action: verify_product
+    params:
+      product_id: "{{inputs.product_id}}"
+    output: verify_result
+
+# 输出
+outputs:
+  - name: listing_status
+    value: "{{steps.verify_result.output.status}}"
+  - name: optimization_score
+    value: "{{steps.verify_result.output.score}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "Listing 优化工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

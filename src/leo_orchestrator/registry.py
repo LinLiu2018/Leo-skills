@@ -99,6 +99,9 @@ class UnifiedRegistry:
             base_path = Path(__file__).parent.parent
             self.load_from_config(base_path / "leo_config" / "settings" / "config.yaml")
 
+        # 自动发现并加载YAML工作流定义
+        self.auto_discover_workflows()
+
     # ==================== Skills注册 ====================
 
     def register_skill(
@@ -241,34 +244,68 @@ class UnifiedRegistry:
         """
         自动发现并注册所有Skills
 
-        扫描leo_skills目录，自动注册所有*-cskill目录
+        扫描 leo_skills 目录，注册所有 *_skill 目录（含 SKILL.md 元数据解析）。
+        同时兼容旧的 *-cskill 后缀。
         """
         base = Path(base_path)
+        if not base.exists():
+            logger.warning(f"Skills路径不存在: {base}")
+            return 0
+
         discovered = 0
 
         # 扫描所有分类目录
         for category_dir in base.iterdir():
-            if not category_dir.is_dir() or category_dir.name.startswith("."):
+            if not category_dir.is_dir() or category_dir.name.startswith((".", "_")):
                 continue
 
             category = category_dir.name
 
             # 扫描该分类下的所有Skills
             for skill_dir in category_dir.iterdir():
-                if skill_dir.is_dir() and skill_dir.name.endswith("-cskill"):
-                    skill_name = skill_dir.name
+                if not skill_dir.is_dir():
+                    continue
+                if not (skill_dir.name.endswith("_skill") or skill_dir.name.endswith("-cskill")):
+                    continue
 
-                    # 检查是否已注册
-                    if skill_name not in self.skills:
-                        self.register_skill(
-                            name=skill_name,
-                            path=str(skill_dir.relative_to(base.parent)),
-                            category=category,
-                        )
-                        discovered += 1
+                skill_name = skill_dir.name
+
+                # 检查是否已注册
+                if skill_name in self.skills:
+                    continue
+
+                # 尝试从 SKILL.md 解析元数据
+                metadata = {}
+                skill_md = skill_dir / "SKILL.md"
+                if skill_md.exists():
+                    metadata = self._parse_skill_md_metadata(skill_md)
+
+                self.register_skill(
+                    name=skill_name,
+                    path=str(skill_dir.relative_to(base.parent)) if base.parent != skill_dir else str(skill_dir),
+                    category=category,
+                    description=metadata.get("description", ""),
+                    version=metadata.get("version", "1.0.0"),
+                )
+                discovered += 1
 
         logger.info(f"自动发现并注册了 {discovered} 个Skills")
         return discovered
+
+    @staticmethod
+    def _parse_skill_md_metadata(skill_md_path: Path) -> dict:
+        """从 SKILL.md 解析 YAML frontmatter 元数据"""
+        try:
+            content = skill_md_path.read_text(encoding="utf-8")
+            if content.startswith("---"):
+                parts = content.split("---", 2)
+                if len(parts) >= 3:
+                    fm = yaml.safe_load(parts[1])
+                    if isinstance(fm, dict):
+                        return fm
+        except Exception:
+            pass
+        return {}
 
     # ==================== 配置加载 ====================
 
@@ -297,6 +334,35 @@ class UnifiedRegistry:
         if "workflows" in config:
             for workflow_name, workflow_config in config["workflows"].items():
                 self.register_workflow(workflow_name, workflow_config)
+
+    def auto_discover_workflows(self, base_path: str = "src/leo_workflows/definitions") -> int:
+        """
+        自动发现并加载YAML工作流定义
+
+        扫描 src/leo_workflows/definitions/ 目录，加载所有 .yaml 文件
+        """
+        import os
+
+        definitions_dir = Path(base_path)
+        if not definitions_dir.exists():
+            logger.warning(f"工作流定义目录不存在: {definitions_dir}")
+            return 0
+
+        count = 0
+        for yaml_file in definitions_dir.glob("*.yaml"):
+            try:
+                with open(yaml_file, 'r', encoding='utf-8') as f:
+                    workflow = yaml.safe_load(f)
+
+                workflow_name = workflow.get('name', yaml_file.stem)
+                self.register_workflow(workflow_name, workflow)
+                count += 1
+                logger.info(f"加载工作流定义: {workflow_name} <- {yaml_file}")
+            except Exception as e:
+                logger.error(f"加载工作流定义失败 {yaml_file}: {e}")
+
+        logger.info(f"自动发现 {count} 个工作流定义")
+        return count
 
     # ==================== 统计信息 ====================
 
@@ -342,10 +408,13 @@ _global_registry: Optional[UnifiedRegistry] = None
 
 
 def get_registry() -> UnifiedRegistry:
-    """获取全局注册表单例"""
+    """获取全局注册表单例（线程安全）"""
     global _global_registry
     if _global_registry is None:
-        _global_registry = UnifiedRegistry()
+        from leo_system.singleton import thread_safe_singleton
+        _global_registry = thread_safe_singleton(
+            "registry", _global_registry, UnifiedRegistry
+        )
     return _global_registry
 
 

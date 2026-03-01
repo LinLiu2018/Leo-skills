@@ -1,0 +1,99 @@
+# 数据分析工作流
+# 自动业务数据分析
+
+name: analytics-workflow
+description: 数据自动分析工作流
+version: 1.0.0
+category: business
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 18 * * *"  # 每天 18 点
+  - type: manual
+    description: 手动分析
+
+# 输入参数
+inputs:
+  - name: data_source
+    type: string
+    default: "all"
+    description: 数据源
+  - name: report_type
+    type: string
+    default: "daily"
+    options: ["daily", "weekly", "monthly"]
+    description: 报告类型
+
+# 执行步骤
+steps:
+  - name: collect_data
+    description: 收集数据
+    agent: analysis_agent
+    skill: analytics-skill
+    action: collect_data
+    params:
+      source: "{{inputs.data_source}}"
+    output: raw_data
+
+  - name: clean_data
+    description: 清洗数据
+    agent: analysis_agent
+    skill: analytics-skill
+    action: clean_data
+    params:
+      data: "{{steps.collect_data.output}}"
+    output: cleaned_data
+
+  - name: analyze_data
+    description: 分析数据
+    agent: analysis_agent
+    skill: analytics-skill
+    action: analyze
+    params:
+      data: "{{steps.clean_data.output}}"
+    output: analysis_results
+
+  - name: generate_visualizations
+    description: 生成可视化
+    agent: creative_agent
+    skill: analytics-skill
+    action: create_charts
+    params:
+      analysis: "{{steps.analyze_data.output}}"
+    output: visualizations
+
+  - name: generate_report
+    description: 生成报告
+    agent: creative_agent
+    skill: doc-generator-skill
+    action: generate_analytics_report
+    params:
+      analysis: "{{steps.analyze_data.output}}"
+      visualizations: "{{steps.generate_visualizations.output}}"
+    output: report
+
+  - name: distribute_report
+    description: 分发报告
+    agent: distribution_agent
+    skill: notification-skill
+    action: send_report
+    params:
+      report: "{{steps.generate_report.output}}"
+    output: distribution_result
+
+# 输出
+outputs:
+  - name: report_url
+    value: "{{steps.generate_report.output.url}}"
+  - name: key_insights
+    value: "{{steps.analyze_data.output.key_insights}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "数据分析工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

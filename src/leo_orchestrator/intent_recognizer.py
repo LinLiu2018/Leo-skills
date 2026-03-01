@@ -7,10 +7,8 @@
 """
 
 import re
-from typing import Dict, List, Optional, Tuple, Any
+from typing import Dict, List, Optional, Any
 from dataclasses import dataclass
-from pathlib import Path
-import json
 
 
 @dataclass
@@ -82,7 +80,33 @@ class IntentRecognizer:
                 ],
                 priority=1
             ),
+            IntentPattern(
+                name="practice_accumulation",
+                intent_type="workflow",
+                triggers=["沉淀", "保存prompt", "保存提示词", "积累经验",
+                          "沉淀实操", "提示词库", "prompt vault"],
+                regex_patterns=[
+                    r"(?:沉淀|保存|积累|记录).*(?:实操|经验|提示词|prompt)",
+                    r"(?:save|store|accumulate).*(?:prompt|skill|experience)",
+                ],
+                priority=2
+            ),
+            IntentPattern(
+                name="use_prompt",
+                intent_type="skill",
+                triggers=["用提示词", "用prompt", "用框架", "使用提示词",
+                          "使用框架", "use prompt", "apply prompt",
+                          "用CRISPE", "用CO-STAR", "用RISEN"],
+                regex_patterns=[
+                    r"(?:用|使用|应用|套用)\s*(.+?)\s*(?:框架|提示词|prompt|模板)",
+                    r"(?:用|使用|应用|套用)\s*([\w\-]+)\s*$",
+                    r"(?:use|apply)\s+(.+?)\s*(?:framework|prompt|template)?$",
+                ],
+                priority=3
+            ),
         ])
+        # 按优先级排序，高优先级先匹配
+        self.patterns.sort(key=lambda p: p.priority, reverse=True)
 
     def register_pattern(self, pattern: IntentPattern):
         """注册自定义意图模式"""
@@ -226,6 +250,14 @@ class IntentRecognizer:
             "params": intent.params
         }
 
+        # 特殊处理：use_prompt 意图 → 自动调取提示词并组装任务
+        if intent.params.get("pattern") == "use_prompt":
+            routing_decision["action"] = "use_prompt"
+            routing_decision["target"] = "prompt_vault_skill"
+            routing_decision["params"]["query"] = intent.target
+            routing_decision["params"]["original_input"] = user_input
+            return routing_decision
+
         if intent.intent_type == "skill":
             routing_decision["action"] = "execute_skill"
             routing_decision["target"] = intent.target
@@ -250,8 +282,12 @@ _intent_recognizer: Optional[IntentRecognizer] = None
 
 
 def get_intent_recognizer(registry=None) -> IntentRecognizer:
-    """获取全局意图识别器实例"""
+    """获取全局意图识别器实例（线程安全）"""
     global _intent_recognizer
     if _intent_recognizer is None:
-        _intent_recognizer = IntentRecognizer(registry)
+        from leo_system.singleton import thread_safe_singleton
+        _intent_recognizer = thread_safe_singleton(
+            "intent_recognizer", _intent_recognizer,
+            lambda: IntentRecognizer(registry)
+        )
     return _intent_recognizer

@@ -66,6 +66,68 @@ python d:\桌面\leo_ai_system\scripts\validate_openclaw_config.py
 
 ## 重大 Bug 记录
 
+### ❌ Bug 2026-02-25: HTTP 401 认证错误 + 多模型配置
+
+**事件背景:**
+OpenClaw 飞书消息无响应，HTTP 401 authentication_error: invalid api key
+
+**问题现象:**
+- 发送消息无 AI 响应
+- 网关端口 18789 正常监听
+- 日志报错: `HTTP 401: authentication_error: invalid api key`
+
+**根本原因:**
+1. **MiniMax API 端点错误**: 使用国际区端点 `api.minimax.io` 而非中国区端点 `api.minimaxi.com`
+2. **API 类型限制**: OpenClaw 只支持 `anthropic-messages` 和 `openai-completions` 两种类型
+3. **旧 API Key 失效**: 使用了旧格式的 Key (sk-cp-...)
+
+**MiniMax API 端点测试结果:**
+
+| 端点 | API 类型 | 结果 |
+|------|---------|------|
+| `https://api.minimax.io/anthropic` | anthropic-messages | ❌ 401 错误 |
+| `https://api.minimax.chat/v1` | chat/completions | ❌ OpenClaw 不支持 |
+| `https://api.minimaxi.com/anthropic` | anthropic-messages | ✅ 成功 |
+
+**修复操作:**
+```json
+{
+  "models": {
+    "providers": {
+      "minimax": {
+        "baseUrl": "https://api.minimaxi.com/anthropic",
+        "api": "anthropic-messages"
+      }
+    }
+  }
+}
+```
+
+**多模型配置完成:**
+
+| Provider | Model ID | Alias | API 类型 |
+|----------|----------|-------|---------|
+| MiniMax | MiniMax-M2.5 | Minimax | anthropic-messages |
+| MiniMax | MiniMax-M2.1 | M2.1 | anthropic-messages |
+| MiniMax | MiniMax-VL-01 | Vision | anthropic-messages |
+| Moonshot | kimi-k2.5 | Kimi | openai-completions |
+| Z.AI | glm-5 | GLM-5 | openai-completions |
+| Z.AI | glm-4v | GLM-Vision | openai-completions |
+
+**飞书使用方法:**
+- 直接发送消息 → 使用默认模型 (Minimax)
+- `@Leo 切换到 Kimi` → 使用 Kimi k2.5
+- `@Leo 使用 GLM-5` → 使用 GLM-5
+
+**教训:**
+1. MiniMax 必须使用中国区端点: `api.minimaxi.com` (不是 `api.minimax.io`)
+2. API 类型必须是 `anthropic-messages` (不是 `chat/completions`)
+3. 配置多模型时需要同时配置 `models.providers` 和 `agents.defaults.models`
+
+**详细分析报告:** [docs/progress/openclaw_error_analysis.md](../../docs/progress/openclaw_error_analysis.md)
+
+---
+
 ### ❌ Bug 2026-02-03: AI 自动修改配置导致启动失败
 
 **事件背景:**

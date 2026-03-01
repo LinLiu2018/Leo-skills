@@ -1,0 +1,92 @@
+# 邮件营销工作流
+# 自动邮件营销和 EDM
+
+name: email-marketing-workflow
+description: 邮件自动营销工作流
+version: 1.0.0
+category: business
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 10 * * *"  # 每天 10 点
+  - type: manual
+    description: 手动发送
+
+# 输入参数
+inputs:
+  - name: campaign_type
+    type: string
+    default: "newsletter"
+    options: ["newsletter", "promotion", "welcome", "re_engagement"]
+    description: 活动类型
+  - name: target_segment
+    type: string
+    description: 目标人群
+
+# 执行步骤
+steps:
+  - name: fetch_contacts
+    description: 获取联系人
+    agent: marketing_agent
+    skill: crm-skill
+    action: get_contacts
+    params:
+      segment: "{{inputs.target_segment}}"
+    output: contacts
+
+  - name: generate_content
+    description: 生成内容
+    agent: creative_agent
+    skill: content-generator-skill
+    action: generate_email_content
+    params:
+      campaign_type: "{{inputs.campaign_type}}"
+      audience: "{{steps.fetch_contacts.output}}"
+    output: email_content
+
+  - name: design_template
+    description: 设计模板
+    agent: creative_agent
+    skill: content-generator-skill
+    action: design_email_template
+    params:
+      content: "{{steps.generate_content.output}}"
+    output: email_template
+
+  - name: send_campaign
+    description: 发送活动
+    agent: marketing_agent
+    skill: email-skill
+    action: send_campaign
+    params:
+      contacts: "{{steps.fetch_contacts.output}}"
+      template: "{{steps.design_template.output}}"
+    output: send_results
+
+  - name: track_performance
+    description: 追踪表现
+    agent: analysis_agent
+    skill: analytics-skill
+    action: track_email_metrics
+    params:
+      campaign: "{{steps.send_campaign.output}}"
+    output: performance_data
+
+# 输出
+outputs:
+  - name: sent_count
+    value: "{{steps.send_campaign.output.sent_count}}"
+  - name: open_rate
+    value: "{{steps.track_performance.output.open_rate}}"
+  - name: click_rate
+    value: "{{steps.track_performance.output.click_rate}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "邮件营销工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

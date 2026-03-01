@@ -1,0 +1,113 @@
+# 效果分析工作流
+# 自动内容效果分析
+
+name: performance-analysis-workflow
+description: 效果自动分析工作流
+version: 1.0.0
+category: content
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 16 * * *"  # 每天 16 点
+  - type: manual
+    description: 手动分析
+
+# 输入参数
+inputs:
+  - name: content_id
+    type: string
+    description: 内容 ID
+  - name: period
+    type: string
+    default: "7days"
+    description: 分析周期
+
+# 执行步骤
+steps:
+  - name: fetch_performance_data
+    description: 获取表现数据
+    agent: distribution_agent
+    skill: analytics-skill
+    action: get_performance_data
+    params:
+      content_id: "{{inputs.content_id}}"
+      period: "{{inputs.period}}"
+    output: performance_data
+
+  - name: calculate_metrics
+    description: 计算指标
+    agent: analysis_agent
+    skill: analytics-skill
+    action: calculate_metrics
+    params:
+      performance_data: "{{steps.fetch_performance_data.output}}"
+      metrics: ["views", "likes", "shares", "comments", "ctr"]
+    output: metrics
+
+  - name: compare_with_benchmark
+    description: 对比基准
+    agent: analysis_agent
+    skill: analytics-skill
+    action: compare_benchmark
+    params:
+      metrics: "{{steps.calculate_metrics.output}}"
+      benchmark: "industry_average"
+    output: comparison
+
+  - name: identify_trends
+    description: 识别趋势
+    agent: analysis_agent
+    skill: analytics-skill
+    action: identify_trends
+    params:
+      performance_data: "{{steps.fetch_performance_data.output}}"
+    output: trends
+
+  - name: generate_insights
+    description: 生成洞察
+    agent: analysis_agent
+    skill: analytics-skill
+    action: generate_insights
+    params:
+      metrics: "{{steps.calculate_metrics.output}}"
+      comparison: "{{steps.compare_with_benchmark.output}}"
+      trends: "{{steps.identify_trends.output}}"
+    output: insights
+
+  - name: generate_report
+    description: 生成报告
+    agent: creative_agent
+    skill: doc-generator-skill
+    action: generate_performance_report
+    params:
+      insights: "{{steps.generate_insights.output}}"
+    output: report
+
+  - name: notify_team
+    description: 通知团队
+    agent: distribution_agent
+    skill: notification-skill
+    action: send_notification
+    params:
+      message: "效果分析报告已生成"
+      report: "{{steps.generate_report.output}}"
+    output: notify_result
+
+# 输出
+outputs:
+  - name: total_views
+    value: "{{steps.calculate_metrics.output.views}}"
+  - name: engagement_rate
+    value: "{{steps.calculate_metrics.output.engagement_rate}}"
+  - name: report_url
+    value: "{{steps.generate_report.output.url}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "效果分析工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

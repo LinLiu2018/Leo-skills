@@ -1,0 +1,97 @@
+# 转化优化工作流
+# 自动转化率优化
+
+name: conversion-workflow
+description: 转化自动优化工作流
+version: 1.0.0
+category: content
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 17 * * *"  # 每天 17 点
+  - type: manual
+    description: 手动优化转化
+
+# 输入参数
+inputs:
+  - name: landing_page_url
+    type: string
+    description: 落地页 URL
+  - name: goal
+    type: string
+    default: "lead_generation"
+    options: ["lead_generation", "sales", "signup"]
+    description: 转化目标
+
+# 执行步骤
+steps:
+  - name: analyze_conversion_funnel
+    description: 分析转化漏斗
+    agent: analysis_agent
+    skill: analytics-skill
+    action: analyze_funnel
+    params:
+      url: "{{inputs.landing_page_url}}"
+    output: funnel_analysis
+
+  - name: identify_bottlenecks
+    description: 识别瓶颈
+    agent: analysis_agent
+    skill: analytics-skill
+    action: identify_bottlenecks
+    params:
+      funnel: "{{steps.analyze_conversion_funnel.output}}"
+    output: bottlenecks
+
+  - name: generate_recommendations
+    description: 生成建议
+    agent: analysis_agent
+    skill: analytics-skill
+    action: generate_recommendations
+    params:
+      bottlenecks: "{{steps.identify_bottlenecks.output}}"
+    output: recommendations
+
+  - name: ab_test_setup
+    description: A/B 测试设置
+    agent: distribution_agent
+    skill: analytics-skill
+    action: setup_ab_test
+    params:
+      recommendations: "{{steps.generate_recommendations.output}}"
+    output: ab_test_config
+
+  - name: track_results
+    description: 追踪结果
+    agent: analysis_agent
+    skill: analytics-skill
+    action: track_ab_test
+    params:
+      test_config: "{{steps.ab_test_setup.output}}"
+    output: test_results
+
+  - name: implement_winner
+    description: 实施优胜方案
+    agent: distribution_agent
+    skill: analytics-skill
+    action: implement_winner
+    params:
+      test_results: "{{steps.track_results.output}}"
+    output: implementation_result
+
+# 输出
+outputs:
+  - name: conversion_rate
+    value: "{{steps.analyze_conversion_funnel.output.conversion_rate}}"
+  - name: improvement
+    value: "{{steps.implement_winner.output.improvement}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "转化优化工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

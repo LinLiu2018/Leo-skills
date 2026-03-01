@@ -1,0 +1,113 @@
+# 客户跟进工作流
+# 自动跟进客户线索，提高转化率
+
+name: customer-followup-workflow
+description: 客户自动跟进工作流
+version: 1.0.0
+category: realestate
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 9,14,18 * * *"  # 每天 9 点、14 点、18 点
+  - type: event
+    event: new_lead  # 新客户录入
+
+# 输入参数
+inputs:
+  - name: lead_id
+    type: string
+    required: true
+    description: 客户线索 ID
+  - name: followup_type
+    type: string
+    default: "regular"
+    options: ["regular", "urgent", "vip"]
+    description: 跟进类型
+
+# 执行步骤
+steps:
+  - name: fetch_lead_info
+    description: 获取客户信息
+    agent: sales_agent
+    skill: crm-skill
+    action: get_lead
+    params:
+      lead_id: "{{inputs.lead_id}}"
+    output: lead_info
+
+  - name: check_followup_history
+    description: 查看跟进记录
+    agent: sales_agent
+    skill: crm-skill
+    action: get_followup_history
+    params:
+      lead_id: "{{inputs.lead_id}}"
+    output: followup_history
+
+  - name: generate_followup_script
+    description: 生成跟进话术
+    agent: sales_agent
+    skill: content-generator-skill
+    action: generate_script
+    params:
+      lead_info: "{{steps.fetch_lead_info.output}}"
+      history: "{{steps.check_followup_history.output}}"
+      type: "{{inputs.followup_type}}"
+    output: script
+
+  - name: send_followup
+    description: 发送跟进消息
+    agent: support_agent
+    skill: email-skill
+    action: send_email
+    params:
+      to: "{{steps.fetch_lead_info.output.email}}"
+      subject: "【{{steps.fetch_lead_info.output.project}}】置业顾问{{steps.fetch_lead_info.output.agent}}为您服务"
+      body: "{{steps.generate_followup_script.output}}"
+    output: send_result
+
+  - name: schedule_next_followup
+    description: 安排下次跟进
+    agent: sales_agent
+    skill: calendar-skill
+    action: schedule_reminder
+    params:
+      lead_id: "{{inputs.lead_id}}"
+      reminder_time: "+3 days"
+      message: "跟进客户：{{steps.fetch_lead_info.output.name}}"
+    output: reminder
+
+  - name: update_crm
+    description: 更新 CRM 记录
+    agent: sales_agent
+    skill: crm-skill
+    action: update_followup_record
+    params:
+      lead_id: "{{inputs.lead_id}}"
+      followup_result: "{{steps.send_followup.output}}"
+      next_followup: "{{steps.schedule_next_followup.output}}"
+    output: update_result
+
+# 输出
+outputs:
+  - name: followup_status
+    value: "{{steps.update_crm.output.status}}"
+  - name: next_followup_time
+    value: "{{steps.schedule_next_followup.output.time}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "客户跟进工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300
+
+# 监控
+monitoring:
+  - metric: followup_success_rate
+    threshold: 90%
+  - metric: avg_response_time
+    threshold: 24h

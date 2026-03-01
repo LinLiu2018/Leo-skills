@@ -49,7 +49,26 @@
       "Bash(npx openclaw doctor:*)",
       "Bash(npx openclaw onboard:*)",
       "Bash(git stash:*)",
-      "Bash(git pull:*)"
+      "Bash(git pull:*)",
+      "WebFetch(domain:mp.weixin.qq.com)",
+      "Bash(taskkill //F //PID 26792)",
+      "Bash(taskkill //F //PID 23520)",
+      "Bash(export PATH=\"$PATH:/c/Users/刘方林/AppData/Roaming/npm\")",
+      "Bash(export MINIMAX_BASE_URL=\"https://api.minimax.chat/v1\")",
+      "Bash(taskkill //F //PID 11332)",
+      "Bash(tasklist)",
+      "Bash(schtasks /query /fo csv)",
+      "Bash(cmd.exe //c \"d:\\\\桌面\\\\leo_ai_system\\\\scripts\\\\setup\\\\install_auto_healer.bat\")",
+      "Bash(schtasks /create /tn \"OpenClaw_AutoHealer\" /tr \"powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -File ''D:\\\\桌面\\\\leo_ai_system\\\\scripts\\\\openclaw\\\\openclaw_auto_healer.ps1''\" /sc onstart /delay 0001:00 /f /rl HIGHEST)",
+      "Bash(cmd.exe /c schtasks /create /tn \"OpenClaw_AutoHealer\" /tr \"powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -File ''D:\\\\桌面\\\\leo_ai_system\\\\scripts\\\\openclaw\\\\openclaw_auto_healer.ps1''\" /sc onstart /delay 0001:00 /f /rl HIGHEST)",
+      "Bash(wmic process where \"name=''node.exe''\" get ProcessId,CommandLine)",
+      "Bash(# 检查日志看 env 字段是否导致了配置错误 tail -100 ''\\\\\\\\tmp\\\\openclaw\\\\openclaw-2026-02-25.log'')",
+      "Bash(taskkill //F //PID 25548)",
+      "Bash(test -d \"d:\\\\桌面\\\\leo_ai_system/scripts/src\")",
+      "WebFetch(domain:docs.openclaw.ai)",
+      "Bash(git -C \"d:\\\\桌面\\\\leo_ai_system\" ls-files)",
+      "Bash(git -C \"d:\\\\桌面\\\\leo_ai_system\" status --porcelain)",
+      "Bash(PYTHONIOENCODING=utf-8 python scripts/testing/test_intent_prompt_chain.py)"
     ],
     "additionalDirectories": [
       "d:\\桌面\\leo_ai_system"
@@ -58,7 +77,8 @@
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "playwright",
-    "leo-system"
+    "leo-system",
+    "leo-web-search"
   ],
   "language": "chinese"
 }

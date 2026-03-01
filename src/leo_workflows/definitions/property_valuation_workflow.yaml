@@ -1,0 +1,64 @@
+name: property_valuation_workflow
+description: 房产估值分析流程
+version: 1.0.0
+category: realestate
+
+triggers:
+  - type: manual
+  - type: event
+    event: valuation_request
+
+inputs:
+  - name: property_address
+    type: string
+    required: true
+  - name: property_type
+    type: string
+    required: true
+  - name: area_sqm
+    type: number
+    required: true
+
+steps:
+  - name: research_comparable
+    agent: realestate_agent
+    action: find_comparable_sales
+    input:
+      address: "{{inputs.property_address}}"
+      type: "{{inputs.property_type}}"
+      area: "{{inputs.area_sqm}}"
+    output: comparable_sales
+
+  - name: analyze_market_trends
+    agent: research_agent
+    action: analyze_price_trends
+    input:
+      location: "{{inputs.property_address}}"
+      timeframe: "6months"
+    output: market_trends
+
+  - name: calculate_valuation
+    agent: realestate_agent
+    action: calculate_property_value
+    input:
+      comparable: "{{steps.research_comparable.output}}"
+      trends: "{{steps.analyze_market_trends.output}}"
+      area: "{{inputs.area_sqm}}"
+    output: valuation_estimate
+
+  - name: generate_report
+    agent: creative_agent
+    action: create_valuation_report
+    input:
+      property: "{{inputs}}"
+      valuation: "{{steps.calculate_valuation.output}}"
+      comparable: "{{steps.research_comparable.output}}"
+    output: valuation_report
+
+outputs:
+  - name: valuation_result
+    value:
+      estimate: "{{steps.calculate_valuation.output}}"
+      comparable_sales: "{{steps.research_comparable.output}}"
+      market_trends: "{{steps.analyze_market_trends.output}}"
+      report: "{{steps.generate_report.output}}"

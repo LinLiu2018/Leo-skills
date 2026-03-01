@@ -1,0 +1,836 @@
+{
+  "report_type": "internal_pilot",
+  "generated_at": "2026-02-28T18:55:27.502978",
+  "company_profile": {
+    "name": "internal_company_pilot",
+    "goal": "verify integration before mass promotion"
+  },
+  "results": {
+    "executed_at": "2026-02-28T18:55:27.501955",
+    "opencode_root": "D:\\桌面\\AI_claude_skills\\opencode-ai",
+    "available_workflows": [
+      "anomaly_warning",
+      "competitor_monitoring",
+      "content_production",
+      "customer_management",
+      "data_collection",
+      "decision_support",
+      "effect_analysis",
+      "followup_reminder",
+      "lead_distribution",
+      "llm_decision_support",
+      "llm_lead_analysis",
+      "llm_property_description",
+      "property_management"
+    ],
+    "workflow_results": [
+      {
+        "workflow_id": "content_production",
+        "status": "completed",
+        "started_at": "2026-02-28T18:55:27.476352",
+        "completed_at": "2026-02-28T18:55:27.493051",
+        "error": "",
+        "input": {
+          "topic": "coffee short video lead generation",
+          "platform": "douyin",
+          "property_info": {
+            "title": "pilot service package",
+            "location": "ningbo",
+            "highlights": [
+              "ai generated content",
+              "auto comment interception",
+              "private domain conversion"
+            ]
+          }
+        },
+        "output": {
+          "published_contents": [
+            {
+              "content_id": "script_coffe",
+              "title": "coffee short video lead generation市场动态",
+              "platform": "douyin",
+              "status": "published",
+              "publish_time": "2026-02-28T18:55:27.493051",
+              "url": "https://douyin.com/video/script_coffe"
+            },
+            {
+              "content_id": "script_coffe",
+              "title": "coffee short video lead generation购房攻略",
+              "platform": "douyin",
+              "status": "published",
+              "publish_time": "2026-02-28T18:55:27.493051",
+              "url": "https://douyin.com/video/script_coffe"
+            },
+            {
+              "content_id": "script_coffe",
+              "title": "coffee short video lead generation性价比分析",
+              "platform": "douyin",
+              "status": "published",
+              "publish_time": "2026-02-28T18:55:27.493051",
+              "url": "https://douyin.com/video/script_coffe"
+            }
+          ],
+          "total_published": 3,
+          "platform": "douyin",
+          "schedule_time": "now"
+        },
+        "step_results": [
+          {
+            "step_id": "topic_selection",
+            "step_name": "选题分析",
+            "status": "completed",
+            "error": "",
+            "duration": 0.0,
+            "output": {
+              "selected_topics": [
+                "coffee short video lead generation市场动态",
+                "coffee short video lead generation购房攻略",
+                "coffee short video lead generation性价比分析"
+              ],
+              "topic_trend_score": 85,
+              "recommended_platform": "douyin"
+            },
+            "executed_at": "2026-02-28T18:55:27.493051"
+          },
+          {
+            "step_id": "script_generation",
+            "step_name": "脚本生成",
+            "status": "completed",
+            "error": "",
+            "duration": 0.0,
+            "output": {
+              "scripts": [
+                {
+                  "topic": "coffee short video lead generation市场动态",
+                  "platform": "douyin",
+                  "hook": "你知道ningbo这套coffee short video lead generation市场动态有多抢手吗？",
+                  "content": "今天给大家介绍关于coffee short video lead generation市场动态的详细内容...",
+                  "cta": "点击链接了解更多",
+                  "estimated_duration": "30-60秒"
+                },
+                {
+                  "topic": "coffee short video lead generation购房攻略",
+                  "platform": "douyin",
+                  "hook": "你知道ningbo这套coffee short video lead generation购房攻略有多抢手吗？",
+                  "content": "今天给大家介绍关于coffee short video lead generation购房攻略的详细内容...",
+                  "cta": "点击链接了解更多",
+                  "estimated_duration": "30-60秒"
+                },
+                {
+                  "topic": "coffee short video lead generation性价比分析",
+                  "platform": "douyin",
+                  "hook": "你知道ningbo这套coffee short video lead generation性价比分析有多抢手吗？",
+                  "content": "今天给大家介绍关于coffee short video lead generation性价比分析的详细内容...",
+                  "cta": "点击链接了解更多",
+                  "estimated_duration": "30-60秒"
+                }
+              ],
+              "script_count": 3,
+              "platform": "douyin"
+            },
+            "executed_at": "2026-02-28T18:55:27.493051"
+          },
+          {
+            "step_id": "content_creation",
+            "step_name": "内容创作",
+            "status": "completed",
+            "error": "",
+            "duration": 0.0,
+            "output": {
+              "contents": [
+                {
+                  "script_id": "script_coffe",
+                  "title": "coffee short video lead generation市场动态",
+                  "content": "今天给大家介绍关于coffee short video lead generation市场动态的详细内容...",
+                  "highlights": [
+                    "ai generated content",
+                    "auto comment interception",
+                    "private domain conversion"
+                  ],
+                  "property_reference": "pilot service package",
+                  "template_used": "standard",
+                  "quality_score": 85,
+                  "checked": true
+                },
+                {
+                  "script_id": "script_coffe",
+                  "title": "coffee short video lead generation购房攻略",
+                  "content": "今天给大家介绍关于coffee short video lead generation购房攻略的详细内容...",
+                  "highlights": [
+                    "ai generated content",
+                    "auto comment interception",
+                    "private domain conversion"
+                  ],
+                  "property_reference": "pilot service package",
+                  "template_used": "standard",
+                  "quality_score": 85,
+                  "checked": true
+                },
+                {
+                  "script_id": "script_coffe",
+                  "title": "coffee short video lead generation性价比分析",
+                  "content": "今天给大家介绍关于coffee short video lead generation性价比分析的详细内容...",
+                  "highlights": [
+                    "ai generated content",
+                    "auto comment interception",
+                    "private domain conversion"
+                  ],
+                  "property_reference": "pilot service package",
+                  "template_used": "standard",
+                  "quality_score": 85,
+                  "checked": true
+                }
+              ],
+              "total_count": 3,
+              "status": "created"
+            },
+            "executed_at": "2026-02-28T18:55:27.493051"
+          },
+          {
+            "step_id": "quality_check",
+            "step_name": "质量检查",
+            "status": "completed",
+            "error": "",
+            "duration": 0.0,
+            "output": {
+              "passed_contents": [
+                {
+                  "script_id": "script_coffe",
+                  "title": "coffee short video lead generation市场动态",
+                  "content": "今天给大家介绍关于coffee short video lead generation市场动态的详细内容...",
+                  "highlights": [
+                    "ai generated content",
+                    "auto comment interception",
+                    "private domain conversion"
+                  ],
+                  "property_reference": "pilot service package",
+                  "template_used": "standard",
+                  "quality_score": 85,
+                  "checked": true
+                },
+                {
+                  "script_id": "script_coffe",
+                  "title": "coffee short video lead generation购房攻略",
+                  "content": "今天给大家介绍关于coffee short video lead generation购房攻略的详细内容...",
+                  "highlights": [
+                    "ai generated content",
+                    "auto comment interception",
+                    "private domain conversion"
+                  ],
+                  "property_reference": "pilot service package",
+                  "template_used": "standard",
+                  "quality_score": 85,
+                  "checked": true
+                },
+                {
+                  "script_id": "script_coffe",
+                  "title": "coffee short video lead generation性价比分析",
+                  "content": "今天给大家介绍关于coffee short video lead generation性价比分析的详细内容...",
+                  "highlights": [
+                    "ai generated content",
+                    "auto comment interception",
+                    "private domain conversion"
+                  ],
+                  "property_reference": "pilot service package",
+                  "template_used": "standard",
+                  "quality_score": 85,
+                  "checked": true
+                }
+              ],
+              "failed_contents": [],
+              "issues": [],
+              "pass_rate": 100.0
+            },
+            "executed_at": "2026-02-28T18:55:27.493051"
+          },
+          {
+            "step_id": "publishing",
+            "step_name": "发布管理",
+            "status": "completed",
+            "error": "",
+            "duration": 0.0,
+            "output": {
+              "published_contents": [
+                {
+                  "content_id": "script_coffe",
+                  "title": "coffee short video lead generation市场动态",
+                  "platform": "douyin",
+                  "status": "published",
+                  "publish_time": "2026-02-28T18:55:27.493051",
+                  "url": "https://douyin.com/video/script_coffe"
+                },
+                {
+                  "content_id": "script_coffe",
+                  "title": "coffee short video lead generation购房攻略",
+                  "platform": "douyin",
+                  "status": "published",
+                  "publish_time": "2026-02-28T18:55:27.493051",
+                  "url": "https://douyin.com/video/script_coffe"
+                },
+                {
+                  "content_id": "script_coffe",
+                  "title": "coffee short video lead generation性价比分析",
+                  "platform": "douyin",
+                  "status": "published",
+                  "publish_time": "2026-02-28T18:55:27.493051",
+                  "url": "https://douyin.com/video/script_coffe"
+                }
+              ],
+              "total_published": 3,
+              "platform": "douyin",
+              "schedule_time": "now"
+            },
+            "executed_at": "2026-02-28T18:55:27.493051"
+          }
+        ]
+      },
+      {
+        "workflow_id": "lead_distribution",
+        "status": "completed",
+        "started_at": "2026-02-28T18:55:27.493051",
+        "completed_at": "2026-02-28T18:55:27.494066",
+        "error": "",
+        "input": {
+          "lead": {
+            "name": "pilot_customer",
+            "phone": "13800138000",
+            "source": "douyin_comment",
+            "budget": "500000-800000",
+            "requirement": "consultation and demo"
+          }
+        },
+        "output": {
+          "followup_task": {
+            "customer_id": "13800138000",
+            "customer_name": "pilot_customer",
+            "assigned_sales": "销售A",
+            "first_followup_time": "2026-02-28T18:55:27.494066",
+            "followup_content": "首次跟进 - B级级客户",
+            "status": "pending",
+            "next_followup_time": "2026-03-04"
+          }
+        },
+        "step_results": [
+          {
+            "step_id": "lead_reception",
+            "step_name": "线索接收",
+            "status": "completed",
+            "error": "",
+            "duration": 0.0,
+            "output": {
+              "lead": {
+                "name": "pilot_customer",
+                "phone": "13800138000",
+                "source": "douyin_comment",
+                "requirement": "consultation and demo",
+                "budget": "500000-800000",
+                "received_at": "2026-02-28T18:55:27.494066",
+                "status": "new"
+              }
+            },
+            "executed_at": "2026-02-28T18:55:27.494066"
+          },
+          {
+            "step_id": "lead_scoring",
+            "step_name": "意向评估",
+            "status": "completed",
+            "error": "",
+            "duration": 0.0,
+            "output": {
+              "total_score": 73.5,
+              "level": "B级",
+              "factors": {
+                "source_quality": {
+                  "score": 85,
+                  "weight": 0.15
+                },
+                "interaction_depth": {
+                  "score": 70,
+                  "weight": 0.2
+                },
+                "browse_history": {
+                  "score": 60,
+                  "weight": 0.15
+                },
+                "purchase_timing": {
+                  "score": 80,
+                  "weight": 0.2
+                },
+                "budget_match": {
+                  "score": 75,
+                  "weight": 0.15
+                },
+                "price_sensitivity": {
+                  "score": 70,
+                  "weight": 0.15
+                }
+              }
+            },
+            "executed_at": "2026-02-28T18:55:27.494066"
+          },
+          {
+            "step_id": "customer_grading",
+            "step_name": "客户分级",
+            "status": "completed",
+            "error": "",
+            "duration": 0.0,
+            "output": {
+              "graded_customer": {
+                "level": "B级",
+                "priority": "中",
+                "followup_frequency": "每周2次",
+                "followup_methods": [
+                  "微信",
+                  "线下"
+                ],
+                "graded_at": "2026-02-28T18:55:27.494066"
+              }
+            },
+            "executed_at": "2026-02-28T18:55:27.494066"
+          },
+          {
+            "step_id": "sales_assignment",
+            "step_name": "销售分配",
+            "status": "completed",
+            "error": "",
+            "duration": 0.0,
+            "output": {
+              "assignment": {
+                "level": "B级",
+                "priority": "中",
+                "followup_frequency": "每周2次",
+                "followup_methods": [
+                  "微信",
+                  "线下"
+                ],
+                "graded_at": "2026-02-28T18:55:27.494066",
+                "assigned_sales": "销售A",
+                "assignment_reason": "根据B级级客户分配规则",
+                "assigned_at": "2026-02-28T18:55:27.494066"
+              }
+            },
+            "executed_at": "2026-02-28T18:55:27.494066"
+          },
+          {
+            "step_id": "followup_initiation",
+            "step_name": "跟进启动",
+            "status": "completed",
+            "error": "",
+            "duration": 0.0,
+            "output": {
+              "followup_task": {
+                "customer_id": "13800138000",
+                "customer_name": "pilot_customer",
+                "assigned_sales": "销售A",
+                "first_followup_time": "2026-02-28T18:55:27.494066",
+                "followup_content": "首次跟进 - B级级客户",
+                "status": "pending",
+                "next_followup_time": "2026-03-04"
+              }
+            },
+            "executed_at": "2026-02-28T18:55:27.494066"
+          }
+        ]
+      },
+      {
+        "workflow_id": "followup_reminder",
+        "status": "completed",
+        "started_at": "2026-02-28T18:55:27.494066",
+        "completed_at": "2026-02-28T18:55:27.497298",
+        "error": "",
+        "input": {},
+        "output": {
+          "tracking": {
+            "total_tasks": 0,
+            "pending_tasks": 0,
+            "completed_today": 0,
+            "overdue_tasks": 0,
+            "completion_rate": 0,
+            "summary": {
+              "A级客户跟进": 0,
+              "B级客户跟进": 0,
+              "C级客户跟进": 0
+            }
+          }
+        },
+        "step_results": [
+          {
+            "step_id": "customer_screening",
+            "step_name": "客户筛选",
+            "status": "completed",
+            "error": "",
+            "duration": 0.0,
+            "output": {
+              "need_followup": []
+            },
+            "executed_at": "2026-02-28T18:55:27.497298"
+          },
+          {
+            "step_id": "followup_plan_generation",
+            "step_name": "跟进计划生成",
+            "status": "completed",
+            "error": "",
+            "duration": 0.0,
+            "output": {
+              "followup_plans": []
+            },
+            "executed_at": "2026-02-28T18:55:27.497298"
+          },
+          {
+            "step_id": "task_creation",
+            "step_name": "任务创建",
+            "status": "completed",
+            "error": "",
+            "duration": 0.0,
+            "output": {
+              "tasks": []
+            },
+            "executed_at": "2026-02-28T18:55:27.497298"
+          },
+          {
+            "step_id": "reminder_sending",
+            "step_name": "提醒发送",
+            "status": "completed",
+            "error": "",
+            "duration": 0.0,
+            "output": {
+              "reminders": []
+            },
+            "executed_at": "2026-02-28T18:55:27.497298"
+          },
+          {
+            "step_id": "completion_tracking",
+            "step_name": "完成跟踪",
+            "status": "completed",
+            "error": "",
+            "duration": 0.0,
+            "output": {
+              "tracking": {
+                "total_tasks": 0,
+                "pending_tasks": 0,
+                "completed_today": 0,
+                "overdue_tasks": 0,
+                "completion_rate": 0,
+                "summary": {
+                  "A级客户跟进": 0,
+                  "B级客户跟进": 0,
+                  "C级客户跟进": 0
+                }
+              }
+            },
+            "executed_at": "2026-02-28T18:55:27.497298"
+          }
+        ]
+      },
+      {
+        "workflow_id": "effect_analysis",
+        "status": "completed",
+        "started_at": "2026-02-28T18:55:27.497298",
+        "completed_at": "2026-02-28T18:55:27.501955",
+        "error": "",
+        "input": {
+          "start_date": "2026-02-01",
+          "end_date": "2026-02-28"
+        },
+        "output": {
+          "report": {
+            "report_type": "运营效果分析报告",
+            "report_period": "2026年1月",
+            "generated_at": "2026-02-28T18:55:27.501955",
+            "executive_summary": {
+              "overall_performance": "优秀",
+              "key_achievements": [
+                "曝光量超额完成",
+                "线索转化率提升",
+                "ROI表现优异"
+              ],
+              "areas_for_improvement": [
+                "短视频互动率",
+                "私域转化效率"
+              ]
+            },
+            "key_metrics": {},
+            "analysis": {},
+            "forecast": {
+              "next_month": {
+                "expected_exposure": "+20%",
+                "expected_leads": "+25%",
+                "expected_deals": "+30%",
+                "expected_revenue": "+22%"
+              },
+              "seasonal_factors": [
+                "春节后是购房旺季",
+                "政策利好持续释放",
+                "市场竞争加剧"
+              ],
+              "risk_factors": [
+                "宏观经济波动",
+                "政策调控风险",
+                "竞品加大投入"
+              ],
+              "confidence_level": 85
+            },
+            "recommendations": [
+              "增加高质量短视频产出",
+              "加强私域运营和转化",
+              "优化预算分配，提高ROI"
+            ]
+          }
+        },
+        "step_results": [
+          {
+            "step_id": "effect_data_collection",
+            "step_name": "数据收集",
+            "status": "completed",
+            "error": "",
+            "duration": 0.0,
+            "output": {
+              "metrics_data": {
+                "exposure": {
+                  "current": 5665000,
+                  "previous": 4925000,
+                  "change": "+15%"
+                },
+                "engagement": {
+                  "current": 226600,
+                  "previous": 185700,
+                  "change": "+22%"
+                },
+                "conversion": {
+                  "current": 1250,
+                  "previous": 980,
+                  "change": "+28%"
+                },
+                "deals": {
+                  "current": 45,
+                  "previous": 38,
+                  "change": "+18%"
+                },
+                "revenue": {
+                  "current": 28000000,
+                  "previous": 24000000,
+                  "change": "+17%"
+                }
+              },
+              "platform_data": {
+                "douyin": {
+                  "views": 2500000,
+                  "leads": 520,
+                  "deals": 18,
+                  "roi": 200
+                },
+                "video_account": {
+                  "views": 1200000,
+                  "leads": 380,
+                  "deals": 14,
+                  "roi": 200
+                },
+                "xiaohongshu": {
+                  "views": 890000,
+                  "leads": 220,
+                  "deals": 9,
+                  "roi": 166.67
+                },
+                "xianyu": {
+                  "views": 125000,
+                  "leads": 130,
+                  "deals": 4,
+                  "roi": 133.33
+                }
+              }
+            },
+            "executed_at": "2026-02-28T18:55:27.501955"
+          },
+          {
+            "step_id": "metrics_calculation",
+            "step_name": "指标计算",
+            "status": "completed",
+            "error": "",
+            "duration": 0.0,
+            "output": {
+              "calculated_metrics": {
+                "exposure": {
+                  "current": 5665000,
+                  "previous": 4925000,
+                  "change": "+15%",
+                  "growth_rate": 15.03
+                },
+                "engagement": {
+                  "current": 226600,
+                  "previous": 185700,
+                  "change": "+22%",
+                  "growth_rate": 22.02
+                },
+                "conversion": {
+                  "current": 1250,
+                  "previous": 980,
+                  "change": "+28%",
+                  "growth_rate": 27.55
+                },
+                "deals": {
+                  "current": 45,
+                  "previous": 38,
+                  "change": "+18%",
+                  "growth_rate": 18.42
+                },
+                "revenue": {
+                  "current": 28000000,
+                  "previous": 24000000,
+                  "change": "+17%",
+                  "growth_rate": 16.67
+                },
+                "engagement_rate": {
+                  "value": 4.0,
+                  "benchmark": 3.5,
+                  "status": "above"
+                },
+                "conversion_rate": {
+                  "value": 0.55,
+                  "benchmark": 0.5,
+                  "status": "above"
+                },
+                "roi": {
+                  "value": 186.67,
+                  "benchmark": 150,
+                  "status": "above"
+                }
+              }
+            },
+            "executed_at": "2026-02-28T18:55:27.501955"
+          },
+          {
+            "step_id": "comparison_analysis",
+            "step_name": "对比分析",
+            "status": "completed",
+            "error": "",
+            "duration": 0.0,
+            "output": {
+              "vs_target": {
+                "exposure": {
+                  "target": 5000000,
+                  "actual": 5665000,
+                  "achievement": 113.3
+                },
+                "leads": {
+                  "target": 1000,
+                  "actual": 1250,
+                  "achievement": 125
+                },
+                "deals": {
+                  "target": 40,
+                  "actual": 45,
+                  "achievement": 112.5
+                },
+                "revenue": {
+                  "target": 25000000,
+                  "actual": 28000000,
+                  "achievement": 112
+                }
+              },
+              "vs_previous": {
+                "exposure": "+15%",
+                "engagement": "+22%",
+                "conversion": "+28%",
+                "deals": "+18%"
+              },
+              "platform_ranking": []
+            },
+            "executed_at": "2026-02-28T18:55:27.501955"
+          },
+          {
+            "step_id": "trend_prediction",
+            "step_name": "趋势预测",
+            "status": "completed",
+            "error": "",
+            "duration": 0.0,
+            "output": {
+              "next_month": {
+                "expected_exposure": "+20%",
+                "expected_leads": "+25%",
+                "expected_deals": "+30%",
+                "expected_revenue": "+22%"
+              },
+              "seasonal_factors": [
+                "春节后是购房旺季",
+                "政策利好持续释放",
+                "市场竞争加剧"
+              ],
+              "risk_factors": [
+                "宏观经济波动",
+                "政策调控风险",
+                "竞品加大投入"
+              ],
+              "confidence_level": 85
+            },
+            "executed_at": "2026-02-28T18:55:27.501955"
+          },
+          {
+            "step_id": "report_generation",
+            "step_name": "报告生成",
+            "status": "completed",
+            "error": "",
+            "duration": 0.0,
+            "output": {
+              "report": {
+                "report_type": "运营效果分析报告",
+                "report_period": "2026年1月",
+                "generated_at": "2026-02-28T18:55:27.501955",
+                "executive_summary": {
+                  "overall_performance": "优秀",
+                  "key_achievements": [
+                    "曝光量超额完成",
+                    "线索转化率提升",
+                    "ROI表现优异"
+                  ],
+                  "areas_for_improvement": [
+                    "短视频互动率",
+                    "私域转化效率"
+                  ]
+                },
+                "key_metrics": {},
+                "analysis": {},
+                "forecast": {
+                  "next_month": {
+                    "expected_exposure": "+20%",
+                    "expected_leads": "+25%",
+                    "expected_deals": "+30%",
+                    "expected_revenue": "+22%"
+                  },
+                  "seasonal_factors": [
+                    "春节后是购房旺季",
+                    "政策利好持续释放",
+                    "市场竞争加剧"
+                  ],
+                  "risk_factors": [
+                    "宏观经济波动",
+                    "政策调控风险",
+                    "竞品加大投入"
+                  ],
+                  "confidence_level": 85
+                },
+                "recommendations": [
+                  "增加高质量短视频产出",
+                  "加强私域运营和转化",
+                  "优化预算分配，提高ROI"
+                ]
+              }
+            },
+            "executed_at": "2026-02-28T18:55:27.501955"
+          }
+        ]
+      }
+    ],
+    "scale_gate_result": {
+      "can_scale": true,
+      "success_rate": 1.0,
+      "minimum_success_rate": 0.85,
+      "required_workflows": [
+        "content_production",
+        "lead_distribution",
+        "followup_reminder"
+      ],
+      "required_failures": [],
+      "summary": "GO"
+    }
+  }
+}

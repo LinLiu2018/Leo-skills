@@ -1,0 +1,109 @@
+# 客户满意度工作流
+# 自动收集客户满意度反馈
+
+name: client-satisfaction-workflow
+description: 客户满意度自动收集工作流
+version: 1.0.0
+category: realestate
+
+# 触发条件
+triggers:
+  - type: event
+    event: deal_closed  # 交易完成
+  - type: cron
+    expr: "0 10 * * 1"  # 每周一 10 点
+
+# 输入参数
+inputs:
+  - name: client_id
+    type: string
+    description: 客户 ID
+  - name: survey_type
+    type: string
+    default: "nps"
+    options: ["nps", "csat", "ces"]
+    description: 调查类型
+
+# 执行步骤
+steps:
+  - name: fetch_client_info
+    description: 获取客户信息
+    agent: sales_agent
+    skill: crm-skill
+    action: get_client
+    params:
+      client_id: "{{inputs.client_id}}"
+    output: client_info
+
+  - name: check_last_survey
+    description: 查看上次调查
+    agent: analysis_agent
+    skill: crm-skill
+    action: get_last_survey
+    params:
+      client_id: "{{inputs.client_id}}"
+    output: last_survey
+
+  - name: generate_survey
+    description: 生成调查问卷
+    agent: creative_agent
+    skill: content-generator-skill
+    action: generate_survey
+    params:
+      survey_type: "{{inputs.survey_type}}"
+      client_info: "{{steps.fetch_client_info.output}}"
+    output: survey
+
+  - name: send_survey
+    description: 发送调查
+    agent: support_agent
+    skill: email-skill
+    action: send_survey
+    params:
+      to: "{{steps.fetch_client_info.output.email}}"
+      survey: "{{steps.generate_survey.output}}"
+    output: send_result
+
+  - name: collect_responses
+    description: 收集回复 (等待)
+    agent: analysis_agent
+    skill: email-skill
+    action: wait_for_response
+    params:
+      timeout: "7days"
+    output: responses
+
+  - name: analyze_feedback
+    description: 分析反馈
+    agent: analysis_agent
+    skill: sentiment-analysis-skill
+    action: analyze_feedback
+    params:
+      responses: "{{steps.collect_responses.output}}"
+    output: analysis
+
+  - name: update_crm
+    description: 更新 CRM
+    agent: sales_agent
+    skill: crm-skill
+    action: update_satisfaction
+    params:
+      client_id: "{{inputs.client_id}}"
+      satisfaction_score: "{{steps.analyze_feedback.output.score}}"
+    output: update_result
+
+# 输出
+outputs:
+  - name: satisfaction_score
+    value: "{{steps.analyze_feedback.output.score}}"
+  - name: response_rate
+    value: "{{steps.collect_responses.output.response_rate}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "客户满意度工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

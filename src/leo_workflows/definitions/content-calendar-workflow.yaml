@@ -1,0 +1,86 @@
+# 内容日历工作流
+# 自动内容日历管理
+
+name: content-calendar-workflow
+description: 内容日历自动管理工作流
+version: 1.0.0
+category: content
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 8 * * 1"  # 每周一 8 点
+  - type: manual
+    description: 手动管理日历
+
+# 输入参数
+inputs:
+  - name: week_start
+    type: string
+    description: 周开始日期
+  - name: content_types
+    type: array
+    default: ["blog", "social", "email"]
+    description: 内容类型
+
+# 执行步骤
+steps:
+  - name: fetch_calendar
+    description: 获取日历
+    agent: distribution_agent
+    skill: calendar-skill
+    action: get_content_calendar
+    output: current_calendar
+
+  - name: check_deadlines
+    description: 检查截止日期
+    agent: analysis_agent
+    skill: analytics-skill
+    action: check_deadlines
+    params:
+      calendar: "{{steps.fetch_calendar.output}}"
+    output: upcoming_deadlines
+
+  - name: assign_tasks
+    description: 分配任务
+    agent: distribution_agent
+    skill: scheduler-skill
+    action: assign_content_tasks
+    params:
+      calendar: "{{steps.fetch_calendar.output}}"
+      deadlines: "{{steps.check_deadlines.output}}"
+    output: task_assignments
+
+  - name: send_reminders
+    description: 发送提醒
+    agent: distribution_agent
+    skill: notification-skill
+    action: send_deadline_reminders
+    params:
+      tasks: "{{steps.assign_tasks.output}}"
+    output: reminder_results
+
+  - name: update_calendar
+    description: 更新日历
+    agent: distribution_agent
+    skill: calendar-skill
+    action: update_calendar
+    params:
+      task_assignments: "{{steps.assign_tasks.output}}"
+    output: updated_calendar
+
+# 输出
+outputs:
+  - name: calendar_updated
+    value: "{{steps.update_calendar.output.status}}"
+  - name: tasks_assigned
+    value: "{{steps.assign_tasks.output.count}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "内容日历工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

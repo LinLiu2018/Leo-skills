@@ -70,7 +70,7 @@ class SkillLoader:
 
             # 遍历该分类下的所有Skills
             for skill_dir in category_dir.iterdir():
-                if skill_dir.is_dir() and skill_dir.name.endswith("-cskill"):
+                if skill_dir.is_dir() and (skill_dir.name.endswith("_skill") or skill_dir.name.endswith("-cskill")):
                     skill_name = skill_dir.name
 
                     # 加载Skill
@@ -238,15 +238,21 @@ _global_loader: Optional[SkillLoader] = None
 
 def get_loader() -> SkillLoader:
     """
-    获取全局加载器实例
+    获取全局加载器实例（线程安全）
 
     Returns:
         Skill加载器实例
     """
     global _global_loader
     if _global_loader is None:
-        _global_loader = SkillLoader()
-        _global_loader.discover_and_load()  # 自动发现并加载 skills
+        from leo_system.singleton import thread_safe_singleton
+        def _create_loader():
+            loader = SkillLoader()
+            loader.discover_and_load()
+            return loader
+        _global_loader = thread_safe_singleton(
+            "skill_loader", _global_loader, _create_loader
+        )
     return _global_loader
 
 

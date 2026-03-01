@@ -1,0 +1,113 @@
+# 合同生成工作流
+# 自动生成房产交易合同
+
+name: contract-generation-workflow
+description: 合同自动生成工作流
+version: 1.0.0
+category: realestate
+
+# 触发条件
+triggers:
+  - type: event
+    event: contract_request  # 合同请求
+  - type: manual
+    description: 手动触发合同生成
+
+# 输入参数
+inputs:
+  - name: deal_id
+    type: string
+    required: true
+    description: 交易 ID
+  - name: contract_type
+    type: string
+    default: "sale"
+    options: ["sale", "lease", "mortgage"]
+    description: 合同类型
+
+# 执行步骤
+steps:
+  - name: fetch_deal_info
+    description: 获取交易信息
+    agent: sales_agent
+    skill: crm-skill
+    action: get_deal
+    params:
+      deal_id: "{{inputs.deal_id}}"
+    output: deal_info
+
+  - name: fetch_property_info
+    description: 获取房产信息
+    agent: realestate_agent
+    skill: realestate-listing-skill
+    action: get_property
+    params:
+      property_id: "{{steps.fetch_deal_info.output.property_id}}"
+    output: property_info
+
+  - name: fetch_parties_info
+    description: 获取交易双方信息
+    agent: sales_agent
+    skill: crm-skill
+    action: get_parties
+    params:
+      deal_id: "{{inputs.deal_id}}"
+    output: parties_info
+
+  - name: generate_contract
+    description: 生成合同
+    agent: creative_agent
+    skill: contract-generator-skill
+    action: generate_contract
+    params:
+      contract_type: "{{inputs.contract_type}}"
+      deal_info: "{{steps.fetch_deal_info.output}}"
+      property_info: "{{steps.fetch_property_info.output}}"
+      parties_info: "{{steps.fetch_parties_info.output}}"
+    output: contract_draft
+
+  - name: review_contract
+    description: 合同审查
+    agent: analysis_agent
+    skill: code-review-skill
+    action: review_contract
+    params:
+      contract: "{{steps.generate_contract.output}}"
+      checklist: "standard"
+    output: review_result
+
+  - name: finalize_contract
+    description: 定稿合同
+    agent: creative_agent
+    skill: contract-generator-skill
+    action: finalize_contract
+    params:
+      draft: "{{steps.generate_contract.output}}"
+      review_comments: "{{steps.review_contract.output}}"
+    output: final_contract
+
+  - name: send_for_signature
+    description: 发送签约
+    agent: support_agent
+    skill: doc-sign-skill
+    action: send_for_signature
+    params:
+      contract: "{{steps.finalize_contract.output}}"
+      signers: "{{steps.fetch_parties_info.output.signers}}"
+    output: signature_request
+
+# 输出
+outputs:
+  - name: contract_id
+    value: "{{steps.finalize_contract.output.id}}"
+  - name: signature_status
+    value: "{{steps.send_for_signature.output.status}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "合同生成工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

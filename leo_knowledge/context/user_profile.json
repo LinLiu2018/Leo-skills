@@ -1,0 +1,54 @@
+{
+  "user_id": "leo",
+  "business_domain": "commercial_real_estate",
+  "current_project": {
+    "name": "乐橙荟商铺",
+    "location": "宁波鄞州",
+    "target_audience": "投资客",
+    "key_selling_points": [
+      "满租现铺",
+      "10年包租",
+      "年回报6%"
+    ],
+    "price_range": "100-150万"
+  },
+  "content_preferences": {
+    "tone": "专业但亲和",
+    "emphasis": [
+      "投资回报",
+      "稳定收益",
+      "实物资产"
+    ],
+    "avoid": [
+      "高风险",
+      "投机"
+    ],
+    "common_phrases": []
+  },
+  "workflow_patterns": [],
+  "external_tools": {
+    "messaging": [
+      "飞书",
+      "微信"
+    ],
+    "ads": [
+      "抖音",
+      "小红书"
+    ],
+    "storage": "D:/桌面/房产项目"
+  },
+  "learning_stats": {
+    "total_interactions": 9,
+    "skills_used": {
+      "research_assistant_skill": {
+        "count": 1,
+        "success": 1,
+        "failed": 0
+      }
+    },
+    "files_edited": [],
+    "feedback_given": []
+  },
+  "created_at": "2026-03-01T12:44:39.826180",
+  "updated_at": "2026-03-01T12:46:39.564286"
+}

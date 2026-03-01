@@ -1,0 +1,90 @@
+# 社交媒体工作流
+# 自动社交媒体管理
+
+name: social-media-workflow
+description: 社交媒体自动管理工作流
+version: 1.0.0
+category: business
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 11 * * *"  # 每天 11 点
+  - type: manual
+    description: 手动管理
+
+# 输入参数
+inputs:
+  - name: platforms
+    type: array
+    default: ["weibo", "wechat", "xiaohongshu"]
+    description: 社交平台
+  - name: content_type
+    type: string
+    default: "post"
+    description: 内容类型
+
+# 执行步骤
+steps:
+  - name: generate_content
+    description: 生成内容
+    agent: creative_agent
+    skill: content-generator-skill
+    action: generate_social_content
+    params:
+      platforms: "{{inputs.platforms}}"
+      content_type: "{{inputs.content_type}}"
+    output: social_content
+
+  - name: schedule_posts
+    description: 安排发布
+    agent: distribution_agent
+    skill: social-media-skill
+    action: schedule_posts
+    params:
+      content: "{{steps.generate_content.output}}"
+      platforms: "{{inputs.platforms}}"
+    output: scheduled_posts
+
+  - name: publish_posts
+    description: 发布内容
+    agent: distribution_agent
+    skill: social-media-skill
+    action: publish_posts
+    params:
+      scheduled_posts: "{{steps.schedule_posts.output}}"
+    output: publish_results
+
+  - name: monitor_engagement
+    description: 监控互动
+    agent: distribution_agent
+    skill: social-media-skill
+    action: monitor_engagement
+    params:
+      posts: "{{steps.publish_posts.output}}"
+    output: engagement_data
+
+  - name: respond_to_comments
+    description: 回复评论
+    agent: distribution_agent
+    skill: social-media-skill
+    action: respond_to_comments
+    params:
+      engagement: "{{steps.monitor_engagement.output}}"
+    output: response_results
+
+# 输出
+outputs:
+  - name: posts_published
+    value: "{{steps.publish_posts.output.count}}"
+  - name: total_engagement
+    value: "{{steps.monitor_engagement.output.total}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "社交媒体工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

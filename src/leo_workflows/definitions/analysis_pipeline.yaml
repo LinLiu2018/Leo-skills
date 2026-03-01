@@ -1,0 +1,80 @@
+---
+# 数据分析工作流
+# ==============
+# 完整的数据分析流程
+
+name: data-analysis-pipeline
+description: 数据分析工作流 - 数据收集 + 清洗 + 分析 + 可视化
+version: "1.0"
+continue_on_error: true
+
+# 输入参数定义
+inputs:
+  data_source:
+    type: string
+    required: true
+    description: 数据源路径或URL
+  analysis_type:
+    type: string
+    required: true
+    enum: [descriptive, predictive, prescriptive]
+  output_format:
+    type: string
+    default: markdown
+
+# 工作流步骤
+steps:
+  - name: data_collection
+    type: sequential
+    agent: research_agent
+    description: 收集数据
+
+  - name: data_cleaning
+    type: sequential
+    agent: data_analyzer_skill
+    description: 数据清洗
+
+  - name: descriptive_analysis
+    type: conditional
+    condition_key: analysis_type
+    branches:
+      "descriptive": desc_analysis
+      "predictive": pred_analysis
+      "prescriptive": presc_analysis
+
+  - name: desc_analysis
+    type: sequential
+    agent: analysis_agent
+    description: 描述性分析
+
+  - name: pred_analysis
+    type: sequential
+    agent: analysis_agent
+    description: 预测性分析
+
+  - name: presc_analysis
+    type: sequential
+    agent: analysis_agent
+    description: 规范性分析
+
+  - name: visualization
+    type: sequential
+    agent: chart_generator_skill
+    description: 生成可视化图表
+
+  - name: report
+    type: sequential
+    agent: creative_agent
+    description: 生成分析报告
+
+# 输出定义
+outputs:
+  - name: analysis_results
+    type: json
+    description: 分析结果
+  - name: charts
+    type: json
+    description: 可视化图表列表
+  - name: report
+    type: markdown
+    description: 分析报告

@@ -1,0 +1,90 @@
+# 知识管理工作流
+# 自动知识沉淀和分享
+
+name: knowledge-management-workflow
+description: 知识自动管理工作流
+version: 1.0.0
+category: business
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 20 * * *"  # 每天 20 点
+  - type: manual
+    description: 手动管理
+
+# 输入参数
+inputs:
+  - name: knowledge_source
+    type: string
+    description: 知识来源
+  - name: knowledge_type
+    type: string
+    default: "article"
+    options: ["article", "note", "guide", "case_study"]
+    description: 知识类型
+
+# 执行步骤
+steps:
+  - name: collect_knowledge
+    description: 收集知识
+    agent: research_agent
+    skill: web-search-skill
+    action: collect_knowledge
+    params:
+      source: "{{inputs.knowledge_source}}"
+      type: "{{inputs.knowledge_type}}"
+    output: knowledge_data
+
+  - name: summarize_knowledge
+    description: 总结知识
+    agent: creative_agent
+    skill: summarize-skill
+    action: summarize
+    params:
+      content: "{{steps.collect_knowledge.output}}"
+    output: summary
+
+  - name: categorize_knowledge
+    description: 分类知识
+    agent: analysis_agent
+    skill: analytics-skill
+    action: categorize
+    params:
+      summary: "{{steps.summarize_knowledge.output}}"
+    output: category
+
+  - name: store_knowledge
+    description: 存储知识
+    agent: task_agent
+    skill: Write
+    action: store_knowledge
+    params:
+      summary: "{{steps.summarize_knowledge.output}}"
+      category: "{{steps.categorize_knowledge.output}}"
+    output: storage_result
+
+  - name: share_knowledge
+    description: 分享知识
+    agent: distribution_agent
+    skill: notification-skill
+    action: share_with_team
+    params:
+      knowledge: "{{steps.summarize_knowledge.output}}"
+    output: share_result
+
+# 输出
+outputs:
+  - name: knowledge_id
+    value: "{{steps.store_knowledge.output.knowledge_id}}"
+  - name: category
+    value: "{{steps.categorize_knowledge.output.category}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "知识管理工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

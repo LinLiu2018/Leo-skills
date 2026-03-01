@@ -1,0 +1,105 @@
+# 销售业绩工作流
+# 自动统计销售业绩
+
+name: sales-performance-workflow
+description: 销售业绩自动统计工作流
+version: 1.0.0
+category: realestate
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 9 * * *"  # 每天 9 点
+  - type: manual
+    description: 手动触发业绩统计
+
+# 输入参数
+inputs:
+  - name: period
+    type: string
+    default: "yesterday"
+    options: ["yesterday", "week", "month", "quarter", "year"]
+    description: 统计周期
+  - name: team_id
+    type: string
+    description: 团队 ID
+
+# 执行步骤
+steps:
+  - name: fetch_sales_data
+    description: 获取销售数据
+    agent: sales_agent
+    skill: analytics-skill
+    action: get_sales_data
+    params:
+      period: "{{inputs.period}}"
+      team_id: "{{inputs.team_id}}"
+    output: sales_data
+
+  - name: calculate_metrics
+    description: 计算指标
+    agent: analysis_agent
+    skill: analytics-skill
+    action: calculate_metrics
+    params:
+      sales_data: "{{steps.fetch_sales_data.output}}"
+      metrics: ["revenue", "deals", "conversion_rate", "avg_deal_size"]
+    output: metrics
+
+  - name: compare_with_target
+    description: 对比目标
+    agent: analysis_agent
+    skill: analytics-skill
+    action: compare_target
+    params:
+      metrics: "{{steps.calculate_metrics.output}}"
+      targets: "{{steps.fetch_sales_data.output.targets}}"
+    output: comparison
+
+  - name: generate_ranking
+    description: 生成排名
+    agent: analysis_agent
+    skill: analytics-skill
+    action: generate_ranking
+    params:
+      sales_data: "{{steps.fetch_sales_data.output}}"
+      metric: "revenue"
+    output: ranking
+
+  - name: generate_report
+    description: 生成报告
+    agent: creative_agent
+    skill: doc-generator-skill
+    action: generate_performance_report
+    params:
+      period: "{{inputs.period}}"
+      metrics: "{{steps.calculate_metrics.output}}"
+      comparison: "{{steps.compare_with_target.output}}"
+      ranking: "{{steps.generate_ranking.output}}"
+    output: report
+
+  - name: distribute_report
+    description: 分发报告
+    agent: distribution_agent
+    skill: notification-skill
+    action: send_to_team
+    params:
+      report: "{{steps.generate_report.output}}"
+      channels: ["feishu", "email"]
+    output: distribute_result
+
+# 输出
+outputs:
+  - name: report_id
+    value: "{{steps.generate_report.output.id}}"
+  - name: target_achievement
+    value: "{{steps.compare_with_target.output.achievement_rate}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "销售业绩工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

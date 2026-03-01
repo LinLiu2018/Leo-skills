@@ -1,0 +1,57 @@
+name: inventory_management_workflow
+description: 库存管理优化流程
+version: 1.0.0
+category: operations
+
+triggers:
+  - type: cron
+    expr: "0 9 * * *"
+  - type: manual
+
+inputs:
+  - name: warehouse_id
+    type: string
+    required: true
+  - name: product_categories
+    type: array
+    default: []
+
+steps:
+  - name: check_stock_levels
+    agent: operation_agent
+    action: get_current_inventory
+    input:
+      warehouse: "{{inputs.warehouse_id}}"
+      categories: "{{inputs.product_categories}}"
+    output: stock_levels
+
+  - name: forecast_demand
+    agent: analysis_agent
+    action: predict_demand
+    input:
+      categories: "{{inputs.product_categories}}"
+      history_days: 90
+    output: demand_forecast
+
+  - name: identify_reorder_needs
+    agent: operation_agent
+    action: calculate_reorder_points
+    input:
+      stock: "{{steps.check_stock_levels.output}}"
+      forecast: "{{steps.forecast_demand.output}}"
+    output: reorder_list
+
+  - name: generate_purchase_order
+    agent: operation_agent
+    action: create_purchase_orders
+    input:
+      reorder_list: "{{steps.identify_reorder_needs.output}}"
+    output: purchase_orders
+
+outputs:
+  - name: inventory_report
+    value:
+      stock_levels: "{{steps.check_stock_levels.output}}"
+      forecast: "{{steps.forecast_demand.output}}"
+      reorder_list: "{{steps.identify_reorder_needs.output}}"
+      purchase_orders: "{{steps.generate_purchase_order.output}}"

@@ -1,0 +1,101 @@
+# 选题研究工作流
+# 自动选题研究和趋势分析
+
+name: topic-research-workflow
+description: 选题自动研究工作流
+version: 1.0.0
+category: content
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 9 * * 1"  # 每周一 9 点
+  - type: manual
+    description: 手动研究选题
+
+# 输入参数
+inputs:
+  - name: industry
+    type: string
+    default: "ai_technology"
+    description: 行业领域
+  - name: target_audience
+    type: string
+    default: "tech_enthusiasts"
+    description: 目标受众
+
+# 执行步骤
+steps:
+  - name: trend_research
+    description: 趋势研究
+    agent: creative_agent
+    skill: web-search-skill
+    action: research_trends
+    params:
+      industry: "{{inputs.industry}}"
+    output: trend_data
+
+  - name: competitor_analysis
+    description: 竞品分析
+    agent: analysis_agent
+    skill: competitor-monitor-skill
+    action: analyze_content
+    params:
+      industry: "{{inputs.industry}}"
+    output: competitor_content
+
+  - name: keyword_research
+    description: 关键词研究
+    agent: distribution_agent
+    skill: seo-skill
+    action: research_keywords
+    params:
+      industry: "{{inputs.industry}}"
+    output: keyword_data
+
+  - name: generate_topic_ideas
+    description: 生成选题
+    agent: creative_agent
+    skill: content-generator-skill
+    action: generate_topics
+    params:
+      trends: "{{steps.trend_research.output}}"
+      keywords: "{{steps.keyword_research.output}}"
+    output: topic_ideas
+
+  - name: score_topics
+    description: 评分选题
+    agent: analysis_agent
+    skill: analytics-skill
+    action: score_topics
+    params:
+      topics: "{{steps.generate_topic_ideas.output}}"
+      criteria: ["search_volume", "competition", "relevance"]
+    output: scored_topics
+
+  - name: generate_calendar
+    description: 生成日历
+    agent: creative_agent
+    skill: content-generator-skill
+    action: generate_content_calendar
+    params:
+      topics: "{{steps.score_topics.output.top_10}}"
+    output: content_calendar
+
+# 输出
+outputs:
+  - name: topic_ideas
+    value: "{{steps.generate_topic_ideas.output}}"
+  - name: top_topics
+    value: "{{steps.score_topics.output.top_10}}"
+  - name: content_calendar
+    value: "{{steps.generate_calendar.output}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "选题研究工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

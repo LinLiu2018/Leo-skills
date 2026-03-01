@@ -1,0 +1,65 @@
+name: tenant_screening_workflow
+description: 租户资质审核流程
+version: 1.0.0
+category: realestate
+
+triggers:
+  - type: manual
+  - type: event
+    event: tenant_application
+
+inputs:
+  - name: tenant_info
+    type: object
+    required: true
+  - name: property_id
+    type: string
+    required: true
+
+steps:
+  - name: verify_identity
+    agent: leasing_agent
+    action: verify_tenant_identity
+    input:
+      tenant: "{{inputs.tenant_info}}"
+    output: identity_verification
+
+  - name: check_credit_history
+    agent: leasing_agent
+    action: check_credit_score
+    input:
+      tenant_id: "{{inputs.tenant_info.id}}"
+    output: credit_report
+
+  - name: verify_income
+    agent: leasing_agent
+    action: verify_employment_income
+    input:
+      employment_info: "{{inputs.tenant_info.employment}}"
+    output: income_verification
+
+  - name: check_references
+    agent: leasing_agent
+    action: contact_previous_landlords
+    input:
+      references: "{{inputs.tenant_info.references}}"
+    output: reference_feedback
+
+  - name: generate_screening_report
+    agent: leasing_agent
+    action: create_screening_summary
+    input:
+      identity: "{{steps.verify_identity.output}}"
+      credit: "{{steps.check_credit_history.output}}"
+      income: "{{steps.verify_income.output}}"
+      references: "{{steps.check_references.output}}"
+    output: screening_report
+
+outputs:
+  - name: screening_result
+    value:
+      identity: "{{steps.verify_identity.output}}"
+      credit: "{{steps.check_credit_history.output}}"
+      income: "{{steps.verify_income.output}}"
+      references: "{{steps.check_references.output}}"
+      report: "{{steps.generate_screening_report.output}}"

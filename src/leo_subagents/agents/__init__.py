@@ -47,4 +47,5 @@ except ImportError as e:
         "AgentFactory",
         "TaskAgent",
     ]
-from .ai_news_summary_agent import AiNewsSummaryAgent
+# 修复导入错误 - 类名是 DailyNewsSummaryAgent
+from .ai_news_summary_agent import DailyNewsSummaryAgent

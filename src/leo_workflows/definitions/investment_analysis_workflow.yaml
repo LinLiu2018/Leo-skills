@@ -1,0 +1,65 @@
+name: investment_analysis_workflow
+description: 房产投资回报率分析
+version: 1.0.0
+category: realestate
+
+triggers:
+  - type: manual
+  - type: event
+    event: investment_analysis_request
+
+inputs:
+  - name: property_price
+    type: number
+    required: true
+  - name: rental_income_monthly
+    type: number
+    required: true
+  - name: expenses_annual
+    type: number
+    default: 0
+  - name: financing_rate
+    type: number
+    default: 0
+
+steps:
+  - name: calculate_roi
+    agent: investment_agent
+    action: calculate_roi
+    input:
+      price: "{{inputs.property_price}}"
+      income: "{{inputs.rental_income_monthly}}"
+      expenses: "{{inputs.expenses_annual}}"
+    output: roi_calculation
+
+  - name: calculate_cash_flow
+    agent: investment_agent
+    action: calculate_cash_flow
+    input:
+      income: "{{inputs.rental_income_monthly}}"
+      expenses: "{{inputs.expenses_annual}}"
+      financing: "{{inputs.financing_rate}}"
+    output: cash_flow_analysis
+
+  - name: assess_risk
+    agent: investment_agent
+    action: risk_assessment
+    input:
+      roi: "{{steps.calculate_roi.output}}"
+      cashflow: "{{steps.calculate_cash_flow.output}}"
+    output: risk_profile
+
+  - name: compare_alternatives
+    agent: investment_agent
+    action: compare_investment_options
+    input:
+      property_roi: "{{steps.calculate_roi.output}}"
+    output: comparison
+
+outputs:
+  - name: investment_analysis
+    value:
+      roi: "{{steps.calculate_roi.output}}"
+      cash_flow: "{{steps.calculate_cash_flow.output}}"
+      risk: "{{steps.assess_risk.output}}"
+      comparison: "{{steps.compare_alternatives.output}}"

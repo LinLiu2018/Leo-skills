@@ -16,14 +16,14 @@ if %errorlevel% neq 0 (
 
 echo [1/3] 创建定时任务...
 
-schtasks /create /tn "OpenClaw_AutoHealer" /tr "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -File 'D:\桌面\leo_ai_system\scripts\openclaw_auto_healer.ps1'" /sc onstart /delay 0001:00 /f /np /rl HIGHEST 2>nul
+schtasks /create /tn "OpenClaw_AutoHealer" /tr "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -File 'D:\桌面\leo_ai_system\scripts\openclaw\openclaw_auto_healer.ps1'" /sc onstart /delay 0001:00 /f /np /rl HIGHEST 2>nul
 
 if %errorlevel% equ 0 (
     echo     任务创建成功
 ) else (
     echo     任务可能已存在，尝试更新...
     schtasks /delete /tn "OpenClaw_AutoHealer" /f 2>nul
-    schtasks /create /tn "OpenClaw_AutoHealer" /tr "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -File 'D:\桌面\leo_ai_system\scripts\openclaw_auto_healer.ps1'" /sc onstart /delay 0001:00 /f /np /rl HIGHEST
+    schtasks /create /tn "OpenClaw_AutoHealer" /tr "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -File 'D:\桌面\leo_ai_system\scripts\openclaw\openclaw_auto_healer.ps1'" /sc onstart /delay 0001:00 /f /np /rl HIGHEST
 )
 
 echo.

@@ -44,9 +44,13 @@ package-lock.json
 *.log
 logs/
 
-# Environment
+# Environment — 所有目录下的 .env 文件及变体
 .env
 .env.local
+**/.env
+**/.env.local
+**/.env.production
+**/.env.*.local
 
 # OS
 .DS_Store
@@ -72,6 +76,22 @@ roi_report_*.md
 # Deep research scripts (temporary)
 deep_research_*.py
 
+# === 大文件和二进制 ===
+*.pdf
+*.exe
+*.mp4
+*.gif
+*.zip
+*.tar.gz
+*.rar
+get-pip.py
+
+# Next.js 构建缓存
+.next/
+
+# Webpack 缓存
+*.pack.gz
+
 # === 2026-02-25 改造补充 ===
 
 # 数据库文件
@@ -96,3 +116,18 @@ src/leo_interface/web_v2/api/*.db
 
 # 旧版遗留目录
 leo-skills-old/
+
+# 工具配置和缓存
+.openclaw/
+.benchmarks/
+.pi/
+.playwright-mcp/
+
+# 源码目录下的日志（应使用根目录 logs/）
+src/logs/
+
+# 临时生成的摘要文件
+*_summary.txt
+
+# 错误产生的文件
+!

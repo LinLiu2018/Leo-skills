@@ -1,0 +1,13 @@
+name: auction_agent
+type: realestate
+description: Legal auction real estate agent
+version: 1.0.0
+owner: leo
+enabled: true
+model: qwen3.5-plus
+workspace: ~/.openclaw/workspace-auction
+triggers:
+  - auction
+  - legal_auction
+  - bidding
+  - foreclosure

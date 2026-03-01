@@ -285,8 +285,6 @@ class WorkflowEngine:
 
         return results
 
-        return results
-
     def _execute_conditional_step(self, step: Dict[str, Any], context: Dict[str, Any]) -> tuple:
         """
         执行条件分支步骤
@@ -564,4 +562,165 @@ if __name__ == "__main__":
     }
     result3 = engine.execute(workflow3, task="获取并处理数据")
 
-    logger.info("所有测试完成!")
+
+# ==================== 动态任务分发扩展 ====================
+
+class DynamicWorkflowEngine(WorkflowEngine):
+    """
+    动态工作流引擎
+    ==============
+    支持运行时根据任务动态选择 Agent
+
+    参考 Claude Code 官方最佳实践:
+    - Task 工具动态委派
+    - LLM 驱动的任务分发决策
+    """
+
+    def __init__(self, agents: Dict[str, Any], agent_definitions: Optional[Dict[str, Any]] = None):
+        """
+        初始化动态工作流引擎
+
+        Args:
+            agents: Agent 字典
+            agent_definitions: Agent 定义字典 (可选)
+        """
+        super().__init__(agents)
+        self.agent_definitions = agent_definitions or {}
+
+    def _select_best_agent(self, task: str) -> Optional[str]:
+        """
+        根据任务选择最佳 Agent
+
+        Args:
+            task: 任务描述
+
+        Returns:
+            最佳匹配的 Agent 名称
+        """
+        task_lower = task.lower()
+
+        # 基于关键词的简单选择逻辑
+        # 实际生产环境可以用 LLM 判断
+        agent_keywords = {
+            "research_agent": ["研究", "调研", "搜索", "查找", "收集", "分析"],
+            "analysis_agent": ["分析", "统计", "数据", "趋势", "对比"],
+            "creative_agent": ["创作", "生成", "写作", "文案", "内容", "报告"],
+            "architect_agent": ["架构", "设计", "技术选型", "系统"],
+            "product_manager_agent": ["需求", "产品", "PRD", "功能", "用户故事"],
+            "mobile_agent": ["小程序", "app", "移动", "ios", "android"],
+            "realestate_agent": ["房地产", "楼盘", "营销", "政策"],
+            "ecommerce_agent": ["电商", "竞品", "爆款", "选品"],
+        }
+
+        scores = {}
+        for agent_name, keywords in agent_keywords.items():
+            score = sum(1 for kw in keywords if kw in task_lower)
+            if score > 0:
+                scores[agent_name] = score
+
+        if not scores:
+            return "task_agent"  # 默认
+
+        return max(scores, key=scores.get)
+
+    def execute_dynamic(self, task: str, context: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+        """
+        动态执行工作流 - LLM 驱动任务分发
+
+        Args:
+            task: 任务描述
+            context: 上下文参数
+
+        Returns:
+            执行结果
+        """
+        logger.info(f"动态工作流开始: {task}")
+
+        # 1. 分析任务，选择最佳 Agent
+        best_agent = self._select_best_agent(task)
+        logger.info(f"选择 Agent: {best_agent}")
+
+        # 2. 获取 Agent 实例
+        agent = self.agents.get(best_agent)
+        if not agent:
+            logger.warning(f"Agent {best_agent} 不存在，使用默认")
+            agent = self.agents.get("task_agent")
+
+        # 3. 执行任务
+        try:
+            context = context or {}
+            result = agent.execute(task, **context)
+
+            return {
+                "task": task,
+                "selected_agent": best_agent,
+                "result": result,
+                "status": "completed"
+            }
+        except Exception as e:
+            logger.error(f"动态工作流执行失败: {e}")
+            return {
+                "task": task,
+                "selected_agent": best_agent,
+                "error": str(e),
+                "status": "failed"
+            }
+
+    def execute_with_subagents(
+        self,
+        task: str,
+        subagent_tasks: List[Dict[str, str]]
+    ) -> Dict[str, Any]:
+        """
+        使用多个子代理并行执行任务
+
+        Args:
+            task: 主任务描述
+            subagent_tasks: 子代理任务列表 [{"agent": "xxx", "task": "xxx"}]
+
+        Returns:
+            合并的结果
+        """
+        logger.info(f"多代理工作流开始: {task}")
+
+        results = []
+
+        # 并行执行子任务
+        with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
+            futures = {}
+            for i, st in enumerate(subagent_tasks):
+                agent_name = st.get("agent", "task_agent")
+                sub_task = st.get("task", task)
+
+                agent = self.agents.get(agent_name)
+                if agent:
+                    future = executor.submit(agent.execute, sub_task)
+                    futures[future] = {"index": i, "agent": agent_name, "task": sub_task}
+
+            # 收集结果
+            for future in futures:
+                info = futures[future]
+                try:
+                    result = future.result(timeout=120)
+                    results.append({
+                        "agent": info["agent"],
+                        "task": info["task"],
+                        "result": result,
+                        "status": "completed"
+                    })
+                except Exception as e:
+                    results.append({
+                        "agent": info["agent"],
+                        "task": info["task"],
+                        "error": str(e),
+                        "status": "failed"
+                    })
+
+        return {
+            "task": task,
+            "subagent_results": results,
+            "status": "completed"
+        }
+
+
+# 注意：原 logger.info("所有测试完成!") 是类体内裸语句，已移除

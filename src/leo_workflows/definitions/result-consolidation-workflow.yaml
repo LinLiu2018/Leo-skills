@@ -1,0 +1,100 @@
+# 结果汇总工作流
+# 多 Agent 结果汇总和整合
+
+name: result-consolidation-workflow
+description: 结果自动汇总工作流
+version: 1.0.0
+category: collaboration
+
+# 触发条件
+triggers:
+  - type: event
+    event: agent_results_ready  # Agent 结果就绪
+  - type: manual
+    description: 手动汇总
+
+# 输入参数
+inputs:
+  - name: agent_results
+    type: array
+    required: true
+    description: Agent 结果列表
+  - name: consolidation_type
+    type: string
+    default: "merge"
+    options: ["merge", "compare", "aggregate", "select_best"]
+    description: 汇总类型
+
+# 执行步骤
+steps:
+  - name: validate_results
+    description: 验证结果
+    agent: analysis_agent
+    skill: analytics-skill
+    action: validate_results
+    params:
+      results: "{{inputs.agent_results}}"
+    output: validation_result
+
+  - name: format_results
+    description: 格式化结果
+    agent: creative_agent
+    skill: content-generator-skill
+    action: format_results
+    params:
+      results: "{{inputs.agent_results}}"
+    output: formatted_results
+
+  - name: consolidate_results
+    description: 汇总结果
+    agent: analysis_agent
+    skill: analytics-skill
+    action: consolidate
+    params:
+      results: "{{steps.format_results.output}}"
+      type: "{{inputs.consolidation_type}}"
+    output: consolidated_result
+
+  - name: resolve_conflicts
+    description: 解决冲突
+    agent: analysis_agent
+    skill: analytics-skill
+    action: resolve_conflicts
+    params:
+      consolidated: "{{steps.consolidate_results.output}}"
+    output: resolved_result
+
+  - name: generate_summary
+    description: 生成摘要
+    agent: creative_agent
+    skill: content-generator-skill
+    action: generate_summary
+    params:
+      result: "{{steps.resolve_conflicts.output}}"
+    output: summary
+
+  - name: distribute_result
+    description: 分发结果
+    agent: distribution_agent
+    skill: notification-skill
+    action: send_consolidated_result
+    params:
+      result: "{{steps.resolve_conflicts.output}}"
+      summary: "{{steps.generate_summary.output}}"
+    output: distribution_result
+
+# 输出
+outputs:
+  - name: consolidated_result
+    value: "{{steps.resolve_conflicts.output}}"
+  - name: summary
+    value: "{{steps.generate_summary.output}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "结果汇总工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

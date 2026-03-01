@@ -1,0 +1,49 @@
+name: price_optimization_workflow
+description: 动态定价优化流程
+version: 1.0.0
+category: pricing
+
+triggers:
+  - type: cron
+    expr: "0 8 * * 1"
+  - type: manual
+
+inputs:
+  - name: product_id
+    type: string
+    required: true
+  - name: current_price
+    type: number
+    required: true
+
+steps:
+  - name: analyze_market_data
+    agent: analysis_agent
+    action: gather_pricing_data
+    input:
+      product: "{{inputs.product_id}}"
+    output: market_data
+
+  - name: calculate_elasticity
+    agent: analysis_agent
+    action: calculate_price_elasticity
+    input:
+      product: "{{inputs.product_id}}"
+      current_price: "{{inputs.current_price}}"
+    output: elasticity
+
+  - name: recommend_price
+    agent: analysis_agent
+    action: suggest_optimal_price
+    input:
+      market_data: "{{steps.analyze_market_data.output}}"
+      elasticity: "{{steps.calculate_elasticity.output}}"
+      current_price: "{{inputs.current_price}}"
+    output: price_recommendation
+
+outputs:
+  - name: pricing_analysis
+    value:
+      market_data: "{{steps.analyze_market_data.output}}"
+      elasticity: "{{steps.calculate_elasticity.output}}"
+      recommendation: "{{steps.recommend_price.output}}"

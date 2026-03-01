@@ -1,0 +1,70 @@
+name: site_visit_followup
+description: 带看客户自动跟进
+version: 1.0.0
+category: sales
+
+triggers:
+  - type: event
+    event: site_visit_completed
+  - type: manual
+
+inputs:
+  - name: client_id
+    type: string
+    required: true
+  - name: properties_viewed
+    type: array
+    required: true
+  - name: visit_notes
+    type: string
+
+steps:
+  - name: analyze_visit_feedback
+    agent: sales_agent
+    action: analyze_client_feedback
+    input:
+      notes: "{{inputs.visit_notes}}"
+      properties: "{{inputs.properties_viewed}}"
+    output: feedback_analysis
+
+  - name: score_property_interest
+    agent: sales_agent
+    action: calculate_interest_scores
+    input:
+      feedback: "{{steps.analyze_visit_feedback.output}}"
+      properties: "{{inputs.properties_viewed}}"
+    output: interest_scores
+
+  - name: recommend_next_steps
+    agent: sales_agent
+    action: suggest_follow_up_actions
+    input:
+      scores: "{{steps.score_property_interest.output}}"
+      feedback: "{{steps.analyze_visit_feedback.output}}"
+    output: recommended_actions
+
+  - name: generate_followup_message
+    agent: creative_agent
+    action: write_followup_email
+    input:
+      client_id: "{{inputs.client_id}}"
+      properties: "{{inputs.properties_viewed}}"
+      feedback: "{{steps.analyze_visit_feedback.output}}"
+    output: personalized_message
+
+  - name: schedule_next_contact
+    agent: sales_agent
+    action: schedule_follow_up
+    input:
+      client_id: "{{inputs.client_id}}"
+      urgency: "{{steps.score_property_interest.output}}"
+    output: scheduled_contact
+
+outputs:
+  - name: followup_package
+    value:
+      feedback_analysis: "{{steps.analyze_visit_feedback.output}}"
+      interest_scores: "{{steps.score_property_interest.output}}"
+      recommended_actions: "{{steps.recommend_next_steps.output}}"
+      message: "{{steps.generate_followup_message.output}}"
+      next_contact: "{{steps.schedule_next_contact.output}}"

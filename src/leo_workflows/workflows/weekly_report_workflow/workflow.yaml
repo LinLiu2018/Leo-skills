@@ -1,0 +1,10 @@
+name: weekly_report_workflow
+description: Legacy workflow file for compatibility
+version: 1.0.0
+steps:
+  - name: collect_weekly_metrics
+    agent: analysis_agent
+  - name: generate_weekly_report
+    agent: creative_agent
+  - name: send_report_to_feishu
+    agent: support_agent

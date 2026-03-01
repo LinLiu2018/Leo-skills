@@ -1,0 +1,119 @@
+# 线索管理工作流
+# 自动管理销售线索
+
+name: lead-management-workflow
+description: 销售线索自动管理工作流
+version: 1.0.0
+category: realestate
+
+# 触发条件
+triggers:
+  - type: event
+    event: new_lead  # 新线索
+  - type: manual
+    description: 手动触发线索管理
+
+# 输入参数
+inputs:
+  - name: lead_source
+    type: string
+    default: "all"
+    options: ["all", "website", "wechat", "referral", "ad"]
+    description: 线索来源
+
+# 执行步骤
+steps:
+  - name: fetch_new_leads
+    description: 获取新线索
+    agent: sales_agent
+    skill: crm-skill
+    action: get_new_leads
+    params:
+      source: "{{inputs.lead_source}}"
+      status: "new"
+    output: new_leads
+
+  - name: qualify_leads
+    description: 线索筛选
+    agent: sales_agent
+    skill: crm-skill
+    action: qualify_leads
+    params:
+      leads: "{{steps.fetch_new_leads.output}}"
+      criteria: "budget,timeline,need"
+    output: qualified_leads
+
+  - name: assign_to_agents
+    description: 分配经纪人
+    agent: sales_agent
+    skill: crm-skill
+    action: assign_leads
+    params:
+      leads: "{{steps.qualify_leads.output}}"
+      agents: "available_agents"
+      method: "round_robin"
+    output: assignment
+
+  - name: send_welcome_message
+    description: 发送欢迎消息
+    agent: support_agent
+    skill: email-skill
+    action: send_welcome
+    params:
+      leads: "{{steps.assign_to_agents.output}}"
+      template: "welcome"
+    output: welcome_result
+
+  - name: schedule_followup
+    description: 安排跟进
+    agent: sales_agent
+    skill: calendar-skill
+    action: schedule_followups
+    params:
+      leads: "{{steps.assign_to_agents.output}}"
+      followup_time: "+1 day"
+    output: followup_schedule
+
+  - name: update_lead_status
+    description: 更新线索状态
+    agent: sales_agent
+    skill: crm-skill
+    action: update_status
+    params:
+      leads: "{{steps.assign_to_agents.output}}"
+      status: "contacted"
+    output: update_result
+
+  - name: notify_team
+    description: 通知团队
+    agent: sales_agent
+    skill: notification-skill
+    action: notify_team
+    params:
+      message: "新线索已分配：{{steps.assign_to_agents.output.count}}条"
+    output: notify_result
+
+# 输出
+outputs:
+  - name: total_leads
+    value: "{{steps.fetch_new_leads.output.count}}"
+  - name: qualified_leads
+    value: "{{steps.qualify_leads.output.count}}"
+  - name: assignment_status
+    value: "{{steps.assign_to_agents.output.status}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "线索管理工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300
+
+# 监控
+monitoring:
+  - metric: lead_conversion_rate
+    threshold: 20%
+  - metric: avg_response_time
+    threshold: 1h

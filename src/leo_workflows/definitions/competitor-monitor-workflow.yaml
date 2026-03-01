@@ -1,0 +1,113 @@
+# 竞品监控工作流
+# 自动竞品监控和分析
+
+name: competitor-monitor-workflow
+description: 竞品自动监控工作流
+version: 1.0.0
+category: ecommerce
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 11 * * *"  # 每天 11 点
+  - type: manual
+    description: 手动监控竞品
+
+# 输入参数
+inputs:
+  - name: competitors
+    type: array
+    default: ["competitor1", "competitor2"]
+    description: 竞品列表
+  - name: metrics
+    type: array
+    default: ["price", "reviews", "ranking"]
+    description: 监控指标
+
+# 执行步骤
+steps:
+  - name: fetch_competitor_data
+    description: 获取竞品数据
+    agent: product_agent
+    skill: competitor-monitor-skill
+    action: monitor_competitors
+    params:
+      competitors: "{{inputs.competitors}}"
+      metrics: "{{inputs.metrics}}"
+    output: competitor_data
+
+  - name: detect_price_changes
+    description: 检测价格变化
+    agent: analysis_agent
+    skill: analytics-skill
+    action: detect_price_changes
+    params:
+      competitor_data: "{{steps.fetch_competitor_data.output}}"
+    output: price_changes
+
+  - name: detect_new_products
+    description: 检测新品
+    agent: analysis_agent
+    skill: analytics-skill
+    action: detect_new_products
+    params:
+      competitor_data: "{{steps.fetch_competitor_data.output}}"
+    output: new_products
+
+  - name: detect_review_changes
+    description: 检测评论变化
+    agent: analysis_agent
+    skill: review-analyzer-skill
+    action: analyze_competitor_reviews
+    params:
+      competitor_data: "{{steps.fetch_competitor_data.output}}"
+    output: review_changes
+
+  - name: generate_insights
+    description: 生成洞察
+    agent: analysis_agent
+    skill: analytics-skill
+    action: generate_competitor_insights
+    params:
+      price_changes: "{{steps.detect_price_changes.output}}"
+      new_products: "{{steps.detect_new_products.output}}"
+      review_changes: "{{steps.detect_review_changes.output}}"
+    output: insights
+
+  - name: generate_report
+    description: 生成报告
+    agent: creative_agent
+    skill: doc-generator-skill
+    action: generate_competitor_report
+    params:
+      insights: "{{steps.generate_insights.output}}"
+    output: report
+
+  - name: notify_team
+    description: 通知团队
+    agent: product_agent
+    skill: notification-skill
+    action: send_notification
+    params:
+      message: "竞品监控报告已生成"
+      report: "{{steps.generate_report.output}}"
+      alerts: "{{steps.generate_insights.output.alerts}}"
+    output: notify_result
+
+# 输出
+outputs:
+  - name: price_changes_count
+    value: "{{steps.detect_price_changes.output.count}}"
+  - name: new_products_count
+    value: "{{steps.detect_new_products.output.count}}"
+  - name: report_url
+    value: "{{steps.generate_report.output.url}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "竞品监控工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

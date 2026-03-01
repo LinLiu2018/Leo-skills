@@ -1,0 +1,103 @@
+# 智能选品工作流
+# 自动选品调研和推荐
+
+name: product-selection-workflow
+description: 智能选品自动工作流
+version: 1.0.0
+category: ecommerce
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 9 * * 1"  # 每周一 9 点
+  - type: manual
+    description: 手动触发选品
+
+# 输入参数
+inputs:
+  - name: category
+    type: string
+    default: "smart_wearables"
+    description: 产品类目
+  - name: price_range
+    type: object
+    default: {"min": 10, "max": 100}
+    description: 价格区间 (美元)
+
+# 执行步骤
+steps:
+  - name: market_research
+    description: 市场调研
+    agent: product_agent
+    skill: market-analysis-skill
+    action: analyze_market
+    params:
+      category: "{{inputs.category}}"
+      region: "US"
+    output: market_data
+
+  - name: competitor_analysis
+    description: 竞品分析
+    agent: product_agent
+    skill: competitor-monitor-skill
+    action: analyze_competitors
+    params:
+      category: "{{inputs.category}}"
+      platforms: ["amazon", "shopify"]
+    output: competitor_data
+
+  - name: trend_analysis
+    description: 趋势分析
+    agent: analysis_agent
+    skill: analytics-skill
+    action: analyze_trends
+    params:
+      market_data: "{{steps.market_research.output}}"
+      competitor_data: "{{steps.competitor_analysis.output}}"
+    output: trends
+
+  - name: product_scoring
+    description: 产品评分
+    agent: product_agent
+    skill: analytics-skill
+    action: score_products
+    params:
+      trends: "{{steps.trend_analysis.output}}"
+      criteria: ["demand", "competition", "margin", "trend"]
+    output: scored_products
+
+  - name: generate_report
+    description: 生成报告
+    agent: creative_agent
+    skill: doc-generator-skill
+    action: generate_product_report
+    params:
+      category: "{{inputs.category}}"
+      scored_products: "{{steps.product_scoring.output}}"
+    output: report
+
+  - name: notify_team
+    description: 通知团队
+    agent: operation_agent
+    skill: notification-skill
+    action: send_notification
+    params:
+      message: "选品报告已生成：{{inputs.category}}"
+      report: "{{steps.generate_report.output}}"
+    output: notify_result
+
+# 输出
+outputs:
+  - name: top_products
+    value: "{{steps.product_scoring.output.top_10}}"
+  - name: report_url
+    value: "{{steps.generate_report.output.url}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "选品工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

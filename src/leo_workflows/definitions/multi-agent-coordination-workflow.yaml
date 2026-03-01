@@ -1,0 +1,124 @@
+# 多 Agent 协调工作流
+# 多 Agent 协同任务执行
+
+name: multi-agent-coordination-workflow
+description: 多 Agent 协调自动工作流
+version: 1.0.0
+category: collaboration
+
+# 触发条件
+triggers:
+  - type: event
+    event: complex_collaborative_task  # 复杂协作任务
+  - type: manual
+    description: 手动协调
+
+# 输入参数
+inputs:
+  - name: task_description
+    type: string
+    required: true
+    description: 任务描述
+  - name: required_agents
+    type: array
+    required: true
+    description: 需要的 Agent 列表
+  - name: coordination_mode
+    type: string
+    default: "sequential"
+    options: ["sequential", "parallel", "hybrid"]
+    description: 协调模式
+  - name: timeout
+    type: number
+    default: 3600
+    description: 超时时间 (秒)
+
+# 执行步骤
+steps:
+  - name: initialize_coordination
+    description: 初始化协调
+    agent: task_agent
+    skill: scheduler-skill
+    action: init_coordination
+    params:
+      task: "{{inputs.task_description}}"
+      agents: "{{inputs.required_agents}}"
+      mode: "{{inputs.coordination_mode}}"
+    output: coordination_context
+
+  - name: brief_agents
+    description: 简报 Agent
+    agent: task_agent
+    skill: scheduler-skill
+    action: brief_agents
+    params:
+      context: "{{steps.initialize_coordination.output}}"
+      agents: "{{inputs.required_agents}}"
+    output: briefing_result
+
+  - name: execute_coordination
+    description: 执行协调
+    agent: task_agent
+    skill: scheduler-skill
+    action: execute_coordination
+    params:
+      context: "{{steps.initialize_coordination.output}}"
+      mode: "{{inputs.coordination_mode}}"
+      timeout: "{{inputs.timeout}}"
+    output: execution_result
+
+  - name: monitor_progress
+    description: 监控进度
+    agent: analysis_agent
+    skill: analytics-skill
+    action: monitor_coordination_progress
+    params:
+      execution: "{{steps.execute_coordination.output}}"
+    output: progress_data
+
+  - name: handle_issues
+    description: 处理问题
+    agent: analysis_agent
+    skill: analytics-skill
+    action: resolve_coordination_issues
+    params:
+      progress: "{{steps.monitor_progress.output}}"
+    output: issue_resolution
+
+  - name: finalize_coordination
+    description: 完成协调
+    agent: task_agent
+    skill: scheduler-skill
+    action: finalize_coordination
+    params:
+      execution: "{{steps.execute_coordination.output}}"
+      resolution: "{{steps.handle_issues.output}}"
+    output: final_result
+
+  - name: report_completion
+    description: 报告完成
+    agent: distribution_agent
+    skill: notification-skill
+    action: notify_coordination_completion
+    params:
+      result: "{{steps.finalize_coordination.output}}"
+    output: notification_result
+
+# 输出
+outputs:
+  - name: coordination_status
+    value: "{{steps.finalize_coordination.output.status}}"
+  - name: task_result
+    value: "{{steps.finalize_coordination.output.result}}"
+  - name: agents_involved
+    value: "{{inputs.required_agents}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "多 Agent 协调工作流执行失败：{{error.message}}"
+  - action: notify
+    channel: feishu
+    message: "需要人工干预"
+    priority: "urgent"

@@ -9,12 +9,15 @@
 """
 
 import json
+import logging
 import re
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, List, Optional, Any
 from dataclasses import dataclass, asdict
 import threading
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -48,7 +51,10 @@ class MemoryEntry:
         """检查是否过期"""
         if self.expires_at is None:
             return False
-        return datetime.now().isoformat() > self.expires_at
+        try:
+            return datetime.now() > datetime.fromisoformat(self.expires_at)
+        except (ValueError, TypeError):
+            return False
 
 
 class SharedMemory:
@@ -99,7 +105,7 @@ class SharedMemory:
                         self._cache[entry.key] = entry
 
         except Exception as e:
-            print(f"[SharedMemory] 加载记忆失败: {e}")
+            logger.error(f"加载记忆失败: {e}")
 
     def _parse_memory_file(self, content: str) -> List[MemoryEntry]:
         """解析记忆文件内容"""
@@ -123,11 +129,11 @@ class SharedMemory:
         return entries
 
     def _save(self):
-        """保存记忆到文件"""
+        """保存记忆到文件（锁内完成读写，防止数据竞争）"""
         try:
             lines = ["# Leo AI System - 共享记忆\n", f"> 最后更新: {datetime.now().isoformat()}\n", ""]
 
-            # 按分类分组
+            # 按分类分组 — 整个操作在锁内完成
             by_category: Dict[str, List[MemoryEntry]] = {}
 
             with self._lock:
@@ -140,25 +146,25 @@ class SharedMemory:
                         by_category[cat] = []
                     by_category[cat].append(entry)
 
-            # 生成内容
-            for category in sorted(by_category.keys()):
-                entries = by_category[category]
-                lines.append(f"\n## {category}\n")
+                # 生成内容
+                for category in sorted(by_category.keys()):
+                    entries = by_category[category]
+                    lines.append(f"\n## {category}\n")
 
-                # 按重要性排序
-                entries.sort(key=lambda x: x.importance, reverse=True)
+                    # 按重要性排序
+                    entries.sort(key=lambda x: x.importance, reverse=True)
 
-                for entry in entries:
-                    lines.append(f"- [{entry.category}] {entry.key}: {entry.value} ({entry.created_at})")
+                    for entry in entries:
+                        lines.append(f"- [{entry.category}] {entry.key}: {entry.value} ({entry.created_at})")
 
-                lines.append('')
+                    lines.append('')
 
-            # 写入文件
-            with open(self.memory_file, 'w', encoding='utf-8') as f:
-                f.write('\n'.join(lines))
+                # 写入文件（在锁内完成，防止并发写入不一致）
+                with open(self.memory_file, 'w', encoding='utf-8') as f:
+                    f.write('\n'.join(lines))
 
         except Exception as e:
-            print(f"[SharedMemory] 保存记忆失败: {e}")
+            logger.error(f"保存记忆失败: {e}")
 
     def remember(self, key: str, value: str, category: str = "general",
                  importance: int = 3, expires_in_days: Optional[int] = None,
@@ -197,7 +203,7 @@ class SharedMemory:
             self._cache[key] = entry
 
         self._save()
-        print(f"[SharedMemory] 已记住: [{category}] {key}")
+        logger.info(f"已记住: [{category}] {key}")
 
         return entry
 
@@ -267,7 +273,7 @@ class SharedMemory:
             if key in self._cache:
                 del self._cache[key]
                 self._save()
-                print(f"[SharedMemory] 已遗忘: {key}")
+                logger.info(f"已遗忘: {key}")
                 return True
 
         return False
@@ -291,7 +297,7 @@ class SharedMemory:
 
         if expired_keys:
             self._save()
-            print(f"[SharedMemory] 已清理 {len(expired_keys)} 个过期记忆")
+            logger.info(f"已清理 {len(expired_keys)} 个过期记忆")
 
         return len(expired_keys)
 
@@ -344,10 +350,14 @@ _shared_memory: Optional[SharedMemory] = None
 
 
 def get_shared_memory(memory_file: Optional[str] = None) -> SharedMemory:
-    """获取全局共享记忆实例"""
+    """获取全局共享记忆实例（线程安全）"""
     global _shared_memory
     if _shared_memory is None:
-        _shared_memory = SharedMemory(memory_file)
+        from leo_system.singleton import thread_safe_singleton
+        _shared_memory = thread_safe_singleton(
+            "shared_memory", _shared_memory,
+            lambda: SharedMemory(memory_file)
+        )
     return _shared_memory
 
 

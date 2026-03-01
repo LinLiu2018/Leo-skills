@@ -1,0 +1,19 @@
+- generic [ref=e7]:
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - img [ref=e11]
+      - generic [ref=e12]: 飞书
+    - button "登录" [ref=e15] [cursor=pointer]
+  - generic [ref=e19]:
+    - generic [ref=e20]:
+      - img "logo" [ref=e22]
+      - generic [ref=e23]: 即将打开飞书
+    - generic [ref=e24]:
+      - generic [ref=e25]: 如打开失败，请先安装最新版飞书
+      - button "前往下载客户端" [ref=e26] [cursor=pointer]
+      - generic [ref=e27]:
+        - generic [ref=e28]: 已经安装了飞书？
+        - generic [ref=e29] [cursor=pointer]: 立即打开
+    - generic [ref=e32]:
+      - img
+      - generic [ref=e33]: 简体中文

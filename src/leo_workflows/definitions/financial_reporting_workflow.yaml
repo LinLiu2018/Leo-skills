@@ -1,0 +1,66 @@
+name: financial_reporting_workflow
+description: 财务报表自动生成
+version: 1.0.0
+category: finance
+
+triggers:
+  - type: cron
+    expr: "0 9 1 * *"
+  - type: manual
+
+inputs:
+  - name: report_period
+    type: string
+    required: true
+  - name: report_type
+    type: string
+    default: "monthly"
+
+steps:
+  - name: collect_transactions
+    agent: finance_agent
+    action: aggregate_transactions
+    input:
+      period: "{{inputs.report_period}}"
+    output: transaction_data
+
+  - name: calculate_revenue
+    agent: finance_agent
+    action: calculate_total_revenue
+    input:
+      transactions: "{{steps.collect_transactions.output}}"
+    output: revenue
+
+  - name: calculate_expenses
+    agent: finance_agent
+    action: calculate_total_expenses
+    input:
+      transactions: "{{steps.collect_transactions.output}}"
+    output: expenses
+
+  - name: calculate_profit
+    agent: finance_agent
+    action: calculate_profit_loss
+    input:
+      revenue: "{{steps.calculate_revenue.output}}"
+      expenses: "{{steps.calculate_expenses.output}}"
+    output: profit_loss
+
+  - name: generate_report
+    agent: creative_agent
+    action: format_financial_report
+    input:
+      revenue: "{{steps.calculate_revenue.output}}"
+      expenses: "{{steps.calculate_expenses.output}}"
+      profit: "{{steps.calculate_profit.output}}"
+      period: "{{inputs.report_period}}"
+    output: financial_report
+
+outputs:
+  - name: financial_package
+    value:
+      transactions: "{{steps.collect_transactions.output}}"
+      revenue: "{{steps.calculate_revenue.output}}"
+      expenses: "{{steps.calculate_expenses.output}}"
+      profit: "{{steps.calculate_profit.output}}"
+      report: "{{steps.generate_report.output}}"

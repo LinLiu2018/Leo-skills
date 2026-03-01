@@ -1,0 +1,57 @@
+name: villa_consulting_workflow
+description: 度假养老别墅全流程咨询服务
+version: 1.0.0
+category: realestate
+
+triggers:
+  - type: manual
+  - type: event
+    event: villa_inquiry
+
+inputs:
+  - name: client_profile
+    type: object
+    required: true
+  - name: budget_range
+    type: string
+    required: true
+  - name: purpose
+    type: string
+    default: vacation
+
+steps:
+  - name: analyze_needs
+    agent: villa_agent
+    action: analyze_client_needs
+    output: needs_analysis
+
+  - name: search_listings
+    agent: villa_agent
+    action: search_villa_listings
+    input:
+      budget: "{{inputs.budget_range}}"
+      purpose: "{{inputs.purpose}}"
+    output: matched_listings
+
+  - name: prepare_comparison
+    agent: villa_agent
+    action: create_comparison_report
+    input:
+      listings: "{{steps.search_listings.output}}"
+    output: comparison_report
+
+  - name: generate_proposal
+    agent: villa_agent
+    action: generate_investment_proposal
+    input:
+      client_profile: "{{inputs.client_profile}}"
+      listings: "{{steps.search_listings.output}}"
+    output: investment_proposal
+
+outputs:
+  - name: consultation_package
+    value:
+      analysis: "{{steps.analyze_needs.output}}"
+      listings: "{{steps.search_listings.output}}"
+      comparison: "{{steps.prepare_comparison.output}}"
+      proposal: "{{steps.generate_proposal.output}}"

@@ -1,0 +1,179 @@
+/* @theme lecheng */
+@import 'default';
+
+/* 基础样式 - 紧凑排版 */
+section {
+  font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+  font-size: 17px;
+  line-height: 1.45;
+  color: #333;
+  background: #ffffff;
+  padding: 30px 50px 40px;
+}
+
+h1 {
+  color: #d84315;
+  font-size: 30px;
+  font-weight: bold;
+  border-bottom: 2px solid #ff9800;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+
+h2 {
+  color: #e65100;
+  font-size: 24px;
+  border-bottom: 2px solid #ffe0b2;
+  padding-bottom: 4px;
+  margin-bottom: 10px;
+}
+
+h3 {
+  color: #ef6c00;
+  font-size: 19px;
+  margin-top: 8px;
+  margin-bottom: 6px;
+}
+
+/* 封面页 */
+section.lead {
+  background: linear-gradient(135deg, #d84315 0%, #ff6d00 50%, #ffab40 100%);
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px;
+}
+
+section.lead h1 {
+  color: white;
+  font-size: 42px;
+  border-bottom: none;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  margin-bottom: 20px;
+}
+
+section.lead h2 {
+  color: rgba(255,255,255,0.95);
+  font-size: 22px;
+  border-bottom: none;
+  font-weight: normal;
+}
+
+section.lead p {
+  color: rgba(255,255,255,0.85);
+  font-size: 16px;
+}
+
+section.lead blockquote {
+  background: rgba(255,255,255,0.15);
+  border-left: 3px solid rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.9);
+  font-size: 14px;
+  padding: 8px 16px;
+  margin-top: 20px;
+}
+
+/* 表格 - 紧凑 */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 15px;
+  margin: 6px 0;
+}
+
+th {
+  background: #fff3e0;
+  color: #d84315;
+  font-weight: bold;
+  padding: 5px 10px;
+  border: 1px solid #ffcc80;
+  text-align: left;
+  font-size: 14px;
+}
+
+td {
+  padding: 4px 10px;
+  border: 1px solid #ffe0b2;
+  font-size: 15px;
+}
+
+tr:nth-child(even) td {
+  background: #fafafa;
+}
+
+/* 引用块 */
+blockquote {
+  background: #fff8e1;
+  border-left: 3px solid #ff9800;
+  padding: 8px 14px;
+  margin: 8px 0;
+  border-radius: 0 6px 6px 0;
+  font-style: normal;
+  color: #4e342e;
+  font-size: 15px;
+}
+
+blockquote p {
+  margin: 2px 0;
+}
+
+/* 代码块 */
+pre {
+  font-size: 13px;
+  background: #263238;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+code {
+  font-family: "Cascadia Code", "Fira Code", Consolas, monospace;
+  font-size: 14px;
+}
+
+/* 列表 - 紧凑 */
+ul, ol {
+  margin: 4px 0;
+  padding-left: 24px;
+}
+
+li {
+  margin: 2px 0;
+  line-height: 1.4;
+}
+
+/* 强调 */
+strong {
+  color: #d84315;
+}
+
+em {
+  color: #e65100;
+  font-style: normal;
+  font-weight: bold;
+}
+
+/* 页码 */
+section::after {
+  color: #999;
+  font-size: 13px;
+}
+
+/* 分隔线 */
+hr {
+  border: none;
+  border-top: 1px solid #ffe0b2;
+  margin: 10px 0;
+}
+
+/* 段落 */
+p {
+  margin: 4px 0;
+}
+
+/* 续表标记 */
+section em:first-child {
+  color: #999;
+  font-size: 13px;
+}

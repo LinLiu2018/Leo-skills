@@ -1,0 +1,89 @@
+# 物流管理工作流
+# 自动物流追踪和管理
+
+name: shipping-management-workflow
+description: 物流自动管理工作流
+version: 1.0.0
+category: ecommerce
+
+# 触发条件
+triggers:
+  - type: event
+    event: order_shipped  # 订单已发货
+  - type: manual
+    description: 手动查询物流
+
+# 输入参数
+inputs:
+  - name: order_id
+    type: string
+    description: 订单 ID
+  - name: tracking_number
+    type: string
+    description: 物流单号
+
+# 执行步骤
+steps:
+  - name: fetch_tracking_info
+    description: 获取物流信息
+    agent: logistics_agent
+    skill: tracking-skill
+    action: track_package
+    params:
+      tracking_number: "{{inputs.tracking_number}}"
+    output: tracking_info
+
+  - name: check_delivery_status
+    description: 检查配送状态
+    agent: logistics_agent
+    skill: analytics-skill
+    action: check_status
+    params:
+      tracking_info: "{{steps.fetch_tracking_info.output}}"
+    output: delivery_status
+
+  - name: detect_issues
+    description: 检测问题
+    agent: analysis_agent
+    skill: analytics-skill
+    action: detect_issues
+    params:
+      delivery_status: "{{steps.check_delivery_status.output}}"
+    output: issues
+
+  - name: notify_customer
+    description: 通知客户
+    agent: service_agent
+    skill: email-skill
+    action: send_shipping_update
+    params:
+      customer_email: "{{steps.fetch_tracking_info.output.customer_email}}"
+      tracking_info: "{{steps.fetch_tracking_info.output}}"
+      status: "{{steps.check_delivery_status.output}}"
+    output: notification_result
+
+  - name: handle_issues
+    description: 处理问题
+    agent: service_agent
+    skill: shipping-skill
+    action: resolve_issue
+    params:
+      issues: "{{steps.detect_issues.output}}"
+      order_id: "{{inputs.order_id}}"
+    output: issue_resolution
+
+# 输出
+outputs:
+  - name: delivery_status
+    value: "{{steps.check_delivery_status.output.status}}"
+  - name: estimated_delivery
+    value: "{{steps.check_delivery_status.output.estimated_delivery}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "物流管理工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

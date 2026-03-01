@@ -1,0 +1,67 @@
+name: contract_review_workflow
+description: 房产合同智能审查
+version: 1.0.0
+category: legal
+
+triggers:
+  - type: manual
+  - type: event
+    event: contract_uploaded
+
+inputs:
+  - name: contract_text
+    type: string
+    required: true
+  - name: contract_type
+    type: string
+    required: true
+
+steps:
+  - name: extract_key_terms
+    agent: analysis_agent
+    action: extract_contract_terms
+    input:
+      contract: "{{inputs.contract_text}}"
+    output: key_terms
+
+  - name: identify_risks
+    agent: analysis_agent
+    action: identify_legal_risks
+    input:
+      contract: "{{inputs.contract_text}}"
+      type: "{{inputs.contract_type}}"
+    output: risk_analysis
+
+  - name: check_compliance
+    agent: analysis_agent
+    action: verify_legal_compliance
+    input:
+      contract: "{{inputs.contract_text}}"
+      type: "{{inputs.contract_type}}"
+    output: compliance_report
+
+  - name: generate_summary
+    agent: creative_agent
+    action: create_contract_summary
+    input:
+      terms: "{{steps.extract_key_terms.output}}"
+      risks: "{{steps.identify_risks.output}}"
+      compliance: "{{steps.check_compliance.output}}"
+    output: executive_summary
+
+  - name: suggest_amendments
+    agent: analysis_agent
+    action: recommend_changes
+    input:
+      risks: "{{steps.identify_risks.output}}"
+      contract: "{{inputs.contract_text}}"
+    output: amendment_suggestions
+
+outputs:
+  - name: review_package
+    value:
+      key_terms: "{{steps.extract_key_terms.output}}"
+      risks: "{{steps.identify_risks.output}}"
+      compliance: "{{steps.check_compliance.output}}"
+      summary: "{{steps.generate_summary.output}}"
+      suggestions: "{{steps.suggest_amendments.output}}"

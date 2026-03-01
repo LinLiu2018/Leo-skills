@@ -8,10 +8,17 @@
 
 import os
 import re
+import sys
+import io
 import yaml
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Optional
+
+# Windows 中文环境编码兼容性问题修复
+# 确保 stdout 使用 UTF-8 编码，支持 emoji 输出
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
 
 # 能力索引模板
@@ -317,10 +324,21 @@ def generate_categories_section(skills: List[Dict]) -> str:
     return '\n'.join(lines)
 
 
+def find_project_root() -> Path:
+    """查找项目根目录（通过查找 AGENTS.md 或 src 目录）"""
+    current = Path(__file__).resolve()
+    # 向上查找，直到找到包含 AGENTS.md 或 src 目录的文件夹
+    for parent in current.parents:
+        if (parent / "AGENTS.md").exists() or (parent / "src").is_dir():
+            return parent
+    #  fallback: 使用 __file__.parent.parent
+    return Path(__file__).parent.parent
+
+
 def update_capability_index(base_path: Optional[str] = None):
     """更新能力索引"""
     if base_path is None:
-        base_path = Path(__file__).parent.parent
+        base_path = find_project_root()
     else:
         base_path = Path(base_path)
 

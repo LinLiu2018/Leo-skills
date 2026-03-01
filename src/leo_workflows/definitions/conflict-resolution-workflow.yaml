@@ -1,0 +1,101 @@
+# 冲突解决工作流
+# 多 Agent 冲突检测和解决
+
+name: conflict-resolution-workflow
+description: 冲突自动解决工作流
+version: 1.0.0
+category: collaboration
+
+# 触发条件
+triggers:
+  - type: event
+    event: conflict_detected  # 检测到冲突
+  - type: manual
+    description: 手动解决
+
+# 输入参数
+inputs:
+  - name: conflict_type
+    type: string
+    required: true
+    description: 冲突类型
+  - name: involved_agents
+    type: array
+    description: 涉及 Agent 列表
+  - name: conflict_details
+    type: object
+    description: 冲突详情
+
+# 执行步骤
+steps:
+  - name: analyze_conflict
+    description: 分析冲突
+    agent: analysis_agent
+    skill: analytics-skill
+    action: analyze_conflict
+    params:
+      type: "{{inputs.conflict_type}}"
+      details: "{{inputs.conflict_details}}"
+    output: conflict_analysis
+
+  - name: identify_root_cause
+    description: 识别根因
+    agent: analysis_agent
+    skill: analytics-skill
+    action: identify_root_cause
+    params:
+      analysis: "{{steps.analyze_conflict.output}}"
+    output: root_cause
+
+  - name: generate_solutions
+    description: 生成解决方案
+    agent: creative_agent
+    skill: content-generator-skill
+    action: generate_solutions
+    params:
+      root_cause: "{{steps.identify_root_cause.output}}"
+    output: solutions
+
+  - name: evaluate_solutions
+    description: 评估方案
+    agent: analysis_agent
+    skill: analytics-skill
+    action: evaluate_solutions
+    params:
+      solutions: "{{steps.generate_solutions.output}}"
+    output: best_solution
+
+  - name: implement_solution
+    description: 实施方案
+    agent: task_agent
+    skill: scheduler-skill
+    action: implement_solution
+    params:
+      solution: "{{steps.evaluate_solutions.output.best}}"
+    output: implementation_result
+
+  - name: notify_resolution
+    description: 通知解决
+    agent: distribution_agent
+    skill: notification-skill
+    action: notify_conflict_resolution
+    params:
+      resolution: "{{steps.implement_solution.output}}"
+      involved_agents: "{{inputs.involved_agents}}"
+    output: notification_result
+
+# 输出
+outputs:
+  - name: resolution_status
+    value: "{{steps.implement_solution.output.status}}"
+  - name: root_cause
+    value: "{{steps.identify_root_cause.output.cause}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "冲突解决工作流执行失败：{{error.message}}"
+  - action: notify
+    channel: feishu
+    message: "需要人工干预"

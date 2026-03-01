@@ -1,0 +1,104 @@
+# 故障转移工作流
+# 多 Agent 故障检测和转移
+
+name: failover-handling-workflow
+description: 故障自动转移工作流
+version: 1.0.0
+category: collaboration
+
+# 触发条件
+triggers:
+  - type: event
+    event: agent_failure  # Agent 故障
+  - type: manual
+    description: 手动转移
+
+# 输入参数
+inputs:
+  - name: failed_agent
+    type: string
+    required: true
+    description: 故障 Agent
+  - name: pending_tasks
+    type: array
+    description: 待处理任务列表
+  - name: backup_agents
+    type: array
+    description: 备用 Agent 列表
+
+# 执行步骤
+steps:
+  - name: detect_failure
+    description: 检测故障
+    agent: analysis_agent
+    skill: monitoring-skill
+    action: detect_agent_failure
+    params:
+      agent: "{{inputs.failed_agent}}"
+    output: failure_details
+
+  - name: identify_affected_tasks
+    description: 识别受影响任务
+    agent: analysis_agent
+    skill: analytics-skill
+    action: identify_affected_tasks
+    params:
+      failed_agent: "{{inputs.failed_agent}}"
+      pending_tasks: "{{inputs.pending_tasks}}"
+    output: affected_tasks
+
+  - name: select_backup_agents
+    description: 选择备用 Agent
+    agent: task_agent
+    skill: scheduler-skill
+    action: select_backup_agents
+    params:
+      backup_agents: "{{inputs.backup_agents}}"
+      tasks: "{{steps.identify_affected_tasks.output}}"
+    output: selected_backups
+
+  - name: transfer_tasks
+    description: 转移任务
+    agent: task_agent
+    skill: scheduler-skill
+    action: transfer_tasks
+    params:
+      tasks: "{{steps.identify_affected_tasks.output}}"
+      backup_agents: "{{steps.select_backup_agents.output}}"
+    output: transfer_result
+
+  - name: verify_continuity
+    description: 验证连续性
+    agent: analysis_agent
+    skill: analytics-skill
+    action: verify_task_continuity
+    params:
+      transfer: "{{steps.transfer_tasks.output}}"
+    output: continuity_status
+
+  - name: notify_failover
+    description: 通知故障转移
+    agent: distribution_agent
+    skill: notification-skill
+    action: notify_failover_event
+    params:
+      failure: "{{steps.detect_failure.output}}"
+      transfer: "{{steps.transfer_tasks.output}}"
+    output: notification_result
+
+# 输出
+outputs:
+  - name: failover_status
+    value: "{{steps.verify_continuity.output.status}}"
+  - name: tasks_transferred
+    value: "{{steps.transfer_tasks.output.transferred_count}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "故障转移工作流执行失败：{{error.message}}"
+  - action: notify
+    channel: feishu
+    message: "需要人工干预"
+    priority: "urgent"

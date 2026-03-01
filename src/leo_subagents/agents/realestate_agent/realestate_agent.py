@@ -88,45 +88,164 @@ class RealEstateAgent(BaseAgent, EvolvableSkill):
             return "general"
 
     def _handle_marketing_task(self, task: str, **kwargs) -> Dict[str, Any]:
-        """处理营销任务"""
+        """处理营销任务 - 真正调用skill执行"""
+        steps_executed = []
+        results = []
+
+        # 步骤1: 收集项目信息
+        try:
+            if self.has_skill("web_search_skill"):
+                search_result = self.use_skill("web_search_skill", "search", query=task, max_results=5)
+                steps_executed.append("收集项目信息")
+                results.append({"step": "search", "result": search_result})
+        except Exception as e:
+            results.append({"step": "search", "error": str(e)})
+
+        # 步骤2: 生成营销文档
+        try:
+            if self.has_skill("project_marketing_doc_generator_skill"):
+                doc_result = self.use_skill(
+                    "project_marketing_doc_generator_skill",
+                    "generate",
+                    project_name=kwargs.get("project_name", task),
+                    project_type="realestate",
+                    target_audience=kwargs.get("audience", "潜在购房者")
+                )
+                steps_executed.append("生成营销文案")
+                results.append({"step": "generate_doc", "result": doc_result})
+        except Exception as e:
+            results.append({"step": "generate_doc", "error": str(e)})
+
+        # 步骤3: 优化内容布局
+        try:
+            if self.has_skill("content_layout_leo_skill"):
+                layout_result = self.use_skill(
+                    "content_layout_leo_skill",
+                    "layout",
+                    content=results[-1].get("result", "") if results else "",
+                    template="marketing"
+                )
+                steps_executed.append("优化内容布局")
+                results.append({"step": "layout", "result": layout_result})
+        except Exception as e:
+            results.append({"step": "layout", "error": str(e)})
+
         result = {
             "task": task,
             "type": "marketing",
-            "steps": ["收集项目信息", "分析目标客户", "生成营销文案", "优化内容布局"],
-            "skills_used": ["project_marketing_doc_generator_skill", "content_layout_leo_skill"],
-            "status": "completed",
+            "steps": steps_executed,
+            "results": results,
+            "skills_used": ["web_search_skill", "project_marketing_doc_generator_skill", "content_layout_leo_skill"],
+            "status": "completed" if steps_executed else "failed",
         }
 
         # 注入进化经验
         experience = self.get_experience_context()
         if experience:
             result["experience_applied"] = experience
-            # 模拟：如果经验中包含"使用xx模板"，则可能会调整 steps (此处仅作演示)
 
         self.log_task(task, result)
         return result
 
     def _handle_analysis_task(self, task: str, **kwargs) -> Dict[str, Any]:
-        """处理分析任务"""
+        """处理分析任务 - 真正调用skill执行"""
+        steps_executed = []
+        results = []
+
+        # 步骤1: 搜索市场信息
+        try:
+            if self.has_skill("web_search_skill"):
+                search_result = self.use_skill(
+                    "web_search_skill",
+                    "search",
+                    query=f"{task} 房地产市场",
+                    max_results=10
+                )
+                steps_executed.append("搜索市场信息")
+                results.append({"step": "market_search", "result": search_result})
+        except Exception as e:
+            results.append({"step": "market_search", "error": str(e)})
+
+        # 步骤2: 收集竞品数据
+        try:
+            if self.has_skill("research_assistant_skill"):
+                research_result = self.use_skill(
+                    "research_assistant_skill",
+                    "research",
+                    topic=f"{task} 竞品分析",
+                    depth=2
+                )
+                steps_executed.append("收集竞品数据")
+                results.append({"step": "competitor_research", "result": research_result})
+        except Exception as e:
+            results.append({"step": "competitor_research", "error": str(e)})
+
+        # 步骤3: 分析市场趋势
+        try:
+            if self.has_skill("data_analyzer_skill"):
+                analysis_result = self.use_skill(
+                    "data_analyzer_skill",
+                    "analyze",
+                    data=results,
+                    analysis_type="trend"
+                )
+                steps_executed.append("分析市场趋势")
+                results.append({"step": "trend_analysis", "result": analysis_result})
+        except Exception as e:
+            results.append({"step": "trend_analysis", "error": str(e)})
+
         result = {
             "task": task,
             "type": "analysis",
-            "steps": ["搜索市场信息", "收集竞品数据", "分析市场趋势", "生成分析报告"],
-            "skills_used": ["web_search_skill", "research_assistant_skill"],
-            "status": "completed",
+            "steps": steps_executed,
+            "results": results,
+            "skills_used": ["web_search_skill", "research_assistant_skill", "data_analyzer_skill"],
+            "status": "completed" if steps_executed else "failed",
         }
 
         self.log_task(task, result)
         return result
 
     def _handle_policy_task(self, task: str, **kwargs) -> Dict[str, Any]:
-        """处理政策任务"""
+        """处理政策任务 - 真正调用skill执行"""
+        steps_executed = []
+        results = []
+
+        # 步骤1: 搜索最新政策
+        try:
+            if self.has_skill("web_search_skill"):
+                search_result = self.use_skill(
+                    "web_search_skill",
+                    "search",
+                    query=f"{task} 房地产政策 2024 2025",
+                    max_results=10
+                )
+                steps_executed.append("搜索最新政策")
+                results.append({"step": "policy_search", "result": search_result})
+        except Exception as e:
+            results.append({"step": "policy_search", "error": str(e)})
+
+        # 步骤2: 解读政策内容
+        try:
+            if self.has_skill("research_assistant_skill"):
+                research_result = self.use_skill(
+                    "research_assistant_skill",
+                    "research",
+                    topic=f"{task} 政策解读",
+                    depth=2
+                )
+                steps_executed.append("解读政策内容")
+                results.append({"step": "policy_research", "result": research_result})
+        except Exception as e:
+            results.append({"step": "policy_research", "error": str(e)})
+
         result = {
             "task": task,
             "type": "policy",
-            "steps": ["搜索最新政策", "解读政策内容", "分析影响范围", "生成政策报告"],
+            "steps": steps_executed,
+            "results": results,
             "skills_used": ["web_search_skill", "research_assistant_skill"],
-            "status": "completed",
+            "status": "completed" if steps_executed else "failed",
         }
 
         self.log_task(task, result)

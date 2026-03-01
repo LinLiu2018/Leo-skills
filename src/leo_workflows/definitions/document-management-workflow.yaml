@@ -1,0 +1,93 @@
+# 文档管理工作流
+# 自动文档分类和存储
+
+name: document-management-workflow
+description: 文档自动管理工作流
+version: 1.0.0
+category: business
+
+# 触发条件
+triggers:
+  - type: event
+    event: new_document  # 新文档
+  - type: manual
+    description: 手动管理
+
+# 输入参数
+inputs:
+  - name: document_path
+    type: string
+    description: 文档路径
+  - name: document_type
+    type: string
+    description: 文档类型
+  - name: tags
+    type: array
+    description: 标签列表
+
+# 执行步骤
+steps:
+  - name: read_document
+    description: 读取文档
+    agent: task_agent
+    skill: Read
+    action: read_file
+    params:
+      path: "{{inputs.document_path}}"
+    output: document_content
+
+  - name: classify_document
+    description: 分类文档
+    agent: analysis_agent
+    skill: analytics-skill
+    action: classify_document
+    params:
+      content: "{{steps.read_document.output}}"
+      document_type: "{{inputs.document_type}}"
+    output: classification
+
+  - name: extract_metadata
+    description: 提取元数据
+    agent: analysis_agent
+    skill: analytics-skill
+    action: extract_metadata
+    params:
+      content: "{{steps.read_document.output}}"
+    output: metadata
+
+  - name: store_document
+    description: 存储文档
+    agent: task_agent
+    skill: Write
+    action: store_file
+    params:
+      content: "{{steps.read_document.output}}"
+      path: "{{inputs.document_path}}"
+      metadata: "{{steps.extract_metadata.output}}"
+    output: storage_result
+
+  - name: update_index
+    description: 更新索引
+    agent: task_agent
+    skill: analytics-skill
+    action: update_document_index
+    params:
+      metadata: "{{steps.extract_metadata.output}}"
+      tags: "{{inputs.tags}}"
+    output: index_result
+
+# 输出
+outputs:
+  - name: document_id
+    value: "{{steps.store_document.output.document_id}}"
+  - name: storage_path
+    value: "{{steps.store_document.output.path}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "文档管理工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

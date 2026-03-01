@@ -1,0 +1,290 @@
+{
+  "entries": [
+    {
+      "id": "31c3924b9aaf",
+      "timestamp": "2026-02-28T19:14:32.923313",
+      "event_type": "system_startup",
+      "agent": "system",
+      "tags": [
+        "system",
+        "startup"
+      ]
+    },
+    {
+      "id": "13add5b67426",
+      "timestamp": "2026-02-28T19:14:32.933502",
+      "event_type": "agent_execute",
+      "agent": "villa_agent",
+      "tags": [
+        "agent_execute",
+        "villa_agent"
+      ]
+    },
+    {
+      "id": "7f826b228f11",
+      "timestamp": "2026-02-28T19:14:32.933502",
+      "event_type": "agent_success",
+      "agent": "villa_agent",
+      "tags": [
+        "agent_success",
+        "villa_agent"
+      ]
+    },
+    {
+      "id": "bec3b7008f33",
+      "timestamp": "2026-02-28T19:14:32.934530",
+      "event_type": "agent_execute",
+      "agent": "residential_agent",
+      "tags": [
+        "agent_execute",
+        "residential_agent"
+      ]
+    },
+    {
+      "id": "55537698a2b8",
+      "timestamp": "2026-02-28T19:14:32.934530",
+      "event_type": "agent_success",
+      "agent": "residential_agent",
+      "tags": [
+        "agent_success",
+        "residential_agent"
+      ]
+    },
+    {
+      "id": "ed2a6d5e1ce1",
+      "timestamp": "2026-02-28T19:14:32.934530",
+      "event_type": "agent_execute",
+      "agent": "leasing_agent",
+      "tags": [
+        "agent_execute",
+        "leasing_agent"
+      ]
+    },
+    {
+      "id": "5918793b64e7",
+      "timestamp": "2026-02-28T19:14:32.934530",
+      "event_type": "agent_success",
+      "agent": "leasing_agent",
+      "tags": [
+        "agent_success",
+        "leasing_agent"
+      ]
+    },
+    {
+      "id": "1248554e129b",
+      "timestamp": "2026-02-28T19:14:32.935815",
+      "event_type": "agent_execute",
+      "agent": "commercial_sales_agent",
+      "tags": [
+        "agent_execute",
+        "commercial_sales_agent"
+      ]
+    },
+    {
+      "id": "17132ce1c09d",
+      "timestamp": "2026-02-28T19:14:32.935815",
+      "event_type": "agent_success",
+      "agent": "commercial_sales_agent",
+      "tags": [
+        "agent_success",
+        "commercial_sales_agent"
+      ]
+    },
+    {
+      "id": "c0dac2a61ace",
+      "timestamp": "2026-02-28T19:14:32.935815",
+      "event_type": "agent_execute",
+      "agent": "auction_agent",
+      "tags": [
+        "agent_execute",
+        "auction_agent"
+      ]
+    },
+    {
+      "id": "b3892506c08a",
+      "timestamp": "2026-02-28T19:24:54.666246",
+      "event_type": "system_startup",
+      "agent": "system",
+      "tags": [
+        "system",
+        "startup"
+      ]
+    },
+    {
+      "id": "e4f4a4e1437f",
+      "timestamp": "2026-02-28T19:24:54.681681",
+      "event_type": "agent_execute",
+      "agent": "villa_agent",
+      "tags": [
+        "agent_execute",
+        "villa_agent"
+      ]
+    },
+    {
+      "id": "19a4904d3012",
+      "timestamp": "2026-02-28T19:24:54.681681",
+      "event_type": "agent_success",
+      "agent": "villa_agent",
+      "tags": [
+        "agent_success",
+        "villa_agent"
+      ]
+    },
+    {
+      "id": "2ade709e823d",
+      "timestamp": "2026-02-28T19:24:54.681681",
+      "event_type": "agent_execute",
+      "agent": "residential_agent",
+      "tags": [
+        "agent_execute",
+        "residential_agent"
+      ]
+    },
+    {
+      "id": "ed74c6bbd3d1",
+      "timestamp": "2026-02-28T19:24:54.681681",
+      "event_type": "agent_success",
+      "agent": "residential_agent",
+      "tags": [
+        "agent_success",
+        "residential_agent"
+      ]
+    },
+    {
+      "id": "43bab58848b1",
+      "timestamp": "2026-02-28T19:24:54.681681",
+      "event_type": "agent_execute",
+      "agent": "leasing_agent",
+      "tags": [
+        "agent_execute",
+        "leasing_agent"
+      ]
+    },
+    {
+      "id": "fa74262b5404",
+      "timestamp": "2026-02-28T19:24:54.681681",
+      "event_type": "agent_success",
+      "agent": "leasing_agent",
+      "tags": [
+        "agent_success",
+        "leasing_agent"
+      ]
+    },
+    {
+      "id": "a2e9d6431a3c",
+      "timestamp": "2026-02-28T19:24:54.689780",
+      "event_type": "agent_execute",
+      "agent": "commercial_sales_agent",
+      "tags": [
+        "agent_execute",
+        "commercial_sales_agent"
+      ]
+    },
+    {
+      "id": "a11a525de533",
+      "timestamp": "2026-02-28T19:24:54.689780",
+      "event_type": "agent_success",
+      "agent": "commercial_sales_agent",
+      "tags": [
+        "agent_success",
+        "commercial_sales_agent"
+      ]
+    },
+    {
+      "id": "9d0717101ae8",
+      "timestamp": "2026-02-28T19:24:54.691260",
+      "event_type": "agent_execute",
+      "agent": "auction_agent",
+      "tags": [
+        "agent_execute",
+        "auction_agent"
+      ]
+    }
+  ],
+  "agent_usage": {
+    "system": {
+      "count": 2,
+      "last_used": "2026-02-28T19:24:54.666246"
+    },
+    "villa_agent": {
+      "count": 4,
+      "last_used": "2026-02-28T19:24:54.681681"
+    },
+    "residential_agent": {
+      "count": 4,
+      "last_used": "2026-02-28T19:24:54.681681"
+    },
+    "leasing_agent": {
+      "count": 4,
+      "last_used": "2026-02-28T19:24:54.681681"
+    },
+    "commercial_sales_agent": {
+      "count": 4,
+      "last_used": "2026-02-28T19:24:54.689780"
+    },
+    "auction_agent": {
+      "count": 2,
+      "last_used": "2026-02-28T19:24:54.691260"
+    }
+  },
+  "topic_clusters": {
+    "system": [
+      "31c3924b9aaf",
+      "b3892506c08a"
+    ],
+    "startup": [
+      "31c3924b9aaf",
+      "b3892506c08a"
+    ],
+    "agent_execute": [
+      "13add5b67426",
+      "bec3b7008f33",
+      "ed2a6d5e1ce1",
+      "1248554e129b",
+      "c0dac2a61ace",
+      "e4f4a4e1437f",
+      "2ade709e823d",
+      "43bab58848b1",
+      "a2e9d6431a3c",
+      "9d0717101ae8"
+    ],
+    "villa_agent": [
+      "13add5b67426",
+      "7f826b228f11",
+      "e4f4a4e1437f",
+      "19a4904d3012"
+    ],
+    "agent_success": [
+      "7f826b228f11",
+      "55537698a2b8",
+      "5918793b64e7",
+      "17132ce1c09d",
+      "19a4904d3012",
+      "ed74c6bbd3d1",
+      "fa74262b5404",
+      "a11a525de533"
+    ],
+    "residential_agent": [
+      "bec3b7008f33",
+      "55537698a2b8",
+      "2ade709e823d",
+      "ed74c6bbd3d1"
+    ],
+    "leasing_agent": [
+      "ed2a6d5e1ce1",
+      "5918793b64e7",
+      "43bab58848b1",
+      "fa74262b5404"
+    ],
+    "commercial_sales_agent": [
+      "1248554e129b",
+      "17132ce1c09d",
+      "a2e9d6431a3c",
+      "a11a525de533"
+    ],
+    "auction_agent": [
+      "c0dac2a61ace",
+      "9d0717101ae8"
+    ]
+  }
+}

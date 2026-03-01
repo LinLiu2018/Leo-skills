@@ -1,0 +1,100 @@
+# 任务管理工作流
+# 自动任务分配和追踪
+
+name: task-management-workflow
+description: 任务自动管理工作流
+version: 1.0.0
+category: business
+
+# 触发条件
+triggers:
+  - type: event
+    event: new_task  # 新任务
+  - type: manual
+    description: 手动创建
+
+# 输入参数
+inputs:
+  - name: task_description
+    type: string
+    required: true
+    description: 任务描述
+  - name: assignee
+    type: string
+    description: 负责人
+  - name: priority
+    type: string
+    default: "medium"
+    options: ["low", "medium", "high", "urgent"]
+    description: 优先级
+  - name: due_date
+    type: string
+    description: 截止日期
+
+# 执行步骤
+steps:
+  - name: create_task
+    description: 创建任务
+    agent: task_agent
+    skill: crm-skill
+    action: create_task
+    params:
+      description: "{{inputs.task_description}}"
+      assignee: "{{inputs.assignee}}"
+      priority: "{{inputs.priority}}"
+      due_date: "{{inputs.due_date}}"
+    output: task_details
+
+  - name: assign_task
+    description: 分配任务
+    agent: task_agent
+    skill: crm-skill
+    action: assign_task
+    params:
+      task: "{{steps.create_task.output}}"
+      assignee: "{{inputs.assignee}}"
+    output: assignment_result
+
+  - name: schedule_reminders
+    description: 安排提醒
+    agent: distribution_agent
+    skill: notification-skill
+    action: schedule_task_reminders
+    params:
+      task: "{{steps.create_task.output}}"
+    output: reminders
+
+  - name: track_progress
+    description: 追踪进度
+    agent: analysis_agent
+    skill: analytics-skill
+    action: track_task_progress
+    params:
+      task: "{{steps.create_task.output}}"
+    output: progress_data
+
+  - name: notify_on_completion
+    description: 完成通知
+    agent: distribution_agent
+    skill: notification-skill
+    action: notify_task_completion
+    params:
+      task: "{{steps.create_task.output}}"
+      progress: "{{steps.track_progress.output}}"
+    output: notification_result
+
+# 输出
+outputs:
+  - name: task_id
+    value: "{{steps.create_task.output.task_id}}"
+  - name: task_status
+    value: "{{steps.track_progress.output.status}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "任务管理工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

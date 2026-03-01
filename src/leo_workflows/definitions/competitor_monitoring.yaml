@@ -1,0 +1,67 @@
+name: competitor_monitoring
+description: 竞品项目自动监控
+version: 1.0.0
+category: intelligence
+
+triggers:
+  - type: cron
+    expr: "0 9 * * *"
+  - type: manual
+
+inputs:
+  - name: competitor_list
+    type: array
+    required: true
+  - name: monitoring_scope
+    type: array
+    default: ["price", "promotion", "inventory"]
+
+steps:
+  - name: scrape_competitor_data
+    agent: intelligence_agent
+    action: scrape_competitor_info
+    input:
+      competitors: "{{inputs.competitor_list}}"
+      scope: "{{inputs.monitoring_scope}}"
+    output: competitor_data
+
+  - name: detect_changes
+    agent: intelligence_agent
+    action: identify_changes
+    input:
+      current: "{{steps.scrape_competitor_data.output}}"
+      scope: "{{inputs.monitoring_scope}}"
+    output: detected_changes
+
+  - name: analyze_impact
+    agent: analysis_agent
+    action: assess_competitive_impact
+    input:
+      changes: "{{steps.detect_changes.output}}"
+    output: impact_analysis
+
+  - name: generate_alert
+    agent: creative_agent
+    action: create_competitive_alert
+    input:
+      changes: "{{steps.detect_changes.output}}"
+      impact: "{{steps.analyze_impact.output}}"
+    output: alert_content
+
+  - name: distribute_alert
+    agent: distribution_agent
+    action: send_to_team
+    input:
+      content: "{{steps.generate_alert.output}}"
+      urgency: "{{steps.analyze_impact.output.urgency}}"
+      channel: feishu
+    output: distribution_result
+
+outputs:
+  - name: monitoring_report
+    value:
+      data: "{{steps.scrape_competitor_data.output}}"
+      changes: "{{steps.detect_changes.output}}"
+      impact: "{{steps.analyze_impact.output}}"
+      alert: "{{steps.generate_alert.output}}"
+      distribution: "{{steps.distribute_alert.output}}"

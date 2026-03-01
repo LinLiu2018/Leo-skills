@@ -1,0 +1,107 @@
+# 多平台发布工作流
+# 自动多平台内容发布
+
+name: multi-channel-publish-workflow
+description: 多平台自动发布工作流
+version: 1.0.0
+category: content
+
+# 触发条件
+triggers:
+  - type: event
+    event: content_ready  # 内容准备就绪
+  - type: manual
+    description: 手动发布
+
+# 输入参数
+inputs:
+  - name: content
+    type: string
+    required: true
+    description: 发布内容
+  - name: channels
+    type: array
+    default: ["feishu", "wechat", "weibo"]
+    description: 发布渠道
+  - name: schedule_time
+    type: string
+    description: 定时发布时间
+
+# 执行步骤
+steps:
+  - name: format_content
+    description: 格式化内容
+    agent: distribution_agent
+    skill: content-generator-skill
+    action: format_for_channels
+    params:
+      content: "{{inputs.content}}"
+      channels: "{{inputs.channels}}"
+    output: formatted_content
+
+  - name: generate_hashtags
+    description: 生成标签
+    agent: distribution_agent
+    skill: social-media-skill
+    action: generate_hashtags
+    params:
+      content: "{{inputs.content}}"
+    output: hashtags
+
+  - name: publish_to_channels
+    description: 发布到各渠道
+    agent: distribution_agent
+    skill: social-media-skill
+    action: multi_channel_publish
+    params:
+      content: "{{steps.format_content.output}}"
+      hashtags: "{{steps.generate_hashtags.output}}"
+      channels: "{{inputs.channels}}"
+    output: publish_results
+
+  - name: schedule_posts
+    description: 定时发布
+    agent: distribution_agent
+    skill: scheduler-skill
+    action: schedule_posts
+    params:
+      content: "{{steps.format_content.output}}"
+      schedule_time: "{{inputs.schedule_time}}"
+      channels: "{{inputs.channels}}"
+    output: schedule_results
+
+  - name: track_performance
+    description: 追踪表现
+    agent: distribution_agent
+    skill: analytics-skill
+    action: track_engagement
+    params:
+      publish_results: "{{steps.publish_to_channels.output}}"
+    output: performance_data
+
+  - name: generate_report
+    description: 生成报告
+    agent: analysis_agent
+    skill: doc-generator-skill
+    action: generate_publish_report
+    params:
+      performance: "{{steps.track_performance.output}}"
+    output: report
+
+# 输出
+outputs:
+  - name: publish_status
+    value: "{{steps.publish_to_channels.output.status}}"
+  - name: total_reach
+    value: "{{steps.track_performance.output.total_reach}}"
+  - name: engagement_rate
+    value: "{{steps.track_performance.output.engagement_rate}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "多平台发布工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

@@ -1,0 +1,68 @@
+name: lead_nurturing_workflow
+description: 潜客培育自动化流程
+version: 1.0.0
+category: crm
+
+triggers:
+  - type: event
+    event: new_lead_created
+  - type: manual
+
+inputs:
+  - name: lead_info
+    type: object
+    required: true
+  - name: lead_source
+    type: string
+    required: true
+
+steps:
+  - name: score_lead
+    agent: crm_agent
+    action: calculate_lead_score
+    input:
+      lead: "{{inputs.lead_info}}"
+      source: "{{inputs.lead_source}}"
+    output: lead_score
+
+  - name: segment_lead
+    agent: crm_agent
+    action: categorize_lead
+    input:
+      lead: "{{inputs.lead_info}}"
+      score: "{{steps.score_lead.output}}"
+    output: lead_segment
+
+  - name: create_nurture_sequence
+    agent: crm_agent
+    action: design_touch_sequence
+    input:
+      segment: "{{steps.segment_lead.output}}"
+      source: "{{inputs.lead_source}}"
+    output: nurture_plan
+
+  - name: personalize_content
+    agent: creative_agent
+    action: create_personalized_content
+    input:
+      lead: "{{inputs.lead_info}}"
+      segment: "{{steps.segment_lead.output}}"
+      plan: "{{steps.create_nurture_sequence.output}}"
+    output: personalized_content
+
+  - name: schedule_follow_ups
+    agent: crm_agent
+    action: create_follow_up_schedule
+    input:
+      plan: "{{steps.create_nurture_sequence.output}}"
+      content: "{{steps.personalize_content.output}}"
+    output: scheduled_tasks
+
+outputs:
+  - name: nurturing_package
+    value:
+      lead_score: "{{steps.score_lead.output}}"
+      segment: "{{steps.segment_lead.output}}"
+      nurture_plan: "{{steps.create_nurture_sequence.output}}"
+      content: "{{steps.personalize_content.output}}"
+      schedule: "{{steps.schedule_follow_ups.output}}"

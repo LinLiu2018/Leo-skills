@@ -1,0 +1,73 @@
+name: social_media_content_generator
+description: 社交媒体内容批量生成
+version: 1.0.0
+category: content
+
+triggers:
+  - type: manual
+  - type: event
+    event: content_batch_request
+  - type: cron
+    expr: "0 8 * * *"
+
+inputs:
+  - name: topic
+    type: string
+    required: true
+  - name: platforms
+    type: array
+    default: ["wechat", "douyin", "xiaohongshu"]
+  - name: content_count
+    type: number
+    default: 3
+
+steps:
+  - name: research_trending
+    agent: research_agent
+    action: research_trending_topics
+    input:
+      topic: "{{inputs.topic}}"
+      platforms: "{{inputs.platforms}}"
+    output: trending_data
+
+  - name: generate_angles
+    agent: creative_agent
+    action: create_content_angles
+    input:
+      topic: "{{inputs.topic}}"
+      trends: "{{steps.research_trending.output}}"
+      count: "{{inputs.content_count}}"
+    output: content_angles
+
+  - name: write_posts
+    agent: creative_agent
+    action: write_social_posts
+    input:
+      angles: "{{steps.generate_angles.output}}"
+      platforms: "{{inputs.platforms}}"
+    output: platform_posts
+
+  - name: suggest_hashtags
+    agent: creative_agent
+    action: generate_hashtags
+    input:
+      topic: "{{inputs.topic}}"
+      platforms: "{{inputs.platforms}}"
+    output: hashtag_sets
+
+  - name: schedule_posts
+    agent: distribution_agent
+    action: create_posting_schedule
+    input:
+      posts: "{{steps.write_posts.output}}"
+      platforms: "{{inputs.platforms}}"
+    output: posting_schedule
+
+outputs:
+  - name: content_package
+    value:
+      research: "{{steps.research_trending.output}}"
+      angles: "{{steps.generate_angles.output}}"
+      posts: "{{steps.write_posts.output}}"
+      hashtags: "{{steps.suggest_hashtags.output}}"
+      schedule: "{{steps.schedule_posts.output}}"

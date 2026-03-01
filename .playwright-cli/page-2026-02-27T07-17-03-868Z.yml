@@ -1,0 +1,586 @@
+- generic [ref=e3]:
+  - complementary [ref=e4]:
+    - generic [ref=e6]:
+      - img [ref=e8]
+      - generic [ref=e11]: Leo AI
+    - navigation [ref=e12]:
+      - link "仪表盘" [ref=e13] [cursor=pointer]:
+        - /url: /
+        - img [ref=e14]
+        - generic [ref=e19]: 仪表盘
+      - link "智能执行" [ref=e20] [cursor=pointer]:
+        - /url: /smart
+        - img [ref=e21]
+        - generic [ref=e23]: 智能执行
+      - link "Skills" [ref=e24] [cursor=pointer]:
+        - /url: /skills
+        - img [ref=e25]
+        - generic [ref=e27]: Skills
+      - link "Agents" [ref=e28] [cursor=pointer]:
+        - /url: /agents
+        - img [ref=e29]
+        - generic [ref=e34]: Agents
+      - link "Workflows" [ref=e35] [cursor=pointer]:
+        - /url: /workflows
+        - img [ref=e36]
+        - generic [ref=e40]: Workflows
+      - link "共享记忆" [ref=e41] [cursor=pointer]:
+        - /url: /memory
+        - img [ref=e42]
+        - generic [ref=e46]: 共享记忆
+      - link "意图调试" [ref=e47] [cursor=pointer]:
+        - /url: /intent
+        - img [ref=e48]
+        - generic [ref=e51]: 意图调试
+      - link "技能进化" [ref=e52] [cursor=pointer]:
+        - /url: /evolution
+        - img [ref=e53]
+        - generic [ref=e55]: 技能进化
+      - link "设置" [ref=e56] [cursor=pointer]:
+        - /url: /settings
+        - img [ref=e57]
+        - generic [ref=e60]: 设置
+    - generic [ref=e61]:
+      - generic [ref=e64]: 系统运行正常
+      - generic [ref=e65]: v1.0.0
+  - generic [ref=e66]:
+    - banner [ref=e67]:
+      - generic [ref=e69]:
+        - img [ref=e70]
+        - textbox "搜索 skills、agents、workflows..." [ref=e73]
+      - generic [ref=e74]:
+        - button [ref=e75] [cursor=pointer]:
+          - img [ref=e76]
+        - button "管理员" [ref=e80] [cursor=pointer]:
+          - img [ref=e82]
+          - generic [ref=e85]: 管理员
+    - main [ref=e86]:
+      - generic [ref=e87]:
+        - generic [ref=e88]:
+          - generic [ref=e92]:
+            - heading "Agents 管理" [level=1] [ref=e93]
+            - paragraph [ref=e94]: 配置和管理系统中的智能代理
+          - button "创建 Agent" [ref=e95] [cursor=pointer]:
+            - img [ref=e96]
+            - text: 创建 Agent
+        - generic [ref=e98]:
+          - img [ref=e99]
+          - textbox "搜索 agents..." [ref=e102]
+        - generic [ref=e103]:
+          - generic [ref=e104]:
+            - paragraph [ref=e105]: 总 Agents
+            - paragraph [ref=e106]: "24"
+          - generic [ref=e107]:
+            - paragraph [ref=e108]: 运行中
+            - paragraph [ref=e109]: "24"
+          - generic [ref=e110]:
+            - paragraph [ref=e111]: 研究员
+            - paragraph [ref=e112]: "0"
+          - generic [ref=e113]:
+            - paragraph [ref=e114]: 创意设计师
+            - paragraph [ref=e115]: "0"
+        - generic [ref=e116]:
+          - generic [ref=e117]:
+            - generic [ref=e118]:
+              - generic [ref=e119]:
+                - img [ref=e121]
+                - generic [ref=e124]:
+                  - heading "ai_news_summary_agent" [level=3] [ref=e125]
+                  - paragraph [ref=e126]: ai_news_summary_agent
+              - generic [ref=e127]:
+                - img [ref=e128]
+                - text: 运行中
+            - paragraph [ref=e131]: Agent ai_news_summary_agent
+            - paragraph [ref=e133]: 能力 (0)
+            - generic [ref=e134]:
+              - generic [ref=e135]: "关联 Skills: 0"
+              - generic [ref=e136]:
+                - button "执行" [ref=e137] [cursor=pointer]:
+                  - img [ref=e138]
+                - button [ref=e140] [cursor=pointer]:
+                  - img [ref=e141]
+                - button [ref=e144] [cursor=pointer]:
+                  - img [ref=e145]
+          - generic [ref=e148]:
+            - generic [ref=e149]:
+              - generic [ref=e150]:
+                - img [ref=e152]
+                - generic [ref=e155]:
+                  - heading "analysis_agent" [level=3] [ref=e156]
+                  - paragraph [ref=e157]: analysis_agent
+              - generic [ref=e158]:
+                - img [ref=e159]
+                - text: 运行中
+            - paragraph [ref=e162]: Agent analysis_agent
+            - paragraph [ref=e164]: 能力 (0)
+            - generic [ref=e165]:
+              - generic [ref=e166]: "关联 Skills: 0"
+              - generic [ref=e167]:
+                - button "执行" [ref=e168] [cursor=pointer]:
+                  - img [ref=e169]
+                - button [ref=e171] [cursor=pointer]:
+                  - img [ref=e172]
+                - button [ref=e175] [cursor=pointer]:
+                  - img [ref=e176]
+          - generic [ref=e179]:
+            - generic [ref=e180]:
+              - generic [ref=e181]:
+                - img [ref=e183]
+                - generic [ref=e186]:
+                  - heading "architect_agent" [level=3] [ref=e187]
+                  - paragraph [ref=e188]: architect_agent
+              - generic [ref=e189]:
+                - img [ref=e190]
+                - text: 运行中
+            - paragraph [ref=e193]: Agent architect_agent
+            - paragraph [ref=e195]: 能力 (0)
+            - generic [ref=e196]:
+              - generic [ref=e197]: "关联 Skills: 0"
+              - generic [ref=e198]:
+                - button "执行" [ref=e199] [cursor=pointer]:
+                  - img [ref=e200]
+                - button [ref=e202] [cursor=pointer]:
+                  - img [ref=e203]
+                - button [ref=e206] [cursor=pointer]:
+                  - img [ref=e207]
+          - generic [ref=e210]:
+            - generic [ref=e211]:
+              - generic [ref=e212]:
+                - img [ref=e214]
+                - generic [ref=e217]:
+                  - heading "bank_product_agent" [level=3] [ref=e218]
+                  - paragraph [ref=e219]: bank_product_agent
+              - generic [ref=e220]:
+                - img [ref=e221]
+                - text: 运行中
+            - paragraph [ref=e224]: Agent bank_product_agent
+            - paragraph [ref=e226]: 能力 (0)
+            - generic [ref=e227]:
+              - generic [ref=e228]: "关联 Skills: 0"
+              - generic [ref=e229]:
+                - button "执行" [ref=e230] [cursor=pointer]:
+                  - img [ref=e231]
+                - button [ref=e233] [cursor=pointer]:
+                  - img [ref=e234]
+                - button [ref=e237] [cursor=pointer]:
+                  - img [ref=e238]
+          - generic [ref=e241]:
+            - generic [ref=e242]:
+              - generic [ref=e243]:
+                - img [ref=e245]
+                - generic [ref=e248]:
+                  - heading "commercial_agent" [level=3] [ref=e249]
+                  - paragraph [ref=e250]: commercial_agent
+              - generic [ref=e251]:
+                - img [ref=e252]
+                - text: 运行中
+            - paragraph [ref=e255]: Agent commercial_agent
+            - paragraph [ref=e257]: 能力 (0)
+            - generic [ref=e258]:
+              - generic [ref=e259]: "关联 Skills: 0"
+              - generic [ref=e260]:
+                - button "执行" [ref=e261] [cursor=pointer]:
+                  - img [ref=e262]
+                - button [ref=e264] [cursor=pointer]:
+                  - img [ref=e265]
+                - button [ref=e268] [cursor=pointer]:
+                  - img [ref=e269]
+          - generic [ref=e272]:
+            - generic [ref=e273]:
+              - generic [ref=e274]:
+                - img [ref=e276]
+                - generic [ref=e279]:
+                  - heading "commercial_lease_agent" [level=3] [ref=e280]
+                  - paragraph [ref=e281]: commercial_lease_agent
+              - generic [ref=e282]:
+                - img [ref=e283]
+                - text: 运行中
+            - paragraph [ref=e286]: Agent commercial_lease_agent
+            - paragraph [ref=e288]: 能力 (0)
+            - generic [ref=e289]:
+              - generic [ref=e290]: "关联 Skills: 0"
+              - generic [ref=e291]:
+                - button "执行" [ref=e292] [cursor=pointer]:
+                  - img [ref=e293]
+                - button [ref=e295] [cursor=pointer]:
+                  - img [ref=e296]
+                - button [ref=e299] [cursor=pointer]:
+                  - img [ref=e300]
+          - generic [ref=e303]:
+            - generic [ref=e304]:
+              - generic [ref=e305]:
+                - img [ref=e307]
+                - generic [ref=e310]:
+                  - heading "commercial_sales_agent" [level=3] [ref=e311]
+                  - paragraph [ref=e312]: commercial_sales_agent
+              - generic [ref=e313]:
+                - img [ref=e314]
+                - text: 运行中
+            - paragraph [ref=e317]: Agent commercial_sales_agent
+            - paragraph [ref=e319]: 能力 (0)
+            - generic [ref=e320]:
+              - generic [ref=e321]: "关联 Skills: 0"
+              - generic [ref=e322]:
+                - button "执行" [ref=e323] [cursor=pointer]:
+                  - img [ref=e324]
+                - button [ref=e326] [cursor=pointer]:
+                  - img [ref=e327]
+                - button [ref=e330] [cursor=pointer]:
+                  - img [ref=e331]
+          - generic [ref=e334]:
+            - generic [ref=e335]:
+              - generic [ref=e336]:
+                - img [ref=e338]
+                - generic [ref=e341]:
+                  - heading "creative_agent" [level=3] [ref=e342]
+                  - paragraph [ref=e343]: creative_agent
+              - generic [ref=e344]:
+                - img [ref=e345]
+                - text: 运行中
+            - paragraph [ref=e348]: Agent creative_agent
+            - paragraph [ref=e350]: 能力 (0)
+            - generic [ref=e351]:
+              - generic [ref=e352]: "关联 Skills: 0"
+              - generic [ref=e353]:
+                - button "执行" [ref=e354] [cursor=pointer]:
+                  - img [ref=e355]
+                - button [ref=e357] [cursor=pointer]:
+                  - img [ref=e358]
+                - button [ref=e361] [cursor=pointer]:
+                  - img [ref=e362]
+          - generic [ref=e365]:
+            - generic [ref=e366]:
+              - generic [ref=e367]:
+                - img [ref=e369]
+                - generic [ref=e372]:
+                  - heading "distribution_agent" [level=3] [ref=e373]
+                  - paragraph [ref=e374]: distribution_agent
+              - generic [ref=e375]:
+                - img [ref=e376]
+                - text: 运行中
+            - paragraph [ref=e379]: Agent distribution_agent
+            - paragraph [ref=e381]: 能力 (0)
+            - generic [ref=e382]:
+              - generic [ref=e383]: "关联 Skills: 0"
+              - generic [ref=e384]:
+                - button "执行" [ref=e385] [cursor=pointer]:
+                  - img [ref=e386]
+                - button [ref=e388] [cursor=pointer]:
+                  - img [ref=e389]
+                - button [ref=e392] [cursor=pointer]:
+                  - img [ref=e393]
+          - generic [ref=e396]:
+            - generic [ref=e397]:
+              - generic [ref=e398]:
+                - img [ref=e400]
+                - generic [ref=e403]:
+                  - heading "ecommerce_agent" [level=3] [ref=e404]
+                  - paragraph [ref=e405]: ecommerce_agent
+              - generic [ref=e406]:
+                - img [ref=e407]
+                - text: 运行中
+            - paragraph [ref=e410]: Agent ecommerce_agent
+            - paragraph [ref=e412]: 能力 (0)
+            - generic [ref=e413]:
+              - generic [ref=e414]: "关联 Skills: 0"
+              - generic [ref=e415]:
+                - button "执行" [ref=e416] [cursor=pointer]:
+                  - img [ref=e417]
+                - button [ref=e419] [cursor=pointer]:
+                  - img [ref=e420]
+                - button [ref=e423] [cursor=pointer]:
+                  - img [ref=e424]
+          - generic [ref=e427]:
+            - generic [ref=e428]:
+              - generic [ref=e429]:
+                - img [ref=e431]
+                - generic [ref=e434]:
+                  - heading "investment_agent" [level=3] [ref=e435]
+                  - paragraph [ref=e436]: investment_agent
+              - generic [ref=e437]:
+                - img [ref=e438]
+                - text: 运行中
+            - paragraph [ref=e441]: Agent investment_agent
+            - paragraph [ref=e443]: 能力 (0)
+            - generic [ref=e444]:
+              - generic [ref=e445]: "关联 Skills: 0"
+              - generic [ref=e446]:
+                - button "执行" [ref=e447] [cursor=pointer]:
+                  - img [ref=e448]
+                - button [ref=e450] [cursor=pointer]:
+                  - img [ref=e451]
+                - button [ref=e454] [cursor=pointer]:
+                  - img [ref=e455]
+          - generic [ref=e458]:
+            - generic [ref=e459]:
+              - generic [ref=e460]:
+                - img [ref=e462]
+                - generic [ref=e465]:
+                  - heading "loan_agent" [level=3] [ref=e466]
+                  - paragraph [ref=e467]: loan_agent
+              - generic [ref=e468]:
+                - img [ref=e469]
+                - text: 运行中
+            - paragraph [ref=e472]: Agent loan_agent
+            - paragraph [ref=e474]: 能力 (0)
+            - generic [ref=e475]:
+              - generic [ref=e476]: "关联 Skills: 0"
+              - generic [ref=e477]:
+                - button "执行" [ref=e478] [cursor=pointer]:
+                  - img [ref=e479]
+                - button [ref=e481] [cursor=pointer]:
+                  - img [ref=e482]
+                - button [ref=e485] [cursor=pointer]:
+                  - img [ref=e486]
+          - generic [ref=e489]:
+            - generic [ref=e490]:
+              - generic [ref=e491]:
+                - img [ref=e493]
+                - generic [ref=e496]:
+                  - heading "logistics_agent" [level=3] [ref=e497]
+                  - paragraph [ref=e498]: logistics_agent
+              - generic [ref=e499]:
+                - img [ref=e500]
+                - text: 运行中
+            - paragraph [ref=e503]: Agent logistics_agent
+            - paragraph [ref=e505]: 能力 (0)
+            - generic [ref=e506]:
+              - generic [ref=e507]: "关联 Skills: 0"
+              - generic [ref=e508]:
+                - button "执行" [ref=e509] [cursor=pointer]:
+                  - img [ref=e510]
+                - button [ref=e512] [cursor=pointer]:
+                  - img [ref=e513]
+                - button [ref=e516] [cursor=pointer]:
+                  - img [ref=e517]
+          - generic [ref=e520]:
+            - generic [ref=e521]:
+              - generic [ref=e522]:
+                - img [ref=e524]
+                - generic [ref=e527]:
+                  - heading "memory_agent" [level=3] [ref=e528]
+                  - paragraph [ref=e529]: memory_agent
+              - generic [ref=e530]:
+                - img [ref=e531]
+                - text: 运行中
+            - paragraph [ref=e534]: Agent memory_agent
+            - paragraph [ref=e536]: 能力 (0)
+            - generic [ref=e537]:
+              - generic [ref=e538]: "关联 Skills: 0"
+              - generic [ref=e539]:
+                - button "执行" [ref=e540] [cursor=pointer]:
+                  - img [ref=e541]
+                - button [ref=e543] [cursor=pointer]:
+                  - img [ref=e544]
+                - button [ref=e547] [cursor=pointer]:
+                  - img [ref=e548]
+          - generic [ref=e551]:
+            - generic [ref=e552]:
+              - generic [ref=e553]:
+                - img [ref=e555]
+                - generic [ref=e558]:
+                  - heading "mobile_agent" [level=3] [ref=e559]
+                  - paragraph [ref=e560]: mobile_agent
+              - generic [ref=e561]:
+                - img [ref=e562]
+                - text: 运行中
+            - paragraph [ref=e565]: Agent mobile_agent
+            - paragraph [ref=e567]: 能力 (0)
+            - generic [ref=e568]:
+              - generic [ref=e569]: "关联 Skills: 0"
+              - generic [ref=e570]:
+                - button "执行" [ref=e571] [cursor=pointer]:
+                  - img [ref=e572]
+                - button [ref=e574] [cursor=pointer]:
+                  - img [ref=e575]
+                - button [ref=e578] [cursor=pointer]:
+                  - img [ref=e579]
+          - generic [ref=e582]:
+            - generic [ref=e583]:
+              - generic [ref=e584]:
+                - img [ref=e586]
+                - generic [ref=e589]:
+                  - heading "operation_agent" [level=3] [ref=e590]
+                  - paragraph [ref=e591]: operation_agent
+              - generic [ref=e592]:
+                - img [ref=e593]
+                - text: 运行中
+            - paragraph [ref=e596]: Agent operation_agent
+            - paragraph [ref=e598]: 能力 (0)
+            - generic [ref=e599]:
+              - generic [ref=e600]: "关联 Skills: 0"
+              - generic [ref=e601]:
+                - button "执行" [ref=e602] [cursor=pointer]:
+                  - img [ref=e603]
+                - button [ref=e605] [cursor=pointer]:
+                  - img [ref=e606]
+                - button [ref=e609] [cursor=pointer]:
+                  - img [ref=e610]
+          - generic [ref=e613]:
+            - generic [ref=e614]:
+              - generic [ref=e615]:
+                - img [ref=e617]
+                - generic [ref=e620]:
+                  - heading "proactive_agent" [level=3] [ref=e621]
+                  - paragraph [ref=e622]: proactive_agent
+              - generic [ref=e623]:
+                - img [ref=e624]
+                - text: 运行中
+            - paragraph [ref=e627]: Agent proactive_agent
+            - paragraph [ref=e629]: 能力 (0)
+            - generic [ref=e630]:
+              - generic [ref=e631]: "关联 Skills: 0"
+              - generic [ref=e632]:
+                - button "执行" [ref=e633] [cursor=pointer]:
+                  - img [ref=e634]
+                - button [ref=e636] [cursor=pointer]:
+                  - img [ref=e637]
+                - button [ref=e640] [cursor=pointer]:
+                  - img [ref=e641]
+          - generic [ref=e644]:
+            - generic [ref=e645]:
+              - generic [ref=e646]:
+                - img [ref=e648]
+                - generic [ref=e651]:
+                  - heading "product_agent" [level=3] [ref=e652]
+                  - paragraph [ref=e653]: product_agent
+              - generic [ref=e654]:
+                - img [ref=e655]
+                - text: 运行中
+            - paragraph [ref=e658]: Agent product_agent
+            - paragraph [ref=e660]: 能力 (0)
+            - generic [ref=e661]:
+              - generic [ref=e662]: "关联 Skills: 0"
+              - generic [ref=e663]:
+                - button "执行" [ref=e664] [cursor=pointer]:
+                  - img [ref=e665]
+                - button [ref=e667] [cursor=pointer]:
+                  - img [ref=e668]
+                - button [ref=e671] [cursor=pointer]:
+                  - img [ref=e672]
+          - generic [ref=e675]:
+            - generic [ref=e676]:
+              - generic [ref=e677]:
+                - img [ref=e679]
+                - generic [ref=e682]:
+                  - heading "product_manager_agent" [level=3] [ref=e683]
+                  - paragraph [ref=e684]: product_manager_agent
+              - generic [ref=e685]:
+                - img [ref=e686]
+                - text: 运行中
+            - paragraph [ref=e689]: Agent product_manager_agent
+            - paragraph [ref=e691]: 能力 (0)
+            - generic [ref=e692]:
+              - generic [ref=e693]: "关联 Skills: 0"
+              - generic [ref=e694]:
+                - button "执行" [ref=e695] [cursor=pointer]:
+                  - img [ref=e696]
+                - button [ref=e698] [cursor=pointer]:
+                  - img [ref=e699]
+                - button [ref=e702] [cursor=pointer]:
+                  - img [ref=e703]
+          - generic [ref=e706]:
+            - generic [ref=e707]:
+              - generic [ref=e708]:
+                - img [ref=e710]
+                - generic [ref=e713]:
+                  - heading "realestate_agent" [level=3] [ref=e714]
+                  - paragraph [ref=e715]: realestate_agent
+              - generic [ref=e716]:
+                - img [ref=e717]
+                - text: 运行中
+            - paragraph [ref=e720]: Agent realestate_agent
+            - paragraph [ref=e722]: 能力 (0)
+            - generic [ref=e723]:
+              - generic [ref=e724]: "关联 Skills: 0"
+              - generic [ref=e725]:
+                - button "执行" [ref=e726] [cursor=pointer]:
+                  - img [ref=e727]
+                - button [ref=e729] [cursor=pointer]:
+                  - img [ref=e730]
+                - button [ref=e733] [cursor=pointer]:
+                  - img [ref=e734]
+          - generic [ref=e737]:
+            - generic [ref=e738]:
+              - generic [ref=e739]:
+                - img [ref=e741]
+                - generic [ref=e744]:
+                  - heading "research_agent" [level=3] [ref=e745]
+                  - paragraph [ref=e746]: research_agent
+              - generic [ref=e747]:
+                - img [ref=e748]
+                - text: 运行中
+            - paragraph [ref=e751]: Agent research_agent
+            - paragraph [ref=e753]: 能力 (0)
+            - generic [ref=e754]:
+              - generic [ref=e755]: "关联 Skills: 0"
+              - generic [ref=e756]:
+                - button "执行" [ref=e757] [cursor=pointer]:
+                  - img [ref=e758]
+                - button [ref=e760] [cursor=pointer]:
+                  - img [ref=e761]
+                - button [ref=e764] [cursor=pointer]:
+                  - img [ref=e765]
+          - generic [ref=e768]:
+            - generic [ref=e769]:
+              - generic [ref=e770]:
+                - img [ref=e772]
+                - generic [ref=e775]:
+                  - heading "residential_agent" [level=3] [ref=e776]
+                  - paragraph [ref=e777]: residential_agent
+              - generic [ref=e778]:
+                - img [ref=e779]
+                - text: 运行中
+            - paragraph [ref=e782]: Agent residential_agent
+            - paragraph [ref=e784]: 能力 (0)
+            - generic [ref=e785]:
+              - generic [ref=e786]: "关联 Skills: 0"
+              - generic [ref=e787]:
+                - button "执行" [ref=e788] [cursor=pointer]:
+                  - img [ref=e789]
+                - button [ref=e791] [cursor=pointer]:
+                  - img [ref=e792]
+                - button [ref=e795] [cursor=pointer]:
+                  - img [ref=e796]
+          - generic [ref=e799]:
+            - generic [ref=e800]:
+              - generic [ref=e801]:
+                - img [ref=e803]
+                - generic [ref=e806]:
+                  - heading "self_improving_agent" [level=3] [ref=e807]
+                  - paragraph [ref=e808]: self_improving_agent
+              - generic [ref=e809]:
+                - img [ref=e810]
+                - text: 运行中
+            - paragraph [ref=e813]: Agent self_improving_agent
+            - paragraph [ref=e815]: 能力 (0)
+            - generic [ref=e816]:
+              - generic [ref=e817]: "关联 Skills: 0"
+              - generic [ref=e818]:
+                - button "执行" [ref=e819] [cursor=pointer]:
+                  - img [ref=e820]
+                - button [ref=e822] [cursor=pointer]:
+                  - img [ref=e823]
+                - button [ref=e826] [cursor=pointer]:
+                  - img [ref=e827]
+          - generic [ref=e830]:
+            - generic [ref=e831]:
+              - generic [ref=e832]:
+                - img [ref=e834]
+                - generic [ref=e837]:
+                  - heading "villa_agent" [level=3] [ref=e838]
+                  - paragraph [ref=e839]: villa_agent
+              - generic [ref=e840]:
+                - img [ref=e841]
+                - text: 运行中
+            - paragraph [ref=e844]: Agent villa_agent
+            - paragraph [ref=e846]: 能力 (0)
+            - generic [ref=e847]:
+              - generic [ref=e848]: "关联 Skills: 0"
+              - generic [ref=e849]:
+                - button "执行" [ref=e850] [cursor=pointer]:
+                  - img [ref=e851]
+                - button [ref=e853] [cursor=pointer]:
+                  - img [ref=e854]
+                - button [ref=e857] [cursor=pointer]:
+                  - img [ref=e858]

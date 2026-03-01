@@ -5,6 +5,7 @@ Subagent基类
 """
 
 import sys
+import json
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from datetime import datetime
@@ -23,6 +24,15 @@ if TYPE_CHECKING:
 from leo_system.logger import get_logger
 from leo_system.errors import AgentError, AgentDispatchError
 from leo_system.metrics import track_time
+
+# 导入 LLM 适配器
+try:
+    from ..core.llm_adapter import LLMAdapter, get_llm
+except ImportError:
+    # 如果 core 模块不存在，提供降级
+    LLMAdapter = None
+    def get_llm(*args, **kwargs):
+        return None
 
 # 创建日志记录器
 logger = get_logger(__name__)
@@ -225,6 +235,246 @@ class BaseAgent(ABC):
         return (
             f"Agent({self.config.name}, type={self.config.type}, skills={len(self.config.skills)})"
         )
+
+    # ==================== LLM 驱动执行（新增）====================
+
+    def execute_with_llm(self, task: str, **kwargs) -> Dict[str, Any]:
+        """
+        LLM 驱动的任务执行
+
+        这是 Wingman 模式的核心方法：
+        1. 加载用户画像和项目上下文
+        2. 构建包含技能的 Prompt
+        3. 调用 LLM 分析任务
+        4. 解析并执行技能调用
+        5. 返回完整结果
+
+        Args:
+            task: 任务描述
+            **kwargs: 任务参数
+
+        Returns:
+            执行结果字典
+        """
+        logger.info(f"Agent '{self.config.name}' 开始 LLM 驱动执行任务: {task}")
+
+        # 1. 加载上下文
+        user_context = self._load_user_context()
+        project_context = self._load_project_context()
+
+        # 2. 构建 Prompt
+        prompt = self._build_llm_prompt(task, user_context, project_context, kwargs)
+        system_prompt = self._build_system_prompt()
+
+        # 3. 调用 LLM
+        try:
+            if LLMAdapter:
+                llm = LLMAdapter(provider=kwargs.get("llm_provider", "claude"))
+                response = llm.call(
+                    prompt=prompt,
+                    system_prompt=system_prompt,
+                    max_tokens=kwargs.get("max_tokens", 4000),
+                    temperature=kwargs.get("temperature", 0.7)
+                )
+                llm_output = response.content
+            else:
+                # 降级到模拟模式
+                llm_output = self._mock_llm_response(task)
+        except Exception as e:
+            logger.error(f"LLM 调用失败: {e}")
+            return {"status": "error", "error": str(e), "task": task}
+
+        # 4. 解析 LLM 输出
+        try:
+            actions = self._parse_llm_output(llm_output)
+        except json.JSONDecodeError as e:
+            logger.error(f"LLM 输出解析失败: {e}")
+            # 尝试直接使用文本输出
+            actions = [{"type": "output", "content": llm_output}]
+
+        # 5. 执行动作
+        results = []
+        for action in actions:
+            try:
+                result = self._execute_action(action, task, kwargs)
+                results.append(result)
+            except Exception as e:
+                logger.error(f"动作执行失败: {action}, 错误: {e}")
+                results.append({"status": "error", "action": action, "error": str(e)})
+
+        # 6. 组装最终响应
+        final_result = {
+            "status": "completed" if all(r.get("status") != "error" for r in results) else "partial",
+            "task": task,
+            "agent": self.config.name,
+            "actions_executed": len(results),
+            "results": results,
+            "llm_response": llm_output[:500] if len(llm_output) > 500 else llm_output  # 截断日志
+        }
+
+        # 7. 记录任务
+        self.log_task(task, final_result)
+
+        logger.info(f"Agent '{self.config.name}' 任务执行完成: {task}")
+        return final_result
+
+    def _load_user_context(self) -> str:
+        """加载用户画像上下文"""
+        try:
+            return self.load_context("context/user_profile.md")
+        except Exception:
+            return ""
+
+    def _load_project_context(self) -> str:
+        """加载项目上下文"""
+        try:
+            return self.load_context("context/project_context.md")
+        except Exception:
+            return ""
+
+    def _build_system_prompt(self) -> str:
+        """构建系统提示词"""
+        return f"""你是一个 {self.config.type} 类型的 AI 代理，名为 {self.config.name}。
+
+{self.config.description}
+
+你的可用技能：
+{chr(10).join(f"- {skill}" for skill in self.config.skills)}
+
+你的任务是分析用户输入，规划执行步骤，并返回结构化的执行计划。
+
+输出格式必须是 JSON：
+{{
+    "analysis": "任务分析",
+    "plan": ["步骤1", "步骤2", ...],
+    "actions": [
+        {{"type": "use_skill", "skill": "技能名", "action": "操作", "params": {{}}}}
+    ],
+    "output": "直接输出内容（如果不需要调用技能）"
+}}"""
+
+    def _build_llm_prompt(self, task: str, user_context: str, project_context: str, kwargs: Dict) -> str:
+        """构建 LLM 提示词"""
+        context_parts = []
+
+        if user_context:
+            context_parts.append(f"用户画像:\n{user_context[:1000]}")  # 限制长度
+
+        if project_context:
+            context_parts.append(f"项目上下文:\n{project_context[:1000]}")
+
+        if kwargs:
+            context_parts.append(f"额外参数:\n{json.dumps(kwargs, ensure_ascii=False, indent=2)[:500]}")
+
+        context_str = "\n\n".join(context_parts) if context_parts else "无额外上下文"
+
+        return f"""任务: {task}
+
+{context_str}
+
+请分析这个任务并返回执行计划（JSON 格式）：
+{{
+    "analysis": "简要分析用户意图",
+    "plan": ["执行步骤1", "执行步骤2"],
+    "actions": [
+        {{"type": "use_skill", "skill": "技能名", "action": "操作", "params": {{"key": "value"}}}},
+        {{"type": "output", "content": "直接输出内容"}}
+    ],
+    "expected_output": "预期输出格式"
+}}"""
+
+    def _parse_llm_output(self, output: str) -> List[Dict]:
+        """解析 LLM 输出"""
+        # 尝试提取 JSON
+        try:
+            # 查找 JSON 块
+            if "```json" in output:
+                json_str = output.split("```json")[1].split("```")[0].strip()
+            elif "```" in output:
+                json_str = output.split("```")[1].split("```")[0].strip()
+            else:
+                json_str = output.strip()
+
+            data = json.loads(json_str)
+
+            # 返回动作列表
+            if "actions" in data:
+                return data["actions"]
+            elif "output" in data:
+                return [{"type": "output", "content": data["output"]}]
+            else:
+                return [{"type": "output", "content": json.dumps(data, ensure_ascii=False)}]
+
+        except json.JSONDecodeError:
+            # 如果不是 JSON，直接返回文本输出
+            return [{"type": "output", "content": output}]
+
+    def _execute_action(self, action: Dict, task: str, kwargs: Dict) -> Dict:
+        """执行单个动作"""
+        action_type = action.get("type")
+
+        if action_type == "use_skill":
+            skill_name = action.get("skill")
+            action_name = action.get("action", "execute")
+            params = action.get("params", {})
+
+            if not self.has_skill(skill_name):
+                return {"status": "error", "error": f"Agent 没有技能: {skill_name}"}
+
+            result = self.use_skill(skill_name, action_name, **params)
+            return {"status": "success", "type": "skill", "skill": skill_name, "result": result}
+
+        elif action_type == "output":
+            return {"status": "success", "type": "output", "content": action.get("content", "")}
+
+        elif action_type == "plan":
+            # 只是规划，不执行
+            return {"status": "success", "type": "plan", "steps": action.get("steps", [])}
+
+        else:
+            return {"status": "error", "error": f"未知动作类型: {action_type}"}
+
+    def _mock_llm_response(self, task: str) -> str:
+        """模拟 LLM 响应（用于测试）"""
+        # 基于任务关键词返回模拟响应
+        mock_actions = []
+
+        if "研究" in task or "调研" in task:
+            mock_actions.append({
+                "type": "use_skill",
+                "skill": "research_assistant_skill",
+                "action": "research",
+                "params": {"query": task}
+            })
+
+        if "分析" in task:
+            mock_actions.append({
+                "type": "use_skill",
+                "skill": "data_analyzer_skill",
+                "action": "analyze",
+                "params": {"data": task}
+            })
+
+        if "生成" in task or "创建" in task:
+            mock_actions.append({
+                "type": "use_skill",
+                "skill": "content_layout_leo_skill",
+                "action": "generate",
+                "params": {"topic": task}
+            })
+
+        if not mock_actions:
+            mock_actions.append({
+                "type": "output",
+                "content": f"收到任务: {task}。这是一个示例响应，实际运行时将调用 LLM 生成完整结果。"
+            })
+
+        return json.dumps({
+            "analysis": f"分析任务: {task[:50]}...",
+            "plan": ["分析需求", "调用技能", "返回结果"],
+            "actions": mock_actions,
+            "expected_output": "结构化结果"
+        }, ensure_ascii=False, indent=2)
 
 
 # ==================== Agent工厂 ====================

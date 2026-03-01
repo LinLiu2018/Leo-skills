@@ -1,0 +1,88 @@
+# 库存管理工作流
+# 自动库存管理和补货
+
+name: inventory-management-workflow
+description: 库存自动管理工作流
+version: 1.0.0
+category: ecommerce
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 8 * * *"  # 每天 8 点
+  - type: event
+    event: low_stock  # 库存低于阈值
+
+# 执行步骤
+steps:
+  - name: check_inventory_levels
+    description: 检查库存水平
+    agent: operation_agent
+    skill: inventory-skill
+    action: check_all_stock
+    output: inventory_levels
+
+  - name: identify_low_stock
+    description: 识别低库存
+    agent: analysis_agent
+    skill: analytics-skill
+    action: filter_low_stock
+    params:
+      inventory: "{{steps.check_inventory_levels.output}}"
+      threshold: 10
+    output: low_stock_items
+
+  - name: forecast_demand
+    description: 需求预测
+    agent: analysis_agent
+    skill: analytics-skill
+    action: forecast_demand
+    params:
+      items: "{{steps.identify_low_stock.output}}"
+      period: "30days"
+    output: demand_forecast
+
+  - name: calculate_reorder_quantity
+    description: 计算补货数量
+    agent: operation_agent
+    skill: inventory-skill
+    action: calculate_reorder
+    params:
+      current_stock: "{{steps.check_inventory_levels.output}}"
+      demand_forecast: "{{steps.forecast_demand.output}}"
+    output: reorder_quantities
+
+  - name: generate_purchase_order
+    description: 生成采购单
+    agent: operation_agent
+    skill: inventory-skill
+    action: generate_po
+    params:
+      items: "{{steps.calculate_reorder_quantity.output}}"
+    output: purchase_order
+
+  - name: notify_team
+    description: 通知团队
+    agent: operation_agent
+    skill: notification-skill
+    action: send_notification
+    params:
+      message: "库存预警：{{steps.identify_low_stock.output.count}}个产品需要补货"
+      purchase_order: "{{steps.generate_purchase_order.output}}"
+    output: notify_result
+
+# 输出
+outputs:
+  - name: low_stock_count
+    value: "{{steps.identify_low_stock.output.count}}"
+  - name: purchase_order_id
+    value: "{{steps.generate_purchase_order.output.id}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "库存管理工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """修复 OpenClaw MCP 配置"""
 import json
-import os
+from pathlib import Path
 
-config_path = os.path.expanduser(r"C:\Users\刘方林\.openclaw\openclaw.json")
+config_path = Path.home() / ".openclaw" / "openclaw.json"
+project_root = Path(__file__).parent.parent.resolve()
 
 # 读取配置
 with open(config_path, 'r', encoding='utf-8') as f:
@@ -20,9 +21,9 @@ if 'plugins' in config and 'entries' in config['plugins']:
 config['mcpServers'] = {
     'leo-system': {
         'command': 'python',
-        'args': ['D:/桌面/leo_ai_system/.mcp/leo_mcp_server.py'],
+        'args': [str(project_root / '.mcp' / 'leo_mcp_server.py')],
         'env': {
-            'PYTHONPATH': 'D:/桌面/leo_ai_system/src',
+            'PYTHONPATH': str(project_root / 'src'),
             'PYTHONIOENCODING': 'utf-8'
         }
     }

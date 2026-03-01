@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """修复 OpenClaw 配置 - 移除不支持的配置"""
 import json
-import os
+from pathlib import Path
 
-config_path = os.path.expanduser(r"C:\Users\刘方林\.openclaw\openclaw.json")
+config_path = Path.home() / ".openclaw" / "openclaw.json"
 
 # 读取配置
 with open(config_path, 'r', encoding='utf-8') as f:

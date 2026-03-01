@@ -1,0 +1,18 @@
+{
+  "report_type": "scale_assessment",
+  "generated_at": "2026-02-28T18:57:04.701426",
+  "pilot_report": "D:\\桌面\\leo_ai_system\\reports\\integration\\opencode_internal_pilot_20260228_185527.json",
+  "gate_result": {
+    "can_scale": true,
+    "success_rate": 1.0,
+    "minimum_success_rate": 0.85,
+    "required_workflows": [
+      "content_production",
+      "lead_distribution",
+      "followup_reminder"
+    ],
+    "required_failures": [],
+    "summary": "GO"
+  },
+  "next_action": "start_limited_rollout"
+}

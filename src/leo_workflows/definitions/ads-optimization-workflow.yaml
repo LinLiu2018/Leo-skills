@@ -1,0 +1,93 @@
+# 广告优化工作流
+# 自动广告优化和管理
+
+name: ads-optimization-workflow
+description: 广告自动优化工作流
+version: 1.0.0
+category: ecommerce
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 14 * * *"  # 每天 14 点
+  - type: manual
+    description: 手动优化广告
+
+# 执行步骤
+steps:
+  - name: fetch_ad_performance
+    description: 获取广告表现
+    agent: marketing_agent
+    skill: ads-manager-skill
+    action: get_performance
+    params:
+      period: "7days"
+    output: ad_performance
+
+  - name: analyze_metrics
+    description: 分析指标
+    agent: analysis_agent
+    skill: analytics-skill
+    action: analyze_ads
+    params:
+      performance: "{{steps.fetch_ad_performance.output}}"
+      metrics: ["ctr", "conversion_rate", "roas", "cpc"]
+    output: analysis
+
+  - name: identify_underperforming
+    description: 识别表现不佳广告
+    agent: analysis_agent
+    skill: analytics-skill
+    action: filter_underperforming
+    params:
+      analysis: "{{steps.analyze_metrics.output}}"
+      thresholds: {"ctr": 0.01, "roas": 2.0}
+    output: underperforming_ads
+
+  - name: optimize_ads
+    description: 优化广告
+    agent: marketing_agent
+    skill: ads-manager-skill
+    action: optimize
+    params:
+      ads: "{{steps.identify_underperforming.output}}"
+      optimizations: ["adjust_bid", "update_creative", "refine_targeting"]
+    output: optimization_results
+
+  - name: pause_poor_ads
+    description: 暂停差广告
+    agent: marketing_agent
+    skill: ads-manager-skill
+    action: pause_ads
+    params:
+      ads: "{{steps.identify_underperforming.output}}"
+      criteria: "roas < 1.0"
+    output: pause_results
+
+  - name: generate_report
+    description: 生成报告
+    agent: analysis_agent
+    skill: doc-generator-skill
+    action: generate_ads_report
+    params:
+      performance: "{{steps.fetch_ad_performance.output}}"
+      optimization: "{{steps.optimize_ads.output}}"
+    output: report
+
+# 输出
+outputs:
+  - name: optimized_ads_count
+    value: "{{steps.optimize_ads.output.count}}"
+  - name: paused_ads_count
+    value: "{{steps.pause_poor_ads.output.count}}"
+  - name: avg_roas_improvement
+    value: "{{steps.optimize_ads.output.roas_improvement}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "广告优化工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

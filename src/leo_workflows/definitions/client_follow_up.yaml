@@ -1,0 +1,57 @@
+name: client_follow_up
+description: 客户跟进自动化流程
+version: 1.0.0
+category: crm
+
+triggers:
+  - type: cron
+    expr: "0 10 * * *"
+  - type: manual
+
+inputs:
+  - name: days_since_last_contact
+    type: number
+    default: 7
+
+steps:
+  - name: identify_follow_ups
+    agent: crm_agent
+    action: identify_clients_needing_follow_up
+    input:
+      days_threshold: "{{inputs.days_since_last_contact}}"
+    output: follow_up_list
+
+  - name: prioritize_clients
+    agent: crm_agent
+    action: prioritize_by_value
+    input:
+      clients: "{{steps.identify_follow_ups.output}}"
+    output: prioritized_list
+
+  - name: generate_messages
+    agent: creative_agent
+    action: create_personalized_messages
+    input:
+      clients: "{{steps.prioritize_clients.output}}"
+    output: personalized_messages
+
+  - name: send_follow_ups
+    agent: distribution_agent
+    action: batch_send_messages
+    input:
+      messages: "{{steps.generate_messages.output}}"
+      channel: feishu
+    output: send_results
+
+  - name: update_crm
+    agent: crm_agent
+    action: record_follow_up_attempts
+    input:
+      results: "{{steps.send_follow_ups.output}}"
+    output: crm_update_status
+
+outputs:
+  - name: follow_up_summary
+    value:
+      clients_contacted: "{{steps.send_follow_ups.output}}"
+      crm_updates: "{{steps.update_crm.output}}"

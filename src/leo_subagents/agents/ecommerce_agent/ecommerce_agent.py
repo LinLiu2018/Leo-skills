@@ -87,46 +87,187 @@ class EcommerceAgent(BaseAgent, EvolvableSkill):
             return "general"
 
     def _handle_analysis_task(self, task: str, **kwargs) -> Dict[str, Any]:
-        """处理竞品分析任务"""
+        """处理竞品分析任务 - 真正调用skill执行"""
+        steps_executed = []
+        results = []
+
+        # 步骤1: 识别竞品并搜索
+        try:
+            if self.has_skill("web_search_skill"):
+                search_result = self.use_skill(
+                    "web_search_skill",
+                    "search",
+                    query=f"{task} 竞品分析",
+                    max_results=10
+                )
+                steps_executed.append("识别竞品")
+                results.append({"step": "competitor_search", "result": search_result})
+        except Exception as e:
+            results.append({"step": "competitor_search", "error": str(e)})
+
+        # 步骤2: 深度研究竞品
+        try:
+            if self.has_skill("research_assistant_skill"):
+                research_result = self.use_skill(
+                    "research_assistant_skill",
+                    "research",
+                    topic=f"{task} 竞品深度分析",
+                    depth=2
+                )
+                steps_executed.append("收集竞品数据")
+                results.append({"step": "competitor_research", "result": research_result})
+        except Exception as e:
+            results.append({"step": "competitor_research", "error": str(e)})
+
+        # 步骤3: 数据分析
+        try:
+            if self.has_skill("data_analyzer_skill"):
+                analysis_result = self.use_skill(
+                    "data_analyzer_skill",
+                    "analyze",
+                    data=results,
+                    analysis_type="competitor"
+                )
+                steps_executed.append("分析评价反馈")
+                results.append({"step": "data_analysis", "result": analysis_result})
+        except Exception as e:
+            results.append({"step": "data_analysis", "error": str(e)})
+
         result = {
             "task": task,
             "type": "analysis",
-            "steps": ["识别竞品", "收集销量数据", "分析评价反馈", "生成分析报告"],
-            "skills_used": ["web_search_skill", "research_assistant_skill"],
-            "status": "completed",
+            "steps": steps_executed,
+            "results": results,
+            "skills_used": ["web_search_skill", "research_assistant_skill", "data_analyzer_skill"],
+            "status": "completed" if steps_executed else "failed",
         }
 
         self.log_task(task, result)
         return result
 
     def _handle_copywriting_task(self, task: str, **kwargs) -> Dict[str, Any]:
-        """处理文案生成任务"""
+        """处理文案生成任务 - 真正调用skill执行"""
+        steps_executed = []
+        results = []
+
+        # 获取进化经验
+        experience = self.get_experience_context()
+
+        # 步骤1: 分析痛点 - 使用web搜索获取用户痛点
+        try:
+            if self.has_skill("web_search_skill"):
+                pain_point_search = self.use_skill(
+                    "web_search_skill",
+                    "search",
+                    query=f"{task} 用户痛点 差评",
+                    max_results=5
+                )
+                steps_executed.append("分析痛点")
+                results.append({"step": "pain_point_analysis", "result": pain_point_search})
+        except Exception as e:
+            results.append({"step": "pain_point_analysis", "error": str(e)})
+
+        # 步骤2: 提取卖点 - 使用research分析
+        try:
+            if self.has_skill("research_assistant_skill"):
+                research_result = self.use_skill(
+                    "research_assistant_skill",
+                    "research",
+                    topic=f"{task} 产品卖点分析",
+                    depth=1
+                )
+                steps_executed.append("提取卖点")
+                results.append({"step": "feature_extraction", "result": research_result})
+        except Exception as e:
+            results.append({"step": "feature_extraction", "error": str(e)})
+
+        # 步骤3: 生成文案
+        try:
+            if self.has_skill("content_layout_leo_skill"):
+                content = kwargs.get("product_info", task)
+                copywriting_result = self.use_skill(
+                    "content_layout_leo_skill",
+                    "layout",
+                    content=content,
+                    template="ecommerce",
+                    experience=experience
+                )
+                steps_executed.append("生成多版本文案")
+                results.append({"step": "copywriting", "result": copywriting_result})
+        except Exception as e:
+            results.append({"step": "copywriting", "error": str(e)})
+
         result = {
             "task": task,
             "type": "copywriting",
-            "steps": ["分析痛点", "提取卖点", "生成多版本文案", "优化标题"],
-            "skills_used": ["content_layout_leo_skill", "article_to_prototype_skill"],
-            "status": "completed",
+            "steps": steps_executed,
+            "results": results,
+            "skills_used": ["web_search_skill", "research_assistant_skill", "content_layout_leo_skill"],
+            "status": "completed" if steps_executed else "failed",
         }
 
         # 注入进化经验
-        experience = self.get_experience_context()
         if experience:
             result["experience_applied"] = experience
-            # 记录使用了经验
             result["notes"] = "Applied accumulated copywriting tips."
 
         self.log_task(task, result)
         return result
 
     def _handle_product_task(self, task: str, **kwargs) -> Dict[str, Any]:
-        """处理选品/产品任务"""
+        """处理选品/产品任务 - 真正调用skill执行"""
+        steps_executed = []
+        results = []
+
+        # 步骤1: 搜索热门产品
+        try:
+            if self.has_skill("web_search_skill"):
+                search_result = self.use_skill(
+                    "web_search_skill",
+                    "search",
+                    query=f"{task} 热门产品 销量排行榜",
+                    max_results=10
+                )
+                steps_executed.append("搜索热门产品")
+                results.append({"step": "hot_products_search", "result": search_result})
+        except Exception as e:
+            results.append({"step": "hot_products_search", "error": str(e)})
+
+        # 步骤2: 分析市场趋势
+        try:
+            if self.has_skill("research_assistant_skill"):
+                trend_result = self.use_skill(
+                    "research_assistant_skill",
+                    "research",
+                    topic=f"{task} 市场趋势分析",
+                    depth=2
+                )
+                steps_executed.append("分析市场趋势")
+                results.append({"step": "trend_analysis", "result": trend_result})
+        except Exception as e:
+            results.append({"step": "trend_analysis", "error": str(e)})
+
+        # 步骤3: 评估利润空间
+        try:
+            if self.has_skill("data_analyzer_skill"):
+                profit_analysis = self.use_skill(
+                    "data_analyzer_skill",
+                    "analyze",
+                    data=results,
+                    analysis_type="profit"
+                )
+                steps_executed.append("评估利润空间")
+                results.append({"step": "profit_analysis", "result": profit_analysis})
+        except Exception as e:
+            results.append({"step": "profit_analysis", "error": str(e)})
+
         result = {
             "task": task,
             "type": "product",
-            "steps": ["搜索热门产品", "分析市场趋势", "评估利润空间", "选品建议"],
-            "skills_used": ["web_search_skill", "research_assistant_skill"],
-            "status": "completed",
+            "steps": steps_executed,
+            "results": results,
+            "skills_used": ["web_search_skill", "research_assistant_skill", "data_analyzer_skill"],
+            "status": "completed" if steps_executed else "failed",
         }
 
         self.log_task(task, result)

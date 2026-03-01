@@ -1,0 +1,81 @@
+---
+# 部署工作流
+# ==============
+# 自动化部署流程 - 构建 + 测试 + 部署
+
+name: deployment-pipeline
+description: 自动化部署工作流 - Docker构建 + 测试 + 多环境部署
+version: "1.0"
+continue_on_error: false
+
+# 输入参数定义
+inputs:
+  project_path:
+    type: string
+    required: true
+    description: 项目路径
+  environment:
+    type: string
+    default: staging
+    enum: [dev, staging, production]
+  deploy_strategy:
+    type: string
+    default: rolling
+    enum: [blue-green, rolling, canary]
+
+# 工作流步骤
+steps:
+  - name: pre_check
+    type: sequential
+    description: 部署前检查
+    parallel_steps:
+      - name: code_quality_check
+        agent: code_verification_skill
+      - name: security_check
+        agent: security_scan_skill
+
+  - name: build
+    type: sequential
+    description: 构建Docker镜像
+    parallel_steps:
+      - name: docker_build
+        agent: dockerfile_generator_skill
+      - name: docker_compose
+        agent: docker_compose_generator_skill
+
+  - name: test
+    type: sequential
+    description: 运行测试
+    parallel_steps:
+      - name: unit_tests
+        agent: unit_test_generator_skill
+      - name: integration_tests
+        agent: api_test_generator_skill
+
+  - name: deploy
+    type: sequential
+    description: 部署到目标环境
+    steps:
+      - name: generate_deploy_script
+        agent: deployment_script_generator_skill
+      - name: configure_nginx
+        agent: nginx_config_generator_skill
+      - name: github_actions
+        agent: github_actions_generator_skill
+
+  - name: verify
+    type: sequential
+    description: 验证部署结果
+    agent: browser_verification_skill
+
+# 输出定义
+outputs:
+  - name: docker_image
+    type: string
+    description: Docker镜像标签
+  - name: deployment_url
+    type: string
+    description: 部署URL
+  - name: deploy_logs
+    type: string
+    description: 部署日志

@@ -230,26 +230,59 @@ class LeoMCPServer:
             return {"status": "error", "message": str(e)}
     
     async def execute_agent(self, agent_name: str, task: str, context: Dict = None) -> Dict:
-        """ Agent"""
+        """
+        执行 Agent 任务（真实 LLM 驱动执行）
+
+        这是 Wingman 模式的核心：Agent 不再返回 stub，而是真实调用 LLM 执行任务
+        """
         try:
             if not self.registry:
                 return {"status": "error", "message": "Registry not initialized"}
-            
+
             agent = self.registry.get_agent(agent_name)
             if not agent:
                 return {"status": "error", "message": f"Agent not found: {agent_name}"}
-            
-            #  Agent 
-            #  Agent 
-            return {
-                "status": "success",
-                "message": f"Agent {agent_name} would execute task: {task}",
-                "agent_type": agent.type,
-                "priority": agent.priority
-            }
-            
+
+            # 真实执行：调用 Agent 的 execute_with_llm 方法
+            print(f"[Agent] {agent_name} 执行任务: {task[:50]}...", flush=True)
+
+            # 检查 Agent 是否有 execute_with_llm 方法（增强型 Agent）
+            if hasattr(agent, 'execute_with_llm'):
+                result = agent.execute_with_llm(task, **(context or {}))
+                return {
+                    "status": "success",
+                    "agent": agent_name,
+                    "task": task,
+                    "result": result,
+                    "execution_mode": "llm_driven"
+                }
+            # 回退到普通 execute 方法
+            elif hasattr(agent, 'execute'):
+                result = agent.execute(task, **(context or {}))
+                return {
+                    "status": "success",
+                    "agent": agent_name,
+                    "task": task,
+                    "result": result,
+                    "execution_mode": "standard"
+                }
+            else:
+                # 最基础的 Agent，只返回信息
+                return {
+                    "status": "success",
+                    "message": f"Agent {agent_name} 信息",
+                    "agent_type": getattr(agent, 'type', 'unknown'),
+                    "priority": getattr(agent, 'priority', 0),
+                    "note": "此 Agent 未实现 execute 方法"
+                }
+
         except Exception as e:
-            return {"status": "error", "message": str(e)}
+            import traceback
+            return {
+                "status": "error",
+                "message": str(e),
+                "traceback": traceback.format_exc()
+            }
     
     async def execute_workflow(self, workflow_name: str, input_data: Dict = None) -> Dict:
         """ Workflow"""

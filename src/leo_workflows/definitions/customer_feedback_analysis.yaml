@@ -1,0 +1,66 @@
+name: customer_feedback_analysis
+description: 客户反馈智能分析
+version: 1.0.0
+category: analysis
+
+triggers:
+  - type: cron
+    expr: "0 18 * * 0"
+  - type: manual
+
+inputs:
+  - name: feedback_data
+    type: array
+    required: true
+  - name: analysis_period
+    type: string
+    default: "weekly"
+
+steps:
+  - name: categorize_feedback
+    agent: analysis_agent
+    action: classify_feedback
+    input:
+      feedback: "{{inputs.feedback_data}}"
+    output: categorized_feedback
+
+  - name: sentiment_analysis
+    agent: analysis_agent
+    action: analyze_sentiment
+    input:
+      feedback: "{{inputs.feedback_data}}"
+    output: sentiment_scores
+
+  - name: identify_themes
+    agent: analysis_agent
+    action: extract_key_themes
+    input:
+      categorized: "{{steps.categorize_feedback.output}}"
+    output: key_themes
+
+  - name: generate_insights
+    agent: analysis_agent
+    action: generate_actionable_insights
+    input:
+      themes: "{{steps.identify_themes.output}}"
+      sentiment: "{{steps.sentiment_analysis.output}}"
+    output: insights
+
+  - name: create_report
+    agent: creative_agent
+    action: format_feedback_report
+    input:
+      categorized: "{{steps.categorize_feedback.output}}"
+      sentiment: "{{steps.sentiment_analysis.output}}"
+      themes: "{{steps.identify_themes.output}}"
+      insights: "{{steps.generate_insights.output}}"
+    output: feedback_report
+
+outputs:
+  - name: analysis_package
+    value:
+      categorized: "{{steps.categorize_feedback.output}}"
+      sentiment: "{{steps.sentiment_analysis.output}}"
+      themes: "{{steps.identify_themes.output}}"
+      insights: "{{steps.generate_insights.output}}"
+      report: "{{steps.create_report.output}}"

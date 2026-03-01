@@ -4,7 +4,7 @@
 # 用法: PowerShell -ExecutionPolicy Bypass -File scripts\openclaw_auto_healer.ps1
 
 param(
-    [string]$OpenClawPath = "D:\moltbot",
+    [string]$OpenClawPath = "D:\openclaw",
     [int]$CheckInterval = 30,
     [int]$Port = 18789,
     [string]$LogDir = "$env:USERPROFILE\.openclaw\logs",
@@ -124,8 +124,9 @@ function Invoke-SmartHeal {
             $fixedContent = '@echo off' + "`r`n" +
                 'rem OpenClaw Gateway (v2026.1.30) - Auto Healed' + "`r`n" +
                 'set OPENCLAW_GATEWAY_PORT=18789' + "`r`n" +
-                'set OPENCLAW_GATEWAY_TOKEN=leo-feishu-2024' + "`r`n" +
-                '"C:\Program Files\nodejs\node.exe" "D:\moltbot\openclaw.mjs" gateway --port 18789'
+                'set OPENCLAW_GATEWAY_TOKEN=%OPENCLAW_GATEWAY_TOKEN%' + "`r`n" +
+                'set MINIMAX_API_KEY=%MINIMAX_API_KEY%' + "`r`n" +
+                '"C:\Program Files\nodejs\node.exe" "D:\openclaw\openclaw.mjs" gateway --port 18789'
             $fixedContent | Out-File $gatewayCmd -Encoding UTF8
             Write-Log "  gateway.cmd fixed" "SUCCESS"
             $healSteps += "Fix gateway.cmd"

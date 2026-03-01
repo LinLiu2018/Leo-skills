@@ -1,0 +1,61 @@
+name: residential_sales_workflow
+description: 刚需住宅销售全流程
+version: 1.0.0
+category: realestate
+
+triggers:
+  - type: manual
+  - type: event
+    event: residential_inquiry
+
+inputs:
+  - name: family_type
+    type: string
+    required: true
+  - name: school_requirement
+    type: boolean
+    default: false
+  - name: commute_location
+    type: string
+    required: true
+  - name: budget
+    type: string
+    required: true
+
+steps:
+  - name: analyze_family_needs
+    agent: residential_agent
+    action: analyze_family_needs
+    output: needs_profile
+
+  - name: match_properties
+    agent: residential_agent
+    action: match_properties
+    input:
+      family_type: "{{inputs.family_type}}"
+      budget: "{{inputs.budget}}"
+      school_required: "{{inputs.school_requirement}}"
+      commute: "{{inputs.commute_location}}"
+    output: matched_properties
+
+  - name: calculate_mortgage
+    agent: loan_agent
+    action: calculate_mortgage_options
+    input:
+      property_price: "{{steps.match_properties.output.price}}"
+    output: mortgage_options
+
+  - name: schedule_viewings
+    agent: residential_agent
+    action: schedule_viewing_plan
+    input:
+      properties: "{{steps.match_properties.output}}"
+    output: viewing_schedule
+
+outputs:
+  - name: sales_package
+    value:
+      needs_profile: "{{steps.analyze_family_needs.output}}"
+      matched_properties: "{{steps.match_properties.output}}"
+      mortgage_options: "{{steps.calculate_mortgage.output}}"
+      viewing_schedule: "{{steps.schedule_viewings.output}}"

@@ -1,0 +1,64 @@
+name: auction_opportunity_scan
+description: 法拍房机会扫描与评估
+version: 1.0.0
+category: realestate
+
+triggers:
+  - type: cron
+    expr: "0 8 * * *"
+  - type: manual
+
+inputs:
+  - name: target_districts
+    type: array
+    default: ["haishu", "yinzhou", "jiangbei"]
+  - name: min_discount
+    type: number
+    default: 20
+
+steps:
+  - name: scan_listings
+    agent: auction_agent
+    action: scan_new_listings
+    input:
+      districts: "{{inputs.target_districts}}"
+    output: new_listings
+
+  - name: filter_by_discount
+    agent: auction_agent
+    action: filter_opportunities
+    input:
+      listings: "{{steps.scan_listings.output}}"
+      min_discount: "{{inputs.min_discount}}"
+    output: opportunities
+
+  - name: assess_risks
+    agent: auction_agent
+    action: batch_risk_assessment
+    input:
+      listings: "{{steps.filter_by_discount.output}}"
+    output: risk_reports
+
+  - name: generate_daily_report
+    agent: auction_agent
+    action: generate_opportunity_report
+    input:
+      opportunities: "{{steps.filter_by_discount.output}}"
+      risks: "{{steps.assess_risks.output}}"
+    output: daily_report
+
+  - name: notify_interested_clients
+    agent: distribution_agent
+    action: send_notifications
+    input:
+      report: "{{steps.generate_daily_report.output}}"
+      channel: feishu
+    output: notification_result
+
+outputs:
+  - name: scan_result
+    value:
+      opportunities: "{{steps.filter_by_discount.output}}"
+      risk_reports: "{{steps.assess_risks.output}}"
+      daily_report: "{{steps.generate_daily_report.output}}"
+      notifications_sent: "{{steps.notify_interested_clients.output}}"

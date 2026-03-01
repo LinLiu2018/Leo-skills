@@ -1,0 +1,87 @@
+# 客服支持工作流
+# 自动客服支持
+
+name: customer-service-workflow
+description: 客服自动支持工作流
+version: 1.0.0
+category: ecommerce
+
+# 触发条件
+triggers:
+  - type: event
+    event: customer_inquiry  # 客户咨询
+
+# 执行步骤
+steps:
+  - name: fetch_inquiry
+    description: 获取咨询内容
+    agent: service_agent
+    skill: email-skill
+    action: get_inquiry
+    output: inquiry
+
+  - name: classify_inquiry
+    description: 分类咨询
+    agent: analysis_agent
+    skill: analytics-skill
+    action: classify
+    params:
+      inquiry: "{{steps.fetch_inquiry.output}}"
+    output: category
+
+  - name: search_knowledge_base
+    description: 搜索知识库
+    agent: service_agent
+    skill: knowledge-base-skill
+    action: search
+    params:
+      query: "{{steps.fetch_inquiry.output.content}}"
+      category: "{{steps.classify_inquiry.output}}"
+    output: kb_results
+
+  - name: generate_response
+    description: 生成回复
+    agent: service_agent
+    skill: content-generator-skill
+    action: generate_response
+    params:
+      inquiry: "{{steps.fetch_inquiry.output}}"
+      kb_results: "{{steps.search_knowledge_base.output}}"
+    output: response
+
+  - name: send_response
+    description: 发送回复
+    agent: service_agent
+    skill: email-skill
+    action: send_email
+    params:
+      to: "{{steps.fetch_inquiry.output.customer_email}}"
+      subject: "Re: {{steps.fetch_inquiry.output.subject}}"
+      body: "{{steps.generate_response.output}}"
+    output: send_result
+
+  - name: create_ticket
+    description: 创建工单
+    agent: service_agent
+    skill: ticket-skill
+    action: create_ticket
+    params:
+      inquiry: "{{steps.fetch_inquiry.output}}"
+      response: "{{steps.generate_response.output}}"
+    output: ticket
+
+# 输出
+outputs:
+  - name: ticket_id
+    value: "{{steps.create_ticket.output.id}}"
+  - name: response_sent
+    value: "{{steps.send_response.output.status}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "客服工作流执行失败：{{error.message}}"
+  - action: notify
+    channel: feishu
+    message: "需要人工客服介入"

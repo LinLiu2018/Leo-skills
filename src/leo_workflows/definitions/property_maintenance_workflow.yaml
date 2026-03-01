@@ -1,0 +1,62 @@
+name: property_maintenance_workflow
+description: 物业维护管理流程
+version: 1.0.0
+category: property_management
+
+triggers:
+  - type: event
+    event: maintenance_request
+  - type: manual
+
+inputs:
+  - name: property_id
+    type: string
+    required: true
+  - name: issue_type
+    type: string
+    required: true
+  - name: urgency
+    type: string
+    default: normal
+
+steps:
+  - name: assess_issue
+    agent: property_agent
+    action: assess_maintenance_issue
+    input:
+      property: "{{inputs.property_id}}"
+      issue: "{{inputs.issue_type}}"
+      urgency: "{{inputs.urgency}}"
+    output: issue_assessment
+
+  - name: find_contractors
+    agent: property_agent
+    action: locate_service_providers
+    input:
+      issue_type: "{{inputs.issue_type}}"
+      location: "{{inputs.property_id}}"
+    output: contractor_list
+
+  - name: get_quotes
+    agent: property_agent
+    action: request_quotes
+    input:
+      contractors: "{{steps.find_contractors.output}}"
+      issue: "{{steps.assess_issue.output}}"
+    output: price_quotes
+
+  - name: schedule_repair
+    agent: property_agent
+    action: schedule_maintenance
+    input:
+      selected_quote: "{{steps.get_quotes.output.best_option}}"
+      urgency: "{{inputs.urgency}}"
+    output: scheduled_appointment
+
+outputs:
+  - name: maintenance_package
+    value:
+      assessment: "{{steps.assess_issue.output}}"
+      contractors: "{{steps.find_contractors.output}}"
+      quotes: "{{steps.get_quotes.output}}"
+      schedule: "{{steps.schedule_repair.output}}"

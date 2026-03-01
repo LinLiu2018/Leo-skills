@@ -1,0 +1,64 @@
+name: commercial_leasing_tenant_match
+description: 商业租赁租户智能匹配
+version: 1.0.0
+category: realestate
+
+triggers:
+  - type: manual
+  - type: event
+    event: new_property_listing
+
+inputs:
+  - name: property_id
+    type: string
+    required: true
+  - name: property_type
+    type: string
+    required: true
+
+steps:
+  - name: analyze_property
+    agent: leasing_agent
+    action: analyze_property_features
+    input:
+      property_id: "{{inputs.property_id}}"
+    output: property_profile
+
+  - name: search_tenant_database
+    agent: leasing_agent
+    action: search_potential_tenants
+    input:
+      property_profile: "{{steps.analyze_property.output}}"
+    output: tenant_matches
+
+  - name: rank_tenants
+    agent: leasing_agent
+    action: rank_by_fit_score
+    input:
+      tenants: "{{steps.search_tenant_database.output}}"
+      property: "{{steps.analyze_property.output}}"
+    output: ranked_tenants
+
+  - name: prepare_pitch_materials
+    agent: creative_agent
+    action: create_leasing_proposal
+    input:
+      property: "{{steps.analyze_property.output}}"
+      target_tenant: "{{steps.rank_tenants.output.top_match}}"
+    output: pitch_materials
+
+  - name: schedule_viewings
+    agent: leasing_agent
+    action: schedule_property_tours
+    input:
+      property_id: "{{inputs.property_id}}"
+      tenants: "{{steps.rank_tenants.output}}"
+    output: viewing_schedule
+
+outputs:
+  - name: match_result
+    value:
+      property_profile: "{{steps.analyze_property.output}}"
+      matched_tenants: "{{steps.rank_tenants.output}}"
+      pitch_materials: "{{steps.prepare_pitch_materials.output}}"
+      viewing_schedule: "{{steps.schedule_viewings.output}}"

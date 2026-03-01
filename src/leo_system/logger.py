@@ -3,10 +3,13 @@
 Leo System - 统一日志系统
 
 提供统一的日志配置和管理功能。
+支持纯文本（控制台）和 JSON 结构化（文件）两种格式。
 """
+import json
 import logging
 import sys
 import re
+from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
@@ -46,12 +49,31 @@ def _strip_emoji(text: str) -> str:
 
 
 class SafeFormatter(logging.Formatter):
-    """安全的日志格式化器，自动移除 emoji"""
+    """安全的日志格式化器，仅在控制台输出时移除 emoji"""
     def format(self, record):
-        # 移除消息中的 emoji
-        if record.msg:
-            record.msg = _strip_emoji(str(record.msg))
-        return super().format(record)
+        # 复制 record 避免修改原始消息（文件日志保留 emoji）
+        import copy
+        safe_record = copy.copy(record)
+        if safe_record.msg:
+            safe_record.msg = _strip_emoji(str(safe_record.msg))
+        return super().format(safe_record)
+
+
+class JsonFormatter(logging.Formatter):
+    """JSON 结构化日志格式化器，适用于 ELK/Loki 等日志系统"""
+    def format(self, record):
+        log_entry = {
+            "timestamp": datetime.fromtimestamp(record.created).isoformat(),
+            "level": record.levelname,
+            "logger": record.name,
+            "message": str(record.getMessage()),
+            "module": record.module,
+            "function": record.funcName,
+            "line": record.lineno,
+        }
+        if record.exc_info and record.exc_info[0]:
+            log_entry["exception"] = self.formatException(record.exc_info)
+        return json.dumps(log_entry, ensure_ascii=False)
 
 
 def get_logger(
@@ -81,16 +103,17 @@ def get_logger(
     # 设置日志级别
     logger.setLevel(level or DEFAULT_LOG_LEVEL)
 
-    # 创建安全的格式化器
+    # 创建格式化器
     safe_formatter = SafeFormatter(LOG_FORMAT, datefmt=DATE_FORMAT)
+    json_formatter = JsonFormatter()
 
-    # 文件处理器
+    # 文件处理器（JSON 结构化格式，便于日志系统解析）
     if log_to_file:
         # 使用模块名作为日志文件名
         log_file = LOGS_DIR / f"{name.replace('.', '_')}.log"
         file_handler = logging.FileHandler(log_file, encoding="utf-8")
         file_handler.setLevel(level or DEFAULT_LOG_LEVEL)
-        file_handler.setFormatter(safe_formatter)
+        file_handler.setFormatter(json_formatter)
         logger.addHandler(file_handler)
 
     # 控制台处理器

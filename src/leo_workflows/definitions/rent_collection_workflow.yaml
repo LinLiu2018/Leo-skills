@@ -1,0 +1,68 @@
+name: rent_collection_workflow
+description: 租金催收自动化流程
+version: 1.0.0
+category: property_management
+
+triggers:
+  - type: cron
+    expr: "0 10 5 * *"
+  - type: event
+    event: rent_overdue
+
+inputs:
+  - name: tenant_id
+    type: string
+    required: true
+  - name: days_overdue
+    type: number
+    default: 0
+
+steps:
+  - name: check_lease_status
+    agent: property_agent
+    action: verify_lease_details
+    input:
+      tenant: "{{inputs.tenant_id}}"
+    output: lease_info
+
+  - name: calculate_balance
+    agent: property_agent
+    action: calculate_outstanding_balance
+    input:
+      tenant: "{{inputs.tenant_id}}"
+      days: "{{inputs.days_overdue}}"
+    output: balance_due
+
+  - name: determine_escalation
+    agent: property_agent
+    action: determine_collection_stage
+    input:
+      days_overdue: "{{inputs.days_overdue}}"
+      balance: "{{steps.calculate_balance.output}}"
+    output: escalation_level
+
+  - name: generate_notice
+    agent: creative_agent
+    action: draft_collection_notice
+    input:
+      tenant: "{{inputs.tenant_id}}"
+      balance: "{{steps.calculate_balance.output}}"
+      level: "{{steps.determine_escalation.output}}"
+    output: collection_notice
+
+  - name: send_notification
+    agent: distribution_agent
+    action: send_to_tenant
+    input:
+      notice: "{{steps.generate_notice.output}}"
+      tenant: "{{inputs.tenant_id}}"
+    output: delivery_status
+
+outputs:
+  - name: collection_result
+    value:
+      lease: "{{steps.check_lease_status.output}}"
+      balance: "{{steps.calculate_balance.output}}"
+      escalation: "{{steps.determine_escalation.output}}"
+      notice: "{{steps.generate_notice.output}}"
+      delivery: "{{steps.send_notification.output}}"

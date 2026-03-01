@@ -1,0 +1,72 @@
+name: ecommerce_product_research
+description: 电商选品调研流程
+version: 1.0.0
+category: ecommerce
+
+triggers:
+  - type: manual
+  - type: event
+    event: product_research_request
+
+inputs:
+  - name: product_category
+    type: string
+    required: true
+  - name: target_market
+    type: string
+    default: domestic
+  - name: price_range
+    type: string
+    required: true
+
+steps:
+  - name: analyze_market_trend
+    agent: product_agent
+    action: analyze_trends
+    input:
+      category: "{{inputs.product_category}}"
+      market: "{{inputs.target_market}}"
+    output: trend_analysis
+
+  - name: research_competitors
+    agent: product_agent
+    action: research_competitors
+    input:
+      category: "{{inputs.product_category}}"
+      price_range: "{{inputs.price_range}}"
+    output: competitor_data
+
+  - name: calculate_profit_margin
+    agent: operation_agent
+    action: calculate_margins
+    input:
+      product_category: "{{inputs.product_category}}"
+      price_range: "{{inputs.price_range}}"
+    output: margin_analysis
+
+  - name: assess_logistics
+    agent: logistics_agent
+    action: assess_shipping
+    input:
+      product_category: "{{inputs.product_category}}"
+      target_market: "{{inputs.target_market}}"
+    output: logistics_assessment
+
+  - name: generate_recommendation
+    agent: product_agent
+    action: generate_recommendation
+    input:
+      trends: "{{steps.analyze_market_trend.output}}"
+      competitors: "{{steps.research_competitors.output}}"
+      margins: "{{steps.calculate_profit_margin.output}}"
+      logistics: "{{steps.assess_logistics.output}}"
+    output: final_recommendation
+
+outputs:
+  - name: research_report
+    value:
+      trend_analysis: "{{steps.analyze_market_trend.output}}"
+      competitor_data: "{{steps.research_competitors.output}}"
+      margin_analysis: "{{steps.calculate_profit_margin.output}}"
+      logistics_assessment: "{{steps.assess_logistics.output}}"
+      recommendation: "{{steps.generate_recommendation.output}}"

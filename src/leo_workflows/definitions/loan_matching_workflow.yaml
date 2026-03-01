@@ -1,0 +1,64 @@
+name: loan_matching_workflow
+description: 贷款方案智能匹配流程
+version: 1.0.0
+category: loan
+
+triggers:
+  - type: manual
+  - type: event
+    event: loan_inquiry
+
+inputs:
+  - name: loan_amount
+    type: number
+    required: true
+  - name: loan_term_years
+    type: number
+    default: 30
+  - name: income_proof
+    type: boolean
+    default: true
+  - name: credit_score
+    type: number
+
+steps:
+  - name: assess_creditworthiness
+    agent: loan_agent
+    action: assess_credit
+    input:
+      income_proof: "{{inputs.income_proof}}"
+      credit_score: "{{inputs.credit_score}}"
+    output: credit_assessment
+
+  - name: query_bank_products
+    agent: loan_agent
+    action: query_bank_products
+    input:
+      loan_amount: "{{inputs.loan_amount}}"
+      loan_term: "{{inputs.loan_term_years}}"
+    output: available_products
+
+  - name: calculate_options
+    agent: loan_agent
+    action: calculate_loan_options
+    input:
+      products: "{{steps.query_bank_products.output}}"
+      loan_amount: "{{inputs.loan_amount}}"
+      loan_term: "{{inputs.loan_term_years}}"
+    output: calculated_options
+
+  - name: recommend_best_option
+    agent: loan_agent
+    action: recommend_option
+    input:
+      options: "{{steps.calculate_options.output}}"
+      credit_assessment: "{{steps.assess_creditworthiness.output}}"
+    output: recommendation
+
+outputs:
+  - name: loan_package
+    value:
+      credit_assessment: "{{steps.assess_creditworthiness.output}}"
+      available_products: "{{steps.query_bank_products.output}}"
+      calculated_options: "{{steps.calculate_options.output}}"
+      recommendation: "{{steps.recommend_best_option.output}}"

@@ -1,0 +1,96 @@
+---
+# 裂变小程序端到端工作流
+# ==========================
+# 从需求分析到部署上线的完整流程
+
+name: miniprogram-fission-pipeline
+description: 裂变分销小程序开发工作流 - 需求分析 + 代码生成 + 测试 + 部署
+version: "1.0"
+continue_on_error: false
+
+# 输入参数定义
+inputs:
+  activity_name:
+    type: string
+    required: true
+    description: 裂变活动名称
+  reward_type:
+    type: string
+    default: points
+    enum: [points, coupon, gift]
+    description: 奖励类型
+  invite_threshold:
+    type: integer
+    default: 3
+    description: 邀请门槛
+
+# 工作流步骤
+steps:
+  - name: requirement_analysis
+    type: sequential
+    agent: product_manager_agent
+    description: 需求分析和PRD生成
+    retries: 1
+
+  - name: backend_generation
+    type: parallel
+    description: 后端代码生成
+    parallel_steps:
+      - name: database_models
+        agent: database_model_generator_skill
+        description: 生成数据库模型
+      - name: api_endpoints
+        agent: flask_api_generator_skill
+        description: 生成API接口
+
+  - name: frontend_generation
+    type: parallel
+    description: 小程序前端生成
+    parallel_steps:
+      - name: pages
+        agent: miniprogram_page_generator_skill
+        description: 生成小程序页面
+      - name: components
+        agent: miniprogram_component_generator_skill
+        description: 生成小程序组件
+
+  - name: fission_logic
+    type: sequential
+    agent: fission_miniprogram_skill
+    description: 配置裂变规则引擎
+    retries: 1
+
+  - name: integration_test
+    type: sequential
+    agent: api_test_generator_skill
+    description: 生成并运行集成测试
+    timeout: 300
+
+  - name: deployment
+    type: sequential
+    description: 部署到测试环境
+    steps:
+      - name: backend_deploy
+        agent: deployment_script_generator_skill
+      - name: miniprogram_upload
+        agent: mobile_agent
+
+  - name: verification
+    type: sequential
+    agent: browser_verification_skill
+    description: 验证部署结果
+
+# 输出定义
+outputs:
+  - name: backend_code
+    type: string
+    description: 后端代码路径
+  - name: miniprogram_code
+    type: string
+    description: 小程序代码路径
+  - name: api_docs
+    type: string
+    description: API文档
+  - name: deployment_url
+    type: string
+    description: 测试环境URL

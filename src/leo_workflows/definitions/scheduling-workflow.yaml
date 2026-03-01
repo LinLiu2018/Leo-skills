@@ -1,0 +1,94 @@
+# 日程管理工作流
+# 自动日程安排和会议管理
+
+name: scheduling-workflow
+description: 日程自动管理工作流
+version: 1.0.0
+category: business
+
+# 触发条件
+triggers:
+  - type: event
+    event: meeting_request  # 会议请求
+  - type: manual
+    description: 手动安排
+
+# 输入参数
+inputs:
+  - name: meeting_type
+    type: string
+    description: 会议类型
+  - name: participants
+    type: array
+    description: 参与者列表
+  - name: duration
+    type: number
+    default: 60
+    description: 会议时长 (分钟)
+
+# 执行步骤
+steps:
+  - name: check_availability
+    description: 检查空闲时间
+    agent: sales_agent
+    skill: calendar-skill
+    action: check_availability
+    params:
+      participants: "{{inputs.participants}}"
+    output: available_slots
+
+  - name: suggest_time_slots
+    description: 建议时间
+    agent: analysis_agent
+    skill: scheduler-skill
+    action: suggest_slots
+    params:
+      available_slots: "{{steps.check_availability.output}}"
+      duration: "{{inputs.duration}}"
+    output: suggested_slots
+
+  - name: book_meeting
+    description: 预定会议
+    agent: sales_agent
+    skill: calendar-skill
+    action: book_meeting
+    params:
+      meeting_type: "{{inputs.meeting_type}}"
+      participants: "{{inputs.participants}}"
+      time_slot: "{{steps.suggest_time_slots.output.best_slot}}"
+    output: meeting_details
+
+  - name: send_invites
+    description: 发送邀请
+    agent: distribution_agent
+    skill: email-skill
+    action: send_meeting_invites
+    params:
+      meeting: "{{steps.book_meeting.output}}"
+      participants: "{{inputs.participants}}"
+    output: invite_results
+
+  - name: setup_reminders
+    description: 设置提醒
+    agent: distribution_agent
+    skill: notification-skill
+    action: setup_meeting_reminders
+    params:
+      meeting: "{{steps.book_meeting.output}}"
+    output: reminder_setup
+
+# 输出
+outputs:
+  - name: meeting_id
+    value: "{{steps.book_meeting.output.meeting_id}}"
+  - name: meeting_time
+    value: "{{steps.book_meeting.output.time}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "日程工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

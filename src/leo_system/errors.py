@@ -216,12 +216,15 @@ class ConfigurationError(LeoError):
 # ============================================================================
 
 
-class SystemError(LeoError):
+class LeoSystemError(LeoError):
     """系统级异常"""
 
 
+# 向后兼容别名（已弃用，避免覆盖 builtins.SystemError）
+SystemError = LeoSystemError
 
-class InitializationError(SystemError):
+
+class InitializationError(LeoSystemError):
     """系统初始化失败"""
 
     def __init__(self, component: str, reason: str, **kwargs):

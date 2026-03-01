@@ -183,7 +183,7 @@ def check_command_handler():
     """验证命令处理器"""
     print("\n=== 命令处理器验证 ===")
 
-    handler_path = Path(r"D:\moltbot\leo_command_handler.js")
+    handler_path = Path(os.environ.get('MOLTBOT_PATH', r"D:\moltbot")) / "leo_command_handler.js"
 
     if not handler_path.exists():
         print_status("命令处理器脚本", False, "文件不存在")

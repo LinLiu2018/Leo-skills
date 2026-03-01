@@ -1,0 +1,13 @@
+name: commercial_sales_agent
+type: realestate
+description: Commercial sales real estate agent
+version: 1.0.0
+owner: leo
+enabled: true
+model: qwen3.5-plus
+workspace: ~/.openclaw/workspace-commercial-sales
+triggers:
+  - commercial_sales
+  - storefront
+  - office
+  - investment

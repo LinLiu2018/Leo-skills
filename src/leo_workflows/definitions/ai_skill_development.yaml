@@ -1,0 +1,78 @@
+name: ai_skill_development
+description: AI Skill 开发全流程
+version: 1.0.0
+category: development
+
+triggers:
+  - type: manual
+  - type: event
+    event: skill_development_request
+
+inputs:
+  - name: skill_name
+    type: string
+    required: true
+  - name: skill_description
+    type: string
+    required: true
+  - name: skill_category
+    type: string
+    default: automation
+
+steps:
+  - name: design_skill_architecture
+    agent: architect_agent
+    action: design_architecture
+    input:
+      name: "{{inputs.skill_name}}"
+      description: "{{inputs.skill_description}}"
+      category: "{{inputs.skill_category}}"
+    output: architecture_design
+
+  - name: generate_code
+    agent: mobile_agent
+    action: generate_skill_code
+    input:
+      architecture: "{{steps.design_skill_architecture.output}}"
+    output: generated_code
+
+  - name: create_tests
+    agent: mobile_agent
+    action: generate_tests
+    input:
+      code: "{{steps.generate_code.output}}"
+    output: test_code
+
+  - name: run_tests
+    agent: testing_agent
+    action: run_test_suite
+    input:
+      tests: "{{steps.create_tests.output}}"
+    output: test_results
+
+  - name: document_skill
+    agent: creative_agent
+    action: generate_documentation
+    input:
+      skill_name: "{{inputs.skill_name}}"
+      code: "{{steps.generate_code.output}}"
+    output: documentation
+
+  - name: deploy_skill
+    agent: devops_agent
+    action: deploy
+    input:
+      skill_code: "{{steps.generate_code.output}}"
+      tests: "{{steps.create_tests.output}}"
+      docs: "{{steps.document_skill.output}}"
+    output: deployment_result
+
+outputs:
+  - name: skill_package
+    value:
+      architecture: "{{steps.design_skill_architecture.output}}"
+      code: "{{steps.generate_code.output}}"
+      tests: "{{steps.create_tests.output}}"
+      test_results: "{{steps.run_tests.output}}"
+      documentation: "{{steps.document_skill.output}}"
+      deployment: "{{steps.deploy_skill.output}}"

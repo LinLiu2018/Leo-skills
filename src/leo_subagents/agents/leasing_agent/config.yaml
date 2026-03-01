@@ -1,0 +1,13 @@
+name: leasing_agent
+type: realestate
+description: Commercial and residential leasing agent
+version: 1.0.0
+owner: leo
+enabled: true
+model: qwen3.5-plus
+workspace: ~/.openclaw/workspace-leasing
+triggers:
+  - leasing
+  - rent
+  - tenant
+  - contract

@@ -1,0 +1,57 @@
+name: loan_calculator_workflow
+description: 贷款方案计算与比较
+version: 1.0.0
+category: loan
+
+triggers:
+  - type: manual
+  - type: event
+    event: loan_calculation_request
+
+inputs:
+  - name: property_price
+    type: number
+    required: true
+  - name: down_payment_percent
+    type: number
+    default: 30
+  - name: loan_term_years
+    type: number
+    default: 30
+  - name: interest_rate
+    type: number
+
+steps:
+  - name: calculate_down_payment
+    agent: loan_agent
+    action: calculate_down_payment
+    input:
+      price: "{{inputs.property_price}}"
+      percent: "{{inputs.down_payment_percent}}"
+    output: down_payment_amount
+
+  - name: calculate_monthly_payment
+    agent: loan_agent
+    action: calculate_monthly_payment
+    input:
+      principal: "{{inputs.property_price - steps.calculate_down_payment.output}}"
+      years: "{{inputs.loan_term_years}}"
+      rate: "{{inputs.interest_rate}}"
+    output: monthly_payment
+
+  - name: generate_comparison
+    agent: loan_agent
+    action: generate_loan_comparison
+    input:
+      price: "{{inputs.property_price}}"
+      down_payment: "{{steps.calculate_down_payment.output}}"
+      monthly: "{{steps.calculate_monthly_payment.output}}"
+      years: "{{inputs.loan_term_years}}"
+    output: comparison_report
+
+outputs:
+  - name: loan_analysis
+    value:
+      down_payment: "{{steps.calculate_down_payment.output}}"
+      monthly_payment: "{{steps.calculate_monthly_payment.output}}"
+      comparison: "{{steps.generate_comparison.output}}"

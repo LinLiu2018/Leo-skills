@@ -83,7 +83,8 @@ def main():
         print("[SUCCESS] 依赖安装完成!")
         print("=" * 60)
         print("\n[USAGE] 现在可以运行:")
-        print("  cd D:/桌面/leo_ai_system/src")
+        project_root = Path(__file__).parent.parent.resolve()
+        print(f"  cd {project_root / 'src'}")
         print("  py -3 ../scripts/quick_run.py list")
         print("  py -3 ../scripts/quick_run.py skill web_search_skill '{}'")
     else:

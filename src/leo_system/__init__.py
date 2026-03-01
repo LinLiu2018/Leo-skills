@@ -56,7 +56,7 @@ _system_instance = None
 
 def get_system(base_path=None) -> LeoSystem:
     """
-    获取 LeoSystem 全局单例
+    获取 LeoSystem 全局单例（线程安全）
 
     Args:
         base_path: 可选的项目根路径
@@ -66,5 +66,9 @@ def get_system(base_path=None) -> LeoSystem:
     """
     global _system_instance
     if _system_instance is None:
-        _system_instance = LeoSystem(base_path)
+        from .singleton import thread_safe_singleton
+        _system_instance = thread_safe_singleton(
+            "leo_system", _system_instance,
+            lambda: LeoSystem(base_path)
+        )
     return _system_instance

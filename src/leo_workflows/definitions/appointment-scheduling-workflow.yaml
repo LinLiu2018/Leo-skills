@@ -1,0 +1,117 @@
+# 预约带看工作流
+# 自动安排带看预约
+
+name: appointment-scheduling-workflow
+description: 预约带看自动安排工作流
+version: 1.0.0
+category: realestate
+
+# 触发条件
+triggers:
+  - type: event
+    event: viewing_request  # 带看请求
+  - type: manual
+    description: 手动触发预约
+
+# 输入参数
+inputs:
+  - name: client_id
+    type: string
+    required: true
+    description: 客户 ID
+  - name: property_ids
+    type: array
+    required: true
+    description: 房源 ID 列表
+  - name: preferred_time
+    type: string
+    description: 偏好时间
+
+# 执行步骤
+steps:
+  - name: fetch_client_info
+    description: 获取客户信息
+    agent: sales_agent
+    skill: crm-skill
+    action: get_client
+    params:
+      client_id: "{{inputs.client_id}}"
+    output: client_info
+
+  - name: check_agent_availability
+    description: 查看经纪人空闲时间
+    agent: sales_agent
+    skill: calendar-skill
+    action: check_availability
+    params:
+      agent_id: "{{steps.fetch_client_info.output.assigned_agent}}"
+      date_range: "next_3_days"
+    output: agent_availability
+
+  - name: check_property_availability
+    description: 查看房源可看时间
+    agent: realestate_agent
+    skill: realestate-listing-skill
+    action: check_viewing_availability
+    params:
+      property_ids: "{{inputs.property_ids}}"
+    output: property_availability
+
+  - name: suggest_time_slots
+    description: 推荐时间
+    agent: analysis_agent
+    skill: scheduler-skill
+    action: suggest_slots
+    params:
+      client_preference: "{{inputs.preferred_time}}"
+      agent_availability: "{{steps.check_agent_availability.output}}"
+      property_availability: "{{steps.check_property_availability.output}}"
+    output: suggested_slots
+
+  - name: confirm_appointment
+    description: 确认预约
+    agent: support_agent
+    skill: calendar-skill
+    action: create_appointment
+    params:
+      client_id: "{{inputs.client_id}}"
+      property_ids: "{{inputs.property_ids}}"
+      agent_id: "{{steps.fetch_client_info.output.assigned_agent}}"
+      time_slot: "{{steps.suggest_time_slots.output.best_slot}}"
+    output: appointment
+
+  - name: send_confirmation
+    description: 发送确认
+    agent: support_agent
+    skill: email-skill
+    action: send_confirmation
+    params:
+      to: "{{steps.fetch_client_info.output.email}}"
+      appointment: "{{steps.confirm_appointment.output}}"
+    output: confirmation
+
+  - name: notify_agent
+    description: 通知经纪人
+    agent: sales_agent
+    skill: notification-skill
+    action: notify_agent
+    params:
+      agent_id: "{{steps.fetch_client_info.output.assigned_agent}}"
+      appointment: "{{steps.confirm_appointment.output}}"
+    output: notify_result
+
+# 输出
+outputs:
+  - name: appointment_id
+    value: "{{steps.confirm_appointment.output.id}}"
+  - name: appointment_time
+    value: "{{steps.confirm_appointment.output.time}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "预约带看工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

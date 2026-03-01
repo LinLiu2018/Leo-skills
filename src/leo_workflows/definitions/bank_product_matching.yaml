@@ -1,0 +1,61 @@
+name: bank_product_matching
+description: 智能匹配最优银行产品
+version: 1.0.0
+category: loan
+
+triggers:
+  - type: manual
+  - type: event
+    event: bank_product_inquiry
+
+inputs:
+  - name: client_credit_profile
+    type: object
+    required: true
+  - name: loan_amount
+    type: number
+    required: true
+  - name: urgency_level
+    type: string
+    default: normal
+
+steps:
+  - name: assess_creditworthiness
+    agent: loan_agent
+    action: assess_credit
+    input:
+      profile: "{{inputs.client_credit_profile}}"
+    output: credit_assessment
+
+  - name: query_bank_products
+    agent: bank_product_agent
+    action: query_available_products
+    input:
+      credit_score: "{{steps.assess_creditworthiness.output.score}}"
+      loan_amount: "{{inputs.loan_amount}}"
+      urgency: "{{inputs.urgency_level}}"
+    output: available_products
+
+  - name: rank_products
+    agent: bank_product_agent
+    action: rank_by_suitability
+    input:
+      products: "{{steps.query_bank_products.output}}"
+      client_profile: "{{inputs.client_credit_profile}}"
+    output: ranked_products
+
+  - name: generate_recommendation
+    agent: loan_agent
+    action: create_recommendation_report
+    input:
+      ranked_products: "{{steps.rank_products.output}}"
+      credit_assessment: "{{steps.assess_creditworthiness.output}}"
+    output: final_recommendation
+
+outputs:
+  - name: matching_result
+    value:
+      credit_assessment: "{{steps.assess_creditworthiness.output}}"
+      available_products: "{{steps.query_bank_products.output}}"
+      ranked_products: "{{steps.rank_products.output}}"
+      recommendation: "{{steps.generate_recommendation.output}}"

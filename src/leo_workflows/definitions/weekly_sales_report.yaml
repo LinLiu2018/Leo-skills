@@ -1,0 +1,85 @@
+name: weekly_sales_report
+description: 每周销售报告自动生成
+version: 1.0.0
+category: reporting
+
+triggers:
+  - type: cron
+    expr: "0 8 * * 1"
+  - type: manual
+
+inputs:
+  - name: week_start_date
+    type: string
+    required: true
+  - name: include_charts
+    type: boolean
+    default: true
+
+steps:
+  - name: collect_sales_data
+    agent: analysis_agent
+    action: aggregate_weekly_sales
+    input:
+      week_start: "{{inputs.week_start_date}}"
+    output: sales_data
+
+  - name: calculate_metrics
+    agent: analysis_agent
+    action: calculate_kpis
+    input:
+      data: "{{steps.collect_sales_data.output}}"
+    output: kpi_metrics
+
+  - name: identify_trends
+    agent: analysis_agent
+    action: analyze_week_over_week
+    input:
+      current: "{{steps.collect_sales_data.output}}"
+    output: trend_analysis
+
+  - name: highlight_wins_challenges
+    agent: analysis_agent
+    action: identify_highlights
+    input:
+      data: "{{steps.collect_sales_data.output}}"
+      kpis: "{{steps.calculate_metrics.output}}"
+    output: highlights
+
+  - name: generate_charts
+    agent: chart_generator_skill
+    action: create_visualizations
+    input:
+      data: "{{steps.collect_sales_data.output}}"
+      enabled: "{{inputs.include_charts}}"
+    output: charts
+
+  - name: compile_report
+    agent: creative_agent
+    action: format_weekly_report
+    input:
+      data: "{{steps.collect_sales_data.output}}"
+      kpis: "{{steps.calculate_metrics.output}}"
+      trends: "{{steps.identify_trends.output}}"
+      highlights: "{{steps.highlight_wins_challenges.output}}"
+      charts: "{{steps.generate_charts.output}}"
+    output: weekly_report
+
+  - name: distribute_report
+    agent: distribution_agent
+    action: send_to_stakeholders
+    input:
+      report: "{{steps.compile_report.output}}"
+      channel: feishu
+    output: distribution_status
+
+outputs:
+  - name: report_package
+    value:
+      sales_data: "{{steps.collect_sales_data.output}}"
+      kpis: "{{steps.calculate_metrics.output}}"
+      trends: "{{steps.identify_trends.output}}"
+      highlights: "{{steps.highlight_wins_challenges.output}}"
+      charts: "{{steps.generate_charts.output}}"
+      report: "{{steps.compile_report.output}}"
+      distribution: "{{steps.distribute_report.output}}"

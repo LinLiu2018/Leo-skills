@@ -1,0 +1,73 @@
+name: market_research_report
+description: 市场研究报告自动生成
+version: 1.0.0
+category: research
+
+triggers:
+  - type: manual
+  - type: event
+    event: market_research_request
+  - type: cron
+    expr: "0 9 * * 1"
+
+inputs:
+  - name: market_sector
+    type: string
+    required: true
+  - name: geographic_scope
+    type: string
+    default: "ningbo"
+  - name: time_period
+    type: string
+    default: "quarterly"
+
+steps:
+  - name: gather_data
+    agent: research_agent
+    action: collect_market_data
+    input:
+      sector: "{{inputs.market_sector}}"
+      location: "{{inputs.geographic_scope}}"
+      period: "{{inputs.time_period}}"
+    output: raw_data
+
+  - name: analyze_trends
+    agent: analysis_agent
+    action: identify_market_trends
+    input:
+      data: "{{steps.gather_data.output}}"
+    output: trend_analysis
+
+  - name: identify_opportunities
+    agent: analysis_agent
+    action: find_opportunities
+    input:
+      trends: "{{steps.analyze_trends.output}}"
+    output: opportunities
+
+  - name: competitive_analysis
+    agent: research_agent
+    action: analyze_competitors
+    input:
+      sector: "{{inputs.market_sector}}"
+      location: "{{inputs.geographic_scope}}"
+    output: competitor_landscape
+
+  - name: generate_report
+    agent: creative_agent
+    action: write_research_report
+    input:
+      data: "{{steps.gather_data.output}}"
+      trends: "{{steps.analyze_trends.output}}"
+      opportunities: "{{steps.identify_opportunities.output}}"
+      competitors: "{{steps.competitive_analysis.output}}"
+    output: final_report
+
+outputs:
+  - name: research_package
+    value:
+      data: "{{steps.gather_data.output}}"
+      trends: "{{steps.analyze_trends.output}}"
+      opportunities: "{{steps.identify_opportunities.output}}"
+      competitors: "{{steps.competitive_analysis.output}}"
+      report: "{{steps.generate_report.output}}"

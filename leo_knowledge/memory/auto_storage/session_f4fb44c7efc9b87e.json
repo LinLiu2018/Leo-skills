@@ -1,0 +1,187 @@
+{
+  "session_info": {
+    "session_id": "f4fb44c7efc9b87e",
+    "start_time": "2026-02-28T19:24:54.666246",
+    "active_agents": [
+      "residential_agent",
+      "villa_agent",
+      "leasing_agent",
+      "commercial_sales_agent"
+    ],
+    "context_chain": []
+  },
+  "memories": [
+    {
+      "id": "b3892506c08a",
+      "timestamp": "2026-02-28T19:24:54.666246",
+      "session_id": "f4fb44c7efc9b87e",
+      "event_type": "system_startup",
+      "agent": "system",
+      "content": "Leo Wingman 系统启动，记忆系统激活",
+      "importance": 5,
+      "tags": [
+        "system",
+        "startup"
+      ],
+      "context": {},
+      "related_memories": []
+    },
+    {
+      "id": "e4f4a4e1437f",
+      "timestamp": "2026-02-28T19:24:54.681681",
+      "session_id": "f4fb44c7efc9b87e",
+      "event_type": "agent_execute",
+      "agent": "villa_agent",
+      "content": "{\"task\": \"搜索宁波别墅市场情报\", \"context_keys\": [\"test\", \"_injected_memory\"]}",
+      "importance": 3,
+      "tags": [
+        "agent_execute",
+        "villa_agent"
+      ],
+      "context": {},
+      "related_memories": []
+    },
+    {
+      "id": "19a4904d3012",
+      "timestamp": "2026-02-28T19:24:54.681681",
+      "session_id": "f4fb44c7efc9b87e",
+      "event_type": "agent_success",
+      "agent": "villa_agent",
+      "content": "{\"call_id\": \"e4f4a4e1437f\", \"has_result\": true}",
+      "importance": 3,
+      "tags": [
+        "agent_success",
+        "villa_agent"
+      ],
+      "context": {},
+      "related_memories": []
+    },
+    {
+      "id": "2ade709e823d",
+      "timestamp": "2026-02-28T19:24:54.681681",
+      "session_id": "f4fb44c7efc9b87e",
+      "event_type": "agent_execute",
+      "agent": "residential_agent",
+      "content": "{\"task\": \"分析住宅客户画像\", \"context_keys\": [\"test\", \"_injected_memory\"]}",
+      "importance": 3,
+      "tags": [
+        "agent_execute",
+        "residential_agent"
+      ],
+      "context": {},
+      "related_memories": [
+        "e4f4a4e1437f"
+      ]
+    },
+    {
+      "id": "ed74c6bbd3d1",
+      "timestamp": "2026-02-28T19:24:54.681681",
+      "session_id": "f4fb44c7efc9b87e",
+      "event_type": "agent_success",
+      "agent": "residential_agent",
+      "content": "{\"call_id\": \"2ade709e823d\", \"has_result\": true}",
+      "importance": 3,
+      "tags": [
+        "agent_success",
+        "residential_agent"
+      ],
+      "context": {},
+      "related_memories": [
+        "19a4904d3012"
+      ]
+    },
+    {
+      "id": "43bab58848b1",
+      "timestamp": "2026-02-28T19:24:54.681681",
+      "session_id": "f4fb44c7efc9b87e",
+      "event_type": "agent_execute",
+      "agent": "leasing_agent",
+      "content": "{\"task\": \"处理招商咨询\", \"context_keys\": [\"test\", \"_injected_memory\"]}",
+      "importance": 3,
+      "tags": [
+        "agent_execute",
+        "leasing_agent"
+      ],
+      "context": {},
+      "related_memories": [
+        "e4f4a4e1437f",
+        "2ade709e823d"
+      ]
+    },
+    {
+      "id": "fa74262b5404",
+      "timestamp": "2026-02-28T19:24:54.681681",
+      "session_id": "f4fb44c7efc9b87e",
+      "event_type": "agent_success",
+      "agent": "leasing_agent",
+      "content": "{\"call_id\": \"43bab58848b1\", \"has_result\": true}",
+      "importance": 3,
+      "tags": [
+        "agent_success",
+        "leasing_agent"
+      ],
+      "context": {},
+      "related_memories": [
+        "19a4904d3012",
+        "ed74c6bbd3d1"
+      ]
+    },
+    {
+      "id": "a2e9d6431a3c",
+      "timestamp": "2026-02-28T19:24:54.689780",
+      "session_id": "f4fb44c7efc9b87e",
+      "event_type": "agent_execute",
+      "agent": "commercial_sales_agent",
+      "content": "{\"task\": \"搜索商业地产市场\", \"context_keys\": [\"test\", \"_injected_memory\"]}",
+      "importance": 3,
+      "tags": [
+        "agent_execute",
+        "commercial_sales_agent"
+      ],
+      "context": {},
+      "related_memories": [
+        "e4f4a4e1437f",
+        "2ade709e823d",
+        "43bab58848b1"
+      ]
+    },
+    {
+      "id": "a11a525de533",
+      "timestamp": "2026-02-28T19:24:54.689780",
+      "session_id": "f4fb44c7efc9b87e",
+      "event_type": "agent_success",
+      "agent": "commercial_sales_agent",
+      "content": "{\"call_id\": \"a2e9d6431a3c\", \"has_result\": true}",
+      "importance": 3,
+      "tags": [
+        "agent_success",
+        "commercial_sales_agent"
+      ],
+      "context": {},
+      "related_memories": [
+        "19a4904d3012",
+        "ed74c6bbd3d1",
+        "fa74262b5404"
+      ]
+    },
+    {
+      "id": "9d0717101ae8",
+      "timestamp": "2026-02-28T19:24:54.691260",
+      "session_id": "f4fb44c7efc9b87e",
+      "event_type": "agent_execute",
+      "agent": "auction_agent",
+      "content": "{\"task\": \"search auction listings\", \"context_keys\": [\"test\", \"_injected_memory\"]}",
+      "importance": 3,
+      "tags": [
+        "agent_execute",
+        "auction_agent"
+      ],
+      "context": {},
+      "related_memories": [
+        "e4f4a4e1437f",
+        "2ade709e823d",
+        "43bab58848b1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+name: realestate_marketing_pipeline
+description: End-to-end real estate marketing pipeline
+version: 1.0.0
+category: realestate
+
+triggers:
+  - type: manual
+  - type: event
+    event: realestate_marketing_request
+
+inputs:
+  - name: project_name
+    type: string
+    required: true
+  - name: city
+    type: string
+    default: Ningbo
+  - name: segment
+    type: string
+    default: villa
+
+steps:
+  - name: collect_project_brief
+    agent: villa_agent
+    action: collect_brief
+    output: project_brief
+
+  - name: research_market
+    agent: research_agent
+    action: research
+    output: market_report
+
+  - name: generate_materials
+    agent: creative_agent
+    action: create_marketing_materials
+    output: marketing_materials
+
+  - name: distribute_to_feishu
+    agent: support_agent
+    action: send_report
+    output: distribution_result
+
+outputs:
+  - name: summary
+    value: "{{steps.generate_materials.output}}"

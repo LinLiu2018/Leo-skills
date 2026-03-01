@@ -1,0 +1,91 @@
+# 数据备份工作流
+# 自动数据备份和恢复
+
+name: backup-workflow
+description: 数据自动备份工作流
+version: 1.0.0
+category: business
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 2 * * *"  # 每天 2 点
+  - type: manual
+    description: 手动备份
+
+# 输入参数
+inputs:
+  - name: backup_type
+    type: string
+    default: "incremental"
+    options: ["full", "incremental"]
+    description: 备份类型
+  - name: backup_target
+    type: string
+    default: "cloud_storage"
+    description: 备份目标
+
+# 执行步骤
+steps:
+  - name: identify_data_to_backup
+    description: 识别备份数据
+    agent: task_agent
+    skill: analytics-skill
+    action: identify_data
+    params:
+      backup_type: "{{inputs.backup_type}}"
+    output: data_list
+
+  - name: compress_data
+    description: 压缩数据
+    agent: task_agent
+    skill: Write
+    action: compress_files
+    params:
+      files: "{{steps.identify_data_to_backup.output}}"
+    output: compressed_file
+
+  - name: upload_backup
+    description: 上传备份
+    agent: task_agent
+    skill: Write
+    action: upload_to_storage
+    params:
+      file: "{{steps.compress_data.output}}"
+      target: "{{inputs.backup_target}}"
+    output: upload_result
+
+  - name: verify_backup
+    description: 验证备份
+    agent: analysis_agent
+    skill: analytics-skill
+    action: verify_backup
+    params:
+      upload_result: "{{steps.upload_backup.output}}"
+    output: verification_result
+
+  - name: notify_completion
+    description: 通知完成
+    agent: distribution_agent
+    skill: notification-skill
+    action: send_notification
+    params:
+      message: "备份完成：{{steps.upload_backup.output.file_name}}"
+      verification: "{{steps.verify_backup.output}}"
+    output: notification_result
+
+# 输出
+outputs:
+  - name: backup_file
+    value: "{{steps.upload_backup.output.file_name}}"
+  - name: backup_status
+    value: "{{steps.verify_backup.output.status}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "备份工作流执行失败：{{error.message}}"
+  - action: notify
+    channel: feishu
+    message: "需要手动备份"

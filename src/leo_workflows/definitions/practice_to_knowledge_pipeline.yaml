@@ -1,0 +1,57 @@
+---
+name: practice-to-knowledge-pipeline
+description: 实操沉淀流水线 - 从实践中提取技能和提示词，沉淀到知识库
+version: "1.0"
+continue_on_error: true
+
+inputs:
+  session_content:
+    type: string
+    required: true
+    description: 会话内容或实操记录
+  mode:
+    type: string
+    default: "full"
+    enum: [full, prompt_only, skill_only]
+    description: 沉淀模式
+
+steps:
+  - name: extract_skills_and_prompts
+    type: sequential
+    agent: analysis_agent
+    description: 从实操记录中提取可复用的技能和提示词
+    retries: 1
+
+  - name: evaluate_and_optimize
+    type: parallel
+    description: 并行评估提取的内容
+    parallel_steps:
+      - name: evaluate_prompts
+        agent: analysis_agent
+        description: 评估和优化提取的提示词
+      - name: evolve_skills
+        agent: analysis_agent
+        description: 将技能经验写入进化系统
+
+  - name: store_to_vault
+    type: sequential
+    agent: task_agent
+    description: 保存提示词到 Prompt Vault
+    retries: 1
+
+  - name: sync_to_obsidian
+    type: sequential
+    agent: task_agent
+    description: 同步到 Obsidian 知识库
+    retries: 2
+
+outputs:
+  - name: extracted_prompts
+    type: json
+    description: 提取的提示词列表
+  - name: evolved_skills
+    type: json
+    description: 进化的技能列表
+  - name: obsidian_paths
+    type: array
+    description: Obsidian 中的文件路径

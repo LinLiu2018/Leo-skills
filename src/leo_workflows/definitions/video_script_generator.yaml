@@ -1,0 +1,73 @@
+name: video_script_generator
+description: 短视频脚本自动生成
+version: 1.0.0
+category: content
+
+triggers:
+  - type: manual
+  - type: event
+    event: video_script_request
+
+inputs:
+  - name: video_topic
+    type: string
+    required: true
+  - name: video_duration
+    type: number
+    default: 60
+  - name: target_platform
+    type: string
+    default: douyin
+  - name: style
+    type: string
+    default: educational
+
+steps:
+  - name: analyze_viral_videos
+    agent: research_agent
+    action: analyze_viral_patterns
+    input:
+      topic: "{{inputs.video_topic}}"
+      platform: "{{inputs.target_platform}}"
+    output: viral_patterns
+
+  - name: create_hook
+    agent: creative_agent
+    action: write_video_hook
+    input:
+      topic: "{{inputs.video_topic}}"
+      patterns: "{{steps.analyze_viral_videos.output}}"
+    output: opening_hook
+
+  - name: write_script_body
+    agent: creative_agent
+    action: write_script_content
+    input:
+      topic: "{{inputs.video_topic}}"
+      duration: "{{inputs.video_duration}}"
+      style: "{{inputs.style}}"
+    output: script_body
+
+  - name: create_call_to_action
+    agent: creative_agent
+    action: write_cta
+    input:
+      topic: "{{inputs.video_topic}}"
+      platform: "{{inputs.target_platform}}"
+    output: call_to_action
+
+  - name: generate_shot_list
+    agent: creative_agent
+    action: create_shot_breakdown
+    input:
+      script: "{{steps.write_script_body.output}}"
+    output: shot_list
+
+outputs:
+  - name: video_script_package
+    value:
+      hook: "{{steps.create_hook.output}}"
+      script: "{{steps.write_script_body.output}}"
+      cta: "{{steps.create_call_to_action.output}}"
+      shots: "{{steps.generate_shot_list.output}}"
+      viral_insights: "{{steps.analyze_viral_videos.output}}"

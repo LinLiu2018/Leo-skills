@@ -1,0 +1,75 @@
+# CRM 管理工作流
+# 自动客户关系管理
+
+name: crm-management-workflow
+description: CRM 自动管理工作流
+version: 1.0.0
+category: business
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 9 * * *"  # 每天 9 点
+  - type: event
+    event: new_lead  # 新线索
+
+# 执行步骤
+steps:
+  - name: fetch_leads
+    description: 获取线索
+    agent: sales_agent
+    skill: crm-skill
+    action: get_new_leads
+    output: new_leads
+
+  - name: qualify_leads
+    description: 线索筛选
+    agent: sales_agent
+    skill: crm-skill
+    action: qualify_leads
+    params:
+      leads: "{{steps.fetch_leads.output}}"
+    output: qualified_leads
+
+  - name: assign_to_sales
+    description: 分配销售
+    agent: sales_agent
+    skill: crm-skill
+    action: assign_leads
+    params:
+      leads: "{{steps.qualify_leads.output}}"
+    output: assignments
+
+  - name: schedule_followups
+    description: 安排跟进
+    agent: sales_agent
+    skill: calendar-skill
+    action: schedule_followups
+    params:
+      assignments: "{{steps.assign_to_sales.output}}"
+    output: followups
+
+  - name: update_crm
+    description: 更新 CRM
+    agent: sales_agent
+    skill: crm-skill
+    action: update_records
+    params:
+      followups: "{{steps.schedule_followups.output}}"
+    output: update_result
+
+# 输出
+outputs:
+  - name: leads_count
+    value: "{{steps.fetch_leads.output.count}}"
+  - name: qualified_count
+    value: "{{steps.qualify_leads.output.count}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "CRM 工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

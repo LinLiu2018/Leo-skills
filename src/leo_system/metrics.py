@@ -22,7 +22,9 @@ logger = get_logger(__name__)
 
 
 class PerformanceMetrics:
-    """性能指标收集器"""
+    """性能指标收集器（带环形缓冲区，防止内存无限增长）"""
+
+    MAX_RECORDS_PER_METRIC = 1000
 
     def __init__(self):
         self.metrics: Dict[str, list] = {}
@@ -45,6 +47,10 @@ class PerformanceMetrics:
             "metadata": metadata or {},
         }
         self.metrics[name].append(record)
+
+        # 环形缓冲区：超过上限时截断旧记录
+        if len(self.metrics[name]) > self.MAX_RECORDS_PER_METRIC:
+            self.metrics[name] = self.metrics[name][-self.MAX_RECORDS_PER_METRIC:]
 
     def get_stats(self, name: str) -> Dict[str, Any]:
         """

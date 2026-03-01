@@ -1,0 +1,117 @@
+# 房贷计算工作流
+# 自动计算房贷方案
+
+name: mortgage-calculation-workflow
+description: 房贷自动计算工作流
+version: 1.0.0
+category: realestate
+
+# 触发条件
+triggers:
+  - type: event
+    event: mortgage_request  # 房贷计算请求
+  - type: manual
+    description: 手动触发房贷计算
+
+# 输入参数
+inputs:
+  - name: client_id
+    type: string
+    required: true
+    description: 客户 ID
+  - name: property_price
+    type: number
+    required: true
+    description: 房产价格
+  - name: down_payment_ratio
+    type: number
+    default: 0.3
+    description: 首付比例
+
+# 执行步骤
+steps:
+  - name: fetch_client_info
+    description: 获取客户信息
+    agent: sales_agent
+    skill: crm-skill
+    action: get_client
+    params:
+      client_id: "{{inputs.client_id}}"
+    output: client_info
+
+  - name: check_credit_score
+    description: 查询信用评分
+    agent: loan_agent
+    skill: credit-check-skill
+    action: check_credit
+    params:
+      client_id: "{{inputs.client_id}}"
+    output: credit_score
+
+  - name: calculate_loan_amount
+    description: 计算贷款金额
+    agent: loan_agent
+    skill: loan-calculator-skill
+    action: calculate_amount
+    params:
+      property_price: "{{inputs.property_price}}"
+      down_payment_ratio: "{{inputs.down_payment_ratio}}"
+    output: loan_amount
+
+  - name: get_bank_rates
+    description: 获取银行利率
+    agent: bank_product_agent
+    skill: bank-connector-skill
+    action: get_rates
+    params:
+      loan_amount: "{{steps.calculate_loan_amount.output}}"
+      credit_score: "{{steps.check_credit_score.output}}"
+    output: bank_rates
+
+  - name: calculate_repayment_plans
+    description: 计算还款方案
+    agent: loan_agent
+    skill: repayment-calculator-skill
+    action: calculate_plans
+    params:
+      loan_amount: "{{steps.calculate_loan_amount.output}}"
+      bank_rates: "{{steps.get_bank_rates.output}}"
+      loan_terms: [10, 15, 20, 25, 30]
+    output: repayment_plans
+
+  - name: generate_report
+    description: 生成报告
+    agent: creative_agent
+    skill: doc-generator-skill
+    action: generate_mortgage_report
+    params:
+      client_info: "{{steps.fetch_client_info.output}}"
+      repayment_plans: "{{steps.calculate_repayment_plans.output}}"
+    output: report
+
+  - name: send_report
+    description: 发送报告
+    agent: support_agent
+    skill: email-skill
+    action: send_email
+    params:
+      to: "{{steps.fetch_client_info.output.email}}"
+      subject: "房贷方案报告"
+      attachment: "{{steps.generate_report.output}}"
+    output: send_result
+
+# 输出
+outputs:
+  - name: best_plan
+    value: "{{steps.calculate_repayment_plans.output.best_plan}}"
+  - name: monthly_payment
+    value: "{{steps.calculate_repayment_plans.output.best_plan.monthly_payment}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "房贷计算工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

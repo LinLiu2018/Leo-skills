@@ -1,0 +1,41 @@
+name: weekly_report_workflow
+description: Weekly proactive report workflow
+version: 1.0.0
+category: system
+
+triggers:
+  - type: cron
+    expr: "0 8 * * 1"
+
+inputs:
+  - name: week_start
+    type: string
+    required: false
+  - name: week_end
+    type: string
+    required: false
+
+steps:
+  - name: collect_weekly_metrics
+    agent: analysis_agent
+    action: collect_weekly_metrics
+    output: weekly_metrics
+
+  - name: generate_weekly_report
+    agent: creative_agent
+    action: generate_report
+    output: weekly_report
+
+  - name: send_report_to_feishu
+    agent: support_agent
+    action: send_report
+    output: send_result
+
+  - name: archive_report
+    agent: memory_agent
+    action: archive
+    output: archive_result
+
+outputs:
+  - name: status
+    value: "{{steps.send_report_to_feishu.output.status}}"

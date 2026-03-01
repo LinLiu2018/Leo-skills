@@ -204,12 +204,12 @@ def main():
             print("\n[WARN] 仍有错误需要手动修复:")
             for error in errors2:
                 print(f"  - {error}")
-            print("\n建议运行: cd D:\\moltbot && node openclaw.mjs doctor --fix")
+            print(f"\n建议运行: cd {os.environ.get('MOLTBOT_PATH', 'D:\\\\moltbot')} && node openclaw.mjs doctor --fix")
         else:
             print("\n[OK] 配置已修复!")
     elif errors:
         print("提示: 使用 --fix 参数自动修复")
-        print("或运行: cd D:\\moltbot && node openclaw.mjs doctor --fix")
+        print(f"或运行: cd {os.environ.get('MOLTBOT_PATH', 'D:\\\\moltbot')} && node openclaw.mjs doctor --fix")
         sys.exit(1)
 
 

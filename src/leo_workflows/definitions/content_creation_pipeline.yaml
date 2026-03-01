@@ -1,0 +1,81 @@
+name: content_creation_pipeline
+description: 内容创作全流程流水线
+version: 1.0.0
+category: content
+
+triggers:
+  - type: manual
+  - type: event
+    event: content_request
+  - type: cron
+    expr: "0 9 * * 1"
+
+inputs:
+  - name: content_type
+    type: string
+    required: true
+  - name: topic
+    type: string
+    required: true
+  - name: target_platform
+    type: string
+    default: feishu
+  - name: tone
+    type: string
+    default: professional
+
+steps:
+  - name: research_topic
+    agent: research_agent
+    action: research
+    input:
+      query: "{{inputs.topic}}"
+    output: research_result
+
+  - name: create_outline
+    agent: creative_agent
+    action: create_outline
+    input:
+      research: "{{steps.research_topic.output}}"
+      content_type: "{{inputs.content_type}}"
+    output: content_outline
+
+  - name: generate_content
+    agent: creative_agent
+    action: generate_content
+    input:
+      outline: "{{steps.create_outline.output}}"
+      tone: "{{inputs.tone}}"
+    output: draft_content
+
+  - name: review_content
+    agent: analysis_agent
+    action: review_quality
+    input:
+      content: "{{steps.generate_content.output}}"
+    output: review_feedback
+
+  - name: finalize_content
+    agent: creative_agent
+    action: finalize
+    input:
+      draft: "{{steps.generate_content.output}}"
+      feedback: "{{steps.review_content.output}}"
+    output: final_content
+
+  - name: distribute_content
+    agent: distribution_agent
+    action: distribute
+    input:
+      content: "{{steps.finalize_content.output}}"
+      platform: "{{inputs.target_platform}}"
+    output: distribution_result
+
+outputs:
+  - name: content_package
+    value:
+      research: "{{steps.research_topic.output}}"
+      outline: "{{steps.create_outline.output}}"
+      draft: "{{steps.generate_content.output}}"
+      final: "{{steps.finalize_content.output}}"
+      distribution: "{{steps.distribute_content.output}}"

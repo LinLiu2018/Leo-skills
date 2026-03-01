@@ -1,0 +1,75 @@
+# 安全检查工作流
+# 自动安全检查和告警
+
+name: security-workflow
+description: 安全自动检查工作流
+version: 1.0.0
+category: business
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 3 * * *"  # 每天 3 点
+  - type: manual
+    description: 手动检查
+
+# 执行步骤
+steps:
+  - name: check_system_security
+    description: 检查系统安全
+    agent: analysis_agent
+    skill: monitoring-skill
+    action: check_security
+    output: security_status
+
+  - name: check_access_logs
+    description: 检查访问日志
+    agent: analysis_agent
+    skill: analytics-skill
+    action: analyze_access_logs
+    output: access_analysis
+
+  - name: detect_anomalies
+    description: 检测异常
+    agent: analysis_agent
+    skill: analytics-skill
+    action: detect_anomalies
+    params:
+      security_status: "{{steps.check_system_security.output}}"
+      access_logs: "{{steps.check_access_logs.output}}"
+    output: anomalies
+
+  - name: generate_alerts
+    description: 生成告警
+    agent: distribution_agent
+    skill: notification-skill
+    action: generate_security_alerts
+    params:
+      anomalies: "{{steps.detect_anomalies.output}}"
+    output: alerts
+
+  - name: notify_team
+    description: 通知团队
+    agent: distribution_agent
+    skill: notification-skill
+    action: send_security_report
+    params:
+      alerts: "{{steps.generate_alerts.output}}"
+      security_status: "{{steps.check_system_security.output}}"
+    output: notification_result
+
+# 输出
+outputs:
+  - name: security_score
+    value: "{{steps.check_system_security.output.score}}"
+  - name: anomalies_count
+    value: "{{steps.detect_anomalies.output.count}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "安全工作流执行失败：{{error.message}}"
+  - action: notify
+    channel: feishu
+    message: "需要手动安全检查"

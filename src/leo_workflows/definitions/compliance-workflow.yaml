@@ -1,0 +1,88 @@
+# 合规检查工作流
+# 自动合规检查和报告
+
+name: compliance-workflow
+description: 合规自动检查工作流
+version: 1.0.0
+category: business
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 4 * * 1"  # 每周一 4 点
+  - type: manual
+    description: 手动检查
+
+# 输入参数
+inputs:
+  - name: compliance_type
+    type: string
+    default: "general"
+    options: ["general", "gdpr", "soc2", "iso27001"]
+    description: 合规类型
+
+# 执行步骤
+steps:
+  - name: check_compliance_status
+    description: 检查合规状态
+    agent: analysis_agent
+    skill: monitoring-skill
+    action: check_compliance
+    params:
+      type: "{{inputs.compliance_type}}"
+    output: compliance_status
+
+  - name: identify_gaps
+    description: 识别差距
+    agent: analysis_agent
+    skill: analytics-skill
+    action: identify_compliance_gaps
+    params:
+      status: "{{steps.check_compliance_status.output}}"
+    output: gaps
+
+  - name: generate_recommendations
+    description: 生成建议
+    agent: analysis_agent
+    skill: analytics-skill
+    action: generate_compliance_recommendations
+    params:
+      gaps: "{{steps.identify_gaps.output}}"
+    output: recommendations
+
+  - name: generate_report
+    description: 生成报告
+    agent: creative_agent
+    skill: doc-generator-skill
+    action: generate_compliance_report
+    params:
+      status: "{{steps.check_compliance_status.output}}"
+      recommendations: "{{steps.generate_recommendations.output}}"
+    output: report
+
+  - name: notify_stakeholders
+    description: 通知相关方
+    agent: distribution_agent
+    skill: notification-skill
+    action: send_compliance_report
+    params:
+      report: "{{steps.generate_report.output}}"
+    output: notification_result
+
+# 输出
+outputs:
+  - name: compliance_score
+    value: "{{steps.check_compliance_status.output.score}}"
+  - name: gaps_count
+    value: "{{steps.identify_gaps.output.count}}"
+  - name: report_url
+    value: "{{steps.generate_report.output.url}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "合规工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

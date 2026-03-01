@@ -1,0 +1,10 @@
+name: realestate_marketing_pipeline
+description: Legacy workflow file for compatibility
+version: 1.0.0
+steps:
+  - name: collect_project_brief
+    agent: villa_agent
+  - name: research_market
+    agent: research_agent
+  - name: generate_materials
+    agent: creative_agent

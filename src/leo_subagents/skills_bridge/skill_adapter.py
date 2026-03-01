@@ -1,10 +1,12 @@
 """
 Skill适配器
 ============
-将Claude Skills适配为Subagent可调用的接口
+将Claude Skills适配为Subagent可调用的接口。
+支持 BaseSkill 实例和旧式 Dict 返回的技能。
 """
 
 import json
+import re
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -85,26 +87,56 @@ class SkillAdapter:
             )
 
     def _parse_skill_md(self, skill_md_path: Path):
-        """解析SKILL.md文件"""
+        """解析SKILL.md文件（支持 YAML frontmatter 和纯 Markdown）"""
         with open(skill_md_path, "r", encoding="utf-8") as f:
             content = f.read()
 
-        # 简单解析（实际可以更复杂）
         description = ""
-        for line in content.split("\n"):
-            if line.startswith("# Description:"):
-                description = line.replace("# Description:", "").strip()
-            elif line.startswith("# 描述:"):
-                description = line.replace("# 描述:", "").strip()
-            elif line.startswith("# Version:"):
-                version = line.replace("# Version:", "").strip()
-            elif line.startswith("# Author:"):
-                author = line.replace("# Author:", "").strip()
+        name = self.skill_name
+        version = "1.0.0"
+        author = ""
+
+        # 尝试解析 YAML frontmatter
+        if content.startswith("---"):
+            parts = content.split("---", 2)
+            if len(parts) >= 3:
+                try:
+                    import yaml
+                    fm = yaml.safe_load(parts[1])
+                    if isinstance(fm, dict):
+                        name = fm.get("name", name)
+                        description = fm.get("description", "")
+                        version = fm.get("version", version)
+                        author = fm.get("author", author)
+                except Exception:
+                    pass
+
+        # 如果 frontmatter 没有 description，从 Markdown 正文提取
+        if not description:
+            for line in content.split("\n"):
+                if line.startswith("# Description:"):
+                    description = line.replace("# Description:", "").strip()
+                    break
+                elif line.startswith("# 描述:"):
+                    description = line.replace("# 描述:", "").strip()
+                    break
+                elif line.startswith("## 技能描述"):
+                    # 取下一行非空行
+                    idx = content.index(line) + len(line)
+                    rest = content[idx:].strip().split("\n")
+                    for r in rest:
+                        r = r.strip()
+                        if r and not r.startswith("#"):
+                            description = r[:200]
+                            break
+                    break
 
         self.metadata = SkillMetadata(
-            name=self.skill_name,
+            name=name,
             path=str(self.skill_path),
             description=description or f"{self.skill_name}技能",
+            version=version,
+            author=author,
             actions=self._discover_actions(),
         )
 

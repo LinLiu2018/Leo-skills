@@ -1,0 +1,60 @@
+---
+# 代码审查工作流
+# ==============
+# 自动化代码审查流程
+
+name: code-review-pipeline
+description: 自动化代码审查工作流 - 静态分析 + 代码质量评估 + 安全扫描
+version: "1.0"
+continue_on_error: true
+
+# 输入参数定义
+inputs:
+  code_path:
+    type: string
+    required: true
+    description: 代码路径或仓库URL
+  language:
+    type: string
+    default: python
+    description: 编程语言
+  review_level:
+    type: string
+    default: standard
+    enum: [quick, standard, deep]
+
+# 工作流步骤
+steps:
+  - name: static_analysis
+    type: sequential
+    agent: architect_agent
+    description: 静态代码分析
+    retries: 1
+
+  - name: security_scan
+    type: sequential
+    agent: security_scan_skill
+    description: 安全漏洞扫描
+
+  - name: code_quality
+    type: sequential
+    agent: code_verification_skill
+    description: 代码质量评估
+
+  - name: generate_report
+    type: sequential
+    agent: creative_agent
+    description: 生成审查报告
+    retries: 1
+
+# 输出定义
+outputs:
+  - name: review_report
+    type: markdown
+    description: 审查报告
+  - name: security_issues
+    type: json
+    description: 安全问题列表
+  - name: quality_score
+    type: integer
+    description: 质量评分

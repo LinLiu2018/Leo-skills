@@ -1,0 +1,28 @@
+{
+  "import_date": "2026-02-28 12:54:05",
+  "total_skills": 20,
+  "imported": [
+    "github_skill_skill",
+    "tavily_search_skill",
+    "gog_skill_skill",
+    "summarize_skill_skill",
+    "twitter_monitor_skill",
+    "email_automation_skill",
+    "calendar_skill_skill",
+    "slack_skill_skill",
+    "notion_connector_skill",
+    "weather_skill_skill",
+    "pdf_analyzer_skill",
+    "youtube_summarizer_skill",
+    "cal_com_integration_skill",
+    "vapi_integration_skill",
+    "obsidian_connector_skill",
+    "airtable_connector_skill",
+    "zapier_webhook_skill",
+    "discord_skill_skill",
+    "telegram_skill_skill",
+    "whatsapp_skill_skill"
+  ],
+  "failed": [],
+  "success_rate": 100.0
+}

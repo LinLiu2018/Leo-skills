@@ -1,0 +1,87 @@
+# 评论管理工作流
+# 自动评论监控和回复
+
+name: review-management-workflow
+description: 评论自动管理工作流
+version: 1.0.0
+category: ecommerce
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 10 * * *"  # 每天 10 点
+  - type: event
+    event: new_review  # 新评论
+
+# 执行步骤
+steps:
+  - name: fetch_new_reviews
+    description: 获取新评论
+    agent: operation_agent
+    skill: review-analyzer-skill
+    action: get_new_reviews
+    output: new_reviews
+
+  - name: analyze_sentiment
+    description: 情感分析
+    agent: analysis_agent
+    skill: sentiment-analysis-skill
+    action: analyze
+    params:
+      reviews: "{{steps.fetch_new_reviews.output}}"
+    output: sentiment_results
+
+  - name: identify_negative_reviews
+    description: 识别负面评论
+    agent: analysis_agent
+    skill: analytics-skill
+    action: filter_negative
+    params:
+      sentiment_results: "{{steps.analyze_sentiment.output}}"
+    output: negative_reviews
+
+  - name: generate_response
+    description: 生成回复
+    agent: service_agent
+    skill: content-generator-skill
+    action: generate_response
+    params:
+      reviews: "{{steps.fetch_new_reviews.output}}"
+      sentiment: "{{steps.analyze_sentiment.output}}"
+    output: responses
+
+  - name: post_responses
+    description: 发布回复
+    agent: operation_agent
+    skill: shopify-skill
+    action: post_review_response
+    params:
+      responses: "{{steps.generate_response.output}}"
+    output: post_results
+
+  - name: notify_team
+    description: 通知团队
+    agent: operation_agent
+    skill: notification-skill
+    action: send_notification
+    params:
+      message: "新评论：{{steps.fetch_new_reviews.output.count}}条，负面{{steps.identify_negative_reviews.output.count}}条"
+    output: notify_result
+
+# 输出
+outputs:
+  - name: total_reviews
+    value: "{{steps.fetch_new_reviews.output.count}}"
+  - name: negative_reviews
+    value: "{{steps.identify_negative_reviews.output.count}}"
+  - name: avg_sentiment
+    value: "{{steps.analyze_sentiment.output.average_score}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "评论管理工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

@@ -5,7 +5,7 @@ Leo System Quick Executor
 快速执行系统能力的脚本
 
 使用方法:
-  cd D:/桌面/leo_ai_system/src
+  cd <project_root>/src
   py -3 ../scripts/quick_run.py list
   py -3 ../scripts/quick_run.py skill <skill_name> [json_params]
   py -3 ../scripts/quick_run.py agent <agent_name> <task>

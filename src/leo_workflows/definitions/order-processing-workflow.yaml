@@ -1,0 +1,95 @@
+# 订单处理工作流
+# 自动处理客户订单
+
+name: order-processing-workflow
+description: 订单自动处理工作流
+version: 1.0.0
+category: ecommerce
+
+# 触发条件
+triggers:
+  - type: event
+    event: new_order  # 新订单
+
+# 执行步骤
+steps:
+  - name: fetch_order_info
+    description: 获取订单信息
+    agent: service_agent
+    skill: shopify-skill
+    action: get_order
+    output: order_info
+
+  - name: verify_payment
+    description: 验证付款
+    agent: service_agent
+    skill: stripe-skill
+    action: verify_payment
+    params:
+      order_id: "{{steps.fetch_order_info.output.id}}"
+    output: payment_status
+
+  - name: check_inventory
+    description: 检查库存
+    agent: operation_agent
+    skill: inventory-skill
+    action: check_stock
+    params:
+      items: "{{steps.fetch_order_info.output.items}}"
+    output: inventory_status
+
+  - name: update_inventory
+    description: 更新库存
+    agent: operation_agent
+    skill: inventory-skill
+    action: reduce_stock
+    params:
+      items: "{{steps.fetch_order_info.output.items}}"
+    output: inventory_update
+
+  - name: generate_shipping_label
+    description: 生成物流单
+    agent: logistics_agent
+    skill: shipping-skill
+    action: create_label
+    params:
+      order_info: "{{steps.fetch_order_info.output}}"
+      shipping_address: "{{steps.fetch_order_info.output.shipping_address}}"
+    output: shipping_label
+
+  - name: notify_customer
+    description: 通知客户
+    agent: service_agent
+    skill: email-skill
+    action: send_order_confirmation
+    params:
+      customer_email: "{{steps.fetch_order_info.output.customer_email}}"
+      order_info: "{{steps.fetch_order_info.output}}"
+      tracking_number: "{{steps.generate_shipping_label.output.tracking_number}}"
+    output: notification_result
+
+  - name: update_order_status
+    description: 更新订单状态
+    agent: service_agent
+    skill: shopify-skill
+    action: update_order_status
+    params:
+      order_id: "{{steps.fetch_order_info.output.id}}"
+      status: "processing"
+    output: status_update
+
+# 输出
+outputs:
+  - name: order_status
+    value: "{{steps.status_update.output.status}}"
+  - name: tracking_number
+    value: "{{steps.generate_shipping_label.output.tracking_number}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "订单处理工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

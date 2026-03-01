@@ -1,0 +1,70 @@
+name: ecommerce_listing_optimizer
+description: 电商商品Listing优化
+version: 1.0.0
+category: ecommerce
+
+triggers:
+  - type: manual
+  - type: event
+    event: listing_optimization_request
+
+inputs:
+  - name: product_info
+    type: object
+    required: true
+  - name: target_platform
+    type: string
+    default: taobao
+  - name: competitor_asins
+    type: array
+    default: []
+
+steps:
+  - name: analyze_competitors
+    agent: product_agent
+    action: analyze_competitor_listings
+    input:
+      asins: "{{inputs.competitor_asins}}"
+      platform: "{{inputs.target_platform}}"
+    output: competitor_analysis
+
+  - name: generate_title
+    agent: product_agent
+    action: optimize_product_title
+    input:
+      product: "{{inputs.product_info}}"
+      keywords: "{{steps.analyze_competitors.output.keywords}}"
+    output: optimized_title
+
+  - name: generate_description
+    agent: product_agent
+    action: write_product_description
+    input:
+      product: "{{inputs.product_info}}"
+      style: "{{steps.analyze_competitors.output.top_performer_style}}"
+    output: product_description
+
+  - name: suggest_pricing
+    agent: operation_agent
+    action: analyze_pricing_strategy
+    input:
+      product: "{{inputs.product_info}}"
+      competitors: "{{steps.analyze_competitors.output.pricing}}"
+    output: pricing_suggestion
+
+  - name: generate_images_prompt
+    agent: product_agent
+    action: create_image_requirements
+    input:
+      product: "{{inputs.product_info}}"
+      platform: "{{inputs.target_platform}}"
+    output: image_requirements
+
+outputs:
+  - name: optimized_listing
+    value:
+      title: "{{steps.generate_title.output}}"
+      description: "{{steps.generate_description.output}}"
+      pricing: "{{steps.suggest_pricing.output}}"
+      images: "{{steps.generate_images_prompt.output}}"
+      competitor_insights: "{{steps.analyze_competitors.output}}"

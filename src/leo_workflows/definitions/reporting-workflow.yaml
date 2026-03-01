@@ -1,0 +1,89 @@
+# 报告生成工作流
+# 自动业务报告生成
+
+name: reporting-workflow
+description: 报告自动生成工作流
+version: 1.0.0
+category: business
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 19 * * *"  # 每天 19 点
+  - type: manual
+    description: 手动生成
+
+# 输入参数
+inputs:
+  - name: report_type
+    type: string
+    default: "daily_summary"
+    options: ["daily_summary", "weekly_review", "monthly_report"]
+    description: 报告类型
+  - name: departments
+    type: array
+    default: ["sales", "marketing", "operations"]
+    description: 部门列表
+
+# 执行步骤
+steps:
+  - name: collect_department_data
+    description: 收集部门数据
+    agent: analysis_agent
+    skill: analytics-skill
+    action: collect_from_departments
+    params:
+      departments: "{{inputs.departments}}"
+    output: department_data
+
+  - name: aggregate_metrics
+    description: 汇总指标
+    agent: analysis_agent
+    skill: analytics-skill
+    action: aggregate_metrics
+    params:
+      data: "{{steps.collect_department_data.output}}"
+    output: aggregated_metrics
+
+  - name: generate_insights
+    description: 生成洞察
+    agent: analysis_agent
+    skill: analytics-skill
+    action: generate_insights
+    params:
+      metrics: "{{steps.aggregate_metrics.output}}"
+    output: insights
+
+  - name: create_presentation
+    description: 创建演示文稿
+    agent: creative_agent
+    skill: doc-generator-skill
+    action: create_presentation
+    params:
+      insights: "{{steps.generate_insights.output}}"
+    output: presentation
+
+  - name: distribute_report
+    description: 分发报告
+    agent: distribution_agent
+    skill: notification-skill
+    action: send_to_stakeholders
+    params:
+      report: "{{steps.create_presentation.output}}"
+    output: distribution_result
+
+# 输出
+outputs:
+  - name: presentation_url
+    value: "{{steps.create_presentation.output.url}}"
+  - name: key_metrics
+    value: "{{steps.aggregate_metrics.output.summary}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "报告生成工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

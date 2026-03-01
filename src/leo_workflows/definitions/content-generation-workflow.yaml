@@ -1,0 +1,118 @@
+# 内容生成工作流
+# 自动内容创作和生成
+
+name: content-generation-workflow
+description: 内容自动生成工作流
+version: 1.0.0
+category: content
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 10 * * *"  # 每天 10 点
+  - type: manual
+    description: 手动生成内容
+
+# 输入参数
+inputs:
+  - name: topic
+    type: string
+    required: true
+    description: 内容主题
+  - name: content_type
+    type: string
+    default: "blog"
+    options: ["blog", "social", "email", "video_script"]
+    description: 内容类型
+  - name: tone
+    type: string
+    default: "professional"
+    options: ["professional", "casual", "humorous", "inspiring"]
+    description: 内容语调
+
+# 执行步骤
+steps:
+  - name: topic_research
+    description: 选题研究
+    agent: creative_agent
+    skill: web-search-skill
+    action: research_topic
+    params:
+      topic: "{{inputs.topic}}"
+    output: research_data
+
+  - name: generate_outline
+    description: 生成大纲
+    agent: creative_agent
+    skill: content-generator-skill
+    action: generate_outline
+    params:
+      topic: "{{inputs.topic}}"
+      research: "{{steps.topic_research.output}}"
+    output: outline
+
+  - name: generate_content
+    description: 生成内容
+    agent: creative_agent
+    skill: content-generator-skill
+    action: generate_content
+    params:
+      outline: "{{steps.generate_outline.output}}"
+      content_type: "{{inputs.content_type}}"
+      tone: "{{inputs.tone}}"
+    output: draft_content
+
+  - name: optimize_seo
+    description: SEO 优化
+    agent: distribution_agent
+    skill: seo-skill
+    action: optimize_content
+    params:
+      content: "{{steps.generate_content.output}}"
+      keywords: "{{steps.topic_research.output.keywords}}"
+    output: seo_optimized_content
+
+  - name: review_content
+    description: 内容审查
+    agent: analysis_agent
+    skill: content-generator-skill
+    action: review_content
+    params:
+      content: "{{steps.seo_optimized_content.output}}"
+    output: review_result
+
+  - name: finalize_content
+    description: 定稿内容
+    agent: creative_agent
+    skill: content-generator-skill
+    action: finalize_content
+    params:
+      draft: "{{steps.seo_optimized_content.output}}"
+      review: "{{steps.review_content.output}}"
+    output: final_content
+
+  - name: notify_team
+    description: 通知团队
+    agent: distribution_agent
+    skill: notification-skill
+    action: send_notification
+    params:
+      message: "内容已生成：{{inputs.topic}}"
+      content: "{{steps.finalize_content.output}}"
+    output: notify_result
+
+# 输出
+outputs:
+  - name: content
+    value: "{{steps.finalize_content.output.content}}"
+  - name: word_count
+    value: "{{steps.finalize_content.output.word_count}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "内容生成工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300

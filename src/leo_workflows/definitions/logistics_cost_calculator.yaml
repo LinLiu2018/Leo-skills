@@ -1,0 +1,65 @@
+name: logistics_cost_calculator
+description: 跨境电商物流成本计算
+version: 1.0.0
+category: ecommerce
+
+triggers:
+  - type: manual
+  - type: event
+    event: logistics_quote_request
+
+inputs:
+  - name: product_dimensions
+    type: object
+    required: true
+  - name: product_weight
+    type: number
+    required: true
+  - name: destination_country
+    type: string
+    required: true
+  - name: shipping_method
+    type: string
+    default: express
+
+steps:
+  - name: calculate_dimensional_weight
+    agent: logistics_agent
+    action: calculate_dim_weight
+    input:
+      dimensions: "{{inputs.product_dimensions}}"
+      weight: "{{inputs.product_weight}}"
+    output: dim_weight
+
+  - name: query_shipping_rates
+    agent: logistics_agent
+    action: query_carrier_rates
+    input:
+      weight: "{{steps.calculate_dimensional_weight.output}}"
+      destination: "{{inputs.destination_country}}"
+      method: "{{inputs.shipping_method}}"
+    output: carrier_rates
+
+  - name: calculate_total_cost
+    agent: logistics_agent
+    action: calculate_landed_cost
+    input:
+      shipping: "{{steps.query_shipping_rates.output}}"
+      destination: "{{inputs.destination_country}}"
+    output: total_cost
+
+  - name: generate_cost_breakdown
+    agent: logistics_agent
+    action: create_cost_report
+    input:
+      cost: "{{steps.calculate_total_cost.output}}"
+      destination: "{{inputs.destination_country}}"
+    output: cost_breakdown
+
+outputs:
+  - name: logistics_analysis
+    value:
+      dimensional_weight: "{{steps.calculate_dimensional_weight.output}}"
+      carrier_rates: "{{steps.query_shipping_rates.output}}"
+      total_cost: "{{steps.calculate_total_cost.output}}"
+      breakdown: "{{steps.generate_cost_breakdown.output}}"

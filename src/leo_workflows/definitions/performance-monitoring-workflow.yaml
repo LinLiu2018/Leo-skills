@@ -1,0 +1,89 @@
+# 性能监控工作流
+# 多 Agent 性能监控和优化
+
+name: performance-monitoring-workflow
+description: 性能自动监控工作流
+version: 1.0.0
+category: collaboration
+
+# 触发条件
+triggers:
+  - type: cron
+    expr: "0 */2 * * *"  # 每 2 小时
+  - type: manual
+    description: 手动监控
+
+# 输入参数
+inputs:
+  - name: agents_to_monitor
+    type: array
+    description: 要监控的 Agent 列表
+  - name: metrics
+    type: array
+    default: ["response_time", "success_rate", "task_completion_rate"]
+    description: 监控指标
+
+# 执行步骤
+steps:
+  - name: collect_metrics
+    description: 收集指标
+    agent: analysis_agent
+    skill: analytics-skill
+    action: collect_agent_metrics
+    params:
+      agents: "{{inputs.agents_to_monitor}}"
+      metrics: "{{inputs.metrics}}"
+    output: metrics_data
+
+  - name: analyze_performance
+    description: 分析性能
+    agent: analysis_agent
+    skill: analytics-skill
+    action: analyze_performance
+    params:
+      metrics: "{{steps.collect_metrics.output}}"
+    output: performance_analysis
+
+  - name: identify_bottlenecks
+    description: 识别瓶颈
+    agent: analysis_agent
+    skill: analytics-skill
+    action: identify_bottlenecks
+    params:
+      analysis: "{{steps.analyze_performance.output}}"
+    output: bottlenecks
+
+  - name: generate_recommendations
+    description: 生成建议
+    agent: creative_agent
+    skill: content-generator-skill
+    action: generate_optimization_recommendations
+    params:
+      bottlenecks: "{{steps.identify_bottlenecks.output}}"
+    output: recommendations
+
+  - name: notify_team
+    description: 通知团队
+    agent: distribution_agent
+    skill: notification-skill
+    action: send_performance_report
+    params:
+      analysis: "{{steps.analyze_performance.output}}"
+      recommendations: "{{steps.generate_recommendations.output}}"
+    output: notification_result
+
+# 输出
+outputs:
+  - name: performance_score
+    value: "{{steps.analyze_performance.output.overall_score}}"
+  - name: bottlenecks_count
+    value: "{{steps.identify_bottlenecks.output.count}}"
+
+# 错误处理
+on_error:
+  - action: notify
+    channel: feishu
+    message: "性能监控工作流执行失败：{{error.message}}"
+  - action: retry
+    max_retries: 3
+    delay: 300
