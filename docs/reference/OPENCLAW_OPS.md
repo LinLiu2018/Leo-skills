@@ -48,6 +48,28 @@ type \tmp\openclaw\openclaw-{date}.log | more
 - **修复**: 修改 `pi-ai` 库添加 `authToken: null`，使用 `minimax-cn` provider
 - **教训**: 空字符串 `""` 不等于 `null`，第三方 SDK 环境变量可能跨服务冲突
 
+### 3.4 2026-03-01 Message ordering conflict 反复出现
+
+- **现象**: 飞书发送消息返回 "Message ordering conflict - please try again. If this persists, use /new to start a fresh session."
+- **根因**:
+  1. 会话历史消息达 1000+ 条，超出上下文限制
+  2. `compaction`（会话压缩）机制在清理历史时超时（600s）
+  3. 压缩过程中产生 `user -> user` 连续消息模式，导致 LLM API 返回角色顺序错误
+- **修复**:
+  1. 停止网关: `taskkill /F /IM node.exe`
+  2. 删除会话: `rm -rf ~/.openclaw/agents/leo-assistant/sessions/`
+  3. 禁用 compaction: 修改 `openclaw.json` 设置 `agents.defaults.compaction.mode: "off"`
+  4. 限制历史: 设置 `agents.defaults.maxMessageHistory: 50`
+  5. 重启网关
+- **预防**:
+  - 长对话后主动发送 `/reset` 或 `/new` 重置会话
+  - 定时任务使用外部状态文件保存上下文，不依赖会话历史
+  - 部署 `scripts/openclaw/session_maintenance.ps1` 定期清理
+- **教训**:
+  - `Message ordering conflict` 不是缓存问题，而是 LLM API 返回的角色顺序错误
+  - 代码位置: `D:\openclaw\src\agents\pi-embedded-helpers\errors.ts:501-511`
+  - 避免 compaction 模式，它会在清理历史时产生角色顺序错乱
+
 ## 4. 配置保护规则
 
 **绝对禁止**：
