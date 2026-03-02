@@ -1,0 +1,1558 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "8440c17b-e31f-493f-9afa-847563378d7a",
+      "agentId": "leo-assistant",
+      "name": "repo_watch_weekly",
+      "description": "每周一早上9点监控 Claude Code 和 OpenClaw 更新",
+      "enabled": true,
+      "deleteAfterRun": false,
+      "createdAtMs": 1770189033293,
+      "updatedAtMs": 1770189033293,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * 1",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "repo_watch:generate_report"
+      },
+      "state": {
+        "nextRunAtMs": 1773018022831
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      }
+    },
+    {
+      "id": "1144f099-03e7-4afa-bffb-5f2b5f20feba",
+      "agentId": "leo-assistant",
+      "name": "github_skills_daily",
+      "description": "每天早上8点扫描 GitHub 优质技能",
+      "enabled": true,
+      "deleteAfterRun": false,
+      "createdAtMs": 1770189053052,
+      "updatedAtMs": 1772323334652,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "github_skills_monitor:scan_all"
+      },
+      "state": {
+        "nextRunAtMs": 1772496005991,
+        "lastRunAtMs": 1772323334650,
+        "lastStatus": "ok",
+        "lastDurationMs": 2,
+        "lastRunStatus": "ok",
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      }
+    },
+    {
+      "id": "7d9fe2e6-57f8-445f-819c-11c9053746fe",
+      "agentId": "leo-assistant",
+      "name": "skills_update_weekly",
+      "description": "每周日晚上10点自动更新已加载的 GitHub 技能",
+      "enabled": true,
+      "deleteAfterRun": false,
+      "createdAtMs": 1770189073851,
+      "updatedAtMs": 1772392053797,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 20 * * 0",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "github_skills_updater:update_all"
+      },
+      "state": {
+        "nextRunAtMs": 1772971218796,
+        "lastRunAtMs": 1772392053255,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 542,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      }
+    },
+    {
+      "id": "a6620ef6-8df7-499c-a334-23750ead81e2",
+      "agentId": "leo-assistant",
+      "name": "capability_index_daily",
+      "enabled": true,
+      "deleteAfterRun": false,
+      "createdAtMs": 1770190740194,
+      "updatedAtMs": 1772319600450,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 7 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "capability_index_daily"
+      },
+      "state": {
+        "nextRunAtMs": 1772492400394,
+        "lastRunAtMs": 1772319600420,
+        "lastStatus": "ok",
+        "lastDurationMs": 30,
+        "lastRunStatus": "ok",
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      }
+    },
+    {
+      "id": "a7d49b97-a3fb-48a2-b8ac-440de733d60d",
+      "agentId": "leo-assistant",
+      "name": "health_check_hourly",
+      "enabled": true,
+      "deleteAfterRun": false,
+      "createdAtMs": 1770190756363,
+      "updatedAtMs": 1772392053819,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 * * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 300000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "health_check_hourly"
+      },
+      "state": {
+        "nextRunAtMs": 1772420575507,
+        "lastRunAtMs": 1772392053797,
+        "lastStatus": "ok",
+        "lastDurationMs": 22,
+        "lastRunStatus": "ok",
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      }
+    },
+    {
+      "id": "72e6ab6c-ce70-40e2-9883-9f696a818f6b",
+      "agentId": "leo-assistant",
+      "name": "memory_cleanup_weekly",
+      "enabled": true,
+      "deleteAfterRun": false,
+      "createdAtMs": 1770190773058,
+      "updatedAtMs": 1772319621085,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 7 * * 0",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "memory_cleanup_weekly"
+      },
+      "state": {
+        "nextRunAtMs": 1772924421031,
+        "lastRunAtMs": 1772319621055,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 30,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      }
+    },
+    {
+      "id": "5f621277-7750-4cd4-af56-006da86fbfab",
+      "agentId": "leo-assistant",
+      "name": "房产资讯_每日8点_v2",
+      "enabled": true,
+      "createdAtMs": 1771996940844,
+      "updatedAtMs": 1772323349174,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "搜索过去24小时(freshness=pd)国内房产资讯10条+宁波房产5条。每条资讯必须包含:1发布时间(如X小时前/具体日期)2来源出处(如新浪财经/央视新闻)3用45-55字总结事件。格式:【来源】时间|标题|50字总结"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772496024723,
+        "lastRunAtMs": 1772323334652,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 14522,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 1,
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "c5e55bac-63b3-41b0-9c76-c12091e3e65b",
+      "agentId": "leo-assistant",
+      "name": "AI财经资讯_每日8点_v2",
+      "enabled": true,
+      "createdAtMs": 1771996960002,
+      "updatedAtMs": 1772325242714,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 8 * * *",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "搜索过去24小时(freshness=pd):AI科技10条+财经10条+政治10条+商业10条。每条资讯必须包含:1发布时间(如X小时前/具体日期)2来源出处(如Reuters/央视新闻/新浪财经)3用45-55字总结事件。格式:【来源】时间|标题|50字总结。严格控制每条总结字数在45-55字之间。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772497822265,
+        "lastRunAtMs": 1772325213383,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 29331,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 3,
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "a88f32fd-ecc8-48fd-b8c0-db9c38bedb74",
+      "agentId": "leo-assistant",
+      "name": "房产资讯_每日8点_v3",
+      "enabled": true,
+      "createdAtMs": 1771997364441,
+      "updatedAtMs": 1772325383786,
+      "schedule": {
+        "kind": "cron",
+        "expr": "35 8 * * *",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "搜索过去24小时(freshness=pd)国内房产资讯10条+宁波房产10条。每条资讯格式:【来源标题|来源链接】发布时间|45-55字总结。严格控制总结45-55字。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772498123700,
+        "lastRunAtMs": 1772325337966,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 45820,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "0bd8bb7b-2f6b-40ef-b448-0556de9868fa",
+      "agentId": "leo-assistant",
+      "name": "AI财经政治_每日8点_v3",
+      "enabled": true,
+      "createdAtMs": 1771997373549,
+      "updatedAtMs": 1772325282281,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 8 * * *",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "搜索过去24小时(freshness=pd):AI科技10条+商业财经10条+国际政治10条。每条资讯格式:【来源标题|来源链接】发布时间|45-55字总结。严格控制总结45-55字。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772497814081,
+        "lastRunAtMs": 1772325242714,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 39567,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "4b8bf7bf-7c85-410e-974b-2cc29d7fefe5",
+      "agentId": "leo-assistant",
+      "name": "宁波新房_定时检查_v2",
+      "enabled": false,
+      "createdAtMs": 1771997388873,
+      "updatedAtMs": 1772338486329,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8,12,18 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 300000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "搜索宁波新房最新动态(freshness=pd)，检查是否有新楼盘开盘或价格变化。每条资讯格式:【来源标题|来源链接】发布时间|45-55字总结。有重要更新时推送。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "lastRunAtMs": 1772338389212,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 97117,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1,
+        "lastError": "cron announce delivery failed"
+      }
+    },
+    {
+      "id": "a41b8755-f2f1-4610-be50-50977032d1e7",
+      "agentId": "leo-assistant",
+      "name": "优质内容_每日OpenClaw",
+      "enabled": true,
+      "createdAtMs": 1772008418932,
+      "updatedAtMs": 1772323410648,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "搜索过去24小时(freshness=pd)关于OpenClaw、AI创业、流量运营、商业地产、房产经纪、AI眼镜等领域的优质公众号文章。每条格式:【来源标题|来源链接】发布时间|50字总结。筛选高质量、有实战价值的内容。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772496018306,
+        "lastRunAtMs": 1772323378550,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 32098,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "49899550-2afb-4316-97f4-27e7be4a8481",
+      "agentId": "leo-assistant",
+      "name": "房产内容创意_每日早",
+      "enabled": true,
+      "createdAtMs": 1772008731083,
+      "updatedAtMs": 1772325312697,
+      "schedule": {
+        "kind": "cron",
+        "expr": "15 8 * * *",
+        "staggerMs": 90000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "搜索过去24小时(freshness=pd)小红书+抖音+视频号房产热门内容，结合公众号内容运营最佳实践，分析哪些内容形式/话题/角度值得借鉴。每条格式:【平台】标题|链接|50字亮点分析。给出今日内容建议：3个推荐话题+2个推荐形式+1个行动号召。让我审批后执行。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772496934772,
+        "lastRunAtMs": 1772325282281,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 30416,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "1c77af71-dd8b-481a-a21a-8a6a95f03ed1",
+      "agentId": "leo-assistant",
+      "name": "宁波别墅_每日内容策略",
+      "description": "每日8点生成宁波度假养老别墅内容策略",
+      "enabled": true,
+      "createdAtMs": 1772014795921,
+      "updatedAtMs": 1772326365052,
+      "schedule": {
+        "kind": "cron",
+        "expr": "50 8 * * *",
+        "staggerMs": 120000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请生成宁波度假养老别墅今日内容策略：1. 分析昨日小红书监控数据 2. 确定今日热点话题 3. 规划5个平台内容方向 4. 提供内容创作建议 5. 推荐对标账号学习"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772499027689,
+        "lastRunAtMs": 1772326227714,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 137338,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "b63de83d-82a3-4b14-92d1-74dbbf51464c",
+      "agentId": "leo-assistant",
+      "name": "宁波别墅_每周内容报告",
+      "description": "每周日20:00生成宁波别墅内容分析报告",
+      "enabled": true,
+      "createdAtMs": 1772015018445,
+      "updatedAtMs": 1772417489377,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 20 * * 0",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请生成宁波度假养老别墅本周内容分析报告：1. 汇总本周小红书监控数据 2. 分析热门话题趋势 3. 评估对标账号表现 4. 提供下周内容策略建议 5. 生成可视化数据摘要"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772971210884,
+        "lastRunAtMs": 1772392053819,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 25435558,
+        "lastError": "cron: job execution timed out",
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1
+      }
+    },
+    {
+      "id": "fef0abb0-8a37-4374-aff0-0171c3a6a176",
+      "agentId": "leo-assistant",
+      "name": "宁波别墅_小红书_每日监控",
+      "description": "每天10:00监控小红书宁波别墅内容（按对标账号+关键词筛选）",
+      "enabled": true,
+      "createdAtMs": 1772015857533,
+      "updatedAtMs": 1772327132368,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 180000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请执行小红书宁波度假养老别墅每日内容监控（更新频率：每天一次）：1. 访问 https://www.xiaohongshu.com/search_result?keyword=宁波别墅&type=51 2. 按以下对标账号重点监控：宁波市别墅 周烨、熊二-百万别墅优选、宁波买房问阿明吖、殷俊好墅推荐、一凡探房丨家铄 3. 关键词筛选：宁波度假别墅、宁波养老别墅、宁波小别墅、宁波捡漏别墅 4. 抓取24小时内更新内容 5. 记录标题、作者、点赞数、发布时间 6. 分析热门话题趋势 7. 生成每日内容简报"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772499725318,
+        "lastRunAtMs": 1772326925357,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 207011,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 2
+      }
+    },
+    {
+      "id": "158efa7e-30a9-433a-b926-202b4a65ebcd",
+      "agentId": "leo-assistant",
+      "name": "宁波别墅_抖音_每日监控",
+      "description": "每天10:00监控抖音宁波别墅内容（按对标账号+关键词筛选）",
+      "enabled": true,
+      "createdAtMs": 1772015871313,
+      "updatedAtMs": 1772328029759,
+      "schedule": {
+        "kind": "cron",
+        "expr": "15 9 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 210000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请执行抖音宁波度假养老别墅每日内容监控（更新频率：每天一次）：1. 访问 https://www.douyin.com/search/%E5%AE%81%E6%B3%A2%E5%88%AB%E5%A2%85?type=general 2. 按以下对标账号重点监控：零零探别墅、绿城线上售楼处、专注捡漏别墅 3. 关键词筛选：宁波度假别墅、宁波养老别墅、宁波小别墅、宁波捡漏别墅 4. 抓取最新搜索结果 5. 记录账号、内容、标签、时间 6. 分析热门搜索词趋势 7. 生成每日抖音内容简报"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772500624656,
+        "lastRunAtMs": 1772327899798,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 129961,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 3
+      }
+    },
+    {
+      "id": "5278d3c1-9437-4334-bcb1-fb84867e44e0",
+      "agentId": "leo-assistant",
+      "name": "AI与OpenClaw_每日报告",
+      "description": "每天10:00收集人工智能和OpenClaw最新动态，生成小白友好型报告",
+      "enabled": true,
+      "createdAtMs": 1772017506205,
+      "updatedAtMs": 1772325337910,
+      "schedule": {
+        "kind": "cron",
+        "expr": "20 8 * * *",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请执行人工智能与OpenClaw每日内容收集与报告生成任务：1. 搜索最新的人工智能技术动态、趋势、应用案例 2. 搜索OpenClaw相关的最新内容、更新、用户反馈 3. 从Twitter/X平台、技术博客、新闻网站等多渠道收集信息 4. 筛选优质内容，重点收集对小白用户有帮助的实用信息 5. 生成不低于500字的小白友好型报告，内容包括：AI技术简单解释、OpenClaw最新进展、实用建议、学习资源推荐 6. 报告要求：语言通俗易懂，避免技术 jargon，提供可操作的建议"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772497204921,
+        "lastRunAtMs": 1772325312697,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 25213,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "8737fa6f-4d9c-45a9-9ce6-3b065e521783",
+      "agentId": "leo-assistant",
+      "name": "视频号公众号_内容收集",
+      "description": "每天8点收集视频号和公众号相关内容（通过关键词搜索替代方案）",
+      "enabled": true,
+      "createdAtMs": 1772017656298,
+      "updatedAtMs": 1772327899747,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 150000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请执行视频号和公众号相关内容收集任务：1. 技术限制说明：视频号和公众号需要微信登录，无法直接抓取内容 2. 替代方案：通过搜索引擎搜索以下关键词：宁波度假别墅、宁波养老别墅、宁波小别墅、宁波捡漏别墅 3. 收集相关文章、视频介绍、用户讨论等内容 4. 整理成结构化报告：包括找到的相关资源链接、内容摘要、平台分析 5. 提供手动查找视频号/公众号的详细步骤指导 6. 报告要求：实用、小白友好，提供可操作的下一步建议"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772499711361,
+        "lastRunAtMs": 1772327811394,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 88353,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "6b75c20d-279c-4768-a620-e4f58546a115",
+      "agentId": "leo-assistant",
+      "name": "竞品监控_每日 9 点",
+      "description": "每日 9 点监控亚马逊/eBay/速卖通竞品",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "45 9 * * *",
+        "staggerMs": 240000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "监控亚马逊/eBay/速卖通智能穿戴设备竞品，记录价格、评价、销量变化"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772502411412,
+        "lastRunAtMs": 1772329611444,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 423264,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 2
+      },
+      "updatedAtMs": 1772330034708
+    },
+    {
+      "id": "cbd19b04-f69d-40de-adb0-464c3e47217f",
+      "agentId": "leo-assistant",
+      "name": "物流成本_每周分析",
+      "description": "每周一 10 点分析物流成本",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 10 * * 1",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "分析上周物流成本，对比不同物流商价格，生成优化建议"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1773021600000
+      }
+    },
+    {
+      "id": "c17935cb-0c94-4f0b-8c18-94c923a43888",
+      "agentId": "leo-assistant",
+      "name": "选品推荐_每周生成",
+      "description": "每周五 15 点生成选品推荐",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 15 * * 5",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "基于市场趋势和竞品分析，生成下周智能穿戴设备选品推荐"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772780400000,
+        "lastRunAtMs": 1772175600030,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 110950,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      },
+      "updatedAtMs": 1772175710980
+    },
+    {
+      "id": "f87cdf9d-1df2-4267-a136-2374040dbeab",
+      "agentId": "leo-assistant",
+      "name": "X 平台博主_每日检查",
+      "description": "每日 8 点和 20 点检查 X 平台博主更新",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8,20 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "检查 X 平台博主 (@向阳乔木 @openclaw @anthropic @github) 最新推文，筛选高质量内容"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772452800000,
+        "lastRunAtMs": 1772417489377,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 120468,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 3,
+        "lastError": "cron announce delivery failed"
+      },
+      "updatedAtMs": 1772417609845
+    },
+    {
+      "id": "86b92a15-0412-4eef-b67e-cd9f3ad796a8",
+      "agentId": "leo-assistant",
+      "name": "X 平台内容_学习转化",
+      "description": "每日 21 点将 X 平台内容转化为学习笔记",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 21 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "将今日 X 平台优质内容转化为学习笔记和行动计划"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772456400000,
+        "lastRunAtMs": 1772417609845,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 600032,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 2,
+        "lastError": "cron: job execution timed out"
+      },
+      "updatedAtMs": 1772418209877
+    },
+    {
+      "id": "ee99b6b9-78e7-4403-b6d4-fc584885bb28",
+      "agentId": "leo-assistant",
+      "name": "X 平台监控_周报",
+      "description": "每周日生成 X 平台监控周报",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 21 * * 0",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "生成 X 平台博主监控周报，汇总本周优质内容、趋势分析、学习收获"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772974800000,
+        "lastRunAtMs": 1772418209877,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 73753,
+        "lastError": "cron announce delivery failed",
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1
+      },
+      "updatedAtMs": 1772418283630
+    },
+    {
+      "id": "health_check_4h",
+      "agentId": "leo-assistant",
+      "name": "健康检查_每 4 小时",
+      "description": "每 4 小时自动执行系统健康检查，发送报告",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */4 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 300000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "workflow",
+        "workflow": "health-check-workflow",
+        "message": "执行系统健康检查，生成报告并发送给用户"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "retry": {
+        "maxAttempts": 3,
+        "delayMs": 300000
+      },
+      "state": {
+        "nextRunAtMs": 1772424121303,
+        "lastRunAtMs": 1772418283630,
+        "lastRunStatus": "skipped",
+        "lastStatus": "skipped",
+        "lastDurationMs": 1,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0,
+        "lastError": "isolated job requires payload.kind=agentTurn"
+      },
+      "updatedAtMs": 1772418283631
+    },
+    {
+      "id": "7c4c9dbd-2f9d-40b9-8275-bdf77e354333",
+      "agentId": "leo-assistant",
+      "name": "skill_auto_logger_skill",
+      "description": "Direct execution for auto_logger_skill",
+      "enabled": true,
+      "createdAtMs": 1772268922488,
+      "updatedAtMs": 1772418883650,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 * * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "skill:auto_logger_skill:execute"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772420411167,
+        "lastRunAtMs": 1772418283631,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 600019,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1,
+        "lastError": "cron: job execution timed out"
+      }
+    },
+    {
+      "id": "5bf935c5-64c6-4846-aedf-d168da03d477",
+      "agentId": "leo-assistant",
+      "name": "skill_business_research_skill",
+      "description": "Direct execution for business_research_skill",
+      "enabled": true,
+      "createdAtMs": 1772268925021,
+      "updatedAtMs": 1772418907256,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */4 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "skill:business_research_skill:execute"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772424023625,
+        "lastRunAtMs": 1772418883650,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 23606,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "e6830710-fb2b-4106-887e-f5ef4d443de1",
+      "agentId": "leo-assistant",
+      "name": "skill_competitor_scraper_skill",
+      "description": "Direct execution for competitor_scraper_skill",
+      "enabled": true,
+      "createdAtMs": 1772268926433,
+      "updatedAtMs": 1772270086892,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 10 * * 2",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "skill:competitor_scraper_skill:execute"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772503227334
+      }
+    },
+    {
+      "id": "2869152e-c533-4d2d-a527-9f24fc373146",
+      "agentId": "leo-assistant",
+      "name": "skill_evolution_skill",
+      "description": "Direct execution for evolution_skill",
+      "enabled": true,
+      "createdAtMs": 1772268930319,
+      "updatedAtMs": 1772418913060,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */4 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "skill:evolution_skill:execute"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772424001812,
+        "lastRunAtMs": 1772418907256,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 5804,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "f02acfeb-4a91-4d36-970d-09cbe6f173aa",
+      "agentId": "leo-assistant",
+      "name": "skill_github_skills_monitor_skill",
+      "description": "Direct execution for github_skills_monitor_skill",
+      "enabled": true,
+      "createdAtMs": 1772268932749,
+      "updatedAtMs": 1772418915860,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */4 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "skill:github_skills_monitor_skill:execute"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772424007739,
+        "lastRunAtMs": 1772418913060,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 2800,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "59a122eb-84f3-4e0e-81d1-922ecde95834",
+      "agentId": "leo-assistant",
+      "name": "skill_github_skills_updater_skill",
+      "description": "Direct execution for github_skills_updater_skill",
+      "enabled": true,
+      "createdAtMs": 1772268932866,
+      "updatedAtMs": 1772418919446,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */4 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "skill:github_skills_updater_skill:execute"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772424003942,
+        "lastRunAtMs": 1772418915860,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 3586,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "109103cf-6953-4f67-81d8-6934de7c90b4",
+      "agentId": "leo-assistant",
+      "name": "skill_github_to_skills_skill",
+      "description": "Direct execution for github_to_skills_skill",
+      "enabled": true,
+      "createdAtMs": 1772268932972,
+      "updatedAtMs": 1772418922952,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */4 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "skill:github_to_skills_skill:execute"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772424003697,
+        "lastRunAtMs": 1772418919446,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 3506,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "c5a97f5c-82d9-4ffd-9713-c355cf707f13",
+      "agentId": "leo-assistant",
+      "name": "skill_image_generator_skill",
+      "description": "Direct execution for image_generator_skill",
+      "enabled": true,
+      "createdAtMs": 1772268934105,
+      "updatedAtMs": 1772418926482,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */4 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "skill:image_generator_skill:execute"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772424006829,
+        "lastRunAtMs": 1772418922952,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 3530,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "7fa1e946-a540-42e9-8797-3d92f4ff6735",
+      "agentId": "leo-assistant",
+      "name": "skill_skill_evolution_manager_skill",
+      "description": "Direct execution for skill_evolution_manager_skill",
+      "enabled": true,
+      "createdAtMs": 1772268943108,
+      "updatedAtMs": 1772418931035,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */4 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "skill:skill_evolution_manager_skill:execute"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772424005839,
+        "lastRunAtMs": 1772418926482,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 4553,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "1ce35eaf-57bf-42a2-9915-f034b2c1f8d6",
+      "agentId": "leo-assistant",
+      "name": "skill_skill_manager_skill",
+      "description": "Direct execution for skill_manager_skill",
+      "enabled": true,
+      "createdAtMs": 1772268943225,
+      "updatedAtMs": 1772418934249,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */4 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "skill:skill_manager_skill:execute"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772424003475,
+        "lastRunAtMs": 1772418931035,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 3214,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "b6713103-a941-4d79-b78e-587663e13790",
+      "agentId": "leo-assistant",
+      "name": "skill_skill_orchestrator_skill",
+      "description": "Direct execution for skill_orchestrator_skill",
+      "enabled": true,
+      "createdAtMs": 1772268943343,
+      "updatedAtMs": 1772418939021,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */4 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "skill:skill_orchestrator_skill:execute"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772424023377,
+        "lastRunAtMs": 1772418934249,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 4772,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "214861eb-b19a-41ff-ac37-5374b6a05c16",
+      "agentId": "leo-assistant",
+      "name": "skill_subagent_creator_skill",
+      "description": "Direct execution for subagent_creator_skill",
+      "enabled": true,
+      "createdAtMs": 1772268944250,
+      "updatedAtMs": 1772418943081,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */4 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "skill:subagent_creator_skill:execute"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772424015997,
+        "lastRunAtMs": 1772418939021,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 4060,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "0496f93a-a7d1-4d0d-9d47-ff87dac3eac0",
+      "agentId": "leo-assistant",
+      "name": "skill_vant_weapp_skill",
+      "description": "Direct execution for vant_weapp_skill",
+      "enabled": true,
+      "createdAtMs": 1772268947655,
+      "updatedAtMs": 1772418948123,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */4 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "skill:vant_weapp_skill:execute"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772424026469,
+        "lastRunAtMs": 1772418943081,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 5042,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "98dc7988-13d8-497d-aee3-6343f39ce1a1",
+      "agentId": "leo-assistant",
+      "name": "skill_video_monitor_skill",
+      "description": "Direct execution for video_monitor_skill",
+      "enabled": true,
+      "createdAtMs": 1772268948328,
+      "updatedAtMs": 1772324973163,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "skill:video_monitor_skill:execute"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772496027659,
+        "lastRunAtMs": 1772324852916,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 120247,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "7c1e26f2-7e4e-408c-b9d0-b8776a9540d8",
+      "agentId": "leo-assistant",
+      "name": "skill_web_search_skill",
+      "description": "Direct execution for web_search_skill",
+      "enabled": true,
+      "createdAtMs": 1772268949360,
+      "updatedAtMs": 1772418950303,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */4 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "skill:web_search_skill:execute"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772424025709,
+        "lastRunAtMs": 1772418948123,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 2180,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "bf4c6b06-44b4-41e2-b5bb-8085bdb48e60",
+      "agentId": "leo-assistant",
+      "name": "skill_weui_miniprogram_skill",
+      "description": "Direct execution for weui_miniprogram_skill",
+      "enabled": true,
+      "createdAtMs": 1772268949697,
+      "updatedAtMs": 1772418954367,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */4 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "skill:weui_miniprogram_skill:execute"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772424026245,
+        "lastRunAtMs": 1772418950303,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 4064,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "f3a87c2b-081e-49e2-8841-7eff232abf86",
+      "agentId": "leo-assistant",
+      "name": "skill_twitter_monitor_skill",
+      "description": "Direct execution for twitter_monitor_skill",
+      "enabled": true,
+      "createdAtMs": 1772270087892,
+      "updatedAtMs": 1772418957666,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 */6 * * *",
+        "tz": "Asia/Shanghai",
+        "staggerMs": 30000
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "skill:twitter_monitor_skill:execute"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460"
+      },
+      "state": {
+        "nextRunAtMs": 1772424011923,
+        "lastRunAtMs": 1772418954367,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 3299,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "sleep_reminder_23h",
+      "agentId": "leo-assistant",
+      "name": "睡眠提醒_每晚 11 点",
+      "description": "每天晚上 11 点提醒用户睡觉",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 23 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "发送睡眠提醒消息给用户"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460",
+        "message": "🌙 晚安提醒 (23:00)\n\n亲爱的马拉松达人：\n\n明天早上 5:30 就要起床啦！\n\n🏃 今日训练目标：\n- 全马配速目标：6:00/km\n- 半马配速目标：5:37/km\n\n💡 睡眠建议：\n- 保证 7-8 小时睡眠\n- 睡前避免蓝光\n- 保持房间凉爽\n\n晚安，好梦！😴"
+      },
+      "state": {
+        "nextRunAtMs": 1772463600000,
+        "lastRunAtMs": 1772418957666,
+        "lastRunStatus": "skipped",
+        "lastStatus": "skipped",
+        "lastDurationMs": 0,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0,
+        "lastError": "main job requires payload.kind=\"systemEvent\""
+      },
+      "updatedAtMs": 1772418957666
+    },
+    {
+      "id": "wake_up_reminder_5h30m",
+      "agentId": "leo-assistant",
+      "name": "起床提醒_每天 5:30",
+      "description": "每天早上 5 点半提醒起床",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 5 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "发送起床提醒消息给用户"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "ou_099438b3924bd34e5f9445bc8220a460",
+        "message": "☀️ 早安提醒 (5:30)\n\n马拉松达人，早上好！\n\n🏃 今日训练建议：\n- 配速目标：全马 6:00/km，半马 5:37/km\n- 跑前热身 10 分钟\n- 跑后拉伸 10 分钟\n\n💪 今日目标：\n- 保持配速稳定\n- 注意补水\n- 享受跑步！\n\n新的一天，加油！🎉"
+      },
+      "state": {
+        "nextRunAtMs": 1772487000000,
+        "lastRunAtMs": 1772314200026,
+        "lastRunStatus": "skipped",
+        "lastStatus": "skipped",
+        "lastDurationMs": 1,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 0
+      },
+      "updatedAtMs": 1772314200027
+    }
+  ]
+}
