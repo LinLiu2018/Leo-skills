@@ -55,12 +55,20 @@ class SkillRegistration:
     path: str
     category: str
     enabled: bool = True
+    triggers: List[str] = field(default_factory=list)  # 触发关键词列表
     metadata: dict = field(default_factory=dict)
     registered_at: datetime = field(default_factory=datetime.now)
 
     def __repr__(self):
         status = "🟢" if self.enabled else "⚫"
         return f"{status} {self.name} ({self.category})"
+
+    def get_all_triggers(self) -> List[str]:
+        """获取所有触发词（包括元数据中的）"""
+        triggers = list(self.triggers)
+        if self.metadata and "triggers" in self.metadata:
+            triggers.extend(self.metadata["triggers"])
+        return list(set(triggers))
 
 
 @dataclass
@@ -72,6 +80,7 @@ class AgentRegistration:
     priority: int
     skills: List[str] = field(default_factory=list)
     enabled: bool = True
+    triggers: List[str] = field(default_factory=list)  # 触发关键词列表
     metadata: dict = field(default_factory=dict)
     registered_at: datetime = field(default_factory=datetime.now)
 
@@ -79,18 +88,30 @@ class AgentRegistration:
         status = "🟢" if self.enabled else "⚫"
         return f"{status} {self.name} ({self.type}) - Priority: {self.priority}"
 
+    def get_all_triggers(self) -> List[str]:
+        """获取所有触发词（包括元数据中的）"""
+        triggers = list(self.triggers)
+        if self.metadata and "triggers" in self.metadata:
+            triggers.extend(self.metadata["triggers"])
+        return list(set(triggers))
+
 
 class UnifiedRegistry:
     """
     统一注册表
     ============
     管理所有Skills和Subagents的注册、发现和调用
+    支持变更通知机制，实现实时推送
     """
 
     def __init__(self, config_path: Optional[str] = None):
         self.skills: Dict[str, SkillRegistration] = {}
         self.agents: Dict[str, AgentRegistration] = {}
         self.workflows: Dict[str, dict] = {}
+
+        # 变更通知机制
+        self._change_listeners: List[callable] = []
+        self._version = 0
 
         if config_path:
             self.load_from_config(config_path)
@@ -101,6 +122,42 @@ class UnifiedRegistry:
 
         # 自动发现并加载YAML工作流定义
         self.auto_discover_workflows()
+
+    # ==================== 变更通知机制 ====================
+
+    def register_change_listener(self, callback: callable):
+        """
+        注册变更监听器
+
+        Args:
+            callback: 回调函数，接收参数 (change_type, item_name, version)
+                     change_type: 'skill_added' | 'skill_removed' | 'skill_enabled' | 'skill_disabled' |
+                                 'agent_added' | 'agent_removed' | 'agent_enabled' | 'agent_disabled'
+        """
+        self._change_listeners.append(callback)
+        logger.debug(f"Registered change listener, total: {len(self._change_listeners)}")
+
+    def unregister_change_listener(self, callback: callable):
+        """注销变更监听器"""
+        if callback in self._change_listeners:
+            self._change_listeners.remove(callback)
+
+    def _notify_change(self, change_type: str, item_name: str):
+        """
+        通知所有监听器配置变更
+
+        Args:
+            change_type: 变更类型
+            item_name: 变更项名称
+        """
+        self._version += 1
+        logger.debug(f"Registry change: {change_type} - {item_name} (version: {self._version})")
+
+        for listener in self._change_listeners:
+            try:
+                listener(change_type, item_name, self._version)
+            except Exception as e:
+                logger.error(f"Change listener error: {e}")
 
     # ==================== Skills注册 ====================
 
@@ -126,6 +183,9 @@ class UnifiedRegistry:
         )
         self.skills[name] = registration
         logger.info(f"注册Skill: {registration}")
+
+        # 通知变更
+        self._notify_change("skill_added", name)
         return True
 
     def unregister_skill(self, name: str) -> bool:
@@ -133,6 +193,7 @@ class UnifiedRegistry:
         if name in self.skills:
             del self.skills[name]
             logger.info(f"注销Skill: {name}")
+            self._notify_change("skill_removed", name)
             return True
         return False
 
@@ -151,6 +212,8 @@ class UnifiedRegistry:
         """启用Skill"""
         if name in self.skills:
             self.skills[name].enabled = True
+            logger.info(f"启用Skill: {name}")
+            self._notify_change("skill_enabled", name)
             return True
         return False
 
@@ -158,6 +221,8 @@ class UnifiedRegistry:
         """禁用Skill"""
         if name in self.skills:
             self.skills[name].enabled = False
+            logger.info(f"禁用Skill: {name}")
+            self._notify_change("skill_disabled", name)
             return True
         return False
 
@@ -197,6 +262,7 @@ class UnifiedRegistry:
         )
         self.agents[name] = registration
         logger.info(f"注册Agent: {registration}")
+        self._notify_change("agent_added", name)
         return True
 
     def unregister_agent(self, name: str) -> bool:
@@ -204,6 +270,25 @@ class UnifiedRegistry:
         if name in self.agents:
             del self.agents[name]
             logger.info(f"注销Agent: {name}")
+            self._notify_change("agent_removed", name)
+            return True
+        return False
+
+    def enable_agent(self, name: str) -> bool:
+        """启用Agent"""
+        if name in self.agents:
+            self.agents[name].enabled = True
+            logger.info(f"启用Agent: {name}")
+            self._notify_change("agent_enabled", name)
+            return True
+        return False
+
+    def disable_agent(self, name: str) -> bool:
+        """禁用Agent"""
+        if name in self.agents:
+            self.agents[name].enabled = False
+            logger.info(f"禁用Agent: {name}")
+            self._notify_change("agent_disabled", name)
             return True
         return False
 

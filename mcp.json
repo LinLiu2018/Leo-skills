@@ -1,0 +1,40 @@
+{
+  "mcpServers": {
+    "leo-system": {
+      "command": "python",
+      "args": ["src/leo_gateway/mcp_server.py"],
+      "env": {
+        "LEO_WORKSPACE": "D:/桌面/leo_ai_system",
+        "OPENCLAW_GATEWAY": "http://127.0.0.1:18789",
+        "PYTHONUTF8": "1"
+      },
+      "cwd": "D:/桌面/leo_ai_system"
+    }
+  },
+
+  "_说明": "Leo System MCP 服务器配置",
+  "_文档": "https://code.claude.com/docs/en/mcp",
+  "_使用方法": [
+    "1. 确保 OpenClaw Gateway 在 18789 端口运行",
+    "2. 使用 claude --mcp-config ./mcp.json 启动 Claude Code",
+    "3. Claude Code 将可以调用 Leo System 的 Tools 和 Resources"
+  ],
+
+  "_available_tools": {
+    "execute_skill": "执行指定的 Leo Skill",
+    "delegate_to_agent": "委托任务给指定的 Agent",
+    "search_skills": "搜索匹配的 Skills",
+    "remember": "保存信息到共享记忆",
+    "recall": "从共享记忆检索信息",
+    "send_to_feishu": "发送消息到飞书",
+    "get_openclaw_status": "获取 OpenClaw Gateway 状态"
+  },
+
+  "_available_resources": {
+    "leo://skills/registry": "所有已注册的 Leo Skills",
+    "leo://agents/list": "所有可用的 Agents",
+    "leo://memory/shared": "共享记忆存储",
+    "leo://gateway/status": "Leo Gateway 运行状态",
+    "leo://user/profile": "当前用户画像"
+  }
+}

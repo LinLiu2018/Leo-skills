@@ -1,3 +1,0 @@
-"""
-Wingman self-care utilities.
-"""

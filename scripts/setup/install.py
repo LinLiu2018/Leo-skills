@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-"""
-Leo AI System - 技能安装脚本
-
-用法：python scripts/skills/install.py <skill_name>
-"""
-
 import sys
 import os
 import shutil
 from pathlib import Path
+
+# 修复 Windows 编码问题
+if sys.platform == "win32":
+    import codecs
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.buffer, 'strict')
+    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.buffer, 'strict')
 
 # 工作空间
 WORKSPACE = Path(__file__).parent.parent.parent

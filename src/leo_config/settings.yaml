@@ -1,0 +1,76 @@
+# Leo System 配置文件
+# 集中管理所有模块配置，替代硬编码参数
+
+# Gateway 配置
+gateway:
+  host: "127.0.0.1"
+  port: 18789
+  debug: false
+  session_timeout: 3600  # 会话超时(秒)
+  max_sessions: 1000     # 最大会话数
+  use_smart_router: true # 启用 SmartRouter
+  registry_sync_interval: 60  # Registry同步间隔(秒)
+
+# SmartRouter 配置
+router:
+  sync_interval: 60           # 同步间隔(秒)
+  min_confidence: 0.5         # 最小路由置信度
+  enable_conflict_detection: true  # 启用冲突检测
+  max_keyword_rules: 5000     # 最大关键词规则数
+
+# Session 配置
+session:
+  timeout: 3600               # 超时(秒)
+  max_sessions: 1000          # 最大会话数
+  max_messages_per_session: 1000  # 单会话最大消息数
+  trim_to: 500                # 超出后保留的消息数
+  persistence_interval: 300   # 持久化间隔(秒)
+  storage_path: "./data/sessions"
+
+# MCP 配置
+mcp:
+  skill_registry_path: ".claude/skill_registry.json"
+  user_profile_path: "leo_knowledge/context/user_profile.md"
+  openclaw_gateway: "http://127.0.0.1:18789"
+  tool_timeout: 120           # 工具超时(秒)
+  max_workers: 3              # 异步任务工作线程数
+
+# 自优化配置
+self_optimization:
+  analysis_days: 7            # 分析天数
+  min_frequency: 2            # 最小频率阈值
+  max_generated_skills: 3     # 单次最大生成技能数
+  auto_apply_threshold: 0.8   # 自动应用阈值
+  daily_schedule_hour: 6      # 每日调度小时
+  draft_dir: "src/leo_skills/_generated"  # 技能草稿目录
+
+# 向量记忆配置
+vector_memory:
+  dimension: 384              # 嵌入维度
+  storage_path: "./data/vector_memory"
+  min_similarity: 0.5         # 最小相似度
+  keyword_weight: 0.3         # 关键词权重
+  vector_weight: 0.7          # 向量权重
+  cleanup_days: 90            # 清理过期数据(天)
+
+# 性能追踪配置
+performance:
+  db_path: "./data/performance.db"
+  retention_days: 90          # 数据保留天数
+  report_interval: 86400      # 报告间隔(秒)
+  min_executions_for_report: 5  # 报告最小执行次数
+
+# 联邦学习配置
+federated_learning:
+  enabled: true
+  min_contributors: 3         # 最小贡献者数
+  aggregation_days: 30        # 聚合天数
+  privacy_level: "high"       # 隐私级别
+  contribution_path: "./data/federated"
+
+# 守护脚本配置
+guardian:
+  check_interval: 30          # 检查间隔(秒)
+  max_restarts: 5             # 最大重启次数
+  skill_sync_interval: 300    # Skill同步间隔(秒)
+  log_retention_days: 7       # 日志保留天数

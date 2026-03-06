@@ -6,6 +6,7 @@ alwaysApply: true
 # Leo AI System - Context Registry
 
 > **Attention Strategy**: 按需读取，不要一次性加载所有引用文件。
+> **规范加载**: 每次会话优先加载 `docs/reference/BEST_PRACTICE_STANDARD.md`
 
 ## 0. 上下文工程 (Context Engineering)
 
@@ -23,12 +24,23 @@ alwaysApply: true
 
 ---
 
-## 1. Context Map (静态上下文)
+## 1. Context Map (静态上下文) - 加载优先级
 
+### P0 - 每次会话必读 (已自动加载)
+| Module | Path | 说明 |
+| :--- | :--- | :--- |
+| **USER.md** | `~/.openclaw/workspace/USER.md` | OpenClaw 加载 |
+| **QUICK_CONTEXT** | `leo_knowledge/context/QUICK_CONTEXT.md` | 快速加载 (<50行) |
+
+### P1 - 重要 (按需读取)
 | Module | Path |
 | :--- | :--- |
 | **User Profile** | `leo_knowledge/context/user_profile.md` |
 | **Dev Guide** | `leo_knowledge/context/development_guide.md` |
+
+### P2 - 参考
+| Module | Path |
+| :--- | :--- |
 | **Architecture** | `leo_knowledge/context/system_architecture.md` |
 | **Project Tree** | `leo_knowledge/context/project_structure.md` |
 | **All Capabilities** | `leo_knowledge/context/capability_index.md` |
@@ -46,10 +58,15 @@ alwaysApply: true
 根目录 (只放入口和配置):
 ├── CLAUDE.md, README.md, AGENTS.md
 ├── src/                   # 源代码
+│   └── docker/           # Docker 配置
 ├── scripts/               # 脚本 (按功能分子目录)
 ├── tests/                 # 测试
 ├── projects/              # 项目文件
-├── leo_knowledge/         # 知识库
+│   ├── output/           # 输出文件
+│   └── reports/          # 报告文件
+├── leo_knowledge/        # 知识库
+├── config/                # 配置文件
+├── data/                  # 数据文件
 └── docs/                  # 所有文档
     ├── identity/          # 身份
     ├── reference/         # 索引、清单、运维手册
@@ -81,8 +98,9 @@ alwaysApply: true
 | 项目 | 信息 |
 |------|------|
 | **本地目录** | `D:\openclaw` |
-| **版本** | 2026.2.23 |
-| **运维手册** | `docs/reference/OPENCLAW_OPS.md` (故障排查、配置规则) |
+| **版本** | 2026.3.2 |
+| **USER.md** | `~/.openclaw/workspace/USER.md` (已更新v2.1) |
+| **运维手册** | `docs/reference/OPENCLAW_OPS.md` |
 | **启动命令** | `cd D:\openclaw && node openclaw.mjs gateway --port 18789` |
 
 **核心规则**: feishu 是 Channel 不是 Plugin；`doctor --fix` 后必须人工检查配置
@@ -99,17 +117,49 @@ alwaysApply: true
 - 每周运行一次 `session_maintenance.ps1` 清理大文件
 - 监控 `~/.openclaw/agents/leo-assistant/sessions/` 目录大小
 
-### Superpowers (v4.2.0)
+### Superpowers (v4.3.1)
 
 | 项目 | 说明 |
 |------|------|
-| **原始存储** | `~/.claude/skills/superpowers/` |
-| **Leo 对应** | `src/leo_skills/` 下 14 个 snake_case 技能 |
+| **Leo 技能** | `src/leo_skills/` (唯一技能来源) |
 | **Hook** | `.claude/hooks.json` SessionStart 自动注入 |
+| **同步脚本** | `scripts/sync/sync_superpowers.py` |
+
+### Claude Code (v2.1.63)
+
+| 项目 | 说明 |
+|------|------|
+| **版本** | 2.1.63 (最新) |
+| **Agents** | `.claude/agents/` (code-reviewer, researcher, documenter) |
+| **MCP** | `mcp.json` |
+| **能力指南** | `docs/reference/CLAUDE_CODE_CAPABILITIES.md` |
 
 ---
 
-## 6. 会话驱动规则
+## 6. 用户偏好与记忆 (2026-03-04 更新)
+
+### 用户偏好 (来自 USER.md v2.1)
+- **语言**: 简体中文 ONLY
+- **反馈方式**: 直接给结果，不要铺垫
+- **方案风格**: 务实优先，给可执行的具体方案
+- **错误处理**: 报错同时给解决方案
+
+### 用户记忆存储
+| 类型 | 位置 | 说明 |
+|------|------|------|
+| **长期** | `~/.openclaw/workspace/USER.md` | 基础档案、业务、目标 |
+| **中期** | `docs/progress/` | 本周任务和进度 |
+| **短期** | 当前会话上下文 | 当前任务、修改意见 |
+| **教训** | `leo_knowledge/context/learning_log.md` | 用户纠正的错误 |
+
+### 记忆调用规则
+1. 每次会话: 先读 USER.md 加载长期记忆
+2. 任务开始: 检查 docs/progress/ 加载中期记忆
+3. 用户反馈: 立即更新到 learning_log.md
+
+---
+
+## 7. 会话驱动规则 (原6)
 
 1. **先读后写**: 修改文件前必须先 Read，批量操作每个文件都要读
 2. **路径验证**: 重构后执行 `PYTHONUTF8=1 python scripts/maintenance/validate_paths.py`
@@ -117,7 +167,7 @@ alwaysApply: true
 
 ---
 
-## 7. 简体中文规则（强制）
+## 8. 简体中文规则（强制）
 
 - AI 回复全部使用简体中文
 - 代码注释用中文，文件名/变量名保持英文
@@ -127,7 +177,7 @@ alwaysApply: true
 
 ---
 
-## 8. 双引擎协作（Claude Code + Codex）
+## 9. 双引擎协作（Claude Code + Codex）
 
 > 详细规范见 `AGENTS.md`
 

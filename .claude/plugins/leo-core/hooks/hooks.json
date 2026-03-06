@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Leo Core Plugin loaded'",
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "leo-local": {
+      "command": "node",
+      "args": ["./mcp/leo-local-server.js"],
+      "description": "Leo本地服务MCP服务器"
+    }
+  }
+}

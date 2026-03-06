@@ -1,0 +1,138 @@
+/* 矩阵通风格布局样式 */
+
+.main-layout {
+  min-height: 100vh;
+  background: #f0f2f5;
+}
+
+/* 顶部导航栏 */
+.main-header {
+  background: #fff;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 56px;
+  line-height: 56px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-img {
+  width: 32px;
+  height: 32px;
+}
+
+.logo-text {
+  font-size: 18px;
+  color: #262626;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.user-info:hover {
+  background: #f5f5f5;
+}
+
+.username {
+  font-size: 14px;
+  color: #595959;
+}
+
+/* 内容布局 */
+.main-content-layout {
+  min-height: calc(100vh - 56px);
+}
+
+/* 侧边栏 */
+.main-sider {
+  background: #fff !important;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.06);
+  position: relative;
+}
+
+.collapse-btn {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #8c8c8c;
+  z-index: 10;
+}
+
+.collapse-btn:hover {
+  color: #1677ff;
+}
+
+.main-menu {
+  border-right: none;
+  padding-top: 8px;
+  padding-bottom: 48px;
+}
+
+.main-menu .ant-menu-item {
+  margin: 4px 12px;
+  border-radius: 6px;
+  padding-left: 16px !important;
+}
+
+.main-menu .ant-menu-item-selected {
+  background: #e6f4ff !important;
+  color: #1677ff !important;
+  font-weight: 500;
+}
+
+.main-menu .ant-menu-item:hover {
+  background: #f5f5f5;
+}
+
+/* 主内容区 */
+.main-content {
+  margin: 16px;
+  padding: 24px;
+  background: #fff;
+  border-radius: 8px;
+  min-height: calc(100vh - 88px);
+  overflow-y: auto;
+}
+
+/* 滚动条样式 */
+.main-content::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.main-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}

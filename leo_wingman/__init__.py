@@ -1,3 +1,0 @@
-"""
-Leo Wingman system package.
-"""

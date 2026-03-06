@@ -68,7 +68,17 @@
       "WebFetch(domain:docs.openclaw.ai)",
       "Bash(git -C \"d:\\\\桌面\\\\leo_ai_system\" ls-files)",
       "Bash(git -C \"d:\\\\桌面\\\\leo_ai_system\" status --porcelain)",
-      "Bash(PYTHONIOENCODING=utf-8 python scripts/testing/test_intent_prompt_chain.py)"
+      "Bash(PYTHONIOENCODING=utf-8 python scripts/testing/test_intent_prompt_chain.py)",
+      "WebFetch(domain:docs.anthropic.com)",
+      "WebFetch(domain:help.aliyun.com)",
+      "mcp__playwright__browser_console_messages",
+      "WebFetch(domain:clau)",
+      "Bash(wmic diskdrive get model,size,status)",
+      "Bash(cmd.exe /c \"diskpart /s C:\\\\Users\\\\刘方林\\\\AppData\\\\Local\\\\Temp\\\\diskpart_script.txt\")",
+      "Bash(cmd.exe /c \"diskpart /s C:\\\\Users\\\\刘方林\\\\AppData\\\\Local\\\\Temp\\\\list_vol.txt\")",
+      "Read(//c/Users/刘方林/.claude//**)",
+      "Read(//e/.claude//**)",
+      "Bash(comm /tmp/src.txt /tmp/dst.txt -23)"
     ],
     "additionalDirectories": [
       "d:\\桌面\\leo_ai_system"

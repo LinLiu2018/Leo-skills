@@ -1,3 +1,0 @@
-"""
-Wingman executor components.
-"""
