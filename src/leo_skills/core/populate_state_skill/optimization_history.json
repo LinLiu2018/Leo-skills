@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\core\\populate_state_skill",
+  "optimized_at": "2026-03-13T16:38:16.047678",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Generate `.claude/phase-state.json` from `EXECUTION_PLAN.md` and git history. Use to recover phase s...",
+      "train_accuracy": 0.897,
+      "test_accuracy": 0.857
+    },
+    {
+      "round": 2,
+      "description": "Generate `.claude/phase-state.json` from `EXECUTION_PLAN.md` and git history. Use to recover phase s...",
+      "train_accuracy": 0.885,
+      "test_accuracy": 0.882
+    },
+    {
+      "round": 3,
+      "description": "Generate `.claude/phase-state.json` from `EXECUTION_PLAN.md` and git history. Use to recover phase s...",
+      "train_accuracy": 0.891,
+      "test_accuracy": 0.895
+    },
+    {
+      "round": 4,
+      "description": "Generate `.claude/phase-state.json` from `EXECUTION_PLAN.md` and git history. Use to recover phase s...",
+      "train_accuracy": 0.937,
+      "test_accuracy": 0.897
+    },
+    {
+      "round": 5,
+      "description": "Generate `.claude/phase-state.json` from `EXECUTION_PLAN.md` and git history. Use to recover phase s...",
+      "train_accuracy": 0.974,
+      "test_accuracy": 0.933
+    }
+  ],
+  "final_description": "Generate `.claude/phase-state.json` from `EXECUTION_PLAN.md` and git history. Use to recover phase state after context loss or when joining an existing project.。当用户需要核心功能相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

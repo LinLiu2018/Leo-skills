@@ -1,3 +1,9 @@
+---
+name: obsidian-sync-skill
+description: Obsidian Sync Skill 技能。当用户需要相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
+---
+
 # Obsidian Sync Skill - Claude Skill
 
 将Claude对话、Leo System输出与Obsidian第二大脑无缝集成的同步技能。

@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\core\\using_superpowers_skill",
+  "optimized_at": "2026-03-13T16:38:16.105538",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Use when starting any conversation to establish how to find and use skills, requiring skill invocati...",
+      "train_accuracy": 0.852,
+      "test_accuracy": 0.85
+    },
+    {
+      "round": 2,
+      "description": "Use when starting any conversation to establish how to find and use skills, requiring skill invocati...",
+      "train_accuracy": 0.874,
+      "test_accuracy": 0.878
+    },
+    {
+      "round": 3,
+      "description": "Use when starting any conversation to establish how to find and use skills, requiring skill invocati...",
+      "train_accuracy": 0.932,
+      "test_accuracy": 0.896
+    },
+    {
+      "round": 4,
+      "description": "Use when starting any conversation to establish how to find and use skills, requiring skill invocati...",
+      "train_accuracy": 0.919,
+      "test_accuracy": 0.938
+    },
+    {
+      "round": 5,
+      "description": "Use when starting any conversation to establish how to find and use skills, requiring skill invocati...",
+      "train_accuracy": 0.94,
+      "test_accuracy": 0.912
+    }
+  ],
+  "final_description": "Use when starting any conversation to establish how to find and use skills, requiring skill invocation before ANY response including clarifying questions。当用户需要核心功能相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

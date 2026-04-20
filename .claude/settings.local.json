@@ -1,88 +1,59 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
     "allow": [
-      "Bash(git mv:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "Bash(git push:*)",
-      "Bash(python test_import.py:*)",
-      "Bash(cat:*)",
-      "Bash(python:*)",
-      "Bash(git clone:*)",
-      "Bash(pip install:*)",
-      "Bash(timeout:*)",
-      "Bash(curl:*)",
-      "Bash(tree:*)",
-      "Bash(ls:*)",
-      "Bash(dir:*)",
-      "Bash(claude:*)",
-      "Bash(npm update:*)",
-      "Bash(findstr:*)",
-      "Bash(Get-ChildItem -Path \"d:\\\\桌面\\\\leo_ai_system\\\\leo_skills\\\\development\" -Recurse -Directory)",
-      "Bash(Where-Object {$_Name -like '*_skill'})",
-      "Bash(Select-Object -ExpandProperty FullName)",
-      "Bash(for dir in analysis_agent architect_agent creative_agent mobile_agent product_manager_agent realestate_agent research_agent task_agent)",
-      "Bash(do if [ -d \"$dir\" ])",
-      "Bash([:*)",
-      "Bash(then touch \"$dir/__init__.py\")",
-      "Bash(echo:*)",
-      "Bash(fi)",
-      "Bash(done)",
-      "Bash(npm install)",
-      "mcp__playwright__browser_navigate",
-      "Read(//d/桌面/leo_ai_system/**)",
-      "mcp__playwright__browser_wait_for",
-      "mcp__playwright__browser_snapshot",
-      "mcp__playwright__browser_take_screenshot",
-      "WebFetch(domain:www.nngroup.com)",
+      "Bash(git *)",
+      "Bash(npm *)",
+      "Bash(pip *)",
+      "Bash(python *)",
+      "Bash(node *)",
+      "Bash(curl *)",
+      "Bash(timeout *)",
+      "Bash(tree *)",
+      "Bash(ls *)",
+      "Bash(dir *)",
+      "Bash(claude *)",
+      "Bash(findstr *)",
+      "Bash(tasklist *)",
+      "Bash(schtasks *)",
+      "Bash(wmic *)",
+      "Bash(netstat *)",
+      "Bash(export *)",
+      "Bash(cat *)",
+      "Bash(powershell *)",
+      "Bash(winget *)",
+      "Bash(cc-switch *)",
+      "Bash(docker *)",
+      "Bash(kubectl *)",
+      "mcp__playwright__*",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:raw.githubusercontent.com)",
-      "Bash(powershell:*)",
-      "Bash(HTTP_PROXY=http://127.0.0.1:7897 HTTPS_PROXY=http://127.0.0.1:7897 node:*)",
-      "Bash(powershell.exe:*)",
-      "Bash(npx openclaw plugins install:*)",
-      "Bash(node:*)",
-      "Bash(netstat:*)",
-      "Bash(\"d:\\\\桌面\\\\leo_ai_system\\\\scripts\\\\创建桌面快捷方式.bat\")",
       "WebFetch(domain:docs.openclaw.dev)",
-      "Bash(ren:*)",
-      "Bash(npx openclaw doctor:*)",
-      "Bash(npx openclaw onboard:*)",
-      "Bash(git stash:*)",
-      "Bash(git pull:*)",
-      "WebFetch(domain:mp.weixin.qq.com)",
-      "Bash(taskkill //F //PID 26792)",
-      "Bash(taskkill //F //PID 23520)",
-      "Bash(export PATH=\"$PATH:/c/Users/刘方林/AppData/Roaming/npm\")",
-      "Bash(export MINIMAX_BASE_URL=\"https://api.minimax.chat/v1\")",
-      "Bash(taskkill //F //PID 11332)",
-      "Bash(tasklist)",
-      "Bash(schtasks /query /fo csv)",
-      "Bash(cmd.exe //c \"d:\\\\桌面\\\\leo_ai_system\\\\scripts\\\\setup\\\\install_auto_healer.bat\")",
-      "Bash(schtasks /create /tn \"OpenClaw_AutoHealer\" /tr \"powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -File ''D:\\\\桌面\\\\leo_ai_system\\\\scripts\\\\openclaw\\\\openclaw_auto_healer.ps1''\" /sc onstart /delay 0001:00 /f /rl HIGHEST)",
-      "Bash(cmd.exe /c schtasks /create /tn \"OpenClaw_AutoHealer\" /tr \"powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -File ''D:\\\\桌面\\\\leo_ai_system\\\\scripts\\\\openclaw\\\\openclaw_auto_healer.ps1''\" /sc onstart /delay 0001:00 /f /rl HIGHEST)",
-      "Bash(wmic process where \"name=''node.exe''\" get ProcessId,CommandLine)",
-      "Bash(# 检查日志看 env 字段是否导致了配置错误 tail -100 ''\\\\\\\\tmp\\\\openclaw\\\\openclaw-2026-02-25.log'')",
-      "Bash(taskkill //F //PID 25548)",
-      "Bash(test -d \"d:\\\\桌面\\\\leo_ai_system/scripts/src\")",
       "WebFetch(domain:docs.openclaw.ai)",
-      "Bash(git -C \"d:\\\\桌面\\\\leo_ai_system\" ls-files)",
-      "Bash(git -C \"d:\\\\桌面\\\\leo_ai_system\" status --porcelain)",
-      "Bash(PYTHONIOENCODING=utf-8 python scripts/testing/test_intent_prompt_chain.py)",
       "WebFetch(domain:docs.anthropic.com)",
+      "WebFetch(domain:mp.weixin.qq.com)",
       "WebFetch(domain:help.aliyun.com)",
-      "mcp__playwright__browser_console_messages",
-      "WebFetch(domain:clau)",
-      "Bash(wmic diskdrive get model,size,status)",
-      "Bash(cmd.exe /c \"diskpart /s C:\\\\Users\\\\刘方林\\\\AppData\\\\Local\\\\Temp\\\\diskpart_script.txt\")",
-      "Bash(cmd.exe /c \"diskpart /s C:\\\\Users\\\\刘方林\\\\AppData\\\\Local\\\\Temp\\\\list_vol.txt\")",
-      "Read(//c/Users/刘方林/.claude//**)",
+      "WebFetch(domain:claude.com)",
+      "WebFetch(domain:anthropic.com)",
+      "Read(//e/桌面/leo_ai_system/**)",
       "Read(//e/.claude//**)",
-      "Bash(comm /tmp/src.txt /tmp/dst.txt -23)"
+      "Bash(git config *)"
+    ],
+    "ask": [
+      "Bash",
+      "Edit",
+      "Write"
+    ],
+    "deny": [
+      "Bash(rm -rf / *)",
+      "Bash(format:*)",
+      "Read(//c/Users/*/.env)",
+      "Read(//c/Users/*/secrets/**)"
     ],
     "additionalDirectories": [
-      "d:\\桌面\\leo_ai_system"
-    ]
+      "e:\\桌面\\leo_ai_system"
+    ],
+    "defaultMode": "ask"
   },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
@@ -90,5 +61,59 @@
     "leo-system",
     "leo-web-search"
   ],
-  "language": "chinese"
+  "language": "chinese",
+  "effortLevel": "high",
+  "autoUpdatesChannel": "latest",
+  "defaultMode": "ask",
+  "launchFlags": [
+    "--verbose",
+    "--debug-file .claude/debug.log"
+  ],
+  "sandbox": {
+    "enabled": true,
+    "filesystem": "isolated",
+    "network": "denylist"
+  },
+  "env": {
+    "CLAUDE_CODE_DEBUG_LOGS_DIR": ".claude/logs",
+    "CLAUDE_REMOTE_CONTROL_SESSION_NAME_PREFIX": "leo"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"C:/Users/刘方林/.claude/skills/superpowers/hooks/session-start\"",
+            "async": false
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/tool-start.sh",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/tool-end.sh",
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
 }

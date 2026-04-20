@@ -1,0 +1,6 @@
+# 视频讲稿生成 配置
+enabled: true
+version: "1.0.0"
+
+settings:
+  log_level: INFO

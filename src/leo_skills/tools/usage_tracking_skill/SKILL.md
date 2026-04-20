@@ -1,19 +1,21 @@
 ---
-name: usage_tracking_skill
-version: 1.0.0
-description: 使用追踪技能。记录和分析 Token 使用、会话统计、技能调用等数据。
+name: usage-tracking-skill
+description: 使用追踪技能。记录和分析 Token 使用、会话统计、技能调用等数据。。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: Leo Liu
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - 使用统计
   - usage
   - token 统计
   - 成本分析
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
+license: MIT
 ---
 
 # Usage Tracking Skill

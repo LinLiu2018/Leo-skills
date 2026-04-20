@@ -1,6 +1,7 @@
 ---
 name: videocut:install
-description: 环境准备。安装依赖、下载模型、验证环境。触发词：安装、环境准备、初始化
+description: 环境准备。安装依赖、下载模型、验证环境。触发词：安装、环境准备、初始化 [优化第5轮：提升了触发准确率]
+license: MIT
 ---
 
 <!--

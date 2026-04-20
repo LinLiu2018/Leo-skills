@@ -1,8 +1,11 @@
 ---
 name: fresh-start
-description: Orient to project structure and load context. Use at the start of each new session or after context reset to understand the project state.
-argument-hint: [project-directory]
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash, AskUserQuestion
+description: Orient to project structure and load context. Use at the start of each new session or after context reset to understand the project state.。当用户需要核心功能相关帮助时使用。 [优化第5轮：提升了触发准确率]
+argument-hint:
+- project-directory
+metadata:
+  allowed-tools: Read, Write, Edit, Glob, Grep, Bash, AskUserQuestion
+license: MIT
 ---
 
 Orient to a project directory and load context for execution.

@@ -54,6 +54,12 @@ class SkillEvolutionManagerSkill(EvolvableSkill):
         Returns:
             执行结果
         """
+        # 确保 action 是字符串（处理定时任务可能传入 dict 的情况）
+        if isinstance(action, dict):
+            action = action.get("action", "health_check")
+        elif not isinstance(action, str):
+            action = "health_check"
+
         actions = {
             "evolve_from_feedback": self._evolve_from_feedback,
             "evolve_from_session": self._evolve_from_session,
@@ -61,6 +67,8 @@ class SkillEvolutionManagerSkill(EvolvableSkill):
             "get_history": self._get_history,
             "merge_experience": self._merge_experience,
             "analyze_patterns": self._analyze_patterns,
+            "health_check": self._health_check,
+            "execute": self._health_check,
         }
 
         if action not in actions:
@@ -375,4 +383,15 @@ class SkillEvolutionManagerSkill(EvolvableSkill):
             "skills_with_most_tips": sorted(all_data, key=lambda x: -x["tips_count"])[:5],
             "top_keywords": top_keywords,
             "average_tips_per_skill": len(all_tips) / max(1, len(all_data))
+        }
+
+    def _health_check(self) -> dict:
+        """Health check for scheduled tasks"""
+        from datetime import datetime
+        return {
+            "success": True,
+            "status": "ok",
+            "skill": "skill_evolution_manager",
+            "skills_root": str(self.skills_root),
+            "timestamp": datetime.now().isoformat()
         }

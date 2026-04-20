@@ -1,7 +1,9 @@
 ---
 name: progress
-description: Show progress through EXECUTION_PLAN.md and feature plans. Use to check completion status and identify remaining work.
-allowed-tools: Read, Grep, Glob
+description: Show progress through EXECUTION_PLAN.md and feature plans. Use to check completion status and identify remaining work.。当用户需要核心功能相关帮助时使用。 [优化第5轮：提升了触发准确率]
+metadata:
+  allowed-tools: Read, Grep, Glob
+license: MIT
 ---
 
 Read EXECUTION_PLAN.md and any feature execution plans to show overall project status.

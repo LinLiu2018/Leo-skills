@@ -1,19 +1,26 @@
 ---
-name: dispatching_parallel_agents_skill
-version: "1.0.0"
-description: |
-  【协作技能】分发并行代理。当面对 2+ 个可以无需共享状态或顺序依赖地处理独立任务时使用。
+name: dispatching-parallel-agents-skill
+description: 【协作技能】分发并行代理。当面对 2+ 个可以无需共享状态或顺序依赖地处理独立任务时使用。
+核心理念：每个问题域分发一个代理。让它们并发工作。
+基于 obra/superpowers 的 dispatching-parallel-agents 技能。
+ [优化第5轮：提升了触发准确率]
+
   核心理念：每个问题域分发一个代理。让它们并发工作。
+
   基于 obra/superpowers 的 dispatching-parallel-agents 技能。
+
+  '
 category: collaboration
 author: Leo AI System (基于 obra/superpowers)
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - 并行代理
   - 分发代理
   - parallel-agents
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Edit
@@ -21,6 +28,7 @@ allowed-tools:
   - Glob
   - Grep
   - Task
+license: MIT
 ---
 
 # 分发并行代理（Dispatching Parallel Agents）

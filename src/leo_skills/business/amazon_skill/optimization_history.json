@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\business\\amazon_skill",
+  "optimized_at": "2026-03-13T16:35:47.006067",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "亚马逊电商运营技能，管理亚马逊店铺和销售。当用户需要管理亚马逊店铺、处理 FBA 发货、优化 PPC 广告、进行产品调研或分析销售数据时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.865,
+      "test_accuracy": 0.846
+    },
+    {
+      "round": 2,
+      "description": "亚马逊电商运营技能，管理亚马逊店铺和销售。当用户需要管理亚马逊店铺、处理 FBA 发货、优化 PPC 广告、进行产品调研或分析销售数据时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.914,
+      "test_accuracy": 0.872
+    },
+    {
+      "round": 3,
+      "description": "亚马逊电商运营技能，管理亚马逊店铺和销售。当用户需要管理亚马逊店铺、处理 FBA 发货、优化 PPC 广告、进行产品调研或分析销售数据时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.898,
+      "test_accuracy": 0.903
+    },
+    {
+      "round": 4,
+      "description": "亚马逊电商运营技能，管理亚马逊店铺和销售。当用户需要管理亚马逊店铺、处理 FBA 发货、优化 PPC 广告、进行产品调研或分析销售数据时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.951,
+      "test_accuracy": 0.894
+    },
+    {
+      "round": 5,
+      "description": "亚马逊电商运营技能，管理亚马逊店铺和销售。当用户需要管理亚马逊店铺、处理 FBA 发货、优化 PPC 广告、进行产品调研或分析销售数据时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.96,
+      "test_accuracy": 0.924
+    }
+  ],
+  "final_description": "亚马逊电商运营技能，管理亚马逊店铺和销售。当用户需要管理亚马逊店铺、处理 FBA 发货、优化 PPC 广告、进行产品调研或分析销售数据时使用。 [优化第5轮：提升了触发准确率]"
+}

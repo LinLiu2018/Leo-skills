@@ -95,3 +95,93 @@ def pytest_configure(config):
     config.addinivalue_line("markers", "unit: 标记为单元测试")
     config.addinivalue_line("markers", "skills: Skills 相关测试")
     config.addinivalue_line("markers", "agents: Agents 相关测试")
+    config.addinivalue_line("markers", "mcp: MCP 相关测试")
+    config.addinivalue_line("markers", "core: 核心模块测试")
+
+
+# ==================== 新增: Leo Core 测试 Fixtures ====================
+
+@pytest.fixture
+def sample_agent_request():
+    """标准 Agent 请求"""
+    from leo_core.types import BaseRequest
+    return BaseRequest(
+        input="测试输入",
+        context={"user_id": "test_user"},
+        parameters={"depth": "detailed"}
+    )
+
+
+@pytest.fixture
+def sample_agent_response():
+    """标准 Agent 响应"""
+    from leo_core.types import BaseResponse, Status
+    return BaseResponse(
+        output="测试输出",
+        status=Status.SUCCESS,
+        metadata={"execution_time": 0.5}
+    )
+
+
+@pytest.fixture
+def mock_llm_response():
+    """Mock LLM 响应"""
+    return {
+        "choices": [{
+            "message": {
+                "content": "Test response from LLM"
+            }
+        }]
+    }
+
+
+@pytest.fixture
+def sample_agent_context():
+    """标准 Agent 上下文"""
+    return {
+        "user_id": "test_user",
+        "session_id": "test_session",
+        "conversation_history": []
+    }
+
+
+@pytest.fixture
+def sample_memory_entry():
+    """标准记忆条目"""
+    from leo_core.types import MemoryEntry
+    return MemoryEntry(
+        id="test_memory_1",
+        content="这是一个测试记忆",
+        type="general",
+        tags=["test", "sample"],
+        user_id="test_user"
+    )
+
+
+@pytest.fixture
+def sample_event():
+    """标准事件"""
+    from leo_core.types import Event
+    from datetime import datetime
+    return Event(
+        type="test.event",
+        payload={"data": "test"},
+        source="test_source",
+        timestamp=datetime.now()
+    )
+
+
+@pytest.fixture
+def event_loop():
+    """事件循环 fixture (用于异步测试)"""
+    import asyncio
+    loop = asyncio.new_event_loop()
+    yield loop
+    loop.close()
+
+
+@pytest.fixture(autouse=True)
+async def reset_context():
+    """每个测试后重置上下文"""
+    yield
+    # 清理逻辑可以在此添加

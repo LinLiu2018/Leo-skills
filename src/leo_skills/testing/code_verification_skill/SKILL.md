@@ -1,6 +1,7 @@
 ---
 name: code-verification
-description: Multi-agent code verification workflow using a main agent and sub-agent loop. Use when verifying code against requirements, acceptance criteria, or quality standards. Triggers on requests to verify, validate, or check code against specifications, checklists, or instructions.
+description: Multi-agent code verification workflow using a main agent and sub-agent loop. Use when verifying code against requirements, acceptance criteria, or quality standards. Triggers on requests to verify, validate, or check code against specifications, checklists, or instructions.。当用户需要测试与验证相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
 ---
 
 # Code Verification Skill

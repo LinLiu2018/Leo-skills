@@ -1,8 +1,10 @@
 ---
 name: oauth-login
-description: Complete OAuth login flow and store tokens for verification. Use when browser verification requires authenticated sessions.
+description: Complete OAuth login flow and store tokens for verification. Use when browser verification requires authenticated sessions.。当用户需要安全与防护相关帮助时使用。 [优化第5轮：提升了触发准确率]
 argument-hint: <provider>
-allowed-tools: Bash, Read, Edit, Write, AskUserQuestion, WebFetch, mcp__playwright__*
+metadata:
+  allowed-tools: Bash, Read, Edit, Write, AskUserQuestion, WebFetch, mcp__playwright__*
+license: MIT
 ---
 
 Complete an OAuth login flow for browser verification. Opens a browser to the OAuth

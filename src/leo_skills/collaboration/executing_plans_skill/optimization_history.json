@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\collaboration\\executing_plans_skill",
+  "optimized_at": "2026-03-13T16:38:13.926076",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "【协作技能】执行实施计划。在单独会话中有书面实施计划要执行时使用，带有审查检查点。\n核心理念：批量执行，架构师审查检查点。与 writing_plans_skill 配对使用。\n基于 obra/sup...",
+      "train_accuracy": 0.874,
+      "test_accuracy": 0.833
+    },
+    {
+      "round": 2,
+      "description": "【协作技能】执行实施计划。在单独会话中有书面实施计划要执行时使用，带有审查检查点。\n核心理念：批量执行，架构师审查检查点。与 writing_plans_skill 配对使用。\n基于 obra/sup...",
+      "train_accuracy": 0.884,
+      "test_accuracy": 0.873
+    },
+    {
+      "round": 3,
+      "description": "【协作技能】执行实施计划。在单独会话中有书面实施计划要执行时使用，带有审查检查点。\n核心理念：批量执行，架构师审查检查点。与 writing_plans_skill 配对使用。\n基于 obra/sup...",
+      "train_accuracy": 0.918,
+      "test_accuracy": 0.872
+    },
+    {
+      "round": 4,
+      "description": "【协作技能】执行实施计划。在单独会话中有书面实施计划要执行时使用，带有审查检查点。\n核心理念：批量执行，架构师审查检查点。与 writing_plans_skill 配对使用。\n基于 obra/sup...",
+      "train_accuracy": 0.941,
+      "test_accuracy": 0.929
+    },
+    {
+      "round": 5,
+      "description": "【协作技能】执行实施计划。在单独会话中有书面实施计划要执行时使用，带有审查检查点。\n核心理念：批量执行，架构师审查检查点。与 writing_plans_skill 配对使用。\n基于 obra/sup...",
+      "train_accuracy": 0.959,
+      "test_accuracy": 0.915
+    }
+  ],
+  "final_description": "【协作技能】执行实施计划。在单独会话中有书面实施计划要执行时使用，带有审查检查点。\n核心理念：批量执行，架构师审查检查点。与 writing_plans_skill 配对使用。\n基于 obra/superpowers 的 executing-plans 技能。\n [优化第5轮：提升了触发准确率]"
+}

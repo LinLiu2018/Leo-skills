@@ -1,21 +1,23 @@
 ---
-name: content_to_action_skill
-version: 1.0.0
-description: 内容转化技能。将 X 平台/社交媒体内容转化为学习笔记和实战行动计划。
+name: content-to-action-skill
+description: 内容转化技能。将 X 平台/社交媒体内容转化为学习笔记和实战行动计划。。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: Leo Liu
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - 内容转化
   - 学习转化
   - 实战转化
   - 行动转化
   - content to action
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Web Fetch
+license: MIT
 ---
 
 # Content to Action Skill

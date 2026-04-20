@@ -1,13 +1,46 @@
 ---
-name: video_monitor_skill
+name: video-monitor-skill
 display_name: 视频号账号监测
-version: 1.0.0
-description: |
-  监测视频号账号数据，包括粉丝增长、视频表现、互动数据等。
+description: 监测视频号账号数据，包括粉丝增长、视频表现、互动数据等。
+支持单账号监测和多账号对比分析。
+。当用户需要业务运营支持相关帮助时使用。 [优化第5轮：提升了触发准确率]
+
   支持单账号监测和多账号对比分析。
+
+  。当用户需要业务运营支持相关帮助时使用。'
 author: Leo AI System
-user-invocable: true
-activation_keywords:
+category: business
+status: active
+inputs:
+- name: account_id
+  type: string
+  required: false
+  description: 视频号账号ID或名称
+- name: city
+  type: string
+  required: false
+  description: 城市名称（如：宁波）
+- name: days
+  type: integer
+  required: false
+  default: 7
+  description: 监测天数范围
+- name: metric_type
+  type: string
+  required: false
+  default: all
+  description: 数据类型（all/followers/videos/lives/engagement）
+outputs:
+- name: report
+  type: object
+  description: 监测数据报告
+- name: summary
+  type: string
+  description: 数据摘要
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  activation_keywords:
   - 视频号
   - 账号监测
   - 粉丝统计
@@ -16,34 +49,7 @@ activation_keywords:
   - 视频数据
   - 直播数据
   - 监测工具
-category: business
-status: active
-inputs:
-  - name: account_id
-    type: string
-    required: false
-    description: 视频号账号ID或名称
-  - name: city
-    type: string
-    required: false
-    description: 城市名称（如：宁波）
-  - name: days
-    type: integer
-    required: false
-    default: 7
-    description: 监测天数范围
-  - name: metric_type
-    type: string
-    required: false
-    default: all
-    description: 数据类型（all/followers/videos/lives/engagement）
-outputs:
-  - name: report
-    type: object
-    description: 监测数据报告
-  - name: summary
-    type: string
-    description: 数据摘要
+license: MIT
 ---
 
 # 视频号账号监测技能
@@ -90,4 +96,3 @@ skill.compare_accounts(["账号A", "账号B"])
 1. 当前版本使用模拟数据演示功能
 2. 实际部署时需要接入视频号开放平台API
 3. 数据更新频率建议设置为每日一次
-

@@ -1,17 +1,19 @@
 ---
-name: gog_skill_skill
-version: 1.0.0
-description: Google Workspace 集成，Gmail/日历/Drive/Docs
+name: gog-skill-skill
+description: Google Workspace 集成，Gmail/日历/Drive/Docs。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: openclaw
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - gog skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # GOG Skill (Google Workspace)

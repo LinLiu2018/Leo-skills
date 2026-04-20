@@ -1,27 +1,35 @@
 ---
-name: systematic_debugging_skill
-version: "1.0.0"
-description: |
-  【调试技能】系统化四阶段根因分析方法。遇到任何bug、测试失败或意外行为时使用。
+name: systematic-debugging-skill
+description: 【调试技能】系统化四阶段根因分析方法。遇到任何bug、测试失败或意外行为时使用。
+核心理念：永远先找到根因再尝试修复。避免随机修复浪费时间和制造新bug。
+基于 obra/superpowers 的 systematic-debugging 技能。
+ [优化第5轮：提升了触发准确率]
+
   核心理念：永远先找到根因再尝试修复。避免随机修复浪费时间和制造新bug。
+
   基于 obra/superpowers 的 systematic-debugging 技能。
+
+  '
 category: debugging
 author: Leo AI System (基于 obra/superpowers)
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - 调试
   - 修复bug
   - debug
   - bug修复
   - 系统调试
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Edit
   - Bash
   - Glob
   - Grep
+license: MIT
 ---
 
 # 系统化调试（Systematic Debugging）

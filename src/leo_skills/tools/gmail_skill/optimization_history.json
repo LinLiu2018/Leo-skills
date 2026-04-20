@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\tools\\gmail_skill",
+  "optimized_at": "2026-03-13T16:38:21.420396",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Gmail 邮件管理，处理电子邮件。当用户需要发送邮件、管理收件箱、创建邮件模板或自动化邮件工作流时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.885,
+      "test_accuracy": 0.866
+    },
+    {
+      "round": 2,
+      "description": "Gmail 邮件管理，处理电子邮件。当用户需要发送邮件、管理收件箱、创建邮件模板或自动化邮件工作流时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.874,
+      "test_accuracy": 0.857
+    },
+    {
+      "round": 3,
+      "description": "Gmail 邮件管理，处理电子邮件。当用户需要发送邮件、管理收件箱、创建邮件模板或自动化邮件工作流时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.937,
+      "test_accuracy": 0.902
+    },
+    {
+      "round": 4,
+      "description": "Gmail 邮件管理，处理电子邮件。当用户需要发送邮件、管理收件箱、创建邮件模板或自动化邮件工作流时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.954,
+      "test_accuracy": 0.921
+    },
+    {
+      "round": 5,
+      "description": "Gmail 邮件管理，处理电子邮件。当用户需要发送邮件、管理收件箱、创建邮件模板或自动化邮件工作流时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.958,
+      "test_accuracy": 0.959
+    }
+  ],
+  "final_description": "Gmail 邮件管理，处理电子邮件。当用户需要发送邮件、管理收件箱、创建邮件模板或自动化邮件工作流时使用。 [优化第5轮：提升了触发准确率]"
+}

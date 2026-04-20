@@ -6,7 +6,55 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo 'Leo Core Plugin loaded'",
+            "command": "bash .claude/hooks/session_start.sh",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "exit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/session_end.sh",
+            "async": false
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "stop",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/stop.sh",
+            "async": false
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "user_input",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/user_prompt.sh",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "tool_complete",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/post_tool.sh",
             "async": true
           }
         ]

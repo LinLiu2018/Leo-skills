@@ -1,6 +1,7 @@
 ---
 name: spec-verification
-description: Verify generated specification documents for context preservation and quality issues. Automatically triggered after document generation. Checks that upstream requirements are preserved and identifies common specification problems.
+description: Verify generated specification documents for context preservation and quality issues. Automatically triggered after document generation. Checks that upstream requirements are preserved and identifies common specification problems.。当用户需要测试与验证相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
 ---
 
 # Spec Verification Skill

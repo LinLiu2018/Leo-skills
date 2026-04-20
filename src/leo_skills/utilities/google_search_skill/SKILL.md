@@ -1,17 +1,19 @@
 ---
-name: google_search_skill
-version: 1.0.0
-description: Google 搜索
+name: google-search-skill
+description: Google 搜索。当用户需要实用工具相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: utilities
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - google-search-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Google Search Skill

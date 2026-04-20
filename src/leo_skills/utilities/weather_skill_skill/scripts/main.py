@@ -11,38 +11,41 @@ from typing import Dict, Any, Optional
 logger = logging.getLogger(__name__)
 
 
-class WeatherSkill:
+class WeatherSkillSkill:
     """
     weather_skill_skill 技能实现
     """
+    
+    # 支持直接执行
+    supports_direct_execution = True
 
     def __init__(self):
         self.name = "weather_skill_skill"
         self.version = "1.0.0"
         self.category = "utilities"
 
-    def execute(self, action: str = "run", **kwargs) -> Dict[str, Any]:
+    def execute(self, action: str = "execute", **kwargs) -> Dict[str, Any]:
         """
         执行技能
 
         Args:
-            action: 动作名称 (run/info/help)
+            action: 动作名称 (execute/info/help)
             **kwargs: 动作参数
 
         Returns:
             执行结果字典
         """
         try:
-            if action == "run":
+            if action in ("run", "execute"):
                 return self._do_execute(**kwargs)
             elif action == "info":
                 return self._get_info()
             elif action == "help":
                 return self._get_help()
             else:
-                return {"status": "error", "error": f"未知动作: {action}"}
+                return {"status": "error", "error": f"未知动作：{action}"}
         except Exception as e:
-            logger.error(f"执行失败: {e}")
+            logger.error(f"执行失败：{e}")
             return {"status": "error", "error": str(e)}
 
     def _do_execute(self, **kwargs) -> Dict[str, Any]:
@@ -53,7 +56,7 @@ class WeatherSkill:
         return {
             "status": "success",
             "skill": self.name,
-            "action": "run",
+            "action": "execute",
             "result": "执行完成（默认实现）",
             "params": kwargs
         }
@@ -64,15 +67,15 @@ class WeatherSkill:
             "name": self.name,
             "version": self.version,
             "category": self.category,
-            "actions": ["run", "info", "help"]
+            "actions": ["execute", "info", "help"]
         }
 
     def _get_help(self) -> Dict[str, Any]:
         """获取帮助信息"""
         return {
-            "usage": "execute(action='run', **params)",
+            "usage": "execute(action='execute', **params)",
             "actions": {
-                "run": "执行技能",
+                "execute": "执行技能",
                 "info": "获取技能信息",
                 "help": "获取帮助"
             }
@@ -82,15 +85,15 @@ class WeatherSkill:
 # 全局实例
 _skill_instance = None
 
-def get_skill() -> WeatherSkill:
+def get_skill() -> WeatherSkillSkill:
     """获取技能实例"""
     global _skill_instance
     if _skill_instance is None:
-        _skill_instance = WeatherSkill()
+        _skill_instance = WeatherSkillSkill()
     return _skill_instance
 
 
-def execute(action: str = "run", **kwargs) -> Dict[str, Any]:
+def execute(action: str = "execute", **kwargs) -> Dict[str, Any]:
     """便捷执行函数"""
     return get_skill().execute(action, **kwargs)
 
@@ -105,5 +108,5 @@ if __name__ == "__main__":
     print("=" * 60)
     print(f"{get_info()}")
     print("=" * 60)
-    result = execute(action="run")
-    print(f"执行结果: {result}")
+    result = execute(action="execute")
+    print(f"执行结果：{result}")

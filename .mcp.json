@@ -6,15 +6,15 @@
     },
     "leo-system": {
       "command": "python",
-      "args": ["D:/桌面/leo_ai_system/.mcp/leo_mcp_server.py"],
+      "args": ["E:/桌面/leo_ai_system/.mcp/leo_mcp_server.py"],
       "env": {
-        "PYTHONPATH": "D:/桌面/leo_ai_system/src",
+        "PYTHONPATH": "E:/桌面/leo_ai_system/src",
         "PYTHONIOENCODING": "utf-8"
       }
     },
     "leo-web-search": {
       "command": "python",
-      "args": ["D:/桌面/leo_ai_system/.mcp/leo_web_search.py"],
+      "args": ["E:/桌面/leo_ai_system/.mcp/leo_web_search.py"],
       "env": {
         "PYTHONIOENCODING": "utf-8"
       }

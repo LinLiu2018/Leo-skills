@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\devops\\configure_verification_skill",
+  "optimized_at": "2026-03-13T16:38:16.187619",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Configure verification commands for this project. Use when setting up a new project or when verifica...",
+      "train_accuracy": 0.895,
+      "test_accuracy": 0.836
+    },
+    {
+      "round": 2,
+      "description": "Configure verification commands for this project. Use when setting up a new project or when verifica...",
+      "train_accuracy": 0.919,
+      "test_accuracy": 0.895
+    },
+    {
+      "round": 3,
+      "description": "Configure verification commands for this project. Use when setting up a new project or when verifica...",
+      "train_accuracy": 0.925,
+      "test_accuracy": 0.876
+    },
+    {
+      "round": 4,
+      "description": "Configure verification commands for this project. Use when setting up a new project or when verifica...",
+      "train_accuracy": 0.925,
+      "test_accuracy": 0.938
+    },
+    {
+      "round": 5,
+      "description": "Configure verification commands for this project. Use when setting up a new project or when verifica...",
+      "train_accuracy": 0.95,
+      "test_accuracy": 0.919
+    }
+  ],
+  "final_description": "Configure verification commands for this project. Use when setting up a new project or when verification-config.json is missing or incomplete.。当用户需要运维与部署相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

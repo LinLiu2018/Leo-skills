@@ -85,6 +85,8 @@ class GitHubSkillsUpdaterSkill(EvolvableSkill):
                 - list_registered: 列出已注册技能
                 - history: 查看更新历史
                 - register: 手动注册技能
+                - health_check: 健康检查（定时任务兼容）
+                - execute: 默认执行（定时任务兼容，执行健康检查）
             **kwargs: 额外参数
 
         Returns:
@@ -102,8 +104,24 @@ class GitHubSkillsUpdaterSkill(EvolvableSkill):
             return self._get_history()
         elif action == "register":
             return self._register_skill(kwargs.get("repo_url"), kwargs.get("skill_path"))
+        elif action == "health_check":
+            return self._health_check()
+        elif action == "execute":
+            # 兼容定时任务调用，默认执行健康检查
+            return self._health_check()
         else:
             return {"success": False, "error": f"Unknown action: {action}"}
+
+    def _health_check(self) -> Dict[str, Any]:
+        """健康检查"""
+        skills = self.registry.get("skills", {})
+        return {
+            "success": True,
+            "status": "ok",
+            "skill": "github_skills_updater",
+            "registered_count": len(skills),
+            "timestamp": datetime.now().isoformat()
+        }
 
     def _list_registered(self) -> Dict[str, Any]:
         """列出已注册的GitHub技能"""

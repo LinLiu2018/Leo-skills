@@ -3,6 +3,11 @@
 
 from typing import Dict, Any, List, Optional
 from utils.logger import get_logger
+import sys
+import os
+
+# 添加 OpenClaw workspace 到路径，以便导入格式化器
+sys.path.insert(0, os.path.expanduser("~/.openclaw/workspace/skills"))
 
 logger = get_logger(__name__)
 
@@ -96,13 +101,16 @@ class ArticleGenerator:
 
         title = self._generate_title(item, analysis, "policy")
 
+        # 使用格式化器优化排版
+        formatted_content = self._format_content(content, title, "policy")
+
         return {
             "title": title,
-            "content": content,
+            "content": formatted_content,
             "category": "policy",
             "source_item_id": item.get("url", ""),
             "keywords": self._generate_tags(item, analysis),
-            "summary": content[:200] + "..." if len(content) > 200 else content
+            "summary": formatted_content[:200] + "..." if len(formatted_content) > 200 else formatted_content
         }
 
     def generate_market_article(self, item: Dict[str, Any],
@@ -117,13 +125,16 @@ class ArticleGenerator:
 
         title = self._generate_title(item, analysis, "market")
 
+        # 使用格式化器优化排版
+        formatted_content = self._format_content(content, title, "market")
+
         return {
             "title": title,
-            "content": content,
+            "content": formatted_content,
             "category": "market",
             "source_item_id": item.get("url", ""),
             "keywords": self._generate_tags(item, analysis),
-            "summary": content[:200] + "..." if len(content) > 200 else content
+            "summary": formatted_content[:200] + "..." if len(formatted_content) > 200 else formatted_content
         }
 
     def generate_regional_article(self, item: Dict[str, Any],
@@ -138,13 +149,16 @@ class ArticleGenerator:
 
         title = self._generate_title(item, analysis, "regional")
 
+        # 使用格式化器优化排版
+        formatted_content = self._format_content(content, title, "regional")
+
         return {
             "title": title,
-            "content": content,
+            "content": formatted_content,
             "category": "regional",
             "source_item_id": item.get("url", ""),
             "keywords": self._generate_tags(item, analysis),
-            "summary": content[:200] + "..." if len(content) > 200 else content
+            "summary": formatted_content[:200] + "..." if len(formatted_content) > 200 else formatted_content
         }
 
     def _build_policy_prompt(self, item: Dict[str, Any],
@@ -443,3 +457,50 @@ class ArticleGenerator:
 
         # 默认项目
         return "余姚牟山玫瑰园"
+
+    def _format_content(self, content: str, title: str,
+                        article_type: str) -> str:
+        """
+        使用格式化器优化内容排版
+
+        Args:
+            content: 原始内容
+            title: 文章标题
+            article_type: 文章类型 (policy|market|regional)
+
+        Returns:
+            格式化后的内容
+        """
+        try:
+            # 导入格式化器
+            from realestate_news_formatter.formatter import format_article
+
+            # 根据文章类型选择风格
+            style_map = {
+                "policy": "wechat",
+                "market": "wechat",
+                "regional": "wechat"
+            }
+            style = style_map.get(article_type, "wechat")
+
+            # 格式化内容
+            formatted = format_article(
+                content=content,
+                title=title,
+                style=style,
+                options={
+                    "add_emoji": True,
+                    "add_disclaimer": True,
+                    "add_summary": True,
+                    "max_paragraph_length": 5,
+                    "highlight_data": True
+                }
+            )
+
+            logger.info(f"内容格式化成功：{title[:20]}...")
+            return formatted
+
+        except Exception as e:
+            logger.warning(f"格式化失败，使用原始内容：{e}")
+            # 格式化失败时返回原始内容
+            return content

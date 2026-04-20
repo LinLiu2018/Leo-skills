@@ -1,17 +1,19 @@
 ---
-name: email_automation_skill
-version: 1.0.0
-description: 邮件自动化技能，支持 Gmail/Outlook
+name: email-automation-skill
+description: 邮件自动化技能，支持 Gmail/Outlook。当用户需要自动化任务执行相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: automation
 author: openclaw
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - email automation
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Email Automation Skill

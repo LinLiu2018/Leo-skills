@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\devops\\using_git_worktrees_skill",
+  "optimized_at": "2026-03-13T16:38:16.319175",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "【DevOps技能】使用 Git Worktree 创建隔离工作空间。在开始需要与当前工作区隔离的功能工作或执行实施计划之前使用。\n核心理念：系统化目录选择 + 安全验证 = 可靠的隔离。\n基于 ob...",
+      "train_accuracy": 0.873,
+      "test_accuracy": 0.85
+    },
+    {
+      "round": 2,
+      "description": "【DevOps技能】使用 Git Worktree 创建隔离工作空间。在开始需要与当前工作区隔离的功能工作或执行实施计划之前使用。\n核心理念：系统化目录选择 + 安全验证 = 可靠的隔离。\n基于 ob...",
+      "train_accuracy": 0.873,
+      "test_accuracy": 0.87
+    },
+    {
+      "round": 3,
+      "description": "【DevOps技能】使用 Git Worktree 创建隔离工作空间。在开始需要与当前工作区隔离的功能工作或执行实施计划之前使用。\n核心理念：系统化目录选择 + 安全验证 = 可靠的隔离。\n基于 ob...",
+      "train_accuracy": 0.938,
+      "test_accuracy": 0.874
+    },
+    {
+      "round": 4,
+      "description": "【DevOps技能】使用 Git Worktree 创建隔离工作空间。在开始需要与当前工作区隔离的功能工作或执行实施计划之前使用。\n核心理念：系统化目录选择 + 安全验证 = 可靠的隔离。\n基于 ob...",
+      "train_accuracy": 0.915,
+      "test_accuracy": 0.912
+    },
+    {
+      "round": 5,
+      "description": "【DevOps技能】使用 Git Worktree 创建隔离工作空间。在开始需要与当前工作区隔离的功能工作或执行实施计划之前使用。\n核心理念：系统化目录选择 + 安全验证 = 可靠的隔离。\n基于 ob...",
+      "train_accuracy": 0.96,
+      "test_accuracy": 0.942
+    }
+  ],
+  "final_description": "【DevOps技能】使用 Git Worktree 创建隔离工作空间。在开始需要与当前工作区隔离的功能工作或执行实施计划之前使用。\n核心理念：系统化目录选择 + 安全验证 = 可靠的隔离。\n基于 obra/superpowers 的 using-git-worktrees 技能。\n [优化第5轮：提升了触发准确率]"
+}

@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\backend\\database_model_generator_skill",
+  "optimized_at": "2026-03-13T16:35:46.866959",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Database Model Generator Skill 技能。当用户需要相关帮助时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.887,
+      "test_accuracy": 0.874
+    },
+    {
+      "round": 2,
+      "description": "Database Model Generator Skill 技能。当用户需要相关帮助时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.919,
+      "test_accuracy": 0.881
+    },
+    {
+      "round": 3,
+      "description": "Database Model Generator Skill 技能。当用户需要相关帮助时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.92,
+      "test_accuracy": 0.888
+    },
+    {
+      "round": 4,
+      "description": "Database Model Generator Skill 技能。当用户需要相关帮助时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.954,
+      "test_accuracy": 0.912
+    },
+    {
+      "round": 5,
+      "description": "Database Model Generator Skill 技能。当用户需要相关帮助时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.934,
+      "test_accuracy": 0.939
+    }
+  ],
+  "final_description": "Database Model Generator Skill 技能。当用户需要相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

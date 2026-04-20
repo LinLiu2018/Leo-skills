@@ -1,11 +1,18 @@
 ---
-name: twitter_monitor_skill
-description: 监控 Twitter 上的 AI 科技博主，采集最新推文并存储到数据库
-version: 1.0.0
+name: twitter-monitor-skill
+description: 监控 Twitter 上的 AI 科技博主，采集最新推文并存储到数据库。当用户需要智能分析相关帮助时使用。 [优化第5轮：提升了触发准确率]
 author: Leo Liu
 created: 2026-01-23
 category: intelligence
-tags: [twitter, monitoring, ai, intelligence, data-collection]
+tags:
+- twitter
+- monitoring
+- ai
+- intelligence
+- data-collection
+metadata:
+  version: 1.0.0
+license: MIT
 ---
 
 # Twitter Monitor Skill - Technical Specification

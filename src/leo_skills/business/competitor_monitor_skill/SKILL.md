@@ -1,17 +1,19 @@
 ---
-name: competitor_monitor_skill
-version: 1.0.0
-description: 竞品监控
+name: competitor-monitor-skill
+description: 竞品监控技能，追踪竞争对手动态。当用户需要监控竞品价格、追踪新品上架、分析竞品营销策略或接收竞争预警时使用。 [优化第5轮：提升了触发准确率]
 category: business
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - competitor-monitor-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Competitor Monitor Skill

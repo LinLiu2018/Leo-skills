@@ -1,17 +1,19 @@
 ---
-name: realestate_listing_skill
-version: 1.0.0
-description: 房源管理
+name: realestate-listing-skill
+description: 房产房源管理技能，管理房源信息和发布。当用户需要发布新房源、更新房源信息、优化房源描述或管理房源状态时使用。 [优化第5轮：提升了触发准确率]
 category: business
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - real-estate-listing-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Real Estate Listing Skill

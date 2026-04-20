@@ -1,0 +1,10 @@
+evolution:
+  enabled: true
+  learning:
+    analysis_window: 100
+    min_executions_for_learning: 10
+  optimization:
+    auto_optimize: false
+    require_approval: true
+updated_at: '2026-03-13 13:40:44'
+version: 2.0.0

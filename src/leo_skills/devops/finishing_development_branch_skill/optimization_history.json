@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\devops\\finishing_development_branch_skill",
+  "optimized_at": "2026-03-13T16:38:16.260946",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "【DevOps技能】完成开发分支。当实现完成、所有测试通过，需要决定如何集成工作时使用。\n核心理念：验证测试 → 呈现选项 → 执行选择 → 清理。\n基于 obra/superpowers 的 fin...",
+      "train_accuracy": 0.865,
+      "test_accuracy": 0.839
+    },
+    {
+      "round": 2,
+      "description": "【DevOps技能】完成开发分支。当实现完成、所有测试通过，需要决定如何集成工作时使用。\n核心理念：验证测试 → 呈现选项 → 执行选择 → 清理。\n基于 obra/superpowers 的 fin...",
+      "train_accuracy": 0.889,
+      "test_accuracy": 0.892
+    },
+    {
+      "round": 3,
+      "description": "【DevOps技能】完成开发分支。当实现完成、所有测试通过，需要决定如何集成工作时使用。\n核心理念：验证测试 → 呈现选项 → 执行选择 → 清理。\n基于 obra/superpowers 的 fin...",
+      "train_accuracy": 0.918,
+      "test_accuracy": 0.892
+    },
+    {
+      "round": 4,
+      "description": "【DevOps技能】完成开发分支。当实现完成、所有测试通过，需要决定如何集成工作时使用。\n核心理念：验证测试 → 呈现选项 → 执行选择 → 清理。\n基于 obra/superpowers 的 fin...",
+      "train_accuracy": 0.924,
+      "test_accuracy": 0.898
+    },
+    {
+      "round": 5,
+      "description": "【DevOps技能】完成开发分支。当实现完成、所有测试通过，需要决定如何集成工作时使用。\n核心理念：验证测试 → 呈现选项 → 执行选择 → 清理。\n基于 obra/superpowers 的 fin...",
+      "train_accuracy": 0.938,
+      "test_accuracy": 0.93
+    }
+  ],
+  "final_description": "【DevOps技能】完成开发分支。当实现完成、所有测试通过，需要决定如何集成工作时使用。\n核心理念：验证测试 → 呈现选项 → 执行选择 → 清理。\n基于 obra/superpowers 的 finishing-a-development-branch 技能。\n [优化第5轮：提升了触发准确率]"
+}

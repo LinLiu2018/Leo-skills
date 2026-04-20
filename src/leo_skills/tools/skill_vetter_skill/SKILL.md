@@ -1,20 +1,22 @@
 ---
-name: skill_vetter_skill
-version: 1.0.0
-description: 技能安全扫描器。扫描技能代码中的危险操作，检查网络请求、文件访问、系统命令，生成安全评分报告。
+name: skill-vetter-skill
+description: 技能安全扫描器。扫描技能代码中的危险操作，检查网络请求、文件访问、系统命令，生成安全评分报告。。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: Leo Liu
-user-invocable: true
-priority: 0
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 0
+  activation_keywords:
   - 技能扫描
   - 安全检查
   - vet skill
   - 扫描技能
   - 安全评估
-allowed-tools:
+  allowed-tools:
   - Read
   - Bash
+license: MIT
 ---
 
 # Skill Vetter Skill - 技能安全扫描器

@@ -1,6 +1,7 @@
 ---
-name: prompt_chaining_orchestrator_skill
-description: 将复杂任务分解为多个顺序步骤,通过提示词链提高准确性和可靠性
+name: prompt-chaining-orchestrator-skill
+description: 将复杂任务分解为多个顺序步骤,通过提示词链提高准确性和可靠性。当用户需要提示词工程相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
 ---
 
 # Prompt Chaining Orchestrator - 提示词链编排器
@@ -614,4 +615,3 @@ chain_b = [step1, validate, step2, step3]
 
 - [Prompt Chaining](https://claude.com/blog/best-practices-for-prompt-engineering)
 - [Building Effective Agents](https://www.anthropic.com/research/building-effective-agents)
-

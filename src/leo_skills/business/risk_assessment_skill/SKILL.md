@@ -1,17 +1,19 @@
 ---
-name: risk_assessment_skill
-version: 1.0.0
-description: 风险评估
+name: risk-assessment-skill
+description: 风险评估技能，评估房产业务风险。当用户需要评估投资风险、生成风险报告、制定风控策略或检查合规性时使用。 [优化第5轮：提升了触发准确率]
 category: business
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - risk-assessment-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Risk Assessment Skill

@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\collaboration\\receiving_code_review_skill",
+  "optimized_at": "2026-03-13T16:38:13.960840",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "【协作技能】接收代码审查反馈。在实现建议之前使用，特别是当反馈看起来不清楚或技术上可疑时。\n核心理念：验证后再实现。询问后再假设。技术正确性高于社交舒适度。\n基于 obra/superpowers 的...",
+      "train_accuracy": 0.872,
+      "test_accuracy": 0.839
+    },
+    {
+      "round": 2,
+      "description": "【协作技能】接收代码审查反馈。在实现建议之前使用，特别是当反馈看起来不清楚或技术上可疑时。\n核心理念：验证后再实现。询问后再假设。技术正确性高于社交舒适度。\n基于 obra/superpowers 的...",
+      "train_accuracy": 0.874,
+      "test_accuracy": 0.867
+    },
+    {
+      "round": 3,
+      "description": "【协作技能】接收代码审查反馈。在实现建议之前使用，特别是当反馈看起来不清楚或技术上可疑时。\n核心理念：验证后再实现。询问后再假设。技术正确性高于社交舒适度。\n基于 obra/superpowers 的...",
+      "train_accuracy": 0.92,
+      "test_accuracy": 0.883
+    },
+    {
+      "round": 4,
+      "description": "【协作技能】接收代码审查反馈。在实现建议之前使用，特别是当反馈看起来不清楚或技术上可疑时。\n核心理念：验证后再实现。询问后再假设。技术正确性高于社交舒适度。\n基于 obra/superpowers 的...",
+      "train_accuracy": 0.932,
+      "test_accuracy": 0.904
+    },
+    {
+      "round": 5,
+      "description": "【协作技能】接收代码审查反馈。在实现建议之前使用，特别是当反馈看起来不清楚或技术上可疑时。\n核心理念：验证后再实现。询问后再假设。技术正确性高于社交舒适度。\n基于 obra/superpowers 的...",
+      "train_accuracy": 0.969,
+      "test_accuracy": 0.939
+    }
+  ],
+  "final_description": "【协作技能】接收代码审查反馈。在实现建议之前使用，特别是当反馈看起来不清楚或技术上可疑时。\n核心理念：验证后再实现。询问后再假设。技术正确性高于社交舒适度。\n基于 obra/superpowers 的 receiving-code-review 技能。\n [优化第5轮：提升了触发准确率]"
+}

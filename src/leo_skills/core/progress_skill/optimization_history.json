@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\core\\progress_skill",
+  "optimized_at": "2026-03-13T16:38:16.066824",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Show progress through EXECUTION_PLAN.md and feature plans. Use to check completion status and identi...",
+      "train_accuracy": 0.876,
+      "test_accuracy": 0.87
+    },
+    {
+      "round": 2,
+      "description": "Show progress through EXECUTION_PLAN.md and feature plans. Use to check completion status and identi...",
+      "train_accuracy": 0.913,
+      "test_accuracy": 0.859
+    },
+    {
+      "round": 3,
+      "description": "Show progress through EXECUTION_PLAN.md and feature plans. Use to check completion status and identi...",
+      "train_accuracy": 0.928,
+      "test_accuracy": 0.891
+    },
+    {
+      "round": 4,
+      "description": "Show progress through EXECUTION_PLAN.md and feature plans. Use to check completion status and identi...",
+      "train_accuracy": 0.94,
+      "test_accuracy": 0.902
+    },
+    {
+      "round": 5,
+      "description": "Show progress through EXECUTION_PLAN.md and feature plans. Use to check completion status and identi...",
+      "train_accuracy": 0.939,
+      "test_accuracy": 0.923
+    }
+  ],
+  "final_description": "Show progress through EXECUTION_PLAN.md and feature plans. Use to check completion status and identify remaining work.。当用户需要核心功能相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

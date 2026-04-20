@@ -1,8 +1,11 @@
 ---
 name: update-docs
-description: Update documentation after commits. Syncs README, AGENTS.md, CHANGELOG, and docs/ with code changes. Use after commits or to analyze working tree changes.
-argument-hint: [commit-range|--working-tree|--audit]
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash, AskUserQuestion
+description: Update documentation after commits. Syncs README, AGENTS.md, CHANGELOG, and docs/ with code changes. Use after commits or to analyze working tree changes.。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
+argument-hint:
+- commit-range|--working-tree|--audit
+metadata:
+  allowed-tools: Read, Write, Edit, Glob, Grep, Bash, AskUserQuestion
+license: MIT
 ---
 
 # Update Documentation

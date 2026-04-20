@@ -8,5 +8,50 @@
     }
   ],
   "learned_tips": [],
-  "learned_errors": []
+  "learned_errors": [
+    {
+      "message": "Failed to convert None: a bytes-like object is required, not 'str'",
+      "timestamp": "2026-03-14T08:51:08.114906"
+    },
+    {
+      "message": "Failed to convert None: a bytes-like object is required, not 'str'",
+      "timestamp": "2026-03-14T08:51:25.691178"
+    },
+    {
+      "message": "Failed to convert None: a bytes-like object is required, not 'str'",
+      "timestamp": "2026-03-14T12:02:14.691477"
+    },
+    {
+      "message": "Failed to convert None: a bytes-like object is required, not 'str'",
+      "timestamp": "2026-03-14T16:02:01.539526"
+    },
+    {
+      "message": "Failed to convert None: a bytes-like object is required, not 'str'",
+      "timestamp": "2026-03-14T20:10:48.310477"
+    },
+    {
+      "message": "Failed to convert None: a bytes-like object is required, not 'str'",
+      "timestamp": "2026-03-15T00:02:30.082871"
+    },
+    {
+      "message": "Failed to convert None: a bytes-like object is required, not 'str'",
+      "timestamp": "2026-03-15T04:03:59.595220"
+    },
+    {
+      "message": "Failed to convert None: a bytes-like object is required, not 'str'",
+      "timestamp": "2026-03-15T08:10:20.396622"
+    },
+    {
+      "message": "Failed to convert None: a bytes-like object is required, not 'str'",
+      "timestamp": "2026-03-15T12:03:08.580302"
+    },
+    {
+      "message": "Failed to convert None: a bytes-like object is required, not 'str'",
+      "timestamp": "2026-03-15T16:02:54.413232"
+    },
+    {
+      "message": "Failed to convert None: a bytes-like object is required, not 'str'",
+      "timestamp": "2026-03-15T16:04:38.904162"
+    }
+  ]
 }

@@ -1,0 +1,24 @@
+{
+  "id": "38f4a87ec7ea",
+  "metadata": {
+    "name": "test-plugin",
+    "version": "1.0.0",
+    "description": "Test plugin",
+    "author": "Test Author",
+    "category": "utility",
+    "tags": [
+      "test",
+      "utility"
+    ],
+    "homepage": null,
+    "repository": null,
+    "license": "MIT",
+    "dependencies": {},
+    "created_at": "2026-03-10T12:40:56.126423",
+    "updated_at": "2026-03-10T12:40:56.126423"
+  },
+  "status": "published",
+  "downloads": 0,
+  "rating": 0.0,
+  "reviews": 0
+}

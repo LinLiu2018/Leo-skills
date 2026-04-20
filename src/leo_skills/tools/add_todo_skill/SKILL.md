@@ -1,7 +1,9 @@
 ---
 name: add-todo
-description: Add a properly formatted TODO item to TODOS.md. Use when you need to capture a new task, bug, or feature request during development.
-allowed-tools: Read, Write, Edit, AskUserQuestion
+description: Add a properly formatted TODO item to TODOS.md. Use when you need to capture a new task, bug, or feature request during development.。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
+metadata:
+  allowed-tools: Read, Write, Edit, AskUserQuestion
+license: MIT
 ---
 
 # Add TODO Skill

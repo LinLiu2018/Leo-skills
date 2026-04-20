@@ -16,7 +16,7 @@ from collections import defaultdict, deque
 
 import yaml
 from dotenv import load_dotenv
-from fastapi import Depends, FastAPI, Header, HTTPException, Request, Response
+from fastapi import Depends, FastAPI, Header, HTTPException, Request, Response, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
@@ -823,6 +823,132 @@ async def delete_conversation(conversation_id: int) -> ApiResponse:
         raise HTTPException(status_code=404, detail='Conversation not found')
     del CONVERSATIONS[conversation_id]
     return ApiResponse(success=True, message='Conversation deleted')
+
+
+# ==================== WebSocket 支持 ====================
+
+class ConnectionManager:
+    """WebSocket 连接管理器"""
+
+    def __init__(self):
+        self.active_connections: dict[str, WebSocket] = {}
+
+    async def connect(self, websocket: WebSocket, client_id: str):
+        await websocket.accept()
+        self.active_connections[client_id] = websocket
+        logger.info(f"WebSocket client connected: {client_id}")
+
+    def disconnect(self, client_id: str):
+        if client_id in self.active_connections:
+            del self.active_connections[client_id]
+            logger.info(f"WebSocket client disconnected: {client_id}")
+
+    async def send_message(self, client_id: str, message: dict):
+        if client_id in self.active_connections:
+            await self.active_connections[client_id].send_json(message)
+
+    async def broadcast(self, message: dict):
+        for connection in self.active_connections.values():
+            await connection.send_json(message)
+
+
+manager = ConnectionManager()
+
+
+@app.websocket('/ws/{client_id}')
+async def websocket_endpoint(websocket: WebSocket, client_id: str):
+    """WebSocket 实时通信端点"""
+    await manager.connect(websocket, client_id)
+    try:
+        while True:
+            data = await websocket.receive_json()
+            msg_type = data.get('type', 'unknown')
+
+            if msg_type == 'ping':
+                await manager.send_message(client_id, {'type': 'pong'})
+            elif msg_type == 'execute':
+                # 异步执行任务
+                result = await execute_skill_async(data.get('skill'), data.get('params', {}))
+                await manager.send_message(client_id, {'type': 'result', 'data': result})
+            elif msg_type == 'subscribe':
+                # 订阅事件
+                logger.info(f"Client {client_id} subscribed to {data.get('event')}")
+
+    except WebSocketDisconnect:
+        manager.disconnect(client_id)
+    except Exception as e:
+        logger.error(f"WebSocket error: {e}")
+        manager.disconnect(client_id)
+
+
+async def execute_skill_async(skill_name: str, params: dict) -> dict:
+    """异步执行 Skill"""
+    try:
+        from leo_orchestrator.api import get_leo_api
+        api = get_leo_api()
+        result = api.call(skill_name, params.get('action', 'execute'), **params)
+        return {'success': True, 'result': result}
+    except Exception as e:
+        return {'success': False, 'error': str(e)}
+
+
+# ==================== 限流中间件 ====================
+
+from collections import defaultdict
+from time import time
+from typing import Callable
+
+class RateLimiter:
+    """简单的内存限流器"""
+
+    def __init__(self, requests_per_minute: int = 60):
+        self.requests_per_minute = requests_per_minute
+        self.requests: defaultdict[str, list] = defaultdict(list)
+
+    def is_allowed(self, key: str) -> bool:
+        """检查请求是否允许"""
+        now = time()
+        minute_ago = now - 60
+
+        # 清理旧请求
+        self.requests[key] = [t for t in self.requests[key] if t > minute_ago]
+
+        if len(self.requests[key]) >= self.requests_per_minute:
+            return False
+
+        self.requests[key].append(now)
+        return True
+
+
+# 全局限流器
+execute_limiter = RateLimiter(120)
+write_limiter = RateLimiter(60)
+
+
+@app.middleware('http')
+async def rate_limit_middleware(request: Request, call_next: Callable):
+    """请求限流中间件"""
+    # 跳过 WebSocket 和健康检查
+    if request.url.path.startswith('/ws') or request.url.path == '/api/system/health':
+        return await call_next(request)
+
+    # 获取客户端标识
+    client_id = request.client.host if request.client else 'unknown'
+
+    # 根据路径选择限流器
+    if request.url.path.startswith('/api/'):
+        if request.method in ['POST', 'PUT', 'DELETE']:
+            limiter = write_limiter
+        else:
+            limiter = execute_limiter
+
+        if not limiter.is_allowed(client_id):
+            return JSONResponse(
+                status_code=429,
+                content={'success': False, 'error': 'Rate limit exceeded'}
+            )
+
+    return await call_next(request)
 
 
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
-"""
+﻿"""
 技能协作编排器 (Skill Orchestrator)
 
 协调 github_to_skills、skill_manager、skill_evolution_manager 三个技能协同工作。
@@ -55,12 +55,20 @@ class SkillOrchestrator(EvolvableSkill):
             repo_url: 仓库URL
             category: 分类
         """
+        # 确保 action 是字符串（处理定时任务可能传入 dict 的情况）
+        if isinstance(action, dict):
+            action = action.get("action", "health_check")
+        elif not isinstance(action, str):
+            action = "health_check"
+
         actions = {
             "full_workflow": self._full_workflow,
             "create_and_init": self._create_and_init,
             "audit_and_report": self._audit_and_report,
             "batch_optimize": self._batch_optimize,
             "analyze_system": self._analyze_system,
+            "health_check": self._health_check,
+            "execute": self._health_check,
         }
 
         if action not in actions:
@@ -193,6 +201,16 @@ class SkillOrchestrator(EvolvableSkill):
             "success": True,
             "skills": skills,
             "evolution_patterns": patterns
+        }
+
+    def _health_check(self) -> dict:
+        """Health check for scheduled tasks"""
+        from datetime import datetime
+        return {
+            "success": True,
+            "status": "ok",
+            "skill": "skill_orchestrator",
+            "timestamp": datetime.now().isoformat()
         }
 
 

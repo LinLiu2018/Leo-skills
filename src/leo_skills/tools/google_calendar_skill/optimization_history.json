@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\tools\\google_calendar_skill",
+  "optimized_at": "2026-03-13T16:38:21.681172",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Google 日历管理。当用户需要工具集成相关帮助时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.888,
+      "test_accuracy": 0.866
+    },
+    {
+      "round": 2,
+      "description": "Google 日历管理。当用户需要工具集成相关帮助时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.908,
+      "test_accuracy": 0.852
+    },
+    {
+      "round": 3,
+      "description": "Google 日历管理。当用户需要工具集成相关帮助时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.93,
+      "test_accuracy": 0.905
+    },
+    {
+      "round": 4,
+      "description": "Google 日历管理。当用户需要工具集成相关帮助时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.91,
+      "test_accuracy": 0.907
+    },
+    {
+      "round": 5,
+      "description": "Google 日历管理。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.944,
+      "test_accuracy": 0.926
+    }
+  ],
+  "final_description": "Google 日历管理。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

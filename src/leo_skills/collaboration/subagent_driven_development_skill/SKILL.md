@@ -1,19 +1,26 @@
 ---
-name: subagent_driven_development_skill
-version: "1.0.0"
-description: |
-  【协作技能】子代理驱动开发。在当前会话中执行具有独立任务的实施计划时使用。
+name: subagent-driven-development-skill
+description: 【协作技能】子代理驱动开发。在当前会话中执行具有独立任务的实施计划时使用。
+核心理念：每个任务一个新子代理 + 两阶段审查（先规范符合性，再代码质量）= 高质量、快速迭代。
+基于 obra/superpowers 的 subagent-driven-development 技能。
+ [优化第5轮：提升了触发准确率]
+
   核心理念：每个任务一个新子代理 + 两阶段审查（先规范符合性，再代码质量）= 高质量、快速迭代。
+
   基于 obra/superpowers 的 subagent-driven-development 技能。
+
+  '
 category: collaboration
 author: Leo AI System (基于 obra/superpowers)
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - 子代理开发
   - 子代理驱动
   - subagent-driven
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Edit
@@ -22,6 +29,7 @@ allowed-tools:
   - Grep
   - Task
   - TodoWrite
+license: MIT
 ---
 
 # 子代理驱动开发（Subagent-Driven Development）

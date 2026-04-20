@@ -1,17 +1,19 @@
 ---
-name: vapi_integration_skill
-version: 1.0.0
-description: Vapi 语音 AI 集成
+name: vapi-integration-skill
+description: Vapi 语音 AI 集成。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: openclaw
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - vapi integration
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Vapi Integration Skill

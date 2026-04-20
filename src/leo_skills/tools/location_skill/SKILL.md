@@ -1,17 +1,19 @@
 ---
-name: location_skill
-version: 1.0.0
-description: 位置服务
+name: location-skill
+description: 位置服务。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - location-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Location Skill

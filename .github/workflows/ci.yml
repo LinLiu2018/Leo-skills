@@ -1,11 +1,11 @@
-﻿# Leo AI System CI/CD
-# 简化版配置 - 符合务实优先原则
+# Leo AI System CI/CD Pipeline
+# 优化版 - 包含完整测试、类型检查、安全审计
 
 name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
   pull_request:
     branches: [main]
 
@@ -13,48 +13,128 @@ env:
   PYTHON_VERSION: '3.11'
 
 jobs:
-  test:
-    name: 测试与检查
+  # 代码质量检查
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
-
     steps:
-      - name: 检出代码
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: 设置 Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: 'pip'
 
-      - name: 安装依赖
+      - name: Install lint tools
+        run: pip install ruff black isort
+
+      - name: Check with ruff
+        run: ruff check src/ tests/
+
+      - name: Check with ruff format
+        run: ruff format --check src/ tests/
+
+      - name: Check with black
+        run: black --check src/ tests/
+
+      - name: Check imports with isort
+        run: isort --check src/ tests/
+
+  # 类型检查
+  type-check:
+    name: Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install -e ".[dev]"
+          pip install -r requirements.txt
+          pip install mypy types-requests types-PyYAML types-beautifulsoup4
 
-      - name: 结构校验
-        run: python scripts/development/validate_structure.py
+      - name: Run mypy
+        run: mypy src/ --ignore-missing-imports --no-error-summary
 
-      - name: 命名校验
-        run: python scripts/development/validate_naming.py
+  # 测试
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: 敏感文件检查
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install dependencies
         run: |
-          if git diff --cached --name-only | grep -E '\.(env|db|sqlite)$'; then
-            echo "错误：检测到敏感文件"
-            exit 1
-          fi
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
 
-      - name: 代码格式检查
-        run: |
-          black --check . || echo "⚠️ 代码格式需要调整"
-          isort --check-only . || echo "⚠️ 导入排序需要调整"
+      - name: Run tests
+        run: pytest tests/ -v --tb=short --cov=src --cov-report=xml --cov-report=term-missing
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        with:
+          file: ./coverage.xml
         continue-on-error: true
 
-      - name: 运行测试
-        run: pytest tests/ -v --tb=short
+  # 安全审计
+  security:
+    name: Security
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: 测试摘要
-        if: always()
-        run: echo "✅ CI 流程完成"
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
 
+      - name: Install audit tools
+        run: pip install safety pip-audit
+
+      - name: Check dependencies
+        run: pip-audit
+
+  # 构建
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: [lint, type-check, test, security]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install build
+        run: pip install build
+
+      - name: Build package
+        run: python -m build
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/

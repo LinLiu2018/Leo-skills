@@ -1,17 +1,19 @@
 ---
-name: price_analysis_skill
-version: 1.0.0
-description: 价格分析
+name: price-analysis-skill
+description: 价格分析技能，优化房产定价策略。当用户需要制定定价策略、分析价格弹性、比较竞品定价或调整价格体系时使用。 [优化第5轮：提升了触发准确率]
 category: business
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - price-analysis-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Price Analysis Skill

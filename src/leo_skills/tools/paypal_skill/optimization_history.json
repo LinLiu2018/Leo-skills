@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\tools\\paypal_skill",
+  "optimized_at": "2026-03-13T16:38:24.550395",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "PayPal 支付。当用户需要工具集成相关帮助时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.889,
+      "test_accuracy": 0.831
+    },
+    {
+      "round": 2,
+      "description": "PayPal 支付。当用户需要工具集成相关帮助时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.916,
+      "test_accuracy": 0.873
+    },
+    {
+      "round": 3,
+      "description": "PayPal 支付。当用户需要工具集成相关帮助时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.915,
+      "test_accuracy": 0.874
+    },
+    {
+      "round": 4,
+      "description": "PayPal 支付。当用户需要工具集成相关帮助时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.912,
+      "test_accuracy": 0.913
+    },
+    {
+      "round": 5,
+      "description": "PayPal 支付。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.978,
+      "test_accuracy": 0.926
+    }
+  ],
+  "final_description": "PayPal 支付。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

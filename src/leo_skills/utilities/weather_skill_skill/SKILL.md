@@ -1,17 +1,19 @@
 ---
-name: weather_skill_skill
-version: 1.0.0
-description: 天气查询技能，支持全球城市
+name: weather-skill-skill
+description: 天气查询技能，支持全球城市。当用户需要实用工具相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: utilities
 author: openclaw
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - weather skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Weather Skill

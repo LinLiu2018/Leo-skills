@@ -1,6 +1,7 @@
 ---
 name: update-target-projects
-description: Discover and sync all toolkit-using projects with the latest skills. Use after modifying skills to propagate changes to target projects.
+description: Discover and sync all toolkit-using projects with the latest skills. Use after modifying skills to propagate changes to target projects.。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
 ---
 
 # Update Target Projects

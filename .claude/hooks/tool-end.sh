@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
-# ToolEnd Hook - 工具执行后触发
+# PostToolUse Hook - 工具执行后触发
+# Claude Code 通过 stdin 传递 JSON 数据
 
-# 获取工具名称和执行结果
-TOOL_NAME="$1"
-RESULT="$2"
+INPUT=$(cat)
+TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name // empty')
+COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
 
-# 记录日志
-echo "$(date '+%Y-%m-%d %H:%M:%S') - ToolEnd: $TOOL_NAME (exit: $?)" >> .claude/hooks/logs/tool_end.log
+if [ -n "$TOOL_NAME" ]; then
+  echo "$(date '+%Y-%m-%d %H:%M:%S') - PostToolUse: $TOOL_NAME" >> .claude/hooks/logs/tool_end.log
+fi
 
 exit 0

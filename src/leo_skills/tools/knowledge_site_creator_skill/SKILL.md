@@ -1,21 +1,23 @@
 ---
-name: knowledge_site_creator_skill
-version: 1.0.0
-description: 知识学习网站创建技能。一句话生成知识学习网站，支持词根记忆、历史脉络、设计原则等主题。
+name: knowledge-site-creator-skill
+description: 知识学习网站创建技能。一句话生成知识学习网站，支持词根记忆、历史脉络、设计原则等主题。。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: joeseesun (集成：Leo Liu)
-user-invocable: true
-priority: 0
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 0
+  activation_keywords:
   - 知识网站
   - 学习网站
   - knowledge site
   - 词根记忆
   - 历史脉络
-allowed-tools:
+  allowed-tools:
   - Web Fetch
   - Web Search
   - Write
+license: MIT
 ---
 
 # Knowledge Site Creator Skill

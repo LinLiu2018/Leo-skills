@@ -1,17 +1,19 @@
 ---
-name: notion_connector_skill
-version: 1.0.0
-description: Notion 连接器，读写 Notion 数据库
+name: notion-connector-skill
+description: Notion 连接器，管理 Notion 数据库和页面。当用户需要同步 Notion 数据、创建页面、管理数据库或生成报告时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - notion connector
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Notion Connector Skill

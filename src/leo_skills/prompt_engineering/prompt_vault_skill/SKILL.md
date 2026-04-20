@@ -1,23 +1,25 @@
 ---
-name: prompt_vault_skill
-description: 提示词库管理技能 - 保存、版本控制、标签分类、搜索和Obsidian同步
-version: "1.0.0"
+name: prompt-vault-skill
+description: 提示词库管理技能 - 保存、版本控制、标签分类、搜索和Obsidian同步。当用户需要提示词工程相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: prompt_engineering
 triggers:
-  - 保存prompt
-  - 保存提示词
-  - 提示词库
-  - 管理提示词
-  - prompt vault
-  - 导出提示词
+- 保存prompt
+- 保存提示词
+- 提示词库
+- 管理提示词
+- prompt vault
+- 导出提示词
 actions:
-  - save
-  - search
-  - list
-  - get
-  - update
-  - export_to_obsidian
-  - import_presets
+- save
+- search
+- list
+- get
+- update
+- export_to_obsidian
+- import_presets
+metadata:
+  version: 1.0.0
+license: MIT
 ---
 
 # Prompt Vault Skill - 提示词库管理

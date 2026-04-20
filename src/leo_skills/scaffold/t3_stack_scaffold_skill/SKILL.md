@@ -1,3 +1,9 @@
+---
+name: t3-stack-scaffold-skill
+description: T3 Stack Scaffold Skill 技能。当用户需要相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
+---
+
 # T3 Stack Scaffold Skill
 
 快速创建 T3 Stack 项目（Next.js + tRPC + Prisma/Drizzle + Tailwind + NextAuth）

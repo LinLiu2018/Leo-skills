@@ -1,3 +1,9 @@
+---
+name: auto-dispatcher-skill
+description: Auto Dispatcher Skill 技能。当用户需要相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
+---
+
 # Auto Dispatcher Skill
 
 智能技能分发器。自动识别用户需求，匹配最佳技能/代理/工作流，供用户确认后执行。

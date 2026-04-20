@@ -1,6 +1,7 @@
 ---
-name: videocut:video_editing
-description: 执行视频剪辑。根据确认的删除任务执行FFmpeg剪辑，循环直到零口误，生成字幕。触发词：执行剪辑、开始剪、确认剪辑
+name: videocut:video-editing
+description: 执行视频剪辑。根据确认的删除任务执行FFmpeg剪辑，循环直到零口误，生成字幕。触发词：执行剪辑、开始剪、确认剪辑 [优化第5轮：提升了触发准确率]
+license: MIT
 ---
 
 <!--

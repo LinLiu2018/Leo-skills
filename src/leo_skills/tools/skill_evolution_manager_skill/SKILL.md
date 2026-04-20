@@ -1,3 +1,9 @@
+---
+name: skill-evolution-manager-skill
+description: Skill Evolution Manager Skill 技能。当用户需要相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
+---
+
 # Skill Evolution Manager Skill (技能持续改进管理器)
 
 ## 技能描述

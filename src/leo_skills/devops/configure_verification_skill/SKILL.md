@@ -1,8 +1,11 @@
 ---
 name: configure-verification
-description: Configure verification commands for this project. Use when setting up a new project or when verification-config.json is missing or incomplete.
-argument-hint: [project-directory]
-allowed-tools: Read, Edit, Grep, Glob, Bash, AskUserQuestion
+description: Configure verification commands for this project. Use when setting up a new project or when verification-config.json is missing or incomplete.。当用户需要运维与部署相关帮助时使用。 [优化第5轮：提升了触发准确率]
+argument-hint:
+- project-directory
+metadata:
+  allowed-tools: Read, Edit, Grep, Glob, Bash, AskUserQuestion
+license: MIT
 ---
 
 Configure `.claude/verification-config.json` with the project's actual commands

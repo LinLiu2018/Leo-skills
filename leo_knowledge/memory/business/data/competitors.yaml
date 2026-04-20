@@ -1,0 +1,28 @@
+# 竞品楼盘档案
+# 更新时间: 2026-04-19
+# 维护: AI 每周抓取竞品动态更新，人工复核
+
+villa_competitors:
+  - id: "VC001"
+    name: "[竞品楼盘名]"
+    district: "[区域]"
+    unit_price: "[均价]"
+    strengths:
+      - "[对手优势1]"
+    weaknesses:
+      - "[对手劣势1]"
+    our_differentiation: "[佬流地产的差异化点]"
+    last_updated: "2026-04-19"
+
+residential_competitors: []
+commercial_competitors: []
+
+# ===================
+# 竞品中介（不是楼盘，是同行中介公司）
+# ===================
+agent_competitors:
+  - name: "[竞品中介公司名]"
+    threat_level: "高"
+    active_districts: ["[他们主做的区域]"]
+    strengths: ["[他们的优势]"]
+    our_counter: "[我们的反制策略]"

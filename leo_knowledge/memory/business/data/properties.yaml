@@ -1,0 +1,77 @@
+# 在售楼盘数据
+# 更新时间: 2026-04-19
+# 维护: 有新项目/项目下架时老板更新
+
+# ===================
+# 别墅项目
+# ===================
+villa_projects:
+  - id: "V001"
+    name: "[待填楼盘名]"
+    district: "[区域]"
+    unit_price: "[均价]"
+    total_price_range: "[总价区间]"
+    highlights:
+      - "[卖点1]"
+      - "[卖点2]"
+      - "[卖点3]"
+    target_customer: "[目标客户画像]"
+    priority: "P0"              # P0=主推 / P1=常规 / P2=尾盘
+    sales_stage: "热销期"       # 蓄水期 / 开盘 / 热销期 / 尾盘
+    talking_points:              # 带看话术钩子
+      - "[话术1]"
+      - "[话术2]"
+    common_objections:           # 常见异议
+      - objection: "价格太高"
+        response: "[应对话术]"
+      - objection: "交付时间长"
+        response: "[应对话术]"
+
+# ===================
+# 住宅项目
+# ===================
+residential_projects:
+  - id: "R001"
+    name: "[待填楼盘名]"
+    district: "[区域]"
+    unit_price: "[均价]"
+    total_price_range: "[总价区间]"
+    highlights:
+      - "[卖点1]"
+      - "[卖点2]"
+      - "[卖点3]"
+    target_customer: "[目标客户画像]"
+    priority: "P0"
+    sales_stage: "热销期"
+    talking_points:
+      - "[话术1]"
+      - "[话术2]"
+
+# ===================
+# 商业项目
+# ===================
+commercial_projects:
+  - id: "C001"
+    name: "[待填楼盘名]"
+    type: "商铺"               # 商铺 / 写字楼 / 公寓 / 菜市场
+    district: "[区域]"
+    unit_price: "[均价]"
+    highlights:
+      - "[卖点1]"
+    target_customer: "[目标客户画像]"
+    priority: "P0"
+    sales_stage: "热销期"
+    expected_rental_yield: "[预期租金回报率]"
+
+# ===================
+# 租赁房源
+# ===================
+leasing_properties:
+  - id: "L001"
+    name: "[待填楼盘名]"
+    type: "商铺"
+    district: "[区域]"
+    monthly_rent: "[月租金]"
+    area_sqm: "[面积]"
+    available: true
+    target_tenant: "[目标租客画像]"

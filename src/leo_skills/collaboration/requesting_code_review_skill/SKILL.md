@@ -1,19 +1,26 @@
 ---
-name: requesting_code_review_skill
-version: "1.0.0"
-description: |
-  【协作技能】请求代码审查。在完成任务、实现主要功能或合并之前使用，以验证工作是否符合要求。
+name: requesting-code-review-skill
+description: 【协作技能】请求代码审查。在完成任务、实现主要功能或合并之前使用，以验证工作是否符合要求。
+核心理念：早审查，常审查。
+基于 obra/superpowers 的 requesting-code-review 技能。
+。当用户需要协作与沟通相关帮助时使用。 [优化第5轮：提升了触发准确率]
+
   核心理念：早审查，常审查。
+
   基于 obra/superpowers 的 requesting-code-review 技能。
+
+  。当用户需要协作与沟通相关帮助时使用。'
 category: collaboration
 author: Leo AI System (基于 obra/superpowers)
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - 代码审查
   - 请求审查
   - code-review
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Edit
@@ -21,6 +28,7 @@ allowed-tools:
   - Glob
   - Grep
   - Task
+license: MIT
 ---
 
 # 请求代码审查（Requesting Code Review）

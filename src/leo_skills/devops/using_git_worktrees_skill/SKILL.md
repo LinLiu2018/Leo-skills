@@ -1,27 +1,35 @@
 ---
-name: using_git_worktrees_skill
-version: "1.0.0"
-description: |
-  【DevOps技能】使用 Git Worktree 创建隔离工作空间。在开始需要与当前工作区隔离的功能工作或执行实施计划之前使用。
+name: using-git-worktrees-skill
+description: 【DevOps技能】使用 Git Worktree 创建隔离工作空间。在开始需要与当前工作区隔离的功能工作或执行实施计划之前使用。
+核心理念：系统化目录选择 + 安全验证 = 可靠的隔离。
+基于 obra/superpowers 的 using-git-worktrees 技能。
+ [优化第5轮：提升了触发准确率]
+
   核心理念：系统化目录选择 + 安全验证 = 可靠的隔离。
+
   基于 obra/superpowers 的 using-git-worktrees 技能。
+
+  '
 category: devops
 author: Leo AI System (基于 obra/superpowers)
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - git worktree
   - 创建工作区
   - 隔离工作空间
   - 切换分支
   - git-worktrees
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Edit
   - Bash
   - Glob
   - Grep
+license: MIT
 ---
 
 # 使用 Git Worktree（Using Git Worktrees）

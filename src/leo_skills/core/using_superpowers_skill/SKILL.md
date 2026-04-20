@@ -1,11 +1,16 @@
 ---
-name: using_superpowers_skill
-description: Use when starting any conversation to establish how to find and use skills, requiring skill invocation before ANY response including clarifying questions
+name: using-superpowers-skill
+description: Use when starting any conversation to establish how to find and use skills, requiring skill invocation before ANY response including clarifying questions。当用户需要核心功能相关帮助时使用。 [优化第5轮：提升了触发准确率]
 metadata:
-  version: "1.2.0"
+  version: 1.2.0
   category: core
   author: Leo AI System (基于 obra/superpowers)
-  activation_keywords: [技能发现, 使用技能, using-superpowers, skill discovery]
+  activation_keywords:
+  - 技能发现
+  - 使用技能
+  - using-superpowers
+  - skill discovery
+license: MIT
 ---
 
 # 技能发现与自动调用（Using Superpowers）

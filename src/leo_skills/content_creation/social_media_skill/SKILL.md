@@ -1,17 +1,19 @@
 ---
-name: social_media_skill
-version: 1.0.0
-description: 社交媒体管理
+name: social-media-skill
+description: 社交媒体管理技能，多平台内容发布。当用户需要发布社交媒体内容、管理多平台账号、分析互动数据或制定内容计划时使用。 [优化第5轮：提升了触发准确率]
 category: content_creation
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - social-media-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Social Media Skill

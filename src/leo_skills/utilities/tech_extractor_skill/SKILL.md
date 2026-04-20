@@ -1,3 +1,9 @@
+---
+name: tech-extractor-skill
+description: Tech Extractor Skill 技能。当用户需要相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
+---
+
 # Tech Extractor Skill (技术提取技能)
 
 ## 技能描述

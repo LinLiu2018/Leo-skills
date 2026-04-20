@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\utilities\\pdf_generator_skill",
+  "optimized_at": "2026-03-13T16:38:29.074705",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "PDF 文档生成。当用户需要实用工具相关帮助时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.897,
+      "test_accuracy": 0.853
+    },
+    {
+      "round": 2,
+      "description": "PDF 文档生成。当用户需要实用工具相关帮助时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.911,
+      "test_accuracy": 0.891
+    },
+    {
+      "round": 3,
+      "description": "PDF 文档生成。当用户需要实用工具相关帮助时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.908,
+      "test_accuracy": 0.919
+    },
+    {
+      "round": 4,
+      "description": "PDF 文档生成。当用户需要实用工具相关帮助时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.924,
+      "test_accuracy": 0.937
+    },
+    {
+      "round": 5,
+      "description": "PDF 文档生成。当用户需要实用工具相关帮助时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.955,
+      "test_accuracy": 0.952
+    }
+  ],
+  "final_description": "PDF 文档生成。当用户需要实用工具相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

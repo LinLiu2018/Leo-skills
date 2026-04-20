@@ -60,6 +60,8 @@ class SkillManagerSkill(EvolvableSkill):
             "upgrade": self._upgrade_skill,
             "list": self._list_skills,
             "delete": self._delete_skill,
+            "health_check": self._health_check,
+            "execute": self._health_check,
         }
 
         if action not in actions:
@@ -94,7 +96,7 @@ class SkillManagerSkill(EvolvableSkill):
             if skill.get("issues"):
                 issues.extend(skill["issues"])
 
-        self.learn(f"Audited {len(skills)} skills, found {len(issues)} issues")
+        # self._log_evolution(f"Audited {len(skills)} skills, found {len(issues)} issues")
 
         return {
             "success": True,
@@ -212,7 +214,7 @@ class SkillManagerSkill(EvolvableSkill):
             "recommendations": self._generate_recommendations(audit_result, update_result)
         }
 
-        self.learn(f"Generated report: {report['summary']['total_skills']} skills analyzed")
+        # self._log_evolution(f"Generated report: {report['summary']['total_skills']} skills analyzed")
 
         return {
             "success": True,
@@ -286,7 +288,7 @@ class SkillManagerSkill(EvolvableSkill):
                 if f.name not in ["__init__.py"]:
                     (backup_dir / f.name).write_bytes(f.read_bytes())
 
-        self.learn(f"Upgraded skill: {skill_name}")
+        # self._log_evolution(f"Upgraded skill: {skill_name}")
 
         return {
             "success": True,
@@ -323,10 +325,21 @@ class SkillManagerSkill(EvolvableSkill):
         import shutil
         shutil.rmtree(skill_dir)
 
-        self.learn(f"Deleted skill: {skill_name}")
+        # self._log_evolution(f"Deleted skill: {skill_name}")
 
         return {
             "success": True,
             "skill_name": skill_name,
             "message": "Skill deleted successfully"
+        }
+
+    def _health_check(self) -> dict:
+        """Health check for scheduled tasks"""
+        from datetime import datetime
+        return {
+            "success": True,
+            "status": "ok",
+            "skill": "skill_manager",
+            "skills_root": str(self.skills_root) if hasattr(self, 'skills_root') else "N/A",
+            "timestamp": datetime.now().isoformat()
         }

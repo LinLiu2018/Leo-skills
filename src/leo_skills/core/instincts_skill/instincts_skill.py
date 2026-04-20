@@ -396,6 +396,8 @@ class InstinctsSkill(BaseSkill):
             learn: 学习新本能
             enable: 启用本能
             disable: 禁用本能
+            auto_learn: 从历史自动学习
+            analyze: 分析触发效果
         """
         if action == "list":
             return self._list_instincts()
@@ -411,6 +413,10 @@ class InstinctsSkill(BaseSkill):
         elif action == "disable":
             self._registry.disable(kwargs.get("name", ""))
             return SkillResult.ok(message=f"本能已禁用: {kwargs.get('name')}")
+        elif action == "auto_learn":
+            return self._auto_learn()
+        elif action == "analyze":
+            return self._analyze_effectiveness()
         else:
             return self._list_instincts()
 
@@ -503,8 +509,92 @@ class InstinctsSkill(BaseSkill):
         except Exception as e:
             return SkillResult.fail(f"学习失败: {e}")
 
+    def _auto_learn(self) -> SkillResult:
+        """
+        从交互历史自动学习新本能
+
+        分析历史记录，提取频繁出现的模式
+        """
+        learned = []
+
+        # 尝试加载持续学习记录
+        try:
+            from leo_skills.core.continuous_learning_skill import get_learning_skill
+            learning = get_learning_skill()
+
+            # 获取高置信度模式
+            patterns = learning.patterns.values()
+
+            for pattern in patterns:
+                # 只从高置信度模式学习
+                if pattern.confidence >= 0.85 and pattern.success_count >= 3:
+                    # 检查是否已存在类似本能
+                    existing = False
+                    for instinct in self._registry.list_instincts():
+                        if (pattern.action in instinct.action_skill or
+                            pattern.trigger in instinct.trigger_pattern):
+                            existing = True
+                            break
+
+                    if not existing:
+                        instinct = self._registry.learn(
+                            name=f"auto_{pattern.id}",
+                            trigger_pattern=pattern.trigger[:50],
+                            action_skill=pattern.action,
+                            description=f"从历史自动学习: {pattern.action}",
+                            examples=pattern.examples
+                        )
+                        learned.append(instinct.id)
+
+            return SkillResult.ok(
+                data={
+                    "learned": learned,
+                    "count": len(learned),
+                    "source": "continuous_learning"
+                },
+                message=f"自动学习了 {len(learned)} 个新本能"
+            )
+
+        except ImportError:
+            return SkillResult.fail("持续学习模块不可用")
+
+    def _analyze_effectiveness(self) -> SkillResult:
+        """分析本能触发效果"""
+        instincts = self._registry.list_instincts()
+
+        analysis = {
+            "total": len(instincts),
+            "by_source": {"builtin": 0, "learned": 0, "user": 0},
+            "by_priority": {},
+            "high_confidence": [],
+            "never_triggered": []
+        }
+
+        for instinct in instincts:
+            # 按来源统计
+            if instinct.evidence:
+                source = instinct.evidence.source
+                analysis["by_source"][source] = analysis["by_source"].get(source, 0) + 1
+
+            # 按优先级统计
+            p = instinct.priority
+            analysis["by_priority"][p] = analysis["by_priority"].get(p, 0) + 1
+
+            # 高置信度
+            if instinct.evidence and instinct.evidence.confidence >= 0.8:
+                analysis["high_confidence"].append({
+                    "id": instinct.id,
+                    "name": instinct.name,
+                    "confidence": instinct.evidence.confidence
+                })
+
+        return SkillResult.ok(
+            data=analysis,
+            message=f"分析了 {len(instincts)} 个本能"
+        )
+
     def get_actions(self) -> List[str]:
-        return ["default", "list", "show", "match", "learn", "enable", "disable"]
+        return ["default", "list", "show", "match", "learn", "enable", "disable", "auto_learn", "analyze"]
 
 
 # 全局注册表

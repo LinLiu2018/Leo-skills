@@ -1,17 +1,19 @@
 ---
-name: compliance_check_skill
-version: 1.0.0
-description: 合规检查
+name: compliance-check-skill
+description: 合规检查。当用户需要业务运营支持相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: business
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - compliance-check-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Compliance Check Skill

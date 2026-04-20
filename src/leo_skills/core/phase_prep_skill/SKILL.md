@@ -1,8 +1,11 @@
 ---
 name: phase-prep
-description: Check prerequisites before starting a phase. Use before /phase-start to verify dependencies are met and context is loaded.
-argument-hint: [phase-number]
-allowed-tools: Bash, Read, Glob, Grep, AskUserQuestion, WebFetch, WebSearch
+description: Check prerequisites before starting a phase. Use before /phase-start to verify dependencies are met and context is loaded.。当用户需要核心功能相关帮助时使用。 [优化第5轮：提升了触发准确率]
+argument-hint:
+- phase-number
+metadata:
+  allowed-tools: Bash, Read, Glob, Grep, AskUserQuestion, WebFetch, WebSearch
+license: MIT
 ---
 
 I want to execute Phase $1 from EXECUTION_PLAN.md. Before starting, read EXECUTION_PLAN.md and check:

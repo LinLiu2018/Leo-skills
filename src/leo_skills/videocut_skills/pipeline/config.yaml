@@ -1,0 +1,83 @@
+# -*- coding: utf-8 -*-
+# video_pipeline 配置
+
+skill:
+  name: video_pipeline
+  version: 1.0.0
+  category: videocut_skills
+  author: Leo AI System
+
+pipeline:
+  # 监控文件夹路径
+  watch_folder: "D:/video_pipeline/watch"
+  output_folder: "D:/video_pipeline/output"
+  temp_folder: "D:/video_pipeline/temp"
+  templates_folder: "D:/video_pipeline/templates"
+
+  # 文件夹结构
+  folders:
+    input: "input"      # 原始视频放入
+    processing: "processing"  # 处理中
+    output: "output"    # 成品输出
+
+processing:
+  # 删减设置
+  remove_filler_words: true
+  remove_silence: true
+  silence_threshold: "-40dB"
+  min_silence_duration: 0.5
+
+  # 字幕设置
+  subtitle:
+    font_size: 28
+    font_color: "white"
+    stroke_color: "black"
+    stroke_width: 2
+    position: "bottom"
+    max_chars_per_line: 15
+
+  # 调色预设
+  color_preset: "cinematic"
+  color_presets:
+    cinematic:
+      saturation: 1.1
+      contrast: 1.1
+      brightness: 0.02
+      hue: 0.05
+    cool:
+      saturation: 0.95
+      contrast: 1.05
+      brightness: 0.0
+      hue: -0.05
+    warm:
+      saturation: 1.15
+      contrast: 1.1
+      brightness: 0.03
+      hue: 0.08
+    vibrant:
+      saturation: 1.3
+      contrast: 1.2
+      brightness: 0.02
+      hue: 0.0
+
+  # 输出设置
+  output:
+    resolution: "1080x1920"
+    codec: "libx264"
+    crf: 20
+    audio_bitrate: "128k"
+    preset: "medium"
+
+  # 片头片尾
+  intro:
+    enabled: true
+    file: "intro_vertical.mp4"
+  outro:
+    enabled: true
+    file: "outro_vertical.mp4"
+
+  # 语音识别
+  asr:
+    engine: "funasr"  # funasr 或 whisper
+    model: "paraformer-zh"
+    language: "zh"

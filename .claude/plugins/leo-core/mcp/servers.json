@@ -3,7 +3,8 @@
     "leo-local": {
       "command": "node",
       "args": ["./mcp/leo-local-server.js"],
-      "description": "Leo本地服务MCP服务器"
+      "description": "Leo本地服务MCP服务器（暂未实现）",
+      "disabled": true
     }
   }
 }

@@ -1,0 +1,26 @@
+{
+  "mcp": {
+    "servers": {
+      "leo-system": {
+        "command": "C:\\Users\\admin\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "args": [
+          "E:\\桌面\\leo_ai_system\\mcp_server\\server.py"
+        ],
+        "env": {
+          "LEO_SYSTEM_PATH": "E:\\桌面\\leo_ai_system",
+          "PYTHONPATH": "E:\\桌面\\leo_ai_system\\src"
+        },
+        "enabled": true,
+        "autoStart": true,
+        "timeout": 30
+      }
+    }
+  },
+  "skills": {
+    "leo-system": {
+      "prefix": "leo:",
+      "enabled": true,
+      "description": "Leo AI System - 252 个技能、32 个 Agent、3 个工作流"
+    }
+  }
+}

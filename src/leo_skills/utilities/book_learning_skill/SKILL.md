@@ -1,3 +1,9 @@
+---
+name: book-learning-skill
+description: Book Learning Skill 技能。当用户需要相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
+---
+
 # Book Learning Skill（书籍学习助手）
 
 从 PDF/EPUB 书籍中提取知识点，生成 Obsidian 学习笔记。

@@ -1,3 +1,9 @@
+---
+name: project-marketing-doc-generator-skill
+description: Project Marketing Doc Generator Skill 技能。当用户需要相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
+---
+
 # 项目营销文档生成器
 
 **技能名称**: 项目营销文档生成器

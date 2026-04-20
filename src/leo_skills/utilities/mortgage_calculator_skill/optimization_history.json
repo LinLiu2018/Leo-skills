@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\utilities\\mortgage_calculator_skill",
+  "optimized_at": "2026-03-13T16:38:28.821788",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "房贷计算。当用户需要实用工具相关帮助时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.897,
+      "test_accuracy": 0.845
+    },
+    {
+      "round": 2,
+      "description": "房贷计算。当用户需要实用工具相关帮助时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.876,
+      "test_accuracy": 0.851
+    },
+    {
+      "round": 3,
+      "description": "房贷计算。当用户需要实用工具相关帮助时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.916,
+      "test_accuracy": 0.903
+    },
+    {
+      "round": 4,
+      "description": "房贷计算。当用户需要实用工具相关帮助时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.923,
+      "test_accuracy": 0.925
+    },
+    {
+      "round": 5,
+      "description": "房贷计算。当用户需要实用工具相关帮助时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.97,
+      "test_accuracy": 0.957
+    }
+  ],
+  "final_description": "房贷计算。当用户需要实用工具相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

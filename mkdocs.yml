@@ -1,0 +1,65 @@
+# Project name
+site_name: Leo AI System 文档
+site_description: Leo Wingman AI System - 智能僚机系统文档
+site_author: Leo Liu
+
+# Repository
+repo_url: https://github.com/LinLiu2018/leo_ai_system
+repo_name: LinLiu2018/leo_ai_system
+
+# Documentation layout
+docs_dir: docs
+site_dir: site
+
+# Navigation
+nav:
+  - 首页: index.md
+  - 快速开始:
+    - 安装: guides/getting-started.md
+    - 配置: guides/configuration.md
+  - API 参考:
+    - Web API: reference/api.md
+    - OpenAPI: https://leo-ai-system.readthedocs.io/en/latest/openapi.json
+  - 架构:
+    - 系统架构: reference/architecture.md
+    - 组件说明: reference/components.md
+
+# Theme
+theme:
+  name: material
+  palette:
+    primary: indigo
+    accent: blue
+  features:
+    - navigation.tabs
+    - navigation.top
+    - search.suggest
+    - search.highlight
+
+# Extensions
+markdown_extensions:
+  - toc:
+      permalink: true
+  - fenced_code
+  - codehilite
+  - admonition
+
+# Plugins
+plugins:
+  - search:
+      prebuild_index: true
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+
+# Customization
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/LinLiu2018/leo_ai_system
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/leo-ai-system/
+
+# Build options
+strict: true

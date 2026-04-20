@@ -1,15 +1,19 @@
 ---
-name: flask_api_scaffold_skill
-version: "1.0.0"
-description: |
-  flask_api_scaffold_skill 技能
+name: flask-api-scaffold-skill
+description: flask_api_scaffold_skill 技能
+。当用户需要项目脚手架相关帮助时使用。 [优化第5轮：提升了触发准确率]
+
+  。当用户需要项目脚手架相关帮助时使用。'
 category: scaffold
 author: Leo AI System
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - 关键词1
   - 关键词2
+license: MIT
 ---
 
 # flask_api_scaffold_skill

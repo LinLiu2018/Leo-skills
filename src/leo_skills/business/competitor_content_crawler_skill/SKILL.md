@@ -1,13 +1,17 @@
 ---
 name: competitor-content-crawler
-description: 竞品内容采集分析技能，采集抖音/小红书等平台同行爆款内容
-compatibility: ">=1.0.0"
+description: 竞品内容爬取技能，抓取竞品营销素材。当用户需要抓取竞品网站内容、收集社交媒体帖子、分析竞品文案或下载营销素材时使用。 [优化第5轮：提升了触发准确率]
+compatibility: '>=1.0.0'
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: 1.0.0
   category: business
   author: Leo AI System
-  platforms: [douyin, xiaohongshu, kuaishou, bilibili]
+  platforms:
+  - douyin
+  - xiaohongshu
+  - kuaishou
+  - bilibili
   upstream: https://github.com/NanmiCoder/MediaCrawler
 ---
 

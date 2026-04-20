@@ -1,6 +1,7 @@
 ---
-name: long_context_handler_skill
-description: 优化长文本上下文处理,确保 AI 能够有效处理和理解大量文档内容
+name: long-context-handler-skill
+description: 优化长文本上下文处理,确保 AI 能够有效处理和理解大量文档内容。当用户需要提示词工程相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
 ---
 
 # Long Context Handler - 长文本上下文处理器
@@ -327,4 +328,3 @@ final_result = synthesize_summaries(summaries)
 
 - [Long Context Tips](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/long-context-tips)
 - [Effective Context Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
-

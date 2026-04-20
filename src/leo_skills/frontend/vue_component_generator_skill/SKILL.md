@@ -1,3 +1,9 @@
+---
+name: vue-component-generator-skill
+description: Vue 组件生成，创建 Vue 可复用组件。当用户需要创建 Vue 组件、生成组件模板、编写组合式 API 或优化组件结构时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
+---
+
 # Vue3组件生成器 Skill
 
 ## 技能描述

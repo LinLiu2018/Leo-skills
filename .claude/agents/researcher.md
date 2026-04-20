@@ -1,7 +1,13 @@
 ---
 name: researcher
 description: 研究探索专家。深入分析代码库，理解架构和依赖关系
-agent: Explore
+model: sonnet
+type: Explore
+tools:
+  - Read
+  - Glob
+  - Grep
+  - Bash
 ---
 
 # 研究探索专家

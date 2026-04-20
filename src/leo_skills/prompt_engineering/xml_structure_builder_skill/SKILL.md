@@ -1,6 +1,7 @@
 ---
-name: xml_structure_builder_skill
-description: 使用 XML 标签结构化提示词,提高清晰度、准确性和可维护性
+name: xml-structure-builder-skill
+description: 使用 XML 标签结构化提示词,提高清晰度、准确性和可维护性。当用户需要提示词工程相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
 ---
 
 # XML Structure Builder - XML 结构化构建器
@@ -534,4 +535,3 @@ high_priority_recs = [r.text for r in root.findall(".//recommendation[@priority=
 
 - [Use XML Tags](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/use-xml-tags)
 - [Prompt Engineering Overview](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview)
-

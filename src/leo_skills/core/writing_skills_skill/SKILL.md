@@ -1,11 +1,17 @@
 ---
-name: writing_skills_skill
-description: Use when creating new skills, editing existing skills, or verifying skills work before deployment
+name: writing-skills-skill
+description: Use when creating new skills, editing existing skills, or verifying skills work before deployment。当用户需要核心功能相关帮助时使用。 [优化第5轮：提升了触发准确率]
 metadata:
-  version: "1.1.0"
+  version: 1.1.0
   category: core
   author: Leo AI System (基于 obra/superpowers)
-  activation_keywords: [编写技能, 创建技能, 新增技能, writing-skills, skill creation]
+  activation_keywords:
+  - 编写技能
+  - 创建技能
+  - 新增技能
+  - writing-skills
+  - skill creation
+license: MIT
 ---
 
 # 技能编写方法论（Writing Skills）
@@ -54,7 +60,7 @@ metadata:
 ```yaml
 ---
 name: {skill_name}
-description: Use when [specific triggering conditions]
+description: Use when creating new skills, editing existing skills, or verifying skills work before deployment。当用户需要核心功能相关帮助时使用。 [优化第5轮：提升了触发准确率]
 metadata:
   version: "1.0.0"
   category: {category}

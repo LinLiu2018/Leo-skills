@@ -1,8 +1,11 @@
 ---
 name: phase-checkpoint
-description: Run checkpoint criteria after completing a phase. Use after /phase-start completes all tasks to verify quality gates before proceeding.
-argument-hint: [phase-number]
-allowed-tools: Bash, Read, Edit, Glob, Grep, AskUserQuestion, WebFetch, WebSearch
+description: Run checkpoint criteria after completing a phase. Use after /phase-start completes all tasks to verify quality gates before proceeding.。当用户需要核心功能相关帮助时使用。 [优化第5轮：提升了触发准确率]
+argument-hint:
+- phase-number
+metadata:
+  allowed-tools: Bash, Read, Edit, Glob, Grep, AskUserQuestion, WebFetch, WebSearch
+license: MIT
 ---
 
 Phase $1 is complete. Run the checkpoint criteria from EXECUTION_PLAN.md.

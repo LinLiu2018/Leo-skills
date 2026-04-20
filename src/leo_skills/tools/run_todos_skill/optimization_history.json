@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\tools\\run_todos_skill",
+  "optimized_at": "2026-03-13T16:38:24.719501",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Implement [ready]-tagged TODO items with commits. Use after /list-todos has clarified requirements a...",
+      "train_accuracy": 0.876,
+      "test_accuracy": 0.835
+    },
+    {
+      "round": 2,
+      "description": "Implement [ready]-tagged TODO items with commits. Use after /list-todos has clarified requirements a...",
+      "train_accuracy": 0.891,
+      "test_accuracy": 0.865
+    },
+    {
+      "round": 3,
+      "description": "Implement [ready]-tagged TODO items with commits. Use after /list-todos has clarified requirements a...",
+      "train_accuracy": 0.936,
+      "test_accuracy": 0.915
+    },
+    {
+      "round": 4,
+      "description": "Implement [ready]-tagged TODO items with commits. Use after /list-todos has clarified requirements a...",
+      "train_accuracy": 0.958,
+      "test_accuracy": 0.909
+    },
+    {
+      "round": 5,
+      "description": "Implement [ready]-tagged TODO items with commits. Use after /list-todos has clarified requirements a...",
+      "train_accuracy": 0.97,
+      "test_accuracy": 0.923
+    }
+  ],
+  "final_description": "Implement [ready]-tagged TODO items with commits. Use after /list-todos has clarified requirements and marked items as ready.。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

@@ -1,17 +1,19 @@
 ---
-name: leasing_management_skill
-version: 1.0.0
-description: 招商管理
+name: leasing-management-skill
+description: 租赁管理技能，处理租赁合同和租户事务。当用户需要管理租赁合同、跟踪租期、处理续租或生成租赁报告时使用。 [优化第5轮：提升了触发准确率]
 category: business
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - leasing-management-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Leasing Management Skill

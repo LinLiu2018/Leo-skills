@@ -1,3 +1,9 @@
+---
+name: chart-generator-skill
+description: Chart Generator Skill 技能。当用户需要相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
+---
+
 # Chart Generator Skill - 图表生成技能
 
 **版本**: V1.0

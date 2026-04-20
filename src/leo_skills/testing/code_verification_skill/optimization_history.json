@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\testing\\code_verification_skill",
+  "optimized_at": "2026-03-13T16:38:16.872302",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Multi-agent code verification workflow using a main agent and sub-agent loop. Use when verifying cod...",
+      "train_accuracy": 0.889,
+      "test_accuracy": 0.839
+    },
+    {
+      "round": 2,
+      "description": "Multi-agent code verification workflow using a main agent and sub-agent loop. Use when verifying cod...",
+      "train_accuracy": 0.899,
+      "test_accuracy": 0.891
+    },
+    {
+      "round": 3,
+      "description": "Multi-agent code verification workflow using a main agent and sub-agent loop. Use when verifying cod...",
+      "train_accuracy": 0.894,
+      "test_accuracy": 0.871
+    },
+    {
+      "round": 4,
+      "description": "Multi-agent code verification workflow using a main agent and sub-agent loop. Use when verifying cod...",
+      "train_accuracy": 0.939,
+      "test_accuracy": 0.916
+    },
+    {
+      "round": 5,
+      "description": "Multi-agent code verification workflow using a main agent and sub-agent loop. Use when verifying cod...",
+      "train_accuracy": 0.973,
+      "test_accuracy": 0.94
+    }
+  ],
+  "final_description": "Multi-agent code verification workflow using a main agent and sub-agent loop. Use when verifying code against requirements, acceptance criteria, or quality standards. Triggers on requests to verify, validate, or check code against specifications, checklists, or instructions.。当用户需要测试与验证相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

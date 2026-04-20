@@ -1,20 +1,22 @@
 ---
-name: web_search_enhanced_skill
-version: 1.0.0
-description: 增强版网络搜索。支持 Brave Search + Tavily API 双引擎，智能并发控制，速率限制优化。
+name: web-search-enhanced-skill
+description: 增强版网络搜索。支持 Brave Search + Tavily API 双引擎，智能并发控制，速率限制优化。。当用户需要实用工具相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: utilities
 author: Leo Liu
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - 搜索
   - web 搜索
   - 联网搜索
   - search
   - tavily
-allowed-tools:
+  allowed-tools:
   - Web Search
   - Web Fetch
+license: MIT
 ---
 
 # Web Search Enhanced Skill

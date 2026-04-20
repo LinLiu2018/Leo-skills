@@ -1,3 +1,9 @@
+---
+name: github-skills-updater-skill
+description: Github Skills Updater Skill 技能。当用户需要相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
+---
+
 # GitHub Skills Updater Skill (GitHub技能自动更新器)
 
 ## 技能描述

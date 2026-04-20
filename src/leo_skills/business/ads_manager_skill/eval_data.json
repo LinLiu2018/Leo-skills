@@ -1,0 +1,89 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\business\\ads_manager_skill",
+  "generated_at": "2026-03-13T16:35:46.892336",
+  "total_queries": 20,
+  "train_queries": [
+    {
+      "query": "帮我广告投放管理技能，统一管理多渠道广告。当",
+      "should_trigger": true
+    },
+    {
+      "query": "需要广告投放管理技能，统一管理多渠道广告。当",
+      "should_trigger": true
+    },
+    {
+      "query": "想要广告投放管理技能，统一管理多渠道广告。当",
+      "should_trigger": true
+    },
+    {
+      "query": "天气如何？",
+      "should_trigger": false
+    },
+    {
+      "query": "今天星期几？",
+      "should_trigger": false
+    },
+    {
+      "query": "测试查询 5",
+      "should_trigger": false
+    },
+    {
+      "query": "测试查询 6",
+      "should_trigger": true
+    },
+    {
+      "query": "测试查询 7",
+      "should_trigger": false
+    },
+    {
+      "query": "测试查询 8",
+      "should_trigger": true
+    },
+    {
+      "query": "测试查询 9",
+      "should_trigger": false
+    },
+    {
+      "query": "测试查询 10",
+      "should_trigger": true
+    },
+    {
+      "query": "测试查询 11",
+      "should_trigger": false
+    }
+  ],
+  "test_queries": [
+    {
+      "query": "测试查询 12",
+      "should_trigger": true
+    },
+    {
+      "query": "测试查询 13",
+      "should_trigger": false
+    },
+    {
+      "query": "测试查询 14",
+      "should_trigger": true
+    },
+    {
+      "query": "测试查询 15",
+      "should_trigger": false
+    },
+    {
+      "query": "测试查询 16",
+      "should_trigger": true
+    },
+    {
+      "query": "测试查询 17",
+      "should_trigger": false
+    },
+    {
+      "query": "测试查询 18",
+      "should_trigger": true
+    },
+    {
+      "query": "测试查询 19",
+      "should_trigger": false
+    }
+  ]
+}

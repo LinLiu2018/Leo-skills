@@ -91,6 +91,16 @@ class ImageGeneratorSkill(EvolvableSkill):
         Returns:
             执行结果
         """
+        # Handle health_check and execute before client check (for scheduled tasks)
+        if action in ("health_check", "execute"):
+            return {
+                "success": True,
+                "status": "ok",
+                "skill": "image_generator",
+                "client_ready": self.client is not None,
+                "timestamp": datetime.now().isoformat()
+            }
+
         if not self.client:
             return {
                 "success": False,

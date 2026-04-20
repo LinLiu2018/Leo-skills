@@ -1,17 +1,19 @@
 ---
-name: douyin_skill
-version: 1.0.0
-description: 抖音发布
+name: douyin-skill
+description: 抖音发布。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - douyin-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Douyin Skill

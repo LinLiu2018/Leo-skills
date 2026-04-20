@@ -1,19 +1,21 @@
 ---
-name: browser_skill
-version: 1.0.0
-description: Browser 浏览器控制技能。支持网页快照、点击、输入、导航等操作。
+name: browser-skill
+description: Browser 浏览器控制技能。支持网页快照、点击、输入、导航等操作。。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: Leo Liu
-user-invocable: true
-priority: 0
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 0
+  activation_keywords:
   - 浏览器
   - browser
   - 网页
   - 截图
   - 快照
-allowed-tools:
+  allowed-tools:
   - Bash
+license: MIT
 ---
 
 # Browser Skill - 浏览器控制

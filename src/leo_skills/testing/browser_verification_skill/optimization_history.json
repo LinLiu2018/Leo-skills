@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\testing\\browser_verification_skill",
+  "optimized_at": "2026-03-13T16:38:16.852810",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Verify browser-based acceptance criteria using ExecuteAutomation Playwright MCP with multi-tool fall...",
+      "train_accuracy": 0.899,
+      "test_accuracy": 0.856
+    },
+    {
+      "round": 2,
+      "description": "Verify browser-based acceptance criteria using ExecuteAutomation Playwright MCP with multi-tool fall...",
+      "train_accuracy": 0.889,
+      "test_accuracy": 0.88
+    },
+    {
+      "round": 3,
+      "description": "Verify browser-based acceptance criteria using ExecuteAutomation Playwright MCP with multi-tool fall...",
+      "train_accuracy": 0.894,
+      "test_accuracy": 0.88
+    },
+    {
+      "round": 4,
+      "description": "Verify browser-based acceptance criteria using ExecuteAutomation Playwright MCP with multi-tool fall...",
+      "train_accuracy": 0.935,
+      "test_accuracy": 0.918
+    },
+    {
+      "round": 5,
+      "description": "Verify browser-based acceptance criteria using ExecuteAutomation Playwright MCP with multi-tool fall...",
+      "train_accuracy": 0.963,
+      "test_accuracy": 0.921
+    }
+  ],
+  "final_description": "Verify browser-based acceptance criteria using ExecuteAutomation Playwright MCP with multi-tool fallback chain. Invoked by verify-task and phase-checkpoint for BROWSER:* criteria.。当用户需要测试与验证相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

@@ -1,6 +1,7 @@
 ---
 name: browser-verification
-description: Verify browser-based acceptance criteria using ExecuteAutomation Playwright MCP with multi-tool fallback chain. Invoked by verify-task and phase-checkpoint for BROWSER:* criteria.
+description: Verify browser-based acceptance criteria using ExecuteAutomation Playwright MCP with multi-tool fallback chain. Invoked by verify-task and phase-checkpoint for BROWSER:* criteria.。当用户需要测试与验证相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
 ---
 
 # Browser Verification Skill

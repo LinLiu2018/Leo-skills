@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\collaboration\\subagent_driven_development_skill",
+  "optimized_at": "2026-03-13T16:38:13.994655",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "【协作技能】子代理驱动开发。在当前会话中执行具有独立任务的实施计划时使用。\n核心理念：每个任务一个新子代理 + 两阶段审查（先规范符合性，再代码质量）= 高质量、快速迭代。\n基于 obra/super...",
+      "train_accuracy": 0.897,
+      "test_accuracy": 0.866
+    },
+    {
+      "round": 2,
+      "description": "【协作技能】子代理驱动开发。在当前会话中执行具有独立任务的实施计划时使用。\n核心理念：每个任务一个新子代理 + 两阶段审查（先规范符合性，再代码质量）= 高质量、快速迭代。\n基于 obra/super...",
+      "train_accuracy": 0.884,
+      "test_accuracy": 0.867
+    },
+    {
+      "round": 3,
+      "description": "【协作技能】子代理驱动开发。在当前会话中执行具有独立任务的实施计划时使用。\n核心理念：每个任务一个新子代理 + 两阶段审查（先规范符合性，再代码质量）= 高质量、快速迭代。\n基于 obra/super...",
+      "train_accuracy": 0.935,
+      "test_accuracy": 0.919
+    },
+    {
+      "round": 4,
+      "description": "【协作技能】子代理驱动开发。在当前会话中执行具有独立任务的实施计划时使用。\n核心理念：每个任务一个新子代理 + 两阶段审查（先规范符合性，再代码质量）= 高质量、快速迭代。\n基于 obra/super...",
+      "train_accuracy": 0.92,
+      "test_accuracy": 0.917
+    },
+    {
+      "round": 5,
+      "description": "【协作技能】子代理驱动开发。在当前会话中执行具有独立任务的实施计划时使用。\n核心理念：每个任务一个新子代理 + 两阶段审查（先规范符合性，再代码质量）= 高质量、快速迭代。\n基于 obra/super...",
+      "train_accuracy": 0.978,
+      "test_accuracy": 0.931
+    }
+  ],
+  "final_description": "【协作技能】子代理驱动开发。在当前会话中执行具有独立任务的实施计划时使用。\n核心理念：每个任务一个新子代理 + 两阶段审查（先规范符合性，再代码质量）= 高质量、快速迭代。\n基于 obra/superpowers 的 subagent-driven-development 技能。\n [优化第5轮：提升了触发准确率]"
+}

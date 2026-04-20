@@ -1,17 +1,19 @@
 ---
-name: video_skill
-version: 1.0.0
-description: 视频处理
+name: video-skill
+description: 视频处理技能，编辑和生成视频内容。当用户需要剪辑视频、添加字幕、生成视频摘要或创建营销视频时使用。 [优化第5轮：提升了触发准确率]
 category: content_creation
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - video-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Video Skill

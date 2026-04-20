@@ -1,17 +1,19 @@
 ---
-name: calendar_skill_skill
-version: 1.0.0
-description: 日历管理技能，支持 Google Calendar/Outlook
+name: calendar-skill-skill
+description: 日历管理技能，管理日程和会议。当用户需要创建日程、安排会议、设置提醒或查看日历冲突时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: openclaw
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - calendar skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Calendar Skill

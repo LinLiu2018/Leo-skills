@@ -1,17 +1,19 @@
 ---
-name: facebook_skill
-version: 1.0.0
-description: Facebook 发布
+name: facebook-skill
+description: Facebook 广告投放技能。当用户需要创建 FB 广告、管理广告组或分析广告数据时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - facebook-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Facebook Skill

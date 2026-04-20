@@ -1,0 +1,74 @@
+# 销售团队名单与分工
+# 更新时间: 2026-04-19
+# 维护: 有人员变动时老板更新，AI 不自动改
+# 使用: daily-briefing 生成时读取此文件
+
+total_count: 10
+last_updated: "2026-04-19"
+
+# ===================
+# 别墅组（核心业务，高客单价）
+# ===================
+villa_team:
+  team_name: "别墅组"
+  leader: "[待填 - 组长姓名]"
+  members:
+    - name: "[销售员1]"
+      role: "资深顾问"
+      channels: ["小红书", "视频号"]
+      specialty: "高端别墅投资客户"
+      xiaohongshu_id: "[待填]"
+      shipinhao_id: "[待填]"
+    - name: "[销售员2]"
+      role: "顾问"
+      channels: ["抖音"]
+      specialty: "自住改善客户"
+      douyin_id: "[待填]"
+    - name: "[销售员3]"
+      role: "顾问"
+      channels: ["闲鱼", "高德"]
+      specialty: "外地投资客"
+
+# ===================
+# 住宅组（刚需改善，稳定现金流）
+# ===================
+residential_team:
+  team_name: "住宅组"
+  leader: "[待填]"
+  members:
+    - name: "[销售员4]"
+      role: "顾问"
+      channels: ["小红书", "抖音"]
+      specialty: "学区房"
+    - name: "[销售员5]"
+      role: "顾问"
+      channels: ["视频号"]
+      specialty: "首次购房"
+    - name: "[销售员6]"
+      role: "顾问"
+      channels: ["转介绍"]
+      specialty: "改善型"
+
+# ===================
+# 商业组（公寓/商铺/写字楼/菜市场）
+# ===================
+commercial_team:
+  team_name: "商业组"
+  leader: "[待填]"
+  members:
+    - name: "[销售员7]"
+      role: "顾问"
+      channels: ["高德", "转介绍"]
+      specialty: "商铺投资"
+    - name: "[销售员8]"
+      role: "顾问"
+      channels: ["抖音"]
+      specialty: "写字楼"
+    - name: "[销售员9]"
+      role: "顾问"
+      channels: ["小红书"]
+      specialty: "公寓"
+    - name: "[销售员10]"
+      role: "顾问"
+      channels: ["闲鱼"]
+      specialty: "商业租赁"

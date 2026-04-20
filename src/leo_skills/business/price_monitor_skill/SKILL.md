@@ -1,17 +1,19 @@
 ---
-name: price_monitor_skill
-version: 1.0.0
-description: 价格监控
+name: price-monitor-skill
+description: 价格监控技能，追踪市场价格变化。当用户需要监控价格变动、接收价格预警、分析价格趋势或比较历史价格时使用。 [优化第5轮：提升了触发准确率]
 category: business
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - price-monitor-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Price Monitor Skill

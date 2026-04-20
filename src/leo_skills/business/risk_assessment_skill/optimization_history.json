@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\business\\risk_assessment_skill",
+  "optimized_at": "2026-03-13T16:38:13.165941",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "风险评估技能，评估房产业务风险。当用户需要评估投资风险、生成风险报告、制定风控策略或检查合规性时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.855,
+      "test_accuracy": 0.854
+    },
+    {
+      "round": 2,
+      "description": "风险评估技能，评估房产业务风险。当用户需要评估投资风险、生成风险报告、制定风控策略或检查合规性时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.911,
+      "test_accuracy": 0.897
+    },
+    {
+      "round": 3,
+      "description": "风险评估技能，评估房产业务风险。当用户需要评估投资风险、生成风险报告、制定风控策略或检查合规性时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.918,
+      "test_accuracy": 0.91
+    },
+    {
+      "round": 4,
+      "description": "风险评估技能，评估房产业务风险。当用户需要评估投资风险、生成风险报告、制定风控策略或检查合规性时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.918,
+      "test_accuracy": 0.92
+    },
+    {
+      "round": 5,
+      "description": "风险评估技能，评估房产业务风险。当用户需要评估投资风险、生成风险报告、制定风控策略或检查合规性时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.958,
+      "test_accuracy": 0.936
+    }
+  ],
+  "final_description": "风险评估技能，评估房产业务风险。当用户需要评估投资风险、生成风险报告、制定风控策略或检查合规性时使用。 [优化第5轮：提升了触发准确率]"
+}

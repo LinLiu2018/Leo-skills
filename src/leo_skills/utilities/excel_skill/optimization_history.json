@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\utilities\\excel_skill",
+  "optimized_at": "2026-03-13T16:38:27.872374",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Excel 表格处理。当用户需要实用工具相关帮助时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.881,
+      "test_accuracy": 0.851
+    },
+    {
+      "round": 2,
+      "description": "Excel 表格处理。当用户需要实用工具相关帮助时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.892,
+      "test_accuracy": 0.896
+    },
+    {
+      "round": 3,
+      "description": "Excel 表格处理。当用户需要实用工具相关帮助时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.91,
+      "test_accuracy": 0.903
+    },
+    {
+      "round": 4,
+      "description": "Excel 表格处理。当用户需要实用工具相关帮助时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.933,
+      "test_accuracy": 0.918
+    },
+    {
+      "round": 5,
+      "description": "Excel 表格处理。当用户需要实用工具相关帮助时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.955,
+      "test_accuracy": 0.91
+    }
+  ],
+  "final_description": "Excel 表格处理。当用户需要实用工具相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

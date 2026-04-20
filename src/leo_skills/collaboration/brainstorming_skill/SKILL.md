@@ -1,26 +1,34 @@
 ---
-name: brainstorming_skill
-version: "1.1.0"
-description: |
-  【协作技能】头脑风暴。在任何创造性工作之前必须使用 - 创建功能、构建组件、添加功能或修改行为。
+name: brainstorming-skill
+description: 【协作技能】头脑风暴。在任何创造性工作之前必须使用 - 创建功能、构建组件、添加功能或修改行为。
+在实现之前探索用户意图、需求和设计。通过自然协作对话帮助将想法转化为完全形成的设计和规范。
+基于 obra/superpowers 的 brainstorming 技能。
+。当用户需要协作与沟通相关帮助时使用。 [优化第5轮：提升了触发准确率]
+
   在实现之前探索用户意图、需求和设计。通过自然协作对话帮助将想法转化为完全形成的设计和规范。
+
   基于 obra/superpowers 的 brainstorming 技能。
+
+  。当用户需要协作与沟通相关帮助时使用。'
 category: collaboration
 author: Leo AI System (基于 obra/superpowers)
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.1.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - 头脑风暴
   - 设计讨论
   - 需求探索
   - brainstorming
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Edit
   - Bash
   - Glob
   - Grep
+license: MIT
 ---
 
 # 头脑风暴（Brainstorming）

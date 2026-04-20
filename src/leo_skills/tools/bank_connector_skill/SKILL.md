@@ -1,17 +1,19 @@
 ---
-name: bank_connector_skill
-version: 1.0.0
-description: 银行接口连接器
+name: bank-connector-skill
+description: 银行接口连接器。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - bank-connector-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Bank Connector Skill

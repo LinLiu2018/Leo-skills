@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\core\\fresh_start_skill",
+  "optimized_at": "2026-03-13T16:38:15.928366",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Orient to project structure and load context. Use at the start of each new session or after context ...",
+      "train_accuracy": 0.887,
+      "test_accuracy": 0.872
+    },
+    {
+      "round": 2,
+      "description": "Orient to project structure and load context. Use at the start of each new session or after context ...",
+      "train_accuracy": 0.92,
+      "test_accuracy": 0.884
+    },
+    {
+      "round": 3,
+      "description": "Orient to project structure and load context. Use at the start of each new session or after context ...",
+      "train_accuracy": 0.908,
+      "test_accuracy": 0.88
+    },
+    {
+      "round": 4,
+      "description": "Orient to project structure and load context. Use at the start of each new session or after context ...",
+      "train_accuracy": 0.92,
+      "test_accuracy": 0.92
+    },
+    {
+      "round": 5,
+      "description": "Orient to project structure and load context. Use at the start of each new session or after context ...",
+      "train_accuracy": 0.964,
+      "test_accuracy": 0.932
+    }
+  ],
+  "final_description": "Orient to project structure and load context. Use at the start of each new session or after context reset to understand the project state.。当用户需要核心功能相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

@@ -1,8 +1,10 @@
 ---
 name: phase-start
-description: Execute all tasks in a phase autonomously. Use after /phase-prep confirms prerequisites are met.
-argument-hint: "<phase-number> [--codex] [--pause]"
-allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task, WebFetch, WebSearch
+description: Execute all tasks in a phase autonomously. Use after /phase-prep confirms prerequisites are met.。当用户需要核心功能相关帮助时使用。 [优化第5轮：提升了触发准确率]
+argument-hint: <phase-number> [--codex] [--pause]
+metadata:
+  allowed-tools: Read, Write, Edit, Bash, Glob, Grep, Task, WebFetch, WebSearch
+license: MIT
 ---
 
 Execute all steps and tasks in Phase $1 from EXECUTION_PLAN.md.

@@ -1,17 +1,19 @@
 ---
-name: content_analytics_skill
-version: 1.0.0
-description: 内容效果分析
+name: content-analytics-skill
+description: 内容效果分析。当用户需要实用工具相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: utilities
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - content-analytics-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Content Analytics Skill

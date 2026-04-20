@@ -1,17 +1,19 @@
 ---
-name: inventory_skill
-version: 1.0.0
-description: 库存管理
+name: inventory-skill
+description: 库存管理技能，跟踪和优化库存水平。当用户需要跟踪库存数量、预测补货需求、处理库存预警或优化库存周转时使用。 [优化第5轮：提升了触发准确率]
 category: business
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - inventory-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Inventory Skill

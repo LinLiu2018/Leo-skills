@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\videocut_skills\\cut_speech_skill",
+  "optimized_at": "2026-03-13T16:38:31.234579",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "口播视频转录和口误识别。生成审查稿和删除任务清单。触发词：剪口播、处理视频、识别口误 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.879,
+      "test_accuracy": 0.849
+    },
+    {
+      "round": 2,
+      "description": "口播视频转录和口误识别。生成审查稿和删除任务清单。触发词：剪口播、处理视频、识别口误 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.913,
+      "test_accuracy": 0.897
+    },
+    {
+      "round": 3,
+      "description": "口播视频转录和口误识别。生成审查稿和删除任务清单。触发词：剪口播、处理视频、识别口误 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.89,
+      "test_accuracy": 0.896
+    },
+    {
+      "round": 4,
+      "description": "口播视频转录和口误识别。生成审查稿和删除任务清单。触发词：剪口播、处理视频、识别口误 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.947,
+      "test_accuracy": 0.924
+    },
+    {
+      "round": 5,
+      "description": "口播视频转录和口误识别。生成审查稿和删除任务清单。触发词：剪口播、处理视频、识别口误 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.947,
+      "test_accuracy": 0.943
+    }
+  ],
+  "final_description": "口播视频转录和口误识别。生成审查稿和删除任务清单。触发词：剪口播、处理视频、识别口误 [优化第5轮：提升了触发准确率]"
+}

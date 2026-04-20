@@ -1,7 +1,9 @@
 ---
 name: list-todos
-description: Analyze and prioritize TODO items from TODOS.md. Use when planning work or deciding what to implement next.
-allowed-tools: Read, Glob, Grep, AskUserQuestion, Edit
+description: Analyze and prioritize TODO items from TODOS.md. Use when planning work or deciding what to implement next.。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
+metadata:
+  allowed-tools: Read, Glob, Grep, AskUserQuestion, Edit
+license: MIT
 ---
 
 Analyze the TODO items in TODOS.md and produce a prioritized list with implementation guidance.

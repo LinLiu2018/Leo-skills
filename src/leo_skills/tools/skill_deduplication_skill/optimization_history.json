@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\tools\\skill_deduplication_skill",
+  "optimized_at": "2026-03-13T16:38:24.980566",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "技能去重检查。扫描所有技能，检测功能重复和命名冲突，提供合并建议。。当用户需要工具集成相关帮助时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.872,
+      "test_accuracy": 0.873
+    },
+    {
+      "round": 2,
+      "description": "技能去重检查。扫描所有技能，检测功能重复和命名冲突，提供合并建议。。当用户需要工具集成相关帮助时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.89,
+      "test_accuracy": 0.893
+    },
+    {
+      "round": 3,
+      "description": "技能去重检查。扫描所有技能，检测功能重复和命名冲突，提供合并建议。。当用户需要工具集成相关帮助时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.931,
+      "test_accuracy": 0.895
+    },
+    {
+      "round": 4,
+      "description": "技能去重检查。扫描所有技能，检测功能重复和命名冲突，提供合并建议。。当用户需要工具集成相关帮助时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.923,
+      "test_accuracy": 0.925
+    },
+    {
+      "round": 5,
+      "description": "技能去重检查。扫描所有技能，检测功能重复和命名冲突，提供合并建议。。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.943,
+      "test_accuracy": 0.922
+    }
+  ],
+  "final_description": "技能去重检查。扫描所有技能，检测功能重复和命名冲突，提供合并建议。。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\scaffold\\bootstrap_skill",
+  "optimized_at": "2026-03-13T16:38:16.630419",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Generate feature plan with codebase-aware context. Use when starting a new feature in an existing co...",
+      "train_accuracy": 0.85,
+      "test_accuracy": 0.853
+    },
+    {
+      "round": 2,
+      "description": "Generate feature plan with codebase-aware context. Use when starting a new feature in an existing co...",
+      "train_accuracy": 0.914,
+      "test_accuracy": 0.892
+    },
+    {
+      "round": 3,
+      "description": "Generate feature plan with codebase-aware context. Use when starting a new feature in an existing co...",
+      "train_accuracy": 0.918,
+      "test_accuracy": 0.888
+    },
+    {
+      "round": 4,
+      "description": "Generate feature plan with codebase-aware context. Use when starting a new feature in an existing co...",
+      "train_accuracy": 0.958,
+      "test_accuracy": 0.918
+    },
+    {
+      "round": 5,
+      "description": "Generate feature plan with codebase-aware context. Use when starting a new feature in an existing co...",
+      "train_accuracy": 0.958,
+      "test_accuracy": 0.956
+    }
+  ],
+  "final_description": "Generate feature plan with codebase-aware context. Use when starting a new feature in an existing codebase to skip full spec workflow.。当用户需要项目脚手架相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

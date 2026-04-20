@@ -1,20 +1,22 @@
 ---
-name: summarize_skill
-version: 1.0.0
-description: 内容总结技能。总结 URL、PDF、YouTube 视频、音频内容，快速消化信息。
+name: summarize-skill
+description: 内容总结技能。总结 URL、PDF、YouTube 视频、音频内容，快速消化信息。。当用户需要实用工具相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: utilities
 author: Leo Liu
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - 总结
   - summarize
   - 摘要
   - 概括
   - 提炼
-allowed-tools:
+  allowed-tools:
   - Web Fetch
   - Read
+license: MIT
 ---
 
 # Summarize Skill - 内容总结

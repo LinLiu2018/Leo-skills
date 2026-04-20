@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\tools\\content_to_action_skill",
+  "optimized_at": "2026-03-13T16:38:19.408211",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "内容转化技能。将 X 平台/社交媒体内容转化为学习笔记和实战行动计划。。当用户需要工具集成相关帮助时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.853,
+      "test_accuracy": 0.831
+    },
+    {
+      "round": 2,
+      "description": "内容转化技能。将 X 平台/社交媒体内容转化为学习笔记和实战行动计划。。当用户需要工具集成相关帮助时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.876,
+      "test_accuracy": 0.884
+    },
+    {
+      "round": 3,
+      "description": "内容转化技能。将 X 平台/社交媒体内容转化为学习笔记和实战行动计划。。当用户需要工具集成相关帮助时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.898,
+      "test_accuracy": 0.912
+    },
+    {
+      "round": 4,
+      "description": "内容转化技能。将 X 平台/社交媒体内容转化为学习笔记和实战行动计划。。当用户需要工具集成相关帮助时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.946,
+      "test_accuracy": 0.916
+    },
+    {
+      "round": 5,
+      "description": "内容转化技能。将 X 平台/社交媒体内容转化为学习笔记和实战行动计划。。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.938,
+      "test_accuracy": 0.958
+    }
+  ],
+  "final_description": "内容转化技能。将 X 平台/社交媒体内容转化为学习笔记和实战行动计划。。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\utilities\\review_analyzer_skill",
+  "optimized_at": "2026-03-13T16:38:29.745074",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "评论分析。当用户需要实用工具相关帮助时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.9,
+      "test_accuracy": 0.873
+    },
+    {
+      "round": 2,
+      "description": "评论分析。当用户需要实用工具相关帮助时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.894,
+      "test_accuracy": 0.857
+    },
+    {
+      "round": 3,
+      "description": "评论分析。当用户需要实用工具相关帮助时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.924,
+      "test_accuracy": 0.897
+    },
+    {
+      "round": 4,
+      "description": "评论分析。当用户需要实用工具相关帮助时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.937,
+      "test_accuracy": 0.937
+    },
+    {
+      "round": 5,
+      "description": "评论分析。当用户需要实用工具相关帮助时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.971,
+      "test_accuracy": 0.956
+    }
+  ],
+  "final_description": "评论分析。当用户需要实用工具相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

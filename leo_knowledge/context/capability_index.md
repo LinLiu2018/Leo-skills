@@ -1,6 +1,6 @@
 # Leo AI System - 能力索引
 
-> **自动生成** - 2026-03-01 12:49:56
+> **自动生成** - 2026-03-12 11:25:17
 >
 > 本文件由 `scripts/update_capability_index.py` 自动生成
 > 请勿手动编辑，运行脚本即可更新
@@ -11,11 +11,11 @@
 
 | 类型 | 数量 | 描述 |
 |------|------|------|
-| 🛠️ Skills | 249 | 可执行技能 |
+| 🛠️ Skills | 251 | 可执行技能 |
 | 🤖 Agents | 31 | 智能代理 |
 | 🔄 Workflows | 93 | 工作流定义 |
 
-**总计**: 373 个能力单元
+**总计**: 375 个能力单元
 
 ---
 
@@ -204,6 +204,10 @@
 
 - **路径**: `leo_skills\collaboration\executing_plans_skill`
 
+#### finishing_development_branch_skill
+- **描述**: 【协作技能】完成开发分支。在实现完成、所有测试通过后使用 - 展示结构化选项用于合并、PR或清理。基于 obra/superpowers v4.3.1
+- **路径**: `leo_skills\collaboration\finishing_development_branch_skill`
+
 #### receiving_code_review_skill
 - **描述**: 【协作技能】接收代码审查反馈。在实现建议之前使用，特别是当反馈看起来不清楚或技术上可疑时。
 核心理念：验证后再实现。询问后再假设。技术正确性高于社交舒适度。
@@ -297,6 +301,10 @@
 
 
 ### core
+
+#### auto_dispatcher_skill
+- **描述**: N/A
+- **路径**: `leo_skills\core\auto_dispatcher_skill`
 
 #### fresh-start
 - **描述**: Orient to project structure and load context. Use at the start of each new session or after context reset to understand the project state.
@@ -999,7 +1007,7 @@
 - **路径**: `leo_skills\utilities\excel_skill`
 
 #### file_manager_skill
-- **描述**: 文件管理
+- **描述**: 磁盘清理和文件管理 (含桌面文件整理)
 - **路径**: `leo_skills\utilities\file_manager_skill`
 
 #### google_search_skill
@@ -2031,9 +2039,9 @@
 - **automation**: 3 个技能
 - **backend**: 6 个技能
 - **business**: 27 个技能
-- **collaboration**: 7 个技能
+- **collaboration**: 8 个技能
 - **content_creation**: 15 个技能
-- **core**: 11 个技能
+- **core**: 12 个技能
 - **debugging**: 1 个技能
 - **development**: 1 个技能
 - **devops**: 9 个技能
@@ -2085,4 +2093,4 @@ result = engine.execute_from_yaml('src/leo_workflows/definitions/content_pipelin
 
 ---
 
-*最后更新: 2026-03-01 12:49:56*
+*最后更新: 2026-03-12 11:25:17*

@@ -1,17 +1,19 @@
 ---
-name: telegram_skill_skill
-version: 1.0.0
-description: Telegram 集成技能
+name: telegram-skill-skill
+description: Telegram 集成技能。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: openclaw
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - telegram skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Telegram Skill

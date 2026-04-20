@@ -1,27 +1,35 @@
 ---
-name: test_driven_development_skill
-version: "1.0.0"
-description: |
-  【测试技能】测试驱动开发（TDD）实践。实现任何功能或修复bug时，在编写实现代码之前使用。
+name: test-driven-development-skill
+description: 【测试技能】测试驱动开发（TDD）实践。实现任何功能或修复bug时，在编写实现代码之前使用。
+核心理念：先写测试，观察失败，编写最少代码通过。不先看测试失败，就不知道是否测试了正确的东西。
+基于 obra/superpowers 的 test-driven-development 技能。
+ [优化第5轮：提升了触发准确率]
+
   核心理念：先写测试，观察失败，编写最少代码通过。不先看测试失败，就不知道是否测试了正确的东西。
+
   基于 obra/superpowers 的 test-driven-development 技能。
+
+  '
 category: testing
 author: Leo AI System (基于 obra/superpowers)
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - TDD
   - 测试驱动
   - 测试优先
   - 先写测试
   - test-driven
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Edit
   - Bash
   - Glob
   - Grep
+license: MIT
 ---
 
 # 测试驱动开发（Test-Driven Development, TDD）

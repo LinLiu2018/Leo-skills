@@ -1,17 +1,19 @@
 ---
-name: article_generator_skill
-version: 1.0.0
-description: 文章生成
+name: article-generator-skill
+description: 文章生成技能，创建长篇文章内容。当用户需要撰写博客文章、创建新闻稿、生成行业报告或编写说明文档时使用。 [优化第5轮：提升了触发准确率]
 category: content_creation
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - article-generator-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Article Generator Skill

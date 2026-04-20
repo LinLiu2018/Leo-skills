@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\tools\\agent_skill_creator_skill",
+  "optimized_at": "2026-03-13T16:38:17.047081",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "This enhanced skill should be used when the user asks to create an agent, automate a repetitive work...",
+      "train_accuracy": 0.874,
+      "test_accuracy": 0.852
+    },
+    {
+      "round": 2,
+      "description": "This enhanced skill should be used when the user asks to create an agent, automate a repetitive work...",
+      "train_accuracy": 0.881,
+      "test_accuracy": 0.879
+    },
+    {
+      "round": 3,
+      "description": "This enhanced skill should be used when the user asks to create an agent, automate a repetitive work...",
+      "train_accuracy": 0.892,
+      "test_accuracy": 0.911
+    },
+    {
+      "round": 4,
+      "description": "This enhanced skill should be used when the user asks to create an agent, automate a repetitive work...",
+      "train_accuracy": 0.941,
+      "test_accuracy": 0.918
+    },
+    {
+      "round": 5,
+      "description": "This enhanced skill should be used when the user asks to create an agent, automate a repetitive work...",
+      "train_accuracy": 0.972,
+      "test_accuracy": 0.948
+    }
+  ],
+  "final_description": "This enhanced skill should be used when the user asks to create an agent, automate a repetitive workflow, create a custom skill, or needs advanced agent creation capabilities. Activates with phrases like every day, daily I have to, I need to repeat, create agent for, automate workflow, create skill for, need to automate, turn process into agent. Supports single agents, multi-agent suites, transcript processing, template-based creation, and interactive configuration. Claude will use the enhanced protocol to research APIs, define analyses, structure everything, implement functional code, and create complete skills autonomously with optional user guidance.。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

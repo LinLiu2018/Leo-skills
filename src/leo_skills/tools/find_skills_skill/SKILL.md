@@ -1,20 +1,22 @@
 ---
-name: find_skills_skill
-version: 1.0.0
-description: 技能发现技能。让 Agent 自己去技能库搜索并推荐/安装技能，解决"不知道装什么"的痛点。
+name: find-skills-skill
+description: 技能发现技能。让 Agent 自己去技能库搜索并推荐/安装技能，解决"不知道装什么"的痛点。。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: Leo Liu
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - 找技能
   - 推荐技能
   - 安装什么技能
   - find skills
   - 技能发现
-allowed-tools:
+  allowed-tools:
   - Read
   - Web Search
+license: MIT
 ---
 
 # Find Skills Skill - 技能发现

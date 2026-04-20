@@ -86,7 +86,7 @@ class EvolutionSkill(BaseSkill):
 
     def get_actions(self) -> List[str]:
         return ["learn", "get_tips", "record_metric", "get_metrics",
-                "get_stage", "evolve", "history", "reset", "health_check"]
+                "get_stage", "evolve", "history", "reset", "health_check", "execute"]
 
     def _load_experience(self) -> Dict[str, Any]:
         """加载进化数据"""
@@ -177,6 +177,9 @@ class EvolutionSkill(BaseSkill):
             elif requested_action == "reset":
                 data = self._reset()
             elif requested_action == "health_check":
+                data = self._health_check()
+            elif requested_action == "execute":
+                # 兼容定时任务调用，默认执行健康检查
                 data = self._health_check()
             else:
                 return SkillResult.fail(f"Unknown action: {requested_action}")

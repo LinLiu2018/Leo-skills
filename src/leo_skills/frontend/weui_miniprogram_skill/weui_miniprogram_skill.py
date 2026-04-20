@@ -143,6 +143,12 @@ class WeuiMiniprogramSkill(EvolvableSkill):
         Returns:
             执行结果
         """
+        # 确保 action 是字符串（处理定时任务可能传入 dict 的情况）
+        if isinstance(action, dict):
+            action = action.get("action", "health_check")
+        elif not isinstance(action, str):
+            action = "health_check"
+
         if action == "generate_component":
             return self._generate_component(**kwargs)
         elif action == "list_components":
@@ -151,6 +157,15 @@ class WeuiMiniprogramSkill(EvolvableSkill):
             return self._get_example(**kwargs)
         elif action == "get_install_guide":
             return self._get_install_guide()
+        elif action in ("health_check", "execute"):
+            # 兼容定时任务调用，默认执行健康检查
+            from datetime import datetime
+            return {
+                "success": True,
+                "status": "ok",
+                "skill": "weui_miniprogram",
+                "timestamp": datetime.now().isoformat()
+            }
         else:
             return {"success": False, "error": f"Unknown action: {action}"}
 
@@ -249,3 +264,12 @@ def generate_weui_component(component: str, props: Dict = None, dark_mode: bool 
     """快速生成 WeUI 组件"""
     skill = WeuiMiniprogramSkill()
     return skill.execute(action="generate_component", component=component, props=props, dark_mode=dark_mode)
+    def _health_check(self) -> dict:
+        """Health check for scheduled tasks"""
+        from datetime import datetime
+        return {
+            "success": True,
+            "status": "ok",
+            "skill": "weui_miniprogram",
+            "timestamp": datetime.now().isoformat()
+        }

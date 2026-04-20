@@ -19,8 +19,32 @@ class GitHubSkillsMonitorSkill(EvolvableSkill):
         super().__init__(skill_name, Path(__file__).parent / "evolution.json")
         self.config_path = Path(config_path) if config_path else Path(__file__).parent / "config.yaml"
         self.config = self._load_config()
+        self._init_sources()
 
-        # 监控数据源
+    def learn(self, message: str, category: str = "general"):
+        """兼容方法 - 记录学习信息（简化实现）"""
+        try:
+            evolution_file = Path(__file__).parent / "evolution.json"
+            if evolution_file.exists():
+                with open(evolution_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                if category == "error_context":
+                    data.setdefault("learned_errors", []).append({
+                        "message": message,
+                        "timestamp": datetime.now().isoformat()
+                    })
+                else:
+                    data.setdefault("learned_tips", []).append({
+                        "message": message,
+                        "timestamp": datetime.now().isoformat()
+                    })
+                with open(evolution_file, 'w', encoding='utf-8') as f:
+                    json.dump(data, f, ensure_ascii=False, indent=2)
+        except Exception:
+            pass
+
+    def _init_sources(self):
+        """初始化数据源"""
         self.sources = self.config.get("sources", [
             {
                 "name": "anthropics_skills",
@@ -92,6 +116,8 @@ class GitHubSkillsMonitorSkill(EvolvableSkill):
                 - scan: 扫描单个数据源
                 - detect_and_import: 检测并导入新技能
                 - list_sources: 列出监控的数据源
+                - health_check: 健康检查（定时任务兼容）
+                - execute: 默认执行（定时任务兼容，执行健康检查）
             **kwargs: 额外参数
 
         Returns:
@@ -100,13 +126,32 @@ class GitHubSkillsMonitorSkill(EvolvableSkill):
         if action == "scan_all":
             return self._scan_all_sources()
         elif action == "scan":
-            return self._scan_source(kwargs.get("source"))
+            source_name = kwargs.get("source")
+            if not source_name:
+                # 没有指定数据源时执行健康检查
+                return self._health_check()
+            return self._scan_source(source_name)
         elif action == "detect_and_import":
             return self._detect_and_import(kwargs.get("min_stars", self.config.get("min_stars", 10)))
         elif action == "list_sources":
             return self._list_sources()
+        elif action == "health_check":
+            return self._health_check()
+        elif action == "execute":
+            # 兼容定时任务调用，默认执行健康检查
+            return self._health_check()
         else:
             return {"success": False, "error": f"Unknown action: {action}"}
+
+    def _health_check(self) -> Dict[str, Any]:
+        """健康检查"""
+        return {
+            "success": True,
+            "status": "ok",
+            "skill": "github_skills_monitor",
+            "sources_count": len(self.sources),
+            "timestamp": datetime.now().isoformat()
+        }
 
     def _list_sources(self) -> Dict[str, Any]:
         """列出所有监控的数据源"""

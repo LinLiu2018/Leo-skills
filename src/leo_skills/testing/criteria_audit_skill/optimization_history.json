@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\testing\\criteria_audit_skill",
+  "optimized_at": "2026-03-13T16:38:16.892093",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Validate EXECUTION_PLAN.md for verification metadata, manual reasons, and testability. Use when prep...",
+      "train_accuracy": 0.888,
+      "test_accuracy": 0.844
+    },
+    {
+      "round": 2,
+      "description": "Validate EXECUTION_PLAN.md for verification metadata, manual reasons, and testability. Use when prep...",
+      "train_accuracy": 0.888,
+      "test_accuracy": 0.869
+    },
+    {
+      "round": 3,
+      "description": "Validate EXECUTION_PLAN.md for verification metadata, manual reasons, and testability. Use when prep...",
+      "train_accuracy": 0.935,
+      "test_accuracy": 0.905
+    },
+    {
+      "round": 4,
+      "description": "Validate EXECUTION_PLAN.md for verification metadata, manual reasons, and testability. Use when prep...",
+      "train_accuracy": 0.911,
+      "test_accuracy": 0.932
+    },
+    {
+      "round": 5,
+      "description": "Validate EXECUTION_PLAN.md for verification metadata, manual reasons, and testability. Use when prep...",
+      "train_accuracy": 0.939,
+      "test_accuracy": 0.946
+    }
+  ],
+  "final_description": "Validate EXECUTION_PLAN.md for verification metadata, manual reasons, and testability. Use when preparing Phase 1 or after editing EXECUTION_PLAN.md.。当用户需要测试与验证相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

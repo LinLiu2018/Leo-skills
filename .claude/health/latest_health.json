@@ -1,0 +1,1274 @@
+{
+  "timestamp": "2026-03-12T11:25:32.720916",
+  "system": {
+    "cpu_percent": 6.9,
+    "memory_percent": 17.2,
+    "disk_usage_percent": 5.775677657954874,
+    "disk_free_gb": 736.126594543457,
+    "python_version": "3.11.9",
+    "platform": "win32",
+    "uptime_hours": 11.209674517644777
+  },
+  "skills": {
+    "total_skills": 248,
+    "valid_skills": 0,
+    "invalid_skills": 248,
+    "categories": 0,
+    "last_updated": null,
+    "registry_path": ".claude\\skill_registry.json",
+    "skills_path": "leo_skills",
+    "invalid_skill_details": [
+      {
+        "name": "auto_logger_skill",
+        "path": "src\\leo_skills\\automation\\auto_logger_skill",
+        "errors": []
+      },
+      {
+        "name": "email_automation_skill",
+        "path": "src\\leo_skills\\automation\\email_automation_skill",
+        "errors": []
+      },
+      {
+        "name": "zapier_webhook_skill",
+        "path": "src\\leo_skills\\automation\\zapier_webhook_skill",
+        "errors": []
+      },
+      {
+        "name": "api_doc_generator_skill",
+        "path": "src\\leo_skills\\backend\\api_doc_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "database_migration_skill",
+        "path": "src\\leo_skills\\backend\\database_migration_skill",
+        "errors": []
+      },
+      {
+        "name": "database_model_generator_skill",
+        "path": "src\\leo_skills\\backend\\database_model_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "fastapi_endpoint_generator_skill",
+        "path": "src\\leo_skills\\backend\\fastapi_endpoint_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "flask_api_generator_skill",
+        "path": "src\\leo_skills\\backend\\flask_api_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "flask_auth_generator_skill",
+        "path": "src\\leo_skills\\backend\\flask_auth_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "ads_manager_skill",
+        "path": "src\\leo_skills\\business\\ads_manager_skill",
+        "errors": []
+      },
+      {
+        "name": "aliexpress_skill",
+        "path": "src\\leo_skills\\business\\aliexpress_skill",
+        "errors": []
+      },
+      {
+        "name": "amazon_skill",
+        "path": "src\\leo_skills\\business\\amazon_skill",
+        "errors": []
+      },
+      {
+        "name": "competitor-content-crawler",
+        "path": "src\\leo_skills\\business\\competitor_content_crawler_skill",
+        "errors": []
+      },
+      {
+        "name": "competitor_monitor_skill",
+        "path": "src\\leo_skills\\business\\competitor_monitor_skill",
+        "errors": []
+      },
+      {
+        "name": "compliance_check_skill",
+        "path": "src\\leo_skills\\business\\compliance_check_skill",
+        "errors": []
+      },
+      {
+        "name": "credit_check_skill",
+        "path": "src\\leo_skills\\business\\credit_check_skill",
+        "errors": []
+      },
+      {
+        "name": "customer-portrait",
+        "path": "src\\leo_skills\\business\\customer_portrait_skill",
+        "errors": []
+      },
+      {
+        "name": "ebay_skill",
+        "path": "src\\leo_skills\\business\\ebay_skill",
+        "errors": []
+      },
+      {
+        "name": "facebook_ads_skill",
+        "path": "src\\leo_skills\\business\\facebook_ads_skill",
+        "errors": []
+      },
+      {
+        "name": "financial_analysis_skill",
+        "path": "src\\leo_skills\\business\\financial_analysis_skill",
+        "errors": []
+      },
+      {
+        "name": "google_ads_skill",
+        "path": "src\\leo_skills\\business\\google_ads_skill",
+        "errors": []
+      },
+      {
+        "name": "inventory_skill",
+        "path": "src\\leo_skills\\business\\inventory_skill",
+        "errors": []
+      },
+      {
+        "name": "leasing_management_skill",
+        "path": "src\\leo_skills\\business\\leasing_management_skill",
+        "errors": []
+      },
+      {
+        "name": "market_analysis_skill",
+        "path": "src\\leo_skills\\business\\market_analysis_skill",
+        "errors": []
+      },
+      {
+        "name": "pocket-crm",
+        "path": "src\\leo_skills\\business\\pocket_crm_skill",
+        "errors": []
+      },
+      {
+        "name": "price_analysis_skill",
+        "path": "src\\leo_skills\\business\\price_analysis_skill",
+        "errors": []
+      },
+      {
+        "name": "price_monitor_skill",
+        "path": "src\\leo_skills\\business\\price_monitor_skill",
+        "errors": []
+      },
+      {
+        "name": "property_valuation_skill",
+        "path": "src\\leo_skills\\business\\property_valuation_skill",
+        "errors": []
+      },
+      {
+        "name": "realestate_listing_skill",
+        "path": "src\\leo_skills\\business\\realestate_listing_skill",
+        "errors": []
+      },
+      {
+        "name": "risk_assessment_skill",
+        "path": "src\\leo_skills\\business\\risk_assessment_skill",
+        "errors": []
+      },
+      {
+        "name": "sales-sop",
+        "path": "src\\leo_skills\\business\\sales_sop_skill",
+        "errors": []
+      },
+      {
+        "name": "shopify_skill",
+        "path": "src\\leo_skills\\business\\shopify_skill",
+        "errors": []
+      },
+      {
+        "name": "tenant_screening_skill",
+        "path": "src\\leo_skills\\business\\tenant_screening_skill",
+        "errors": []
+      },
+      {
+        "name": "video_monitor_skill",
+        "path": "src\\leo_skills\\business\\video_monitor_skill",
+        "errors": []
+      },
+      {
+        "name": "warehouse_skill",
+        "path": "src\\leo_skills\\business\\warehouse_skill",
+        "errors": []
+      },
+      {
+        "name": "brainstorming_skill",
+        "path": "src\\leo_skills\\collaboration\\brainstorming_skill",
+        "errors": []
+      },
+      {
+        "name": "dispatching_parallel_agents_skill",
+        "path": "src\\leo_skills\\collaboration\\dispatching_parallel_agents_skill",
+        "errors": []
+      },
+      {
+        "name": "executing_plans_skill",
+        "path": "src\\leo_skills\\collaboration\\executing_plans_skill",
+        "errors": []
+      },
+      {
+        "name": "finishing_development_branch_skill",
+        "path": "src\\leo_skills\\devops\\finishing_development_branch_skill",
+        "errors": []
+      },
+      {
+        "name": "receiving_code_review_skill",
+        "path": "src\\leo_skills\\collaboration\\receiving_code_review_skill",
+        "errors": []
+      },
+      {
+        "name": "requesting_code_review_skill",
+        "path": "src\\leo_skills\\collaboration\\requesting_code_review_skill",
+        "errors": []
+      },
+      {
+        "name": "subagent_driven_development_skill",
+        "path": "src\\leo_skills\\collaboration\\subagent_driven_development_skill",
+        "errors": []
+      },
+      {
+        "name": "writing_plans_skill",
+        "path": "src\\leo_skills\\collaboration\\writing_plans_skill",
+        "errors": []
+      },
+      {
+        "name": "article_generator_skill",
+        "path": "src\\leo_skills\\content_creation\\article_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "blog_generator_skill",
+        "path": "src\\leo_skills\\content_creation\\blog_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "content_generator_skill",
+        "path": "src\\leo_skills\\content_creation\\content_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "content_layout_leo_skill",
+        "path": "src\\leo_skills\\content_creation\\content_layout_leo_skill",
+        "errors": []
+      },
+      {
+        "name": "copywriting_skill",
+        "path": "src\\leo_skills\\content_creation\\copywriting_skill",
+        "errors": []
+      },
+      {
+        "name": "image_generator_skill",
+        "path": "src\\leo_skills\\content_creation\\image_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "keyword_research_skill",
+        "path": "src\\leo_skills\\content_creation\\keyword_research_skill",
+        "errors": []
+      },
+      {
+        "name": "meta_generator_skill",
+        "path": "src\\leo_skills\\content_creation\\meta_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "project_marketing_doc_generator_skill",
+        "path": "src\\leo_skills\\content_creation\\project_marketing_doc_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "realestate_news_publisher_skill",
+        "path": "src\\leo_skills\\content_creation\\realestate_news_publisher_skill",
+        "errors": []
+      },
+      {
+        "name": "seo_skill",
+        "path": "src\\leo_skills\\content_creation\\seo_skill",
+        "errors": []
+      },
+      {
+        "name": "social-auto-publish",
+        "path": "src\\leo_skills\\content_creation\\social_auto_publish_skill",
+        "errors": []
+      },
+      {
+        "name": "social_media_skill",
+        "path": "src\\leo_skills\\content_creation\\social_media_skill",
+        "errors": []
+      },
+      {
+        "name": "thumbnail_skill",
+        "path": "src\\leo_skills\\content_creation\\thumbnail_skill",
+        "errors": []
+      },
+      {
+        "name": "video_skill",
+        "path": "src\\leo_skills\\content_creation\\video_skill",
+        "errors": []
+      },
+      {
+        "name": "fresh-start",
+        "path": "src\\leo_skills\\core\\fresh_start_skill",
+        "errors": []
+      },
+      {
+        "name": "memory_enhanced_skill",
+        "path": "src\\leo_skills\\core\\memory_enhanced_skill",
+        "errors": []
+      },
+      {
+        "name": "phase-checkpoint",
+        "path": "src\\leo_skills\\core\\phase_checkpoint_skill",
+        "errors": []
+      },
+      {
+        "name": "phase-prep",
+        "path": "src\\leo_skills\\core\\phase_prep_skill",
+        "errors": []
+      },
+      {
+        "name": "phase-start",
+        "path": "src\\leo_skills\\core\\phase_start_skill",
+        "errors": []
+      },
+      {
+        "name": "planning_with_files_skill",
+        "path": "src\\leo_skills\\core\\planning_with_files_skill",
+        "errors": []
+      },
+      {
+        "name": "populate-state",
+        "path": "src\\leo_skills\\core\\populate_state_skill",
+        "errors": []
+      },
+      {
+        "name": "progress",
+        "path": "src\\leo_skills\\core\\progress_skill",
+        "errors": []
+      },
+      {
+        "name": "text_generator_skill",
+        "path": "src\\leo_skills\\core\\text_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "using_superpowers_skill",
+        "path": "src\\leo_skills\\core\\using_superpowers_skill",
+        "errors": []
+      },
+      {
+        "name": "writing_skills_skill",
+        "path": "src\\leo_skills\\core\\writing_skills_skill",
+        "errors": []
+      },
+      {
+        "name": "systematic_debugging_skill",
+        "path": "src\\leo_skills\\debugging\\systematic_debugging_skill",
+        "errors": []
+      },
+      {
+        "name": "skill_code_generator_skill",
+        "path": "src\\leo_skills\\development\\skill_code_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "configure-verification",
+        "path": "src\\leo_skills\\devops\\configure_verification_skill",
+        "errors": []
+      },
+      {
+        "name": "deployment_script_generator_skill",
+        "path": "src\\leo_skills\\devops\\deployment_script_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "dockerfile_generator_skill",
+        "path": "src\\leo_skills\\devops\\dockerfile_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "docker_compose_generator_skill",
+        "path": "src\\leo_skills\\devops\\docker_compose_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "github_actions_generator_skill",
+        "path": "src\\leo_skills\\devops\\github_actions_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "nginx_config_generator_skill",
+        "path": "src\\leo_skills\\devops\\nginx_config_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "using_git_worktrees_skill",
+        "path": "src\\leo_skills\\devops\\using_git_worktrees_skill",
+        "errors": []
+      },
+      {
+        "name": "vercel-preview",
+        "path": "src\\leo_skills\\devops\\vercel_preview_skill",
+        "errors": []
+      },
+      {
+        "name": "css_layout_generator_skill",
+        "path": "src\\leo_skills\\frontend\\css_layout_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "miniprogram_component_generator_skill",
+        "path": "src\\leo_skills\\frontend\\miniprogram_component_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "miniprogram_page_generator_skill",
+        "path": "src\\leo_skills\\frontend\\miniprogram_page_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "react_component_generator_skill",
+        "path": "src\\leo_skills\\frontend\\react_component_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "vant_weapp_skill",
+        "path": "src\\leo_skills\\frontend\\vant_weapp_skill",
+        "errors": []
+      },
+      {
+        "name": "vue_component_generator_skill",
+        "path": "src\\leo_skills\\frontend\\vue_component_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "vue_page_generator_skill",
+        "path": "src\\leo_skills\\frontend\\vue_page_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "weui_miniprogram_skill",
+        "path": "src\\leo_skills\\frontend\\weui_miniprogram_skill",
+        "errors": []
+      },
+      {
+        "name": "twitter_monitor_skill",
+        "path": "src\\leo_skills\\tools\\twitter_monitor_skill",
+        "errors": []
+      },
+      {
+        "name": "chain_of_thought_prompter_skill",
+        "path": "src\\leo_skills\\prompt_engineering\\chain_of_thought_prompter_skill",
+        "errors": []
+      },
+      {
+        "name": "long_context_handler_skill",
+        "path": "src\\leo_skills\\prompt_engineering\\long_context_handler_skill",
+        "errors": []
+      },
+      {
+        "name": "prompt_chaining_orchestrator_skill",
+        "path": "src\\leo_skills\\prompt_engineering\\prompt_chaining_orchestrator_skill",
+        "errors": []
+      },
+      {
+        "name": "prompt_optimizer_skill",
+        "path": "src\\leo_skills\\prompt_engineering\\prompt_optimizer_skill",
+        "errors": []
+      },
+      {
+        "name": "prompt_vault_skill",
+        "path": "src\\leo_skills\\prompt_engineering\\prompt_vault_skill",
+        "errors": []
+      },
+      {
+        "name": "xml_structure_builder_skill",
+        "path": "src\\leo_skills\\prompt_engineering\\xml_structure_builder_skill",
+        "errors": []
+      },
+      {
+        "name": "bootstrap",
+        "path": "src\\leo_skills\\scaffold\\bootstrap_skill",
+        "errors": []
+      },
+      {
+        "name": "flask_api_scaffold_skill",
+        "path": "src\\leo_skills\\scaffold\\flask_api_scaffold_skill",
+        "errors": []
+      },
+      {
+        "name": "fullstack_project_scaffold_skill",
+        "path": "src\\leo_skills\\scaffold\\fullstack_project_scaffold_skill",
+        "errors": []
+      },
+      {
+        "name": "miniprogram_project_scaffold_skill",
+        "path": "src\\leo_skills\\scaffold\\miniprogram_project_scaffold_skill",
+        "errors": []
+      },
+      {
+        "name": "setup",
+        "path": "src\\leo_skills\\scaffold\\setup_skill",
+        "errors": []
+      },
+      {
+        "name": "t3_stack_scaffold_skill",
+        "path": "src\\leo_skills\\scaffold\\t3_stack_scaffold_skill",
+        "errors": []
+      },
+      {
+        "name": "oauth-login",
+        "path": "src\\leo_skills\\security\\oauth_login_skill",
+        "errors": []
+      },
+      {
+        "name": "security_scan_skill",
+        "path": "src\\leo_skills\\security\\security_scan_skill",
+        "errors": []
+      },
+      {
+        "name": "api_test_generator_skill",
+        "path": "src\\leo_skills\\testing\\api_test_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "auto-verify",
+        "path": "src\\leo_skills\\testing\\auto_verify_skill",
+        "errors": []
+      },
+      {
+        "name": "browser-verification",
+        "path": "src\\leo_skills\\testing\\browser_verification_skill",
+        "errors": []
+      },
+      {
+        "name": "code-verification",
+        "path": "src\\leo_skills\\testing\\code_verification_skill",
+        "errors": []
+      },
+      {
+        "name": "criteria-audit",
+        "path": "src\\leo_skills\\testing\\criteria_audit_skill",
+        "errors": []
+      },
+      {
+        "name": "e2e_test_generator_skill",
+        "path": "src\\leo_skills\\testing\\e2e_test_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "spec-verification",
+        "path": "src\\leo_skills\\testing\\spec_verification_skill",
+        "errors": []
+      },
+      {
+        "name": "test_driven_development_skill",
+        "path": "src\\leo_skills\\testing\\test_driven_development_skill",
+        "errors": []
+      },
+      {
+        "name": "unit_test_generator_skill",
+        "path": "src\\leo_skills\\testing\\unit_test_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "verification_before_completion_skill",
+        "path": "src\\leo_skills\\testing\\verification_before_completion_skill",
+        "errors": []
+      },
+      {
+        "name": "verify-task",
+        "path": "src\\leo_skills\\testing\\verify_task_skill",
+        "errors": []
+      },
+      {
+        "name": "add-todo",
+        "path": "src\\leo_skills\\tools\\add_todo_skill",
+        "errors": []
+      },
+      {
+        "name": "agent_skill_creator_skill",
+        "path": "src\\leo_skills\\tools\\agent_skill_creator_skill",
+        "errors": []
+      },
+      {
+        "name": "airtable_connector_skill",
+        "path": "src\\leo_skills\\tools\\airtable_connector_skill",
+        "errors": []
+      },
+      {
+        "name": "alerting_skill",
+        "path": "src\\leo_skills\\tools\\alerting_skill",
+        "errors": []
+      },
+      {
+        "name": "alipay_skill",
+        "path": "src\\leo_skills\\tools\\alipay_skill",
+        "errors": []
+      },
+      {
+        "name": "api_doc_skill",
+        "path": "src\\leo_skills\\tools\\api_doc_skill",
+        "errors": []
+      },
+      {
+        "name": "article_to_prototype_skill",
+        "path": "src\\leo_skills\\tools\\article_to_prototype_skill",
+        "errors": []
+      },
+      {
+        "name": "asana_skill",
+        "path": "src\\leo_skills\\tools\\asana_skill",
+        "errors": []
+      },
+      {
+        "name": "audit-skills",
+        "path": "src\\leo_skills\\tools\\audit_skills_skill",
+        "errors": []
+      },
+      {
+        "name": "auto_update_skill",
+        "path": "src\\leo_skills\\tools\\auto_update_skill",
+        "errors": []
+      },
+      {
+        "name": "aws_skill",
+        "path": "src\\leo_skills\\tools\\aws_skill",
+        "errors": []
+      },
+      {
+        "name": "azure_skill",
+        "path": "src\\leo_skills\\tools\\azure_skill",
+        "errors": []
+      },
+      {
+        "name": "bank_connector_skill",
+        "path": "src\\leo_skills\\tools\\bank_connector_skill",
+        "errors": []
+      },
+      {
+        "name": "bitbucket_skill",
+        "path": "src\\leo_skills\\tools\\bitbucket_skill",
+        "errors": []
+      },
+      {
+        "name": "browser_skill",
+        "path": "src\\leo_skills\\tools\\browser_skill",
+        "errors": []
+      },
+      {
+        "name": "calendar_skill_skill",
+        "path": "src\\leo_skills\\tools\\calendar_skill_skill",
+        "errors": []
+      },
+      {
+        "name": "cal_com_integration_skill",
+        "path": "src\\leo_skills\\tools\\cal_com_integration_skill",
+        "errors": []
+      },
+      {
+        "name": "cal_com_skill",
+        "path": "src\\leo_skills\\tools\\cal_com_skill",
+        "errors": []
+      },
+      {
+        "name": "chart_generator_skill",
+        "path": "src\\leo_skills\\tools\\chart_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "cloud_storage_skill",
+        "path": "src\\leo_skills\\tools\\cloud_storage_skill",
+        "errors": []
+      },
+      {
+        "name": "codex-review",
+        "path": "src\\leo_skills\\tools\\codex_review_skill",
+        "errors": []
+      },
+      {
+        "name": "code_review_skill",
+        "path": "src\\leo_skills\\tools\\code_review_skill",
+        "errors": []
+      },
+      {
+        "name": "content_to_action_skill",
+        "path": "src\\leo_skills\\tools\\content_to_action_skill",
+        "errors": []
+      },
+      {
+        "name": "contract_generator_skill",
+        "path": "src\\leo_skills\\tools\\contract_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "coverage_skill",
+        "path": "src\\leo_skills\\tools\\coverage_skill",
+        "errors": []
+      },
+      {
+        "name": "crm_connector_skill",
+        "path": "src\\leo_skills\\tools\\crm_connector_skill",
+        "errors": []
+      },
+      {
+        "name": "customs_skill",
+        "path": "src\\leo_skills\\tools\\customs_skill",
+        "errors": []
+      },
+      {
+        "name": "deploy_skill",
+        "path": "src\\leo_skills\\tools\\deploy_skill",
+        "errors": []
+      },
+      {
+        "name": "discord_skill_skill",
+        "path": "src\\leo_skills\\tools\\discord_skill_skill",
+        "errors": []
+      },
+      {
+        "name": "docker_skill",
+        "path": "src\\leo_skills\\tools\\docker_skill",
+        "errors": []
+      },
+      {
+        "name": "doc_generator_skill",
+        "path": "src\\leo_skills\\tools\\doc_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "doc_sign_skill",
+        "path": "src\\leo_skills\\tools\\doc_sign_skill",
+        "errors": []
+      },
+      {
+        "name": "douyin_skill",
+        "path": "src\\leo_skills\\tools\\douyin_skill",
+        "errors": []
+      },
+      {
+        "name": "facebook_skill",
+        "path": "src\\leo_skills\\tools\\facebook_skill",
+        "errors": []
+      },
+      {
+        "name": "find_skills_skill",
+        "path": "src\\leo_skills\\tools\\find_skills_skill",
+        "errors": []
+      },
+      {
+        "name": "gcp_skill",
+        "path": "src\\leo_skills\\tools\\gcp_skill",
+        "errors": []
+      },
+      {
+        "name": "github_auto_register_skill",
+        "path": "src\\leo_skills\\tools\\github_auto_register_skill",
+        "errors": []
+      },
+      {
+        "name": "github_integration_skill",
+        "path": "src\\leo_skills\\tools\\github_integration_skill",
+        "errors": []
+      },
+      {
+        "name": "github_skills_monitor_skill",
+        "path": "src\\leo_skills\\tools\\github_skills_monitor_skill",
+        "errors": []
+      },
+      {
+        "name": "github_skills_updater_skill",
+        "path": "src\\leo_skills\\tools\\github_skills_updater_skill",
+        "errors": []
+      },
+      {
+        "name": "github_skill_skill",
+        "path": "src\\leo_skills\\tools\\github_skill_skill",
+        "errors": []
+      },
+      {
+        "name": "github_to_skills_skill",
+        "path": "src\\leo_skills\\tools\\github_to_skills_skill",
+        "errors": []
+      },
+      {
+        "name": "gitlab_skill",
+        "path": "src\\leo_skills\\tools\\gitlab_skill",
+        "errors": []
+      },
+      {
+        "name": "git_skill",
+        "path": "src\\leo_skills\\tools\\git_skill",
+        "errors": []
+      },
+      {
+        "name": "gmail_skill",
+        "path": "src\\leo_skills\\tools\\gmail_skill",
+        "errors": []
+      },
+      {
+        "name": "gog_skill",
+        "path": "src\\leo_skills\\tools\\gog_skill",
+        "errors": []
+      },
+      {
+        "name": "gog_skill_skill",
+        "path": "src\\leo_skills\\tools\\gog_skill_skill",
+        "errors": []
+      },
+      {
+        "name": "google_calendar_skill",
+        "path": "src\\leo_skills\\tools\\google_calendar_skill",
+        "errors": []
+      },
+      {
+        "name": "google_maps_skill",
+        "path": "src\\leo_skills\\tools\\google_maps_skill",
+        "errors": []
+      },
+      {
+        "name": "hubspot_skill",
+        "path": "src\\leo_skills\\tools\\hubspot_skill",
+        "errors": []
+      },
+      {
+        "name": "instagram_skill",
+        "path": "src\\leo_skills\\tools\\instagram_skill",
+        "errors": []
+      },
+      {
+        "name": "jira_skill",
+        "path": "src\\leo_skills\\tools\\jira_skill",
+        "errors": []
+      },
+      {
+        "name": "knowledge_site_creator_skill",
+        "path": "src\\leo_skills\\tools\\knowledge_site_creator_skill",
+        "errors": []
+      },
+      {
+        "name": "kubernetes_skill",
+        "path": "src\\leo_skills\\tools\\kubernetes_skill",
+        "errors": []
+      },
+      {
+        "name": "linkedin_skill",
+        "path": "src\\leo_skills\\tools\\linkedin_skill",
+        "errors": []
+      },
+      {
+        "name": "lint_skill",
+        "path": "src\\leo_skills\\tools\\lint_skill",
+        "errors": []
+      },
+      {
+        "name": "list-todos",
+        "path": "src\\leo_skills\\tools\\list_todos_skill",
+        "errors": []
+      },
+      {
+        "name": "location_skill",
+        "path": "src\\leo_skills\\tools\\location_skill",
+        "errors": []
+      },
+      {
+        "name": "logging_skill",
+        "path": "src\\leo_skills\\tools\\logging_skill",
+        "errors": []
+      },
+      {
+        "name": "monitoring_skill",
+        "path": "src\\leo_skills\\tools\\monitoring_skill",
+        "errors": []
+      },
+      {
+        "name": "notification_skill",
+        "path": "src\\leo_skills\\tools\\notification_skill",
+        "errors": []
+      },
+      {
+        "name": "notion_connector_skill",
+        "path": "src\\leo_skills\\tools\\notion_connector_skill",
+        "errors": []
+      },
+      {
+        "name": "obsidian_connector_skill",
+        "path": "src\\leo_skills\\tools\\obsidian_connector_skill",
+        "errors": []
+      },
+      {
+        "name": "outlook_skill",
+        "path": "src\\leo_skills\\tools\\outlook_skill",
+        "errors": []
+      },
+      {
+        "name": "paypal_skill",
+        "path": "src\\leo_skills\\tools\\paypal_skill",
+        "errors": []
+      },
+      {
+        "name": "pocket_assistant_skill",
+        "path": "src\\leo_skills\\tools\\pocket_assistant_skill",
+        "errors": []
+      },
+      {
+        "name": "repo_watch_skill",
+        "path": "src\\leo_skills\\tools\\repo_watch_skill",
+        "errors": []
+      },
+      {
+        "name": "run-todos",
+        "path": "src\\leo_skills\\tools\\run_todos_skill",
+        "errors": []
+      },
+      {
+        "name": "salesforce_skill",
+        "path": "src\\leo_skills\\tools\\salesforce_skill",
+        "errors": []
+      },
+      {
+        "name": "shipping_skill",
+        "path": "src\\leo_skills\\tools\\shipping_skill",
+        "errors": []
+      },
+      {
+        "name": "skill_deduplication_skill",
+        "path": "src\\leo_skills\\tools\\skill_deduplication_skill",
+        "errors": []
+      },
+      {
+        "name": "skill_evolution_assistant_skill",
+        "path": "src\\leo_skills\\tools\\skill_evolution_assistant_skill",
+        "errors": []
+      },
+      {
+        "name": "skill_evolution_manager_skill",
+        "path": "src\\leo_skills\\tools\\skill_evolution_manager_skill",
+        "errors": []
+      },
+      {
+        "name": "skill_manager_skill",
+        "path": "src\\leo_skills\\tools\\skill_manager_skill",
+        "errors": []
+      },
+      {
+        "name": "skill_vetter_skill",
+        "path": "src\\leo_skills\\tools\\skill_vetter_skill",
+        "errors": []
+      },
+      {
+        "name": "slack_skill_skill",
+        "path": "src\\leo_skills\\tools\\slack_skill_skill",
+        "errors": []
+      },
+      {
+        "name": "sms_skill",
+        "path": "src\\leo_skills\\tools\\sms_skill",
+        "errors": []
+      },
+      {
+        "name": "social_media_monitor_skill",
+        "path": "src\\leo_skills\\tools\\social_media_monitor_skill",
+        "errors": []
+      },
+      {
+        "name": "stripe_skill",
+        "path": "src\\leo_skills\\tools\\stripe_skill",
+        "errors": []
+      },
+      {
+        "name": "subagent_creator_skill",
+        "path": "src\\leo_skills\\tools\\subagent_creator_skill",
+        "errors": []
+      },
+      {
+        "name": "tavily_search_skill",
+        "path": "src\\leo_skills\\tools\\tavily_search_skill",
+        "errors": []
+      },
+      {
+        "name": "telegram_skill_skill",
+        "path": "src\\leo_skills\\tools\\telegram_skill_skill",
+        "errors": []
+      },
+      {
+        "name": "test_generator_skill",
+        "path": "src\\leo_skills\\tools\\test_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "tracking_skill",
+        "path": "src\\leo_skills\\tools\\tracking_skill",
+        "errors": []
+      },
+      {
+        "name": "trello_skill",
+        "path": "src\\leo_skills\\tools\\trello_skill",
+        "errors": []
+      },
+      {
+        "name": "twitter_skill",
+        "path": "src\\leo_skills\\tools\\twitter_skill",
+        "errors": []
+      },
+      {
+        "name": "update-docs",
+        "path": "src\\leo_skills\\tools\\update_docs_skill",
+        "errors": []
+      },
+      {
+        "name": "update-target-projects",
+        "path": "src\\leo_skills\\tools\\update_target_projects_skill",
+        "errors": []
+      },
+      {
+        "name": "usage_tracking_skill",
+        "path": "src\\leo_skills\\tools\\usage_tracking_skill",
+        "errors": []
+      },
+      {
+        "name": "vapi_integration_skill",
+        "path": "src\\leo_skills\\tools\\vapi_integration_skill",
+        "errors": []
+      },
+      {
+        "name": "vision-audit",
+        "path": "src\\leo_skills\\tools\\vision_audit_skill",
+        "errors": []
+      },
+      {
+        "name": "wechat_skill",
+        "path": "src\\leo_skills\\tools\\wechat_skill",
+        "errors": []
+      },
+      {
+        "name": "weibo_skill",
+        "path": "src\\leo_skills\\tools\\weibo_skill",
+        "errors": []
+      },
+      {
+        "name": "whatsapp_skill_skill",
+        "path": "src\\leo_skills\\tools\\whatsapp_skill_skill",
+        "errors": []
+      },
+      {
+        "name": "xiaohongshu_skill",
+        "path": "src\\leo_skills\\tools\\xiaohongshu_skill",
+        "errors": []
+      },
+      {
+        "name": "analytics_skill",
+        "path": "src\\leo_skills\\utilities\\analytics_skill",
+        "errors": []
+      },
+      {
+        "name": "analyze-sessions",
+        "path": "src\\leo_skills\\utilities\\analyze_sessions_skill",
+        "errors": []
+      },
+      {
+        "name": "bing_search_skill",
+        "path": "src\\leo_skills\\utilities\\bing_search_skill",
+        "errors": []
+      },
+      {
+        "name": "book_learning_skill",
+        "path": "src\\leo_skills\\utilities\\book_learning_skill",
+        "errors": []
+      },
+      {
+        "name": "business_research_skill",
+        "path": "src\\leo_skills\\utilities\\business_research_skill",
+        "errors": []
+      },
+      {
+        "name": "content_analytics_skill",
+        "path": "src\\leo_skills\\utilities\\content_analytics_skill",
+        "errors": []
+      },
+      {
+        "name": "data_analyzer_skill",
+        "path": "src\\leo_skills\\utilities\\data_analyzer_skill",
+        "errors": []
+      },
+      {
+        "name": "excel_skill",
+        "path": "src\\leo_skills\\utilities\\excel_skill",
+        "errors": []
+      },
+      {
+        "name": "file_manager_skill",
+        "path": "src\\leo_skills\\utilities\\file_manager_skill",
+        "errors": []
+      },
+      {
+        "name": "google_search_skill",
+        "path": "src\\leo_skills\\utilities\\google_search_skill",
+        "errors": []
+      },
+      {
+        "name": "interest_calculator_skill",
+        "path": "src\\leo_skills\\utilities\\interest_calculator_skill",
+        "errors": []
+      },
+      {
+        "name": "loan_calculator_skill",
+        "path": "src\\leo_skills\\utilities\\loan_calculator_skill",
+        "errors": []
+      },
+      {
+        "name": "mortgage_calculator_skill",
+        "path": "src\\leo_skills\\utilities\\mortgage_calculator_skill",
+        "errors": []
+      },
+      {
+        "name": "obsidian_sync_skill",
+        "path": "src\\leo_skills\\utilities\\obsidian_sync_skill",
+        "errors": []
+      },
+      {
+        "name": "pdf_analyzer_skill",
+        "path": "src\\leo_skills\\utilities\\pdf_analyzer_skill",
+        "errors": []
+      },
+      {
+        "name": "pdf_generator_skill",
+        "path": "src\\leo_skills\\utilities\\pdf_generator_skill",
+        "errors": []
+      },
+      {
+        "name": "powerpoint_skill",
+        "path": "src\\leo_skills\\utilities\\powerpoint_skill",
+        "errors": []
+      },
+      {
+        "name": "repayment_calculator_skill",
+        "path": "src\\leo_skills\\utilities\\repayment_calculator_skill",
+        "errors": []
+      },
+      {
+        "name": "research_assistant_skill",
+        "path": "src\\leo_skills\\utilities\\research_assistant_skill",
+        "errors": []
+      },
+      {
+        "name": "review_analyzer_skill",
+        "path": "src\\leo_skills\\utilities\\review_analyzer_skill",
+        "errors": []
+      },
+      {
+        "name": "roi_calculator_skill",
+        "path": "src\\leo_skills\\utilities\\roi_calculator_skill",
+        "errors": []
+      },
+      {
+        "name": "scheduler_skill",
+        "path": "src\\leo_skills\\utilities\\scheduler_skill",
+        "errors": []
+      },
+      {
+        "name": "sentiment_analysis_skill",
+        "path": "src\\leo_skills\\utilities\\sentiment_analysis_skill",
+        "errors": []
+      },
+      {
+        "name": "summarize_skill",
+        "path": "src\\leo_skills\\utilities\\summarize_skill",
+        "errors": []
+      },
+      {
+        "name": "summarize_skill_skill",
+        "path": "src\\leo_skills\\utilities\\summarize_skill_skill",
+        "errors": []
+      },
+      {
+        "name": "tech-debt-check",
+        "path": "src\\leo_skills\\utilities\\tech_debt_check_skill",
+        "errors": []
+      },
+      {
+        "name": "tech_extractor_skill",
+        "path": "src\\leo_skills\\utilities\\tech_extractor_skill",
+        "errors": []
+      },
+      {
+        "name": "timezone_skill",
+        "path": "src\\leo_skills\\utilities\\timezone_skill",
+        "errors": []
+      },
+      {
+        "name": "translate_skill",
+        "path": "src\\leo_skills\\utilities\\translate_skill",
+        "errors": []
+      },
+      {
+        "name": "weather_skill_skill",
+        "path": "src\\leo_skills\\utilities\\weather_skill_skill",
+        "errors": []
+      },
+      {
+        "name": "web_search_enhanced_skill",
+        "path": "src\\leo_skills\\utilities\\web_search_enhanced_skill",
+        "errors": []
+      },
+      {
+        "name": "web_search_skill",
+        "path": "src\\leo_skills\\utilities\\web_search_skill",
+        "errors": []
+      },
+      {
+        "name": "word_skill",
+        "path": "src\\leo_skills\\utilities\\word_skill",
+        "errors": []
+      },
+      {
+        "name": "youtube_summarizer_skill",
+        "path": "src\\leo_skills\\utilities\\youtube_summarizer_skill",
+        "errors": []
+      },
+      {
+        "name": "videocut:auto_update",
+        "path": "src\\leo_skills\\videocut_skills\\auto_update_skill",
+        "errors": []
+      },
+      {
+        "name": "videocut:cut_speech",
+        "path": "src\\leo_skills\\videocut_skills\\cut_speech_skill",
+        "errors": []
+      },
+      {
+        "name": "videocut:install",
+        "path": "src\\leo_skills\\videocut_skills\\install_skill",
+        "errors": []
+      },
+      {
+        "name": "videocut:subtitle",
+        "path": "src\\leo_skills\\videocut_skills\\subtitle_skill",
+        "errors": []
+      },
+      {
+        "name": "videocut:video_editing",
+        "path": "src\\leo_skills\\videocut_skills\\video_editing_skill",
+        "errors": []
+      },
+      {
+        "name": "auto_dispatcher_skill",
+        "path": "src\\leo_skills\\core\u0007uto_dispatcher_skill",
+        "errors": []
+      }
+    ]
+  },
+  "performance": {
+    "skill_discovery_time": 0.0,
+    "validation_time": 0.0,
+    "registry_load_time": 0.004024982452392578,
+    "total_skills": 0,
+    "valid_skills": 0,
+    "invalid_skills": 0
+  },
+  "issues": [],
+  "recommendations": [],
+  "overall_score": 100.0
+}

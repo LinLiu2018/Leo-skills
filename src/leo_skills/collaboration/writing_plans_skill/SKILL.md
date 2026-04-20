@@ -1,27 +1,35 @@
 ---
-name: writing_plans_skill
-version: "1.0.0"
-description: |
-  【协作技能】编写详细的实施计划。当你有多步骤任务的规格或需求时，在接触代码之前使用。
+name: writing-plans-skill
+description: 【协作技能】编写详细的实施计划。当你有多步骤任务的规格或需求时，在接触代码之前使用。
+核心理念：假设工程师对代码库零上下文，文档化他们需要知道的一切。提供小步任务粒度。
+基于 obra/superpowers 的 writing-plans 技能。
+ [优化第5轮：提升了触发准确率]
+
   核心理念：假设工程师对代码库零上下文，文档化他们需要知道的一切。提供小步任务粒度。
+
   基于 obra/superpowers 的 writing-plans 技能。
+
+  '
 category: collaboration
 author: Leo AI System (基于 obra/superpowers)
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - 写计划
   - 制定计划
   - 创建计划
   - 实施计划
   - writing-plans
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Edit
   - Bash
   - Glob
   - Grep
+license: MIT
 ---
 
 # 编写计划（Writing Plans）

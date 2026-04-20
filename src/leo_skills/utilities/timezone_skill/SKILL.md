@@ -1,17 +1,19 @@
 ---
-name: timezone_skill
-version: 1.0.0
-description: 时区转换
+name: timezone-skill
+description: 时区转换 [优化第5轮：提升了触发准确率]
 category: utilities
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - timezone-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Timezone Skill

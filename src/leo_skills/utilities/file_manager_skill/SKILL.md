@@ -1,24 +1,25 @@
 ---
-name: file_manager_skill
-description: 磁盘清理和文件管理 (含桌面文件整理)
-user-invocable: true
+name: file-manager-skill
+description: 磁盘清理和文件管理 (含桌面文件整理)。当用户需要实用工具相关帮助时使用。 [优化第5轮：提升了触发准确率]
 metadata:
   version: 2.0.0
   category: utilities
   author: leo-ai-system
   priority: 1
   activation_keywords:
-    - file-manager-skill
-    - 磁盘清理
-    - 桌面整理
-    - 文件整理
-    - 大文件
-    - 重复文件
-    - PARA
+  - file-manager-skill
+  - 磁盘清理
+  - 桌面整理
+  - 文件整理
+  - 大文件
+  - 重复文件
+  - PARA
   allowed-tools:
-    - Read
-    - Write
-    - Bash
+  - Read
+  - Write
+  - Bash
+  user-invocable: true
+license: MIT
 ---
 
 # File Manager Skill (v2.0)

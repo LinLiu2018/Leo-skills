@@ -1,17 +1,19 @@
 ---
-name: meta_generator_skill
-version: 1.0.0
-description: Meta 标签生成
+name: meta-generator-skill
+description: Meta 标签生成。当用户需要内容创作生成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: content_creation
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - meta-generator-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Meta Generator Skill

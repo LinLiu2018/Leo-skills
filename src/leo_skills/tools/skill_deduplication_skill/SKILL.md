@@ -1,20 +1,22 @@
 ---
-name: skill_deduplication_skill
-version: 1.0.0
-description: 技能去重检查。扫描所有技能，检测功能重复和命名冲突，提供合并建议。
+name: skill-deduplication-skill
+description: 技能去重检查。扫描所有技能，检测功能重复和命名冲突，提供合并建议。。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: Leo Liu
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - 技能去重
   - 检查重复技能
   - 技能合并
   - 命名冲突检查
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Skill Deduplication Skill

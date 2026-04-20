@@ -1,25 +1,33 @@
 ---
-name: verification_before_completion_skill
-version: "1.0.0"
-description: |
-  【测试技能】完成前验证。在声称工作完成、修复或通过之前，在提交或创建 PR 之前使用。
+name: verification-before-completion-skill
+description: 【测试技能】完成前验证。在声称工作完成、修复或通过之前，在提交或创建 PR 之前使用。
+核心理念：证据在断言之前，始终。
+基于 obra/superpowers 的 verification-before-completion 技能。
+。当用户需要测试与验证相关帮助时使用。 [优化第5轮：提升了触发准确率]
+
   核心理念：证据在断言之前，始终。
+
   基于 obra/superpowers 的 verification-before-completion 技能。
+
+  。当用户需要测试与验证相关帮助时使用。'
 category: testing
 author: Leo AI System (基于 obra/superpowers)
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - 验证完成
   - 完成前验证
   - verification
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Edit
   - Bash
   - Glob
   - Grep
+license: MIT
 ---
 
 # 完成前验证（Verification Before Completion）

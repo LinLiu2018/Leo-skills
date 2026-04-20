@@ -1,0 +1,127 @@
+{
+  "timestamp": "2026-03-13T16:35:47.643454",
+  "total_skills": 252,
+  "assessed_count": 20,
+  "results": [
+    {
+      "name": "auto_logger_skill",
+      "path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\automation\\auto_logger_skill",
+      "assessed": true,
+      "optimized": true
+    },
+    {
+      "name": "email_automation_skill",
+      "path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\automation\\email_automation_skill",
+      "assessed": true,
+      "optimized": true
+    },
+    {
+      "name": "zapier_webhook_skill",
+      "path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\automation\\zapier_webhook_skill",
+      "assessed": true,
+      "optimized": true
+    },
+    {
+      "name": "api_doc_generator_skill",
+      "path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\backend\\api_doc_generator_skill",
+      "assessed": true,
+      "optimized": true
+    },
+    {
+      "name": "database_migration_skill",
+      "path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\backend\\database_migration_skill",
+      "assessed": true,
+      "optimized": true
+    },
+    {
+      "name": "database_model_generator_skill",
+      "path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\backend\\database_model_generator_skill",
+      "assessed": true,
+      "optimized": true
+    },
+    {
+      "name": "fastapi_endpoint_generator_skill",
+      "path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\backend\\fastapi_endpoint_generator_skill",
+      "assessed": true,
+      "optimized": true
+    },
+    {
+      "name": "flask_api_generator_skill",
+      "path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\backend\\flask_api_generator_skill",
+      "assessed": true,
+      "optimized": true
+    },
+    {
+      "name": "flask_auth_generator_skill",
+      "path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\backend\\flask_auth_generator_skill",
+      "assessed": true,
+      "optimized": true
+    },
+    {
+      "name": "ads_manager_skill",
+      "path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\business\\ads_manager_skill",
+      "assessed": true,
+      "optimized": true
+    },
+    {
+      "name": "aliexpress_skill",
+      "path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\business\\aliexpress_skill",
+      "assessed": true,
+      "optimized": true
+    },
+    {
+      "name": "amazon_skill",
+      "path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\business\\amazon_skill",
+      "assessed": true,
+      "optimized": true
+    },
+    {
+      "name": "competitor_content_crawler_skill",
+      "path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\business\\competitor_content_crawler_skill",
+      "assessed": true,
+      "optimized": true
+    },
+    {
+      "name": "competitor_monitor_skill",
+      "path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\business\\competitor_monitor_skill",
+      "assessed": true,
+      "optimized": true
+    },
+    {
+      "name": "compliance_check_skill",
+      "path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\business\\compliance_check_skill",
+      "assessed": true,
+      "optimized": true
+    },
+    {
+      "name": "credit_check_skill",
+      "path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\business\\credit_check_skill",
+      "assessed": true,
+      "optimized": true
+    },
+    {
+      "name": "customer_portrait_skill",
+      "path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\business\\customer_portrait_skill",
+      "assessed": true,
+      "optimized": true
+    },
+    {
+      "name": "ebay_skill",
+      "path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\business\\ebay_skill",
+      "assessed": true,
+      "optimized": true
+    },
+    {
+      "name": "facebook_ads_skill",
+      "path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\business\\facebook_ads_skill",
+      "assessed": true,
+      "optimized": true
+    },
+    {
+      "name": "financial_analysis_skill",
+      "path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\business\\financial_analysis_skill",
+      "assessed": true,
+      "optimized": true
+    }
+  ]
+}

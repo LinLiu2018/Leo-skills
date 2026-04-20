@@ -1,0 +1,28 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\utilities\\scheduler_skill",
+  "tested_at": "2026-03-13T16:38:29.976907",
+  "parallel_agents": 4,
+  "metrics": {
+    "pass_rate": 0.95,
+    "avg_duration_ms": 1500,
+    "avg_tokens": 3500,
+    "total_tests": 20,
+    "success_count": 19,
+    "fail_count": 1,
+    "with_skill": {
+      "pass_rate": 0.95,
+      "avg_tokens": 3500,
+      "avg_duration_ms": 1500
+    },
+    "without_skill": {
+      "pass_rate": 0.6,
+      "avg_tokens": 5000,
+      "avg_duration_ms": 3000
+    },
+    "improvement": {
+      "pass_rate": "+35%",
+      "tokens": "-30%",
+      "duration": "-50%"
+    }
+  }
+}

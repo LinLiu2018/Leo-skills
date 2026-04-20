@@ -89,7 +89,7 @@ steps:
 outputs:
   - name: delivery_status
     value: "{{steps.confirm_delivery.output.status}}"
-  - message_id
+  - name: message_id
     value: "{{steps.route_message.output.message_id}}"
 
 # 错误处理

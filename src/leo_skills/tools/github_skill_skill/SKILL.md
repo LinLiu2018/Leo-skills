@@ -1,17 +1,19 @@
 ---
-name: github_skill_skill
-version: 1.0.0
-description: GitHub 集成技能，支持搜索代码、管理 Issue/PR
+name: github-skill-skill
+description: GitHub 集成技能，支持搜索代码、管理 Issue/PR。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: openclaw
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - github skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # GitHub Skill

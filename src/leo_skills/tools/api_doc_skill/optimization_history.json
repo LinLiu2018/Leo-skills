@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\tools\\api_doc_skill",
+  "optimized_at": "2026-03-13T16:38:17.816443",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "API 文档生成。当用户需要工具集成相关帮助时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.894,
+      "test_accuracy": 0.869
+    },
+    {
+      "round": 2,
+      "description": "API 文档生成。当用户需要工具集成相关帮助时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.888,
+      "test_accuracy": 0.877
+    },
+    {
+      "round": 3,
+      "description": "API 文档生成。当用户需要工具集成相关帮助时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.927,
+      "test_accuracy": 0.911
+    },
+    {
+      "round": 4,
+      "description": "API 文档生成。当用户需要工具集成相关帮助时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.958,
+      "test_accuracy": 0.903
+    },
+    {
+      "round": 5,
+      "description": "API 文档生成。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.954,
+      "test_accuracy": 0.955
+    }
+  ],
+  "final_description": "API 文档生成。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

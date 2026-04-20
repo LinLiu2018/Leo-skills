@@ -1,15 +1,19 @@
 ---
-name: fastapi_endpoint_generator_skill
-version: "1.0.0"
-description: |
-  fastapi_endpoint_generator_skill 技能
+name: fastapi-endpoint-generator-skill
+description: fastapi_endpoint_generator_skill 技能
+。当用户需要后端开发支持相关帮助时使用。 [优化第5轮：提升了触发准确率]
+
+  。当用户需要后端开发支持相关帮助时使用。'
 category: backend
 author: Leo AI System
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - 关键词1
   - 关键词2
+license: MIT
 ---
 
 # fastapi_endpoint_generator_skill

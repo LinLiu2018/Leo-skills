@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\testing\\auto_verify_skill",
+  "optimized_at": "2026-03-13T16:38:16.833411",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Attempt automated verification of criteria before falling back to manual. Parses criterion text for ...",
+      "train_accuracy": 0.891,
+      "test_accuracy": 0.865
+    },
+    {
+      "round": 2,
+      "description": "Attempt automated verification of criteria before falling back to manual. Parses criterion text for ...",
+      "train_accuracy": 0.889,
+      "test_accuracy": 0.871
+    },
+    {
+      "round": 3,
+      "description": "Attempt automated verification of criteria before falling back to manual. Parses criterion text for ...",
+      "train_accuracy": 0.9,
+      "test_accuracy": 0.899
+    },
+    {
+      "round": 4,
+      "description": "Attempt automated verification of criteria before falling back to manual. Parses criterion text for ...",
+      "train_accuracy": 0.948,
+      "test_accuracy": 0.896
+    },
+    {
+      "round": 5,
+      "description": "Attempt automated verification of criteria before falling back to manual. Parses criterion text for ...",
+      "train_accuracy": 0.946,
+      "test_accuracy": 0.925
+    }
+  ],
+  "final_description": "Attempt automated verification of criteria before falling back to manual. Parses criterion text for automation hints and executes appropriate tool (curl, browser, file check). Invoked by verify-task and phase-checkpoint for MANUAL criteria.。当用户需要测试与验证相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

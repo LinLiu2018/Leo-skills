@@ -1,21 +1,23 @@
 ---
-name: github_auto_register_skill
-version: 1.0.0
-description: GitHub 技能自动注册。自动扫描、评估、下载、注册 GitHub 热门 Claude 技能到 Leo AI 系统。
+name: github-auto-register-skill
+description: GitHub 技能自动注册。自动扫描、评估、下载、注册 GitHub 热门 Claude 技能到 Leo AI 系统。。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: Leo Liu
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - github 自动注册
   - 技能自动集成
   - github 技能加载
   - 自动获取技能
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
   - web_search
+license: MIT
 ---
 
 # GitHub Auto Register Skill

@@ -1,17 +1,19 @@
 ---
-name: zapier_webhook_skill
-version: 1.0.0
-description: Zapier Webhook 集成
+name: zapier-webhook-skill
+description: Zapier Webhook 集成。当用户需要自动化任务执行相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: automation
 author: community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - zapier webhook
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Zapier Webhook Skill

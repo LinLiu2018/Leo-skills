@@ -1,17 +1,19 @@
 ---
-name: slack_skill_skill
-version: 1.0.0
-description: Slack 集成技能，消息发送/接收/搜索
+name: slack-skill-skill
+description: Slack 集成技能，管理团队沟通。当用户需要发送 Slack 消息、管理频道、设置提醒或集成工作流通知时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: openclaw
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - slack skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Slack Skill

@@ -1,22 +1,31 @@
 ---
-name: planning_with_files_skill
-version: "1.0.0"
-description: |
-  【核心技能】Manus风格的持久化规划技能。通过三个Markdown文件（task_plan.md、findings.md、progress.md）
+name: planning-with-files-skill
+description: 【核心技能】Manus风格的持久化规划技能。通过三个Markdown文件（task_plan.md、findings.md、progress.md）
+实现任务规划、发现记录和进度跟踪。适用于复杂多步骤任务、研究项目或需要>5次工具调用的任务。
+核心理念：Context Window = RAM（易失、有限），Filesystem = Disk（持久、无限）
+这是Leo AI System的上下文工程基础设施，让整个系统具备"外部记忆"能力。
+ [优化第5轮：提升了触发准确率]
+
   实现任务规划、发现记录和进度跟踪。适用于复杂多步骤任务、研究项目或需要>5次工具调用的任务。
+
   核心理念：Context Window = RAM（易失、有限），Filesystem = Disk（持久、无限）
+
   这是Leo AI System的上下文工程基础设施，让整个系统具备"外部记忆"能力。
+
+  '
 category: core
 author: Leo AI System (基于 OthmanAdi/planning-with-files)
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - 规划任务
   - 创建计划
   - 任务规划
   - planning
   - 开始复杂任务
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Edit
@@ -25,6 +34,7 @@ allowed-tools:
   - Grep
   - WebFetch
   - WebSearch
+license: MIT
 ---
 
 # Planning with Files Skill（持久化规划技能）

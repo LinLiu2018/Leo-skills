@@ -1,17 +1,19 @@
 ---
-name: summarize_skill_skill
-version: 1.0.0
-description: 内容总结技能，支持 URL/PDF/YouTube/音频
+name: summarize-skill-skill
+description: 内容总结技能，支持 URL/PDF/YouTube/音频。当用户需要实用工具相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: utilities
 author: openclaw
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - summarize skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Summarize Skill

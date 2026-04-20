@@ -63,9 +63,12 @@ class SkillDiscoverySystem:
     def __init__(self, project_root: Optional[Path] = None):
         if project_root is None:
             project_root = Path.cwd()
-        
+
         self.project_root = project_root
-        self.skills_path = project_root / "leo_skills"
+        # 优先使用 src/leo_skills，如果不存在则回退到 leo_skills
+        self.skills_path = project_root / "src" / "leo_skills"
+        if not self.skills_path.exists():
+            self.skills_path = project_root / "leo_skills"
         self.registry_path = project_root / ".claude" / "skill_registry.json"
         self.cache_dir = project_root / ".claude" / "cache"
         

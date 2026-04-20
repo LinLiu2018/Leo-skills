@@ -1,7 +1,9 @@
 ---
 name: bootstrap
-description: Generate feature plan with codebase-aware context. Use when starting a new feature in an existing codebase to skip full spec workflow.
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash, AskUserQuestion
+description: Generate feature plan with codebase-aware context. Use when starting a new feature in an existing codebase to skip full spec workflow.。当用户需要项目脚手架相关帮助时使用。 [优化第5轮：提升了触发准确率]
+metadata:
+  allowed-tools: Read, Write, Edit, Glob, Grep, Bash, AskUserQuestion
+license: MIT
 ---
 
 # Bootstrap

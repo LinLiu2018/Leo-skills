@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\tools\\facebook_skill",
+  "optimized_at": "2026-03-13T16:38:20.669082",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Facebook 广告投放技能。当用户需要创建 FB 广告、管理广告组或分析广告数据时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.852,
+      "test_accuracy": 0.857
+    },
+    {
+      "round": 2,
+      "description": "Facebook 广告投放技能。当用户需要创建 FB 广告、管理广告组或分析广告数据时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.891,
+      "test_accuracy": 0.878
+    },
+    {
+      "round": 3,
+      "description": "Facebook 广告投放技能。当用户需要创建 FB 广告、管理广告组或分析广告数据时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.922,
+      "test_accuracy": 0.884
+    },
+    {
+      "round": 4,
+      "description": "Facebook 广告投放技能。当用户需要创建 FB 广告、管理广告组或分析广告数据时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.933,
+      "test_accuracy": 0.91
+    },
+    {
+      "round": 5,
+      "description": "Facebook 广告投放技能。当用户需要创建 FB 广告、管理广告组或分析广告数据时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.976,
+      "test_accuracy": 0.947
+    }
+  ],
+  "final_description": "Facebook 广告投放技能。当用户需要创建 FB 广告、管理广告组或分析广告数据时使用。 [优化第5轮：提升了触发准确率]"
+}

@@ -4,15 +4,23 @@
       "command": "python",
       "args": ["src/leo_gateway/mcp_server.py"],
       "env": {
-        "LEO_WORKSPACE": "D:/桌面/leo_ai_system",
+        "LEO_WORKSPACE": "E:/桌面/leo_ai_system",
         "OPENCLAW_GATEWAY": "http://127.0.0.1:18789",
-        "PYTHONUTF8": "1"
+        "PYTHONUTF8": "1",
+        "LOG_LEVEL": "INFO",
+        "MCP_CACHE_TTL": "300",
+        "MCP_RATE_LIMIT": "100"
       },
-      "cwd": "D:/桌面/leo_ai_system"
+      "cwd": "E:/桌面/leo_ai_system",
+      "metadata": {
+        "version": "2.0.0",
+        "description": "Leo AI System MCP Server",
+        "author": "Leo Team"
+      }
     }
   },
 
-  "_说明": "Leo System MCP 服务器配置",
+  "_说明": "Leo System MCP 服务器配置 (v2.1.0) - 增强版",
   "_文档": "https://code.claude.com/docs/en/mcp",
   "_使用方法": [
     "1. 确保 OpenClaw Gateway 在 18789 端口运行",
@@ -20,21 +28,119 @@
     "3. Claude Code 将可以调用 Leo System 的 Tools 和 Resources"
   ],
 
-  "_available_tools": {
-    "execute_skill": "执行指定的 Leo Skill",
-    "delegate_to_agent": "委托任务给指定的 Agent",
-    "search_skills": "搜索匹配的 Skills",
-    "remember": "保存信息到共享记忆",
-    "recall": "从共享记忆检索信息",
-    "send_to_feishu": "发送消息到飞书",
-    "get_openclaw_status": "获取 OpenClaw Gateway 状态"
+  "_tools": {
+    "execute_skill": {
+      "version": "2.1",
+      "deprecated": false,
+      "category": "skill",
+      "description": "执行指定的 Leo Skill"
+    },
+    "delegate_to_agent": {
+      "version": "2.1",
+      "deprecated": false,
+      "category": "agent",
+      "description": "委托任务给指定的 Agent"
+    },
+    "search_skills": {
+      "version": "2.1",
+      "deprecated": false,
+      "category": "skill",
+      "description": "搜索匹配的 Skills"
+    },
+    "remember": {
+      "version": "2.1",
+      "deprecated": false,
+      "category": "memory",
+      "description": "保存信息到共享记忆"
+    },
+    "recall": {
+      "version": "2.1",
+      "deprecated": false,
+      "category": "memory",
+      "description": "从共享记忆检索信息"
+    },
+    "vector_search": {
+      "version": "2.1",
+      "deprecated": false,
+      "category": "memory",
+      "description": "向量语义搜索"
+    },
+    "send_to_feishu": {
+      "version": "2.1",
+      "deprecated": false,
+      "category": "integration",
+      "description": "发送消息到飞书"
+    },
+    "get_openclaw_status": {
+      "version": "2.1",
+      "deprecated": false,
+      "category": "system",
+      "description": "获取 OpenClaw Gateway 状态"
+    },
+    "run_workflow": {
+      "version": "2.1",
+      "deprecated": false,
+      "category": "workflow",
+      "description": "执行预定义工作流"
+    },
+    "recognize_intent": {
+      "version": "2.1",
+      "deprecated": false,
+      "category": "intent",
+      "description": "识别用户意图"
+    },
+    "get_system_stats": {
+      "version": "2.1",
+      "deprecated": false,
+      "category": "system",
+      "description": "获取系统统计信息"
+    },
+    "search_knowledge": {
+      "version": "2.1",
+      "deprecated": false,
+      "category": "knowledge",
+      "description": "搜索知识库"
+    }
   },
 
-  "_available_resources": {
-    "leo://skills/registry": "所有已注册的 Leo Skills",
-    "leo://agents/list": "所有可用的 Agents",
-    "leo://memory/shared": "共享记忆存储",
-    "leo://gateway/status": "Leo Gateway 运行状态",
-    "leo://user/profile": "当前用户画像"
-  }
+  "_resources": {
+    "cache_strategy": {
+      "leo://skills/registry": {"ttl": 3600, "cache": true},
+      "leo://agents/list": {"ttl": 3600, "cache": true},
+      "leo://workflows/list": {"ttl": 3600, "cache": true},
+      "leo://memory/shared": {"ttl": 60, "cache": false},
+      "leo://memory/vector": {"ttl": 60, "cache": false},
+      "leo://gateway/status": {"ttl": 10, "cache": true},
+      "leo://system/stats": {"ttl": 60, "cache": true},
+      "leo://user/profile": {"ttl": 300, "cache": true},
+      "leo://evolution/status": {"ttl": 300, "cache": true}
+    }
+  },
+
+  "_available_tools": [
+    {"name": "execute_skill", "description": "执行指定的 Leo Skill"},
+    {"name": "delegate_to_agent", "description": "委托任务给指定的 Agent"},
+    {"name": "search_skills", "description": "搜索匹配的 Skills"},
+    {"name": "remember", "description": "保存信息到共享记忆"},
+    {"name": "recall", "description": "从共享记忆检索信息"},
+    {"name": "vector_search", "description": "向量语义搜索"},
+    {"name": "run_workflow", "description": "执行预定义工作流"},
+    {"name": "recognize_intent", "description": "识别用户意图"},
+    {"name": "get_system_stats", "description": "获取系统统计信息"},
+    {"name": "search_knowledge", "description": "搜索知识库"},
+    {"name": "send_to_feishu", "description": "发送消息到飞书"},
+    {"name": "get_openclaw_status", "description": "获取 OpenClaw Gateway 状态"}
+  ],
+
+  "_available_resources": [
+    {"uri": "leo://skills/registry", "description": "所有已注册的 Leo Skills"},
+    {"uri": "leo://agents/list", "description": "所有可用的 Agents"},
+    {"uri": "leo://workflows/list", "description": "所有预定义的工作流"},
+    {"uri": "leo://memory/shared", "description": "共享记忆存储"},
+    {"uri": "leo://memory/vector", "description": "向量记忆存储"},
+    {"uri": "leo://system/stats", "description": "系统统计信息"},
+    {"uri": "leo://gateway/status", "description": "Leo Gateway 运行状态"},
+    {"uri": "leo://user/profile", "description": "当前用户画像"},
+    {"uri": "leo://evolution/status", "description": "自动进化系统状态"}
+  ]
 }

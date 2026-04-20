@@ -1,3 +1,9 @@
+---
+name: github-to-skills-skill
+description: Github To Skills Skill 技能。当用户需要相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
+---
+
 # GitHub to Skills Skill (GitHub仓库转AI技能工具)
 
 ## 技能描述

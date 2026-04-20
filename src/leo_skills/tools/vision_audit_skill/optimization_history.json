@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\tools\\vision_audit_skill",
+  "optimized_at": "2026-03-13T16:38:26.533996",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Audit vision alignment, analyze SDLC gaps, research trends, and generate feature proposals.。当用户需要工具集...",
+      "train_accuracy": 0.863,
+      "test_accuracy": 0.866
+    },
+    {
+      "round": 2,
+      "description": "Audit vision alignment, analyze SDLC gaps, research trends, and generate feature proposals.。当用户需要工具集...",
+      "train_accuracy": 0.92,
+      "test_accuracy": 0.864
+    },
+    {
+      "round": 3,
+      "description": "Audit vision alignment, analyze SDLC gaps, research trends, and generate feature proposals.。当用户需要工具集...",
+      "train_accuracy": 0.898,
+      "test_accuracy": 0.895
+    },
+    {
+      "round": 4,
+      "description": "Audit vision alignment, analyze SDLC gaps, research trends, and generate feature proposals.。当用户需要工具集...",
+      "train_accuracy": 0.916,
+      "test_accuracy": 0.914
+    },
+    {
+      "round": 5,
+      "description": "Audit vision alignment, analyze SDLC gaps, research trends, and generate feature proposals.。当用户需要工具集...",
+      "train_accuracy": 0.943,
+      "test_accuracy": 0.94
+    }
+  ],
+  "final_description": "Audit vision alignment, analyze SDLC gaps, research trends, and generate feature proposals.。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

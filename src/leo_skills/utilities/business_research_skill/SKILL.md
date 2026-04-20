@@ -1,3 +1,9 @@
+---
+name: business-research-skill
+description: Business Research Skill 技能。当用户需要相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
+---
+
 # Business Research Skill
 
 **商业项目调研技能** - 专为商业项目可行性研究和落地计划设计

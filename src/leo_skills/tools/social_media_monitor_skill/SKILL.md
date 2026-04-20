@@ -1,22 +1,24 @@
 ---
-name: social_media_monitor_skill
-version: 1.0.0
-description: 多平台社交媒体监控技能。监控 X/公众号/视频号/抖音/小红书账号内容，支持竞品对标分析。
+name: social-media-monitor-skill
+description: 多平台社交媒体监控技能。监控 X/公众号/视频号/抖音/小红书账号内容，支持竞品对标分析。。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: Leo Liu
-user-invocable: true
-priority: 0
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 0
+  activation_keywords:
   - 社交媒体监控
   - 账号监控
   - 竞品分析
   - 内容监控
   - 账号内容检测
-allowed-tools:
+  allowed-tools:
   - Web Search
   - Web Fetch
   - Read
   - Write
+license: MIT
 ---
 
 # Social Media Monitor Skill

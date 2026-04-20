@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\utilities\\web_search_skill",
+  "optimized_at": "2026-03-13T16:38:30.656681",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "网页搜索技能，执行网络信息检索。当用户需要搜索网络信息、收集研究资料、验证事实或获取最新资讯时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.885,
+      "test_accuracy": 0.837
+    },
+    {
+      "round": 2,
+      "description": "网页搜索技能，执行网络信息检索。当用户需要搜索网络信息、收集研究资料、验证事实或获取最新资讯时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.907,
+      "test_accuracy": 0.855
+    },
+    {
+      "round": 3,
+      "description": "网页搜索技能，执行网络信息检索。当用户需要搜索网络信息、收集研究资料、验证事实或获取最新资讯时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.897,
+      "test_accuracy": 0.911
+    },
+    {
+      "round": 4,
+      "description": "网页搜索技能，执行网络信息检索。当用户需要搜索网络信息、收集研究资料、验证事实或获取最新资讯时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.953,
+      "test_accuracy": 0.93
+    },
+    {
+      "round": 5,
+      "description": "网页搜索技能，执行网络信息检索。当用户需要搜索网络信息、收集研究资料、验证事实或获取最新资讯时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.944,
+      "test_accuracy": 0.92
+    }
+  ],
+  "final_description": "网页搜索技能，执行网络信息检索。当用户需要搜索网络信息、收集研究资料、验证事实或获取最新资讯时使用。 [优化第5轮：提升了触发准确率]"
+}

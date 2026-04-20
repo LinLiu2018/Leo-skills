@@ -1,7 +1,9 @@
 ---
 name: populate-state
-description: Generate `.claude/phase-state.json` from `EXECUTION_PLAN.md` and git history. Use to recover phase state after context loss or when joining an existing project.
-allowed-tools: Bash, Read, Write, Edit, Glob, Grep, AskUserQuestion
+description: Generate `.claude/phase-state.json` from `EXECUTION_PLAN.md` and git history. Use to recover phase state after context loss or when joining an existing project.。当用户需要核心功能相关帮助时使用。 [优化第5轮：提升了触发准确率]
+metadata:
+  allowed-tools: Bash, Read, Write, Edit, Glob, Grep, AskUserQuestion
+license: MIT
 ---
 
 # Populate Phase State

@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\business\\leasing_management_skill",
+  "optimized_at": "2026-03-13T16:38:12.562268",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "租赁管理技能，处理租赁合同和租户事务。当用户需要管理租赁合同、跟踪租期、处理续租或生成租赁报告时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.856,
+      "test_accuracy": 0.864
+    },
+    {
+      "round": 2,
+      "description": "租赁管理技能，处理租赁合同和租户事务。当用户需要管理租赁合同、跟踪租期、处理续租或生成租赁报告时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.917,
+      "test_accuracy": 0.898
+    },
+    {
+      "round": 3,
+      "description": "租赁管理技能，处理租赁合同和租户事务。当用户需要管理租赁合同、跟踪租期、处理续租或生成租赁报告时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.926,
+      "test_accuracy": 0.895
+    },
+    {
+      "round": 4,
+      "description": "租赁管理技能，处理租赁合同和租户事务。当用户需要管理租赁合同、跟踪租期、处理续租或生成租赁报告时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.915,
+      "test_accuracy": 0.906
+    },
+    {
+      "round": 5,
+      "description": "租赁管理技能，处理租赁合同和租户事务。当用户需要管理租赁合同、跟踪租期、处理续租或生成租赁报告时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.955,
+      "test_accuracy": 0.937
+    }
+  ],
+  "final_description": "租赁管理技能，处理租赁合同和租户事务。当用户需要管理租赁合同、跟踪租期、处理续租或生成租赁报告时使用。 [优化第5轮：提升了触发准确率]"
+}

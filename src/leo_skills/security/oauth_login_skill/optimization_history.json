@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\security\\oauth_login_skill",
+  "optimized_at": "2026-03-13T16:38:16.767745",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Complete OAuth login flow and store tokens for verification. Use when browser verification requires ...",
+      "train_accuracy": 0.868,
+      "test_accuracy": 0.834
+    },
+    {
+      "round": 2,
+      "description": "Complete OAuth login flow and store tokens for verification. Use when browser verification requires ...",
+      "train_accuracy": 0.886,
+      "test_accuracy": 0.868
+    },
+    {
+      "round": 3,
+      "description": "Complete OAuth login flow and store tokens for verification. Use when browser verification requires ...",
+      "train_accuracy": 0.893,
+      "test_accuracy": 0.881
+    },
+    {
+      "round": 4,
+      "description": "Complete OAuth login flow and store tokens for verification. Use when browser verification requires ...",
+      "train_accuracy": 0.936,
+      "test_accuracy": 0.926
+    },
+    {
+      "round": 5,
+      "description": "Complete OAuth login flow and store tokens for verification. Use when browser verification requires ...",
+      "train_accuracy": 0.945,
+      "test_accuracy": 0.913
+    }
+  ],
+  "final_description": "Complete OAuth login flow and store tokens for verification. Use when browser verification requires authenticated sessions.。当用户需要安全与防护相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

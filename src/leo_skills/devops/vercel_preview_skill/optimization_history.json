@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\devops\\vercel_preview_skill",
+  "optimized_at": "2026-03-13T16:38:16.339076",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Resolve Vercel preview deployment URL for the current git branch. Invoked by browser-verification wh...",
+      "train_accuracy": 0.866,
+      "test_accuracy": 0.873
+    },
+    {
+      "round": 2,
+      "description": "Resolve Vercel preview deployment URL for the current git branch. Invoked by browser-verification wh...",
+      "train_accuracy": 0.88,
+      "test_accuracy": 0.888
+    },
+    {
+      "round": 3,
+      "description": "Resolve Vercel preview deployment URL for the current git branch. Invoked by browser-verification wh...",
+      "train_accuracy": 0.932,
+      "test_accuracy": 0.873
+    },
+    {
+      "round": 4,
+      "description": "Resolve Vercel preview deployment URL for the current git branch. Invoked by browser-verification wh...",
+      "train_accuracy": 0.937,
+      "test_accuracy": 0.896
+    },
+    {
+      "round": 5,
+      "description": "Resolve Vercel preview deployment URL for the current git branch. Invoked by browser-verification wh...",
+      "train_accuracy": 0.978,
+      "test_accuracy": 0.91
+    }
+  ],
+  "final_description": "Resolve Vercel preview deployment URL for the current git branch. Invoked by browser-verification when deployment.enabled is true, or directly to check deployment status.。当用户需要运维与部署相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

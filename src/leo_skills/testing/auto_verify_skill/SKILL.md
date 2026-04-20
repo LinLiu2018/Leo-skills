@@ -1,6 +1,7 @@
 ---
 name: auto-verify
-description: Attempt automated verification of criteria before falling back to manual. Parses criterion text for automation hints and executes appropriate tool (curl, browser, file check). Invoked by verify-task and phase-checkpoint for MANUAL criteria.
+description: Attempt automated verification of criteria before falling back to manual. Parses criterion text for automation hints and executes appropriate tool (curl, browser, file check). Invoked by verify-task and phase-checkpoint for MANUAL criteria.。当用户需要测试与验证相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
 ---
 
 # Auto-Verify Skill

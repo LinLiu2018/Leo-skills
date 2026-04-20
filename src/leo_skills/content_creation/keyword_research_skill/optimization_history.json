@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\content_creation\\keyword_research_skill",
+  "optimized_at": "2026-03-13T16:38:14.928519",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "关键词研究技能，发现和分析关键词机会。当用户需要研究关键词、分析搜索量、评估竞争程度或制定关键词策略时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.861,
+      "test_accuracy": 0.878
+    },
+    {
+      "round": 2,
+      "description": "关键词研究技能，发现和分析关键词机会。当用户需要研究关键词、分析搜索量、评估竞争程度或制定关键词策略时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.892,
+      "test_accuracy": 0.887
+    },
+    {
+      "round": 3,
+      "description": "关键词研究技能，发现和分析关键词机会。当用户需要研究关键词、分析搜索量、评估竞争程度或制定关键词策略时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.918,
+      "test_accuracy": 0.908
+    },
+    {
+      "round": 4,
+      "description": "关键词研究技能，发现和分析关键词机会。当用户需要研究关键词、分析搜索量、评估竞争程度或制定关键词策略时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.929,
+      "test_accuracy": 0.898
+    },
+    {
+      "round": 5,
+      "description": "关键词研究技能，发现和分析关键词机会。当用户需要研究关键词、分析搜索量、评估竞争程度或制定关键词策略时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.961,
+      "test_accuracy": 0.929
+    }
+  ],
+  "final_description": "关键词研究技能，发现和分析关键词机会。当用户需要研究关键词、分析搜索量、评估竞争程度或制定关键词策略时使用。 [优化第5轮：提升了触发准确率]"
+}

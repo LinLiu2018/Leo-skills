@@ -1,10 +1,10 @@
 ---
 name: customer-portrait
-description: 客户画像AI分析技能，基于多维数据构建精准客户画像
-compatibility: ">=1.0.0"
+description: 客户画像分析技能，分析客户特征和行为。当用户需要分析客户特征、识别客户需求、生成分群报告或制定营销策略时使用。 [优化第5轮：提升了触发准确率]
+compatibility: '>=1.0.0'
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: 1.0.0
   category: business
   author: Leo AI System
   industry: real_estate

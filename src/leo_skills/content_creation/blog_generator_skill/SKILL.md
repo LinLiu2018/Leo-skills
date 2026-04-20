@@ -1,17 +1,19 @@
 ---
-name: blog_generator_skill
-version: 1.0.0
-description: 博客生成
+name: blog-generator-skill
+description: 博客生成。当用户需要内容创作生成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: content_creation
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - blog-generator-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Blog Generator Skill

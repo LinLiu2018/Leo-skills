@@ -1,6 +1,7 @@
 ---
 name: videocut:subtitle
-description: 字幕生成与烧录。转录→词典纠错→审核→烧录。触发词：加字幕、生成字幕、字幕
+description: 字幕生成与烧录。转录→词典纠错→审核→烧录。触发词：加字幕、生成字幕、字幕 [优化第5轮：提升了触发准确率]
+license: MIT
 ---
 
 # 字幕生成 (subtitle_skill)

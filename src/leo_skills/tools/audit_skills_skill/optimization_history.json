@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\tools\\audit_skills_skill",
+  "optimized_at": "2026-03-13T16:38:17.980229",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Audits skills for best practice violations including length, checklists, verification steps, and pro...",
+      "train_accuracy": 0.864,
+      "test_accuracy": 0.876
+    },
+    {
+      "round": 2,
+      "description": "Audits skills for best practice violations including length, checklists, verification steps, and pro...",
+      "train_accuracy": 0.892,
+      "test_accuracy": 0.898
+    },
+    {
+      "round": 3,
+      "description": "Audits skills for best practice violations including length, checklists, verification steps, and pro...",
+      "train_accuracy": 0.933,
+      "test_accuracy": 0.916
+    },
+    {
+      "round": 4,
+      "description": "Audits skills for best practice violations including length, checklists, verification steps, and pro...",
+      "train_accuracy": 0.924,
+      "test_accuracy": 0.919
+    },
+    {
+      "round": 5,
+      "description": "Audits skills for best practice violations including length, checklists, verification steps, and pro...",
+      "train_accuracy": 0.951,
+      "test_accuracy": 0.929
+    }
+  ],
+  "final_description": "Audits skills for best practice violations including length, checklists, verification steps, and progressive disclosure. Use after creating skills, during reviews, or to improve existing skills. Produces prioritized improvement suggestions.。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

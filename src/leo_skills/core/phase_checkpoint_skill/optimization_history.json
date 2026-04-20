@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\core\\phase_checkpoint_skill",
+  "optimized_at": "2026-03-13T16:38:15.969210",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Run checkpoint criteria after completing a phase. Use after /phase-start completes all tasks to veri...",
+      "train_accuracy": 0.865,
+      "test_accuracy": 0.832
+    },
+    {
+      "round": 2,
+      "description": "Run checkpoint criteria after completing a phase. Use after /phase-start completes all tasks to veri...",
+      "train_accuracy": 0.881,
+      "test_accuracy": 0.878
+    },
+    {
+      "round": 3,
+      "description": "Run checkpoint criteria after completing a phase. Use after /phase-start completes all tasks to veri...",
+      "train_accuracy": 0.92,
+      "test_accuracy": 0.903
+    },
+    {
+      "round": 4,
+      "description": "Run checkpoint criteria after completing a phase. Use after /phase-start completes all tasks to veri...",
+      "train_accuracy": 0.932,
+      "test_accuracy": 0.899
+    },
+    {
+      "round": 5,
+      "description": "Run checkpoint criteria after completing a phase. Use after /phase-start completes all tasks to veri...",
+      "train_accuracy": 0.96,
+      "test_accuracy": 0.941
+    }
+  ],
+  "final_description": "Run checkpoint criteria after completing a phase. Use after /phase-start completes all tasks to verify quality gates before proceeding.。当用户需要核心功能相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

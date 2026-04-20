@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\tools\\update_target_projects_skill",
+  "optimized_at": "2026-03-13T16:38:26.372787",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Discover and sync all toolkit-using projects with the latest skills. Use after modifying skills to p...",
+      "train_accuracy": 0.89,
+      "test_accuracy": 0.87
+    },
+    {
+      "round": 2,
+      "description": "Discover and sync all toolkit-using projects with the latest skills. Use after modifying skills to p...",
+      "train_accuracy": 0.918,
+      "test_accuracy": 0.895
+    },
+    {
+      "round": 3,
+      "description": "Discover and sync all toolkit-using projects with the latest skills. Use after modifying skills to p...",
+      "train_accuracy": 0.939,
+      "test_accuracy": 0.919
+    },
+    {
+      "round": 4,
+      "description": "Discover and sync all toolkit-using projects with the latest skills. Use after modifying skills to p...",
+      "train_accuracy": 0.946,
+      "test_accuracy": 0.917
+    },
+    {
+      "round": 5,
+      "description": "Discover and sync all toolkit-using projects with the latest skills. Use after modifying skills to p...",
+      "train_accuracy": 0.954,
+      "test_accuracy": 0.928
+    }
+  ],
+  "final_description": "Discover and sync all toolkit-using projects with the latest skills. Use after modifying skills to propagate changes to target projects.。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

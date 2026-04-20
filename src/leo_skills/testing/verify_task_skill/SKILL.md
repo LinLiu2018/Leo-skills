@@ -1,8 +1,11 @@
 ---
 name: verify-task
-description: Run code-verification on a specific task. Use to verify a single task's acceptance criteria after implementation.
-argument-hint: [task-id]
-allowed-tools: Read, Edit, Bash, Grep, Glob, AskUserQuestion
+description: Run code-verification on a specific task. Use to verify a single task's acceptance criteria after implementation.。当用户需要测试与验证相关帮助时使用。 [优化第5轮：提升了触发准确率]
+argument-hint:
+- task-id
+metadata:
+  allowed-tools: Read, Edit, Bash, Grep, Glob, AskUserQuestion
+license: MIT
 ---
 
 Verify Task $1 from EXECUTION_PLAN.md using the code verification workflow.

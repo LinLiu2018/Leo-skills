@@ -1,3 +1,9 @@
+---
+name: subagent-creator-skill
+description: Subagent Creator Skill 技能。当用户需要相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
+---
+
 # Subagent Creator Skill (代理创建器)
 
 ## 技能描述

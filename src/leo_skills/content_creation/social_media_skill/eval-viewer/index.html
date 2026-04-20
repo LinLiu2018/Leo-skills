@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Skill 评估 - social_media_skill</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .query { margin: 10px 0; padding: 10px; border: 1px solid #ddd; }
+        .should-trigger { background: #e8f5e9; }
+        .should-not-trigger { background: #ffebee; }
+        label { margin-left: 10px; }
+        button { margin-top: 20px; padding: 10px 20px; }
+    </style>
+</head>
+<body>
+    <h1>Skill 评估界面</h1>
+    <p>技能：social_media_skill</p>
+    <p>测试查询数：20</p>
+    
+    <form id="eval-form">
+
+        <div class="query should-trigger">
+            <input type="checkbox" id="q0" checked>
+            <label for="q0">帮我社交媒体管理技能，多平台内容发布。当用户</label>
+            <span>（应该触发）</span>
+        </div>
+
+        <div class="query should-trigger">
+            <input type="checkbox" id="q1" checked>
+            <label for="q1">需要社交媒体管理技能，多平台内容发布。当用户</label>
+            <span>（应该触发）</span>
+        </div>
+
+        <div class="query should-trigger">
+            <input type="checkbox" id="q2" checked>
+            <label for="q2">想要社交媒体管理技能，多平台内容发布。当用户</label>
+            <span>（应该触发）</span>
+        </div>
+
+        <div class="query should-not-trigger">
+            <input type="checkbox" id="q3" >
+            <label for="q3">天气如何？</label>
+            <span>（应该不触发）</span>
+        </div>
+
+        <div class="query should-not-trigger">
+            <input type="checkbox" id="q4" >
+            <label for="q4">今天星期几？</label>
+            <span>（应该不触发）</span>
+        </div>
+
+        <div class="query should-not-trigger">
+            <input type="checkbox" id="q5" >
+            <label for="q5">测试查询 5</label>
+            <span>（应该不触发）</span>
+        </div>
+
+        <div class="query should-trigger">
+            <input type="checkbox" id="q6" checked>
+            <label for="q6">测试查询 6</label>
+            <span>（应该触发）</span>
+        </div>
+
+        <div class="query should-not-trigger">
+            <input type="checkbox" id="q7" >
+            <label for="q7">测试查询 7</label>
+            <span>（应该不触发）</span>
+        </div>
+
+        <div class="query should-trigger">
+            <input type="checkbox" id="q8" checked>
+            <label for="q8">测试查询 8</label>
+            <span>（应该触发）</span>
+        </div>
+
+        <div class="query should-not-trigger">
+            <input type="checkbox" id="q9" >
+            <label for="q9">测试查询 9</label>
+            <span>（应该不触发）</span>
+        </div>
+
+        <div class="query should-trigger">
+            <input type="checkbox" id="q10" checked>
+            <label for="q10">测试查询 10</label>
+            <span>（应该触发）</span>
+        </div>
+
+        <div class="query should-not-trigger">
+            <input type="checkbox" id="q11" >
+            <label for="q11">测试查询 11</label>
+            <span>（应该不触发）</span>
+        </div>
+
+        <div class="query should-trigger">
+            <input type="checkbox" id="q12" checked>
+            <label for="q12">测试查询 12</label>
+            <span>（应该触发）</span>
+        </div>
+
+        <div class="query should-not-trigger">
+            <input type="checkbox" id="q13" >
+            <label for="q13">测试查询 13</label>
+            <span>（应该不触发）</span>
+        </div>
+
+        <div class="query should-trigger">
+            <input type="checkbox" id="q14" checked>
+            <label for="q14">测试查询 14</label>
+            <span>（应该触发）</span>
+        </div>
+
+        <div class="query should-not-trigger">
+            <input type="checkbox" id="q15" >
+            <label for="q15">测试查询 15</label>
+            <span>（应该不触发）</span>
+        </div>
+
+        <div class="query should-trigger">
+            <input type="checkbox" id="q16" checked>
+            <label for="q16">测试查询 16</label>
+            <span>（应该触发）</span>
+        </div>
+
+        <div class="query should-not-trigger">
+            <input type="checkbox" id="q17" >
+            <label for="q17">测试查询 17</label>
+            <span>（应该不触发）</span>
+        </div>
+
+        <div class="query should-trigger">
+            <input type="checkbox" id="q18" checked>
+            <label for="q18">测试查询 18</label>
+            <span>（应该触发）</span>
+        </div>
+
+        <div class="query should-not-trigger">
+            <input type="checkbox" id="q19" >
+            <label for="q19">测试查询 19</label>
+            <span>（应该不触发）</span>
+        </div>
+
+        <button type="button" onclick="exportEval()">导出评估集</button>
+    </form>
+    
+    <script>
+        function exportEval() {
+            const results = [];
+
+            results.push({
+                query: document.querySelector('#q0').parentNode.textContent.trim(),
+                should_trigger: document.querySelector('#q0').checked
+            });
+
+            results.push({
+                query: document.querySelector('#q1').parentNode.textContent.trim(),
+                should_trigger: document.querySelector('#q1').checked
+            });
+
+            results.push({
+                query: document.querySelector('#q2').parentNode.textContent.trim(),
+                should_trigger: document.querySelector('#q2').checked
+            });
+
+            results.push({
+                query: document.querySelector('#q3').parentNode.textContent.trim(),
+                should_trigger: document.querySelector('#q3').checked
+            });
+
+            results.push({
+                query: document.querySelector('#q4').parentNode.textContent.trim(),
+                should_trigger: document.querySelector('#q4').checked
+            });
+
+            results.push({
+                query: document.querySelector('#q5').parentNode.textContent.trim(),
+                should_trigger: document.querySelector('#q5').checked
+            });
+
+            results.push({
+                query: document.querySelector('#q6').parentNode.textContent.trim(),
+                should_trigger: document.querySelector('#q6').checked
+            });
+
+            results.push({
+                query: document.querySelector('#q7').parentNode.textContent.trim(),
+                should_trigger: document.querySelector('#q7').checked
+            });
+
+            results.push({
+                query: document.querySelector('#q8').parentNode.textContent.trim(),
+                should_trigger: document.querySelector('#q8').checked
+            });
+
+            results.push({
+                query: document.querySelector('#q9').parentNode.textContent.trim(),
+                should_trigger: document.querySelector('#q9').checked
+            });
+
+            results.push({
+                query: document.querySelector('#q10').parentNode.textContent.trim(),
+                should_trigger: document.querySelector('#q10').checked
+            });
+
+            results.push({
+                query: document.querySelector('#q11').parentNode.textContent.trim(),
+                should_trigger: document.querySelector('#q11').checked
+            });
+
+            results.push({
+                query: document.querySelector('#q12').parentNode.textContent.trim(),
+                should_trigger: document.querySelector('#q12').checked
+            });
+
+            results.push({
+                query: document.querySelector('#q13').parentNode.textContent.trim(),
+                should_trigger: document.querySelector('#q13').checked
+            });
+
+            results.push({
+                query: document.querySelector('#q14').parentNode.textContent.trim(),
+                should_trigger: document.querySelector('#q14').checked
+            });
+
+            results.push({
+                query: document.querySelector('#q15').parentNode.textContent.trim(),
+                should_trigger: document.querySelector('#q15').checked
+            });
+
+            results.push({
+                query: document.querySelector('#q16').parentNode.textContent.trim(),
+                should_trigger: document.querySelector('#q16').checked
+            });
+
+            results.push({
+                query: document.querySelector('#q17').parentNode.textContent.trim(),
+                should_trigger: document.querySelector('#q17').checked
+            });
+
+            results.push({
+                query: document.querySelector('#q18').parentNode.textContent.trim(),
+                should_trigger: document.querySelector('#q18').checked
+            });
+
+            results.push({
+                query: document.querySelector('#q19').parentNode.textContent.trim(),
+                should_trigger: document.querySelector('#q19').checked
+            });
+
+            console.log('评估集:', results);
+            alert('评估集已导出，请查看控制台');
+        }
+    </script>
+</body>
+</html>

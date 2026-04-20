@@ -1,20 +1,27 @@
 ---
-name: executing_plans_skill
-version: "1.0.0"
-description: |
-  【协作技能】执行实施计划。在单独会话中有书面实施计划要执行时使用，带有审查检查点。
+name: executing-plans-skill
+description: 【协作技能】执行实施计划。在单独会话中有书面实施计划要执行时使用，带有审查检查点。
+核心理念：批量执行，架构师审查检查点。与 writing_plans_skill 配对使用。
+基于 obra/superpowers 的 executing-plans 技能。
+ [优化第5轮：提升了触发准确率]
+
   核心理念：批量执行，架构师审查检查点。与 writing_plans_skill 配对使用。
+
   基于 obra/superpowers 的 executing-plans 技能。
+
+  '
 category: collaboration
 author: Leo AI System (基于 obra/superpowers)
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - 执行计划
   - 实施计划
   - 执行任务
   - executing-plans
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Edit
@@ -22,6 +29,7 @@ allowed-tools:
   - Glob
   - Grep
   - TodoWrite
+license: MIT
 ---
 
 # 执行计划（Executing Plans）

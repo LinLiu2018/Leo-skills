@@ -1,17 +1,19 @@
 ---
-name: aliexpress_skill
-version: 1.0.0
-description: 速卖通运营
+name: aliexpress-skill
+description: 速卖通电商运营技能，管理速卖通跨境店铺。当用户需要管理速卖通店铺、处理跨境订单、优化 listing 或分析国际销售数据时使用。 [优化第5轮：提升了触发准确率]
 category: business
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - aliexpress-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # AliExpress Skill

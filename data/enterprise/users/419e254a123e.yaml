@@ -1,0 +1,14 @@
+api_key: leo_vfMLS1uh82Lejaxi7u1AfWgET7-f3Gr3s17CySM6NuY
+created_at: '2026-03-10T12:48:41.533289'
+email: test@example.com
+id: 419e254a123e
+last_login: null
+metadata: {}
+name: Test User
+permissions:
+- read
+- write
+- execute
+- manage_users
+role: admin
+tenant_id: 567921f41728

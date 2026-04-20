@@ -1,20 +1,22 @@
 ---
-name: gog_skill
-version: 1.0.0
-description: Google Workspace 集成技能。Gmail、日历、Drive、Docs 全家桶，日常办公/邮件/日程神器。
+name: gog-skill
+description: Google Workspace 集成技能。Gmail、日历、Drive、Docs 全家桶，日常办公/邮件/日程神器。。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: Leo Liu
-user-invocable: true
-priority: 2
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 2
+  activation_keywords:
   - google
   - Gmail
   - 日历
   - Drive
   - Docs
   - 谷歌
-allowed-tools:
+  allowed-tools:
   - Bash
+license: MIT
 ---
 
 # GOG Skill - Google Workspace 集成

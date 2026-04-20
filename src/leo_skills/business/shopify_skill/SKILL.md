@@ -1,17 +1,19 @@
 ---
-name: shopify_skill
-version: 1.0.0
-description: Shopify 独立站
+name: shopify-skill
+description: Shopify 电商运营技能，管理 Shopify 独立站。当用户需要管理 Shopify 店铺、处理订单、优化转化率、管理产品或分析销售数据时使用。 [优化第5轮：提升了触发准确率]
 category: business
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - shopify-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Shopify Skill

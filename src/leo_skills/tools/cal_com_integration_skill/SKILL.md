@@ -1,17 +1,19 @@
 ---
-name: cal_com_integration_skill
-version: 1.0.0
-description: Cal.com 日程预约集成
+name: cal-com-integration-skill
+description: Cal.com 日程预约集成。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: openclaw
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - cal com integration
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Cal.com Integration Skill

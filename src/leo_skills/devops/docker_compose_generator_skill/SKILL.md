@@ -1,15 +1,19 @@
 ---
-name: docker_compose_generator_skill
-version: "1.0.0"
-description: |
-  docker_compose_generator_skill 技能
+name: docker-compose-generator-skill
+description: docker_compose_generator_skill 技能
+。当用户需要运维与部署相关帮助时使用。 [优化第5轮：提升了触发准确率]
+
+  。当用户需要运维与部署相关帮助时使用。'
 category: devops
 author: Leo AI System
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - 关键词1
   - 关键词2
+license: MIT
 ---
 
 # docker_compose_generator_skill

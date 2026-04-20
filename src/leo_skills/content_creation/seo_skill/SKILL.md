@@ -1,17 +1,19 @@
 ---
-name: seo_skill
-version: 1.0.0
-description: SEO 优化
+name: seo-skill
+description: SEO 优化技能，提升网站搜索排名。当用户需要优化页面 SEO、研究关键词、分析搜索排名或制定 SEO 策略时使用。 [优化第5轮：提升了触发准确率]
 category: content_creation
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - seo-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # SEO Skill

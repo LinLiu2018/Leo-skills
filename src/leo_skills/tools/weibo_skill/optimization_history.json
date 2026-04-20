@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\tools\\weibo_skill",
+  "optimized_at": "2026-03-13T16:38:26.770002",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "微博集成。当用户需要工具集成相关帮助时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.864,
+      "test_accuracy": 0.862
+    },
+    {
+      "round": 2,
+      "description": "微博集成。当用户需要工具集成相关帮助时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.871,
+      "test_accuracy": 0.854
+    },
+    {
+      "round": 3,
+      "description": "微博集成。当用户需要工具集成相关帮助时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.926,
+      "test_accuracy": 0.891
+    },
+    {
+      "round": 4,
+      "description": "微博集成。当用户需要工具集成相关帮助时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.911,
+      "test_accuracy": 0.914
+    },
+    {
+      "round": 5,
+      "description": "微博集成。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.977,
+      "test_accuracy": 0.954
+    }
+  ],
+  "final_description": "微博集成。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

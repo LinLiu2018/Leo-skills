@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\tools\\alipay_skill",
+  "optimized_at": "2026-03-13T16:38:17.393167",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "支付宝支付。当用户需要工具集成相关帮助时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.889,
+      "test_accuracy": 0.856
+    },
+    {
+      "round": 2,
+      "description": "支付宝支付。当用户需要工具集成相关帮助时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.88,
+      "test_accuracy": 0.871
+    },
+    {
+      "round": 3,
+      "description": "支付宝支付。当用户需要工具集成相关帮助时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.915,
+      "test_accuracy": 0.885
+    },
+    {
+      "round": 4,
+      "description": "支付宝支付。当用户需要工具集成相关帮助时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.942,
+      "test_accuracy": 0.911
+    },
+    {
+      "round": 5,
+      "description": "支付宝支付。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.947,
+      "test_accuracy": 0.933
+    }
+  ],
+  "final_description": "支付宝支付。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

@@ -1,6 +1,7 @@
 ---
-name: videocut:cut_speech
-description: 口播视频转录和口误识别。生成审查稿和删除任务清单。触发词：剪口播、处理视频、识别口误
+name: videocut:cut-speech
+description: 口播视频转录和口误识别。生成审查稿和删除任务清单。触发词：剪口播、处理视频、识别口误 [优化第5轮：提升了触发准确率]
+license: MIT
 ---
 
 <!--

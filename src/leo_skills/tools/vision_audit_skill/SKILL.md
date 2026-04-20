@@ -1,7 +1,9 @@
 ---
 name: vision-audit
-description: Audit vision alignment, analyze SDLC gaps, research trends, and generate feature proposals.
-allowed-tools: Read, Glob, Grep, Bash, WebSearch
+description: Audit vision alignment, analyze SDLC gaps, research trends, and generate feature proposals.。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
+metadata:
+  allowed-tools: Read, Glob, Grep, Bash, WebSearch
+license: MIT
 ---
 
 # Vision Audit

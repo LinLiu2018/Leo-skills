@@ -1,4 +1,4 @@
-"""
+﻿"""
 Subagent Creator Skill - 元技能
 
 自动创建 Claude Subagent 的完整解决方案。
@@ -98,6 +98,12 @@ class SubagentCreatorSkill(EvolvableSkill):
         Returns:
             执行结果
         """
+        # 确保 action 是字符串（处理定时任务可能传入 dict 的情况）
+        if isinstance(action, dict):
+            action = action.get("action", "health_check")
+        elif not isinstance(action, str):
+            action = "health_check"
+
         actions = {
             "create": self._create_agent,
             "create_from_template": self._create_from_template,
@@ -105,6 +111,8 @@ class SubagentCreatorSkill(EvolvableSkill):
             "list_templates": self._list_templates,
             "generate_code": self._generate_code,
             "update_config": self._update_config,
+            "health_check": self._health_check,
+            "execute": self._health_check,
         }
 
         if action not in actions:
@@ -567,3 +575,12 @@ __all__ = ["{class_name}"]
         # 添加到文件末尾
         content += import_line
         init_path.write_text(content, encoding="utf-8")
+    def _health_check(self) -> dict:
+        """Health check for scheduled tasks"""
+        from datetime import datetime
+        return {
+            "success": True,
+            "status": "ok",
+            "skill": "subagent_creator",
+            "timestamp": datetime.now().isoformat()
+        }

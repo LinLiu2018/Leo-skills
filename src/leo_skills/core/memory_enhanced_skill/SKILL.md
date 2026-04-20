@@ -1,21 +1,23 @@
 ---
-name: memory_enhanced_skill
-version: 1.0.0
-description: 增强记忆技能。跨对话记忆存储、用户偏好学习、知识图谱构建、记忆检索优化。
+name: memory-enhanced-skill
+description: 增强记忆技能。跨对话记忆存储、用户偏好学习、知识图谱构建、记忆检索优化。。当用户需要核心功能相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: core
 author: Leo Liu
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - 记忆
   - memory
   - 记住
   - 回忆
   - 知识图谱
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Memory Search
+license: MIT
 ---
 
 # Memory Enhanced Skill - 增强记忆

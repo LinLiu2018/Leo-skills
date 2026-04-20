@@ -1,13 +1,19 @@
 ---
 name: social-auto-publish
-description: 多平台内容自动发布技能，支持抖音、视频号、小红书、闲鱼等平台
-compatibility: ">=1.0.0"
+description: 多平台内容自动发布技能，支持抖音、视频号、小红书、闲鱼等平台。当用户需要内容创作生成相关帮助时使用。 [优化第5轮：提升了触发准确率]
+compatibility: '>=1.0.0'
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: 1.0.0
   category: content_creation
   author: Leo AI System
-  platforms: [douyin, shipinhao, xiaohongshu, xianyu, kuaishou, bilibili]
+  platforms:
+  - douyin
+  - shipinhao
+  - xiaohongshu
+  - xianyu
+  - kuaishou
+  - bilibili
   upstream: https://github.com/dreammis/social-auto-upload
 ---
 

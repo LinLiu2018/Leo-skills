@@ -1,10 +1,10 @@
 ---
 name: pocket-crm
-description: 口袋助理CRM集成技能，对接口袋助理数据实现AI增强的客户管理
-compatibility: ">=1.0.0"
+description: 口袋助理CRM集成技能，对接口袋助理数据实现AI增强的客户管理。当用户需要同步客户数据、分析通话录音、生成跟进策略、查看销售漏斗或创建日报周报时使用。 [优化第5轮：提升了触发准确率]
+compatibility: '>=1.0.0'
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: 1.0.0
   category: business
   author: Leo AI System
   industry: real_estate

@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\tools\\crm_connector_skill",
+  "optimized_at": "2026-03-13T16:38:19.754228",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "CRM 系统连接器。当用户需要工具集成相关帮助时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.889,
+      "test_accuracy": 0.847
+    },
+    {
+      "round": 2,
+      "description": "CRM 系统连接器。当用户需要工具集成相关帮助时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.896,
+      "test_accuracy": 0.893
+    },
+    {
+      "round": 3,
+      "description": "CRM 系统连接器。当用户需要工具集成相关帮助时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.914,
+      "test_accuracy": 0.907
+    },
+    {
+      "round": 4,
+      "description": "CRM 系统连接器。当用户需要工具集成相关帮助时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.918,
+      "test_accuracy": 0.902
+    },
+    {
+      "round": 5,
+      "description": "CRM 系统连接器。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.948,
+      "test_accuracy": 0.939
+    }
+  ],
+  "final_description": "CRM 系统连接器。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

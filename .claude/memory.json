@@ -1,6 +1,7 @@
 {
   "current_project": "Leo Wingman v2.0",
-  "last_session": "2026-02-28",
+  "last_session": "2026-04-10",
+  "system_info_updated": "2026-04-10",
   "completed_tasks": [
     "52个Workflows定义",
     "37个Agents创建",
@@ -8,12 +9,13 @@
     "4层自动进化架构",
     "用户偏好学习系统",
     "v2.0文档更新",
-    "会话自动恢复系统"
+    "会话自动恢复系统",
+    "Claude Code Telegram Channel 配置（失败 - 需要付费订阅）",
+    "Telegram 相关配置清理完成"
   ],
   "pending_tasks": [
-    "端到端测试",
-    "Agent自动记忆集成",
-    "OpenClaw集成测试"
+    "OpenClaw 集成测试",
+    "OpenClaw 作为代理路由方案"
   ],
   "key_files": [
     "src/leo_memory/auto_memory.py",
@@ -35,5 +37,61 @@
     "memory": "python -c 'from leo_memory import get_auto_memory; print(get_auto_memory().get_session_summary())'",
     "agents": "ls src/leo_subagents/agents/ | wc -l",
     "workflows": "ls src/leo_workflows/definitions/*.yaml | wc -l"
+  },
+  "hardware": {
+    "cpu": "Intel Core i7-14700KF",
+    "cores": 20,
+    "threads": 28,
+    "max_clock_mhz": 3400,
+    "memory_gb": 32,
+    "memory_config": "2x16GB",
+    "gpu": "NVIDIA GeForce RTX 4060 4GB",
+    "disks": {
+      "C:": {"size_gb": 300, "free_gb": 130},
+      "D:": {"size_gb": 781, "free_gb": 707},
+      "E:": {"size_gb": 781, "free_gb": 734}
+    }
+  },
+  "network": {
+    "proxy": {
+      "software": "Clash Verge Rev",
+      "type": "TUN mode + System proxy",
+      "http_port": 7897,
+      "socks_port": 7898,
+      "mixed_port": 7897,
+      "subscription": "WgetCloud",
+      "current_node": "美国 01",
+      "traffic_used_gb": 77,
+      "traffic_total_gb": 343,
+      "expire_date": "2026-08-17"
+    },
+    "adapters": {
+      "ethernet": {
+        "name": "Realtek Gaming 2.5GbE Family Controller",
+        "speed": "1 Gbps",
+        "mac": "10-FF-E0-25-8F-D2"
+      },
+      "tun_mihomo": {
+        "speed": "100 Gbps",
+        "type": "Meta Tunnel"
+      },
+      "tun_tailscale": {
+        "speed": "100 Gbps",
+        "type": "Tailscale Tunnel"
+      }
+    },
+    "ip_addresses": {
+      "lan": "192.168.0.116",
+      "clash": "198.18.0.1",
+      "wsl_bridge": "100.103.224.127"
+    },
+    "dns": ["223.5.5.5", "119.29.29.29"],
+    "timezone": "China Standard Time (UTC+8)"
+  },
+  "os": {
+    "name": "Windows 11 Pro",
+    "version": "10.0.26200",
+    "architecture": "64-bit",
+    "timezone": "China Standard Time"
   }
 }

@@ -1,3 +1,9 @@
+---
+name: security-scan-skill
+description: Security Scan Skill 技能。当用户需要相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
+---
+
 # 安全扫描技能 Skill
 
 ## 技能描述

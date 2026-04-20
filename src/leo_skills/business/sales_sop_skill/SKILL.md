@@ -1,10 +1,10 @@
 ---
 name: sales-sop
-description: 房地产销售SOP数字化技能，AI辅助销售流程管理和执行指导
-compatibility: ">=1.0.0"
+description: 销售 SOP 执行技能，标准化销售流程。当用户需要执行销售流程、跟进销售线索、管理销售管道或生成销售报告时使用。 [优化第5轮：提升了触发准确率]
+compatibility: '>=1.0.0'
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: 1.0.0
   category: business
   author: Leo AI System
   industry: real_estate

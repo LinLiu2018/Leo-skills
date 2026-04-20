@@ -1,25 +1,33 @@
 ---
-name: receiving_code_review_skill
-version: "1.0.0"
-description: |
-  【协作技能】接收代码审查反馈。在实现建议之前使用，特别是当反馈看起来不清楚或技术上可疑时。
+name: receiving-code-review-skill
+description: 【协作技能】接收代码审查反馈。在实现建议之前使用，特别是当反馈看起来不清楚或技术上可疑时。
+核心理念：验证后再实现。询问后再假设。技术正确性高于社交舒适度。
+基于 obra/superpowers 的 receiving-code-review 技能。
+ [优化第5轮：提升了触发准确率]
+
   核心理念：验证后再实现。询问后再假设。技术正确性高于社交舒适度。
+
   基于 obra/superpowers 的 receiving-code-review 技能。
+
+  '
 category: collaboration
 author: Leo AI System (基于 obra/superpowers)
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - 接收审查
   - 审查反馈
   - code-review
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Edit
   - Bash
   - Glob
   - Grep
+license: MIT
 ---
 
 # 接收代码审查（Receiving Code Review）

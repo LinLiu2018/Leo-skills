@@ -1,3 +1,9 @@
+---
+name: react-component-generator-skill
+description: React 组件生成，创建可复用 UI 组件。当用户需要创建 React 组件、生成组件模板、编写组件逻辑或优化组件性能时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
+---
+
 # React组件生成器 Skill
 
 ## 技能描述

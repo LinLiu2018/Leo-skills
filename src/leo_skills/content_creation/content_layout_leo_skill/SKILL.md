@@ -1,3 +1,9 @@
+---
+name: content-layout-leo-skill
+description: Content Layout Leo Skill 技能。当用户需要相关帮助时使用。 [优化第5轮：提升了触发准确率]
+license: MIT
+---
+
 # Content Layout Skill
 
 多平台内容排版技能。

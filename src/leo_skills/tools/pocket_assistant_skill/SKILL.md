@@ -1,17 +1,19 @@
 ---
-name: pocket_assistant_skill
-version: 1.0.0
-description: 口袋助理 CRM 集成
+name: pocket-assistant-skill
+description: 口袋助理 CRM 集成。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - pocket-assistant-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Pocket Assistant Skill

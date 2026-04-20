@@ -1,17 +1,19 @@
 ---
-name: alipay_skill
-version: 1.0.0
-description: 支付宝支付
+name: alipay-skill
+description: 支付宝支付。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
 category: tools
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - alipay-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Alipay Skill

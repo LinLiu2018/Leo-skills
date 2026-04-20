@@ -131,6 +131,16 @@ class AutoLoggerSkill(BaseExecutor):
             Dict 包含执行结果
         """
         params: Dict[str, Any] = {}
+        
+        # 处理 context 中的 params（兼容 run_skill_direct.py 的调用方式）
+        if isinstance(context, dict):
+            context_params = context.get("params")
+            if isinstance(context_params, dict):
+                # 如果 action 是 'execute'，转为 'log'
+                if context_params.get('action') == 'execute':
+                    context_params['action'] = 'log'
+                    context_params['message'] = context_params.get('message', 'Scheduled task heartbeat')
+            params.update(context)
         if isinstance(context, dict):
             context_params = context.get("params")
             if isinstance(context_params, dict):

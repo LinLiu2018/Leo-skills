@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\testing\\spec_verification_skill",
+  "optimized_at": "2026-03-13T16:38:16.926773",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Verify generated specification documents for context preservation and quality issues. Automatically ...",
+      "train_accuracy": 0.89,
+      "test_accuracy": 0.864
+    },
+    {
+      "round": 2,
+      "description": "Verify generated specification documents for context preservation and quality issues. Automatically ...",
+      "train_accuracy": 0.884,
+      "test_accuracy": 0.883
+    },
+    {
+      "round": 3,
+      "description": "Verify generated specification documents for context preservation and quality issues. Automatically ...",
+      "train_accuracy": 0.891,
+      "test_accuracy": 0.904
+    },
+    {
+      "round": 4,
+      "description": "Verify generated specification documents for context preservation and quality issues. Automatically ...",
+      "train_accuracy": 0.915,
+      "test_accuracy": 0.918
+    },
+    {
+      "round": 5,
+      "description": "Verify generated specification documents for context preservation and quality issues. Automatically ...",
+      "train_accuracy": 0.944,
+      "test_accuracy": 0.927
+    }
+  ],
+  "final_description": "Verify generated specification documents for context preservation and quality issues. Automatically triggered after document generation. Checks that upstream requirements are preserved and identifies common specification problems.。当用户需要测试与验证相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

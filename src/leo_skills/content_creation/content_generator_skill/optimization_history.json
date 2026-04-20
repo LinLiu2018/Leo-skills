@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\content_creation\\content_generator_skill",
+  "optimized_at": "2026-03-13T16:38:14.354083",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "内容自动生成。当用户需要内容创作生成相关帮助时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.877,
+      "test_accuracy": 0.848
+    },
+    {
+      "round": 2,
+      "description": "内容自动生成。当用户需要内容创作生成相关帮助时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.901,
+      "test_accuracy": 0.851
+    },
+    {
+      "round": 3,
+      "description": "内容自动生成。当用户需要内容创作生成相关帮助时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.924,
+      "test_accuracy": 0.901
+    },
+    {
+      "round": 4,
+      "description": "内容自动生成。当用户需要内容创作生成相关帮助时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.919,
+      "test_accuracy": 0.908
+    },
+    {
+      "round": 5,
+      "description": "内容自动生成。当用户需要内容创作生成相关帮助时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.976,
+      "test_accuracy": 0.924
+    }
+  ],
+  "final_description": "内容自动生成。当用户需要内容创作生成相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

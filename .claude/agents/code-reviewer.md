@@ -7,6 +7,7 @@ tools:
   - Grep
   - Glob
   - Bash
+  - Edit
 ---
 
 # 代码审查专家

@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\core\\writing_skills_skill",
+  "optimized_at": "2026-03-13T16:38:16.125034",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Use when creating new skills, editing existing skills, or verifying skills work before deployment。当用...",
+      "train_accuracy": 0.862,
+      "test_accuracy": 0.847
+    },
+    {
+      "round": 2,
+      "description": "Use when creating new skills, editing existing skills, or verifying skills work before deployment。当用...",
+      "train_accuracy": 0.89,
+      "test_accuracy": 0.865
+    },
+    {
+      "round": 3,
+      "description": "Use when creating new skills, editing existing skills, or verifying skills work before deployment。当用...",
+      "train_accuracy": 0.935,
+      "test_accuracy": 0.91
+    },
+    {
+      "round": 4,
+      "description": "Use when creating new skills, editing existing skills, or verifying skills work before deployment。当用...",
+      "train_accuracy": 0.925,
+      "test_accuracy": 0.902
+    },
+    {
+      "round": 5,
+      "description": "Use when creating new skills, editing existing skills, or verifying skills work before deployment。当用...",
+      "train_accuracy": 0.932,
+      "test_accuracy": 0.916
+    }
+  ],
+  "final_description": "Use when creating new skills, editing existing skills, or verifying skills work before deployment。当用户需要核心功能相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

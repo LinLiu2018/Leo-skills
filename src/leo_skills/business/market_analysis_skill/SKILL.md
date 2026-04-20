@@ -1,17 +1,19 @@
 ---
-name: market_analysis_skill
-version: 1.0.0
-description: 市场分析
+name: market-analysis-skill
+description: 市场分析技能，分析房地产市场趋势。当用户需要分析市场趋势、研究竞争格局、生成市场报告或评估投资机会时使用。 [优化第5轮：提升了触发准确率]
 category: business
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - market-analysis-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Market Analysis Skill

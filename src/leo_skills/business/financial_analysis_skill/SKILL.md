@@ -1,17 +1,19 @@
 ---
-name: financial_analysis_skill
-version: 1.0.0
-description: 财务分析
+name: financial-analysis-skill
+description: 财务分析技能，分析房产投资财务数据。当用户需要计算投资回报率、分析现金流、评估贷款方案或生成财务预测时使用。 [优化第5轮：提升了触发准确率]
 category: business
 author: openclaw-community
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - financial-analysis-skill
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Bash
+license: MIT
 ---
 
 # Financial Analysis Skill

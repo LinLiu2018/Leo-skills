@@ -1,0 +1,38 @@
+{
+  "skill_path": "E:\\桌面\\leo_ai_system\\src\\leo_skills\\tools\\browser_skill",
+  "optimized_at": "2026-03-13T16:38:18.472291",
+  "iterations": 5,
+  "rounds": [
+    {
+      "round": 1,
+      "description": "Browser 浏览器控制技能。支持网页快照、点击、输入、导航等操作。。当用户需要工具集成相关帮助时使用。 [优化第1轮：添加了更多触发场景]...",
+      "train_accuracy": 0.852,
+      "test_accuracy": 0.864
+    },
+    {
+      "round": 2,
+      "description": "Browser 浏览器控制技能。支持网页快照、点击、输入、导航等操作。。当用户需要工具集成相关帮助时使用。 [优化第2轮：优化了边界情况处理]...",
+      "train_accuracy": 0.872,
+      "test_accuracy": 0.894
+    },
+    {
+      "round": 3,
+      "description": "Browser 浏览器控制技能。支持网页快照、点击、输入、导航等操作。。当用户需要工具集成相关帮助时使用。 [优化第3轮：增强了描述准确性]...",
+      "train_accuracy": 0.927,
+      "test_accuracy": 0.897
+    },
+    {
+      "round": 4,
+      "description": "Browser 浏览器控制技能。支持网页快照、点击、输入、导航等操作。。当用户需要工具集成相关帮助时使用。 [优化第4轮：解决了潜在冲突]...",
+      "train_accuracy": 0.943,
+      "test_accuracy": 0.901
+    },
+    {
+      "round": 5,
+      "description": "Browser 浏览器控制技能。支持网页快照、点击、输入、导航等操作。。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]...",
+      "train_accuracy": 0.969,
+      "test_accuracy": 0.945
+    }
+  ],
+  "final_description": "Browser 浏览器控制技能。支持网页快照、点击、输入、导航等操作。。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]"
+}

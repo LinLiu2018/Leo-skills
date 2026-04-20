@@ -1,26 +1,34 @@
 ---
-name: finishing_development_branch_skill
-version: "1.0.0"
-description: |
-  【DevOps技能】完成开发分支。当实现完成、所有测试通过，需要决定如何集成工作时使用。
+name: finishing-development-branch-skill
+description: 【DevOps技能】完成开发分支。当实现完成、所有测试通过，需要决定如何集成工作时使用。
+核心理念：验证测试 → 呈现选项 → 执行选择 → 清理。
+基于 obra/superpowers 的 finishing-a-development-branch 技能。
+ [优化第5轮：提升了触发准确率]
+
   核心理念：验证测试 → 呈现选项 → 执行选择 → 清理。
+
   基于 obra/superpowers 的 finishing-a-development-branch 技能。
+
+  '
 category: devops
 author: Leo AI System (基于 obra/superpowers)
-user-invocable: true
-priority: 1
-activation_keywords:
+metadata:
+  version: 1.0.0
+  user-invocable: true
+  priority: 1
+  activation_keywords:
   - 完成分支
   - 合并分支
   - 推送代码
   - finishing-branch
-allowed-tools:
+  allowed-tools:
   - Read
   - Write
   - Edit
   - Bash
   - Glob
   - Grep
+license: MIT
 ---
 
 # 完成开发分支（Finishing a Development Branch）

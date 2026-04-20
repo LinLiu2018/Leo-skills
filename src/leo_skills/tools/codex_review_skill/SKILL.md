@@ -1,8 +1,11 @@
 ---
 name: codex-review
-description: Have OpenAI Codex review the current branch with documentation research. Use for second-opinion code reviews or when you want cross-AI verification.
-argument-hint: "[focus] [--upstream FILE] [--research TOPICS] [--base BRANCH] [--model MODEL]"
-allowed-tools: Bash, Read, Glob, Grep
+description: Have OpenAI Codex review the current branch with documentation research. Use for second-opinion code reviews or when you want cross-AI verification.。当用户需要工具集成相关帮助时使用。 [优化第5轮：提升了触发准确率]
+argument-hint: '[focus] [--upstream FILE] [--research TOPICS] [--base BRANCH] [--model
+  MODEL]'
+metadata:
+  allowed-tools: Bash, Read, Glob, Grep
+license: MIT
 ---
 
 # Codex Review
