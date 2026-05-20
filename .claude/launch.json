@@ -1,0 +1,42 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "建华小程序后端 API",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["projects/jianhua-miniprogram/server/app.js"],
+      "port": 3000,
+      "description": "建华官园菜场小程序后端 - Express.js API (登录/预约/礼品/用户)"
+    },
+    {
+      "name": "建华小程序前端 (微信小程序)",
+      "runtimeExecutable": "微信开发者工具",
+      "runtimeArgs": [],
+      "port": 0,
+      "description": "建华官园菜场微信小程序前端 - 需微信开发者工具打开 projects/jianhua-miniprogram/miniprogram"
+    },
+    {
+      "name": "全栈脚手架 - Vue 前端 (模板)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 5173,
+      "description": "Vue 3 + Vite 全栈项目模板前端 (配合 Flask 后端 on :5000)",
+      "cwd": "leo-skills/development/scaffold/fullstack-project-scaffold-cskill/scripts/output/MyProject/frontend"
+    },
+    {
+      "name": "全栈脚手架 - Flask 后端 (模板)",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["run.py"],
+      "port": 5000,
+      "description": "Flask 3.0 API 全栈项目模板后端 (配合 Vue 前端 on :5173)",
+      "cwd": "leo-skills/development/scaffold/fullstack-project-scaffold-cskill/scripts/output/MyProject/backend"
+    },
+    {
+      "name": "Leo AI Agent System",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["leo-system.py"],
+      "port": 0,
+      "description": "Leo AI Agent System CLI 主入口 (非 Web 服务器)"
+    }
+  ]
+}
